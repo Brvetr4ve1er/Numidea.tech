@@ -14,6 +14,10 @@
  *                            partner URL (ref, empty until he joins a programme), the regions where it is never shown;
  *                            built into hub/lanterne/outils.html (copy under lant.tools.*), partner links put on by
  *                            hub/lanterne.js after the region check only, so no partner link is ever in the markup
+ *   enquetes.json            « Les enquêtes de nuit » (2026-11-23): the night stall as a game (the painting's rings, the
+ *                            season's rows, the cases' steps and their returns, the sources), never copy: copy is under
+ *                            lant.enq.*; checked and built into hub/lanterne/enquetes.html by scripts/lib/enquetes.mjs,
+ *                            played by hub/enquetes.js
  *   ex/<slug>/<id>.html      a district's exercise markup (the courses' existing labs, cut verbatim), set in its
  *                            board; without one, the board is the kit's (hub/lanterne.js) or its resting line
  *   ex/<slug>/_<slot>.html   an atlas's own blocks: _hero (under the hero, on paper: the legal lines), _sac (the set's
@@ -37,6 +41,7 @@
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { AYN } from './ayn.mjs';
+import { enquetes } from './enquetes.mjs';
 
 const W3M_KEYS = /^web3c\.(mods|x|chap|carnet)\./;
 const KIT = ['compose', 'observe', 'focus', 'scrub', 'ab', 'machineLaunch', 'machineAsh', 'funnel', 'toggles', 'path'];
@@ -59,6 +64,9 @@ export function lanterne(ctx) {
   const live = books.filter((b) => ATLAS[b.slug]);
   /* the toolbox's registry (hub/src/lanterne/apps.json): checked here, its page built after the shelf */
   const TOOLS = existsSync(join(LS, 'apps.json')) ? json(join(LS, 'apps.json')) : null;
+  /* « Les enquêtes de nuit » (2026-11-23): the night stall as a game, built after the toolbox once its data file exists (scripts/lib/enquetes.mjs) */
+  const ENQ = existsSync(join(LS, 'enquetes.json'));
+  const enqMenu = ENQ ? [['enquetes.html', 'lant.enq.mast']] : [];
   const toolIds = new Set(TOOLS ? [...TOOLS.categories.map((c) => 'tl-' + c.id), ...TOOLS.apps.map((a) => 'tl-app-' + a.id)] : []);
   for (const b of books) if (!ATLAS[b.slug]) notes.push(`the Librairie: « ${b.slug} » has no atlas file yet (hub/src/lanterne/atlases/${b.slug}.json): its book reads « bientôt »`);
   const fr = (k) => DICT.fr[k];
@@ -350,7 +358,7 @@ export function lanterne(ctx) {
   </nav>
   <button type="button" class="motion js-only" data-lt-motion aria-pressed="true" data-i18n-title="lant.ui.motionHint"><span class="motion__dot" aria-hidden="true"></span><span data-i18n="lant.ui.motion"></span></button>
   ${langSwitch()}
-  ${menu([['./', 'lant.ui.library'], ['#journal', 'lant.ui.journal'], ['#sac', 'lant.ui.sac'], ...(A.mast || []), ['./#comptoir', 'lant.shelf.cta'], ...(TOOLS ? [['outils.html', 'lant.tools.mast']] : []), [WA, 'lant.ui.wa'], ['../', 'lant.ui.studio'], ['../fabrique.html', 'nav.fab'], ['../monde.html', 'nav.world']])}
+  ${menu([['./', 'lant.ui.library'], ['#journal', 'lant.ui.journal'], ['#sac', 'lant.ui.sac'], ...(A.mast || []), ['./#comptoir', 'lant.shelf.cta'], ...(TOOLS ? [['outils.html', 'lant.tools.mast']] : []), ...enqMenu, [WA, 'lant.ui.wa'], ['../', 'lant.ui.studio'], ['../fabrique.html', 'nav.fab'], ['../monde.html', 'nav.world']])}
 </header>
 <main id="main" class="lt-wrap${A.course || A.brief ? ' st-crs' : ''}"${A.course ? ` data-lt-course="${A.course}"` : ''}${A.brief ? ` data-lt-brief="${A.brief}"` : ''}>
   <section class="hero" id="hero" aria-labelledby="hero-h">
@@ -535,7 +543,7 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
   </nav>
   ${langSwitch()}
   <a class="btn btn--amber mast__cta" href="#comptoir" data-i18n="lant.shelf.cta"></a>
-  ${menu([['#rayons', 'lant.shelf.navAtlases'], ['#passeport', 'lant.shelf.navPassport'], ['#radio', 'radio.title'], ['#comptoir', 'lant.shelf.navComptoir'], ...(TOOLS ? [['outils.html', 'lant.tools.mast']] : []), ['#ronde', 'lant.shelf.navRonde'], [WA, 'lant.ui.wa'], ['../', 'lant.ui.studio'], ['../fabrique.html', 'nav.fab'], ['../monde.html', 'nav.world']])}
+  ${menu([['#rayons', 'lant.shelf.navAtlases'], ['#passeport', 'lant.shelf.navPassport'], ['#radio', 'radio.title'], ['#comptoir', 'lant.shelf.navComptoir'], ...(TOOLS ? [['outils.html', 'lant.tools.mast']] : []), ...enqMenu, ['#ronde', 'lant.shelf.navRonde'], [WA, 'lant.ui.wa'], ['../', 'lant.ui.studio'], ['../fabrique.html', 'nav.fab'], ['../monde.html', 'nav.world']])}
 </header>`;
     holes['lant.shelf.hero'] = `<div class="hero__art hero__art--key" dir="ltr" role="img" data-i18n-aria="lant.shelf.heroAlt"><img class="hero__back" src="${up(k1.src)}" srcset="${up(k1.small.src)} ${k1.small.w}w, ${up(k1.src)} ${k1.w}w" sizes="(max-width:1010px) 94vw, 58vw" width="${k1.w}" height="${k1.h}" alt="" fetchpriority="high" decoding="async"></div>`;
     holes['lant.shelf.rayons'] = rayons;
@@ -695,6 +703,14 @@ ${scripts(['../lanterne.js', '../../assets/carry.js'])}
     runtime[page] = new Set();
   }
 
+  /* ================= les enquêtes de nuit (2026-11-23, scripts/lib/enquetes.mjs) =================
+     the page, its checks and the strings its engine writes; its sources' hosts join the toolbox's (a source there is a
+     plain link to the page that was read, marked data-app like an app's official address) */
+  if (ENQ) {
+    const G = enquetes({ LS, HUB, DICT, LANGS, fail, notes, esc, json, need, headFor, swap, menu, langSwitch, scripts, radioJson, WA, TOOLS });
+    if (G) { out.push(G.out); runtime[G.out.page] = G.runtime; for (const hst of G.hosts) appHosts.add(hst); }
+  }
+
   /* the French runtime strings each page writes itself (the rest is baked) */
   for (const { page } of out) holes[`lantFr.${page.replace(/[^a-z]/g, '')}`] = JSON.stringify(Object.fromEntries([...runtime[page]].filter((k) => !(lazyFr[page] && k in lazyFr[page])).sort().map((k) => [k, DICT.fr[k]]))).replace(/</g, '\\u003c');
   const files = Object.entries(lazyFr).map(([page, o]) => [`hub/lanterne/i18n/${page}.fr.js`, `/* GENERATED by scripts/build-hub.mjs (scripts/lib/lanterne.mjs): the French lines the labs of hub/lanterne/${page}.html write themselves, fetched with them (hub/lanterne.js). */\nwindow.LANT_XFR = ${JSON.stringify(o).replace(/</g, '\\u003c')};\n`]);
@@ -768,6 +784,6 @@ if(l==='en'||l==='ar')u+='?lang='+l;if(at)u+='#'+at;location.replace(u);})();`;
 `;
   out.push({ file: 'hub/manuel.html', name: 'manuel.html', page: null, html: stub });
 
-  const generated = ['lanterne/index.html', ...live.map((b) => `lanterne/${b.slug}.html`), ...(TOOLS ? ['lanterne/outils.html'] : []), ...out.filter((o) => o.page).flatMap((o) => ['en', 'ar'].map((l) => `lanterne/i18n/${o.page}.${l}.js`)), ...files.map(([f]) => f.slice(4))];
+  const generated = ['lanterne/index.html', ...live.map((b) => `lanterne/${b.slug}.html`), ...(TOOLS ? ['lanterne/outils.html'] : []), ...(ENQ ? ['lanterne/enquetes.html'] : []), ...out.filter((o) => o.page).flatMap((o) => ['en', 'ar'].map((l) => `lanterne/i18n/${o.page}.${l}.js`)), ...files.map(([f]) => f.slice(4))];
   return { out, holes, runtime, generated, files, live: live.map((b) => b.slug), books, ATLAS, appHosts };
 }

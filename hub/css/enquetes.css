@@ -1,0 +1,308 @@
+/* « Les enquêtes de nuit » (hub/lanterne/enquetes.html, 2026-11-23): the Librairie's night stall as a game. Loaded after
+   hub/style.css and hub/css/lanterne.css, whose tokens and faces it uses (paper, ink, cream, the atlas pair --navy and
+   --amber, Archivo, Geist, Geist Mono; the Arabic faces through the same variables). The stage is the night: navy, with
+   the evidence on paper as a mock screen of real buttons. Hard ink lines, offset hard shadows, no radius but the rings
+   on the painting. Logical properties only, so Arabic mirrors; the painting itself never does (its box is ltr).
+   One move per tap, 300 ms at most, transform and opacity only; none under reduced motion or the Mouvement toggle.
+   No text under 14 px: body text is 16 and more, mono labels and second lines 14. */
+.enq{padding-block:20px 8px}
+.enq-app{--pad:14px;--fs:44px;display:grid;max-width:480px;margin-inline:auto;background:var(--navy);color:var(--on-navy);border:2px solid var(--ink);box-shadow:var(--shadow);font-size:16px;line-height:1.45}
+/* with scripts the stage stands in from the first paint: the plain text is put away before it shows and the empty
+   stage keeps about the door's room, so the page's foot does not jump when the engine draws (the engine marks the
+   page data-enq-off if it cannot start, and the plain text stays) */
+html.js:not([data-enq-off]) .enq-clair{display:none}
+html.js:not([data-enq-off]) .enq-app[hidden]{display:block!important;min-height:760px}
+.enq-app:focus{outline:0}
+.enq-app :focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+/* amber on paper is 1.2:1: on the paper and cream surfaces the ring is ink */
+.enq-ev :focus-visible,.enq-talk :focus-visible,.enq-box :focus-visible,.enq-endcard :focus-visible,.enq-pcard :focus-visible{outline-color:var(--ink)}
+.enq-ev--stamp :focus-visible{outline-color:var(--amber)}
+.enq-app button:disabled{cursor:default}
+.enq-app h1,.enq-app h2,.enq-app h3{margin:0;font:inherit}
+.enq-app [tabindex="-1"]:focus{outline:0}
+.enq-screen{min-width:0;padding:0 var(--pad) var(--pad);display:grid;align-content:start}
+.enq-screen>section{display:grid;gap:10px;align-content:start;min-width:0}
+
+/* the painting: its crop on a phone, the whole of it beside the game from 900 px */
+.enq-art{position:relative;direction:ltr;overflow:hidden;aspect-ratio:390/380;background:var(--navy-2);border-bottom:2px solid var(--ink)}
+.enq-art__img{width:100%;height:100%;object-fit:cover;object-position:94.67% 50%}
+.enq-app[data-screen=door] .enq-art{aspect-ratio:390/300}
+.enq-app:not([data-screen=door]):not([data-screen=stall]) .enq-art,.enq-app.is-list .enq-art{display:none}
+.enq-art__rings{position:absolute;inset:0}
+.enq-art__glow{position:absolute;inset-inline-start:var(--x);top:var(--y);width:44%;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(240,176,90,.5),rgba(240,176,90,0));mix-blend-mode:screen;opacity:0;pointer-events:none}
+.enq-art.is-lit .enq-art__glow{opacity:1}
+.enq-ring{position:absolute;inset-inline-start:var(--x);top:var(--y);width:56px;height:56px;margin:-28px;padding:0;border-radius:50%;border:3px solid var(--cream);background:rgba(243,236,225,.22);box-shadow:0 0 0 2px var(--ink)}
+.enq-ring--slip{border-color:var(--amber);background:rgba(240,176,90,.4)}
+.enq-ring.is-on{background:rgba(243,236,225,.55)}
+.enq-ring:focus-visible{outline-offset:4px}
+
+/* the bar */
+.enq-bar{display:flex;align-items:center;gap:8px;min-height:52px;margin-inline:calc(var(--pad) * -1);padding:4px 8px;background:var(--ink);color:var(--cream);font:700 14px/1.2 var(--f-mono)}
+.enq-bar__back,.enq-bar__list,.enq-bar__snd{min-width:44px;min-height:44px;padding:0 10px;background:transparent;border:2px solid var(--cream);color:var(--cream);font:700 14px/1 var(--f-mono)}
+.enq-bar__back::before{content:"←";font-size:18px}
+.enq-bar__back:dir(rtl)::before{content:"→"}
+.enq-bar__snd{display:inline-flex;align-items:center;justify-content:center;padding:0}
+.enq-bar__snd:disabled{opacity:.5}
+.enq-bar__list[aria-pressed=true],.enq-bar__snd[aria-pressed=true]{background:var(--amber);border-color:var(--amber);color:var(--ink)}
+.enq-bar__rank,.enq-bar__pos{flex:1;min-width:0;letter-spacing:.06em;text-transform:uppercase;overflow-wrap:anywhere}
+.enq-bar__xp{margin-inline-start:auto;color:var(--amber);white-space:nowrap}
+.enq-flames{display:inline-flex;gap:2px}
+.enq-flame{width:22px;height:22px;fill:none;stroke:#8FA0B5;stroke-width:2;stroke-linejoin:round}
+.enq-flame.is-lit{fill:var(--amber);stroke:var(--amber)}
+.enq-ico{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* buttons */
+.enq-btn,.enq-go,.enq-goal,.enq-opt,.enq-verdict{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:8px 14px;background:transparent;color:var(--on-navy);border:2px solid var(--on-navy);font:800 15px/1.2 var(--f-body);text-align:center}
+.enq-btn--fill,.enq-go{background:var(--amber);border-color:var(--amber);color:var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.enq-go{min-height:56px;font:900 18px/1.1 var(--f-disp);letter-spacing:.02em;text-transform:uppercase}
+.enq-btn--eye{border-color:var(--amber);color:var(--amber)}
+.enq-btn__i{width:28px;height:28px;object-fit:contain;order:-1}
+.enq-row{display:flex;flex-wrap:wrap;gap:8px}
+.enq-col{display:grid;gap:8px}
+.enq-actions{display:flex;flex-wrap:wrap;gap:8px;min-height:56px;align-items:center}
+.enq-next{flex:1;min-height:56px}
+.enq-snd{min-width:48px;padding:0;margin-inline-start:auto}
+.enq-snd:disabled{opacity:.5}
+.enq-snd[aria-pressed=true]{background:var(--amber);border-color:var(--amber);color:var(--ink)}
+.enq-law{margin:0;padding:8px 10px;border-inline-start:4px solid var(--amber);background:var(--navy-2);color:var(--on-navy-2);font-size:14px;line-height:1.4}
+.enq-law--band{font-size:16px;color:var(--on-navy)}
+
+/* A. the door */
+.enq-door{padding-block-start:14px;text-align:center;justify-items:center}
+.enq-door__label{font:700 14px/1.3 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--amber)}
+.enq-app .enq-door__h{font:900 clamp(34px,10vw,46px)/1 var(--f-disp);letter-spacing:-.02em;text-transform:uppercase;color:var(--cream)}
+.enq-door__season{font:700 16px/1.3 var(--f-mono)}
+.enq-door__line{max-width:30ch}
+.enq-door .enq-go{width:100%}
+.enq-door .enq-law{text-align:start}
+.enq-door__opts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.enq-opt{min-height:44px;font:700 14px/1.2 var(--f-mono)}
+.enq-opt[aria-pressed=true]{background:var(--on-navy);color:var(--navy)}
+
+/* B, C. the stall */
+.enq-goal{width:100%;min-height:52px;justify-content:flex-start;text-align:start;background:var(--amber);border-color:var(--amber);color:var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.enq-goal::after{content:"→";margin-inline-start:auto;font-size:18px}
+.enq-goal:dir(rtl)::after{content:"←"}
+.enq-talk{display:flex;gap:12px;align-items:flex-start;min-height:124px;padding:12px;background:var(--cream);color:var(--ink);border:2px solid var(--ink)}
+.enq-talk--sheet{display:grid;gap:8px;box-shadow:4px 4px 0 var(--amber)}
+.enq-talk__body{flex:1;min-width:0;display:grid;gap:6px;justify-items:start}
+.enq-talk__name,.enq-app .enq-talk__name{font:700 14px/1.3 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--red-text)}
+.enq-talk__t{font-size:17px;line-height:1.4}
+.enq-talk__fact{font:400 14px/1.4 var(--f-mono);color:var(--muted)}
+.enq-talk .enq-btn{color:var(--ink);border-color:var(--ink)}
+.enq-talk .enq-btn--fill{border-color:var(--ink)}
+.enq-face{flex:none;display:block;width:var(--fs);height:var(--fs);overflow:hidden;background-color:var(--paper);border:2px solid var(--ink)}
+.enq-face img{width:100%;height:100%;object-fit:contain}
+.enq-face--lg{--fs:56px}
+/* Yasser's face is a crop of the key art (his cut-out is reserved to two atlases) */
+.enq-face--yasser{background-image:url("../img/lanterne/keys/lanterne-nuit-800.webp");background-size:calc(var(--fs) * 11.4) auto;background-position:calc(var(--fs) * -4.72) calc(var(--fs) * -2.72)}
+.enq-crew{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.enq-crew__b{display:grid;justify-items:center;gap:4px;min-height:72px;padding:6px 2px;background:var(--navy-2);color:var(--on-navy);border:2px solid var(--on-navy-2);font:700 14px/1.2 var(--f-mono)}
+.enq-crew__b.is-on{background:var(--amber);border-color:var(--amber);color:var(--ink)}
+.enq-crew__n{max-width:100%;overflow-wrap:anywhere;text-align:center}
+.enq-rings-list{display:none;gap:8px}
+.enq-app.is-list .enq-rings-list{display:grid}
+
+/* D. the slip */
+.enq-slipcard{padding:14px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--red)}
+.enq-slipcard__tag,.enq-tag,.enq-ev__k,.enq-mock__title{font:700 14px/1.3 var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
+.enq-slipcard__tag{color:var(--red-text);margin-block-end:6px}
+.enq-app .enq-slipcard__t{font:600 18px/1.4 var(--f-body)}
+.enq-pv{display:flex;flex-wrap:wrap;gap:8px;padding:12px;border:2px dashed var(--on-navy-2);opacity:.55}
+.enq-pv__b{flex:1 1 40%;height:28px;background:var(--on-navy-2)}
+.enq-ask{font-weight:700}
+.enq-verdicts{display:grid;gap:8px}
+.enq-verdict{min-height:56px;background:var(--cream);color:var(--ink);border-color:var(--ink);box-shadow:3px 3px 0 var(--amber);font:900 16px/1.1 var(--f-disp);letter-spacing:.04em;text-transform:uppercase}
+.enq-verdict.is-stamped{background:var(--red);color:var(--cream);box-shadow:none}
+.enq-verdict:disabled:not(.is-stamped){opacity:.55;box-shadow:none}
+
+/* E. a step: the evidence on paper */
+.enq-meta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:space-between}
+.enq-tag{color:var(--amber)}
+.enq-betchip{padding:2px 8px;border:1px solid var(--on-navy-2);font:400 14px/1.4 var(--f-mono)}
+.enq-ev{display:grid;gap:10px;align-content:start;padding:12px;background:var(--paper);color:var(--ink);border:2px solid var(--ink)}
+.enq-ev--stamp{background:var(--navy-2);color:var(--on-navy);border-color:var(--on-navy-2)}
+.enq-ev__k{color:var(--muted)}
+.enq-mock{display:grid;gap:8px}
+.enq-mock__title{padding:4px 8px;background:var(--ink);color:var(--cream)}
+.enq-mock__body{display:grid;gap:8px}
+.enq-mock--row .enq-mock__body{display:flex;flex-wrap:wrap;align-items:flex-start}
+.enq-mock--grid .enq-mock__body{grid-template-columns:repeat(2,minmax(0,1fr))}
+.enq-mock__pill{flex:1 1 90px;height:56px;border:2px solid var(--line);background:var(--cream)}
+.enq-partw{display:grid;gap:6px;min-width:0}
+.enq-mock--row .enq-partw{flex:0 1 auto}
+.enq-part{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;width:100%;min-width:56px;min-height:56px;padding:8px 12px;background:var(--white);color:var(--ink);border:2px solid var(--ink);box-shadow:var(--shadow-s);font:700 16px/1.3 var(--f-body);text-align:start}
+.enq-partw--g .enq-part{flex-direction:column;justify-content:center;min-width:60px;padding:6px 8px}
+.enq-part__t{min-width:0;overflow-wrap:anywhere}
+.enq-part__cap{font:400 14px/1.2 var(--f-mono)}
+.enq-part__mark{padding:1px 6px;border:1px solid var(--ink);font:700 14px/1.3 var(--f-mono)}
+.enq-part[data-mode=hit],.enq-slot[data-mode=hit]{background:var(--amber);box-shadow:none;transform:translateY(3px)}
+.enq-part[data-mode=wrong],.enq-chip[data-mode=wrong]{background:#D9D0C3;color:var(--muted);border-style:dashed;box-shadow:none}
+/* the answer shown after misses wears the colour of a right answer (amber, not pressed in); red never rings the evidence */
+.enq-part[data-mode=answer],.enq-slot[data-mode=answer]{background:var(--amber);box-shadow:none}
+.enq-part[data-mode=open]{box-shadow:3px 3px 0 var(--teal)}
+.enq-part[data-mode=dim],.enq-chip[data-mode=dim]{background:#E9E1D4;color:var(--muted);box-shadow:none}
+.enq-after{display:grid;gap:6px}
+.enq-after:empty{display:none}
+.enq-after__l{padding:6px 10px;border:2px solid var(--ink);background:var(--white);font:400 14px/1.35 var(--f-mono)}
+.enq-after__l[data-mode=hit],.enq-after__l[data-mode=answer]{background:var(--amber)}
+.enq-after__l[data-mode=wrong]{border-style:dashed;background:#D9D0C3}
+.enq-opens{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline;padding:6px 10px;background:var(--ink);color:var(--cream);font:400 15px/1.4 var(--f-mono)}
+.enq-opens__k{color:var(--amber);font-size:14px;text-transform:uppercase;letter-spacing:.08em}
+.enq-opens__a{overflow-wrap:anywhere}
+.enq-ev .enq-btn{color:var(--ink);border-color:var(--ink)}
+.enq-choose{min-height:56px}
+.enq-addr{display:flex;flex-wrap:wrap;gap:4px;font:700 16px/1.3 var(--f-mono)}
+.enq-addr__p{padding:8px;border:2px solid var(--line);background:var(--cream);overflow-wrap:anywhere}
+.enq-part--piece{width:auto;font:700 16px/1.3 var(--f-mono)}
+.enq-frame{font-size:18px;line-height:2.7}
+.enq-slotw{display:inline-flex;align-items:baseline;align-items:last baseline;max-width:100%;vertical-align:middle;line-height:1.3}
+.enq-slotw__x{flex:none}
+.enq-slot{display:inline-flex;align-items:center;flex:0 1 auto;min-height:44px;min-width:72px;margin:0 2px;margin-inline-end:5px;padding:4px 10px;background:var(--white);color:var(--ink);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--teal);font:700 16px/1.3 var(--f-body);vertical-align:middle;text-align:start}
+.enq-slot[data-mode=empty]{border-style:dashed;color:var(--muted);box-shadow:none}
+.enq-slot[data-mode=empty],.enq-slot[data-mode=hit],.enq-slot[data-mode=answer]{margin-inline-end:2px}
+.enq-chips{display:flex;flex-wrap:wrap;gap:6px 8px}
+.enq-chip{min-height:44px;padding:6px 12px;background:var(--white);color:var(--ink);border:2px solid var(--ink);box-shadow:var(--shadow-s);font:700 16px/1.3 var(--f-body);text-align:start}
+.enq-chip[data-mode=sel]{background:var(--ink);color:var(--cream);box-shadow:3px 3px 0 var(--amber)}
+
+/* F. the prompt and the feedback */
+.enq-q{padding:10px 12px;background:var(--cream);color:var(--ink);border:2px solid var(--ink)}
+.enq-box{display:grid;gap:8px;align-content:start;padding:12px;background:var(--cream);color:var(--ink);border:2px solid var(--ink)}
+.enq-box--bubble{display:flex;gap:12px;align-items:flex-start}
+.enq-box--hit{box-shadow:4px 4px 0 var(--amber)}
+.enq-app .enq-prompt{font:700 18px/1.35 var(--f-body)}
+.enq-ev--stamp .enq-prompt{color:var(--cream)}
+.enq-box--miss{gap:6px;border-style:dashed}
+.enq-box--leave{box-shadow:4px 4px 0 var(--amber)}
+.enq-box .enq-btn{color:var(--ink);border-color:var(--ink)}
+.enq-fb__head{font-weight:800}
+.enq-fb__lead,.enq-fb__extra,.enq-hint{font-size:15px;color:var(--ink-2)}
+.enq-fb__line{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
+.enq-kuro{padding:2px 8px;background:var(--ink);color:var(--cream)}
+.enq-xp{font:700 14px/1.3 var(--f-mono);color:var(--teal-text)}
+.enq-seal{width:44px;height:auto;float:inline-end}
+.enq-box--hit{display:block}
+.enq-box--hit>*+*,.enq-box--reveal>*+*{margin-block-start:8px}
+.enq-hint{margin:0;padding:8px 10px;border:2px solid var(--ink);border-inline-start:6px solid var(--teal);background:var(--white)}
+.enq-result{display:grid;gap:8px;padding:12px;background:var(--cream);color:var(--ink);border:2px solid var(--ink)}
+.enq-result__l{font:700 15px/1.4 var(--f-mono)}
+.enq-result__u{font-size:14px;color:var(--muted)}
+
+/* G. the end card */
+.enq-endcard{display:grid;gap:10px;padding:14px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--amber)}
+.enq-app .enq-endcard__h{font:900 28px/1 var(--f-disp);text-transform:uppercase}
+.enq-endcard__l,.enq-endcard__xp{font:700 15px/1.4 var(--f-mono)}
+.enq-endcard__xp{color:var(--teal-text)}
+.enq-endcard .enq-flame{stroke:var(--line)}
+.enq-endcard .enq-flame.is-lit{stroke:var(--red);fill:var(--amber)}
+.enq-endcard__tool{display:flex;gap:10px;align-items:center;padding:8px;border:2px solid var(--ink);background:var(--white);font-size:15px}
+.enq-endcard__tool img{flex:none;width:56px;height:56px;object-fit:contain}
+.enq-endcard__tk{font-weight:800}
+.enq-endcard__q{font-style:italic}
+.enq-endcard__st{font:700 14px/1.3 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--red-text)}
+.enq-endcard .enq-btn{color:var(--ink);border-color:var(--ink)}
+
+/* H. the chart */
+.enq-app .enq-h{font:900 28px/1.05 var(--f-disp);text-transform:uppercase;color:var(--cream)}
+.enq-chart__cta{padding:8px 10px;background:var(--amber);color:var(--ink);font-weight:700}
+.enq-rows{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.enq-rows__ch{padding-block-start:10px}
+.enq-rows__chn{font:700 14px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--amber)}
+.enq-rows__chl{font-size:14px;color:var(--on-navy-2)}
+.enq-row2{display:grid;gap:8px}
+.enq-row2__in{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;width:100%;min-height:56px;padding:8px 10px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);font:400 15px/1.4 var(--f-body);text-align:start}
+.enq-row2:not(.enq-row2--mine) .enq-row2__in{background:#E9E1D4}
+.enq-row2__btn{box-shadow:4px 4px 0 var(--amber)}
+.enq-row2__n{grid-row:span 5;font:700 14px/1.6 var(--f-mono);color:var(--muted)}
+.enq-row2__pair{font-weight:800;font-size:16px;overflow-wrap:anywhere}
+.enq-row2__soon{justify-self:start;padding:1px 6px;border:1px dashed var(--muted);font:400 14px/1.4 var(--f-mono);color:var(--muted)}
+.enq-row2__v{font:700 14px/1.4 var(--f-mono);color:var(--teal-text)}
+.enq-row2__cta{font-weight:800;color:var(--red-text)}
+.enq-row2__landed{font-style:italic}
+.enq-sticker{justify-self:start;margin-block-start:4px;padding:6px 12px;border:2px solid var(--ink);font:900 14px/1.1 var(--f-disp);letter-spacing:.04em;text-transform:uppercase}
+.enq-sticker[data-state="2"],.enq-sticker[data-state="3"]{background:var(--amber)}
+.enq-sticker[data-state="3"]{border-color:var(--white);outline:2px solid var(--ink);box-shadow:3px 5px 0 rgba(33,30,27,.45)}
+.enq-back{display:grid;gap:8px;padding:12px;background:var(--navy-2);border:2px solid var(--on-navy-2);font-size:15px}
+.enq-src{display:grid;gap:6px;margin:0;padding:0;list-style:none;font:400 14px/1.4 var(--f-mono)}
+.enq-src a{display:inline-flex;align-items:center;min-height:44px;color:inherit;overflow-wrap:anywhere}
+.enq-back .enq-ev__k{color:var(--amber)}
+
+.enq-chart>.enq-btn,.enq-card>.enq-btn{justify-self:start}
+
+/* I. the card */
+.enq-pcard{display:flex;gap:12px;align-items:flex-start;padding:12px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--amber)}
+.enq-pcard__info{flex:1;min-width:0;display:grid;gap:4px}
+.enq-pcard__k{font:700 14px/1.3 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.enq-pcard__title{font:900 24px/1.05 var(--f-disp);text-transform:uppercase}
+.enq-pcard__xp{font:700 14px/1.3 var(--f-mono);color:var(--teal-text)}
+.enq-pcard__l{font-size:14px}
+.enq-pcard__kit{display:flex;gap:6px}
+.enq-pcard__kit img{width:40px;height:40px;object-fit:contain}
+.enq-meter{height:14px;border:2px solid var(--ink);background:var(--white)}
+.enq-meter__f{display:block;width:var(--p);height:100%;background:var(--teal)}
+/* Kūro's sprite, on the card only: one cell of his sheet (8 by 6) per title */
+.enq-sprite{flex:none;width:96px;aspect-ratio:260/218;direction:ltr;background:url("../img/studio/life/kuro.webp") no-repeat;background-size:800% 600%;background-position:calc(var(--cx) * 100% / 7) calc(var(--cy) * 100% / 5)}
+.enq-ladder{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.enq-ladder__r{display:grid;grid-template-columns:56px minmax(0,1fr);gap:8px 10px;align-items:start;padding:10px;background:var(--navy-2);border:2px solid var(--on-navy-2)}
+.enq-ladder__i{width:56px;height:56px;image-rendering:pixelated}
+.enq-ladder__t{display:grid;gap:2px;font-size:14px}
+.enq-app .enq-ladder__n{font:800 16px/1.3 var(--f-body);color:var(--cream)}
+.enq-ladder__s{font:700 14px/1.4 var(--f-mono);color:var(--amber)}
+.enq-ladder__r .enq-btn{grid-column:1/-1}
+
+/* the list view: no painting, no mock layout, every button in reading order */
+.enq-app.is-list .enq-mock__body,.enq-app.is-list .enq-mock--row .enq-mock__body{display:grid;grid-template-columns:minmax(0,1fr)}
+.enq-app.is-list .enq-mock__pill,.enq-app.is-list .enq-pv{display:none}
+.enq-app.is-list .enq-partw--g .enq-part{flex-direction:row;flex-wrap:nowrap;justify-content:flex-start;text-align:start}
+.enq-app.is-list .enq-partw--g .enq-part::after{content:attr(aria-label);font:400 14px/1.3 var(--f-mono)}
+.enq-app.is-list .enq-part__cap{display:none}
+
+/* « Le dossier, en clair »: what a reader without scripts gets */
+.enq-clair{display:grid;gap:12px;max-width:68ch;margin-inline:auto;font-size:17px;line-height:1.5}
+.enq-clair[hidden]{display:none}
+.enq-clair__h1{margin:0;font:900 clamp(34px,8vw,56px)/1 var(--f-disp);text-transform:uppercase}
+.enq-clair__h{margin:12px 0 0;font:900 26px/1.1 var(--f-disp)}
+.enq-clair__d{margin:8px 0 0;font:800 18px/1.3 var(--f-body)}
+.enq-clair__art{width:100%;height:auto;border:2px solid var(--ink)}
+.enq-clair__list{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.enq-clair__case{display:grid;gap:6px;padding:12px;background:var(--cream);border:2px solid var(--ink)}
+.enq-clair__n{display:inline-block;min-width:28px;padding:0 6px;background:var(--ink);color:var(--cream);text-align:center}
+.enq-clair__v{font:700 15px var(--f-mono);text-transform:uppercase;color:var(--red-text)}
+.enq-clair .enq-law{background:var(--navy);color:var(--on-navy)}
+.enq-clair .enq-src a{text-decoration:underline}
+
+/* Arabic: no capitals to track, the body face for labels */
+:lang(ar) .enq-app [class],:lang(ar) .enq-clair [class]{letter-spacing:0}
+/* the Arabic display face is a heavy square kufic: under 24 px its letters close up, so the verdicts and the sticker
+   take the body face (for native review) */
+:lang(ar) .enq-verdict,:lang(ar) .enq-sticker{font-family:var(--f-body);font-weight:800}
+
+/* a mouse gets an answer before the click: no motion, a shift of ground */
+@media (hover:hover){
+  .enq-part:hover:not(:disabled),.enq-slot:hover:not(:disabled),.enq-chip:hover:not(:disabled):not([data-mode=sel]){background:var(--cream);box-shadow:3px 3px 0 var(--teal)}
+  .enq-ring:hover{background:rgba(243,236,225,.55)}
+  .enq-btn:hover:not(:disabled),.enq-opt:hover:not(:disabled),.enq-crew__b:hover,.enq-bar__back:hover,.enq-bar__list:hover,.enq-bar__snd:hover:not(:disabled){box-shadow:inset 0 0 0 2px currentColor}
+  .enq-verdict:hover:not(:disabled),.enq-goal:hover,.enq-go:hover,.enq-btn--fill:hover:not(:disabled),.enq-row2__btn:hover{box-shadow:5px 5px 0 var(--ink)}
+  .enq-verdict:hover:not(:disabled){box-shadow:5px 5px 0 var(--amber)}
+}
+
+/* under 360 px the bar keeps its place and its switches: the XP count is on the card and the end card */
+@media (max-width:359px){.enq-bar__xp{display:none}}
+@media (min-width:900px){
+  .enq-app:not(.is-list){max-width:none;grid-template-columns:minmax(0,1fr) minmax(380px,440px);align-items:start}
+  .enq-app:not(.is-list) .enq-art,.enq-app:not(.is-list)[data-screen] .enq-art{display:block;aspect-ratio:16/9;position:sticky;top:12px;border-bottom:0;border-inline-end:2px solid var(--ink)}
+  .enq-app:not(.is-list) .enq-art__img{object-position:50% 50%}
+  .enq-app:not(.is-list) .enq-ring,.enq-app:not(.is-list) .enq-art__glow{inset-inline-start:var(--xw)}
+  .enq-app:not(.is-list) .enq-art__glow{width:24%}
+  .enq-app.is-list{max-width:640px}
+  html.js:not([data-enq-off]) .enq-app[hidden]{min-height:460px}
+  .enq-screen{padding-block-start:0}
+}
+@media (prefers-reduced-motion:no-preference){
+  html:not(.motion-off) .enq-in{animation:enq-in 250ms var(--m-ease-enter) both}
+  html:not(.motion-off) .enq-pop{animation:enq-pop 250ms var(--m-ease-enter) both}
+  html:not(.motion-off) .enq-part,html:not(.motion-off) .enq-chip,html:not(.motion-off) .enq-slot{transition:transform var(--m-press) var(--m-ease-enter)}
+  html:not(.motion-off) .enq-part:active:not(:disabled),html:not(.motion-off) .enq-chip:active:not(:disabled){transform:translate(2px,2px)}
+}
+@keyframes enq-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes enq-pop{from{opacity:0;transform:scale(1.5)}to{opacity:1;transform:none}}

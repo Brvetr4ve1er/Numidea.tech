@@ -7498,6 +7498,1400 @@
       "unreadK": "Official pages not read: everything below is still to be checked.",
       "unread": "Terms not read: the site would not let us read its pages.",
       "noProg": "No partner programme: this link stays a plain link and earns us nothing."
+    },
+    "enq": {
+      "c": {
+        "brave": {
+          "d1": {
+            "advert": {
+              "address": "New tab",
+              "hint": {
+                "0": "Read the small label in a corner.",
+                "1": "One word means somebody paid.",
+                "2": "Answer: the sponsored image."
+              },
+              "kuro": "Sponsored.",
+              "p": {
+                "image": {
+                  "after": "Sponsored image · an advert placed by the browser",
+                  "say": "Background picture, labelled sponsored image",
+                  "text": "Sponsored image",
+                  "why": "Brave lists images on the new tab page among its ad formats. The corner label is how to tell."
+                },
+                "shortcuts": {
+                  "after": "Her own shortcuts.",
+                  "say": "Top sites, four shortcuts",
+                  "text": "Top sites",
+                  "why": "Those are shortcuts to sites this browser already opened. They advertise nothing."
+                },
+                "suggested": {
+                  "after": "Site opens. No mark.",
+                  "say": "Suggested site, shortcut",
+                  "text": "Suggested site",
+                  "why": "A shortcut with no \"sponsored\" mark on it. The mark is how to tell an advert."
+                }
+              },
+              "prompt": "A new tab, with no site open. One part is an advert. Point at it.",
+              "r": {
+                "p": {
+                  "article": {
+                    "after": "The page's own words.",
+                    "say": "Article, text",
+                    "text": "Article text",
+                    "why": "That is the page's own text. Nobody paid to place it here."
+                  },
+                  "gap": {
+                    "after": "Blocked. Stays empty.",
+                    "say": "Empty space where the page wanted an advert",
+                    "text": "Blocked ad space",
+                    "why": "A third-party advert, blocked. The browser's own adverts do not replace adverts inside pages."
+                  },
+                  "notif": {
+                    "after": "Advert · shown by the browser",
+                    "say": "Notification, labelled advert from the browser",
+                    "text": "Advert from the browser · notification",
+                    "why": "Notifications are one of Brave's own ad formats, for people who chose to see them."
+                  }
+                },
+                "prompt": "A news page now. Point at the advert that comes from the browser itself."
+              }
+            },
+            "bet": {
+              "prompt": "Your bet on the supplier's line? Unscored."
+            },
+            "boss": {
+              "hint": {
+                "0": "Four rows. Two are off.",
+                "1": "One row is named for a payment.",
+                "2": "Answer: Rewards. Off until she switches it on."
+              },
+              "kuro": "Off. Until asked.",
+              "p": {
+                "engine": {
+                  "after": "Picks who answers searches.",
+                  "say": "Search engine, Google, row",
+                  "text": "Search engine: Google",
+                  "why": "That row picks who answers searches. It earns nothing."
+                },
+                "rewards": {
+                  "after": "Rewards: off · nothing earned until switched on",
+                  "say": "Rewards, off, row",
+                  "text": "Rewards: off",
+                  "why": "Nothing is earned unless Rewards is switched on. It pays in a token, for adverts she chooses to see."
+                },
+                "shields": {
+                  "after": "Already on. Pays nothing.",
+                  "say": "Shields, on by default, row",
+                  "text": "Shields: on (default)",
+                  "why": "Shields are on by default. Nobody has to choose them, and they pay nothing."
+                },
+                "wallet": {
+                  "after": "Holds keys. Pays nothing.",
+                  "say": "Wallet, off, row",
+                  "text": "Wallet: off",
+                  "why": "A wallet holds keys. Switching it on pays nobody for browsing."
+                }
+              },
+              "prompt": "Samia was told browsing pays her. Point at what must be switched on first.",
+              "r": {
+                "p": {
+                  "rewards": {
+                    "after": "Rewards: off · nothing earned until switched on",
+                    "say": "Rewards, button",
+                    "text": "Rewards",
+                    "why": "Nothing is earned unless Rewards is switched on, and then only for adverts she chooses to see."
+                  },
+                  "shield": {
+                    "after": "Shields up. Pays nothing.",
+                    "say": "Shields, button",
+                    "text": "Shields",
+                    "why": "Shields block. They pay nothing, and the blocking is already on."
+                  },
+                  "wallet": {
+                    "after": "Wallet panel opens. Off.",
+                    "cap": "Wallet",
+                    "say": "Wallet, button",
+                    "why": "A wallet holds keys. It pays nobody for browsing."
+                  }
+                },
+                "prompt": "The same objection, on the desktop bar. Point at what would have to be switched on."
+              }
+            },
+            "bub": {
+              "a": "Fourteen on one page. I made that number up. The idea, no.",
+              "b": "She wrote back. I saw the word \"pays\". Underlined."
+            },
+            "can": "You can now find Shields, the blocked count and the advert on a browser screen.",
+            "claim": "A new browser puts her gym \"on web3\".",
+            "count": {
+              "hint": {
+                "0": "Look for a number.",
+                "1": "A rule says what. A tally says how many.",
+                "2": "Answer: \"14 trackers & ads blocked\"."
+              },
+              "kuro": "Tally.",
+              "p": {
+                "cookies": {
+                  "after": "A rule. No number.",
+                  "say": "Cross-site cookies, blocked, setting",
+                  "text": "Cross-site cookies: blocked",
+                  "why": "That is a rule, not a tally: it says what is blocked, not how many."
+                },
+                "count": {
+                  "after": "14 · this page only",
+                  "say": "14 trackers and ads blocked",
+                  "text": "14 trackers & ads blocked",
+                  "why": "The tally for this page. A tracker is code from another site that follows her from site to site."
+                },
+                "report": {
+                  "after": "Report sent. Nothing counted.",
+                  "say": "Report a broken site, button",
+                  "text": "Report a broken site",
+                  "why": "That sends Brave a report about a page that stopped working. It counts nothing."
+                },
+                "switch": {
+                  "after": "Shields go down here.",
+                  "say": "Shields are up for this site, switch, on",
+                  "text": "Shields are UP for this site",
+                  "why": "That switch turns blocking on or off for this one site. It counts nothing."
+                }
+              },
+              "prompt": "The Shields panel is open. Point at the line that counts what was stopped on this page.",
+              "r": {
+                "p": {
+                  "count": {
+                    "after": "9 · this page only",
+                    "say": "9 trackers and ads blocked",
+                    "text": "9 trackers & ads blocked",
+                    "why": "The tally changes with the page: nine refused here."
+                  },
+                  "report": {
+                    "after": "Report sent. Nothing counted.",
+                    "say": "Report a broken site, button",
+                    "text": "Report a broken site",
+                    "why": "That reports a page that stopped working. It is not a count."
+                  },
+                  "switch": {
+                    "after": "Shields go down here.",
+                    "say": "Shields are up for this site, switch, on",
+                    "text": "Shields are UP for this site",
+                    "why": "That is the on and off switch for this site."
+                  }
+                },
+                "prompt": "Another site, the same panel in a new order. Point at the tally."
+              }
+            },
+            "engine": {
+              "hint": {
+                "0": "Two of these only show pages.",
+                "1": "One answers the question she typed.",
+                "2": "Answer: Google. A search engine does the finding."
+              },
+              "kuro": "Search.",
+              "p": {
+                "bar": {
+                  "after": "Passes her words on.",
+                  "say": "Address bar, tile",
+                  "text": "Address bar",
+                  "why": "The bar only passes her words on. A search engine does the finding."
+                },
+                "brave": {
+                  "after": "A browser. Shows pages.",
+                  "say": "Brave browser, tile",
+                  "text": "Brave browser",
+                  "why": "Brave is a browser: it shows pages. It is not the service that finds them."
+                },
+                "chrome": {
+                  "after": "A browser. Shows pages.",
+                  "say": "Chrome, tile",
+                  "text": "Chrome",
+                  "why": "Chrome is a browser: it shows pages. Google makes it, which is why the two get mixed up."
+                },
+                "google": {
+                  "after": "Search engine · works in any browser",
+                  "say": "Google, tile",
+                  "text": "Google",
+                  "why": "Google is a search engine: a service that finds pages. She can reach it from any browser."
+                }
+              },
+              "prompt": "She types a question and gets a list of pages. Point at what found them.",
+              "r": {
+                "p": {
+                  "defbrowser": {
+                    "after": "Names the browser.",
+                    "say": "Default browser, Chrome, row",
+                    "text": "Default browser: Chrome",
+                    "why": "That row names the browser: the program that shows pages."
+                  },
+                  "engine": {
+                    "after": "Search engine · her choice",
+                    "say": "Search engine, Google, row",
+                    "text": "Search engine: Google",
+                    "why": "This row names the service that answers what she types in the address bar."
+                  },
+                  "network": {
+                    "after": "Names the connection.",
+                    "say": "Network, home connection, row",
+                    "text": "Network: home connection",
+                    "why": "That row names the connection, not a service that finds pages."
+                  }
+                },
+                "prompt": "A settings list this time. Point at the row that names a search engine."
+              }
+            },
+            "note": {
+              "hint": {
+                "0": "Two notes promise too much or too little.",
+                "1": "One note matches what Shields showed you.",
+                "2": "Answer: it was already blocking."
+              },
+              "kuro": "Already on.",
+              "p": {
+                "n1": {
+                  "text": "Brave was already blocking before she touched anything.",
+                  "why": "Shields are on by default for every site, Brave's page says. The panel already read \"Shields up\"."
+                },
+                "n2": {
+                  "text": "Brave only works once you hold a token (a crypto-asset).",
+                  "why": "Brave's Shields page says: no settings to configure, just download and start browsing. It asks for no token."
+                },
+                "n3": {
+                  "text": "With Brave, sites cannot see your visit.",
+                  "why": "Shields stop outside trackers following her. The site she opens still receives her request."
+                }
+              },
+              "prompt": "Three notes came with the slip. One is true.",
+              "r": {
+                "p": {
+                  "r1": {
+                    "text": "Brave is a search engine.",
+                    "why": "Brave is a browser. Its maker also runs a search engine, which is a separate thing."
+                  },
+                  "r2": {
+                    "text": "Shields are on by default, for every site.",
+                    "why": "Brave's page says Shields are on by default for every site you visit."
+                  },
+                  "r3": {
+                    "text": "Rewards come switched on from the first launch.",
+                    "why": "Rewards has to be turned on by the person, from its own button."
+                  }
+                },
+                "prompt": "Three new notes. Tap the true one."
+              }
+            },
+            "shield": {
+              "hint": {
+                "0": "It is the button nearest the address.",
+                "1": "One button is named for what it stops.",
+                "2": "Answer: Shields. It opens what was blocked."
+              },
+              "kuro": "Shields.",
+              "p": {
+                "bookmark": {
+                  "after": "Page saved. Nothing blocked.",
+                  "cap": "Bookmark",
+                  "say": "Bookmark this page, button",
+                  "why": "That saves this page's address for later. It blocks nothing and counts nothing."
+                },
+                "menu": {
+                  "after": "Menu opens. No list here.",
+                  "cap": "Menu",
+                  "say": "Menu, button",
+                  "why": "That opens the browser's menu and settings. The blocked list is not there."
+                },
+                "rewards": {
+                  "after": "Rewards panel opens. Off.",
+                  "say": "Rewards, button",
+                  "text": "Rewards",
+                  "why": "That opens an optional ad scheme. It does nothing until someone switches it on."
+                },
+                "shield": {
+                  "after": "Shields up · 14 blocked",
+                  "say": "Shields, button",
+                  "text": "Shields",
+                  "why": "The Shields button opens the list of what Brave blocked on this page. In Brave it carries Brave's own logo."
+                },
+                "wallet": {
+                  "after": "Wallet panel opens. Off.",
+                  "cap": "Wallet",
+                  "say": "Wallet, button",
+                  "why": "That opens a built-in crypto wallet, off until switched on. It is not the blocker."
+                }
+              },
+              "prompt": "Five buttons sit right of the address. Point at the one that shows what Brave blocked on this page.",
+              "r": {
+                "p": {
+                  "reload": {
+                    "after": "Page reloads. Nothing listed.",
+                    "cap": "Reload",
+                    "say": "Reload this page, button",
+                    "why": "That loads the page again. It shows nothing about blocking."
+                  },
+                  "shield": {
+                    "after": "Shields up · 9 blocked",
+                    "say": "Shields, button",
+                    "text": "Shields",
+                    "why": "The Shields button beside the address opens what was blocked, on a phone too."
+                  },
+                  "tabs": {
+                    "after": "Three tabs listed.",
+                    "cap": "Tabs",
+                    "say": "Tabs, 3 open, button",
+                    "text": "3",
+                    "why": "That number counts open tabs, not trackers."
+                  }
+                },
+                "prompt": "The same browser on a phone. Point at where she sees what was blocked."
+              }
+            },
+            "slip": "Samia's supplier says a new browser, Brave, would put her gym \"on web3\". Samia wonders what would change.",
+            "slipTag": "CASE 01 · invented example",
+            "stamp": {
+              "prompt": "The supplier's line again: a new browser puts her gym \"on web3\". Stamp it:",
+              "reveal": "Sales talk. A browser only shows sites. Its \"web3\" parts, a token scheme and a wallet, are optional and off."
+            }
+          },
+          "d2": {
+            "bet": {
+              "prompt": "Your bet on the trainer's line? Unscored."
+            },
+            "boss": {
+              "hint": {
+                "0": "Ask who is asking, and why.",
+                "1": "She does not know this site.",
+                "2": "Answer: close the tab. Shields stay up."
+              },
+              "kuro": "Closed.",
+              "p": {
+                "close": {
+                  "after": "Tab closed · Shields untouched",
+                  "cap": "Close tab",
+                  "say": "Close tab, button",
+                  "why": "Brave says to check a site is trusted before lowering Shields. She has never used this one."
+                },
+                "cont": {
+                  "after": "Same page. Still asking.",
+                  "say": "Continue anyway, button on the page",
+                  "text": "Continue anyway",
+                  "why": "That button belongs to the page that is asking. It is the thing to doubt."
+                },
+                "reload": {
+                  "after": "Page reloads. Asks again.",
+                  "cap": "Reload",
+                  "say": "Reload this page, button",
+                  "why": "Reloading repeats the same request. The page asks again."
+                },
+                "switch": {
+                  "after": "Shields down for a stranger.",
+                  "say": "Shields are up for this site, switch, on",
+                  "text": "Shields are UP for this site",
+                  "why": "Lowering Shields removes protections on a site nobody has vouched for."
+                }
+              },
+              "prompt": "Samia objects: an unknown site shows a blank video and says \"lower Shields to watch\". Point at her move.",
+              "r": {
+                "p": {
+                  "close": {
+                    "after": "Tab closed. Box unseen.",
+                    "cap": "Close tab",
+                    "say": "Close tab, button",
+                    "why": "Closing leaves the box blank. She knows this site: it is her own."
+                  },
+                  "helper": {
+                    "after": "Nothing to install.",
+                    "say": "Install helper, button on the page",
+                    "text": "Install helper",
+                    "why": "Nothing needs installing. The control is already in the browser."
+                  },
+                  "switch": {
+                    "after": "Shields DOWN for this site",
+                    "say": "Shields are up for this site, switch, on",
+                    "text": "Shields are UP for this site",
+                    "why": "She trusts her own site, so lowering Shields here, and only here, is the fix."
+                  }
+                },
+                "prompt": "Now her own gym's booking page, which she runs, shows a blank box. Point at her move."
+              }
+            },
+            "bub": {
+              "a": "Addresses next. The ring opens what is marked.",
+              "b": "She wrote again. A page told her to lower Shields."
+            },
+            "can": "You can now mend a page that blocking broke, for one site, and pick the maker's own address from look-alikes.",
+            "claim": "The new browser broke her booking page.",
+            "diff": {
+              "g": {
+                "0": {
+                  "after": "Same word in both.",
+                  "say": "b r a v e",
+                  "why": "Both addresses start with the same word. The start proves nothing."
+                },
+                "1": {
+                  "after": "Ends in get-browser.example · another owner",
+                  "say": "dot com dot get-browser dot example",
+                  "why": "Read the name before the first slash, from its right end: get-browser.example, not brave.com."
+                },
+                "2": {
+                  "after": "Only a page name.",
+                  "say": "slash get-brave",
+                  "why": "A different page name is not a different owner."
+                }
+              },
+              "hint": {
+                "0": "Compare piece by piece.",
+                "1": "Two pieces differ. One names the owner.",
+                "2": "Answer: the middle piece. The name ends elsewhere."
+              },
+              "kuro": "Look-alike.",
+              "prompt": "Two addresses, cut in three. Point at the piece that makes the second one somebody else's.",
+              "r": {
+                "g": {
+                  "0": {
+                    "after": "Same word in both.",
+                    "say": "b r a v e",
+                    "why": "The same word starts both."
+                  },
+                  "1": {
+                    "after": "brave-download.example · another owner",
+                    "say": "hyphen download dot example",
+                    "why": "With the hyphen, the name before the slash is brave-download.example: another owner."
+                  },
+                  "2": {
+                    "after": "Only a page name.",
+                    "say": "slash free",
+                    "why": "The page name changed too. That does not change the owner."
+                  }
+                },
+                "prompt": "Two more. Point at the piece that gives the second one away.",
+                "why": "With the hyphen, the name before the slash is brave-download.example: another owner."
+              },
+              "why": "Read the name before the first slash, from its right end: get-browser.example, not brave.com."
+            },
+            "download": {
+              "address": "Search results: \"download brave\"",
+              "hint": {
+                "0": "Tap each result to see its address.",
+                "1": "Read the name before the first slash, from its right end.",
+                "2": "Answer: brave.com/download."
+              },
+              "kuro": "Before the slash.",
+              "p": {
+                "ad": {
+                  "after": "Somebody else's site.",
+                  "mark": "Ad",
+                  "say": "Advert. Brave Browser, Download. Address: brave-free-download.example",
+                  "text": "Brave Browser · Download",
+                  "why": "First place was bought. Before the first slash the name is brave-free-download.example, an invented look-alike."
+                },
+                "maker": {
+                  "after": "brave.com/download · the maker's own",
+                  "say": "Brave Browser Download, Brave. Address: brave.com/download",
+                  "text": "Brave Browser Download | Brave",
+                  "why": "Before the first slash the name is brave.com, the maker's own; /download is a page inside it."
+                },
+                "mirror": {
+                  "after": "Somebody else's site.",
+                  "say": "Brave Browser Download, Official. Address: brave.com.get-browser.example/download",
+                  "text": "Brave Browser Download · Official",
+                  "why": "It starts with brave.com, but before the first slash the name ends in get-browser.example."
+                }
+              },
+              "prompt": "Three results offer the download. Tap each to see its address. Then choose the maker's own.",
+              "r": {
+                "address": "A message from an unknown number",
+                "p": {
+                  "a": {
+                    "after": "brave.com/download · the maker's own",
+                    "say": "Link, brave.com slash download",
+                    "why": "The name before the first slash is brave.com."
+                  },
+                  "b": {
+                    "after": "Opens brave-update.example.",
+                    "say": "Link, brave-update.example slash brave.com",
+                    "why": "Here brave.com comes after the slash: it is only a folder on someone else's site."
+                  },
+                  "c": {
+                    "after": "Opens safe-install.example.",
+                    "say": "Link, brave.com dot safe-install dot example",
+                    "why": "There is no slash, so read from the right: the name ends in safe-install.example."
+                  }
+                },
+                "prompt": "A message offers three links. Point at the one that leads to the maker's own site."
+              }
+            },
+            "fix": {
+              "hint": {
+                "0": "One of the four is a switch.",
+                "1": "Blocking broke it; less blocking may mend it.",
+                "2": "Answer: the Shields switch, for this site."
+              },
+              "kuro": "One site.",
+              "p": {
+                "count": {
+                  "after": "A tally. Nothing changes.",
+                  "say": "14 trackers and ads blocked",
+                  "text": "14 trackers & ads blocked",
+                  "why": "That is a tally. Reading it changes nothing on the page."
+                },
+                "reload": {
+                  "after": "Page reloads. Box still blank.",
+                  "cap": "Reload",
+                  "say": "Reload this page, button",
+                  "why": "Reloading asks for the same page under the same blocking. The box stays blank."
+                },
+                "report": {
+                  "after": "Report sent. Box still blank.",
+                  "say": "Report a broken site, button",
+                  "text": "Report a broken site",
+                  "why": "That tells Brave's developers. It may help later; it fixes nothing tonight."
+                },
+                "switch": {
+                  "after": "Shields DOWN for this site · the booking box loads",
+                  "say": "Shields are up for this site, switch, on",
+                  "text": "Shields are UP for this site",
+                  "why": "The switch lowers Shields for this site only. Brave says: check you trust the site first."
+                }
+              },
+              "prompt": "Her own booking box is blank. Point at the one control that can bring it back.",
+              "r": {
+                "p": {
+                  "desktop": {
+                    "after": "Wide layout. Box still blank.",
+                    "say": "Desktop site, checkbox",
+                    "text": "Desktop site",
+                    "why": "That asks for the wide layout. The same things stay blocked."
+                  },
+                  "reload": {
+                    "after": "Page reloads. Box still blank.",
+                    "cap": "Reload",
+                    "say": "Reload this page, button",
+                    "why": "Reloading repeats the same request under the same blocking."
+                  },
+                  "switch": {
+                    "after": "Shields DOWN for this site",
+                    "say": "Shields, switch, on",
+                    "text": "Shields",
+                    "why": "Lowering Shields for this site lets the blocked part load."
+                  }
+                },
+                "prompt": "On her phone the same box is blank. Point at the control that can bring it back."
+              }
+            },
+            "scope": {
+              "hint": {
+                "0": "Think back: the switch named a place.",
+                "1": "\"For this site\" is the whole rule.",
+                "2": "Answer: Shields stay up on the news site."
+              },
+              "kuro": "Per site.",
+              "p": {
+                "a": {
+                  "after": "Not what happens.",
+                  "say": "News site, Shields down",
+                  "text": "News site: Shields DOWN",
+                  "why": "The switch is per site. It does not follow her to the next address."
+                },
+                "b": {
+                  "after": "Shields UP · 21 blocked",
+                  "say": "News site, Shields up",
+                  "text": "News site: Shields UP",
+                  "why": "Lowering Shields applies to the one site she was viewing. Every other site keeps them up."
+                }
+              },
+              "prompt": "She lowered Shields on her booking site. She opens a news site next. Point at what she finds.",
+              "r": {
+                "p": {
+                  "a": {
+                    "after": "Shields UP · default",
+                    "say": "Shields up already",
+                    "text": "Shields UP already",
+                    "why": "Shields are on by default for every site she visits."
+                  },
+                  "b": {
+                    "after": "Not what happens.",
+                    "say": "Shields down until set up",
+                    "text": "Shields DOWN until set up",
+                    "why": "Nothing needs setting up. Blocking does not wait for her."
+                  }
+                },
+                "prompt": "A site she has never opened, and she has touched nothing. Point at what she finds."
+              }
+            },
+            "slip": "Her booking page shows a blank box in Brave. Her trainer says the new browser broke it. Samia wonders.",
+            "slipTag": "CASE 01 · depth 2 · invented example",
+            "stamp": {
+              "prompt": "The trainer's line again: the new browser broke her booking page. Stamp it:",
+              "reveal": "Half. Blocking stopped one part of the page. One switch, for that one site, brings it back."
+            },
+            "token": {
+              "hint": {
+                "0": "Three rows are about browsing itself.",
+                "1": "One row is about being paid.",
+                "2": "Answer: Rewards. It pays in a token."
+              },
+              "kuro": "Token.",
+              "p": {
+                "engine": {
+                  "after": "Answers searches. Holds nothing.",
+                  "say": "Search engine, row",
+                  "text": "Search engine",
+                  "why": "That chooses who answers her searches. Choosing costs and holds nothing."
+                },
+                "rewards": {
+                  "after": "Rewards · pays in a token · off",
+                  "say": "Rewards, row",
+                  "text": "Rewards",
+                  "why": "Rewards pays in a token. The line below says what law 25-10 bans in Algeria."
+                },
+                "shields": {
+                  "after": "Blocks. Holds nothing.",
+                  "say": "Shields, row",
+                  "text": "Shields",
+                  "why": "Shields block trackers. No token is involved in blocking."
+                },
+                "sync": {
+                  "after": "Copies bookmarks. No token.",
+                  "say": "Sync, row",
+                  "text": "Sync",
+                  "why": "Sync copies bookmarks and history between her own devices, encrypted. No token."
+                }
+              },
+              "prompt": "Four settings rows. Point at the one that would mean holding a token (a crypto-asset).",
+              "r": {
+                "p": {
+                  "engine": {
+                    "after": "Answers searches. Holds nothing.",
+                    "say": "Search engine, row",
+                    "text": "Search engine",
+                    "why": "A search engine answers questions. It holds no assets."
+                  },
+                  "shields": {
+                    "after": "Blocks. Holds nothing.",
+                    "say": "Shields, row",
+                    "text": "Shields",
+                    "why": "Shields block. They hold nothing."
+                  },
+                  "wallet": {
+                    "after": "Wallet · off",
+                    "say": "Wallet, row",
+                    "text": "Wallet",
+                    "why": "The wallet is built in for crypto-assets, and stays off until switched on."
+                  }
+                },
+                "prompt": "Three other rows. Point at the one that would hold crypto-assets."
+              }
+            }
+          },
+          "d3": {
+            "bet": {
+              "prompt": "Your bet on the member's guess? Unscored."
+            },
+            "boss": {
+              "frame": "{1}, but it {2}, and {3} stays off.",
+              "hint": {
+                "0": "Same, different, optional: in that order.",
+                "1": "You built each part tonight.",
+                "2": "Answer: same engine; blocks trackers by default; the token scheme."
+              },
+              "kuro": "Same. Different. Optional.",
+              "p": {
+                "c1": {
+                  "text": "The same engine",
+                  "why": "Both are built on Chromium. On that point the supplier is right."
+                },
+                "c2": {
+                  "text": "A different engine",
+                  "why": "The engine is the shared part: Chromium."
+                },
+                "c3": {
+                  "text": "blocks trackers by default",
+                  "why": "This is the difference that matters: Shields are on from the first page."
+                },
+                "c4": {
+                  "text": "blocks nothing until set up",
+                  "why": "No set-up is required. Blocking starts on its own."
+                },
+                "c5": {
+                  "text": "the token scheme",
+                  "why": "Rewards waits to be turned on. The swap does not depend on it."
+                },
+                "c6": {
+                  "text": "Shields",
+                  "why": "Shields are on by default. They are what she gets without choosing."
+                }
+              },
+              "prompt": "Samia asks: \"Chrome with a coin bolted on?\" Build the answer for her.",
+              "r": {
+                "frame": "Same {1}. Different {2}. Optional {3}.",
+                "p": {
+                  "r1": {
+                    "text": "engine",
+                    "why": "Chromium sits under both browsers."
+                  },
+                  "r2": {
+                    "text": "defaults",
+                    "why": "What is blocked from the first launch is the difference."
+                  },
+                  "r3": {
+                    "text": "Rewards",
+                    "why": "Rewards is the part she may leave off."
+                  },
+                  "r4": {
+                    "text": "websites",
+                    "why": "The websites do not change with the browser."
+                  },
+                  "r5": {
+                    "text": "Shields",
+                    "why": "Shields are on by default. They are not the optional part."
+                  }
+                },
+                "prompt": "Once more, in three words. Tap a chip, then its slot."
+              }
+            },
+            "bub": {
+              "a": "Ok. Same engine underneath. The maker's own page says so.",
+              "b": "I carried the supplier's line too. It rattled."
+            },
+            "can": "You can now say in one sentence what a cross-site tracker is, and why this swap is a browser for a browser.",
+            "claim": "The adverts follow her because the sites she opens talk to each other.",
+            "embed": {
+              "hint": {
+                "0": "Three parts belong to this site.",
+                "1": "One part was made somewhere else.",
+                "2": "Answer: the Like button from another site."
+              },
+              "kuro": "Outside code.",
+              "p": {
+                "article": {
+                  "after": "Text. Stays here.",
+                  "say": "Article, text",
+                  "text": "Article text",
+                  "why": "The page's own words. They stay on this site."
+                },
+                "like": {
+                  "after": "From another site · it can meet her again",
+                  "say": "Like button, from another site",
+                  "text": "Like button from another site",
+                  "why": "A part embedded from another site can set its own cookie, and meet her again elsewhere."
+                },
+                "login": {
+                  "after": "Remembers her here only.",
+                  "say": "Login box, the site's own",
+                  "text": "The site's own login box",
+                  "why": "The site's own box remembers her here. Nothing crosses to another site."
+                },
+                "photo": {
+                  "after": "A picture. Stays here.",
+                  "say": "Photo, the site's own",
+                  "text": "The site's own photo",
+                  "why": "A picture the site serves itself. It sets nothing for another site."
+                }
+              },
+              "prompt": "A news page. Point at the part that can recognise her on the next site too.",
+              "r": {
+                "p": {
+                  "basket": {
+                    "after": "Remembers her here only.",
+                    "say": "Basket, the shop's own",
+                    "text": "The shop's own basket",
+                    "why": "The basket remembers her inside this shop. Nothing crosses to another site."
+                  },
+                  "prices": {
+                    "after": "Text. Stays here.",
+                    "say": "Price list, text",
+                    "text": "Price list",
+                    "why": "The shop's own words. They follow nobody."
+                  },
+                  "video": {
+                    "after": "From another site · it can meet her again",
+                    "say": "Video player, from another site",
+                    "text": "Video player from another site",
+                    "why": "Embedded from another site, it can set its own cookie and know her elsewhere."
+                  }
+                },
+                "prompt": "A shop page now. Point at the part that can follow her to other sites."
+              }
+            },
+            "rewards": {
+              "frame": "Rewards is {1}. Without it, the browser {2}.",
+              "hint": {
+                "0": "Slot one says what Rewards is.",
+                "1": "Slot two says what works without it.",
+                "2": "Answer: an optional ad scheme; it blocks all the same."
+              },
+              "kuro": "Optional.",
+              "p": {
+                "c1": {
+                  "text": "the part that blocks trackers",
+                  "why": "Shields do the blocking. Rewards is a separate feature."
+                },
+                "c2": {
+                  "text": "an optional ad scheme, off until turned on",
+                  "why": "Rewards pays a token for adverts a person chooses to see, once they turn it on."
+                },
+                "c4": {
+                  "text": "blocks trackers all the same",
+                  "why": "Shields are on by default whether or not Rewards is ever turned on."
+                },
+                "c5": {
+                  "text": "stops working",
+                  "why": "Shields work with \"no settings to configure\", Brave's page says. Rewards is a separate thing to turn on."
+                },
+                "c6": {
+                  "text": "shows more adverts in pages",
+                  "why": "Rewards adverts do not replace adverts inside pages, and third-party adverts stay blocked."
+                }
+              },
+              "prompt": "Tap a chip, then its slot.",
+              "r": {
+                "frame": "Rewards pays in {1}, and first needs {2}.",
+                "p": {
+                  "r1": {
+                    "text": "a token",
+                    "why": "Brave's page names a token, a crypto-asset, as what Rewards pays."
+                  },
+                  "r2": {
+                    "text": "dinars",
+                    "why": "Brave's page names a token, not any national currency."
+                  },
+                  "r3": {
+                    "text": "a payout account, not offered everywhere",
+                    "why": "Earning needs a connected payout account, and support for those varies by region."
+                  },
+                  "r4": {
+                    "text": "nothing at all",
+                    "why": "Rewards must be turned on and a payout account connected before anything is earned."
+                  }
+                },
+                "prompt": "What would Rewards need? Tap a chip, then its slot."
+              }
+            },
+            "say": {
+              "hint": {
+                "0": "Two lines promise more than a browser can.",
+                "1": "The right line is the plainest one.",
+                "2": "Answer: it blocks trackers by default."
+              },
+              "kuro": "Plain.",
+              "p": {
+                "n1": {
+                  "text": "It makes you anonymous.",
+                  "why": "Blocking trackers is not anonymity: every site she opens still receives her request."
+                },
+                "n2": {
+                  "text": "It pays you, so it is free money.",
+                  "why": "Rewards is optional, pays a token for chosen adverts, and needs a payout account."
+                },
+                "n3": {
+                  "text": "It blocks trackers by default, with nothing to set up.",
+                  "why": "That is what Brave's Shields page states. It is the browser-for-browser part of the arrow."
+                }
+              },
+              "prompt": "Samia must answer her member. Tap the line that would be right.",
+              "r": {
+                "p": {
+                  "r1": {
+                    "text": "Then the browser is faulty.",
+                    "why": "Blocking can break part of a page. That is a side effect, not a fault."
+                  },
+                  "r2": {
+                    "text": "Lower Shields there, if you trust the site.",
+                    "why": "Shields can be lowered for one site; Brave says to check the site is trusted first."
+                  },
+                  "r3": {
+                    "text": "Switch Rewards on to fix it.",
+                    "why": "Rewards is an ad scheme. It repairs no page."
+                  }
+                },
+                "prompt": "A page breaks. Tap the line that would be right."
+              }
+            },
+            "shares": {
+              "frame": "Brave is built on {1}, like Chrome, and changes {2}.",
+              "hint": {
+                "0": "One chip is under both browsers.",
+                "1": "The other is a factory setting.",
+                "2": "Answer: the Chromium engine; what is blocked by default."
+              },
+              "kuro": "Defaults.",
+              "p": {
+                "c1": {
+                  "text": "the Chromium engine",
+                  "why": "Brave is built on Chromium, the open-source project that also powers Chrome."
+                },
+                "c2": {
+                  "text": "her Google account",
+                  "why": "An account belongs to a company's service, not to the engine both browsers are built on."
+                },
+                "c3": {
+                  "text": "what is blocked by default",
+                  "why": "Brave blocks trackers and cross-site cookies from the first launch, with nothing to set up."
+                },
+                "c4": {
+                  "text": "the websites themselves",
+                  "why": "Sites stay where they are. A browser only shows them."
+                },
+                "c5": {
+                  "text": "a token (a crypto-asset)",
+                  "why": "The token belongs to the optional Rewards scheme. No browser is built on it."
+                }
+              },
+              "prompt": "What stays, what changes? Tap a chip, then its slot.",
+              "r": {
+                "frame": "Chrome and Brave are built on {1}; Brave then {2}.",
+                "p": {
+                  "r1": {
+                    "text": "the same open-source project",
+                    "why": "Chromium is open-source, and both browsers are built on it."
+                  },
+                  "r2": {
+                    "text": "the same company",
+                    "why": "Two different makers. They share code, not an owner."
+                  },
+                  "r3": {
+                    "text": "changes and removes parts of it",
+                    "why": "Brave says it makes changes and subtractions with every Chromium release."
+                  },
+                  "r4": {
+                    "text": "leaves it untouched",
+                    "why": "Untouched, it would block nothing more than the original."
+                  }
+                },
+                "prompt": "Say it another way. Tap a chip, then its slot."
+              }
+            },
+            "slip": "A gym member asks Samia why trainer adverts follow her across sites. Her guess: the sites talk to each other.",
+            "slipTag": "CASE 01 · depth 3 · invented example",
+            "stamp": {
+              "prompt": "The member's guess again: the sites she opens talk to each other. Stamp it:",
+              "reveal": "Half. The sites do not talk. The same outside code sits in both, and it remembers her."
+            },
+            "tracker": {
+              "frame": "A cross-site tracker is {1} that {2}.",
+              "hint": {
+                "0": "Slot one is a who. Slot two is a what.",
+                "1": "\"Cross-site\" means more than one site.",
+                "2": "Answer: another site's code that recognises her across sites."
+              },
+              "kuro": "Cross-site.",
+              "p": {
+                "c1": {
+                  "text": "the site she opened",
+                  "why": "The site she chose is the one she asked for. A cross-site tracker comes from somewhere else."
+                },
+                "c2": {
+                  "text": "another site's code in the page",
+                  "why": "A page can embed parts from other sites. Those parts can set their own cookies."
+                },
+                "c4": {
+                  "text": "recognises her across many sites",
+                  "why": "The same outside code, embedded on many sites, can join its records into one history."
+                },
+                "c5": {
+                  "text": "keeps her logged in here",
+                  "why": "That is a site remembering its own visitor. Nothing crosses to another site."
+                },
+                "c6": {
+                  "text": "shows her an advert",
+                  "why": "An advert is what she sees. The tracker is what remembers her."
+                }
+              },
+              "prompt": "Tap a chip, then its slot.",
+              "r": {
+                "frame": "A tracker is a shop that {1}, not one that {2}.",
+                "p": {
+                  "r1": {
+                    "text": "follows her down every street",
+                    "why": "Following her from place to place is the cross-site part."
+                  },
+                  "r2": {
+                    "text": "remembers her while she is inside",
+                    "why": "A shop that knows its own customer follows nobody."
+                  },
+                  "r3": {
+                    "text": "asks her name at the door",
+                    "why": "It needs no name. It recognises the browser."
+                  },
+                  "r4": {
+                    "text": "puts a sign in its window",
+                    "why": "A sign is an advert she can see. It does not follow her."
+                  }
+                },
+                "prompt": "Same idea, as a street."
+              }
+            }
+          }
+        }
+      },
+      "card": {
+        "and": ", ",
+        "aria": "Depth {n}, {name}. Play.",
+        "closed": "Closed · best {n} of 60 XP",
+        "depth": "Depth {n} · {name}",
+        "flames": "Flames lit in all: {n} of 9",
+        "h": "The card",
+        "next": "Next title, {t}: {xp} XP and depth {d} closed.",
+        "open": "Open",
+        "play": "PLAY",
+        "replay": "REPLAY",
+        "titleK": "Title",
+        "tools": "Tools: {list}.",
+        "top": "The top title on this page.",
+        "xp": "{n} XP",
+        "xpAria": "Experience on this page"
+      },
+      "chart": {
+        "back": "The sticker's back",
+        "cta": "Tap this row. The sticker lands: {state}.",
+        "h": "The chart",
+        "notYet": "not written yet",
+        "readOn": "Read on {date}",
+        "srcK": "Sources",
+        "stickerAria": "Sticker: {name}, {state}",
+        "verdict": "Checked on the chart: {v}. {n} of 3 written depths closed.",
+        "yes": "yes"
+      },
+      "clair": {
+        "checkedK": "Checked",
+        "claimK": "The claim",
+        "h": "The file, in plain words",
+        "lead": "The game plays with scripts on. Here is what it checks, without them.",
+        "stickerK": "The sticker's back"
+      },
+      "depth": {
+        "1": {
+          "name": "Spot it",
+          "tool": "The eye flower: shows the labels. Here from the first night.",
+          "verbs": "point, name, tell apart"
+        },
+        "2": {
+          "name": "Use it",
+          "tool": "The ring: opens what is marked.",
+          "verbs": "do the everyday action, fix one thing"
+        },
+        "3": {
+          "name": "Explain it",
+          "verbs": "build the \"because\" from parts"
+        }
+      },
+      "desc": "A claim about \"web3\" waits at the Lantern's night stall. Bet, point at the proof on a mock screen six times, stamp the claim. Free, in this browser.",
+      "mast": "Night cases",
+      "rank": {
+        "0": "Night shift",
+        "1": "Clerk",
+        "2": "Bookseller",
+        "3": "Lamplighter"
+      },
+      "ring": {
+        "book": {
+          "btn": "THE CHART",
+          "label": "The giant open book. Button: the chart.",
+          "line": "The open book holds the supplier's chart: ten arrows, as rows. A closed case sticks here. Corrections go beside the row. The misprints stay legible.",
+          "name": "The open book"
+        },
+        "kuro": {
+          "btn": "THE CARD",
+          "label": "Kūro, the black cat, asleep on the counter. Button: the card.",
+          "line": "Kūro sleeps on the counter and judges every answer. Tap him for the card: title, flames, tools. He explains nothing.",
+          "name": "Kūro"
+        },
+        "lantern": {
+          "btn": "OPEN THE SLIP · 4 MIN",
+          "label": "The lantern on the counter. Button: open the slip, four minutes.",
+          "line": "The lantern holds tonight's slip. Tap it: four minutes, six answers. Three flames light on first tries. None goes out; Yasser tried.",
+          "name": "The lantern"
+        }
+      },
+      "season": {
+        "audius": {
+          "line": "Artists upload directly. Samia wonders what a listener needs to press play.",
+          "pair": "Spotify → Audius"
+        },
+        "brave": {
+          "line": "A browser for a browser. The one arrow the chart gets right.",
+          "open": "A browser for a browser.",
+          "pair": "Chrome → Brave"
+        },
+        "ch": {
+          "1": {
+            "line": "Looking, listening, searching and chatting need no crypto-asset, by each project's own pages. Case 6 is looked at, not tried.",
+            "name": "Chapter 1, \"On the counter\""
+          },
+          "2": {
+            "line": "Mock screens only. The law line stays pinned, on the chart too.",
+            "name": "Chapter 2, \"Behind the glass\""
+          },
+          "3": {
+            "line": "One arrow on the chart is a misprint.",
+            "name": "Finale"
+          }
+        },
+        "ens": {
+          "line": "A rented name for a wallet, not a website address.",
+          "pair": "GoDaddy → ENS"
+        },
+        "farcaster": {
+          "line": "Three social networks, one question: which part needs a chain?",
+          "pair": "Facebook → Farcaster, beside Mastodon and Bluesky"
+        },
+        "ipfs": {
+          "line": "First a file gets a fingerprint address. Then somebody is paid to keep it.",
+          "pair": "Dropbox → IPFS, then Filecoin"
+        },
+        "key": {
+          "line": "The opening card. A company holds it for you, or you hold the key.",
+          "pair": "Who holds the key"
+        },
+        "metamask": {
+          "line": "A keyring, not a bank. Nobody can reverse or recover.",
+          "pair": "PayPal → MetaMask"
+        },
+        "misprint": {
+          "line": "One arrow pairs an app with a chain, under an old name. Point at it.",
+          "pair": "The misprint: Patreon → Fantom (now Sonic)"
+        },
+        "odysee": {
+          "line": "Removed from the site is not removed from the network. Samia asks who decides.",
+          "pair": "YouTube → Odysee"
+        },
+        "premise": "Samia's supplier sent a chart of ten arrows. One is checked a night. She stays off the chain.",
+        "presearch": {
+          "line": "A search that asks other engines. Samia wonders who actually answers.",
+          "pair": "Google → Presearch"
+        },
+        "siwe": {
+          "line": "The missing category: signing in. A finished standard, not a product.",
+          "pair": "Sign in with Google → Sign-In with Ethereum"
+        },
+        "status": {
+          "line": "An account that is a key, not a phone number. Signal shown once, for contrast.",
+          "pair": "WhatsApp → Status, Signal shown once"
+        },
+        "unlock": {
+          "line": "A membership you hold. Taught as an idea, not as a finished app.",
+          "pair": "Patreon → Unlock Protocol, as an idea"
+        }
+      },
+      "shelf": {
+        "go": "Night cases",
+        "k": "A game at the stall",
+        "t": "A claim about \"web3\" waits. You point at the proof."
+      },
+      "sticker": {
+        "back": "What it is: Brave, a browser built on Chromium, the open code under Chrome, that blocks trackers by default. What you hold: nothing. What you give up: some pages break until Shields are lowered for that site. The wrong idea: that it pays you to browse. Named as an example, not a recommendation. Checked 2026-11-22.",
+        "line": "Shields, found. They were never hidden.",
+        "name": "Finds Shields",
+        "state": {
+          "1": "ink outline",
+          "2": "flat colour",
+          "3": "white die-cut edge"
+        }
+      },
+      "title": "Night cases: point at the proof · La Librairie Lanterne",
+      "tool": {
+        "eye": "the eye flower",
+        "ring": "the ring",
+        "ringDoes": "Opens what is marked: the address behind a button. Used from depth 2."
+      },
+      "tpl": {
+        "browser-bar": "Browser bar",
+        "browser-bar-phone": "Browser bar · phone",
+        "message": "Message",
+        "new-tab": "New tab",
+        "results": "Search results",
+        "settings-rows": "Settings",
+        "shields-panel": "Shields",
+        "shields-panel-phone": "Shields · phone",
+        "web-page": "Web page"
+      },
+      "ui": {
+        "addr": "address",
+        "addrA": "First address",
+        "addrB": "Second address",
+        "answer": "Answer: {a}.",
+        "betChip": "Your bet: {bet}",
+        "betOpen": "open",
+        "bossNoReturn": "A missed objection does not return tonight.",
+        "btn": {
+          "card": "THE CARD",
+          "chart": "THE CHART",
+          "replay": "THE CARD · REPLAY A DEPTH",
+          "slip": "TONIGHT'S SLIP"
+        },
+        "choose": "THIS ONE",
+        "close": "Close",
+        "closeCase": "Close the case",
+        "continue": "Continue",
+        "crew": {
+          "aria": "{name}. One fact and one button.",
+          "h": "The crew"
+        },
+        "depth": "Depth {n}",
+        "door": {
+          "alt": "The Lantern bookstall at night: Yasser reading, Kūro asleep on the counter beside a lit lantern, a giant open book.",
+          "label": "NUMIDEA LABS GAMES presents",
+          "line": "A claim about \"web3\" waits. You point at the proof.",
+          "open": "OPEN THE STALL",
+          "season": "Season one: Ten arrows",
+          "start": "LIGHT THE LANTERN",
+          "title": "NIGHT CASES"
+        },
+        "end": {
+          "closed": "CASE CLOSED.",
+          "flames": "Flames lit: {flames} of 3. Hints used: {hints}.",
+          "next": "DEPTH {n}: {name}",
+          "score": "First try {first} of 6. In the end {end} of 6.",
+          "stick": "STICK IT",
+          "tool": "Tool: {t}",
+          "xpFirst": "+{n} XP this case",
+          "xpRun": "This run: {n} XP. Best: {best}."
+        },
+        "eye": "Eye flower: labels",
+        "fact": {
+          "closed": "Closed in this browser: {n} of 3 written depths.",
+          "flames": "Flames lit in all: {n} of 9.",
+          "noSlip": "No new slip tonight.",
+          "slip": "Tonight's slip: depth {n}.",
+          "tools": "Tools owned: {n}."
+        },
+        "flame": "A flame lights.",
+        "flames": "{n} of 3 flames lit",
+        "goal": "Tonight's slip: in the lantern · 4 min",
+        "goalNone": "No new slip tonight. Replay a depth from the card.",
+        "gone": "{t}, not this one",
+        "hint": "Hint",
+        "hint3": "Show me the answer",
+        "lawK": "Law 25-10",
+        "leave": {
+          "go": "Leave",
+          "h": "Leave this slip?",
+          "stay": "Stay",
+          "t": "It will start again at the first question. XP already earned stays."
+        },
+        "list": {
+          "off": "List view",
+          "on": "List view: on",
+          "short": "List"
+        },
+        "noReturn": "It does not come back tonight.",
+        "notThis": "Not this.",
+        "opt": {
+          "half": "HALF TRUE",
+          "not": "NOT TRUE",
+          "sales": "SALES TALK",
+          "true": "TRUE"
+        },
+        "placed": "{t}, placed",
+        "pos": "{i} of {n}",
+        "posRet": "Return {i} of {n}",
+        "posStamp": "Stamp",
+        "pvAria": "The evidence waits behind the bet.",
+        "quote": "\"{t}\"",
+        "result": "You bet {bet}. You stamp {stamp}. Checked: {checked}.",
+        "right": "Right.",
+        "says": "{who}: \"{t}\"",
+        "sealed": "Sealed",
+        "skip": "Skip to the game",
+        "slipH": "THE SLIP",
+        "slot": "slot {n}",
+        "slotEmpty": "Slot {n}, empty",
+        "slotFull": "Slot {n}: {t}",
+        "sound": {
+          "aria": "Radio and game sounds",
+          "off": "Radio and sounds: off",
+          "on": "Radio and sounds: on"
+        },
+        "stallAlt": "The stall at night: shelves under an awning, a giant open book, Kūro asleep on the counter beside a lantern, Yasser reading at the left.",
+        "stallIdle": "Three rings on the painting. A tap only looks.",
+        "stallName": "The stall",
+        "stop": "Stop here",
+        "tag": {
+          "back": "carried back",
+          "bet": "your bet",
+          "boss": "the customer objects",
+          "build": "build the sentence",
+          "compare": "compare",
+          "duo": "two sides, one try",
+          "eye": "labels: tap the eye flower",
+          "labels": "labels on",
+          "line": "tap the right line",
+          "note": "tap the true note",
+          "point": "point at the part",
+          "read": "read the screen",
+          "ring": "the ring opens addresses",
+          "rows": "read the rows",
+          "stamp": "stamp it"
+        },
+        "thirdQueued": "Two are already carried back. This one stays answered.",
+        "toDoor": "Stop here. Back to the door",
+        "toStall": "Back to the stall",
+        "tryAgain": "Try again.",
+        "under": "Named as an example, not a recommendation.",
+        "wrongSlot": "Those words are right. They belong in another slot.",
+        "xp": "XP {n}",
+        "xp0": "0 XP",
+        "xpGain": "+{n} XP",
+        "xpRun": "{n} of 60 this run"
+      },
+      "v": {
+        "kuro": {
+          "hit": {
+            "0": "Stamped.",
+            "1": "Correct.",
+            "2": "Kūro approves.",
+            "3": "Exact.",
+            "4": "Yes. Good."
+          },
+          "miss": {
+            "0": "No.",
+            "1": "Close. No.",
+            "2": "Read it again.",
+            "3": "Not that.",
+            "4": "Try another."
+          },
+          "sticker": {
+            "0": "Press it."
+          }
+        },
+        "pigeon": {
+          "idle": {
+            "2": "I wait on the awning. No hurry."
+          },
+          "queued": {
+            "0": "I'll carry this one back. Once."
+          }
+        },
+        "ratman": {
+          "hint": {
+            "0": "First: where to look.",
+            "1": "Second: what to notice.",
+            "2": "Third: I show you the answer."
+          },
+          "idle": {
+            "0": "A hint costs nothing. Take it.",
+            "2": "You have {tools} tools. All still work."
+          },
+          "toolArrives": {
+            "0": "New tool. It opens questions, not answers."
+          }
+        },
+        "raven": {
+          "idle": {
+            "2": "Nothing was taken tonight. The page was checked."
+          }
+        },
+        "yasser": {
+          "brief": {
+            "0": "Bet. Six answers. Stamp. A miss costs nothing."
+          },
+          "greet": {
+            "0": "Stall's open. A slip is waiting. Four minutes."
+          },
+          "noFlameLit": {
+            "0": "No flame tonight. The case still closed."
+          }
+        }
+      }
     }
   }
 }

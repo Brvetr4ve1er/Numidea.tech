@@ -1243,6 +1243,8 @@ Audit traps, on top of the sweep's list:
   animation reached its longest line, so the axe failure came and went. The
   fix was to wrap it below 600px.
 
+**The night cases (2026-11-23).** `scripts/check.mjs` block 8f-4 holds every `lant.enq.*` string in the three languages to `scripts/lib/enquetes-names.mjs` (a chart name outside the chart's rows, a never-name, an unlisted Latin word in Arabic), and block 17 names the page's five files in the budgets. Two tests of its own: `npm run enquetes:lint` walks the engine's rules in Node (three depths, three ways, with the reviewed prototype's numbers; a replay; a reload; no network call in the source) and `npm run enquetes:play` plays it in a real browser: depth 1 on two paths × 390 and 1440 px × three languages; depths 2 and 3, each perfect and with every first answer missed (the same moves go to the core in Node and to the page, so the core names the step on screen); then reduced motion, the list view by keyboard alone (the first Tab after a question, and after a first miss, lands on an answer), and scripts disabled. It refuses text under 14 px and a reason that opens off screen after a first miss. The build (`scripts/lib/enquetes.mjs`, `LEFT_OUT`) refuses any `lant.enq.*` string that names a recorder, a tape, the journal or a review while they are left out.
+
 ## Market comparison ("Ici et ailleurs") and pricing models
 
 The market comparison compares each project type across Algeria, Numidea,
@@ -1990,13 +1992,19 @@ The site speaks in two registers, and the rule is where each one goes.
 
 The site teaches gamification ("Le jeu juste", on the manual) and is held to what it teaches. Its rules: nothing starts by itself; a price is never part of a game (the calculator's total is the exact sum of its lines); a reward is something to look at (a drawing, a sticker), never a discount and never traded for an address; what a visitor earns stays in their browser, with no account and no leaderboard; no streak to keep and no countdown. A figure in a lesson names its source, and says when the source is the company itself, a forecast, or a small study. The retro dress (pixel icons, the arcade face in a HUD line, a brass bar) uses the page's own palette: it is a costume for one course, not a second brand.
 
+**The night cases (2026-11-23).** « Les enquêtes de nuit » is a game and keeps every rule above. Its three flames light on first tries and never dim; XP is a count that buys nothing and is never taken away; a replay cannot lower a score or farm one. There is no streak, no clock and no lock: every written depth is open, « le billet de ce soir » is undated and lost by nobody. « NUMIDEA LABS GAMES présente » is printed on its door only: a costume, not a second brand.
+
 ## Kūro on the page (2026-11-16)
 
 On the manual Kūro is alive, and the rule that nothing loops still holds: he moves only in answer to the visitor (a scroll that ends, a lesson picked or answered, the radio, a card pointed at, or the keys while he is being played), one short trip at a time, and then he sits still. He never covers a word or a control: he sits only where the page's own layout leaves air, and his layer takes no click. He goes from one place to a far one through "the door" (he sinks behind an edge and rises behind another): he is the gate, as the bible says. His lines are short verdicts, never sentences ("Tamponné.", "Non.", "Plus fort."). With reduced motion he is the sleeping picture on the radio and nothing else. A reward on this site is a drawing, never a discount and never something asked back from the visitor.
 
+**The night cases (2026-11-23).** There Kūro is painted asleep on the counter and speaks only verdicts of one to three words, in the answer box. His sprite appears on the card only (one still cell per title), never beside his painted self.
+
 ## Sound (2026-11-16)
 
 The site has one source of sound, the workshop radio on the manual page, and it is silent until a visitor presses play: nothing is fetched before, nothing starts by itself, on any page, ever. Once on, it is always one press from silence (the shelf, or the small control at the foot of the screen), and its volume is the visitor's. Interface sounds, if any are added later, belong to the same switch: with the radio off the page makes no sound at all.
+
+**Interface sounds exist since 2026-11-23**, on « Les enquêtes de nuit » only: eight short synthesised tones (a tap, a right answer, a miss, a closed case, and one per crew member), no audio file. They are under the radio's switch: no audio context is made before the radio plays, and with the radio off the page makes no sound at all. The page's button for it is worded for what it does, « Radio et sons : coupés / allumés » (it starts the music with the tones), on the door; the same switch is an icon in the bar of every other screen and at the end of the action row inside a case.
 
 ## Lessons (2026-11-16)
 
@@ -3779,6 +3787,32 @@ The two volumes point at each other: each volume 1 district has a « Pour compre
 - **Revolut and PayPal: affiliate programmes only, never a personal invite link** (their invite terms forbid public posting); the same for Payoneer's refer-a-friend link and Airalo's Airmoney code. Each app's `forbid` patterns catch those links and the build fails on a match. Proton: Mail, Drive or Pass only, never a VPN link.
 - **Crypto apps (Binance, Bybit, RedotPay)** are on the page by the owner's decision of 2026-11-21, taken after he was told twice about Algeria's law 25-10. Their partner link is never shown in Europe/, America/, Atlantic/, Singapore, Hong Kong, Cyprus, the French overseas zones, Etc/UTC or an unreadable zone, nor in each programme's own excluded countries; the build fails if a crypto app with a `ref` has lost a core region, or has no risk line. Revolut's partner link is not shown in Africa/Algiers (an account for an Algeria resident is not confirmed).
 - Every claim on a card comes from the fetched research; an unverified fact is not stated as a fact. `<a data-app>` links may point only to the hosts listed in `apps.json` (`scripts/build-hub.mjs`).
+
+### Les enquêtes de nuit (2026-11-23)
+
+`hub/lanterne/enquetes.html` (with `?lang=en` and `?lang=ar`): « Les enquêtes de nuit » / "Night cases" / « تحقيقات الليل » (Arabic for native review), the Librairie's night stall as a game (the owner's decision of 2026-11-23, OWNER-CONTENT §47). It is not an atlas: one page made by `scripts/lib/enquetes.mjs` (called from `scripts/lib/lanterne.mjs`) and played by `hub/enquetes.js`, with its own sheet `hub/css/enquetes.css`. Case 1 of the owner's map (Chrome → Brave) at depths 1 to 3.
+
+**Order of play.** The door (one press, nothing plays first), the stall (the key art with three rings, a line of dialogue, the crew), the slip and an open bet, six scored answers on a mock screen, at most two items carried back, the stamp on the claim, the end card, the sticker pressed on the chart, the card. A claim is stamped, never a product; every named thing is « cité comme exemple, pas comme recommandation ».
+
+**The data file.** `hub/src/lanterne/enquetes.json` holds structure and never a sentence: the painting's crop and its rings as fractions of it, the season's thirteen rows, the depths, the titles' thresholds, each case's steps with their parts, answers, marks (`law`, `lawWith`) and returns, the sources with the day each page was read. Every string is a key under `lant.enq.*` derived from those ids. The build refuses what the engine's contract refuses: a part without its reason or its « after », a step without hints, Kūro's word, a return or a source, a bet and a stamp that disagree, a case bubble anywhere but after scored answers 3 and 5, a text over its word limit in French or English (a note in Arabic until native review), and any step whose French or English names a token, a wallet, Rewards or a crypto-asset without the law line.
+
+**The chart** prints all thirteen rows as text, pair and condition, never a verdict word; rows 2 to 13 read « pas encore écrit » and link nowhere. What is not built is not promised anywhere on the page: no review, journal, tape, milestone sticker, depth 4 or 5.
+
+**The list view** is the keyboard and screen-reader route and needs no second page: every part of a mock screen is already a real button carrying its spoken name, so the list view only drops the painting and the mock layouts and leaves the buttons in reading order. Verdict and reason go to one polite live region; focus moves to the prompt on each step and to « Continuer » after an answer; a 3 px ring (amber on the navy stage, ink on the paper and cream surfaces, where amber is 1.2:1); no single-key shortcut. **A step is written in the order it is read**: the question, the evidence, what the last tap brought, the hint, the law line, the actions; so the first Tab after the question is an answer. After a first miss the reason opens against the evidence, the page moves only as far as it needs (`block: 'nearest'`), and focus goes back to the question. Focus never scrolls the page by itself.
+
+**States.** A right answer is amber and pressed in; the answer shown after misses is amber too, not pressed; a wrong pick is grey and dashed. Red never rings the evidence. A mouse gets a hover state on every part, chip, slot, ring and button (a shift of ground, no motion). Leaving a case with an answer in it asks once.
+
+**Type floor.** No text under 14 px on the stage: body text 16 px and more, mono labels and second lines 14. The format's own rule was 16 (a decided departure, OWNER-CONTENT §47, « Review fixes »); `scripts/enquetes-play.mjs` holds 14. In Arabic the verdict buttons and the sticker take the body face at weight 800: the display face closes up under 24 px.
+
+**Without scripts** the page is « Le dossier, en clair », baked in French: the claim of each depth, its checked verdict and reveal, the sticker's back, the sources with their read date, the law line. The engine puts it away once it runs; with scripts on, the sheet already hides it before the first paint and keeps the empty stage at about the door's height, so the plain text does not flash and the page's foot does not jump (if the engine cannot start it marks the page `data-enq-off` and the text stays).
+
+**Names.** `scripts/lib/enquetes-names.mjs`, apart from the nine modules' law: Chrome, Brave, Google and the makers' words Chromium, Shields, Rewards, Wallet, Sync in any step; the map's other names on the chart's rows only; a never-list (the maker's other products, token names and tickers, marketplaces). Names are text in Latin letters: no logo, no brand colour; Shields and Rewards are plain buttons with the word (no shield, no triangle). Every mock screen is our own drawing.
+
+**The law 25-10 line** is the site's standing sentence, the existing key `lant.tools.risk.crypto`, never a second copy: in full on the door, at the chart's head, on the sticker's back and in the no-script text; in a band on every step marked `law`, and with the reason of a part named in `lawWith`.
+
+**Arabic.** The page mirrors. The engine sets every chain of numbers with hyphens (« 25-10 », a read date « 2026-11-22 ») and every address piece (« brave.com/download », « /download ») in its own `<bdi>`, so that neither is reordered inside an Arabic sentence; the mock addresses stay `dir="ltr"`. A pool line of Kūro's that starts with his name (« Kūro valide. ») is printed without a second name tag. Seen in a browser on 2026-11-23: depths 1 to 3 with misses at 390 px in French and Arabic and at 1440 px in English.
+
+**Art.** Existing files only: the key art (its crop on a phone, the whole of it beside the game from 900 px), the cut-outs of Raven, Techno Pigeon and Ratman as faces, the eye flower and the ring, the paw seal, three pixel icons. Yasser's cut-out stays reserved to two atlases (L8): his face here is a crop of the key art.
 
 ## La carte (2026-11-21)
 

@@ -43,7 +43,9 @@ const LANT_SRC = join(ROOT, 'hub/src/lanterne');
 export const LANTERNE_ATLASES = (() => { try { return JSON.parse(readFileSync(join(LANT_SRC, 'shelf.json'), 'utf8')).shelves.flatMap((s) => s.books.map((b) => b.slug)).filter((slug) => existsSync(join(LANT_SRC, 'atlases', slug + '.json'))); } catch (e) { return []; } })();
 /* « La boîte à outils » (2026-11-22): the Librairie's tools page, built from hub/src/lanterne/apps.json once it exists */
 export const LANTERNE_TOOLS = existsSync(join(LANT_SRC, 'apps.json')) ? ['hub/lanterne/outils.html'] : [];
-export const LANTERNE_PAGES = ['hub/lanterne/index.html', ...LANTERNE_ATLASES.map((s) => `hub/lanterne/${s}.html`), ...LANTERNE_TOOLS];
+/* « Les enquêtes de nuit » (2026-11-23): the night stall as a game, built from hub/src/lanterne/enquetes.json once it exists */
+export const LANTERNE_GAMES = existsSync(join(LANT_SRC, 'enquetes.json')) ? ['hub/lanterne/enquetes.html'] : [];
+export const LANTERNE_PAGES = ['hub/lanterne/index.html', ...LANTERNE_ATLASES.map((s) => `hub/lanterne/${s}.html`), ...LANTERNE_TOOLS, ...LANTERNE_GAMES];
 
 /* the landing page is three static pages, one per language: index.html
    (French, the template) and en/, ar/ written from it by build-lang.mjs;

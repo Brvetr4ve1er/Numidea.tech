@@ -31,7 +31,9 @@
     "motion:add": "node scripts/motion-add.mjs",
     "links": "node scripts/links.mjs",
     "kb": "node scripts/build-kb.mjs",
-    "metrics": "node scripts/metrics.mjs"
+    "metrics": "node scripts/metrics.mjs",
+    "enquetes:lint": "node scripts/enquetes-lint.mjs",
+    "enquetes:play": "node scripts/enquetes-play.mjs"
   },
   "devDependencies": {
     "axe-core": "^4.13.0",

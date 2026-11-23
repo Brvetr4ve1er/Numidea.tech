@@ -253,6 +253,27 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/outils.html"/>
   </url>
   <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/enquetes.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/enquetes.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/enquetes.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/enquetes.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/enquetes.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/enquetes.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/enquetes.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/enquetes.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/enquetes.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/enquetes.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/enquetes.html?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/enquetes.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/enquetes.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/enquetes.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/enquetes.html"/>
+  </url>
+  <url>
     <loc>https://www.numedialab.dev/hub/monde.html</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/monde.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/monde.html?lang=en"/>

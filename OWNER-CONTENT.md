@@ -748,6 +748,52 @@ shelf (`in.*`, `shelf.*`). Brand names stay in Latin letters inside `<bdi>`. The
 by side, are in the working list `ar-toolbox.md` kept with this pass's notes. Points to read first: the disclosure and
 the tag (they must read clearly as advertising), the risk line and the law 25-10 and 18-05 wording.
 
+Written or changed on 2026-11-23, **« Les enquêtes de nuit »** (§47), all new, all for a native reader. In
+`hub/src/i18n/ar.json`: 794 new keys, the whole subtree `lant.enq.*`, none of them read by a native speaker.
+The page's name first: « تحقيقات الليل » (`lant.enq.mast`, `shelf.go`, `ui.door.title` and inside `title`), proposed,
+not confirmed. Then, by family: the search title and description (`title`, `desc`); the way in from the shelf
+(`shelf.k`, `.t`, `.go`); the door (`ui.door.*`, 7: « NUMIDEA LABS GAMES تقدّم », « الموسم الأول: عشرة أسهم »,
+« أشعِل الفانوس », « افتح الكشك », the line and the painting's description); the interface (`ui.*`, 96 more: the bars, the buttons « قصاصة الليلة », « الجدول », « البطاقة », the crew's facts `ui.fact.*`, the end card
+`ui.end.*`, the 15 step tags `ui.tag.*`, and the four verdict words `ui.opt.*`: صحيح · نصف صحيح · غير صحيح · كلام
+بائع); the three rings of the painting with their look lines (`ring.<id>.*`, 12); the crew's 23 lines (`v.<who>.*`:
+Kūro's eleven verdicts, which reuse `life.k` where it had them, and twelve lines for Yasser, Techno Pigeon, Raven and
+Ratman); the depths, tools, titles and mock names (`depth.*`, `tool.*`, `rank.*`, `tpl.*`, 24); the chart, its 13
+rows as text and the sticker with its back (`chart.*`, `season.*`, `sticker.*`, 49); the card (`card.*`, 15); the
+no-script text's own labels (`clair.*`, 5); and case 1 itself, Chrome → Brave, at depths 1, 2 and 3
+(`c.brave.d1.*` 199, `c.brave.d2.*` 189, `c.brave.d3.*` 169): each slip, claim, prompt, hint, reason, part label,
+spoken name, the word Kūro says, the two bubbles, the reveal and the return of every step. The law 25-10 sentence is
+not among them: the page prints the existing `lant.tools.risk.crypto`, word for word. Every string, French and Arabic
+side by side, is listed in §47b at the end of this file (798 rows since the review fixes below, by family). Points to read first: the page's
+name; the four verdict words (« كلام بائع » for « ARGUMENT DE VENTE » is the least sure); XP written « نقطة / نقاط »
+so that no Latin abbreviation stands in an Arabic sentence; « ويب 3 » for web3, as in the web3 atlas; Shields read
+as a feminine plural (« Shields مفعَّلة »), Rewards as masculine, Wallet as feminine; `c.brave.d1.shield.prompt`, which
+says « بجانب العنوان » (beside the address) where the French says « à droite de l’adresse », because the page mirrors
+in Arabic; the built sentences of depth 3 (`*.frame` and their chips), framed so that a chip of either gender fits;
+and Samia's lines to her member, in the feminine (`c.brave.d3.say.*`). Words to confirm: تحقيق (une enquête),
+قصاصة (le billet), الجدول (le tableau), سهم (flèche), البطاقة (le livret), العمق (profondeur), شعلة (flamme), ملصق
+(sticker), رقعة (pastille), خانة (case), الحصيلة (le décompte), متتبِّع (traceur), ملفات تعريف الارتباط (cookies),
+بين المواقع (intersites), رمز رقمي (jeton), أصل مشفّر (crypto-actif), المورّد (le prestataire), منخرطة (adhérente),
+الصانع (l’éditeur), شبيه (sosie), كشك (l’étal). Product and world names stay in Latin letters (Chrome, Brave, Google,
+Chromium, Shields, Rewards, Wallet, Sync, the chart's names, NUMIDEA LABS GAMES, Raven, Techno Pigeon, Ratman);
+ياسر, كورو and سامية are written as elsewhere in the Librairie. The build holds French and English to the word limits
+(a prompt, a reason, a hint, a slip and a reveal 20 words; a bubble 12; Kūro 1 to 3; a wrong part's reply 5; a look
+line 25; the sticker's back 60); in Arabic the same limits are notes until this review, and all of them hold today.
+
+Also changed on 2026-11-23, **the review fixes of « Les enquêtes de nuit »** (§47, « Review fixes »), for the same
+native reader. Eight Arabic strings are new or reworded, and two changed their key with the same word; §47b carries
+them (798 rows now):
+`c.brave.d3.boss.hint.1` « بنيتَ كلّ جزء الليلة. » (it no longer sends the player to a recorder the page
+does not have); the sound switch, which is the radio's, `ui.sound.off` « الراديو والأصوات: متوقّفة », `ui.sound.on`
+« الراديو والأصوات: مشغَّلة », `ui.sound.aria` « الراديو وأصوات اللعبة » (the adjective agrees with « الأصوات »; confirm);
+the question asked before a case with an answer in it is left, `ui.leave.h` « أتغادر هذه القصاصة؟ », `ui.leave.t`
+« ستبدأ من السؤال الأول من جديد. النقاط المكتسبة تبقى. », `ui.leave.stay` « ابقَ », `ui.leave.go` « غادِر »; and the word
+« Rewards » on its button, now `c.brave.d1.shield.p.rewards.text` and `c.brave.d1.boss.r.p.rewards.text` (were `.cap`).
+**A choice of typeface for the reviewer, not a wording**: in Arabic the display face is a heavy square kufic whose
+letters close up under 24 px. The three verdict buttons (« صحيح », « نصف صحيح », « كلام بائع », on the slip and at the
+stamp) and the sticker's label on the chart (« يجد SHIELDS ») are now set in the body face at weight 800; the door's
+button « أشعِل الفانوس » (18 px) was left in the display face. Say if the door's button should follow, or if the
+verdicts should go back.
+
 ## 8b. The Google tag and consent (2026-11-14)
 The site loads the owner's Google Tag Manager container (GTM-PMF7RWVK) on every
 page with Google Consent Mode **denied for good** and no cookie bar: Google gets
@@ -2907,3 +2953,1000 @@ Free options shown (no programme, no link to add): GitHub Pages, Cloudflare.
 **Open for you:** join the programmes above and send the links (or paste them yourself, as described); the crypto
 decision for visitors in Algeria (kept as you decided); law 2023-451 for the French pages; a payout route; the privacy
 page's partner-cookie line; the Arabic (§8, « Also written on 2026-11-22, the toolbox »).
+
+## 47. « Les enquêtes de nuit »: the game at the Lantern's stall (2026-11-23)
+
+**Your decision of 2026-11-23: "go with E and build it on the site".** E is the one format written on 2026-11-22
+(the night stall as the game: one slip a night, a bet, six answers by pointing at a mock screen, a stamp, a sticker on
+the chart), with every default of its list of decisions. It is built as one page of the Librairie,
+`hub/lanterne/enquetes.html` (with `?lang=en` and `?lang=ar`): « Les enquêtes de nuit » / "Night cases" /
+« تحقيقات الليل » (the Arabic name is proposed, §8). It holds case 1, Chrome → Brave, at depths 1 to 3. Nothing is
+committed or deployed; the cache-bust stamp waits for `npm run bump`.
+
+**The defaults taken with your decision**, each one yours to change:
+
+- **The door's label**: « NUMIDEA LABS GAMES présente », on the door only. A costume for one page, not a second brand.
+- **The start phrase**: « ALLUMER LA LANTERNE » ("LIGHT THE LANTERN"); on a return visit, « OUVRIR L’ÉTAL ».
+- **Names are text**: Chrome, Brave and Google in the levels, and the makers' words Chromium, Shields, Rewards, Wallet
+  and Sync; the chart's other names on the chart only. No logo, no brand colour: Shields is a plain button with the
+  word. No token is named; a mock screen says « un jeton ».
+- **Flames that light**: three a case, lit by the 1st, 3rd and 5th answer right on the first try. None ever goes out.
+- **No streak, no clock, no lock, no price**: « le billet de ce soir » is undated and lost by nobody; every depth is
+  open; nothing is timed.
+- **XP is a count that buys nothing**: 10 on the first try, 5 on the retry or the return, 60 a case at most, never
+  taken away, never spent. A title needs its depth closed as well as its XP.
+- **A claim is stamped, never a product**: the stamp asks the bet's own claim again (« ARGUMENT DE VENTE »,
+  « À MOITIÉ VRAI », « À MOITIÉ VRAI » across the three depths), with « Cité comme exemple, pas comme
+  recommandation. » under the checked verdict.
+- **Samia is an invented example**: every slip is tagged « exemple inventé »; she asks and objects, and never states
+  a fact.
+- **Kūro speaks verdicts of one to three words** and gives no hint; hints are Ratman's, always visible, never
+  automatic. Yasser, Techno Pigeon, Raven and Ratman each have lines.
+- **The law 25-10 sentence** is the site's standing one, word for word (`lant.tools.risk.crypto`): in full on the
+  door, the chart's head, the sticker's back and the no-script text, and in a band on every step that names a token,
+  a wallet, Rewards or a crypto-asset.
+- **Unclosed rows of the chart** show their pair and their condition in words, never a sticker and never a verdict.
+- **No new art** and no sound file: existing paintings and props, a sticker built from type, eight tones under the
+  radio's switch.
+
+**Left out, and never promised on the page**: the two-day review; the journal; the tapes; the milestone stickers;
+« Enregistrer la carte »; "I know this: test me"; depths 4 and 5; the day painting that ends a season; the five rings
+that only a desktop would show. So the end card has no review line, the door has no "reviews ready", and the crew's
+buttons are « LE BILLET DE CE SOIR », « LE TABLEAU » and « LE LIVRET ». The chart prints all 13 rows as text; rows 2
+to 13 say « pas encore écrit » and link nowhere.
+
+**The words chosen in French** (the site's first language; English and Arabic follow, under `lant.enq.*`):
+une enquête (a case), le billet (the slip), le tableau (the chart: « la carte » is already the services catalogue),
+le livret (the card, for the same reason), profondeur 1 à 3 « Repérer », « Utiliser », « Expliquer » (the depths),
+le décompte (the tally), un traceur (a tracker), une pastille and une case (a chip and its slot), un sosie (a
+look-alike address), l’éditeur (the maker). The player's titles are « Équipe de nuit », « Commis », « Libraire » and
+« Allume-lanterne », chosen so that none is gendered. The narrator says « vous »; the crew says « tu », as Kūro and
+Yasser already do on the Librairie. Kūro's verdicts are his existing lines (« Tamponné. », « Kūro valide. »,
+« Exact. », « Non. », « Relis. », « Presque. Non. ») and five new ones in the same cut (« Juste. », « Oui. Bien. »,
+« Pas ça. », « Un autre. », « Appuie. »).
+
+**Open for you:**
+
+- **Wallet and Sync as printed words.** Both are row labels on a mock settings screen, added after the reviews of
+  2026-11-22. Approve them, or say which word replaces each.
+- **« la vente ».** The money section's note (`money.note2`) says the law bans « l’achat, la vente, la détention et
+  la promotion »; the standing sentence this page prints (`lant.tools.risk.crypto`) says « d’acheter, de détenir,
+  d’utiliser et de promouvoir », with no selling. The two were left as they are: the text of law 25-10 was not read
+  for this page. One of them needs your check against the law.
+- **Facts not verified, and so written nowhere as fact**: whether Rewards pays out in Algeria; anything about private
+  windows; what happens to a Google account's sync after switching; any figure for how much is blocked (14, 9 and 21
+  on the mock screens are invented for the exercise, and Yasser says so of the fourteen); whether a sponsored image shows on a new tab
+  before Rewards is turned on; Brave's default search engine in Algeria today; what a real new tab shows besides the
+  sponsored image.
+- **The makers' words are kept in English**: Shields, Rewards, Wallet, Sync, and the labels around them on the mock
+  screens are our own French (« Shields ACTIFS pour ce site », « Signaler un site cassé », « Image sponsorisée »).
+  Brave's own French labels were not read; if you want the mocks to match them, they need reading first.
+- **Two hints lean on English**: « Un bouton porte un nom de bouclier, en anglais. » and « Une ligne porte un nom de
+  récompense, en anglais. », because "Shields" and "Rewards" say what they do only to an English reader.
+- **The titles' names** above, and « le livret » and « le tableau » for the card and the chart.
+- **The Arabic** (§8, « Written or changed on 2026-11-23 »): 794 strings, none read by a native speaker; the page's
+  name first.
+- **Where the law line sits**: step by step, as described above, instead of on every screen of a depth. Say if you
+  want it on every screen.
+- The season's twelve other cases, depths 4 and 5 and everything in "left out" wait for your word.
+
+**Seen in a browser on integration (2026-11-23).** Depths 1, 2 and 3 were played to their end cards with misses,
+hints, shown answers and returns: at 390 px in French and in Arabic, at 1440 px in English, a picture of every screen
+looked at. Three things were corrected in the engine (`hub/enquetes.js`), none in the copy: Kūro's pool line
+« Kūro valide. » printed after his name tag as « Kūro Kūro valide. » (« كورو كورو موافق. »): a line that already
+starts with his name is no longer given it twice; in Arabic « القانون 25-10 » showed as « 10-25 » on the door and in
+one reason, and an address piece in a sentence lost its slash to the other side (« /download » as « download/ »):
+each number pair and each address piece is now set in its own `<bdi>`, with the same text. In Arabic the mock browser
+bar mirrors, so the five buttons sit to the left of the address: `c.brave.d1.shield.prompt` says « بجانب العنوان »
+(beside the address), which holds on screen.
+
+**Review fixes (2026-11-23).** A second look in a browser (three languages, 390 and 1440 px, all three depths) and
+three readers' findings. What changed, and what is yours to overrule:
+
+- **A step reads top to bottom**: the question, the mock screen, what the last tap brought, the hint, the law line,
+  the buttons. The question used to sit under the mock, so the first Tab landed on « Indice » and the answers were
+  reachable only backwards. After a first miss the reason opens against the mock, on screen, and the keyboard is back
+  on the question.
+- **Leaving a case asks once.** The arrow in the bar used to drop a run with no word. With at least one answer in,
+  it now asks « Quitter ce billet ? Il reprendra à la première question. Les XP déjà gagnés restent. » (« Rester » /
+  « Quitter »). The other way was to keep the run and resume it; say if you prefer that.
+- **Rewards is a plain button with the word**, as Shields is. The script asked for a small triangle; a triangle is
+  the shape of the token's own mark, and the rule here is no third-party logo or artwork. A departure from the script.
+- **The answer shown after misses is amber**, the colour of a right answer; it was ringed in red, which read as
+  « wrong ».
+- **The sound button says what it does**: « Radio et sons : coupés / allumés ». It is the radio's switch (the music
+  starts with the tones). It is now also an icon in the bar of every screen, and at the end of the button row inside
+  a case (whose bar is full).
+- **No text under 14 px** on the stage: the crew's names, the « Annonce » mark, the step tag, the bet chip and the
+  other mono labels were 12 and 13 px. **This is a departure from the format's own rule** (section 2: no text under
+  16 px), recorded here and in BRAND.md: body text is 16 px and more, mono labels and second lines 14. The browser test
+  refuses anything under 14. Say if you want 16 everywhere; the bar and the crew strip would then need two lines.
+- **Three French lines brought back to the script**: the slip of depth 3 says « de site en site » (was « partout »;
+  « ils se parlent » keeps it at 20 words); the reveal of depth 1 says « programme à jetons et portefeuille » (was
+  « jeton et portefeuille »); the search description says « un écran factice » (a mock screen; it was « un écran », and the line is held to 160 characters, so « sur le » and one comma went).
+- **One hint shortened** in the three languages: « Vous avez construit chaque partie ce soir. » It used to add
+  « Rejouez-les au magnétophone. », and the page has no recorder. The build now refuses any string of the page that
+  names a recorder, a tape, the journal or a review while they are left out.
+- Also: the read date shows whole in Arabic (« 2026-11-22 », it showed as « 22-2026-11 »); the look-alike address
+  piece is no longer torn at its dot in Arabic; the crew strip sits above the talk box and no longer moves under the
+  finger; the chart and the card end on « Retour à l’étal »; a built sentence keeps its full stop against its last
+  slot; one full stop after a shown answer; an ink focus ring on the paper and cream surfaces; a hover state for a
+  mouse; the skip link lands on the page's main block, which exists with or without scripts; with scripts on, the
+  plain text no longer flashes before the game draws, and the page's foot no longer jumps (seen as a layout shift of
+  0.12 at 1280 px when the first paint came before the engine).
+- **Not done**: the read dates of the no-script text are not labelled « Lu le … » (it needs a new string in three
+  languages for a line the game already carries on the sticker's back; say if you want it). The « Indice » button
+  can still be under the fold on a 390 by 844 phone once a reason and the law line are both open (the reason itself
+  is on screen).
+
+## 47b. « Les enquêtes de nuit »: every Arabic string beside its French source, for native review (2026-11-23)
+
+
+File: `hub/src/i18n/ar.json`, subtree `lant.enq.*` (794 keys). French is the source the Arabic was written from; the English is in `hub/src/i18n/en.json` under the same keys. None of this Arabic has been read by a native speaker.
+
+### Read these first
+
+- **The page's name**: « تحقيقات الليل » for « Les enquêtes de nuit » (`lant.enq.mast`, `shelf.go`, `ui.door.title`, `title`). Proposed, not confirmed.
+- **The verdict words** (`ui.opt.*`): صحيح · نصف صحيح · غير صحيح · كلام بائع (VRAI · À MOITIÉ VRAI · FAUX · ARGUMENT DE VENTE). « كلام بائع » is the least sure of the four.
+- **The law 25-10 line is not in this list**: the page prints the existing key `lant.tools.risk.crypto` word for word. `c.brave.d2.token.p.rewards.why` only points at it (« السطر أدناه يذكر ما يمنعه القانون 25-10 في الجزائر »), and `ui.lawK` is « القانون 25-10 ».
+- **Words to confirm**: تحقيق (une enquête, a case) · قصاصة (le billet, the slip) · الجدول (le tableau, the chart) · سهم / أسهم (flèche, an arrow of the chart) · البطاقة (le livret, the card) · العمق (profondeur, depth) · شعلة (flamme) · ملصق (sticker) · رقعة (pastille, a chip of a built sentence) · خانة (case, a slot; also used for a tile and for a login box) · قطعة (morceau, a piece of an address) · الحصيلة (le décompte, the tally) · متتبِّع (traceur, tracker) · ملفات تعريف الارتباط (cookies) · بين المواقع (intersites, cross-site) · رمز رقمي (jeton, token; as in the web3 atlas) · أصل مشفّر (crypto-actif) · محفظة (portefeuille) · المورّد (le prestataire) · منخرطة (adhérente) · الصانع (l'éditeur, the maker) · شبيه (sosie, a look-alike address) · كشك (l'étal, the stall) · المنضدة (le comptoir).
+- **XP is written « نقطة / نقاط »** in Arabic (French and English keep « XP »), so that no Latin abbreviation stands in an Arabic sentence. « بلا نقاط » is « Sans points » (unscored).
+- **Names in Latin letters**: Chrome, Brave, Google, Chromium, Shields, Rewards, Wallet, Sync, the chart's names (`season.*.pair`), NUMIDEA LABS GAMES, Raven, Techno Pigeon, Ratman; ياسر, كورو and سامية are in Arabic letters, as elsewhere in the Librairie. Addresses (brave.com, the `.example` ones) stay as typed. `clair.lead` prints « JavaScript », as `lant.ui.noJs` already does.
+- **Shields is treated as a feminine plural** (« Shields مفعَّلة », « موقوفة »), Rewards as masculine (« متوقّف »), Wallet as feminine (« متوقّفة », after محفظة). Say if one reads wrong.
+- **« web3 » is « ويب 3 »** inside « », as in the web3 atlas.
+- **Where the Arabic departs from the French on purpose**: `c.brave.d1.shield.prompt` says « بجانب العنوان » (beside the address) where the French says « à droite de l'adresse », because the page mirrors in Arabic (seen in a browser on 2026-11-23: the buttons sit to the left of the address); the three built sentences whose first chip changes gender are framed so that any chip fits (`d3.tracker.frame` « … هو {1}، وعمله أنه {2} », `d3.boss.r.frame` « المشترك: {1}. المختلف: {2}. الاختياري: {3}. », `d3.rewards.r.frame` with colons); Samia's lines to her member are in the feminine (`d3.say.*`: « يجعلكِ », « أوقِفي », « شغّلي »); the player is addressed in the masculine singular, as on the rest of the site.
+- **Kūro's words** reuse his existing Arabic (`life.k`): خُتم. · كورو موافق. · صحيح. · لا. · أعد القراءة. · قريب. لا. The new ones: بالضبط. · نعم. جيّد. · ليس هذا. · جرّب غيره. · اضغطه. and one word per step (`c.*.kuro`).
+- **Limits**: a wrong part's « after » holds to 5 words, a bubble to 12, Kūro to 3, a prompt, reason, hint, slip and reveal to 20, a look line to 25, the sticker's back to 60. The Arabic holds them all today (the build counts them as notes, not failures, until this review).
+
+### The page's name, title, door and shelf (13)
+
+| Key (`lant.enq.` +) | Français | العربية |
+|---|---|---|
+| `desc` | Une affirmation « web3 » attend à l’étal de nuit de la Lanterne. Pariez, pointez six fois la preuve sur un écran factice, tamponnez. Gratuit dans ce navigateur. | ادّعاء عن «ويب 3» ينتظر عند كشك الفانوس الليلي. راهِن، أشِر إلى الدليل ستّ مرّات على شاشة تجريبية، ثم اختم الادّعاء. مجاناً، في هذا المتصفّح. |
+| `mast` | Les enquêtes de nuit | تحقيقات الليل |
+| `shelf.go` | Les enquêtes de nuit | تحقيقات الليل |
+| `shelf.k` | Un jeu à l’étal | لعبة عند الكشك |
+| `shelf.t` | Une affirmation sur le « web3 » attend. Vous pointez la preuve. | ادّعاء عن «ويب 3» ينتظر. وأنت تشير إلى الدليل. |
+| `title` | Les enquêtes de nuit : pointez la preuve · La Librairie Lanterne | تحقيقات الليل: أشِر إلى الدليل · مكتبة الفانوس |
+| `ui.door.alt` | L’étal de la Lanterne, la nuit : Yasser lit, Kūro dort sur le comptoir près d’une lanterne allumée, un grand livre ouvert. | كشك الفانوس ليلاً: ياسر يقرأ، وكورو نائم على المنضدة بجانب فانوس مضاء، وكتاب كبير مفتوح. |
+| `ui.door.label` | NUMIDEA LABS GAMES présente | NUMIDEA LABS GAMES تقدّم |
+| `ui.door.line` | Une affirmation sur le « web3 » attend. Vous pointez la preuve. | ادّعاء عن «ويب 3» ينتظر. وأنت تشير إلى الدليل. |
+| `ui.door.open` | OUVRIR L’ÉTAL | افتح الكشك |
+| `ui.door.season` | Saison un : Dix flèches | الموسم الأول: عشرة أسهم |
+| `ui.door.start` | ALLUMER LA LANTERNE | أشعِل الفانوس |
+| `ui.door.title` | LES ENQUÊTES DE NUIT | تحقيقات الليل |
+
+### Interface: bars, buttons, tags, verdict words (96)
+
+| Key (`lant.enq.` +) | Français | العربية |
+|---|---|---|
+| `ui.addr` | adresse | عنوان |
+| `ui.addrA` | Première adresse | العنوان الأول |
+| `ui.addrB` | Seconde adresse | العنوان الثاني |
+| `ui.answer` | Réponse : {a}. | الجواب: {a}. |
+| `ui.betChip` | Votre pari : {bet} | رهانك: {bet} |
+| `ui.betOpen` | ouvert | مفتوح |
+| `ui.bossNoReturn` | Une objection manquée ne revient pas ce soir. | الاعتراض الذي فاتك لا يعود الليلة. |
+| `ui.btn.card` | LE LIVRET | البطاقة |
+| `ui.btn.chart` | LE TABLEAU | الجدول |
+| `ui.btn.replay` | LE LIVRET · REJOUER UNE PROFONDEUR | البطاقة · أعِد لعب عمق |
+| `ui.btn.slip` | LE BILLET DE CE SOIR | قصاصة الليلة |
+| `ui.choose` | CELUI-CI | هذه |
+| `ui.close` | Fermer | أغلِق |
+| `ui.closeCase` | Clore l’enquête | أغلِق التحقيق |
+| `ui.continue` | Continuer | تابِع |
+| `ui.crew.aria` | {name}. Un fait et un bouton. | {name}. معلومة واحدة وزرّ واحد. |
+| `ui.crew.h` | L’équipe | الفريق |
+| `ui.depth` | Profondeur {n} | العمق {n} |
+| `ui.end.closed` | ENQUÊTE CLOSE. | أُغلق التحقيق. |
+| `ui.end.flames` | Flammes allumées : {flames} sur 3. Indices utilisés : {hints}. | الشعلات المضاءة: {flames} من 3. التلميحات المستعملة: {hints}. |
+| `ui.end.next` | PROFONDEUR {n} : {name} | العمق {n}: {name} |
+| `ui.end.score` | Du premier coup : {first} sur 6. Au final : {end} sur 6. | من أوّل محاولة: {first} من 6. في النهاية: {end} من 6. |
+| `ui.end.stick` | COLLER | ألصِقه |
+| `ui.end.tool` | Outil : {t} | الأداة: {t} |
+| `ui.end.xpFirst` | +{n} XP pour cette enquête | +{n} نقطة في هذا التحقيق |
+| `ui.end.xpRun` | Cette partie : {n} XP. Meilleur score : {best}. | هذه الجولة: {n} نقطة. الأفضل: {best}. |
+| `ui.eye` | Fleur à l’œil : étiquettes | الزهرة ذات العين: التسميات |
+| `ui.fact.closed` | Closes dans ce navigateur : {n} des 3 profondeurs écrites. | أُغلق في هذا المتصفّح: {n} من 3 أعماق مكتوبة. |
+| `ui.fact.flames` | Flammes allumées en tout : {n} sur 9. | الشعلات المضاءة إجمالاً: {n} من 9. |
+| `ui.fact.noSlip` | Pas de nouveau billet ce soir. | لا قصاصة جديدة الليلة. |
+| `ui.fact.slip` | Le billet de ce soir : profondeur {n}. | قصاصة الليلة: العمق {n}. |
+| `ui.fact.tools` | Outils en main : {n}. | الأدوات التي تملكها: {n}. |
+| `ui.flame` | Une flamme s’allume. | شعلة تضيء. |
+| `ui.flames` | {n} flammes allumées sur 3 | الشعلات المضاءة: {n} من 3 |
+| `ui.goal` | Le billet de ce soir : dans la lanterne · 4 min | قصاصة الليلة: في الفانوس · 4 دقائق |
+| `ui.goalNone` | Pas de nouveau billet ce soir. Rejouez une profondeur depuis le livret. | لا قصاصة جديدة الليلة. أعِد لعب عمق من البطاقة. |
+| `ui.gone` | {t}, pas celui-ci | {t}، ليس هذا |
+| `ui.hint` | Indice | تلميح |
+| `ui.hint3` | Montrez-moi la réponse | أرِني الجواب |
+| `ui.lawK` | Loi 25-10 | القانون 25-10 |
+| `ui.leave.go` | Quitter | غادِر |
+| `ui.leave.h` | Quitter ce billet ? | أتغادر هذه القصاصة؟ |
+| `ui.leave.stay` | Rester | ابقَ |
+| `ui.leave.t` | Il reprendra à la première question. Les XP déjà gagnés restent. | ستبدأ من السؤال الأول من جديد. النقاط المكتسبة تبقى. |
+| `ui.list.off` | Vue en liste | عرض القائمة |
+| `ui.list.on` | Vue en liste : activée | عرض القائمة: مفعَّل |
+| `ui.list.short` | Liste | قائمة |
+| `ui.noReturn` | Il ne revient pas ce soir. | لا يعود الليلة. |
+| `ui.notThis` | Pas celui-ci. | ليس هذا. |
+| `ui.opt.half` | À MOITIÉ VRAI | نصف صحيح |
+| `ui.opt.not` | FAUX | غير صحيح |
+| `ui.opt.sales` | ARGUMENT DE VENTE | كلام بائع |
+| `ui.opt.true` | VRAI | صحيح |
+| `ui.placed` | {t}, en place | {t}، في مكانها |
+| `ui.pos` | {i} sur {n} | {i} من {n} |
+| `ui.posRet` | Retour {i} sur {n} | عودة {i} من {n} |
+| `ui.posStamp` | Tampon | الختم |
+| `ui.pvAria` | La pièce à conviction attend derrière le pari. | الدليل ينتظر خلف الرهان. |
+| `ui.quote` | « {t} » | «{t}» |
+| `ui.result` | Vous avez parié {bet}. Vous tamponnez {stamp}. Vérifié : {checked}. | راهنتَ على: {bet}. ختمتَ بـ: {stamp}. بعد التحقّق: {checked}. |
+| `ui.right` | Juste. | صحيح. |
+| `ui.says` | {who} : « {t} » | {who}: «{t}» |
+| `ui.sealed` | Scellé | مختوم |
+| `ui.skip` | Aller au jeu | انتقل إلى اللعبة |
+| `ui.slipH` | LE BILLET | القصاصة |
+| `ui.slot` | case {n} | الخانة {n} |
+| `ui.slotEmpty` | Case {n}, vide | الخانة {n}، فارغة |
+| `ui.slotFull` | Case {n} : {t} | الخانة {n}: {t} |
+| `ui.sound.aria` | Radio et sons du jeu | الراديو وأصوات اللعبة |
+| `ui.sound.off` | Radio et sons : coupés | الراديو والأصوات: متوقّفة |
+| `ui.sound.on` | Radio et sons : allumés | الراديو والأصوات: مشغَّلة |
+| `ui.stallAlt` | L’étal, la nuit : des étagères sous un auvent, un grand livre ouvert, Kūro endormi sur le comptoir près d’une lanterne, Yasser qui lit à gauche. | الكشك ليلاً: رفوف تحت مظلّة، كتاب كبير مفتوح، كورو نائم على المنضدة بجانب فانوس، وياسر يقرأ إلى اليسار. |
+| `ui.stallIdle` | Trois cercles sur la peinture. Toucher, c’est seulement regarder. | ثلاث دوائر على اللوحة. اللمسة تنظر فقط. |
+| `ui.stallName` | L’étal | الكشك |
+| `ui.stop` | S’arrêter ici | توقّف هنا |
+| `ui.tag.back` | rapporté | أُعيد إليك |
+| `ui.tag.bet` | votre pari | رهانك |
+| `ui.tag.boss` | la cliente objecte | الزبونة تعترض |
+| `ui.tag.build` | construisez la phrase | ابنِ الجملة |
+| `ui.tag.compare` | comparez | قارِن |
+| `ui.tag.duo` | deux côtés, un essai | جانبان، محاولة واحدة |
+| `ui.tag.eye` | étiquettes : touchez la fleur à l’œil | التسميات: المس الزهرة ذات العين |
+| `ui.tag.labels` | étiquettes visibles | التسميات ظاهرة |
+| `ui.tag.line` | touchez la bonne phrase | المس الجملة الصائبة |
+| `ui.tag.note` | touchez la note vraie | المس الملاحظة الصحيحة |
+| `ui.tag.point` | pointez la partie | أشِر إلى الجزء |
+| `ui.tag.read` | lisez l’écran | اقرأ الشاشة |
+| `ui.tag.ring` | l’anneau ouvre les adresses | الحلقة تفتح العناوين |
+| `ui.tag.rows` | lisez les lignes | اقرأ الأسطر |
+| `ui.tag.stamp` | tamponnez | اختم |
+| `ui.thirdQueued` | Deux reviennent déjà. Celui-ci en reste à sa réponse. | اثنان سيعودان. هذا يبقى عند جوابه. |
+| `ui.toDoor` | S’arrêter ici. Retour à la porte | توقّف هنا. عُد إلى الباب |
+| `ui.toStall` | Retour à l’étal | عُد إلى الكشك |
+| `ui.tryAgain` | Réessayez. | حاول مجدداً. |
+| `ui.under` | Cité comme exemple, pas comme recommandation. | مذكور كمثال، لا كتوصية. |
+| `ui.wrongSlot` | Ces mots sont justes. Leur place est dans une autre case. | هذه الكلمات صحيحة. مكانها خانة أخرى. |
+| `ui.xp` | XP {n} | النقاط {n} |
+| `ui.xp0` | 0 XP | 0 نقطة |
+| `ui.xpGain` | +{n} XP | +{n} نقطة |
+| `ui.xpRun` | {n} sur 60 pour cette partie | {n} من 60 في هذه الجولة |
+
+### The stall's rings and look lines (12)
+
+| Key (`lant.enq.` +) | Français | العربية |
+|---|---|---|
+| `ring.book.btn` | LE TABLEAU | الجدول |
+| `ring.book.label` | Le grand livre ouvert. Bouton : le tableau. | الكتاب الكبير المفتوح. زرّ: الجدول. |
+| `ring.book.line` | Le livre ouvert garde le tableau du prestataire : dix flèches en lignes. Une enquête close s’y colle. Corrections à côté. Les coquilles restent lisibles. | الكتاب المفتوح يحفظ جدول المورّد: عشرة أسهم في أسطر. التحقيق المغلق يُلصق هنا. التصحيحات بجانب السطر. والأخطاء المطبعية تبقى مقروءة. |
+| `ring.book.name` | Le livre ouvert | الكتاب المفتوح |
+| `ring.kuro.btn` | LE LIVRET | البطاقة |
+| `ring.kuro.label` | Kūro, le chat noir, endormi sur le comptoir. Bouton : le livret. | كورو، القطّ الأسود، نائم على المنضدة. زرّ: البطاقة. |
+| `ring.kuro.line` | Kūro dort sur le comptoir et juge chaque réponse. Touchez-le pour le livret : titre, flammes, outils. Il n’explique rien. | كورو ينام على المنضدة ويحكم على كلّ جواب. المسه لفتح البطاقة: اللقب، الشعلات، الأدوات. لا يشرح شيئاً. |
+| `ring.kuro.name` | Kūro | كورو |
+| `ring.lantern.btn` | OUVRIR LE BILLET · 4 MIN | افتح القصاصة · 4 دقائق |
+| `ring.lantern.label` | La lanterne sur le comptoir. Bouton : ouvrir le billet, quatre minutes. | الفانوس على المنضدة. زرّ: افتح القصاصة، أربع دقائق. |
+| `ring.lantern.line` | La lanterne garde le billet de ce soir. Touchez-la : quatre minutes, six réponses. Trois flammes s’allument au premier essai. Aucune ne s’éteint ; Yasser a essayé. | الفانوس يحفظ قصاصة الليلة. المسه: أربع دقائق، ستّة أجوبة. ثلاث شعلات تضيء عند الإصابة من أوّل محاولة. لا تنطفئ أيّ منها؛ ياسر حاول. |
+| `ring.lantern.name` | La lanterne | الفانوس |
+
+### The crew's lines (23)
+
+| Key (`lant.enq.` +) | Français | العربية |
+|---|---|---|
+| `v.kuro.hit.0` | Tamponné. | خُتم. |
+| `v.kuro.hit.1` | Exact. | صحيح. |
+| `v.kuro.hit.2` | Kūro valide. | كورو موافق. |
+| `v.kuro.hit.3` | Juste. | بالضبط. |
+| `v.kuro.hit.4` | Oui. Bien. | نعم. جيّد. |
+| `v.kuro.miss.0` | Non. | لا. |
+| `v.kuro.miss.1` | Presque. Non. | قريب. لا. |
+| `v.kuro.miss.2` | Relis. | أعد القراءة. |
+| `v.kuro.miss.3` | Pas ça. | ليس هذا. |
+| `v.kuro.miss.4` | Un autre. | جرّب غيره. |
+| `v.kuro.sticker.0` | Appuie. | اضغطه. |
+| `v.pigeon.idle.2` | J’attends sur l’auvent. Rien ne presse. | أنتظر على المظلّة. لا عجلة. |
+| `v.pigeon.queued.0` | Celui-là, je le rapporterai. Une fois. | سأعيد هذا إليك. مرّة واحدة. |
+| `v.ratman.hint.0` | D’abord : où regarder. | أولاً: أين تنظر. |
+| `v.ratman.hint.1` | Ensuite : quoi remarquer. | ثانياً: ماذا تلاحظ. |
+| `v.ratman.hint.2` | Enfin : je te montre la réponse. | ثالثاً: أُريك الجواب. |
+| `v.ratman.idle.0` | Un indice ne coûte rien. Prends-le. | التلميح لا يكلّف شيئاً. خذه. |
+| `v.ratman.idle.2` | Tu as {tools} outils. Tous marchent encore. | لديك من الأدوات: {tools}. كلّها ما زالت تعمل. |
+| `v.ratman.toolArrives.0` | Nouvel outil. Il ouvre des questions, pas des réponses. | أداة جديدة. تفتح أسئلة، لا أجوبة. |
+| `v.raven.idle.2` | Rien n’a été pris ce soir. La page a été vérifiée. | لم يُؤخذ شيء الليلة. جرى التحقّق من الصفحة. |
+| `v.yasser.brief.0` | Pari. Six réponses. Tampon. Une erreur ne coûte rien. | رهان. ستّة أجوبة. ختم. الخطأ لا يكلّف شيئاً. |
+| `v.yasser.greet.0` | L’étal est ouvert. Un billet attend. Quatre minutes. | الكشك مفتوح. قصاصة تنتظر. أربع دقائق. |
+| `v.yasser.noFlameLit.0` | Pas de flamme ce soir. L’enquête est close quand même. | لا شعلة الليلة. والتحقيق أُغلق مع ذلك. |
+
+### Depths, tools, titles, mock names (24)
+
+| Key (`lant.enq.` +) | Français | العربية |
+|---|---|---|
+| `depth.1.name` | Repérer | الرصد |
+| `depth.1.tool` | La fleur à l’œil : montre les étiquettes. Là dès la première nuit. | الزهرة ذات العين: تُظهر التسميات. موجودة منذ الليلة الأولى. |
+| `depth.1.verbs` | pointer, nommer, distinguer | أشِر، سمِّ، ميِّز |
+| `depth.2.name` | Utiliser | الاستعمال |
+| `depth.2.tool` | L’anneau : ouvre ce qui est marqué. | الحلقة: تفتح ما عليه علامة. |
+| `depth.2.verbs` | faire le geste de tous les jours, réparer une chose | افعل الفعل اليومي، أصلِح شيئاً واحداً |
+| `depth.3.name` | Expliquer | الشرح |
+| `depth.3.verbs` | construire le « parce que » à partir de ses morceaux | ابنِ «لأنّ» من أجزائها |
+| `rank.0` | Équipe de nuit | نوبة الليل |
+| `rank.1` | Commis | مساعد المكتبة |
+| `rank.2` | Libraire | كُتبيّ |
+| `rank.3` | Allume-lanterne | مُشعل الفانوس |
+| `tool.eye` | la fleur à l’œil | الزهرة ذات العين |
+| `tool.ring` | l’anneau | الحلقة |
+| `tool.ringDoes` | Ouvre ce qui est marqué : l’adresse derrière un bouton. Sert dès la profondeur 2. | تفتح ما عليه علامة: العنوان الذي خلف الزرّ. تُستعمل من العمق 2. |
+| `tpl.browser-bar` | Barre du navigateur | شريط المتصفّح |
+| `tpl.browser-bar-phone` | Barre du navigateur · téléphone | شريط المتصفّح · هاتف |
+| `tpl.message` | Message | رسالة |
+| `tpl.new-tab` | Nouvel onglet | تبويب جديد |
+| `tpl.results` | Résultats de recherche | نتائج البحث |
+| `tpl.settings-rows` | Réglages | الإعدادات |
+| `tpl.shields-panel` | Shields | Shields |
+| `tpl.shields-panel-phone` | Shields · téléphone | Shields · هاتف |
+| `tpl.web-page` | Page web | صفحة ويب |
+
+### The chart, the season, the sticker (49)
+
+| Key (`lant.enq.` +) | Français | العربية |
+|---|---|---|
+| `chart.back` | Le dos du sticker | ظهر الملصق |
+| `chart.cta` | Touchez cette ligne. Le sticker se pose : {state}. | المس هذا السطر. يحطّ الملصق: {state}. |
+| `chart.h` | Le tableau | الجدول |
+| `chart.notYet` | pas encore écrit | لم يُكتب بعد |
+| `chart.readOn` | Lu le {date} | قُرئ في {date} |
+| `chart.srcK` | Sources | المصادر |
+| `chart.stickerAria` | Sticker : {name}, {state} | ملصق: {name}، {state} |
+| `chart.verdict` | Vérifié sur le tableau : {v}. {n} des 3 profondeurs écrites sont closes. | بعد التحقّق في الجدول: {v}. أُغلق {n} من 3 أعماق مكتوبة. |
+| `chart.yes` | oui | نعم |
+| `season.audius.line` | Les artistes déposent directement. Samia se demande ce qu’il faut à une auditrice pour appuyer sur lecture. | الفنّانون يرفعون أعمالهم مباشرة. تتساءل سامية: ماذا يلزم المستمعة لتضغط زرّ التشغيل؟ |
+| `season.audius.pair` | Spotify → Audius | Spotify → Audius |
+| `season.brave.line` | Un navigateur pour un navigateur. La seule flèche que le tableau a juste. | متصفّح بمتصفّح. السهم الوحيد الذي أصاب فيه الجدول. |
+| `season.brave.open` | Un navigateur pour un navigateur. | متصفّح بمتصفّح. |
+| `season.brave.pair` | Chrome → Brave | Chrome → Brave |
+| `season.ch.1.line` | Regarder, écouter, chercher et discuter ne demandent aucun crypto-actif, d’après les pages de chaque projet. L’enquête 6 se regarde, sans s’essayer. | المشاهدة والاستماع والبحث والمحادثة لا تحتاج إلى أيّ أصل مشفّر، بحسب صفحات كلّ مشروع. التحقيق 6 يُنظر فيه ولا يُجرَّب. |
+| `season.ch.1.name` | Chapitre 1, « Sur le comptoir » | الفصل 1، «على المنضدة» |
+| `season.ch.2.line` | Écrans de démonstration seulement. La ligne sur la loi reste épinglée, sur le tableau aussi. | شاشات تجريبية فقط. سطر القانون يبقى مثبَّتاً، في الجدول أيضاً. |
+| `season.ch.2.name` | Chapitre 2, « Derrière la vitre » | الفصل 2، «خلف الزجاج» |
+| `season.ch.3.line` | Une flèche du tableau est une coquille. | أحد أسهم الجدول خطأ مطبعي. |
+| `season.ch.3.name` | Final | الخاتمة |
+| `season.ens.line` | Un nom loué pour un portefeuille, pas une adresse de site web. | اسم مستأجَر لمحفظة، لا عنوان موقع. |
+| `season.ens.pair` | GoDaddy → ENS | GoDaddy → ENS |
+| `season.farcaster.line` | Trois réseaux sociaux, une question : quelle partie a besoin d’une chaîne ? | ثلاث شبكات اجتماعية وسؤال واحد: أيّ جزء يحتاج إلى سلسلة؟ |
+| `season.farcaster.pair` | Facebook → Farcaster, à côté de Mastodon et Bluesky | Facebook → Farcaster، بجانب Mastodon وBluesky |
+| `season.ipfs.line` | D’abord un fichier reçoit une adresse-empreinte. Ensuite quelqu’un est payé pour le garder. | أولاً يحصل الملفّ على عنوان هو بصمته. ثم يُدفع لأحد كي يحفظه. |
+| `season.ipfs.pair` | Dropbox → IPFS, puis Filecoin | Dropbox → IPFS، ثم Filecoin |
+| `season.key.line` | La carte d’ouverture. Une entreprise la garde pour vous, ou vous gardez la clé. | بطاقة الافتتاح. شركة تحفظه لك، أو أنت تحفظ المفتاح. |
+| `season.key.pair` | Qui garde la clé | من يحفظ المفتاح |
+| `season.metamask.line` | Un trousseau de clés, pas une banque. Personne ne peut annuler ni récupérer. | حلقة مفاتيح، لا بنك. لا أحد يستطيع الإلغاء أو الاسترجاع. |
+| `season.metamask.pair` | PayPal → MetaMask | PayPal → MetaMask |
+| `season.misprint.line` | Une flèche associe une appli à une chaîne, sous un ancien nom. Pointez-la. | أحد الأسهم يقرن تطبيقاً بسلسلة، تحت اسم قديم. أشِر إليه. |
+| `season.misprint.pair` | La coquille : Patreon → Fantom (aujourd’hui Sonic) | الخطأ المطبعي: Patreon → Fantom (اليوم Sonic) |
+| `season.odysee.line` | Retiré du site ne veut pas dire retiré du réseau. Samia demande qui décide. | المحذوف من الموقع ليس محذوفاً من الشبكة. تسأل سامية: من يقرّر؟ |
+| `season.odysee.pair` | YouTube → Odysee | YouTube → Odysee |
+| `season.premise` | Le prestataire de Samia a envoyé un tableau de dix flèches. On en vérifie une par nuit. Elle reste hors de la chaîne. | أرسل مورّد سامية جدولاً من عشرة أسهم. يُتحقَّق من سهم واحد كلّ ليلة. وهي تبقى خارج السلسلة. |
+| `season.presearch.line` | Une recherche qui interroge d’autres moteurs. Samia se demande qui répond vraiment. | بحث يسأل محرّكات أخرى. تتساءل سامية: من يجيب فعلاً؟ |
+| `season.presearch.pair` | Google → Presearch | Google → Presearch |
+| `season.siwe.line` | La catégorie manquante : se connecter. Une norme terminée, pas un produit. | الفئة الناقصة: تسجيل الدخول. معيار مكتمل، لا منتَج. |
+| `season.siwe.pair` | Se connecter avec Google → Sign-In with Ethereum | تسجيل الدخول بـ Google → Sign-In with Ethereum |
+| `season.status.line` | Un compte qui est une clé, pas un numéro de téléphone. Signal montré une fois, pour comparer. | حساب هو مفتاح، لا رقم هاتف. Signal يُعرض مرّة واحدة، للمقارنة. |
+| `season.status.pair` | WhatsApp → Status, Signal montré une fois | WhatsApp → Status، وSignal يُعرض مرّة واحدة |
+| `season.unlock.line` | Une adhésion que vous détenez. Enseignée comme une idée, pas comme une appli terminée. | عضوية تحوزها أنت. تُدرَّس كفكرة، لا كتطبيق مكتمل. |
+| `season.unlock.pair` | Patreon → Unlock Protocol, comme idée | Patreon → Unlock Protocol، كفكرة |
+| `sticker.back` | Ce que c’est : Brave, un navigateur bâti sur Chromium, le code ouvert sous Chrome, qui bloque les traceurs par défaut. Ce que vous détenez : rien. Ce que vous cédez : certaines pages se cassent tant que les Shields ne sont pas baissés pour ce site. L’idée fausse : qu’il vous paie pour naviguer. Cité comme exemple, pas comme recommandation. Vérifié le 2026-11-22. | ما هو: Brave، متصفّح مبنيّ على Chromium، الشيفرة المفتوحة تحت Chrome، يحجب المتتبِّعات افتراضياً. ما تحوزه: لا شيء. ما تتخلّى عنه: بعض الصفحات تتعطّل إلى أن تُوقَف Shields لذلك الموقع. الفكرة الخاطئة: أنه يدفع لك مقابل التصفّح. مذكور كمثال، لا كتوصية. جرى التحقّق في 2026-11-22. |
+| `sticker.line` | Shields, trouvés. Ils n’ont jamais été cachés. | Shields، وُجدت. لم تكن مخفيّة قطّ. |
+| `sticker.name` | Trouve Shields | يجد Shields |
+| `sticker.state.1` | contour à l’encre | خطّ بالحبر |
+| `sticker.state.2` | couleur en aplat | لون مسطّح |
+| `sticker.state.3` | bord blanc découpé | حافّة بيضاء مقصوصة |
+
+### The card (15)
+
+| Key (`lant.enq.` +) | Français | العربية |
+|---|---|---|
+| `card.and` | ,  | ،  |
+| `card.aria` | Profondeur {n}, {name}. Jouer. | العمق {n}، {name}. العب. |
+| `card.closed` | Close · meilleur score : {n} XP sur 60 | مغلق · أفضل نتيجة: {n} من 60 نقطة |
+| `card.depth` | Profondeur {n} · {name} | العمق {n} · {name} |
+| `card.flames` | Flammes allumées en tout : {n} sur 9 | الشعلات المضاءة إجمالاً: {n} من 9 |
+| `card.h` | Le livret | البطاقة |
+| `card.next` | Titre suivant, {t} : {xp} XP et la profondeur {d} close. | اللقب التالي، {t}: {xp} نقطة وإغلاق العمق {d}. |
+| `card.open` | Ouverte | مفتوح |
+| `card.play` | JOUER | العب |
+| `card.replay` | REJOUER | العب من جديد |
+| `card.titleK` | Titre | اللقب |
+| `card.tools` | Outils : {list}. | الأدوات: {list}. |
+| `card.top` | Le plus haut titre de cette page. | أعلى لقب في هذه الصفحة. |
+| `card.xp` | {n} XP | {n} نقطة |
+| `card.xpAria` | Expérience sur cette page | الخبرة في هذه الصفحة |
+
+### « Le dossier, en clair » (no script) (5)
+
+| Key (`lant.enq.` +) | Français | العربية |
+|---|---|---|
+| `clair.checkedK` | Vérifié | بعد التحقّق |
+| `clair.claimK` | L’affirmation | الادّعاء |
+| `clair.h` | Le dossier, en clair | الملفّ، بكلام واضح |
+| `clair.lead` | Le jeu se joue avec JavaScript activé. Voici ce qu’il vérifie, sans lui. | اللعبة تعمل مع تفعيل JavaScript. وهذا ما تتحقّق منه، من دونه. |
+| `clair.stickerK` | Le dos du sticker | ظهر الملصق |
+
+### Case 1, depth 1 (Chrome → Brave) (199)
+
+| Key (`lant.enq.` +) | Français | العربية |
+|---|---|---|
+| `c.brave.d1.advert.address` | Nouvel onglet | تبويب جديد |
+| `c.brave.d1.advert.hint.0` | Lisez la petite étiquette dans un coin. | اقرأ الوسم الصغير في إحدى الزوايا. |
+| `c.brave.d1.advert.hint.1` | Un mot veut dire que quelqu’un a payé. | كلمة واحدة تعني أن أحداً دفع. |
+| `c.brave.d1.advert.hint.2` | Réponse : l’image sponsorisée. | الجواب: الصورة المموَّلة. |
+| `c.brave.d1.advert.kuro` | Sponsorisé. | مموَّل. |
+| `c.brave.d1.advert.p.image.after` | Image sponsorisée · une publicité placée par le navigateur | صورة مموَّلة · إعلان وضعه المتصفّح |
+| `c.brave.d1.advert.p.image.say` | Image de fond, étiquetée image sponsorisée | صورة الخلفية، موسومة بأنها صورة مموَّلة |
+| `c.brave.d1.advert.p.image.text` | Image sponsorisée | صورة مموَّلة |
+| `c.brave.d1.advert.p.image.why` | Brave compte les images du nouvel onglet parmi ses formats publicitaires. L’étiquette dans le coin permet de le savoir. | Brave يعدّ صور صفحة التبويب الجديد من أشكال إعلاناته. الوسم في الزاوية هو ما يدلّ عليه. |
+| `c.brave.d1.advert.p.shortcuts.after` | Ses propres raccourcis. | اختصاراتها هي. |
+| `c.brave.d1.advert.p.shortcuts.say` | Sites fréquents, quatre raccourcis | أكثر المواقع زيارة، أربعة اختصارات |
+| `c.brave.d1.advert.p.shortcuts.text` | Sites fréquents | أكثر المواقع زيارة |
+| `c.brave.d1.advert.p.shortcuts.why` | Ce sont des raccourcis vers des sites déjà ouverts dans ce navigateur. Ils ne vantent rien. | هذه اختصارات إلى مواقع سبق أن فُتحت في هذا المتصفّح. لا تُعلن عن شيء. |
+| `c.brave.d1.advert.p.suggested.after` | Le site s’ouvre. Aucune mention. | يُفتح الموقع. بلا وسم. |
+| `c.brave.d1.advert.p.suggested.say` | Site suggéré, raccourci | موقع مقترح، اختصار |
+| `c.brave.d1.advert.p.suggested.text` | Site suggéré | موقع مقترح |
+| `c.brave.d1.advert.p.suggested.why` | Un raccourci sans la mention « sponsorisé ». C’est cette mention qui signale une publicité. | اختصار بلا وسم «مموَّل». الوسم هو ما يدلّ على الإعلان. |
+| `c.brave.d1.advert.prompt` | Un nouvel onglet, sans site ouvert. Une partie est une publicité. Pointez-la. | تبويب جديد، بلا موقع مفتوح. أحد الأجزاء إعلان. أشِر إليه. |
+| `c.brave.d1.advert.r.p.article.after` | Les mots de la page. | كلمات الصفحة نفسها. |
+| `c.brave.d1.advert.r.p.article.say` | Article, texte | مقال، نصّ |
+| `c.brave.d1.advert.r.p.article.text` | Texte de l’article | نصّ المقال |
+| `c.brave.d1.advert.r.p.article.why` | C’est le texte de la page elle-même. Personne n’a payé pour le placer ici. | هذا نصّ الصفحة نفسها. لم يدفع أحد ليضعه هنا. |
+| `c.brave.d1.advert.r.p.gap.after` | Bloqué. Reste vide. | محجوبة. تبقى فارغة. |
+| `c.brave.d1.advert.r.p.gap.say` | Espace vide, là où la page voulait une publicité | مساحة فارغة حيث أرادت الصفحة إعلاناً |
+| `c.brave.d1.advert.r.p.gap.text` | Espace publicitaire bloqué | مساحة إعلان محجوبة |
+| `c.brave.d1.advert.r.p.gap.why` | Une publicité tierce, bloquée. Les publicités du navigateur ne remplacent pas celles des pages. | إعلان من طرف ثالث، محجوب. إعلانات المتصفّح لا تحلّ محلّ إعلانات الصفحات. |
+| `c.brave.d1.advert.r.p.notif.after` | Publicité · affichée par le navigateur | إعلان · يعرضه المتصفّح |
+| `c.brave.d1.advert.r.p.notif.say` | Notification, étiquetée publicité du navigateur | إشعار، موسوم بأنه إعلان من المتصفّح |
+| `c.brave.d1.advert.r.p.notif.text` | Publicité du navigateur · notification | إعلان من المتصفّح · إشعار |
+| `c.brave.d1.advert.r.p.notif.why` | Les notifications sont l’un des formats publicitaires de Brave, pour qui a choisi de les voir. | الإشعارات أحد أشكال إعلانات Brave، لمن اختار أن يراها. |
+| `c.brave.d1.advert.r.prompt` | Une page d’actualités, maintenant. Pointez la publicité qui vient du navigateur lui-même. | صفحة أخبار الآن. أشِر إلى الإعلان الآتي من المتصفّح نفسه. |
+| `c.brave.d1.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `c.brave.d1.boss.hint.0` | Quatre lignes. Deux sont désactivées. | أربعة أسطر. اثنان متوقّفان. |
+| `c.brave.d1.boss.hint.1` | Une ligne porte un nom de récompense, en anglais. | أحد الأسطر اسمه بالإنجليزية يعني «مكافآت». |
+| `c.brave.d1.boss.hint.2` | Réponse : Rewards. Désactivé tant qu’elle ne l’active pas. | الجواب: Rewards. متوقّف إلى أن تشغّله هي. |
+| `c.brave.d1.boss.kuro` | Éteint. Sauf demande. | متوقّف. حتى يُطلب. |
+| `c.brave.d1.boss.p.engine.after` | Choisit qui répond aux recherches. | يختار من يجيب عن البحث. |
+| `c.brave.d1.boss.p.engine.say` | Moteur de recherche, Google, ligne | محرّك البحث، Google، سطر |
+| `c.brave.d1.boss.p.engine.text` | Moteur de recherche : Google | محرّك البحث: Google |
+| `c.brave.d1.boss.p.engine.why` | Cette ligne choisit qui répond aux recherches. Elle ne rapporte rien. | هذا السطر يختار من يجيب عن البحث. لا يُكسِب شيئاً. |
+| `c.brave.d1.boss.p.rewards.after` | Rewards : désactivé · rien de gagné tant qu’il n’est pas activé | Rewards: متوقّف · لا كسب قبل تشغيله |
+| `c.brave.d1.boss.p.rewards.say` | Rewards, désactivé, ligne | Rewards، متوقّف، سطر |
+| `c.brave.d1.boss.p.rewards.text` | Rewards : désactivé | Rewards: متوقّف |
+| `c.brave.d1.boss.p.rewards.why` | Rien n’est gagné sans activer Rewards. Il paie en jeton, pour des publicités qu’elle choisit de voir. | لا كسب ما لم يُشغَّل Rewards. يدفع برمز رقمي، مقابل إعلانات تختار هي أن تراها. |
+| `c.brave.d1.boss.p.shields.after` | Déjà actifs. Ne paient rien. | مفعَّلة أصلاً. لا تدفع شيئاً. |
+| `c.brave.d1.boss.p.shields.say` | Shields, actifs par défaut, ligne | Shields، مفعَّلة افتراضياً، سطر |
+| `c.brave.d1.boss.p.shields.text` | Shields : actifs (par défaut) | Shields: مفعَّلة (افتراضياً) |
+| `c.brave.d1.boss.p.shields.why` | Les Shields sont actifs par défaut. Personne n’a à les choisir, et ils ne paient rien. | Shields مفعَّلة افتراضياً. لا يحتاج أحد إلى اختيارها، ولا تدفع شيئاً. |
+| `c.brave.d1.boss.p.wallet.after` | Des clés. Aucun paiement. | تحفظ مفاتيح. لا تدفع شيئاً. |
+| `c.brave.d1.boss.p.wallet.say` | Wallet, désactivé, ligne | Wallet، متوقّفة، سطر |
+| `c.brave.d1.boss.p.wallet.text` | Wallet : désactivé | Wallet: متوقّفة |
+| `c.brave.d1.boss.p.wallet.why` | Un portefeuille garde des clés. L’activer ne paie personne pour naviguer. | المحفظة تحفظ مفاتيح. تشغيلها لا يدفع لأحد مقابل التصفّح. |
+| `c.brave.d1.boss.prompt` | On a dit à Samia que naviguer la paie. Pointez ce qu’il faut d’abord activer. | قيل لسامية إن التصفّح يدرّ عليها مالاً. أشِر إلى ما يجب تشغيله أولاً. |
+| `c.brave.d1.boss.r.p.rewards.after` | Rewards : désactivé · rien de gagné tant qu’il n’est pas activé | Rewards: متوقّف · لا كسب قبل تشغيله |
+| `c.brave.d1.boss.r.p.rewards.text` | Rewards | Rewards |
+| `c.brave.d1.boss.r.p.rewards.say` | Rewards, bouton | Rewards، زرّ |
+| `c.brave.d1.boss.r.p.rewards.why` | Rien n’est gagné sans activer Rewards, et seulement pour des publicités qu’elle choisit de voir. | لا كسب ما لم يُشغَّل Rewards، وحينها فقط مقابل إعلانات تختار أن تراها. |
+| `c.brave.d1.boss.r.p.shield.after` | Shields actifs. Ne paient rien. | Shields مفعَّلة. لا تدفع شيئاً. |
+| `c.brave.d1.boss.r.p.shield.say` | Shields, bouton | Shields، زرّ |
+| `c.brave.d1.boss.r.p.shield.text` | Shields | Shields |
+| `c.brave.d1.boss.r.p.shield.why` | Les Shields bloquent. Ils ne paient rien, et le blocage est déjà actif. | Shields تحجب. لا تدفع شيئاً، والحجب مفعَّل أصلاً. |
+| `c.brave.d1.boss.r.p.wallet.after` | Le panneau Wallet s’ouvre. Désactivé. | تُفتح لوحة Wallet. متوقّفة. |
+| `c.brave.d1.boss.r.p.wallet.cap` | Wallet | Wallet |
+| `c.brave.d1.boss.r.p.wallet.say` | Wallet, bouton | Wallet، زرّ |
+| `c.brave.d1.boss.r.p.wallet.why` | Un portefeuille garde des clés. Il ne paie personne pour naviguer. | المحفظة تحفظ مفاتيح. لا تدفع لأحد مقابل التصفّح. |
+| `c.brave.d1.boss.r.prompt` | La même objection, sur la barre de l’ordinateur. Pointez ce qu’il faudrait activer. | الاعتراض نفسه، على شريط الحاسوب. أشِر إلى ما يجب تشغيله. |
+| `c.brave.d1.bub.a` | Quatorze sur une page. Le chiffre, je l’ai inventé. L’idée, non. | أربعة عشر في صفحة واحدة. الرقم من اختراعي. الفكرة لا. |
+| `c.brave.d1.bub.b` | Elle a répondu. J’ai vu le mot « paie ». Souligné. | ردّت برسالة. رأيتُ كلمة «يدفع». وتحتها خطّ. |
+| `c.brave.d1.can` | Vous savez maintenant trouver Shields, le décompte des blocages et la publicité sur un écran de navigateur. | صرتَ تعرف أين تجد Shields وحصيلة المحجوبات والإعلان على شاشة متصفّح. |
+| `c.brave.d1.claim` | Un nouveau navigateur met sa salle de sport « sur le web3 ». | متصفّح جديد يضع قاعتها الرياضية «على ويب 3». |
+| `c.brave.d1.count.hint.0` | Cherchez un nombre. | ابحث عن رقم. |
+| `c.brave.d1.count.hint.1` | Une règle dit quoi. Un décompte dit combien. | القاعدة تقول ماذا. الحصيلة تقول كم. |
+| `c.brave.d1.count.hint.2` | Réponse : « 14 traceurs et pubs bloqués ». | الجواب: «14 متتبِّعاً وإعلاناً محجوباً». |
+| `c.brave.d1.count.kuro` | Décompte. | الحصيلة. |
+| `c.brave.d1.count.p.cookies.after` | Une règle. Pas de nombre. | قاعدة. بلا رقم. |
+| `c.brave.d1.count.p.cookies.say` | Cookies intersites, bloqués, réglage | ملفات تعريف الارتباط بين المواقع، محجوبة، إعداد |
+| `c.brave.d1.count.p.cookies.text` | Cookies intersites : bloqués | ملفات تعريف الارتباط بين المواقع: محجوبة |
+| `c.brave.d1.count.p.cookies.why` | C’est une règle, pas un décompte : elle dit ce qui est bloqué, pas combien. | هذه قاعدة لا حصيلة: تقول ما المحجوب، لا كم عدده. |
+| `c.brave.d1.count.p.count.after` | 14 · cette page seulement | 14 · هذه الصفحة فقط |
+| `c.brave.d1.count.p.count.say` | 14 traceurs et publicités bloqués | 14 متتبِّعاً وإعلاناً محجوباً |
+| `c.brave.d1.count.p.count.text` | 14 traceurs et pubs bloqués | 14 متتبِّعاً وإعلاناً محجوباً |
+| `c.brave.d1.count.p.count.why` | Le décompte de cette page. Un traceur : du code d’un autre site, qui la suit de site en site. | حصيلة هذه الصفحة. المتتبِّع شيفرة من موقع آخر تتبعها من موقع إلى موقع. |
+| `c.brave.d1.count.p.report.after` | Signalement envoyé. Rien de compté. | أُرسل البلاغ. لا شيء معدود. |
+| `c.brave.d1.count.p.report.say` | Signaler un site cassé, bouton | أبلِغ عن موقع معطَّل، زرّ |
+| `c.brave.d1.count.p.report.text` | Signaler un site cassé | أبلِغ عن موقع معطَّل |
+| `c.brave.d1.count.p.report.why` | Cela envoie à Brave un signalement sur une page qui ne marche plus. Cela ne compte rien. | هذا يرسل إلى Brave بلاغاً عن صفحة توقّفت عن العمل. لا يعدّ شيئاً. |
+| `c.brave.d1.count.p.switch.after` | Les Shields se baissent ici. | تتوقّف Shields هنا. |
+| `c.brave.d1.count.p.switch.say` | Shields actifs pour ce site, interrupteur, activé | Shields مفعَّلة لهذا الموقع، مفتاح، مشغَّل |
+| `c.brave.d1.count.p.switch.text` | Shields ACTIFS pour ce site | Shields مفعَّلة لهذا الموقع |
+| `c.brave.d1.count.p.switch.why` | Cet interrupteur active ou coupe le blocage pour ce seul site. Il ne compte rien. | هذا المفتاح يشغّل الحجب أو يوقفه لهذا الموقع وحده. لا يعدّ شيئاً. |
+| `c.brave.d1.count.prompt` | Le panneau Shields est ouvert. Pointez la ligne qui compte ce qui a été arrêté sur cette page. | لوحة Shields مفتوحة. أشِر إلى السطر الذي يعدّ ما أُوقف في هذه الصفحة. |
+| `c.brave.d1.count.r.p.count.after` | 9 · cette page seulement | 9 · هذه الصفحة فقط |
+| `c.brave.d1.count.r.p.count.say` | 9 traceurs et publicités bloqués | 9 متتبِّعات وإعلانات محجوبة |
+| `c.brave.d1.count.r.p.count.text` | 9 traceurs et pubs bloqués | 9 متتبِّعات وإعلانات محجوبة |
+| `c.brave.d1.count.r.p.count.why` | Le décompte change avec la page : neuf refusés ici. | الحصيلة تتغيّر مع الصفحة: تسعة مرفوضة هنا. |
+| `c.brave.d1.count.r.p.report.after` | Signalement envoyé. Rien de compté. | أُرسل البلاغ. لا شيء معدود. |
+| `c.brave.d1.count.r.p.report.say` | Signaler un site cassé, bouton | أبلِغ عن موقع معطَّل، زرّ |
+| `c.brave.d1.count.r.p.report.text` | Signaler un site cassé | أبلِغ عن موقع معطَّل |
+| `c.brave.d1.count.r.p.report.why` | Cela signale une page qui ne marche plus. Ce n’est pas un décompte. | هذا يبلّغ عن صفحة توقّفت عن العمل. ليس عدّاً. |
+| `c.brave.d1.count.r.p.switch.after` | Les Shields se baissent ici. | تتوقّف Shields هنا. |
+| `c.brave.d1.count.r.p.switch.say` | Shields actifs pour ce site, interrupteur, activé | Shields مفعَّلة لهذا الموقع، مفتاح، مشغَّل |
+| `c.brave.d1.count.r.p.switch.text` | Shields ACTIFS pour ce site | Shields مفعَّلة لهذا الموقع |
+| `c.brave.d1.count.r.p.switch.why` | C’est l’interrupteur qui active ou coupe, pour ce site. | هذا مفتاح التشغيل والإيقاف لهذا الموقع. |
+| `c.brave.d1.count.r.prompt` | Un autre site, le même panneau dans un nouvel ordre. Pointez le décompte. | موقع آخر، واللوحة نفسها بترتيب جديد. أشِر إلى الحصيلة. |
+| `c.brave.d1.engine.hint.0` | Deux de ces tuiles ne font qu’afficher des pages. | اثنتان من هذه الخانات تعرضان الصفحات فقط. |
+| `c.brave.d1.engine.hint.1` | Une seule répond à la question qu’elle a tapée. | واحدة تجيب عن السؤال الذي كتبته. |
+| `c.brave.d1.engine.hint.2` | Réponse : Google. C’est un moteur de recherche qui trouve. | الجواب: Google. محرّك البحث هو الذي يجد. |
+| `c.brave.d1.engine.kuro` | Recherche. | بحث. |
+| `c.brave.d1.engine.p.bar.after` | Transmet ses mots. | ينقل كلماتها. |
+| `c.brave.d1.engine.p.bar.say` | Barre d’adresse, tuile | شريط العنوان، خانة |
+| `c.brave.d1.engine.p.bar.text` | Barre d’adresse | شريط العنوان |
+| `c.brave.d1.engine.p.bar.why` | La barre ne fait que transmettre ses mots. C’est un moteur de recherche qui trouve. | الشريط ينقل كلماتها فقط. محرّك البحث هو الذي يجد. |
+| `c.brave.d1.engine.p.brave.after` | Un navigateur. Affiche des pages. | متصفّح. يعرض الصفحات. |
+| `c.brave.d1.engine.p.brave.say` | Navigateur Brave, tuile | متصفّح Brave، خانة |
+| `c.brave.d1.engine.p.brave.text` | Navigateur Brave | متصفّح Brave |
+| `c.brave.d1.engine.p.brave.why` | Brave est un navigateur : il affiche des pages. Ce n’est pas le service qui les trouve. | Brave متصفّح: يعرض الصفحات. ليس هو الخدمة التي تجدها. |
+| `c.brave.d1.engine.p.chrome.after` | Un navigateur. Affiche des pages. | متصفّح. يعرض الصفحات. |
+| `c.brave.d1.engine.p.chrome.say` | Chrome, tuile | Chrome، خانة |
+| `c.brave.d1.engine.p.chrome.text` | Chrome | Chrome |
+| `c.brave.d1.engine.p.chrome.why` | Chrome est un navigateur : il affiche des pages. Google le fabrique, d’où la confusion entre les deux. | Chrome متصفّح: يعرض الصفحات. تصنعه Google، ولهذا يُخلط بينهما. |
+| `c.brave.d1.engine.p.google.after` | Moteur de recherche · marche dans tout navigateur | محرّك بحث · يعمل في أيّ متصفّح |
+| `c.brave.d1.engine.p.google.say` | Google, tuile | Google، خانة |
+| `c.brave.d1.engine.p.google.text` | Google | Google |
+| `c.brave.d1.engine.p.google.why` | Google est un moteur de recherche : un service qui trouve des pages. Elle y accède depuis n’importe quel navigateur. | Google محرّك بحث: خدمة تجد الصفحات. تصل إليه من أيّ متصفّح. |
+| `c.brave.d1.engine.prompt` | Elle tape une question et reçoit une liste de pages. Pointez ce qui les a trouvées. | تكتب سؤالاً فتحصل على قائمة صفحات. أشِر إلى ما وجدها. |
+| `c.brave.d1.engine.r.p.defbrowser.after` | Nomme le navigateur. | يسمّي المتصفّح. |
+| `c.brave.d1.engine.r.p.defbrowser.say` | Navigateur par défaut, Chrome, ligne | المتصفّح الافتراضي، Chrome، سطر |
+| `c.brave.d1.engine.r.p.defbrowser.text` | Navigateur par défaut : Chrome | المتصفّح الافتراضي: Chrome |
+| `c.brave.d1.engine.r.p.defbrowser.why` | Cette ligne nomme le navigateur : le programme qui affiche les pages. | هذا السطر يسمّي المتصفّح: البرنامج الذي يعرض الصفحات. |
+| `c.brave.d1.engine.r.p.engine.after` | Moteur de recherche · son choix | محرّك البحث · اختيارها |
+| `c.brave.d1.engine.r.p.engine.say` | Moteur de recherche, Google, ligne | محرّك البحث، Google، سطر |
+| `c.brave.d1.engine.r.p.engine.text` | Moteur de recherche : Google | محرّك البحث: Google |
+| `c.brave.d1.engine.r.p.engine.why` | Cette ligne nomme le service qui répond à ce qu’elle tape dans la barre d’adresse. | هذا السطر يسمّي الخدمة التي تجيب عمّا تكتبه في شريط العنوان. |
+| `c.brave.d1.engine.r.p.network.after` | Nomme la connexion. | يسمّي الاتصال. |
+| `c.brave.d1.engine.r.p.network.say` | Réseau, connexion de la maison, ligne | الشبكة، اتصال المنزل، سطر |
+| `c.brave.d1.engine.r.p.network.text` | Réseau : connexion de la maison | الشبكة: اتصال المنزل |
+| `c.brave.d1.engine.r.p.network.why` | Cette ligne nomme la connexion, pas un service qui trouve des pages. | هذا السطر يسمّي الاتصال، لا خدمة تجد الصفحات. |
+| `c.brave.d1.engine.r.prompt` | Une liste de réglages, cette fois. Pointez la ligne qui nomme un moteur de recherche. | قائمة إعدادات هذه المرّة. أشِر إلى السطر الذي يسمّي محرّك بحث. |
+| `c.brave.d1.note.hint.0` | Deux notes promettent trop, ou trop peu. | ملاحظتان تعِدان بأكثر أو بأقلّ ممّا ينبغي. |
+| `c.brave.d1.note.hint.1` | Une note correspond à ce que les Shields vous ont montré. | ملاحظة واحدة توافق ما أظهرته لك Shields. |
+| `c.brave.d1.note.hint.2` | Réponse : il bloquait déjà. | الجواب: كان يحجب من قبل. |
+| `c.brave.d1.note.kuro` | Déjà actif. | مفعَّل أصلاً. |
+| `c.brave.d1.note.p.n1.text` | Brave bloquait déjà avant qu’elle touche à quoi que ce soit. | كان Brave يحجب قبل أن تلمس شيئاً. |
+| `c.brave.d1.note.p.n1.why` | Shields actifs par défaut sur chaque site, dit la page de Brave. Le panneau l’affichait déjà. | Shields مفعَّلة افتراضياً لكلّ موقع، كما تقول صفحة Brave. وكانت اللوحة تعرض ذلك من قبل. |
+| `c.brave.d1.note.p.n2.text` | Brave ne marche que si l’on détient un jeton (un crypto-actif). | Brave لا يعمل إلا إذا حزتَ رمزاً رقمياً (أصلاً مشفّراً). |
+| `c.brave.d1.note.p.n2.why` | La page Shields de Brave dit : aucun réglage à faire, téléchargez et naviguez. Elle ne demande aucun jeton. | صفحة Shields لدى Brave تقول: لا إعدادات تُضبط، نزِّل وابدأ التصفّح. لا تطلب أيّ رمز رقمي. |
+| `c.brave.d1.note.p.n3.text` | Avec Brave, les sites ne voient pas votre visite. | مع Brave لا ترى المواقع زيارتك. |
+| `c.brave.d1.note.p.n3.why` | Les Shields empêchent les traceurs extérieurs de la suivre. Le site qu’elle ouvre reçoit toujours sa demande. | Shields تمنع المتتبِّعات الخارجية من ملاحقتها. الموقع الذي تفتحه يتلقّى طلبها دائماً. |
+| `c.brave.d1.note.prompt` | Trois notes sont arrivées avec le billet. Une seule est vraie. | وصلت مع القصاصة ثلاث ملاحظات. واحدة صحيحة. |
+| `c.brave.d1.note.r.p.r1.text` | Brave est un moteur de recherche. | Brave محرّك بحث. |
+| `c.brave.d1.note.r.p.r1.why` | Brave est un navigateur. Son éditeur gère aussi un moteur de recherche, qui est une chose à part. | Brave متصفّح. صانعه يدير أيضاً محرّك بحث، وهو شيء منفصل. |
+| `c.brave.d1.note.r.p.r2.text` | Les Shields sont actifs par défaut, sur chaque site. | Shields مفعَّلة افتراضياً، لكلّ موقع. |
+| `c.brave.d1.note.r.p.r2.why` | La page de Brave dit que les Shields sont actifs par défaut sur chaque site visité. | صفحة Brave تقول إن Shields مفعَّلة افتراضياً لكلّ موقع تزوره. |
+| `c.brave.d1.note.r.p.r3.text` | Rewards est activé dès le premier lancement. | Rewards مشغَّل منذ أوّل تشغيل. |
+| `c.brave.d1.note.r.p.r3.why` | C’est la personne qui doit activer Rewards, depuis son propre bouton. | على الشخص نفسه أن يشغّل Rewards، من زرّه الخاصّ. |
+| `c.brave.d1.note.r.prompt` | Trois nouvelles notes. Touchez la vraie. | ثلاث ملاحظات جديدة. المس الصحيحة. |
+| `c.brave.d1.shield.hint.0` | C’est le bouton le plus proche de l’adresse. | هو الزرّ الأقرب إلى العنوان. |
+| `c.brave.d1.shield.hint.1` | Un bouton porte un nom de bouclier, en anglais. | أحد الأزرار اسمه بالإنجليزية يعني «دروع». |
+| `c.brave.d1.shield.hint.2` | Réponse : Shields. Il ouvre ce qui a été bloqué. | الجواب: Shields. يفتح ما حُجب. |
+| `c.brave.d1.shield.kuro` | Shields. | Shields. |
+| `c.brave.d1.shield.p.bookmark.after` | Page enregistrée. Rien de bloqué. | حُفظت الصفحة. لا شيء محجوب. |
+| `c.brave.d1.shield.p.bookmark.cap` | Favori | إشارة مرجعية |
+| `c.brave.d1.shield.p.bookmark.say` | Ajouter cette page aux favoris, bouton | أضِف هذه الصفحة إلى الإشارات المرجعية، زرّ |
+| `c.brave.d1.shield.p.bookmark.why` | Cela garde l’adresse de cette page pour plus tard. Cela ne bloque rien et ne compte rien. | هذا يحفظ عنوان هذه الصفحة لوقت لاحق. لا يحجب شيئاً ولا يعدّ شيئاً. |
+| `c.brave.d1.shield.p.menu.after` | Menu ouvert. Aucune liste ici. | تُفتح القائمة. لا لائحة هنا. |
+| `c.brave.d1.shield.p.menu.cap` | Menu | القائمة |
+| `c.brave.d1.shield.p.menu.say` | Menu, bouton | القائمة، زرّ |
+| `c.brave.d1.shield.p.menu.why` | Cela ouvre le menu et les réglages du navigateur. La liste des blocages n’y est pas. | هذا يفتح قائمة المتصفّح وإعداداته. لائحة المحجوبات ليست هناك. |
+| `c.brave.d1.shield.p.rewards.after` | Le panneau Rewards s’ouvre. Désactivé. | تُفتح لوحة Rewards. متوقّفة. |
+| `c.brave.d1.shield.p.rewards.text` | Rewards | Rewards |
+| `c.brave.d1.shield.p.rewards.say` | Rewards, bouton | Rewards، زرّ |
+| `c.brave.d1.shield.p.rewards.why` | Cela ouvre un programme publicitaire facultatif. Il ne fait rien tant que personne ne l’active. | هذا يفتح برنامجاً إعلانياً اختيارياً. لا يفعل شيئاً ما لم يشغّله أحد. |
+| `c.brave.d1.shield.p.shield.after` | Shields actifs · 14 bloqués | Shields مفعَّلة · 14 محجوباً |
+| `c.brave.d1.shield.p.shield.say` | Shields, bouton | Shields، زرّ |
+| `c.brave.d1.shield.p.shield.text` | Shields | Shields |
+| `c.brave.d1.shield.p.shield.why` | Le bouton Shields ouvre la liste de ce que Brave a bloqué ici. Dans Brave, il porte son logo. | زرّ Shields يفتح قائمة ما حجبه Brave في هذه الصفحة. وفي Brave يحمل شعار Brave نفسه. |
+| `c.brave.d1.shield.p.wallet.after` | Le panneau Wallet s’ouvre. Désactivé. | تُفتح لوحة Wallet. متوقّفة. |
+| `c.brave.d1.shield.p.wallet.cap` | Wallet | Wallet |
+| `c.brave.d1.shield.p.wallet.say` | Wallet, bouton | Wallet، زرّ |
+| `c.brave.d1.shield.p.wallet.why` | Cela ouvre un portefeuille crypto intégré, désactivé tant qu’on ne l’active pas. Ce n’est pas le bloqueur. | هذا يفتح محفظة مشفّرة مدمجة، متوقّفة إلى أن تُشغَّل. ليست هي ما يحجب. |
+| `c.brave.d1.shield.prompt` | Cinq boutons à droite de l’adresse. Pointez celui qui montre ce que Brave a bloqué sur cette page. | خمسة أزرار بجانب العنوان. أشِر إلى الزرّ الذي يُظهر ما حجبه Brave في هذه الصفحة. |
+| `c.brave.d1.shield.r.p.reload.after` | Page rechargée. Rien de listé. | أُعيد تحميل الصفحة. لا لائحة. |
+| `c.brave.d1.shield.r.p.reload.cap` | Recharger | إعادة التحميل |
+| `c.brave.d1.shield.r.p.reload.say` | Recharger cette page, bouton | أعِد تحميل هذه الصفحة، زرّ |
+| `c.brave.d1.shield.r.p.reload.why` | Cela charge la page à nouveau. Cela ne montre rien du blocage. | هذا يحمّل الصفحة من جديد. لا يُظهر شيئاً عن الحجب. |
+| `c.brave.d1.shield.r.p.shield.after` | Shields actifs · 9 bloqués | Shields مفعَّلة · 9 محجوبة |
+| `c.brave.d1.shield.r.p.shield.say` | Shields, bouton | Shields، زرّ |
+| `c.brave.d1.shield.r.p.shield.text` | Shields | Shields |
+| `c.brave.d1.shield.r.p.shield.why` | Le bouton Shields, à côté de l’adresse, ouvre ce qui a été bloqué, sur téléphone aussi. | زرّ Shields بجانب العنوان يفتح ما حُجب، على الهاتف أيضاً. |
+| `c.brave.d1.shield.r.p.tabs.after` | Trois onglets listés. | عُرضت ثلاثة تبويبات. |
+| `c.brave.d1.shield.r.p.tabs.cap` | Onglets | التبويبات |
+| `c.brave.d1.shield.r.p.tabs.say` | Onglets, 3 ouverts, bouton | التبويبات، 3 مفتوحة، زرّ |
+| `c.brave.d1.shield.r.p.tabs.text` | 3 | 3 |
+| `c.brave.d1.shield.r.p.tabs.why` | Ce nombre compte les onglets ouverts, pas les traceurs. | هذا الرقم يعدّ التبويبات المفتوحة، لا المتتبِّعات. |
+| `c.brave.d1.shield.r.prompt` | Le même navigateur sur un téléphone. Pointez l’endroit où elle voit ce qui a été bloqué. | المتصفّح نفسه على هاتف. أشِر إلى حيث ترى ما حُجب. |
+| `c.brave.d1.slip` | Selon son prestataire, Brave, un nouveau navigateur, mettrait sa salle de sport « sur le web3 ». Samia s’interroge. | يقول مورّد سامية إن متصفّحاً جديداً، Brave، سيضع قاعتها الرياضية «على ويب 3». تتساءل سامية: ما الذي سيتغيّر؟ |
+| `c.brave.d1.slipTag` | ENQUÊTE 01 · exemple inventé | التحقيق 01 · مثال متخيَّل |
+| `c.brave.d1.stamp.prompt` | Le prestataire, encore : un nouveau navigateur met sa salle de sport « sur le web3 ». Tamponnez : | قول المورّد مرّة أخرى: متصفّح جديد يضع قاعتها الرياضية «على ويب 3». اختمه: |
+| `c.brave.d1.stamp.reveal` | Argument de vente. Un navigateur n’affiche que des sites. Le « web3 », programme à jetons et portefeuille, y est facultatif, éteint. | كلام بائع. المتصفّح يعرض المواقع فقط. أجزاؤه من «ويب 3»، نظام رموز ومحفظة، اختيارية ومتوقّفة. |
+
+### Case 1, depth 2 (189)
+
+| Key (`lant.enq.` +) | Français | العربية |
+|---|---|---|
+| `c.brave.d2.bet.prompt` | Votre pari sur la phrase de l’entraîneur ? Sans points. | ما رهانك على قول المدرّب؟ بلا نقاط. |
+| `c.brave.d2.boss.hint.0` | Demandez-vous qui demande, et pourquoi. | اسأل: من يطلب، ولماذا؟ |
+| `c.brave.d2.boss.hint.1` | Elle ne connaît pas ce site. | هي لا تعرف هذا الموقع. |
+| `c.brave.d2.boss.hint.2` | Réponse : fermer l’onglet. Les Shields restent actifs. | الجواب: إغلاق التبويب. تبقى Shields مفعَّلة. |
+| `c.brave.d2.boss.kuro` | Fermé. | أُغلق. |
+| `c.brave.d2.boss.p.close.after` | Onglet fermé · Shields intacts | أُغلق التبويب · Shields لم تُمسّ |
+| `c.brave.d2.boss.p.close.cap` | Fermer l’onglet | أغلِق التبويب |
+| `c.brave.d2.boss.p.close.say` | Fermer l’onglet, bouton | أغلِق التبويب، زرّ |
+| `c.brave.d2.boss.p.close.why` | Brave dit de vérifier qu’un site est de confiance avant de baisser les Shields. Elle n’a jamais utilisé celui-ci. | Brave يقول: تأكّد أن الموقع موثوق قبل إيقاف Shields. وهي لم تستعمل هذا الموقع قطّ. |
+| `c.brave.d2.boss.p.cont.after` | Même page. Demande encore. | الصفحة نفسها. ما زالت تطلب. |
+| `c.brave.d2.boss.p.cont.say` | Continuer quand même, bouton sur la page | تابِع على أيّ حال، زرّ في الصفحة |
+| `c.brave.d2.boss.p.cont.text` | Continuer quand même | تابِع على أيّ حال |
+| `c.brave.d2.boss.p.cont.why` | Ce bouton appartient à la page qui demande. C’est justement d’elle qu’il faut douter. | هذا الزرّ تابع للصفحة التي تطلب. وهي ما ينبغي الشكّ فيه. |
+| `c.brave.d2.boss.p.reload.after` | Page rechargée. Elle redemande. | أُعيد التحميل. تطلب من جديد. |
+| `c.brave.d2.boss.p.reload.cap` | Recharger | إعادة التحميل |
+| `c.brave.d2.boss.p.reload.say` | Recharger cette page, bouton | أعِد تحميل هذه الصفحة، زرّ |
+| `c.brave.d2.boss.p.reload.why` | Recharger répète la même demande. La page redemande. | إعادة التحميل تكرّر الطلب نفسه. والصفحة تطلب من جديد. |
+| `c.brave.d2.boss.p.switch.after` | Shields baissés pour un inconnu. | Shields موقوفة لأجل غريب. |
+| `c.brave.d2.boss.p.switch.say` | Shields actifs pour ce site, interrupteur, activé | Shields مفعَّلة لهذا الموقع، مفتاح، مشغَّل |
+| `c.brave.d2.boss.p.switch.text` | Shields ACTIFS pour ce site | Shields مفعَّلة لهذا الموقع |
+| `c.brave.d2.boss.p.switch.why` | Baisser les Shields retire des protections sur un site dont personne ne répond. | إيقاف Shields ينزع الحماية في موقع لم يزكِّه أحد. |
+| `c.brave.d2.boss.prompt` | Samia objecte : un site inconnu, vidéo vide, affiche « baissez les Shields pour regarder ». Pointez son geste. | سامية تعترض: موقع مجهول يعرض فيديو فارغاً ويقول «أوقِف Shields لتشاهد». أشِر إلى تصرّفها. |
+| `c.brave.d2.boss.r.p.close.after` | Onglet fermé. Cadre jamais vu. | أُغلق التبويب. الإطار لم يُرَ. |
+| `c.brave.d2.boss.r.p.close.cap` | Fermer l’onglet | أغلِق التبويب |
+| `c.brave.d2.boss.r.p.close.say` | Fermer l’onglet, bouton | أغلِق التبويب، زرّ |
+| `c.brave.d2.boss.r.p.close.why` | Fermer laisse le cadre vide. Elle connaît ce site : c’est le sien. | الإغلاق يترك الإطار فارغاً. هي تعرف هذا الموقع: إنه موقعها. |
+| `c.brave.d2.boss.r.p.helper.after` | Rien à installer. | لا شيء يُثبَّت. |
+| `c.brave.d2.boss.r.p.helper.say` | Installer l’assistant, bouton sur la page | ثبِّت المساعد، زرّ في الصفحة |
+| `c.brave.d2.boss.r.p.helper.text` | Installer l’assistant | ثبِّت المساعد |
+| `c.brave.d2.boss.r.p.helper.why` | Rien n’est à installer. La commande est déjà dans le navigateur. | لا حاجة إلى تثبيت شيء. عنصر التحكّم موجود في المتصفّح أصلاً. |
+| `c.brave.d2.boss.r.p.switch.after` | Shields BAISSÉS pour ce site | Shields موقوفة لهذا الموقع |
+| `c.brave.d2.boss.r.p.switch.say` | Shields actifs pour ce site, interrupteur, activé | Shields مفعَّلة لهذا الموقع، مفتاح، مشغَّل |
+| `c.brave.d2.boss.r.p.switch.text` | Shields ACTIFS pour ce site | Shields مفعَّلة لهذا الموقع |
+| `c.brave.d2.boss.r.p.switch.why` | Elle fait confiance à son propre site : baisser les Shields ici, et seulement ici, règle le problème. | هي تثق بموقعها، فإيقاف Shields هنا، وهنا فقط، هو الحلّ. |
+| `c.brave.d2.boss.r.prompt` | Maintenant la page de réservation de sa salle, qu’elle gère, affiche un cadre vide. Pointez son geste. | الآن صفحة الحجز لقاعتها، التي تديرها هي، تعرض إطاراً فارغاً. أشِر إلى تصرّفها. |
+| `c.brave.d2.bub.a` | Les adresses, ensuite. L’anneau ouvre ce qui est marqué. | العناوين بعد قليل. الحلقة تفتح ما عليه علامة. |
+| `c.brave.d2.bub.b` | Elle a récrit. Une page lui a dit de baisser les Shields. | كتبت من جديد. صفحة طلبت منها إيقاف Shields. |
+| `c.brave.d2.can` | Vous savez maintenant réparer, pour un site, une page cassée par le blocage, et choisir l’adresse de l’éditeur parmi les sosies. | صرتَ تعرف كيف تُصلح، لموقع واحد، صفحة عطّلها الحجب، وكيف تختار عنوان الصانع من بين الأشباه. |
+| `c.brave.d2.claim` | Le nouveau navigateur a cassé sa page de réservation. | المتصفّح الجديد عطّل صفحة الحجز لديها. |
+| `c.brave.d2.diff.g.0.after` | Même mot dans les deux. | الكلمة نفسها في الاثنين. |
+| `c.brave.d2.diff.g.0.say` | b r a v e | b r a v e |
+| `c.brave.d2.diff.g.0.why` | Les deux adresses commencent par le même mot. Le début ne prouve rien. | العنوانان يبدآن بالكلمة نفسها. البداية لا تثبت شيئاً. |
+| `c.brave.d2.diff.g.1.after` | Finit par get-browser.example · un autre propriétaire | ينتهي بـ get-browser.example · مالك آخر |
+| `c.brave.d2.diff.g.1.say` | point com point get-browser point example | نقطة com نقطة get-browser نقطة example |
+| `c.brave.d2.diff.g.1.why` | Lisez le nom avant la première barre oblique, depuis la droite : get-browser.example, pas brave.com. | اقرأ الاسم قبل أوّل شرطة مائلة، من طرفه الأيمن: get-browser.example، لا brave.com. |
+| `c.brave.d2.diff.g.2.after` | Juste un nom de page. | اسم صفحة فقط. |
+| `c.brave.d2.diff.g.2.say` | barre oblique get-brave | شرطة مائلة get-brave |
+| `c.brave.d2.diff.g.2.why` | Un autre nom de page n’est pas un autre propriétaire. | اسم صفحة مختلف لا يعني مالكاً مختلفاً. |
+| `c.brave.d2.diff.hint.0` | Comparez morceau par morceau. | قارِن قطعة بقطعة. |
+| `c.brave.d2.diff.hint.1` | Deux morceaux diffèrent. Un seul nomme le propriétaire. | قطعتان تختلفان. واحدة تسمّي المالك. |
+| `c.brave.d2.diff.hint.2` | Réponse : le morceau du milieu. Le nom finit ailleurs. | الجواب: القطعة الوسطى. الاسم ينتهي في مكان آخر. |
+| `c.brave.d2.diff.kuro` | Sosie. | شبيه. |
+| `c.brave.d2.diff.prompt` | Deux adresses, coupées en trois. Pointez le morceau qui fait de la seconde celle de quelqu’un d’autre. | عنوانان، كلّ منهما في ثلاث قطع. أشِر إلى القطعة التي تجعل الثاني ملكاً لشخص آخر. |
+| `c.brave.d2.diff.r.g.0.after` | Même mot dans les deux. | الكلمة نفسها في الاثنين. |
+| `c.brave.d2.diff.r.g.0.say` | b r a v e | b r a v e |
+| `c.brave.d2.diff.r.g.0.why` | Le même mot ouvre les deux. | الكلمة نفسها تبدأ الاثنين. |
+| `c.brave.d2.diff.r.g.1.after` | brave-download.example · un autre propriétaire | brave-download.example · مالك آخر |
+| `c.brave.d2.diff.r.g.1.say` | tiret download point example | شرطة download نقطة example |
+| `c.brave.d2.diff.r.g.1.why` | Avec le tiret, le nom avant la barre oblique est brave-download.example : un autre propriétaire. | مع الشرطة، الاسم قبل الشرطة المائلة هو brave-download.example: مالك آخر. |
+| `c.brave.d2.diff.r.g.2.after` | Juste un nom de page. | اسم صفحة فقط. |
+| `c.brave.d2.diff.r.g.2.say` | barre oblique free | شرطة مائلة free |
+| `c.brave.d2.diff.r.g.2.why` | Le nom de page a changé aussi. Cela ne change pas le propriétaire. | اسم الصفحة تغيّر أيضاً. هذا لا يغيّر المالك. |
+| `c.brave.d2.diff.r.prompt` | Deux autres. Pointez le morceau qui trahit la seconde. | اثنان آخران. أشِر إلى القطعة التي تفضح الثاني. |
+| `c.brave.d2.diff.r.why` | Avec le tiret, le nom avant la barre oblique est brave-download.example : un autre propriétaire. | مع الشرطة، الاسم قبل الشرطة المائلة هو brave-download.example: مالك آخر. |
+| `c.brave.d2.diff.why` | Lisez le nom avant la première barre oblique, depuis la droite : get-browser.example, pas brave.com. | اقرأ الاسم قبل أوّل شرطة مائلة، من طرفه الأيمن: get-browser.example، لا brave.com. |
+| `c.brave.d2.download.address` | Résultats de recherche : « télécharger brave » | نتائج البحث: «تنزيل brave» |
+| `c.brave.d2.download.hint.0` | Touchez chaque résultat pour voir son adresse. | المس كلّ نتيجة لترى عنوانها. |
+| `c.brave.d2.download.hint.1` | Lisez le nom avant la première barre oblique, depuis la droite. | اقرأ الاسم قبل أوّل شرطة مائلة، من طرفه الأيمن. |
+| `c.brave.d2.download.hint.2` | Réponse : brave.com/download. | الجواب: brave.com/download. |
+| `c.brave.d2.download.kuro` | Avant la barre. | قبل الشرطة. |
+| `c.brave.d2.download.p.ad.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `c.brave.d2.download.p.ad.mark` | Annonce | إعلان |
+| `c.brave.d2.download.p.ad.say` | Annonce. Navigateur Brave, Téléchargement. Adresse : brave-free-download.example | إعلان. متصفّح Brave، تنزيل. العنوان: brave-free-download.example |
+| `c.brave.d2.download.p.ad.text` | Navigateur Brave · Téléchargement | متصفّح Brave · تنزيل |
+| `c.brave.d2.download.p.ad.why` | La première place a été achetée. Avant la première barre oblique, le nom est brave-free-download.example, un sosie inventé. | المرتبة الأولى مشتراة. قبل أوّل شرطة مائلة الاسم هو brave-free-download.example، شبيه متخيَّل. |
+| `c.brave.d2.download.p.maker.after` | brave.com/download · celle de l’éditeur | brave.com/download · عنوان الصانع نفسه |
+| `c.brave.d2.download.p.maker.say` | Télécharger le navigateur Brave, Brave. Adresse : brave.com/download | تنزيل متصفّح Brave، Brave. العنوان: brave.com/download |
+| `c.brave.d2.download.p.maker.text` | Télécharger le navigateur Brave \| Brave | تنزيل متصفّح Brave \| Brave |
+| `c.brave.d2.download.p.maker.why` | Avant la première barre oblique, le nom est brave.com, celui de l’éditeur ; /download est une page à l’intérieur. | قبل أوّل شرطة مائلة الاسم هو brave.com، اسم الصانع نفسه؛ و/download صفحة داخله. |
+| `c.brave.d2.download.p.mirror.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `c.brave.d2.download.p.mirror.say` | Télécharger le navigateur Brave, Officiel. Adresse : brave.com.get-browser.example/download | تنزيل متصفّح Brave، رسمي. العنوان: brave.com.get-browser.example/download |
+| `c.brave.d2.download.p.mirror.text` | Télécharger le navigateur Brave · Officiel | تنزيل متصفّح Brave · رسمي |
+| `c.brave.d2.download.p.mirror.why` | Cela commence par brave.com, mais avant la première barre oblique le nom finit par get-browser.example. | يبدأ بـ brave.com، لكن قبل أوّل شرطة مائلة ينتهي الاسم بـ get-browser.example. |
+| `c.brave.d2.download.prompt` | Trois résultats proposent le téléchargement. Touchez chacun pour voir son adresse. Puis choisissez celui de l’éditeur. | ثلاث نتائج تعرض التنزيل. المس كلّ واحدة لترى عنوانها. ثم اختر عنوان الصانع نفسه. |
+| `c.brave.d2.download.r.address` | Un message d’un numéro inconnu | رسالة من رقم مجهول |
+| `c.brave.d2.download.r.p.a.after` | brave.com/download · celle de l’éditeur | brave.com/download · عنوان الصانع نفسه |
+| `c.brave.d2.download.r.p.a.say` | Lien, brave.com barre oblique download | رابط، brave.com شرطة مائلة download |
+| `c.brave.d2.download.r.p.a.why` | Le nom avant la première barre oblique est brave.com. | الاسم قبل أوّل شرطة مائلة هو brave.com. |
+| `c.brave.d2.download.r.p.b.after` | Ouvre brave-update.example. | يفتح brave-update.example. |
+| `c.brave.d2.download.r.p.b.say` | Lien, brave-update.example barre oblique brave.com | رابط، brave-update.example شرطة مائلة brave.com |
+| `c.brave.d2.download.r.p.b.why` | Ici brave.com vient après la barre oblique : ce n’est qu’un dossier sur le site de quelqu’un d’autre. | هنا brave.com يأتي بعد الشرطة المائلة: ليس سوى مجلّد في موقع شخص آخر. |
+| `c.brave.d2.download.r.p.c.after` | Ouvre safe-install.example. | يفتح safe-install.example. |
+| `c.brave.d2.download.r.p.c.say` | Lien, brave.com point safe-install point example | رابط، brave.com نقطة safe-install نقطة example |
+| `c.brave.d2.download.r.p.c.why` | Il n’y a pas de barre oblique, donc lisez depuis la droite : le nom finit par safe-install.example. | لا شرطة مائلة، فاقرأ من اليمين: الاسم ينتهي بـ safe-install.example. |
+| `c.brave.d2.download.r.prompt` | Un message propose trois liens. Pointez celui qui mène au site de l’éditeur lui-même. | رسالة تعرض ثلاثة روابط. أشِر إلى الرابط الذي يقود إلى موقع الصانع نفسه. |
+| `c.brave.d2.fix.hint.0` | L’un des quatre est un interrupteur. | واحد من الأربعة مفتاح. |
+| `c.brave.d2.fix.hint.1` | Le blocage l’a cassé ; moins de blocage peut le réparer. | الحجب عطّله؛ وحجبٌ أقلّ قد يُصلحه. |
+| `c.brave.d2.fix.hint.2` | Réponse : l’interrupteur Shields, pour ce site. | الجواب: مفتاح Shields، لهذا الموقع. |
+| `c.brave.d2.fix.kuro` | Un site. | موقع واحد. |
+| `c.brave.d2.fix.p.count.after` | Un décompte. Rien ne change. | حصيلة. لا شيء يتغيّر. |
+| `c.brave.d2.fix.p.count.say` | 14 traceurs et publicités bloqués | 14 متتبِّعاً وإعلاناً محجوباً |
+| `c.brave.d2.fix.p.count.text` | 14 traceurs et pubs bloqués | 14 متتبِّعاً وإعلاناً محجوباً |
+| `c.brave.d2.fix.p.count.why` | C’est un décompte. Le lire ne change rien sur la page. | هذه حصيلة. قراءتها لا تغيّر شيئاً في الصفحة. |
+| `c.brave.d2.fix.p.reload.after` | Page rechargée. Cadre toujours vide. | أُعيد التحميل. الإطار يبقى فارغاً. |
+| `c.brave.d2.fix.p.reload.cap` | Recharger | إعادة التحميل |
+| `c.brave.d2.fix.p.reload.say` | Recharger cette page, bouton | أعِد تحميل هذه الصفحة، زرّ |
+| `c.brave.d2.fix.p.reload.why` | Recharger redemande la même page sous le même blocage. Le cadre reste vide. | إعادة التحميل تطلب الصفحة نفسها تحت الحجب نفسه. يبقى الإطار فارغاً. |
+| `c.brave.d2.fix.p.report.after` | Signalement envoyé. Cadre toujours vide. | أُرسل البلاغ. الإطار يبقى فارغاً. |
+| `c.brave.d2.fix.p.report.say` | Signaler un site cassé, bouton | أبلِغ عن موقع معطَّل، زرّ |
+| `c.brave.d2.fix.p.report.text` | Signaler un site cassé | أبلِغ عن موقع معطَّل |
+| `c.brave.d2.fix.p.report.why` | Cela prévient les développeurs de Brave. Utile plus tard, peut-être ; ce soir, cela ne répare rien. | هذا يُعلم مطوّري Brave. قد ينفع لاحقاً؛ ولا يُصلح شيئاً الليلة. |
+| `c.brave.d2.fix.p.switch.after` | Shields BAISSÉS pour ce site · le cadre de réservation se charge | Shields موقوفة لهذا الموقع · إطار الحجز يُحمَّل |
+| `c.brave.d2.fix.p.switch.say` | Shields actifs pour ce site, interrupteur, activé | Shields مفعَّلة لهذا الموقع، مفتاح، مشغَّل |
+| `c.brave.d2.fix.p.switch.text` | Shields ACTIFS pour ce site | Shields مفعَّلة لهذا الموقع |
+| `c.brave.d2.fix.p.switch.why` | L’interrupteur baisse les Shields pour ce site seulement. Brave dit : vérifiez d’abord que vous faites confiance au site. | المفتاح يوقف Shields لهذا الموقع فقط. Brave يقول: تأكّد أولاً أنك تثق بالموقع. |
+| `c.brave.d2.fix.prompt` | Son propre cadre de réservation est vide. Pointez la seule commande qui peut le ramener. | إطار الحجز في موقعها فارغ. أشِر إلى عنصر التحكّم الوحيد الذي يعيده. |
+| `c.brave.d2.fix.r.p.desktop.after` | Affichage large. Cadre toujours vide. | عرض واسع. الإطار يبقى فارغاً. |
+| `c.brave.d2.fix.r.p.desktop.say` | Version ordinateur, case à cocher | نسخة الحاسوب، خانة اختيار |
+| `c.brave.d2.fix.r.p.desktop.text` | Version ordinateur | نسخة الحاسوب |
+| `c.brave.d2.fix.r.p.desktop.why` | Cela demande l’affichage large. Les mêmes choses restent bloquées. | هذا يطلب العرض الواسع. الأشياء نفسها تبقى محجوبة. |
+| `c.brave.d2.fix.r.p.reload.after` | Page rechargée. Cadre toujours vide. | أُعيد التحميل. الإطار يبقى فارغاً. |
+| `c.brave.d2.fix.r.p.reload.cap` | Recharger | إعادة التحميل |
+| `c.brave.d2.fix.r.p.reload.say` | Recharger cette page, bouton | أعِد تحميل هذه الصفحة، زرّ |
+| `c.brave.d2.fix.r.p.reload.why` | Recharger répète la même demande sous le même blocage. | إعادة التحميل تكرّر الطلب نفسه تحت الحجب نفسه. |
+| `c.brave.d2.fix.r.p.switch.after` | Shields BAISSÉS pour ce site | Shields موقوفة لهذا الموقع |
+| `c.brave.d2.fix.r.p.switch.say` | Shields, interrupteur, activé | Shields، مفتاح، مشغَّل |
+| `c.brave.d2.fix.r.p.switch.text` | Shields | Shields |
+| `c.brave.d2.fix.r.p.switch.why` | Baisser les Shields pour ce site laisse la partie bloquée se charger. | إيقاف Shields لهذا الموقع يسمح للجزء المحجوب بأن يُحمَّل. |
+| `c.brave.d2.fix.r.prompt` | Sur son téléphone, le même cadre est vide. Pointez la commande qui peut le ramener. | على هاتفها الإطار نفسه فارغ. أشِر إلى عنصر التحكّم الذي يعيده. |
+| `c.brave.d2.scope.hint.0` | Souvenez-vous : l’interrupteur nommait un lieu. | تذكّر: المفتاح سمّى مكاناً. |
+| `c.brave.d2.scope.hint.1` | « Pour ce site » : c’est toute la règle. | «لهذا الموقع»: هذه هي القاعدة كلّها. |
+| `c.brave.d2.scope.hint.2` | Réponse : les Shields restent actifs sur le site d’actualités. | الجواب: تبقى Shields مفعَّلة في موقع الأخبار. |
+| `c.brave.d2.scope.kuro` | Par site. | لكلّ موقع. |
+| `c.brave.d2.scope.p.a.after` | Cela n’arrive pas. | ليس هذا ما يحدث. |
+| `c.brave.d2.scope.p.a.say` | Site d’actualités, Shields baissés | موقع الأخبار، Shields موقوفة |
+| `c.brave.d2.scope.p.a.text` | Site d’actualités : Shields BAISSÉS | موقع الأخبار: Shields موقوفة |
+| `c.brave.d2.scope.p.a.why` | L’interrupteur vaut pour un site. Il ne la suit pas à l’adresse suivante. | المفتاح خاصّ بكلّ موقع. لا يتبعها إلى العنوان التالي. |
+| `c.brave.d2.scope.p.b.after` | Shields ACTIFS · 21 bloqués | Shields مفعَّلة · 21 محجوباً |
+| `c.brave.d2.scope.p.b.say` | Site d’actualités, Shields actifs | موقع الأخبار، Shields مفعَّلة |
+| `c.brave.d2.scope.p.b.text` | Site d’actualités : Shields ACTIFS | موقع الأخبار: Shields مفعَّلة |
+| `c.brave.d2.scope.p.b.why` | Baisser les Shields vaut pour le seul site qu’elle regardait. Tous les autres les gardent actifs. | إيقاف Shields يخصّ الموقع الذي كانت تشاهده وحده. كلّ موقع آخر يُبقيها مفعَّلة. |
+| `c.brave.d2.scope.prompt` | Elle a baissé les Shields sur son site de réservation. Elle ouvre ensuite un site d’actualités. Pointez ce qu’elle trouve. | أوقفت Shields في موقع الحجز. ثم تفتح موقع أخبار. أشِر إلى ما تجده. |
+| `c.brave.d2.scope.r.p.a.after` | Shields ACTIFS · par défaut | Shields مفعَّلة · افتراضياً |
+| `c.brave.d2.scope.r.p.a.say` | Shields déjà actifs | Shields مفعَّلة أصلاً |
+| `c.brave.d2.scope.r.p.a.text` | Shields déjà ACTIFS | Shields مفعَّلة أصلاً |
+| `c.brave.d2.scope.r.p.a.why` | Les Shields sont actifs par défaut sur chaque site qu’elle visite. | Shields مفعَّلة افتراضياً لكلّ موقع تزوره. |
+| `c.brave.d2.scope.r.p.b.after` | Cela n’arrive pas. | ليس هذا ما يحدث. |
+| `c.brave.d2.scope.r.p.b.say` | Shields baissés jusqu’au réglage | Shields موقوفة إلى أن تُضبط |
+| `c.brave.d2.scope.r.p.b.text` | Shields BAISSÉS jusqu’au réglage | Shields موقوفة إلى أن تُضبط |
+| `c.brave.d2.scope.r.p.b.why` | Rien n’est à régler. Le blocage ne l’attend pas. | لا شيء يحتاج إلى ضبط. الحجب لا ينتظرها. |
+| `c.brave.d2.scope.r.prompt` | Un site qu’elle n’a jamais ouvert, et elle n’a touché à rien. Pointez ce qu’elle trouve. | موقع لم تفتحه قطّ، ولم تلمس شيئاً. أشِر إلى ما تجده. |
+| `c.brave.d2.slip` | Sa page de réservation affiche un cadre vide dans Brave. Son entraîneur accuse le nouveau navigateur. Samia s’interroge. | صفحة الحجز لديها تعرض إطاراً فارغاً في Brave. مدرّبها يقول إن المتصفّح الجديد عطّلها. سامية تتساءل. |
+| `c.brave.d2.slipTag` | ENQUÊTE 01 · profondeur 2 · exemple inventé | التحقيق 01 · العمق 2 · مثال متخيَّل |
+| `c.brave.d2.stamp.prompt` | L’entraîneur, encore : le nouveau navigateur a cassé sa page de réservation. Tamponnez : | قول المدرّب مرّة أخرى: المتصفّح الجديد عطّل صفحة الحجز لديها. اختمه: |
+| `c.brave.d2.stamp.reveal` | À moitié. Le blocage a arrêté une partie de la page. Un interrupteur, pour ce seul site, la ramène. | نصف صحيح. الحجب أوقف جزءاً من الصفحة. مفتاح واحد، لذلك الموقع وحده، يعيده. |
+| `c.brave.d2.token.hint.0` | Trois lignes parlent de la navigation elle-même. | ثلاثة أسطر تخصّ التصفّح نفسه. |
+| `c.brave.d2.token.hint.1` | Une ligne parle d’être payé. | سطر واحد يخصّ تلقّي المال. |
+| `c.brave.d2.token.hint.2` | Réponse : Rewards. Il paie en jeton. | الجواب: Rewards. يدفع برمز رقمي. |
+| `c.brave.d2.token.kuro` | Jeton. | رمز رقمي. |
+| `c.brave.d2.token.p.engine.after` | Des réponses. Rien de détenu. | يجيب. لا يحوز شيئاً. |
+| `c.brave.d2.token.p.engine.say` | Moteur de recherche, ligne | محرّك البحث، سطر |
+| `c.brave.d2.token.p.engine.text` | Moteur de recherche | محرّك البحث |
+| `c.brave.d2.token.p.engine.why` | Cela choisit qui répond à ses recherches. Choisir ne coûte rien et ne détient rien. | هذا يختار من يجيب عن بحثها. الاختيار لا يكلّف شيئاً ولا يحوز شيئاً. |
+| `c.brave.d2.token.p.rewards.after` | Rewards · paie en jeton · désactivé | Rewards · يدفع برمز رقمي · متوقّف |
+| `c.brave.d2.token.p.rewards.say` | Rewards, ligne | Rewards، سطر |
+| `c.brave.d2.token.p.rewards.text` | Rewards | Rewards |
+| `c.brave.d2.token.p.rewards.why` | Rewards paie en jeton. La ligne du dessous dit ce que la loi 25-10 interdit en Algérie. | Rewards يدفع برمز رقمي. السطر أدناه يذكر ما يمنعه القانون 25-10 في الجزائر. |
+| `c.brave.d2.token.p.shields.after` | Bloque. Ne détient rien. | تحجب. لا تحوز شيئاً. |
+| `c.brave.d2.token.p.shields.say` | Shields, ligne | Shields، سطر |
+| `c.brave.d2.token.p.shields.text` | Shields | Shields |
+| `c.brave.d2.token.p.shields.why` | Les Shields bloquent les traceurs. Aucun jeton n’entre dans le blocage. | Shields تحجب المتتبِّعات. لا رمز رقمي في الحجب. |
+| `c.brave.d2.token.p.sync.after` | Copie les favoris. Aucun jeton. | ينسخ الإشارات المرجعية. بلا رمز. |
+| `c.brave.d2.token.p.sync.say` | Sync, ligne | Sync، سطر |
+| `c.brave.d2.token.p.sync.text` | Sync | Sync |
+| `c.brave.d2.token.p.sync.why` | Sync copie favoris et historique entre ses propres appareils, de façon chiffrée. Aucun jeton. | Sync ينسخ الإشارات المرجعية والسجلّ بين أجهزتها، مشفَّرة. بلا رمز رقمي. |
+| `c.brave.d2.token.prompt` | Quatre lignes de réglages. Pointez celle qui voudrait dire détenir un jeton (un crypto-actif). | أربعة أسطر إعدادات. أشِر إلى السطر الذي يعني حيازة رمز رقمي (أصل مشفّر). |
+| `c.brave.d2.token.r.p.engine.after` | Des réponses. Rien de détenu. | يجيب. لا يحوز شيئاً. |
+| `c.brave.d2.token.r.p.engine.say` | Moteur de recherche, ligne | محرّك البحث، سطر |
+| `c.brave.d2.token.r.p.engine.text` | Moteur de recherche | محرّك البحث |
+| `c.brave.d2.token.r.p.engine.why` | Un moteur de recherche répond à des questions. Il ne détient aucun actif. | محرّك البحث يجيب عن أسئلة. لا يحوز أيّ أصل. |
+| `c.brave.d2.token.r.p.shields.after` | Bloque. Ne détient rien. | تحجب. لا تحوز شيئاً. |
+| `c.brave.d2.token.r.p.shields.say` | Shields, ligne | Shields، سطر |
+| `c.brave.d2.token.r.p.shields.text` | Shields | Shields |
+| `c.brave.d2.token.r.p.shields.why` | Les Shields bloquent. Ils ne détiennent rien. | Shields تحجب. لا تحوز شيئاً. |
+| `c.brave.d2.token.r.p.wallet.after` | Wallet · désactivé | Wallet · متوقّفة |
+| `c.brave.d2.token.r.p.wallet.say` | Wallet, ligne | Wallet، سطر |
+| `c.brave.d2.token.r.p.wallet.text` | Wallet | Wallet |
+| `c.brave.d2.token.r.p.wallet.why` | Le portefeuille intégré sert aux crypto-actifs, et reste désactivé tant qu’on ne l’active pas. | المحفظة مدمجة للأصول المشفّرة، وتبقى متوقّفة إلى أن تُشغَّل. |
+| `c.brave.d2.token.r.prompt` | Trois autres lignes. Pointez celle qui détiendrait des crypto-actifs. | ثلاثة أسطر أخرى. أشِر إلى السطر الذي يحوز أصولاً مشفّرة. |
+
+### Case 1, depth 3 (169)
+
+| Key (`lant.enq.` +) | Français | العربية |
+|---|---|---|
+| `c.brave.d3.bet.prompt` | Votre pari sur l’idée de l’adhérente ? Sans points. | ما رهانك على تخمين المنخرطة؟ بلا نقاط. |
+| `c.brave.d3.boss.frame` | {1}, mais il {2}, et {3} reste éteint. | {1}، لكنه {2}، و{3} يبقى متوقّفاً. |
+| `c.brave.d3.boss.hint.0` | Même, différent, facultatif : dans cet ordre. | نفسه، مختلف، اختياري: بهذا الترتيب. |
+| `c.brave.d3.boss.hint.1` | Vous avez construit chaque partie ce soir. | بنيتَ كلّ جزء الليلة. |
+| `c.brave.d3.boss.hint.2` | Réponse : le même moteur ; bloque les traceurs par défaut ; le programme à jetons. | الجواب: المحرّك نفسه؛ يحجب المتتبِّعات افتراضياً؛ نظام الرموز. |
+| `c.brave.d3.boss.kuro` | Même. Différent. Facultatif. | نفسه. مختلف. اختياري. |
+| `c.brave.d3.boss.p.c1.text` | Le même moteur | المحرّك نفسه |
+| `c.brave.d3.boss.p.c1.why` | Les deux reposent sur Chromium. Sur ce point, le prestataire a raison. | كلاهما مبنيّ على Chromium. في هذه النقطة المورّد محقّ. |
+| `c.brave.d3.boss.p.c2.text` | Un autre moteur | محرّك مختلف |
+| `c.brave.d3.boss.p.c2.why` | Le moteur est la partie commune : Chromium. | المحرّك هو الجزء المشترك: Chromium. |
+| `c.brave.d3.boss.p.c3.text` | bloque les traceurs par défaut | يحجب المتتبِّعات افتراضياً |
+| `c.brave.d3.boss.p.c3.why` | C’est la différence qui compte : les Shields sont actifs dès la première page. | هذا هو الفرق المهمّ: Shields مفعَّلة منذ الصفحة الأولى. |
+| `c.brave.d3.boss.p.c4.text` | ne bloque rien avant réglage | لا يحجب شيئاً قبل الضبط |
+| `c.brave.d3.boss.p.c4.why` | Aucun réglage n’est demandé. Le blocage démarre tout seul. | لا ضبط مطلوب. الحجب يبدأ من تلقاء نفسه. |
+| `c.brave.d3.boss.p.c5.text` | le programme à jetons | نظام الرموز |
+| `c.brave.d3.boss.p.c5.why` | Rewards attend qu’on l’active. L’échange n’en dépend pas. | Rewards ينتظر أن يُشغَّل. التبديل لا يتوقّف عليه. |
+| `c.brave.d3.boss.p.c6.text` | Shields | Shields |
+| `c.brave.d3.boss.p.c6.why` | Les Shields sont actifs par défaut. C’est ce qu’elle obtient sans rien choisir. | Shields مفعَّلة افتراضياً. هي ما تحصل عليه بلا اختيار. |
+| `c.brave.d3.boss.prompt` | Samia demande : « Chrome avec une pièce vissée dessus ? » Construisez la réponse pour elle. | سامية تسأل: «Chrome وقد ثُبّتت عليه عملة؟» ابنِ الجواب لها. |
+| `c.brave.d3.boss.r.frame` | Pareil : {1}. Différent : {2}. Facultatif : {3}. | المشترك: {1}. المختلف: {2}. الاختياري: {3}. |
+| `c.brave.d3.boss.r.p.r1.text` | le moteur | المحرّك |
+| `c.brave.d3.boss.r.p.r1.why` | Chromium se trouve sous les deux navigateurs. | Chromium يقع تحت المتصفّحين معاً. |
+| `c.brave.d3.boss.r.p.r2.text` | les réglages par défaut | الإعدادات الافتراضية |
+| `c.brave.d3.boss.r.p.r2.why` | Ce qui est bloqué dès le premier lancement fait la différence. | ما يُحجب منذ أوّل تشغيل هو الفرق. |
+| `c.brave.d3.boss.r.p.r3.text` | Rewards | Rewards |
+| `c.brave.d3.boss.r.p.r3.why` | Rewards est la partie qu’elle peut laisser éteinte. | Rewards هو الجزء الذي لها أن تتركه متوقّفاً. |
+| `c.brave.d3.boss.r.p.r4.text` | les sites web | المواقع |
+| `c.brave.d3.boss.r.p.r4.why` | Les sites web ne changent pas avec le navigateur. | المواقع لا تتغيّر بتغيّر المتصفّح. |
+| `c.brave.d3.boss.r.p.r5.text` | Shields | Shields |
+| `c.brave.d3.boss.r.p.r5.why` | Les Shields sont actifs par défaut. Ce n’est pas la partie facultative. | Shields مفعَّلة افتراضياً. ليست هي الجزء الاختياري. |
+| `c.brave.d3.boss.r.prompt` | Encore une fois, en trois mots. Touchez une pastille, puis sa case. | مرّة أخرى، في ثلاث كلمات. المس رقعة، ثم خانتها. |
+| `c.brave.d3.bub.a` | Ok. Le même moteur dessous. La page de l’éditeur le dit. | حسناً. المحرّك نفسه في الأسفل. صفحة الصانع نفسه تقول ذلك. |
+| `c.brave.d3.bub.b` | J’ai porté aussi la phrase du prestataire. Elle cliquetait. | حملتُ قول المورّد أيضاً. كان يخشخش. |
+| `c.brave.d3.can` | Vous savez maintenant dire en une phrase ce qu’est un traceur intersites, et pourquoi cet échange est un navigateur pour un navigateur. | صرتَ تعرف كيف تقول في جملة واحدة ما هو المتتبِّع بين المواقع، ولماذا هذا التبديل متصفّح بمتصفّح. |
+| `c.brave.d3.claim` | Les publicités la suivent parce que les sites qu’elle ouvre se parlent entre eux. | الإعلانات تلاحقها لأن المواقع التي تفتحها يكلّم بعضها بعضاً. |
+| `c.brave.d3.embed.hint.0` | Trois parties appartiennent à ce site. | ثلاثة أجزاء تابعة لهذا الموقع. |
+| `c.brave.d3.embed.hint.1` | Une partie a été faite ailleurs. | جزء واحد صُنع في مكان آخر. |
+| `c.brave.d3.embed.hint.2` | Réponse : le bouton J’aime venu d’un autre site. | الجواب: زرّ الإعجاب من موقع آخر. |
+| `c.brave.d3.embed.kuro` | Code extérieur. | شيفرة خارجية. |
+| `c.brave.d3.embed.p.article.after` | Du texte. Reste ici. | نصّ. يبقى هنا. |
+| `c.brave.d3.embed.p.article.say` | Article, texte | مقال، نصّ |
+| `c.brave.d3.embed.p.article.text` | Texte de l’article | نصّ المقال |
+| `c.brave.d3.embed.p.article.why` | Les mots de la page elle-même. Ils restent sur ce site. | كلمات الصفحة نفسها. تبقى في هذا الموقع. |
+| `c.brave.d3.embed.p.like.after` | Venu d’un autre site · il peut la retrouver | من موقع آخر · يستطيع أن يلقاها من جديد |
+| `c.brave.d3.embed.p.like.say` | Bouton J’aime, venu d’un autre site | زرّ إعجاب، من موقع آخر |
+| `c.brave.d3.embed.p.like.text` | Bouton J’aime venu d’un autre site | زرّ إعجاب من موقع آخر |
+| `c.brave.d3.embed.p.like.why` | Une partie intégrée depuis un autre site peut poser son propre cookie, et la retrouver ailleurs. | جزء مُدمج من موقع آخر قد يضع ملف ارتباط خاصّاً به، ويلقاها في مكان آخر. |
+| `c.brave.d3.embed.p.login.after` | Se souvient d’elle ici seulement. | تتذكّرها هنا فقط. |
+| `c.brave.d3.embed.p.login.say` | Zone de connexion, celle du site | خانة تسجيل الدخول، الخاصّة بالموقع |
+| `c.brave.d3.embed.p.login.text` | La zone de connexion du site | خانة تسجيل الدخول الخاصّة بالموقع |
+| `c.brave.d3.embed.p.login.why` | La zone du site se souvient d’elle ici. Rien ne passe à un autre site. | خانة الموقع تتذكّرها هنا. لا شيء يعبر إلى موقع آخر. |
+| `c.brave.d3.embed.p.photo.after` | Une image. Reste ici. | صورة. تبقى هنا. |
+| `c.brave.d3.embed.p.photo.say` | Photo, celle du site | صورة، خاصّة بالموقع |
+| `c.brave.d3.embed.p.photo.text` | La photo du site | صورة الموقع نفسه |
+| `c.brave.d3.embed.p.photo.why` | Une image que le site sert lui-même. Elle ne pose rien pour un autre site. | صورة يقدّمها الموقع نفسه. لا تضع شيئاً لموقع آخر. |
+| `c.brave.d3.embed.prompt` | Une page d’actualités. Pointez la partie qui peut la reconnaître aussi sur le site suivant. | صفحة أخبار. أشِر إلى الجزء الذي يستطيع التعرّف عليها في الموقع التالي أيضاً. |
+| `c.brave.d3.embed.r.p.basket.after` | Se souvient d’elle ici seulement. | تتذكّرها هنا فقط. |
+| `c.brave.d3.embed.r.p.basket.say` | Panier, celui de la boutique | سلّة، خاصّة بالمتجر |
+| `c.brave.d3.embed.r.p.basket.text` | Le panier de la boutique | سلّة المتجر نفسه |
+| `c.brave.d3.embed.r.p.basket.why` | Le panier se souvient d’elle dans cette boutique. Rien ne passe à un autre site. | السلّة تتذكّرها داخل هذا المتجر. لا شيء يعبر إلى موقع آخر. |
+| `c.brave.d3.embed.r.p.prices.after` | Du texte. Reste ici. | نصّ. يبقى هنا. |
+| `c.brave.d3.embed.r.p.prices.say` | Liste des prix, texte | قائمة الأسعار، نصّ |
+| `c.brave.d3.embed.r.p.prices.text` | Liste des prix | قائمة الأسعار |
+| `c.brave.d3.embed.r.p.prices.why` | Les mots de la boutique elle-même. Ils ne suivent personne. | كلمات المتجر نفسه. لا تتبع أحداً. |
+| `c.brave.d3.embed.r.p.video.after` | Venu d’un autre site · il peut la retrouver | من موقع آخر · يستطيع أن يلقاها من جديد |
+| `c.brave.d3.embed.r.p.video.say` | Lecteur vidéo, venu d’un autre site | مشغّل فيديو، من موقع آخر |
+| `c.brave.d3.embed.r.p.video.text` | Lecteur vidéo venu d’un autre site | مشغّل فيديو من موقع آخر |
+| `c.brave.d3.embed.r.p.video.why` | Intégré depuis un autre site, il peut poser son propre cookie et la reconnaître ailleurs. | مُدمج من موقع آخر، فقد يضع ملف ارتباط خاصّاً به ويتعرّف عليها في مكان آخر. |
+| `c.brave.d3.embed.r.prompt` | Une page de boutique, maintenant. Pointez la partie qui peut la suivre sur d’autres sites. | صفحة متجر الآن. أشِر إلى الجزء الذي يستطيع أن يتبعها إلى مواقع أخرى. |
+| `c.brave.d3.rewards.frame` | Rewards, c’est {1}. Sans lui, le navigateur {2}. | Rewards هو {1}. ومن دونه، المتصفّح {2}. |
+| `c.brave.d3.rewards.hint.0` | La case un dit ce qu’est Rewards. | الخانة الأولى تقول ما هو Rewards. |
+| `c.brave.d3.rewards.hint.1` | La case deux dit ce qui marche sans lui. | الخانة الثانية تقول ما الذي يعمل من دونه. |
+| `c.brave.d3.rewards.hint.2` | Réponse : un programme publicitaire facultatif ; il bloque quand même. | الجواب: برنامج إعلاني اختياري؛ ويحجب على أيّ حال. |
+| `c.brave.d3.rewards.kuro` | Facultatif. | اختياري. |
+| `c.brave.d3.rewards.p.c1.text` | la partie qui bloque les traceurs | الجزء الذي يحجب المتتبِّعات |
+| `c.brave.d3.rewards.p.c1.why` | Ce sont les Shields qui bloquent. Rewards est une fonction à part. | Shields هي التي تحجب. Rewards ميزة منفصلة. |
+| `c.brave.d3.rewards.p.c2.text` | un programme publicitaire facultatif, éteint tant qu’on ne l’active pas | برنامج إعلاني اختياري، متوقّف إلى أن يُشغَّل |
+| `c.brave.d3.rewards.p.c2.why` | Rewards paie un jeton pour des publicités qu’une personne choisit de voir, une fois qu’elle l’a activé. | Rewards يدفع رمزاً رقمياً مقابل إعلانات يختار الشخص أن يراها، بعد أن يشغّله. |
+| `c.brave.d3.rewards.p.c4.text` | bloque quand même les traceurs | يحجب المتتبِّعات على أيّ حال |
+| `c.brave.d3.rewards.p.c4.why` | Les Shields sont actifs par défaut, que Rewards soit activé un jour ou non. | Shields مفعَّلة افتراضياً، سواء شُغِّل Rewards يوماً أم لا. |
+| `c.brave.d3.rewards.p.c5.text` | cesse de marcher | يتوقّف عن العمل |
+| `c.brave.d3.rewards.p.c5.why` | Les Shields marchent sans réglage à faire, dit la page de Brave. Rewards s’active à part. | Shields تعمل بلا إعدادات تُضبط، كما تقول صفحة Brave. Rewards شيء منفصل يُشغَّل. |
+| `c.brave.d3.rewards.p.c6.text` | montre plus de publicités dans les pages | يعرض إعلانات أكثر في الصفحات |
+| `c.brave.d3.rewards.p.c6.why` | Les publicités de Rewards ne remplacent pas celles des pages, et les publicités tierces restent bloquées. | إعلانات Rewards لا تحلّ محلّ إعلانات الصفحات، وإعلانات الأطراف الثالثة تبقى محجوبة. |
+| `c.brave.d3.rewards.prompt` | Touchez une pastille, puis sa case. | المس رقعة، ثم خانتها. |
+| `c.brave.d3.rewards.r.frame` | Rewards paie avec {1}, et demande d’abord {2}. | Rewards يدفع بـ: {1}، ويلزمه أولاً: {2}. |
+| `c.brave.d3.rewards.r.p.r1.text` | un jeton | رمز رقمي |
+| `c.brave.d3.rewards.r.p.r1.why` | La page de Brave nomme un jeton, un crypto-actif, comme ce que paie Rewards. | صفحة Brave تسمّي رمزاً رقمياً، أي أصلاً مشفّراً، على أنه ما يدفعه Rewards. |
+| `c.brave.d3.rewards.r.p.r2.text` | des dinars | الدينار |
+| `c.brave.d3.rewards.r.p.r2.why` | La page de Brave nomme un jeton, pas une monnaie nationale. | صفحة Brave تسمّي رمزاً رقمياً، لا عملة وطنية. |
+| `c.brave.d3.rewards.r.p.r3.text` | un compte de versement, pas proposé partout | حساب صرف، غير متاح في كلّ مكان |
+| `c.brave.d3.rewards.r.p.r3.why` | Pour gagner, il faut un compte de versement connecté, et leur prise en charge varie selon la région. | الكسب يحتاج إلى حساب صرف موصول، ودعم هذه الحسابات يختلف من منطقة إلى أخرى. |
+| `c.brave.d3.rewards.r.p.r4.text` | rien du tout | لا شيء إطلاقاً |
+| `c.brave.d3.rewards.r.p.r4.why` | Il faut activer Rewards et connecter un compte de versement avant de gagner quoi que ce soit. | يجب تشغيل Rewards ووصل حساب صرف قبل كسب أيّ شيء. |
+| `c.brave.d3.rewards.r.prompt` | De quoi Rewards aurait-il besoin ? Touchez une pastille, puis sa case. | ماذا يلزم Rewards؟ المس رقعة، ثم خانتها. |
+| `c.brave.d3.say.hint.0` | Deux phrases promettent plus qu’un navigateur ne peut. | جملتان تعِدان بأكثر ممّا يستطيعه متصفّح. |
+| `c.brave.d3.say.hint.1` | La bonne phrase est la plus simple. | الجملة الصائبة هي الأبسط. |
+| `c.brave.d3.say.hint.2` | Réponse : il bloque les traceurs par défaut. | الجواب: يحجب المتتبِّعات افتراضياً. |
+| `c.brave.d3.say.kuro` | Simple. | بسيط. |
+| `c.brave.d3.say.p.n1.text` | Il vous rend anonyme. | يجعلكِ مجهولة الهوية. |
+| `c.brave.d3.say.p.n1.why` | Bloquer les traceurs n’est pas l’anonymat : chaque site qu’elle ouvre reçoit toujours sa demande. | حجب المتتبِّعات ليس إخفاءً للهوية: كلّ موقع تفتحه يتلقّى طلبها دائماً. |
+| `c.brave.d3.say.p.n2.text` | Il vous paie, donc c’est de l’argent gratuit. | يدفع لكِ، فهو إذن مال مجاني. |
+| `c.brave.d3.say.p.n2.why` | Rewards est facultatif, paie un jeton pour des publicités choisies, et demande un compte de versement. | Rewards اختياري، يدفع رمزاً رقمياً مقابل إعلانات مختارة، ويحتاج إلى حساب صرف. |
+| `c.brave.d3.say.p.n3.text` | Il bloque les traceurs par défaut, sans rien à régler. | يحجب المتتبِّعات افتراضياً، بلا أيّ ضبط. |
+| `c.brave.d3.say.p.n3.why` | C’est ce qu’affirme la page Shields de Brave. C’est la part « navigateur pour navigateur » de la flèche. | هذا ما تذكره صفحة Shields لدى Brave. وهو الجزء «متصفّح بمتصفّح» من السهم. |
+| `c.brave.d3.say.prompt` | Samia doit répondre à son adhérente. Touchez la phrase qui serait juste. | على سامية أن تجيب منخرطتها. المس الجملة التي تكون صائبة. |
+| `c.brave.d3.say.r.p.r1.text` | Alors le navigateur est défectueux. | إذن المتصفّح معيب. |
+| `c.brave.d3.say.r.p.r1.why` | Le blocage peut casser une partie d’une page. C’est un effet secondaire, pas un défaut. | الحجب قد يعطّل جزءاً من صفحة. هذا أثر جانبي، لا عيب. |
+| `c.brave.d3.say.r.p.r2.text` | Baissez les Shields là, si vous faites confiance au site. | أوقِفي Shields هناك، إن كنتِ تثقين بالموقع. |
+| `c.brave.d3.say.r.p.r2.why` | On peut baisser les Shields pour un seul site ; Brave dit de vérifier d’abord qu’il est de confiance. | يمكن إيقاف Shields لموقع واحد؛ وBrave يقول: تأكّد أولاً أن الموقع موثوق. |
+| `c.brave.d3.say.r.p.r3.text` | Activez Rewards pour réparer ça. | شغّلي Rewards لإصلاحها. |
+| `c.brave.d3.say.r.p.r3.why` | Rewards est un programme publicitaire. Il ne répare aucune page. | Rewards برنامج إعلاني. لا يُصلح أيّ صفحة. |
+| `c.brave.d3.say.r.prompt` | Une page se casse. Touchez la phrase qui serait juste. | صفحة تتعطّل. المس الجملة التي تكون صائبة. |
+| `c.brave.d3.shares.frame` | Brave repose sur {1}, comme Chrome, et change {2}. | Brave مبنيّ على {1}، مثل Chrome، ويغيّر {2}. |
+| `c.brave.d3.shares.hint.0` | Une pastille se trouve sous les deux navigateurs. | رقعة واحدة تقع تحت المتصفّحين معاً. |
+| `c.brave.d3.shares.hint.1` | L’autre est un réglage d’usine. | والأخرى إعداد المصنع. |
+| `c.brave.d3.shares.hint.2` | Réponse : le moteur Chromium ; ce qui est bloqué par défaut. | الجواب: محرّك Chromium؛ ما يُحجب افتراضياً. |
+| `c.brave.d3.shares.kuro` | Par défaut. | الافتراضي. |
+| `c.brave.d3.shares.p.c1.text` | le moteur Chromium | محرّك Chromium |
+| `c.brave.d3.shares.p.c1.why` | Brave repose sur Chromium, le projet à code ouvert qui fait aussi tourner Chrome. | Brave مبنيّ على Chromium، المشروع المفتوح المصدر الذي يشغّل Chrome أيضاً. |
+| `c.brave.d3.shares.p.c2.text` | son compte Google | حسابها في Google |
+| `c.brave.d3.shares.p.c2.why` | Un compte relève du service d’une entreprise, pas du moteur sur lequel reposent les deux navigateurs. | الحساب تابع لخدمة شركة، لا للمحرّك الذي بُني عليه المتصفّحان. |
+| `c.brave.d3.shares.p.c3.text` | ce qui est bloqué par défaut | ما يُحجب افتراضياً |
+| `c.brave.d3.shares.p.c3.why` | Brave bloque traceurs et cookies intersites dès le premier lancement, sans rien à régler. | Brave يحجب المتتبِّعات وملفات الارتباط بين المواقع منذ أوّل تشغيل، بلا أيّ ضبط. |
+| `c.brave.d3.shares.p.c4.text` | les sites web eux-mêmes | المواقع نفسها |
+| `c.brave.d3.shares.p.c4.why` | Les sites restent où ils sont. Un navigateur ne fait que les afficher. | المواقع تبقى حيث هي. المتصفّح يعرضها فقط. |
+| `c.brave.d3.shares.p.c5.text` | un jeton (un crypto-actif) | رمز رقمي (أصل مشفّر) |
+| `c.brave.d3.shares.p.c5.why` | Le jeton relève du programme facultatif Rewards. Aucun navigateur ne repose dessus. | الرمز الرقمي تابع لبرنامج Rewards الاختياري. لا متصفّح مبنيّ عليه. |
+| `c.brave.d3.shares.prompt` | Qu’est-ce qui reste, qu’est-ce qui change ? Touchez une pastille, puis sa case. | ما الذي يبقى وما الذي يتغيّر؟ المس رقعة، ثم خانتها. |
+| `c.brave.d3.shares.r.frame` | Chrome et Brave reposent sur {1} ; Brave, ensuite, {2}. | Chrome وBrave مبنيّان على {1}؛ ثم إن Brave {2}. |
+| `c.brave.d3.shares.r.p.r1.text` | le même projet à code ouvert | المشروع المفتوح المصدر نفسه |
+| `c.brave.d3.shares.r.p.r1.why` | Chromium est à code ouvert, et les deux navigateurs reposent dessus. | Chromium مفتوح المصدر، والمتصفّحان مبنيّان عليه. |
+| `c.brave.d3.shares.r.p.r2.text` | la même entreprise | الشركة نفسها |
+| `c.brave.d3.shares.r.p.r2.why` | Deux éditeurs différents. Ils partagent du code, pas un propriétaire. | صانعان مختلفان. يتشاركان شيفرة، لا مالكاً. |
+| `c.brave.d3.shares.r.p.r3.text` | en modifie et en retire des parties | يغيّر أجزاء منه ويحذف أخرى |
+| `c.brave.d3.shares.r.p.r3.why` | Brave dit apporter des changements et des retraits à chaque version de Chromium. | Brave يقول إنه يُدخل تغييرات ويحذف أجزاء مع كلّ إصدار من Chromium. |
+| `c.brave.d3.shares.r.p.r4.text` | n’y touche pas | يتركه كما هو |
+| `c.brave.d3.shares.r.p.r4.why` | Intact, il ne bloquerait rien de plus que l’original. | لو تُرك كما هو لما حجب أكثر من الأصل. |
+| `c.brave.d3.shares.r.prompt` | Dites-le autrement. Touchez une pastille, puis sa case. | قُلها بطريقة أخرى. المس رقعة، ثم خانتها. |
+| `c.brave.d3.slip` | Une adhérente demande à Samia pourquoi des pubs d’entraîneurs la suivent de site en site. Son idée : ils se parlent. | منخرطة في القاعة تسأل سامية: لماذا تلاحقها إعلانات المدرّبين من موقع إلى موقع؟ تخمينها: المواقع يكلّم بعضها بعضاً. |
+| `c.brave.d3.slipTag` | ENQUÊTE 01 · profondeur 3 · exemple inventé | التحقيق 01 · العمق 3 · مثال متخيَّل |
+| `c.brave.d3.stamp.prompt` | L’idée de l’adhérente, encore : les sites qu’elle ouvre se parlent entre eux. Tamponnez : | تخمين المنخرطة مرّة أخرى: المواقع التي تفتحها يكلّم بعضها بعضاً. اختمه: |
+| `c.brave.d3.stamp.reveal` | À moitié. Les sites ne se parlent pas. Le même code extérieur est dans les deux, et se souvient d’elle. | نصف صحيح. المواقع لا تتكلّم. الشيفرة الخارجية نفسها موجودة في الاثنين، وهي تتذكّرها. |
+| `c.brave.d3.tracker.frame` | Un traceur intersites, c’est {1} qui {2}. | المتتبِّع بين المواقع هو {1}، وعمله أنه {2}. |
+| `c.brave.d3.tracker.hint.0` | La case un est un qui. La case deux est un quoi. | الخانة الأولى: مَن. الخانة الثانية: ماذا. |
+| `c.brave.d3.tracker.hint.1` | « Intersites » veut dire plus d’un site. | «بين المواقع» تعني أكثر من موقع واحد. |
+| `c.brave.d3.tracker.hint.2` | Réponse : le code d’un autre site, qui la reconnaît d’un site à l’autre. | الجواب: شيفرة موقع آخر تتعرّف عليها من موقع إلى موقع. |
+| `c.brave.d3.tracker.kuro` | Intersites. | بين المواقع. |
+| `c.brave.d3.tracker.p.c1.text` | le site qu’elle a ouvert | الموقع الذي فتحته |
+| `c.brave.d3.tracker.p.c1.why` | Le site choisi est celui qu’elle a demandé. Un traceur intersites vient d’ailleurs. | الموقع الذي اختارته هو ما طلبته. المتتبِّع بين المواقع يأتي من مكان آخر. |
+| `c.brave.d3.tracker.p.c2.text` | le code d’un autre site dans la page | شيفرة موقع آخر داخل الصفحة |
+| `c.brave.d3.tracker.p.c2.why` | Une page peut intégrer des parties venues d’autres sites. Ces parties peuvent poser leurs propres cookies. | الصفحة قد تُدمج أجزاء من مواقع أخرى. وهذه الأجزاء قد تضع ملفات ارتباط خاصّة بها. |
+| `c.brave.d3.tracker.p.c4.text` | la reconnaît sur de nombreux sites | يتعرّف عليها في مواقع كثيرة |
+| `c.brave.d3.tracker.p.c4.why` | Le même code extérieur, intégré à de nombreux sites, peut réunir ses relevés en un seul historique. | الشيفرة الخارجية نفسها، المدمجة في مواقع كثيرة، قد تجمع سجلّاتها في تاريخ واحد. |
+| `c.brave.d3.tracker.p.c5.text` | la garde connectée ici | يُبقيها مسجَّلة الدخول هنا |
+| `c.brave.d3.tracker.p.c5.why` | C’est un site qui se souvient de sa propre visiteuse. Rien ne passe à un autre site. | هذا موقع يتذكّر زائرته هو. لا شيء يعبر إلى موقع آخر. |
+| `c.brave.d3.tracker.p.c6.text` | lui montre une publicité | يعرض عليها إعلاناً |
+| `c.brave.d3.tracker.p.c6.why` | Une publicité, c’est ce qu’elle voit. Le traceur, c’est ce qui se souvient d’elle. | الإعلان هو ما تراه. المتتبِّع هو ما يتذكّرها. |
+| `c.brave.d3.tracker.prompt` | Touchez une pastille, puis sa case. | المس رقعة، ثم خانتها. |
+| `c.brave.d3.tracker.r.frame` | Un traceur, c’est une boutique qui {1}, pas une boutique qui {2}. | المتتبِّع متجر {1}، لا متجر {2}. |
+| `c.brave.d3.tracker.r.p.r1.text` | la suit dans toutes les rues | يتبعها في كلّ شارع |
+| `c.brave.d3.tracker.r.p.r1.why` | La suivre de lieu en lieu, c’est la partie intersites. | ملاحقتها من مكان إلى مكان هي معنى «بين المواقع». |
+| `c.brave.d3.tracker.r.p.r2.text` | se souvient d’elle tant qu’elle est à l’intérieur | يتذكّرها ما دامت في داخله |
+| `c.brave.d3.tracker.r.p.r2.why` | Une boutique qui connaît sa propre cliente ne suit personne. | متجر يعرف زبونته لا يتبع أحداً. |
+| `c.brave.d3.tracker.r.p.r3.text` | lui demande son nom à la porte | يسألها عن اسمها عند الباب |
+| `c.brave.d3.tracker.r.p.r3.why` | Il n’a besoin d’aucun nom. Il reconnaît le navigateur. | لا يحتاج إلى اسم. يتعرّف على المتصفّح. |
+| `c.brave.d3.tracker.r.p.r4.text` | met une enseigne en vitrine | يضع لافتة في واجهته |
+| `c.brave.d3.tracker.r.p.r4.why` | Une enseigne est une publicité qu’elle peut voir. Elle ne la suit pas. | اللافتة إعلان تراه. لا تتبعها. |
+| `c.brave.d3.tracker.r.prompt` | La même idée, façon rue. | الفكرة نفسها، في صورة شارع. |
