@@ -720,7 +720,7 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
     const byName = (x, y) => x.name.localeCompare(y.name, 'en', { sensitivity: 'base' });
     const shelves = cats.map((c) => { const apps = TOOLS.apps.filter((a) => a.category === c.id).sort(byName); return apps.length ? `
     <section class="tl-cat" id="tl-${c.id}" aria-labelledby="tl-${c.id}-h">
-      <div class="tl-cat__head"><h2 class="tl-cat__h" id="tl-${c.id}-h">${c.glyph ? `<span class="tl-cat__g" lang="ja" aria-hidden="true">${esc(c.glyph)}</span>` : ''}<span data-i18n="${c.key}"></span></h2>${c.note ? `<p class="tl-cat__note" data-i18n="${c.note}"></p>` : ''}</div>${routes(c)}
+      <div class="tl-cat__head"><h2 class="tl-cat__h" id="tl-${c.id}-h">${c.glyph ? `<span class="tl-cat__g" lang="ja" aria-hidden="true" data-decorative>${esc(c.glyph)}</span>` : ''}<span data-i18n="${c.key}"></span></h2>${c.note ? `<p class="tl-cat__note" data-i18n="${c.note}"></p>` : ''}</div>${routes(c)}
       <ul class="tl-grid">${apps.map(card).join('')}
       </ul>
     </section>` : ''; }).join('');

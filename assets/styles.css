@@ -2836,6 +2836,7 @@ section.band::after,section.band+section.band::after{
 @media print{.m-contact{display:none!important}}
 /* on A4 (794 px) the tablet band laid the Aperçu's and the form's two buttons side by side, past the page: they stack on paper */
 @media print{.prev-actions,.form-acts{flex-wrap:wrap!important}.prev-actions .btn,.form-acts .btn,.form-acts button{max-width:100%;white-space:normal}.dune-strip{display:none!important}}
+@media print{.proj .actions{flex-wrap:wrap}.proj .actions a{max-width:100%;overflow-wrap:anywhere;white-space:normal}}   /* a delivered site's link prints its address after it: it wraps inside the page box (2026-11-24) */
 
 /* ---- Client voices (scripts/build-voices.mjs; absent until a real quote exists) ---- */
 .voices{margin-top:var(--s-7);display:grid;gap:var(--s-5)}

@@ -1941,7 +1941,7 @@ main:focus{outline:none}
   .st-head{margin-bottom:20px;gap:12px 24px}
   .st-process .st-head,.st-pricing .st-head,.st-tech .st-head{margin-bottom:20px}
   .st-kick{gap:12px;letter-spacing:.14em}
-  .st-seal{width:36px;height:36px;font-size:18px}
+  .st-seal{width:36px;height:36px;font-size:19px}   /* 19 px bold stays large text (3:1), 18 px would need 4.5:1 */
   .st-btn{letter-spacing:.1em;padding:0 16px}
   .st-label{letter-spacing:.1em}
   /* the labels that carry a fact (a duration, a delay, the hours) read at 13px, not as fine print */
