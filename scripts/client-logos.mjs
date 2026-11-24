@@ -12,7 +12,7 @@
  *                   transform-origin="center" (an SVG 2 attribute librsvg and
  *                   older WebKit ignore) is written as the matrix it means,
  *                   and the page's class and editor attributes are dropped.
- *   alliance.svg    alliancetravel34.netlify.app/assets/images/logo.svg. The
+ *   alliance.svg    alliancetravel.app/assets/images/logo.svg. The
  *                   header inlines this drawing; the script compares their
  *                   path data and refuses a file that differs.
  *   almaflow.webp   almaflowclim.netlify.app/assets/images/logo-almaflow.png,
@@ -104,15 +104,15 @@ writeFileSync(join(OUT, 'bordjsteel.svg'), bs + '\n');
 console.log(`✓ bordjsteel.svg ${bs.length} bytes  ← header of bordjsteelb2b.netlify.app`);
 
 // Alliance Travel: the file whose drawing the header inlines
-await page.goto('https://alliancetravel34.netlify.app/', { waitUntil: 'networkidle', timeout: 60000 });
+await page.goto('https://alliancetravel.app/', { waitUntil: 'networkidle', timeout: 60000 });
 const inline = await page.evaluate(() => document.querySelector('.nav-logo svg').outerHTML);
-const al = (await get('https://alliancetravel34.netlify.app/assets/images/logo.svg')).toString('utf8').trim();
+const al = (await get('https://alliancetravel.app/assets/images/logo.svg')).toString('utf8').trim();
 const paths = (s) => [...s.matchAll(/\sd="([^"]*)"/g)].map((m) => m[1]).join('|');
 if (paths(inline) !== paths(al)) throw new Error('Alliance Travel: logo.svg is no longer the drawing in the header');
 if (ACTIVE.test(al)) throw new Error('Alliance Travel: logo.svg carries active or embedded content');
 const alOut = tidyPaths(await cropSvg(al));
 writeFileSync(join(OUT, 'alliance.svg'), alOut + '\n');
-console.log(`✓ alliance.svg ${alOut.length} bytes  ← alliancetravel34.netlify.app/assets/images/logo.svg (= header)`);
+console.log(`✓ alliance.svg ${alOut.length} bytes  ← alliancetravel.app/assets/images/logo.svg (= header)`);
 
 // AlmaFlowClim: the header <img>
 await page.goto('https://almaflowclim.netlify.app/', { waitUntil: 'networkidle', timeout: 60000 });

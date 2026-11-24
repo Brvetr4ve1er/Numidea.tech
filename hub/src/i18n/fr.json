@@ -409,7 +409,7 @@
   "proof": {
     "kicker": "/ 04 · LES REÇUS · PIÈCES À L’APPUI",
     "title": "Tout ce qui suit existe.",
-    "lead": "Trois clients livrés et deux travaux du fondateur. Chaque dossier dit ce qui a été fait, pour qui, et où le vérifier.",
+    "lead": "Quatre clients livrés et deux travaux du fondateur. Chaque dossier dit ce qui a été fait, pour qui, et où le vérifier.",
     "actor": "Yasser fête une mise en ligne",
     "own": "Aussi, faits maison :",
     "glaive": "Glaive, la démo du studio",
@@ -511,7 +511,10 @@
         }
       ]
     },
-    "whq": "une borne d’arcade pour votre code"
+    "whq": "une borne d’arcade pour votre code",
+    "site": "ce site, le nôtre : sa fiche",
+    "done": "Terminé aussi :",
+    "annuaire": "l’Annuaire industriel algérien"
   },
   "lab": {
     "kicker": "/ LE LAB · HORS COMMANDE",

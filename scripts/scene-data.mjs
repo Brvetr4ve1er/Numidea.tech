@@ -23,9 +23,11 @@
  * "more", no "increased" (check.mjs refuses digits and %). 3 to 5 per sheet.
  *
  * Order (decision 16, 2026-10-30): the delivered client sites first, in the
- * order the home page shows them, then the portfolio demo and our own
- * product under one heading (UI.group); build-scene.mjs refuses a live
- * sheet after that cut. A `live` sheet ends on the offer's call to action
+ * order the home page shows them, then the other finished work under one
+ * heading (UI.group): since wave 3 (2026-11-24) the industrial directory,
+ * the portfolio demo, our own product and the studio's own site, each
+ * labelled by its status; build-scene.mjs refuses a live sheet after that
+ * cut. Four live sheets: the four delivered client sites. A `live` sheet ends on the offer's call to action
  * (decision 17), with the home page's own conditions (prev.terms).
  *
  * `identity` is a link beside a sheet's deliverables, not among them: work
@@ -119,7 +121,7 @@ export const PROJECTS = [
     slug: 'alliance',
     studio: 'case-alliance',   // its case on the Studio (hub/#case-alliance): the sheet links to it (journey-12)
     name: 'Alliance Travel',
-    url: 'https://alliancetravel34.netlify.app',
+    url: 'https://alliancetravel.app/',
     status: 'live',
     pages: [
       { file: 'd1', path: '/#voyages', label: { fr: 'Les voyages', en: 'The trips', ar: 'الرحلات' } },
@@ -261,6 +263,171 @@ export const PROJECTS = [
         scope: 'موقع تعريفي وطلب عرض سعر',
         summary: 'حِرفي في جونفيلييه يركّب ويصلح التكييف والتدفئة والسباكة: صفحة لكل تخصّص، وصفحة للأعمال المنجزة، وطلب عرض سعر في استمارة واحدة، مع تحسين محرّكات البحث (SEO) للظهور في نتائج البحث المحلية.',
         deliverables: ['موقع تعريفي من 7 صفحات', '3 صفحات تخصّص', 'صفحة الإنجازات', 'استمارة عرض سعر', 'تحسين محرّكات البحث (SEO) لكل مدينة يخدمها', 'الإشعار القانوني'],
+      },
+    },
+  },
+  {
+    // wave 3 (2026-11-24, the owner: a delivered client site): the fourth
+    // delivered client, read off its live pages that day (nav, the Omra,
+    // trips, destination and service pages, the contact page; colours and
+    // faces from its own stylesheet, Rihla mode and its dark mode). Arabic
+    // first, French on its switch; its captures are the Arabic pages.
+    slug: 'nomara',
+    studio: 'case-nomara',   // its case on the Studio (hub/#case-nomara)
+    name: 'Nomara Voyages',
+    url: 'https://nomaravoyages.netlify.app',
+    status: 'live',
+    pages: [
+      { file: 'd1', path: '/', label: { fr: 'Accueil', en: 'Home', ar: 'الرئيسية' } },
+      { file: 'd2', path: '/omra/', label: { fr: 'Omra et Hajj', en: 'Umrah and Hajj', ar: 'العمرة والحج' } },
+      { file: 'd3', path: '/voyages/', label: { fr: 'Voyages organisés', en: 'Package tours', ar: 'الرحلات المنظمة' } },
+      { file: 'd4', path: '/turquie/', label: { fr: 'Istanbul', en: 'Istanbul', ar: 'إسطنبول' } },
+    ],
+    phones: [
+      { file: 'm1', label: { fr: 'Accueil', en: 'Home', ar: 'الرئيسية' } },
+      { file: 'm2', label: { fr: 'Omra et Hajj', en: 'Umrah and Hajj', ar: 'العمرة والحج' } },
+    ],
+    // the home, Omra and Hajj, the trips, five destinations, the services
+    // and their three pages, about, FAQ, contact: every page its nav and
+    // footer link
+    pageCount: 15,
+    langs: 'AR · FR',
+    palette: [
+      { hex: '#1F8A7A', role: 'accent' },
+      { hex: '#E8602C', role: 'cta' },
+      { hex: '#14211E', role: 'ink' },
+      { hex: '#FCFAF6', role: 'ground' },
+      { hex: '#061A17', role: 'night' },
+    ],
+    type: ['Changa', 'Readex Pro'],
+    context: {
+      fr: "Une agence de voyages et d’Omra d’Aïn M’lila, qui fait partir les voyageurs de l’Est algérien depuis l’aéroport de Constantine ; on y réserve sur WhatsApp ou par téléphone.",
+      en: "A travel and Umrah agency from Aïn M’lila that flies travellers from eastern Algeria out of Constantine airport; people book on WhatsApp or by phone.",
+      ar: "وكالة سياحة وعمرة من عين مليلة، تُسفّر المسافرين من شرق الجزائر انطلاقاً من مطار قسنطينة، ويحجز عملاؤها عبر واتساب أو بالهاتف.",
+    },
+    gains: [
+      { at: "/omra/",
+        fr: "Un pèlerin compare les forfaits Omra de chaque saison par hôtel, distance du Haram et prix par personne, et lit ce que le prix comprend, visa compris.",
+        en: "A pilgrim compares each season’s Umrah packages by hotel, distance from the Haram and price per person, and reads what the price covers, visa included.",
+        ar: "يقارن المعتمر باقات العمرة لكل موسم حسب الفندق والمسافة من الحرم والسعر للشخص، ويقرأ ما يشمله السعر، بما فيه التأشيرة." },
+      { at: "/voyages/",
+        fr: "Un voyageur parcourt sur une seule page les destinations au départ de Constantine, prix par personne à l’appui, ou sur demande, et ouvre de chacune le détail ou WhatsApp.",
+        en: "A traveller looks through the destinations leaving from Constantine on a single page, with the price per person, or on request, and opens the details or WhatsApp from each.",
+        ar: "يتصفّح المسافر في صفحة واحدة الوجهات المنطلقة من قسنطينة مع السعر للشخص أو عند الطلب، ويفتح من كل وجهة تفاصيلها أو واتساب." }, // AR review: p.nomara.g1 (2026-11-24, wave 3 review)
+      { at: "/turquie/",
+        fr: "Sur la page d’une destination, il lit le programme, ce que le prix comprend et, écrit en clair, ce qu’il ne comprend pas.",
+        en: "On a destination’s page, they read the programme, what the price covers and, spelled out, what it does not.",
+        ar: "وفي صفحة كل وجهة، يقرأ البرنامج وما يشمله السعر، وما لا يشمله مكتوباً بوضوح." },
+      { at: "/services/visa/",
+        fr: "Pour un visa, un hôtel ou un billet d’avion, il lit comment l’agence procède, étape par étape, puis lance sa demande sur WhatsApp.",
+        en: "For a visa, a hotel or a plane ticket, they read how the agency goes about it, step by step, then start the request on WhatsApp.",
+        ar: "ولتأشيرة أو فندق أو تذكرة طيران، يقرأ كيف تعمل الوكالة خطوة بخطوة، ثم يبدأ طلبه عبر واتساب." },
+      { at: "/",
+        fr: "Il lit le site en arabe ou en français, en mode clair ou en mode sombre.",
+        en: "They read the site in Arabic or French, in light or dark mode.",
+        ar: "يقرأ الموقع بالعربية أو بالفرنسية، بالوضع الفاتح أو الداكن." },
+    ],
+    t: {
+      fr: {
+        sector: 'Voyages et Omra · Aïn M’lila',
+        scope: 'Site vitrine bilingue et réservation WhatsApp',
+        summary: "Une agence de voyages et d’Omra de l’Est algérien : les forfaits Omra par hôtel et distance du Haram, une page par destination avec son programme et ce que le prix comprend, les services (hôtels, billets, visa) et la réservation sur WhatsApp. En arabe et en français, en mode clair et sombre.",
+        deliverables: ['Site bilingue AR · FR, arabe en RTL', 'Page Omra et Hajj', '5 pages destination', '3 pages de services', 'Réservation sur WhatsApp', 'Mode clair et mode sombre'],
+      },
+      en: {
+        sector: 'Travel and Umrah · Aïn M’lila',
+        scope: 'Bilingual showcase site and WhatsApp booking',
+        summary: 'A travel and Umrah agency in eastern Algeria: Umrah packages by hotel and distance from the Haram, one page per destination with its programme and what the price covers, the services (hotels, flights, visas) and booking on WhatsApp. In Arabic and French, with light and dark modes.',
+        deliverables: ['Bilingual site AR · FR, with right-to-left Arabic', 'Umrah and Hajj page', '5 destination pages', '3 service pages', 'Booking on WhatsApp', 'Light and dark mode'],
+      },
+      ar: {
+        sector: 'سياحة وعمرة · عين مليلة',
+        scope: 'موقع تعريفي ثنائي اللغة وحجز عبر واتساب',
+        summary: 'وكالة سياحة وعمرة في شرق الجزائر: باقات العمرة حسب الفندق والمسافة من الحرم، وصفحة لكل وجهة ببرنامجها وما يشمله السعر، والخدمات (الفنادق والتذاكر والتأشيرة)، والحجز عبر واتساب. بالعربية والفرنسية، بوضعين فاتح وداكن.', // AR review: p.nomara.summary (2026-11-24, wave 3 review)
+        deliverables: ['موقع ثنائي اللغة (العربية والفرنسية)، والعربية من اليمين إلى اليسار', 'صفحة العمرة والحج', '5 صفحات للوجهات', '3 صفحات للخدمات', 'الحجز عبر واتساب', 'وضع فاتح ووضع داكن'],
+      },
+    },
+  },
+  {
+    // wave 3 (2026-11-24, the owner: a finished project, on Vercel): read off
+    // its live pages that day (the directory, two company pages, its legal
+    // notice, the directory in Arabic; colours from its stylesheet, the face from its font file). Its
+    // own name only: it is not counted among the delivered client sites, and
+    // nothing here says whose order it was. Never its admin space.
+    slug: 'annuaire',
+    name: 'Annuaire industriel algérien',
+    // the heading per language: the site's own French name in fr and en, the
+    // Arabic name the Arabic home and the Studio use (proof.annuaire) in ar
+    // (OWNER-CONTENT, wave-3 Arabic review)
+    nameT: { fr: 'Annuaire industriel algérien', en: 'Annuaire industriel algérien', ar: 'الدليل الصناعي الجزائري' }, // AR review: p.annuaire.name (2026-11-24, wave 3 review)
+    url: 'https://annuaire-dz.vercel.app/fr',
+    status: 'finished',
+    pages: [
+      { file: 'd1', path: '/', label: { fr: 'L’annuaire', en: 'The directory', ar: 'الدليل' } },
+      { file: 'd2', path: '/entreprises/africaver-spa', label: { fr: 'Fiche entreprise, Jijel', en: 'Company page, Jijel', ar: 'صفحة مؤسسة، جيجل' } },
+      { file: 'd3', path: '/entreprises/briks-eurl-kadri-et-fils', label: { fr: 'Fiche entreprise, Bordj Bou Arréridj', en: 'Company page, Bordj Bou Arréridj', ar: 'صفحة مؤسسة، برج بوعريريج' } },
+      // the directory in Arabic, beside /fr (the legal notice stays a deliverable line only)
+      { file: 'd4', path: '/ar', label: { fr: 'L’annuaire en arabe', en: 'The directory in Arabic', ar: 'الدليل بالعربية' } }, // AR review: p.annuaire.pg3 (2026-11-24, wave 3 review)
+    ],
+    phones: [
+      { file: 'm1', label: { fr: 'L’annuaire', en: 'The directory', ar: 'الدليل' } },
+      { file: 'm2', label: { fr: 'Fiche entreprise', en: 'Company page', ar: 'صفحة مؤسسة' } },
+    ],
+    pageCount: null,
+    langs: 'FR · AR · EN',
+    palette: [
+      { hex: '#047857', role: 'accent' },
+      { hex: '#0F172A', role: 'ink' },
+      { hex: '#475569', role: 'muted' },
+      { hex: '#ECFDF5', role: 'surface' },
+      { hex: '#F8FAFC', role: 'ground' },
+    ],
+    type: ['Plus Jakarta Sans'],
+    context: {
+      fr: "Un annuaire public des entreprises industrielles algériennes : ce qu’elles savent faire et ce qu’elles recherchent, pour que les acheteurs, les investisseurs et les partenaires trouvent celles qu’il leur faut.",
+      en: "A public directory of Algerian industrial companies: what they can do and what they are looking for, so that buyers, investors and partners find the ones they need.",
+      ar: "دليل عمومي للمؤسسات الصناعية الجزائرية: ما تتقنه وما تبحث عنه، ليجد المشترون والمستثمرون والشركاء المؤسسات التي يحتاجونها.",
+    },
+    gains: [
+      { at: "/",
+        fr: "Un acheteur cherche une entreprise ou une activité, puis filtre la liste par wilaya et par type d’entreprise.",
+        en: "A buyer searches for a company or an activity, then narrows the list by wilaya and by type of company.",
+        ar: "يبحث المشتري عن مؤسسة أو نشاط، ثم يصفّي القائمة حسب الولاية ونوع المؤسسة." },
+      { at: "/entreprises/africaver-spa",
+        fr: "Sur la fiche d’une entreprise, il lit ce qu’elle sait faire, ses certifications et ses besoins, avec sa wilaya, sa tranche d’effectif et un lien vers son site.",
+        en: "On a company’s page, they read what it can do, its certifications and its needs, with its wilaya, its headcount band and a link to its website.",
+        ar: "في صفحة كل مؤسسة، يقرأ ما تتقنه وشهاداتها واحتياجاتها، مع ولايتها وفئة عدد عمّالها ورابط موقعها." },
+      { at: "/entreprises/africaver-spa",
+        fr: "De là, il passe à des entreprises similaires.",
+        en: "From there, they move on to similar companies.",
+        ar: "ومن هناك، ينتقل إلى مؤسسات مشابهة." },
+      { at: "/mentions-legales",
+        fr: "Il sait ce qui est publié et ce qui ne l’est jamais : ni les coordonnées des personnes, ni les chiffres des entreprises, ni leurs financements.",
+        en: "They know what is published and what never is: no one’s contact details, no company figures, no funding.",
+        ar: "ويعرف ما يُنشر وما لا يُنشر أبداً: لا بيانات اتصال الأشخاص، ولا أرقام المؤسسات، ولا تمويلاتها." },
+      { at: "/",
+        fr: "Il lit l’annuaire en français, en arabe ou en anglais.",
+        en: "They read the directory in French, Arabic or English.",
+        ar: "يقرأ الدليل بالفرنسية أو العربية أو الإنجليزية." },
+    ],
+    t: {
+      fr: {
+        sector: 'Annuaire industriel · Algérie',
+        scope: 'Annuaire en ligne trilingue',
+        summary: "L’annuaire des entreprises industrielles algériennes : savoir-faire, certifications et besoins. Une recherche filtrée par wilaya et par type, une fiche par entreprise avec ses entreprises similaires, en français, en arabe et en anglais.",
+        deliverables: ['Annuaire trilingue FR · AR · EN, arabe en RTL', 'Recherche et filtres par wilaya et par type', 'Une fiche par entreprise', 'Entreprises similaires', 'Espace d’administration', 'Mentions légales et confidentialité'],
+      },
+      en: {
+        sector: 'Industrial directory · Algeria',
+        scope: 'Trilingual online directory',
+        summary: 'The directory of Algerian industrial companies: capabilities, certifications and needs. A search filtered by wilaya and type, one page per company with its similar companies, in French, Arabic and English.',
+        deliverables: ['Trilingual directory FR · AR · EN, with right-to-left Arabic', 'Search and filters by wilaya and type', 'One page per company', 'Similar companies', 'Admin area', 'Legal notice and privacy'],
+      },
+      ar: {
+        sector: 'دليل صناعي · الجزائر',
+        scope: 'دليل إلكتروني ثلاثي اللغة',
+        summary: 'دليل المؤسسات الصناعية الجزائرية: الكفاءات والشهادات والاحتياجات. بحث مع تصفية حسب الولاية والنوع، وصفحة لكل مؤسسة مع مؤسسات مشابهة، بالفرنسية والعربية والإنجليزية.',
+        deliverables: ['دليل ثلاثي اللغة (الفرنسية والعربية والإنجليزية)، والعربية من اليمين إلى اليسار', 'بحث وتصفية حسب الولاية والنوع', 'صفحة لكل مؤسسة', 'مؤسسات مشابهة', 'فضاء الإدارة', 'الإشعار القانوني والخصوصية'],
       },
     },
   },
@@ -407,6 +574,86 @@ export const PROJECTS = [
       },
     },
   },
+  {
+    // wave 3 (2026-11-24, the owner: "numidea itself should be among the
+    // finished projects"): the studio's own site, labelled as such (as the
+    // Glaive demo is labelled a demo). Captured from this repository (lib/serve.mjs),
+    // never from the live host; its link is the home page, relative like
+    // WorkspaceHQ's, so the browser bar shows the published address.
+    slug: 'numidea',
+    name: 'Numidea Labs',
+    url: '../',
+    status: 'own',
+    pages: [
+      { file: 'd1', path: '/', label: { fr: 'Accueil', en: 'Home', ar: 'الرئيسية' } },
+      { file: 'd2', path: '/tarifs/', label: { fr: 'Guide des prix', en: 'Price guide', ar: 'دليل الأسعار' } },
+      { file: 'd3', path: '/hub/', label: { fr: 'Le Studio', en: 'The Studio', ar: 'الاستوديو' } },
+      { file: 'd4', path: '/hub/lanterne/', label: { fr: 'La Librairie Lanterne', en: 'The Lantern Bookshop', ar: 'المكتبة' } },
+    ],
+    phones: [
+      { file: 'm1', label: { fr: 'Accueil', en: 'Home', ar: 'الرئيسية' } },
+      { file: 'm2', label: { fr: 'Le Studio', en: 'The Studio', ar: 'الاستوديو' } },
+    ],
+    pageCount: null,
+    langs: 'FR · EN · AR',
+    // the home's night (Arcanum, assets/themes.css) and the Studio's cream day (hub/style.css)
+    palette: [
+      { hex: '#0A1420', role: 'ground' },
+      { hex: '#EAF1F8', role: 'ink' },
+      { hex: '#E6B450', role: 'accent' },
+      { hex: '#34D0E8', role: 'highlight' },
+      { hex: '#F3ECE1', role: 'surface' },
+      { hex: '#A34135', role: 'cta' },
+    ],
+    type: ['Cinzel', 'Geist', 'IBM Plex Sans Arabic'],
+    context: {
+      fr: "Notre propre site, celui que vous lisez : le studio y présente ses prix et ses travaux, et y tient ses leçons gratuites.",
+      en: "Our own site, the one you are reading: the studio shows its prices and its work there, and keeps its free lessons.",
+      ar: "موقعنا الخاص، الذي تقرؤه الآن: فيه يعرض الاستوديو أسعاره وأعماله، وفيه دروسه المجانية.",
+    },
+    gains: [
+      { at: "/",
+        fr: "Un visiteur lit le site en français, en anglais ou en arabe, et demande un Aperçu gratuit de sa page d’accueil avant de payer.",
+        en: "A visitor reads the site in French, English or Arabic, and asks for a free Preview of their home page before paying.",
+        ar: "يقرأ الزائر الموقع بالفرنسية أو الإنجليزية أو العربية، ويطلب معاينة مجانية لصفحته الرئيسية قبل أن يدفع." },
+      { at: "/tarifs/",
+        fr: "Il lit les prix publiés, en dinars, et ce que chaque formule comprend, avant d’écrire.",
+        en: "They read the published prices, in dinars, and what each package includes, before writing.",
+        ar: "يقرأ الأسعار المنشورة بالدينار، وما تشمله كل باقة، قبل أن يراسل." },
+      { at: "/hub/",
+        fr: "Au Studio, il ouvre le dossier de chaque client livré, pièce par pièce, et estime son propre projet.",
+        en: "In the Studio, they open each delivered client’s case file piece by piece, and estimate their own project.",
+        ar: "وفي الاستوديو، يفتح ملف كل عميل سُلِّم عمله، قطعة بقطعة، ويقدّر كلفة مشروعه." },
+      { at: "/hub/lanterne/",
+        fr: "À la Librairie Lanterne, il suit des leçons gratuites, chacune un atlas qu’on joue quartier par quartier.",
+        en: "In the Lantern Bookshop, they take free lessons, each an atlas played district by district.",
+        ar: "وفي المكتبة، يتابع دروساً مجانية، كلّ منها أطلس يُلعب حيّاً بحيّ." },
+      { at: "/hub/lanterne/enquetes.html",
+        fr: "Aux enquêtes de nuit, il lit une affirmation en vogue et pointe la preuve sur un écran factice, gratuitement, dans son navigateur.",
+        en: "In the night cases, they read a fashionable claim and point at the proof on a mock screen, free, in their browser.",
+        ar: "وفي تحقيقات الليل، يقرأ ادّعاءً رائجاً ويشير إلى الدليل على شاشة وهمية، مجاناً، في متصفّحه." },
+    ],
+    t: {
+      fr: {
+        sector: 'Studio web · Bordj Bou Arréridj',
+        scope: 'Notre propre site, en trois langues',
+        summary: "Notre propre site, celui que vous lisez : en français, en anglais et en arabe, avec un guide des prix publiés, le Studio et les dossiers des clients, la Librairie Lanterne et ses leçons gratuites, et les enquêtes de nuit, un jeu.",
+        deliverables: ['Site trilingue FR · EN · AR, arabe en RTL', 'Guide des prix', 'Le Studio et les dossiers clients', 'La Librairie Lanterne', 'Les enquêtes de nuit, un jeu', 'Deux thèmes, nuit et jour'],
+      },
+      en: {
+        sector: 'Web studio · Bordj Bou Arréridj',
+        scope: 'Our own site, in three languages',
+        summary: 'Our own site, the one you are reading: in French, English and Arabic, with a guide to its published prices, the Studio and the clients’ case files, the Lantern Bookshop and its free lessons, and the night cases, a game.',
+        deliverables: ['Trilingual site FR · EN · AR, with right-to-left Arabic', 'Price guide', 'The Studio and the client case files', 'The Lantern Bookshop', 'The night cases, a game', 'Two themes, night and day'],
+      },
+      ar: {
+        sector: 'استوديو ويب · برج بوعريريج',
+        scope: 'موقعنا الخاص، بثلاث لغات',
+        summary: 'موقعنا الخاص، الذي تقرؤه الآن: بالفرنسية والإنجليزية والعربية، مع دليل لأسعارنا المنشورة، والاستوديو وملفات العملاء، والمكتبة ودروسها المجانية، وتحقيقات الليل، وهي لعبة.',
+        deliverables: ['موقع ثلاثي اللغة (الفرنسية والإنجليزية والعربية)، والعربية من اليمين إلى اليسار', 'دليل الأسعار', 'الاستوديو وملفات العملاء', 'المكتبة', 'تحقيقات الليل، لعبة', 'مظهران، ليلي ونهاري'],
+      },
+    },
+  },
 ];
 
 /* Interface copy, per language. A buyer reads "projet", never "planche":
@@ -425,16 +672,16 @@ export const UI = {
     desc: "Sites livrés en Algérie et en France, captures à l'appui\u202f: pages, version mobile, système visuel et lien vers le site en ligne.",
     crumb: 'Réalisations', crumbNav: "Fil d’Ariane", langs: 'Langue', kicker: 'En détail',
     h1: 'Nos réalisations, <em>livrable par livrable.</em>',
-    lead: "Les trois premières planches sont des sites livrés à des clients, tels qu’ils sont en\u00a0ligne\u202f; puis une démo de portfolio et notre propre outil.",
-    group: 'Hors commande client\u202f: une démo et notre outil',
+    lead: "Les quatre premières planches sont des sites livrés à des clients, tels qu’ils sont en\u00a0ligne\u202f; puis nos autres projets terminés\u202f: un annuaire industriel, une démo de portfolio, notre propre outil et ce site.",
+    group: 'Autres projets terminés\u202f: un annuaire, une démo, notre outil et ce site',
     act: 'Demander mon Aperçu gratuit →', by: 'Par le fondateur', full: 'Voir la planche complète',
     index: 'Sommaire des réalisations', sheet: 'Planche', visit: 'Voir le site', open: 'Ouvrir',
     sector: 'Secteur', scope: 'Périmètre', pagesL: 'Pages', langsL: 'Langues', statusL: 'Statut',
     deliverables: 'Livrables', pages: 'Pages livrées', mobile: 'Sur mobile', system: 'Système visuel',
     palette: 'Couleurs', type: 'Typographie', before: 'Avant / après', beforeL: 'Avant', afterL: 'Après', brand: 'Éléments de marque livrés', voice: 'Le client en parle', skip: 'Aller aux réalisations',
-    status: { live: 'En\u00a0ligne', concept: 'Démo de portfolio', product: 'Produit maison' },
-    gain: { live: 'Ce que le site apporte au client', concept: 'Ce que la démo montre', product: "Ce que l’outil apporte à ses utilisateurs" },
-    ctxL: { live: 'Le client', concept: 'Le cadre', product: 'Pour qui' },
+    status: { live: 'En\u00a0ligne', concept: 'Démo de portfolio', product: 'Produit maison', finished: 'Projet terminé', own: 'Notre propre site' },
+    gain: { live: 'Ce que le site apporte au client', concept: 'Ce que la démo montre', product: "Ce que l’outil apporte à ses utilisateurs", finished: 'Ce que le site apporte à ses visiteurs', own: 'Ce que le site apporte à ses visiteurs' },
+    ctxL: { live: 'Le client', concept: 'Le cadre', product: 'Pour qui', finished: 'Le projet', own: 'Le cadre' },
     role: { accent: 'Accent', ink: 'Texte', muted: 'Secondaire', surface: 'Surface', ground: 'Fond', highlight: 'Relief', night: 'Mode sombre', cta: 'Action' },
     viewer: 'Capture agrandie', close: 'Fermer', zoomIn: 'Toucher pour agrandir', zoomOut: 'Toucher pour ajuster à l’écran', tech: 'Fiche technique',
     altDesk: '{name}, page {label} ({path})\u202f: capture du site en\u00a0ligne sur un écran de 1440\u00a0px', altPhone: '{name}, page {label}\u202f: capture du site en\u00a0ligne sur un téléphone',
@@ -446,16 +693,16 @@ export const UI = {
     desc: 'Sites delivered in Algeria and France, screenshots included: pages, mobile version, visual system and a link to the live site.',
     crumb: 'Work', crumbNav: 'Breadcrumb', langs: 'Language', kicker: 'In detail',
     h1: 'Our work, <em>piece by piece.</em>',
-    lead: 'The first three sheets are sites delivered to clients, as they are live today; then a portfolio demo and our own tool.',
-    group: 'Not client work: a demo and our own tool',
+    lead: 'The first four sheets are sites delivered to clients, as they are live today; then our other finished projects: an industrial directory, a portfolio demo, our own tool and this site.',
+    group: 'Other finished projects: a directory, a demo, our tool and this site',
     act: 'Request my free Preview →', by: 'By the founder', full: 'See the full sheet',
     index: 'Work index', sheet: 'Sheet', visit: 'Visit the site', open: 'Open',
     sector: 'Sector', scope: 'Scope', pagesL: 'Pages', langsL: 'Languages', statusL: 'Status',
     deliverables: 'Deliverables', pages: 'Pages delivered', mobile: 'On mobile', system: 'Visual system',
     palette: 'Colour', type: 'Type', before: 'Before / after', beforeL: 'Before', afterL: 'After', brand: 'Brand assets delivered', voice: 'In the client’s words', skip: 'Skip to the work',
-    status: { live: 'Live', concept: 'Portfolio demo', product: 'Our product' },
-    gain: { live: 'What the site gives the client', concept: 'What the demo shows', product: 'What the tool gives its users' },
-    ctxL: { live: 'The client', concept: 'The brief', product: 'Who it is for' },
+    status: { live: 'Live', concept: 'Portfolio demo', product: 'Our product', finished: 'Finished project', own: 'Our own site' },
+    gain: { live: 'What the site gives the client', concept: 'What the demo shows', product: 'What the tool gives its users', finished: 'What the site gives its visitors', own: 'What the site gives its visitors' },
+    ctxL: { live: 'The client', concept: 'The brief', product: 'Who it is for', finished: 'The project', own: 'The brief' },
     role: { accent: 'Accent', ink: 'Text', muted: 'Secondary', surface: 'Surface', ground: 'Ground', highlight: 'Highlight', night: 'Dark mode', cta: 'Action' },
     viewer: 'Enlarged screenshot', close: 'Close', zoomIn: 'Tap to zoom', zoomOut: 'Tap to fit the screen', tech: 'Technical sheet',
     altDesk: '{name}, {label} page ({path}): screenshot of the live site on a 1440\u00a0px screen', altPhone: '{name}, {label} page: screenshot of the live site on a phone',
@@ -467,16 +714,16 @@ export const UI = {
     desc: 'مواقع سُلِّمت في الجزائر وفرنسا، مع لقطات شاشة: الصفحات، ونسخة الهاتف، والنظام البصري، ورابط الموقع على الإنترنت.',
     crumb: 'الأعمال', crumbNav: 'مسار التنقّل', langs: 'اللغة', kicker: 'بالتفصيل',
     h1: 'الأعمال، <em>بنداً ببند.</em>',
-    lead: 'اللوحات الثلاث الأولى مواقع سُلِّمت لعملاء، كما هي على\u00a0الإنترنت اليوم؛ ثم عرض تجريبي ضمن الأعمال وأداتنا الخاصة.', // AR review: ui.lead (2026-11-23)
-    group: 'خارج طلبات العملاء: عرض تجريبي وأداتنا الخاصة',
+    lead: 'اللوحات الأربع الأولى مواقع سُلِّمت لعملاء، كما هي على\u00a0الإنترنت اليوم؛ ثم مشاريعنا المنجزة الأخرى: دليل صناعي، وعرض تجريبي ضمن الأعمال، وأداتنا الخاصة، وهذا الموقع.', // AR review: ui.lead (2026-11-24, wave 3)
+    group: 'مشاريع منجزة أخرى: دليل، وعرض تجريبي، وأداتنا، وهذا الموقع', // AR review: ui.group (2026-11-24, wave 3)
     act: 'اطلب معاينتك المجانية ←', by: 'من عمل المؤسّس', full: 'عرض اللوحة كاملة', // AR review: ui.full
     index: 'فهرس الأعمال', sheet: 'لوحة', visit: 'زيارة الموقع', open: 'فتح',
     sector: 'القطاع', scope: 'النطاق', pagesL: 'الصفحات', langsL: 'اللغات', statusL: 'الحالة',
     deliverables: 'المُخرَجات', pages: 'الصفحات المسلّمة', mobile: 'على الهاتف', system: 'النظام البصري',
     palette: 'الألوان', type: 'الخطوط', before: 'قبل / بعد', beforeL: 'قبل', afterL: 'بعد', brand: 'عناصر الهوية المسلّمة', voice: 'بكلمات العميل', skip: 'انتقل إلى الأعمال',
-    status: { live: 'على\u00a0الإنترنت', concept: 'عرض تجريبي', product: 'منتجنا' },
-    gain: { live: 'ما يقدّمه الموقع للعميل', concept: 'ما يبيّنه العرض التجريبي', product: 'ما تقدّمه الأداة لمستخدميها' },
-    ctxL: { live: 'العميل', concept: 'الإطار', product: 'لمن' },
+    status: { live: 'على\u00a0الإنترنت', concept: 'عرض تجريبي', product: 'منتجنا', finished: 'مشروع منجز', own: 'موقعنا الخاص' }, // AR review: ui.status.finished, ui.status.own (wave 3)
+    gain: { live: 'ما يقدّمه الموقع للعميل', concept: 'ما يبيّنه العرض التجريبي', product: 'ما تقدّمه الأداة لمستخدميها', finished: 'ما يقدّمه الموقع لزوّاره', own: 'ما يقدّمه الموقع لزوّاره' }, // AR review: ui.gain.finished, ui.gain.own (wave 3)
+    ctxL: { live: 'العميل', concept: 'الإطار', product: 'لمن', finished: 'المشروع', own: 'الإطار' }, // AR review: ui.ctxL.finished (wave 3)
     role: { accent: 'لون مميّز', ink: 'النص', muted: 'ثانوي', surface: 'سطح', ground: 'خلفية', highlight: 'إبراز', night: 'الوضع الداكن', cta: 'إجراء' },
     viewer: 'لقطة مكبّرة', close: 'إغلاق', zoomIn: 'المس للتكبير', zoomOut: 'المس للملاءمة مع الشاشة', tech: 'البطاقة التقنية', // AR review: ui.zoomIn, ui.zoomOut, ui.tech
     altDesk: '{name}، صفحة {label} ({path}): لقطة من الموقع على\u00a0الإنترنت على شاشة بعرض 1440\u00a0بكسل', altPhone: '{name}، صفحة {label}: لقطة من الموقع على\u00a0الإنترنت على هاتف',

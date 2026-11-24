@@ -365,8 +365,9 @@
         <!-- The plate is a way into the site, not out of it: it leads to the
              slide's project sheet (scene/), where the caption under it leads
              to the client's live site. The deck (app.js) moves this link to
-             each slide's sheet as it turns; Nomara has no sheet, so its
-             slide leads to its card below. The link is named by the slide
+             each slide's sheet as it turns (each of the four has one since
+             wave 3; a slide without data-sheet would lead to its card below).
+             The link is named by the slide
              shown (its alt) and the sheet's own words. -->
         <a class="plate-link" href="../scene/?lang=en#bordjsteel">
         <div class="plate">
@@ -386,8 +387,8 @@
           <span class="pm-idx" aria-hidden="true"><b>01</b>/04</span>
           <span class="pm-rot">
         <a class="pm-item on" data-client="bordjsteel" data-sheet="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener noreferrer"><b>Bordj Steel</b><i data-i18n="proj4.cat">Industrial · B2B</i></a>
-        <a class="pm-item" data-client="alliance" data-sheet="alliance" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener noreferrer"><b>Alliance Travel</b><i data-i18n="proj2.cat">Travel · Growth</i></a>
-        <a class="pm-item" data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener noreferrer"><b>Nomara Voyages</b><i data-i18n="proj6.cat">Travel · Umrah</i></a>
+        <a class="pm-item" data-client="alliance" data-sheet="alliance" href="https://alliancetravel.app/" target="_blank" rel="noopener noreferrer"><b>Alliance Travel</b><i data-i18n="proj2.cat">Travel · Growth</i></a>
+        <a class="pm-item" data-client="nomara" data-sheet="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener noreferrer"><b>Nomara Voyages</b><i data-i18n="proj6.cat">Travel · Umrah</i></a>
         <a class="pm-item" data-client="almaflow" data-sheet="almaflow" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener noreferrer"><b>AlmaFlowClim</b><i data-i18n="proj3.cat">Contractor · Île-⁠de-⁠France</i></a>
           </span>
         </div>
@@ -492,7 +493,7 @@
           <span class="gain-k" data-i18n="work.outcome">For the visitor</span>
           <a class="gain" href="../scene/?lang=en#gv-alliance"><span data-i18n="proj2.gain">A traveller gets an estimate for their trip and sends a complete request on WhatsApp.</span><span class="sr-only" data-i18n="work.gainMore"> — more on the project sheet</span></a>
           <div class="actions">
-            <a data-client="alliance" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener" data-i18n="proj2.live">Visit Alliance Travel <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+            <a data-client="alliance" href="https://alliancetravel.app/" target="_blank" rel="noopener" data-i18n="proj2.live">Visit Alliance Travel <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
           </div>
         </div>
       </article>
@@ -515,14 +516,12 @@
         <div class="thumb"><img class="shot" src="../assets/previews/nomara.webp" srcset="../assets/previews/nomara-720.webp 720w, ../assets/previews/nomara.webp 1280w" sizes="(min-width:1920px) 457px, (min-width:960px) 28vw, (min-width:720px) 44vw, 91vw" alt="Screenshot of the Nomara Voyages website" data-i18n-alt="proj6.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj6.cat">Travel · Umrah</span>
-          <!-- no sheet for Nomara (scene/): its title is plain text and the foot
-               link, stretched over the plate (.stretch), is its one link -->
-          <h3>Nomara Voyages</h3>
+          <h3><a href="../scene/?lang=en#nomara">Nomara Voyages <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">See the project in detail</span></a></h3>
           <p data-i18n="proj6.desc">A bilingual storefront for package tours and Umrah trips departing from Constantine.</p>
           <span class="gain-k" data-i18n="work.outcome">For the visitor</span>
-          <p class="gain" data-i18n="proj6.gain">A pilgrim compares Umrah packages by price and distance from the Haram, then messages on WhatsApp.</p>
+          <a class="gain" href="../scene/?lang=en#gv-nomara"><span data-i18n="proj6.gain">A pilgrim compares Umrah packages by price and distance from the Haram, then messages on WhatsApp.</span><span class="sr-only" data-i18n="work.gainMore"> — more on the project sheet</span></a>
           <div class="actions">
-            <a class="stretch" data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener" data-i18n="proj6.live">Visit Nomara Voyages <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+            <a data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener" data-i18n="proj6.live">Visit Nomara Voyages <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
           </div>
         </div>
       </article>
@@ -531,12 +530,21 @@
     <!-- Client voices: filled by scripts/build-voices.mjs from scripts/voices-data.mjs
          (real, consented quotes only, in the language they were given). Empty = nothing shown. -->
     <!-- SLOT:voices --><!-- /SLOT:voices -->
-    <!-- the live demo, one muted line under the four clients: Glaive is a
-         brand the studio made up to show its work, not a client's order. -->
+    <!-- the other finished work, one muted line each under the four clients
+         (the grid is a lead row and three: client sites only). Glaive is a
+         brand the studio made up to show its work, not a client's order; the
+         industrial directory (wave 3, 2026-11-24) is a finished project under
+         its own name, not counted among the delivered sites; the last line is
+         this site, labelled as the studio's own. -->
     <div class="work-foot reveal">
       <p class="work-demo"><span data-i18n="work.demo">Also: Glaive Store, a made-up brand designed from scratch as a portfolio demo.</span>
         <span class="work-links"><a data-client="glaive" href="https://glaivestore.netlify.app" target="_blank" rel="noopener" data-i18n="work.demoLive">Visit Glaive Store <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
         <a href="../scene/?lang=en#glaive" data-i18n="work.sheet">See the project in detail</a></span></p>
+      <p class="work-demo"><span data-i18n="work.annuaire">Also finished: the Algerian industrial directory, the capabilities, certifications and needs of Algeria’s industrial companies, in three languages.</span>
+        <span class="work-links"><a data-client="annuaire" href="https://annuaire-dz.vercel.app/fr" target="_blank" rel="noopener" data-i18n="work.annuaireLive">Visit the directory <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+        <a href="../scene/?lang=en#annuaire" data-i18n="work.sheet">See the project in detail</a></span></p>
+      <p class="work-demo"><span data-i18n="work.own">And this site, our own: three languages, a price guide, the Studio, the Lantern Bookshop and the night cases.</span>
+        <span class="work-links"><a href="../scene/?lang=en#numidea" data-i18n="work.sheet">See the project in detail</a></span></p>
       <a class="scene-link" href="../scene/?lang=en"><span class="sb-go" data-i18n="scene.cta">See the projects in detail <span aria-hidden="true">→</span></span></a>
       <p class="scene-lead" data-i18n="scene.lead">Each sheet shows a project’s key pages, its mobile version and its visual system — every screenshot taken from the live site.</p>
     </div>
@@ -565,7 +573,11 @@
   <section id="services" class="band" aria-labelledby="svc-h">
     <span class="kicker" data-i18n="svc.kicker">Services</span>
     <h2 class="sec font-swap-display" id="svc-h" data-i18n="svc.title">What we <em>build for you.</em></h2>
-    <p class="svc-lead" data-i18n="svc.lead">Five core services, and five more just below. One contact for all of them.</p>
+    <!-- the lead and f1's line say what the visitor gets, with no figure
+         (wave 3, drafted, reversible: OWNER-CONTENT, wave 3, the founder and
+         the services); the stack tags left the cards then (they stay on the
+         project sheets, /scene/) -->
+    <p class="svc-lead" data-i18n="svc.lead">What you walk away with: a site that makes people want to write to you, an image that earns trust, hours handed back to your trade. One contact, from the first message to launch.</p>
 
     <!-- SIGNATURE OFFER — pinned -->
     <article class="preview reveal" id="apercu" aria-labelledby="prev-h">
@@ -616,10 +628,8 @@
         <div>
           <h3 data-i18n="f1.name">Sites &amp; web applications</h3>
           <img class="svc-spot" src="../assets/illus/svc-sites-400.webp" width="400" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
-          <p class="promise" data-i18n="f1.promise">The obvious choice.</p>
+          <p class="promise" data-i18n="f1.promise">A site that turns a visit into a message.</p>
           <p class="brief" data-i18n="f1.brief">Custom websites and web apps — fast, optimised for search engines and built to turn visitors into enquiries. No ready-made templates: we design your site from scratch.</p>
-          <!-- only what the delivered builds use (F11): the rest waits for the owner to confirm it -->
-          <div class="tags"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Tailwind</span></div>
           <span class="fam" data-i18n="svc.famBuild">Sites &amp; design</span>
         </div>
       </article>
@@ -630,7 +640,6 @@
           <img class="svc-spot" src="../assets/illus/svc-identity-400.webp" width="400" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
           <p class="promise" data-i18n="f2.promise">Trust before a word is read.</p>
           <p class="brief" data-i18n="f2.brief">Logos, colour, typography, motion and a complete, documented design system — everything that gives a small company the look of an established firm.</p>
-          <div class="tags"><span class="pill" data-i18n="tag.identity">Identity</span><span class="pill" data-i18n="tag.designSystems">Design kits</span><span class="pill" data-i18n="tag.motion">Motion</span></div>
           <span class="fam" data-i18n="svc.famBuild">Sites &amp; design</span>
         </div>
       </article>
@@ -641,7 +650,6 @@
           <img class="svc-spot" src="../assets/illus/svc-auto-400.webp" width="400" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
           <p class="promise" data-i18n="f3.promise">Delete the busywork.</p>
           <p class="brief" data-i18n="f3.brief">Web data collection, data pipelines, lead generation, automations, internal tools. The repetitive, fragile work that eats your hours — we make it run on its own at 3am.</p>
-          <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill" data-i18n="tag.apis">APIs</span></div>
           <span class="fam" data-i18n="svc.famEngine">Data &amp; automation</span>
         </div>
       </article>
@@ -652,7 +660,6 @@
           <img class="svc-spot" src="../assets/illus/svc-market-400.webp" width="400" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
           <p class="promise" data-i18n="f4.promise">See the market clearly.</p>
           <p class="brief" data-i18n="f4.brief">Turn public web data into a usable database: competitor monitoring, price and catalogue tracking — collected within each site’s terms and the GDPR, structured and queryable.</p>
-          <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill" data-i18n="tag.maps">Maps</span><span class="pill" data-i18n="tag.scoring">Scoring</span></div>
           <span class="fam" data-i18n="svc.famEngine">Data &amp; automation</span>
         </div>
       </article>
@@ -663,7 +670,6 @@
           <img class="svc-spot" src="../assets/illus/svc-strategy-400.webp" width="400" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
           <p class="promise" data-i18n="f5.promise">Data, not impressions.</p>
           <p class="brief" data-i18n="f5.brief">Full marketing audits, funnel analysis, competitive positioning, roadmaps — honest, ROI first, in phases. We study your sector before the first call.</p>
-          <div class="tags"><span class="pill" data-i18n="tag.strategy">Strategy</span><span class="pill" data-i18n="tag.funnels">Funnels</span><span class="pill" data-i18n="tag.audits">Audits</span></div>
           <span class="fam" data-i18n="svc.famMind">Advisory &amp; AI</span>
         </div>
       </article>
@@ -944,17 +950,17 @@
     <h2 class="sec font-swap-display" id="founder-h" data-i18n="founder.title">Who builds <em>your site.</em></h2>
     <p class="sec-lead" data-i18n="founder.lead">Behind Numidea, one pair of hands: a founder who designs, codes and delivers himself. Freelancers join him when a project calls for it.</p>
 
-    <!-- Everything below is taken from assets/cv_yasser_hamisse_2026.pdf, the
-         source of truth: dates, titles and one-liners. Order follows the CV:
+    <!-- The career panel is taken from the CV (assets/cv_yasser_hamisse_2026.pdf,
+         still linked from the Studio, no longer from here: wave 3), the source
+         of truth for its dates, titles and one-liners. Order follows the CV:
          current roles first, then past work newest first. The studio is one
          founder, with freelancers when a project needs one (owner, 2026-10-30):
          the team block under the card says so, and names nobody. -->
     <div class="founder-card reveal">
+      <!-- no photograph: the founder's face on the site is the drawn Yasser
+           (owner, wave 3, 2026-11-24: "animated ones or artworks instead"),
+           the night plate in the right column -->
       <div class="fd-top">
-        <!-- Photo slot: a real portrait of the founder (never generated), square,
-             at least 400px, saved as assets/founder.webp. Until it exists the
-             card shows no stand-in (a 'Y' monogram stood here): uncomment it.
-        <div class="fd-photo"><img src="../assets/founder.webp" alt="Yasser Hamisse" width="400" height="400" loading="lazy" decoding="async"></div> -->
         <div class="fd-id">
           <h3>Yasser Hamisse</h3>
           <p class="fd-role" data-i18n="founder.role">Graphic designer &amp; web developer · Founder</p>
@@ -977,23 +983,31 @@
         </div>
       </div>
 
-      <!-- the two most recent dated pieces for named clients, from the CV
-           panel below (same keys), each leading to its project sheet: in the
-           left column, under the freelance line, so the right column is the
-           engraving alone (Fleet 7 round 4) -->
+      <!-- what was delivered, not job titles (wave 3, drafted, 2026-11-24):
+           each site live today, what it is in its sheet's own words (scope,
+           scripts/scene-data.mjs), and a date only where the site already
+           gives one (the CV periods, the same keys as the panel below). The
+           four client sites, dated ones first, then the directory, labelled
+           as a finished project like its sheet; each leads to its sheet. In
+           the left column, under the freelance line, so the right column is
+           the drawn plate alone (Fleet 7 round 4) -->
       <div class="fd-recent">
-        <h4 data-i18n="founder.recent">Recently delivered</h4>
+        <h4 data-i18n="founder.recent">Live today</h4>
         <ul>
-          <li><a href="../scene/?lang=en#alliance">Alliance Travel</a> · <span data-i18n="fx3">Web developer &amp; social media manager</span> · <span data-i18n="fx3.when">Feb – May 2026</span></li>
-          <li><a href="../scene/?lang=en#bordjsteel">SPA Bordj Steel</a> · <span data-i18n="fx4">Graphic &amp; web designer</span> · <span data-i18n="fx4.when">Aug 2025 – Feb 2026</span></li>
+          <li><a href="../scene/?lang=en#alliance">Alliance Travel</a> · <span data-i18n="fd.alliance">identity, site and booking journey</span> · <span data-i18n="fx3.when">Feb – May 2026</span></li>
+          <li><a href="../scene/?lang=en#bordjsteel">SPA Bordj Steel</a> · <span data-i18n="fd.bordjsteel">identity and B2B corporate site</span> · <span data-i18n="fx4.when">Aug 2025 – Feb 2026</span></li>
+          <li><a href="../scene/?lang=en#nomara">Nomara Voyages</a> · <span data-i18n="fd.nomara">bilingual site and WhatsApp booking</span></li>
+          <li><a href="../scene/?lang=en#almaflow">AlmaFlowClim</a> · <span data-i18n="fd.almaflow">showcase site and quote request</span></li>
+          <li><a href="../scene/?lang=en#annuaire" data-i18n="fd.annuaireName">The Algerian industrial directory</a> · <span data-i18n="fd.annuaire">online directory in three languages, finished project</span></li>
         </ul>
       </div>
 
       <!-- the right column: a painted night plate (assets/illus/founder-night,
            4:5), Yasser at the workshop window with his coffee and Kūro on the
            sill, inside a frame with a hard offset shadow (Night Shift Poster).
-           The real photo, when the owner supplies one, replaces the <img>
-           (the slot below stays). -->
+           It is the founder's face on the home: no photograph (wave 3). It
+           holds still: the animated Yasser (the rig) is another drawing and
+           lives on the Studio. -->
       <div class="fd-aside">
         <figure class="fd-plate fd-scene">
           <div class="fds-art"><img src="../assets/illus/founder-night-960.webp" srcset="../assets/illus/founder-night-480.webp 480w, ../assets/illus/founder-night-960.webp 960w" sizes="(min-width:1100px) 36vw, (min-width:721px) 38vw, min(100vw, 560px)" width="960" height="1200" alt="Yasser at the workshop window at night, coffee in hand; Kūro on the sill." data-i18n-alt="founder.sceneAlt" loading="lazy" decoding="async"></div>
@@ -1010,17 +1024,14 @@
         <li><a href="mailto:hamissemohamedyasser@gmail.com"><span class="fl-b" aria-hidden="true">@</span><span data-i18n="form.email">Email</span></a></li>
       </ul>
 
-      <!-- the Studio (hub/) and the character bible (hub/bible/) are linked from
-           here again (owner, 2026-11-11: the old reason, "agency of one", went
-           when /hub/ became the Studio). The Studio switches language with
-           the page (?lang=, build-lang.mjs); the bible is in English only,
-           which its label says. With scripts off the panel below is open and
-           its PDF link stands in for the career button (styles.css,
-           html:not(.js)) -->
+      <!-- the Studio (hub/) is linked from here (owner, 2026-11-11); it
+           switches language with the page (?lang=, build-lang.mjs). The CV
+           download and the character bible's link left the home in wave 3
+           (2026-11-24, Q-13): both stay on the Studio. With scripts off the
+           panel below is open (styles.css, html:not(.js)) -->
       <div class="fd-actions">
         <a class="btn btn-teal fd-studio" href="../hub/?lang=en" data-i18n="founder.studio">The Studio, in detail <span aria-hidden="true">→</span></a>
         <button type="button" class="btn btn-teal js-only" id="cv-toggle" aria-expanded="false" aria-controls="cv-panel" data-i18n="founder.cvBtn">See the career path <span aria-hidden="true">↓</span></button>
-        <a class="fd-bible" href="../hub/bible/" data-i18n="founder.bible">The character bible <span aria-hidden="true">→</span></a>
       </div>
 
       <div class="cv-panel" id="cv-panel">
@@ -1030,8 +1041,8 @@
             <ol class="timeline">
               <li class="tl-now"><span class="tl-date" data-i18n="fx1.when">May 2026 — present</span><b>Heetch</b><i data-i18n="fx1">Graphic designer</i><p data-i18n="fx1.what">Visuals and communication material for an international mobility platform; carrying the brand identity across campaigns and social.</p></li>
               <li class="tl-now"><span class="tl-date" data-i18n="fx2.when">2019 — present</span><b>Grafil Studio · tr4veler.designs</b><i data-i18n="fx2">Freelance graphic designer &amp; web developer</i><p data-i18n="fx2.what">Conversion-focused showcase sites and landing pages; visual identities, posters and album covers; art direction for NFT campaigns and musician branding.</p></li>
-              <li><span class="tl-date" data-i18n="fx3.when">Feb – May 2026</span><b>Alliance Travel</b><i data-i18n="fx3">Web developer &amp; social media manager</i><p data-i18n="fx3.what">The agency’s full website, a visual refresh of the brand and its social media strategy.</p></li>
-              <li><span class="tl-date" data-i18n="fx4.when">Aug 2025 – Feb 2026</span><b>SPA Bordj Steel</b><i data-i18n="fx4">Graphic &amp; web designer</i><p data-i18n="fx4.what">A redesigned identity (logo, guidelines) and print collateral, then a responsive website delivered end to end.</p></li>
+              <li><span class="tl-date" data-i18n="fx3.when">Feb – May 2026</span><b><a href="../scene/?lang=en#alliance">Alliance Travel</a></b><i data-i18n="fx3">Web developer &amp; social media manager</i><p data-i18n="fx3.what">The agency’s full website, a visual refresh of the brand and its social media strategy.</p></li>
+              <li><span class="tl-date" data-i18n="fx4.when">Aug 2025 – Feb 2026</span><b><a href="../scene/?lang=en#bordjsteel">SPA Bordj Steel</a></b><i data-i18n="fx4">Graphic &amp; web designer</i><p data-i18n="fx4.what">A redesigned identity (logo, guidelines) and print collateral, then a responsive website delivered end to end.</p></li>
               <li><span class="tl-date" data-i18n="fx5.when">Mar – Jul 2024</span><b>Artiland.Studio</b><i data-i18n="fx5">Content &amp; video creator</i><p data-i18n="fx5.what">Short-form video for events and community campaigns; running creative workshops.</p></li>
             </ol>
           </div>
@@ -1050,7 +1061,6 @@
               <p data-i18n="founder.edu">Computer Science — Univ. Mohamed El Bachir El Ibrahimi · 2018–2024</p>
               <p class="cv-note" data-i18n="founder.certs">Certifications: Duolingo English Test · Digital design (Artiland.Studio) · 3D motion design</p>
             </div>
-            <a class="btn btn-primary cv-dl" href="../assets/cv_yasser_hamisse_2026.pdf" download target="_blank" rel="noopener" data-i18n="founder.download">Download résumé (PDF) <span aria-hidden="true">↓</span></a>
           </div>
         </div></div>
       </div>

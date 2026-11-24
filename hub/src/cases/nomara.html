@@ -1,0 +1,170 @@
+<!-- ---------------- case 04 · Nomara Voyages ----------------
+     Wave 3 (2026-11-24): the fourth delivered client, its case built from
+     what the site itself shows (read off its live pages that day, the same
+     facts as its sheet, scene/#nomara): no brand charter, posters or social
+     posts were made for it, so the case holds the site's own pieces only.
+     Its copy is hub/src/cases/nomara.i18n.json, its sheet
+     hub/css/case-nomara.css; the shell's hooks (hub/app.js 8) do the rest:
+     the track, the six kinds of piece and their badges, the viewer.
+     The pictures are the sheet's captures (assets/work/nomara/, written by
+     scripts/work-capture.mjs), not copies: the site's own Arabic pages, so
+     each picture says it. No client price is published (the Omra and trip
+     tiles name what the price covers, never a figure), and the live view of
+     the client's site is a link (the page's CSP frames nothing from
+     another host), to the address the home links. -->
+<section class="st-case case-nomara" id="case-nomara" aria-labelledby="case-nomara-h">
+  <div class="st-case__bar">
+    <div class="st-case__id cn-id">
+      <span class="st-case__logo cn-logo"><img src="../assets/clients/nomara.webp" alt="" loading="lazy" decoding="async"></span>
+      <div class="cn-id__txt">
+        <span class="st-case__hud cn-hud" data-i18n="cases.nomara.hud"></span>
+        <h3 class="st-case__name" id="case-nomara-h"><bdi>Nomara Voyages</bdi> <span class="cn-sector">· <span data-i18n="cases.nomara.sector"></span></span></h3>
+      </div>
+    </div>
+    <div class="st-case__progress cn-progress">
+      <span><span class="cn-muted-d" data-i18n="case.unlocked"></span><span data-seen-count dir="ltr">0/6</span></span>
+      <div class="st-case__pips cn-pips" aria-hidden="true"><i data-pip="site"></i><i data-pip="omra"></i><i data-pip="trips"></i><i data-pip="services"></i><i data-pip="mobile"></i><i data-pip="system"></i></div>
+    </div>
+    <div class="cn-end">
+      <span class="st-case__tag cn-tag" data-i18n="cases.nomara.tag"></span>
+      <div class="st-case__nav cn-nav">
+        <button type="button" data-track-prev aria-controls="cn-track" data-i18n-aria="case.prev"><span aria-hidden="true">←</span></button>
+        <button type="button" data-track-next aria-controls="cn-track" data-i18n-aria="case.next"><span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </div>
+
+  <section class="st-case__track cn-track" id="cn-track" dir="ltr" data-track tabindex="0" data-i18n-aria="cases.nomara.track">
+
+    <!-- NV-00 · the cover: the site's own home, behind its promise -->
+    <article class="cn-t cn-cover st-c2 st-r2" data-kind="site">
+      <img class="cn-cover__bg" src="../assets/work/nomara/d1-720.webp" alt="" loading="lazy" decoding="async">
+      <div class="cn-cover__top">
+        <span class="cn-chip cn-chip--line" data-i18n="cases.nomara.cover.k"></span>
+      </div>
+      <div class="cn-cover__txt">
+        <span class="cn-k cn-k--gold" dir="ltr">NOMARA VOYAGES × NUMIDEA</span>
+        <h4 class="cn-cover__h" data-i18n="cases.nomara.cover.t"></h4>
+        <p class="cn-cover__s" data-i18n="cases.nomara.cover.s"></p>
+        <ul class="cn-chips">
+          <li data-i18n="cases.nomara.cover.chips.0"></li>
+          <li data-i18n="cases.nomara.cover.chips.1"></li>
+          <li data-i18n="cases.nomara.cover.chips.2"></li>
+          <li data-i18n="cases.nomara.cover.chips.3"></li>
+        </ul>
+      </div>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- NV-01 · the site, as a picture and a link (no frame of another host) -->
+    <article class="cn-t cn-site st-c3 st-r2" data-kind="site">
+      <div class="cn-site__bar">
+        <span class="cn-site__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="cn-site__url" dir="ltr">nomaravoyages.netlify.app</span>
+        <a class="cn-site__open" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true" data-i18n="cases.nomara.site.open"></a>
+      </div>
+      <div class="cn-site__view">
+        <img class="cn-site__bg" src="../assets/work/nomara/d3-720.webp" alt="" loading="lazy" decoding="async">
+        <div class="cn-site__txt">
+          <span class="cn-k cn-k--mint" data-i18n="cases.nomara.site.k"></span>
+          <h4 class="cn-site__h" data-i18n="cases.nomara.site.h"></h4>
+          <dl class="cn-figs">
+            <div><dt data-i18n="cases.nomara.site.fl.0"></dt><dd dir="ltr">15</dd></div>
+            <div><dt data-i18n="cases.nomara.site.fl.1"></dt><dd dir="ltr">AR · FR</dd></div>
+            <div><dt data-i18n="cases.nomara.site.fl.2"></dt><dd dir="ltr">WhatsApp</dd></div>
+          </dl>
+          <a class="cn-btn" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener"><span data-i18n="case.open"></span> <span class="st-sr" data-i18n="case.newTab"></span></a>
+          <a class="st-case__sheet" href="../scene/#nomara" data-i18n="case.sheet"></a>
+        </div>
+      </div>
+      <span class="st-badge cn-badge--site" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- NV-02 · Omra and Hajj: what the packages are compared on, never their prices -->
+    <article class="cn-t cn-omra st-c2 st-r2" data-kind="omra">
+      <button type="button" class="st-zoom cn-zoom" data-zoom="../assets/work/nomara/d2.webp"><img src="../assets/work/nomara/d2-720.webp" data-i18n-alt="cases.nomara.omra.alt" alt="" loading="lazy" decoding="async"></button>
+      <div class="cn-omra__txt">
+        <span class="cn-k cn-k--gold" data-i18n="cases.nomara.omra.k"></span>
+        <h4 class="cn-omra__h" data-i18n="cases.nomara.omra.h"></h4>
+        <ul class="cn-list">
+          <li data-i18n="cases.nomara.omra.items.0"></li>
+          <li data-i18n="cases.nomara.omra.items.1"></li>
+          <li data-i18n="cases.nomara.omra.items.2"></li>
+        </ul>
+      </div>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- NV-03 · the package tours: the five destinations, each its page -->
+    <article class="cn-t cn-trips" data-kind="trips">
+      <span class="cn-k" data-i18n="cases.nomara.trips.k"></span>
+      <h4 class="cn-trips__h" data-i18n="cases.nomara.trips.h"></h4>
+      <ul class="cn-dests">
+        <li data-i18n="cases.nomara.trips.items.0"></li>
+        <li data-i18n="cases.nomara.trips.items.1"></li>
+        <li data-i18n="cases.nomara.trips.items.2"></li>
+        <li data-i18n="cases.nomara.trips.items.3"></li>
+        <li data-i18n="cases.nomara.trips.items.4"></li>
+      </ul>
+      <p class="cn-note" data-i18n="cases.nomara.trips.note"></p>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+    <article class="cn-t cn-shot" data-kind="trips">
+      <button type="button" class="st-zoom cn-zoom" data-zoom="../assets/work/nomara/d4.webp"><img src="../assets/work/nomara/d4-720.webp" data-i18n-alt="cases.nomara.trips.alt" alt="" loading="lazy" decoding="async"></button>
+      <span class="cn-plab" data-i18n="cases.nomara.trips.lab"></span>
+    </article>
+
+    <!-- NV-05 · on a phone: the home, as the sheet shows it -->
+    <article class="cn-t cn-phone st-r2" data-kind="mobile">
+      <button type="button" class="st-zoom cn-zoom" data-zoom="../assets/work/nomara/m1.webp"><img src="../assets/work/nomara/m1-416.webp" data-i18n-alt="cases.nomara.mobile.alt" alt="" loading="lazy" decoding="async"></button>
+      <span class="cn-plab" data-i18n="cases.nomara.mobile.k"></span>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- NV-04 · the services: how the agency goes about each, then WhatsApp -->
+    <article class="cn-t cn-svc" data-kind="services">
+      <span class="cn-k cn-k--mint" data-i18n="cases.nomara.services.k"></span>
+      <ol class="cn-svc__list">
+        <li data-i18n="cases.nomara.services.items.0"></li>
+        <li data-i18n="cases.nomara.services.items.1"></li>
+        <li data-i18n="cases.nomara.services.items.2"></li>
+      </ol>
+      <p class="cn-note" data-i18n="cases.nomara.services.note"></p>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- NV-06 · colour and type, from the site's own stylesheet -->
+    <article class="cn-t cn-card cn-pal st-c2" data-kind="system">
+      <span class="cn-k"><bdi>NV-06</bdi> · <span data-i18n="cases.nomara.system.k"></span></span>
+      <ul class="cn-pal__sw" dir="ltr">
+        <li class="cn-sw--teal"><span class="cn-sw__chip">#1F8A7A</span></li>
+        <li class="cn-sw--coral">#E8602C</li>
+        <li class="cn-sw--sand">#FCFAF6</li>
+        <li class="cn-sw--night">#061A17</li>
+      </ul>
+      <p class="cn-pal__type"><span class="cn-pal__aa" dir="ltr">Aa</span><span class="cn-pal__name" dir="ltr">Changa · Readex Pro</span><span class="cn-pal__note" data-i18n="cases.nomara.system.note"></span></p>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- the scope card: what was delivered, ticked as it is seen (no price) -->
+    <article class="cn-t cn-scope st-c3 st-r2">
+      <div class="cn-scope__head"><span class="cn-k cn-k--mint" data-i18n="cases.nomara.scope.k"></span><span class="cn-scope__chip" data-i18n="cases.nomara.scope.n"></span></div>
+      <h4 class="cn-scope__h" data-i18n="cases.nomara.scope.t"></h4>
+      <p class="cn-scope__note" data-i18n="cases.nomara.scope.note"></p>
+      <ul class="cn-scope__list">
+        <li data-scope="site" data-i18n="cases.nomara.scope.items.0"></li>
+        <li data-scope="omra" data-i18n="cases.nomara.scope.items.1"></li>
+        <li data-scope="trips" data-i18n="cases.nomara.scope.items.2"></li>
+        <li data-scope="services" data-i18n="cases.nomara.scope.items.3"></li>
+        <li data-scope="mobile" data-i18n="cases.nomara.scope.items.4"></li>
+        <li data-scope="system" data-i18n="cases.nomara.scope.items.5"></li>
+      </ul>
+      <a class="cn-btn cn-btn--block" href="#contact" data-i18n="cases.nomara.scope.cta"></a>
+    </article>
+  </section>
+
+  <div class="st-case__foot">
+    <span data-i18n="case.drag"></span>
+    <span class="st-case__bar-p" data-track-bar aria-hidden="true"><i></i></span>
+  </div>
+</section>
