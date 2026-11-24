@@ -5,7 +5,7 @@
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-d7ZAEtCrkHbPG+VbMMEIw92N/CxIxI5cyQzKS++isPo='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-9duWm5Ra2ec0ti4FM6RoyldkzpsO1pfMPuq/OS0mM7k='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Studio web et logiciel à Bordj Bou Arréridj | Numidea Labs</title>
 <meta name="description" content="Numidea Labs, studio à Bordj Bou Arréridj : sites, applications, automatisations et identités, conçus et codés par les mêmes mains. L’Aperçu est gratuit.">
 <meta name="theme-color" content="#D8CBB8">
@@ -45,7 +45,9 @@
      script reveals (the reveals' start, the sting) and nothing else. The
      sting's first frame (paper, two ink bars) covers the Studio from the
      first paint (st-sting-pending: not with reduced motion, not when the
-     gates turn the sting off, not on the manual or the world, which share
+     gates turn the sting off, not when the address names a section (a
+     #hash: /hub/#pricing, a link from la fabrique or the world; since
+     2026-11-24, Q-07, only a bare /hub/ plays it), not on the manual or the world, which share
      this head and name themselves in data-ui; app.js takes it away,
      3.333 s at most; st-gutter: this browser's scrollbars take room, so
      their place is kept while the sting holds the scroll), and
@@ -62,7 +64,7 @@ if(c.href!==h){var m=document.querySelector('meta[property="og:url"]');if(m)m.se
 window.NUMIDEA_LANG=l;
 if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElement('script');sc.src='i18n.'+l+'.js?v=202611240443';sc.async=true;sc.setAttribute('fetchpriority','high');document.head.appendChild(sc);window.NUMIDEA_DICT=sc;var r=function(){if(d.hasAttribute('data-i18n-pending')){d.removeAttribute('data-i18n-pending');d.lang='fr';d.dir='ltr';}};setTimeout(r,1500);}if(l==='ar'){['fonts/reem-kufi-700-arabic.woff2','../assets/fonts/ibm-plex-sans-arabic-400-arabic.woff2','../assets/fonts/ibm-plex-sans-arabic-600-arabic.woff2'].forEach(function(f){var p=document.createElement('link');p.rel='preload';p.as='font';p.type='font/woff2';p.crossOrigin='';p.href=f;document.head.appendChild(p);});}
 var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,ss=null;try{ss=sessionStorage.getItem('numidea-sting');}catch(e){}
-if(!rm&&ss!=='1'&&!d.hasAttribute('data-ui')){var g=document.createElement('div');g.style.position='absolute';g.style.width=g.style.height='50px';g.style.overflow='scroll';d.appendChild(g);if(g.offsetWidth>g.clientWidth)d.classList.add('st-gutter');d.removeChild(g);d.classList.add('st-sting-pending');setTimeout(function(){d.classList.remove('st-sting-pending');},3333);window.stDecode=Promise.all(['y-base','y-up','y-smirk','k-wide'].map(function(f){var i=new Image();i.src='bible/art/rig-'+f+'.webp';return i.decode?i.decode():null;}));}
+if(!rm&&ss!=='1'&&location.hash.length<2&&!d.hasAttribute('data-ui')){var g=document.createElement('div');g.style.position='absolute';g.style.width=g.style.height='50px';g.style.overflow='scroll';d.appendChild(g);if(g.offsetWidth>g.clientWidth)d.classList.add('st-gutter');d.removeChild(g);d.classList.add('st-sting-pending');setTimeout(function(){d.classList.remove('st-sting-pending');},3333);window.stDecode=Promise.all(['y-base','y-up','y-smirk','k-wide'].map(function(f){var i=new Image();i.src='bible/art/rig-'+f+'.webp';return i.decode?i.decode():null;}));}
 addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.viewTransition.finished.then(null,function(){}):null;});
 })();</script>
 <!-- Faces: hub/fonts/studio.css (cut from fonts.css by the build), one file
@@ -136,7 +138,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
   <span class="st-hero__mark" data-decorative aria-hidden="true" lang="ar">نوميديا</span>
   <div class="st-wrap st-hero__in">
     <div class="st-hero__copy">
-      <p class="st-hero__kicker" data-i18n="hero.kicker">/ STUDIO LOGICIEL · BORDJ BOU ARRÉRIDJ · FR·EN·AR</p>
+      <p class="st-hero__kicker" data-i18n="hero.kicker">/ STUDIO WEB ET LOGICIEL · BORDJ BOU ARRÉRIDJ · FR·EN·AR</p>
       <h1 class="st-hero__h1" id="hero-h"><span data-i18n="hero.h1a">Votre idée.</span> <span data-i18n="hero.h1b">Une seule main.</span> <span class="st-red" data-i18n="hero.h1c">Votre logiciel.</span></h1>
       <p class="st-hero__sub" data-i18n="hero.sub">Sites, applications, automatisations et identités, conçus et codés par les mêmes mains. L’Aperçu : votre page d’accueil, avant de payer.</p>
       <div class="st-actions">
@@ -3014,7 +3016,7 @@ Total estimé : {total} · {weeks}</span><span hidden data-i18n="pricing.mailS
         </dl>
         <p class="st-aside st-brand__aside" data-i18n="brand.aside">Le bâtiment, fondations comprises.</p>
       </div>
-      <p class="st-brand__more" data-reveal><a class="st-btn st-btn--primary" href="lanterne/marque.html" data-i18n="brand.prep">Préparer votre marque en neuf étapes →</a> <a class="st-btn st-btn--ghost" href="brand/numidea/" data-i18n="brand.more">Notre propre marque, planche par planche →</a> <a class="st-btn st-btn--ghost" href="fabrique.html#marque" data-i18n="brand.how">Les quatre scènes de la fabrique →</a></p>
+      <p class="st-brand__more" data-reveal><a class="st-btn st-btn--primary" href="lanterne/marque.html" data-i18n="brand.prep">Préparer votre marque en neuf étapes →</a> <a class="st-btn st-btn--ghost" href="fabrique.html#marque" data-i18n="brand.how">Les quatre scènes de la fabrique →</a></p>
       </div>
     </div>
   </div>
@@ -3090,22 +3092,10 @@ Total estimé : {total} · {weeks}</span><span hidden data-i18n="pricing.mailS
       <h2 class="st-h2 st-h2--narrow" id="studio-h" data-i18n="founder.title">Assez petits pour s’en soucier. Assez seniors pour livrer.</h2>
     </div>
     </div>
+    <!-- (Q-08, 2026-11-24) the founder block keeps the plate and the facts; the night desk, the three modes, the
+         coffee break and the two polaroids moved to the world page (hub/src/monde.html, the workshop diary), the page
+         of the reader they are for. The facts on the left, the team on the right; one column on a phone. -->
     <div class="st-founder__row">
-      <div class="st-founder__art">
-        <figure class="st-founder__photo"><img class="st-pos-desk3" src="img/studio/m/desk.webp" width="1600" height="893" data-i18n-alt="founder.photo" alt="Yasser à son bureau, la nuit, avec Kūro" loading="lazy" decoding="async"><span class="st-founder__disc" aria-hidden="true">夜</span></figure>
-        <ul class="st-modes">
-          <li><figure><img src="img/studio/m/desk2.webp" width="640" height="357" class="st-pos-m0" data-i18n-alt="founder.modesAlt.0" alt="Yasser à son bureau dans une pièce ensoleillée, Kūro couché sous la table" loading="lazy" decoding="async"><figcaption class="st-label" data-i18n="founder.modes.0">MODE TRAVAIL</figcaption></figure></li>
-          <li><figure><img src="img/studio/m/am4.webp" width="960" height="644" class="st-pos-m1" data-i18n-alt="founder.modesAlt.1" alt="Yasser à son bureau la nuit, Kūro sur le clavier" loading="lazy" decoding="async"><figcaption class="st-label" data-i18n="founder.modes.1">MODE CAFÉ</figcaption></figure></li>
-          <li><figure><img src="img/studio/m/clutter.webp" width="960" height="644" class="st-pos-m2" data-i18n-alt="founder.modesAlt.2" alt="Yasser à sa tablette, Kūro assis dessus" loading="lazy" decoding="async"><figcaption class="st-label" data-i18n="founder.modes.2">MODE CHAT</figcaption></figure></li>
-        </ul>
-        <div class="st-founder__floor">
-          <p class="st-label st-founder__floorl" aria-hidden="true" data-i18n="founder.floor">PAUSE CAFÉ · KŪRO SURVEILLE</p>
-          <button type="button" class="st-actor st-actor--duo" data-actor data-seq="4208,1708" data-i18n-aria="founder.duo" aria-label="Yasser et Kūro assis par terre">
-            <img data-pf="a" src="bible/art/actor-duo-a.webp" width="673" height="520" alt="" loading="lazy" decoding="async">
-            <img data-pf="b" src="bible/art/actor-duo-b.webp" width="673" height="520" alt="" loading="lazy" decoding="async">
-          </button>
-        </div>
-      </div>
       <div class="st-founder__copy">
         <div class="st-founder__id">
           <h3 class="st-h3l" data-i18n="founder.name">Yasser Hamisse</h3>
@@ -3117,6 +3107,8 @@ Total estimé : {total} · {weeks}</span><span hidden data-i18n="pricing.mailS
         <div class="st-founder__linkrow">
           <p class="st-links"><a href="bible/" data-i18n="founder.bible">Le carnet du personnage →</a><a href="../assets/cv_yasser_hamisse_2026.pdf" data-i18n="founder.cv">Le CV (PDF) ↓</a></p>
         </div>
+      </div>
+      <div class="st-founder__copy st-founder__copy--team">
         <p class="st-aside st-founder__quote" data-i18n="founder.quote">« Même personne. Résolution différente. »</p>
         <p class="st-aside st-founder__motto" lang="en" dir="ltr" data-i18n="founder.motto">form is a function of obsession.</p>
         <p class="st-label st-founder__teaml" data-i18n="founder.teamL">/ UN FONDATEUR · DES FREELANCES QUAND IL LE FAUT</p>
@@ -3124,10 +3116,6 @@ Total estimé : {total} · {weeks}</span><span hidden data-i18n="pricing.mailS
           <li><b data-i18n="founder.team.0.r">LE FONDATEUR</b><span data-i18n="founder.team.0.d">Cadre, conçoit, code et livre : votre seul interlocuteur.</span></li>
           <li><b data-i18n="founder.team.1.r">Des freelances, au cas par cas</b><span data-i18n="founder.team.1.d">Un spécialiste rejoint le projet pour une partie précise ; le fondateur reste votre seul interlocuteur et répond de la livraison.</span></li>
         </ul>
-        <div class="st-polas">
-          <figure class="st-pola st-pola--l"><img src="img/studio/m/sunset.webp" width="823" height="552" data-i18n-alt="founder.deskAlt" alt="Yasser et Kūro au coucher du soleil" loading="lazy" decoding="async"><figcaption data-i18n="founder.desk">LE BUREAU</figcaption></figure>
-          <figure class="st-pola st-pola--r"><img src="img/studio/m/props.webp" width="814" height="546" data-i18n-alt="founder.stickersAlt" alt="Planche de stickers et goodies Kūro" loading="lazy" decoding="async"><figcaption data-i18n="founder.stickers">LES STICKERS</figcaption></figure>
-        </div>
       </div>
     </div>
     <!-- "What I make", the old page's three roles (28 Oct), each drawn on its own sheet -->

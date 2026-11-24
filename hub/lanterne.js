@@ -535,14 +535,43 @@
           var m = /^(\w+):?(.*)$/.exec(c), k = m[1], v = m[2], q = v && k !== 'range' && $(v, board);
           if (k === 'touch') return !!(e && (e.type === 'click' ? e.target.closest('button,[role=radio]') : String(e.target.value || '').trim()));
           if (k === 'seen') { var rs = $$(v, board); rs.forEach(function (r, n) { if (r.classList.contains('is-on')) seenR[n] = 1; }); return rs.length && Object.keys(seenR).length >= rs.length; }
+          /* match: every row in its place, not merely placed (« Le jeu juste », Q-10) */
+          if (k === 'match') { var ms = $$(v, board); return ms.length > 0 && ms.every(function (r) { return r.classList.contains('is-match'); }); }
           if (k === 'range') return !!(e && e.target.type === 'range' && Number(e.target.value) === Number(v));
           return !!q && (k === 'sel' || (k === 'text' ? !!q.textContent.trim() : !q.closest('[hidden]')));
         };
-        var chk = function (e) { setTimeout(function () { if (!cleared() && conds.some(function (c) { return ok(c, e); })) tell(id, t('lant.ui.ex.ficheDone'), true); }, 0); };
+        var doneL = conds.some(function (c) { return /^match:/.test(c); }) ? 'lant.ui.ex.sort.done' : 'lant.ui.ex.ficheDone';
+        var chk = function (e) { setTimeout(function () { if (!cleared() && conds.some(function (c) { return ok(c, e); })) tell(id, t(doneL), true); }, 0); };
         // a row already on counts as seen
         conds.forEach(function (c) { var m = /^seen:(.+)$/.exec(c); if (m) $$(m[1], board).forEach(function (r, n) { if (r.classList.contains('is-on')) seenR[n] = 1; }); });
         ['click', 'input', 'change'].forEach(function (ev) { board.addEventListener(ev, chk); });
       }
+    });
+    /* a sorting board of the Librairie's own, outside any brief (« Le jeu juste », Q-10, 2026-11-24): [data-bins] without
+       data-bf (app.js 13b binds those, web3x.js its [data-bins-x]); the answers are kept for this visit only; a press marks
+       the row and says the lesson's reason; the district's condition (done "match:") wants every row in its place */
+    $$('.board [data-bins]:not([data-bf])').forEach(function (ol) {
+      if (ol.closest('[data-x]')) return;
+      var rows = $$('[data-bin-row]', ol), score = $('[data-bin-score]', ol.parentNode), a = rows.map(function () { return -1; });
+      var paint = function () {
+        var n = 0, any = false;
+        rows.forEach(function (row, r) {
+          var okB = Number(row.getAttribute('data-bin-ok')), b = a[r], why = $('[data-bin-why]', row);
+          $$('[data-bin]', row).forEach(function (x) { x.setAttribute('aria-pressed', String(Number(x.getAttribute('data-bin')) === b)); });
+          row.classList.toggle('is-on', b > -1); row.classList.toggle('is-match', b === okB); row.classList.toggle('is-off', b > -1 && b !== okB);
+          if (b > -1) { any = true; if (b === okB) n++; }
+          var okLab = (($('[data-bin="' + okB + '"]', row) || {}).textContent || '').trim();
+          why.textContent = b < 0 ? '' : (b === okB ? t('lant.ui.ex.sort.match') : t('lant.ui.ex.sort.other', { b: okLab })) + ' ' + t(why.getAttribute('data-why-k'));
+        });
+        if (score) { var sv = any ? t(score.getAttribute('data-score-k'), { n: n, N: rows.length }) : ''; if (score.textContent !== sv) score.textContent = sv; }
+      };
+      rows.forEach(function (row, r) {
+        $$('[data-bin]', row).forEach(function (x) {
+          x.disabled = false;
+          x.addEventListener('click', function () { a[r] = Number(x.getAttribute('data-bin')); paint(); });
+        });
+      });
+      d.addEventListener('numidea:lang', paint);
     });
     $$('.board [data-bin-score]').forEach(function (sc) {
       var s = sc.closest('.district'), out = $('[data-lt-score]', s), redo = $('[data-lt-redo]', s); if (!out) return;

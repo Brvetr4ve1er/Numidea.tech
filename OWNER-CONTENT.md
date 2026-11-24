@@ -828,10 +828,13 @@ In `assets/i18n/ar.js`:
 - `work.demoLive` (new) « زيارة موقع Glaive Store ↗ » (French: « Voir Glaive Store ↗ »)
 - `footer.whq` (new) « أداتنا WorkspaceHQ بالإنجليزية » (French: « WorkspaceHQ, notre outil (EN) »)
 - `c5.brief` (changed, the fix round's last pass: the model's name taken out under the no-AI-names rule) « أدوات داخلية ومولّدات ومساعدات مخصّصة: مهمّة متكرّرة تنطلق بنقرة واحدة. » (French: « Outils internes, générateurs et assistants sur mesure : une tâche répétitive se lance en un clic. »)
+- `price.from` (new, wave 2, Q-16: the line above the home's phone price tabs; {p} is the lowest tier's floor with its currency, {n} the tier's name, both written by the page) « ابتداءً من {p} ({n}) », shown as « ابتداءً من 90 000 دج (الأساسي) » (French: « dès {p} ({n}) », shown as « dès 90 000 DA (Essentiel) »)
 
 In `hub/src/i18n/ar.json`:
 - `nav.accueil` (new) « الرئيسية » (French: « Accueil »)
 - `nav.cta` (changed) « معاينة مجانية » (French: « Aperçu gratuit »)
+- `hero.kicker` (changed, wave 2, Q-06: web first; the heading is unchanged) « / استوديو ويب وبرمجيات · برج بوعريريج · FR·EN·AR » (French: « / STUDIO WEB ET LOGICIEL · BORDJ BOU ARRÉRIDJ · FR·EN·AR »; the page's title already said « استوديو ويب وبرمجيات »)
+- `lab.more` (changed, wave 2, Q-05: the Marvel-logo piece A01 left the Lab, 35 pieces now) « عرض القطع الـ35 كلّها » (French: « Voir les 35 pièces »)
 - `hero.sub` (changed) « مواقع وتطبيقات وأتمتة وهويات بصرية، تُصمَّم وتُبرمَج بنفس الأيدي. المعاينة: صفحتك الرئيسية قبل أن تدفع. » (French: « Sites, applications, automatisations et identités, conçus et codés par les mêmes mains. L’Aperçu : votre page d’accueil, avant de payer. »)
 - `hero.cta1` (changed) « اطلب معاينتك المجانية » (French: « Demander mon Aperçu gratuit »)
 - `services.lead` (changed) « أربع عائلات من الخدمات. بعد سداد ثمن العمل كاملًا يصبح ملكك: الكود وملفات التصميم والمحتوى. » (French: « Quatre familles de services. Une fois le travail payé en entier, il vous appartient : le code, les fichiers de design et le contenu. »)
@@ -11218,9 +11221,9 @@ Nothing below was decided for you; each item stays as it is until you answer.
   (short « Aperçu gratuit » in the nav and docks, long « Demander mon Aperçu gratuit » on the buttons) is on every page.
 - **Wording you approved, left alone:** the doors' premise (`doors.premise`) is unchanged; on the world page it now
   sits under the new lead (`world.note`), which says dossier 08 includes client work.
-- **Waiting on you (the plan's owner questions):** the Numidea brand book's closing band waits for your sign-off or
-  unlinking of the draft book (Q-04); the Marvel-logo piece A01 is still on the Lab wall (Q-05; if it goes, the Lab's
-  balanced order is measured again); the founder photo (Q-02, item 3); Nomara Voyages (Q-01, item 7).
+- **Waiting on you (the plan's owner questions):** the founder photo (Q-02, item 3); Nomara Voyages (Q-01, item 7).
+  The draft Numidea brand book (Q-04) and the Marvel-logo piece A01 (Q-05) were settled by default on 2026-11-24
+  (§49): the book is unlinked until you sign it off, A01 is off the Lab wall and its order measured again.
 - **Flagged, not changed:** `workspacehq/index.html` names the AI model behind WorkspaceHQ's features in its meta
   description, hero, features, changelog, FAQ and footer. That describes the product's real features, but it conflicts
   with the rule that the site names no AI model or tool; say whether to keep it as product description or reword it.
@@ -11228,3 +11231,245 @@ Nothing below was decided for you; each item stays as it is until you answer.
   the sitemap; taking it out needs three changes made together (its `noindex`, the sitemap filter in
   `scripts/build-sitemap.mjs`, the noindex allow-list in `scripts/check.mjs`). The Studio's whole-page type restyle
   (S-28) was not done: it would move the five cases off their client faces, which BRAND.md treats as part of each case.
+
+## 49. Decisions taken by default while you were away (2026-11-24)
+
+You asked us to keep improving the site until you came back. Of the plan's owner questions, only those whose
+recommendation is reversible and needs no fact from you were taken, each on the recommended default. Each was taken
+by default on 2026-11-24 while you were away; each is reversible; say the word to undo. Nothing was invented: no
+client, figure, quote or picture was added. The two sections after this one give the detail by page;
+BRAND.md carries the rules that changed.
+
+| Question | What changed | How to undo |
+|---|---|---|
+| **Q-04** the draft Numidea brand book | Unlinked from every page: the Studio's `#brand` button « Notre propre marque, planche par planche → », the Numidea card's link in the brand atlas's picker, the exploration page's seven links (now to the Studio) and its plate 16 link (now to the character bible). The book stays at `/hub/brand/numidea/`, with `noindex` and out of the sitemap. | Put back `brand.more` and `brandc.items.3.spec.go[2]` (quoted in the Studio section below) and the links; remove the book from `NOINDEX_PAGES` in `scripts/build-sitemap.mjs` and its `noindex` meta. |
+| **Q-05, half** the Marvel-logo piece A01 | « REBEL BOY » is off the world page's Lab wall and its file `hub/img/studio/lab/c01.webp` is deleted (nothing else used it); the Lab says « Voir les 35 pièces » and its order was measured again for even columns. | Restore the file from git and its line in `hub/src/monde.html`; `lab.more` back to 36. |
+| **Q-06** the Studio's first label | « / STUDIO WEB ET LOGICIEL · BORDJ BOU ARRÉRIDJ · FR·EN·AR » (was « STUDIO LOGICIEL »). Your heading « Votre idée. Une seule main. Votre logiciel. » is unchanged. | `hero.kicker` in the three `hub/src/i18n/*.json`. |
+| **Q-07** the Studio's intro (the character sting) | Plays on a bare `/hub/` visit only. Arriving on a section (`/hub/#pricing`, `#contact`, la fabrique's « Chiffrer une animation ») lands on it at once, with no cover. The hero's replay control still plays it anywhere. | `location.hash.length<2` in the head script of `hub/src/page.html` and `deep()` in `hub/app.js`, section 1. |
+| **Q-08** the founder's extras | The night desk, the three modes, « Pause café » and the two polaroids left the Studio's `#studio` for the workshop diary on `hub/monde.html`. The polaroid « LE BUREAU » now shows the Studio's daylight desk (`desk3.webp`, its alt « Yasser à son bureau, dans un loft baigné de lumière, Kūro au fond ») instead of the sunset picture, which the diary already prints as J07; the other alt text is unchanged. The Studio keeps the plate and the facts. | Move the blocks back from `hub/src/monde.html` to the Studio's founder block (`hub/src/page.html`) and their CSS. |
+| **Q-10** « Le jeu juste » | Each of the eight levels ends with a real sorting exercise built only from that level's lesson text and its listed sources; a level is done when its situation is answered right and every row is in its place. « Je passe l'exercice » stays. | Restore `hub/src/lanterne/atlases/jeu.json` and `hub/src/lanterne/ex/jeu/g1.html` to `g8.html` from git (or remove the `.st-crs` sort block from each of the eight partials, and in `jeu.json` put back `"ex": "pick"`, drop `done`, and restore each level's `keys` `ex.t` and `ex.brief` to `lant.ui.ex.pick.t` and `lant.ui.ex.pick.brief`). The new `lant.at.jeu.d.*.sort`, `lant.at.jeu.d.*.ex.t` and `lant.ui.ex.sort.*` keys can stay or go. |
+| **Q-11** « Commencer ici » | The brand atlas (Marque), on its shelf card as before and now also as a first-step link in the shelf's first screen. | Remove `lant.shelf.heroStart` and its hole in `hub/src/lanterne/shelf.html`; the start book is `"start": true` in `hub/src/lanterne/shelf.json`. |
+| **Q-12** the Revolut card | Kept, with the reworded visitor note; no change. | Remove its entry (`"id": "revolut"`) from `hub/src/lanterne/apps.json`. |
+| **Q-15** the character bible | A short French opening under the name (`lang="fr"`): what the page is and that the rest is in English. No Arabic yet. | Delete the `<p class="fr">` in `hub/bible/index.html` and its rule in `hub/bible/style.css`. |
+| **Q-16** the home's phone prices | Up to 960 px, a line above the price tabs: « dès 90 000 DA (Essentiel) » (EN "from 90,000 DZD (Essential)", AR « ابتداءً من 90 000 دج (الأساسي) »), taken from the Essentiel card's own price in the shown currency, so no new price. Studio stays the open, recommended tab. Hidden on desktop, where the three cards stand side by side. | Remove the `floor()` block in the tier tabs of `assets/app.js`, `.tier-from` in `assets/styles.css` and `price.from` in `assets/i18n/*.js`. |
+| **E-05** the night cases' page | `hub/lanterne/enquetes.html` has the Librairie's mark in its bar and the same foot as the atlases (the way back, the radio chip, the colophon and its links). | `stFoot` and `WM` in `scripts/lib/enquetes.mjs`. |
+
+Not taken, as recommended: Q-09 (the Studio stays a full sales page for now), Q-17 (la fabrique's courses stay
+there), Q-18 (no shared site bar).
+
+**New Arabic for the native reader (AR: native review; none read by a native speaker yet).** Each is also in the
+lists above, with its French:
+- `hero.kicker` (changed) « / استوديو ويب وبرمجيات · برج بوعريريج · FR·EN·AR » (French: « / STUDIO WEB ET LOGICIEL · BORDJ BOU ARRÉRIDJ · FR·EN·AR ») — §8, `hub/src/i18n/ar.json`.
+- `lab.more` (changed) « عرض القطع الـ35 كلّها » (French: « Voir les 35 pièces ») — §8, `hub/src/i18n/ar.json`.
+- `founder.deskAlt` (changed) « ياسر في مكتبه داخل لوفت غامر بالضوء، وكورو في الخلفية » (French: « Yasser à son bureau, dans un loft baigné de lumière, Kūro au fond »): the polaroid « LE BUREAU » now shows the Studio's daylight desk; the same words as the Studio's service card (`services.items.0.alt`) — `hub/src/i18n/ar.json`.
+- `price.from` (new) « ابتداءً من {p} ({n}) », shown « ابتداءً من 90 000 دج (الأساسي) » (French: « dès {p} ({n}) ») — §8, `assets/i18n/ar.js`.
+- `lant.shelf.heroStart` (new) « أول زيارة؟ ابدأ من هنا: علامتك، قبل الشعار. » (French: « Première visite ? Commencez ici : la marque, avant le logo. »).
+- The exercises of « Le jeu juste », 116 new keys: the five shared lines `lant.ui.ex.sort.brief`, `.match`, `.other`,
+  `.score`, `.done`, and for each level g1 to g8 its title `lant.at.jeu.d.<level>.ex.t`, its label `.sort.aria`, its
+  boxes `.sort.bins.*` and its rows `.sort.rows.*.k` with their reasons `.sort.rows.*.why`. Every one is written out,
+  Arabic beside French, at the end of « Wave 2, the Librairie » below. The reasons cite studies by author and year
+  (Sailer and Homner, Koivisto and Hamari, Nunes and Drèze, Kivetz, Lepper, Hanus and Fox…): the reader should check
+  that names and figures read correctly in Arabic.
+The two strings removed with Q-04 (`brand.more`, `brandc.items.3.spec.go[2]`) need no review.
+
+**Still waiting on you** (facts, art or accounts; nothing changes until you answer):
+- **Q-01** Is Nomara Voyages a client? The home says « 4 sites livrés » and shows Nomara; the Studio and /scene/ say three (item 7).
+- **Q-02** A real founder photo for the home's `#founder` (item 3).
+- **Q-03** Ask Bordj Steel, Alliance Travel and AlmaFlow to point their domains at the builds (item 9).
+- **Q-05, the other half: the robot drawing.** The companion « Le robot » in the tr4veler codex is a *The Matrix*
+  poster (`hub/brand/traveler/img/matrix.webp`, plates 08 and 14). It stays until you send an original drawing.
+- **Q-13** The home's founder block: confirm each delivery line (what was delivered, when) before the CV download and
+  the notebook link go and the Alliance Travel line is rewritten as deliveries.
+- **Q-14** The home's services lead and « Le choix évident. » around a result: send or approve the outcome sentence.
+- **Q-19** AlmaFlow's mock-ups show 07 55 01 60 13 and contact@almaflowclim.fr: real, or replace with the reserved
+  01 99 00 12 34?
+- **Q-20** The contact address: the personal Gmail, or an address on numedialab.dev (item 5).
+
+## Wave 2, the Studio and the world (2026-11-24): taken by default while you were away
+
+Each item below was taken by default on 2026-11-24 while you were away; each is reversible; say the word to undo. No
+fact was invented. BRAND.md carries the rules that changed.
+- **Q-06, the Studio's first label** now says web first: « / STUDIO WEB ET LOGICIEL · BORDJ BOU ARRÉRIDJ · FR·EN·AR »
+  (EN « / WEB AND SOFTWARE STUDIO · … », AR « / استوديو ويب وبرمجيات · … », listed above for the native reader). Your
+  heading « Votre idée. Une seule main. Votre logiciel. » is unchanged. To undo: `hero.kicker` in the three
+  `hub/src/i18n/*.json`.
+- **Q-07, the Studio's intro** (the character sting) plays on a bare `/hub/` visit only. A visitor who arrives on a
+  section (`/hub/#pricing`, `#contact`, la fabrique's « Chiffrer… » buttons, any `#…` link) lands on it at once. The
+  replay control in the hero still plays it anywhere. To undo: `location.hash.length<2` in the head script of
+  `hub/src/page.html` and `deep()` in `hub/app.js` 1.
+- **Q-08, the founder's extras moved to the world page**: the night desk, the three modes (MODE TRAVAIL, CAFÉ, CHAT),
+  « Pause café · Kūro surveille » and the two polaroids (LE BUREAU, LES STICKERS) left the Studio's `#studio` for the
+  workshop diary on `hub/monde.html#diary`, with their alt text unchanged but for one polaroid (below). The night desk was already the diary's
+  head picture; it now carries the Studio's description of it instead of none. The three modes sit under the diary's
+  title, the coffee break and the polaroids close the strip. The Studio's founder block keeps the plate and the facts
+  (name, role, bio, the bible and CV links, the quote and motto, the two team cards). Note: the three modes are pictures
+  the diary already prints as J06, J01 and J03; say if you prefer them out of one of the two places. The « LE BUREAU »
+  polaroid printed the sunset picture, J07 of the same strip, about 150 px above it on a desktop: it now prints the
+  Studio's daylight desk (`desk3.webp`, which the world page did not show), with that picture's alt text in three
+  languages. The two polaroid captions are in ink on their paper (they had taken the night diary's cream and could not
+  be read).
+- **Q-04, the Numidea brand book** (draft 0.1) is no longer linked from any page: the Studio's brand section (the
+  button « Notre propre marque, planche par planche → », EN « Our own brand, plate by plate → », AR « هويتنا الخاصة،
+  لوحةً لوحة ← »), the Numidea card in the brand atlas's character picker (« Ouvrir le livret de marque de Numidea
+  Labs », EN « Open the Numidea Labs brand book », AR « افتح كتيّب علامة Numidea Labs ») and the exploration page
+  (its links now go to the Studio, and plate 16 to the character bible). The book stays at its address
+  (`/hub/brand/numidea/`) with `noindex` and out of the sitemap, as the exploration is. To re-link once you sign it
+  off: put those strings and links back, and remove it from `NOINDEX_PAGES` (`scripts/build-sitemap.mjs`) and its
+  `noindex` meta.
+- **Q-05, half: the Marvel-logo piece A01** (« REBEL BOY ») is off the Lab wall and its file is deleted (nothing
+  else used it). Its alt text stays in the dictionaries as `lab.pieces.23` so the other pieces keep their numbers.
+  The Lab's « Voir les 36 pièces » now opens on 35; its order was measured again (BRAND.md).
+- **Waiting on you, art: the robot in the tr4veler codex.** The companion « Le robot » in
+  `hub/brand/traveler/` is a *The Matrix* poster (`img/matrix.webp`, alt « Affiche The Matrix lair : le robot »):
+  third-party artwork, shown in plate 08 and again as the round medal of carousel image 4 in plate 14, beside merch
+  mock-ups. It needs an original drawing of the robot from you; it stays until you send one, which then replaces the
+  file in both places.
+- **Q-15, the character bible** (`hub/bible/`, English) opens with a short French paragraph under the name
+  (`lang="fr"`): what the page is, in plain words, and that the rest is in English. Arabic comes later, after a
+  native review; nothing Arabic was added.
+
+## Wave 2, the Librairie (2026-11-24): taken by default while you were away
+
+Each item below was taken by default on 2026-11-24 while you were away; each is reversible; say the word to undo. No
+fact was invented: every line of the new exercises comes from the course's own lesson text and its listed sources.
+- **Q-11, « Commencer ici »** is the brand atlas (« Le logo vient après. »), as before on its card, and now also in the
+  shelf's first screen, under « Voir les cours gratuits »: « Première visite ? Commencez ici : la marque, avant le
+  logo. » (EN « First visit? Start here: your brand, before the logo. », AR « أول زيارة؟ ابدأ من هنا: علامتك، قبل الشعار. »).
+  It follows the book marked `"start": true` in `hub/src/lanterne/shelf.json`. To undo: remove `lant.shelf.heroStart`
+  and its hole in `hub/src/lanterne/shelf.html`.
+- **Q-10, « Le jeu juste » has a real exercise per level.** Each of the eight levels keeps its reading and now ends
+  with a sort of the lesson's own cases (mechanics under their spring, the claims the studies make or do not, each
+  case by the kind of its source, what harms, our rules against what we refuse…), each row's reason quoted from
+  the reading and its sources. A level is done only when its situation is answered right and every row is in its
+  place (placing them is not enough); « Je passe l'exercice » stays, as on the other atlases. Copy:
+  `lant.at.jeu.d.<level>.ex.t` and `.sort.*`, the shared lines `lant.ui.ex.sort.*`. To undo: restore
+  `hub/src/lanterne/atlases/jeu.json` and the eight partials `hub/src/lanterne/ex/jeu/g1.html` to `g8.html` from git (or
+  remove the `.st-crs` sort block from each partial, and in `jeu.json` put back `"ex": "pick"`, drop `done` and restore
+  each level's `ex.t` and `ex.brief` keys to `lant.ui.ex.pick.*`).
+  Reviewed the same day (2026-11-24): level 1's third row now says there is nothing useful under the points (« Des
+  points et des badges posés sur une page qui ne sert à rien d'autre ») and its reason leads with the lesson's own
+  test (« si on retire le jeu et qu'il ne reste rien d'utile, ce n'était pas de la gamification »), since the lesson
+  never calls points and badges a « habillage »; level 7's fourth row no longer says « imposés », which the lesson does
+  not, and its reason leads with the caveat (« Une petite étude, mais elle prévient : … »); level 3's Arabic reasons
+  give the figures, as the French and English do.
+- **E-05, the night cases' page** (`hub/lanterne/enquetes.html`) has the Librairie's mark in its bar and the same
+  foot as the atlases (the way back, the radio chip, the colophon and its links).
+
+Arabic written for these (**AR: native review**, none read by a native speaker; the French beside each):
+- `lant.shelf.heroStart` « أول زيارة؟ ابدأ من هنا: علامتك، قبل الشعار. » (French: « Première visite ? Commencez ici : la marque, avant le logo. »)
+- `lant.ui.ex.sort.brief` « ضع كل سطر في خانته: يظهر تحته السبب، مأخوذاً من الدرس ومصادره. يكتمل التمرين حين يكون كل سطر في مكانه. لا شيء يُرسل. » (French: « Rangez chaque ligne dans sa case : la raison, tirée de la leçon et de ses sources, s’affiche dessous. L’exercice est fait quand chaque ligne est à sa place. Rien n’est envoyé. »)
+- `lant.ui.ex.sort.match` « صحيح. » (French: « Juste. »)
+- `lant.ui.ex.sort.other` « بل: {b}. » (French: « Plutôt : {b}. »)
+- `lant.ui.ex.sort.score` « {n} من {N} في مكانها » (French: « {n} sur {N} à leur place »)
+- `lant.ui.ex.sort.done` « كل سطر في مكانه. لم يخرج شيء من هذا المتصفح. » (French: « Chaque ligne est à sa place. Rien n’est sorti de ce navigateur. »)
+- `lant.at.jeu.d.g1.ex.t` « تلعيب، أم لعبة كاملة، أم طلاء خارجي؟ » (French: « Gamification, jeu entier ou habillage ? »)
+- `lant.at.jeu.d.g1.sort.aria` « رتّب أربعة أمثلة: تلعيب، أو لعبة كاملة، أو طلاء خارجي » (French: « Ranger quatre exemples : gamification, jeu entier ou habillage »)
+- `lant.at.jeu.d.g1.sort.bins.0` « تلعيب » (French: « Gamification »)
+- `lant.at.jeu.d.g1.sort.bins.1` « لعبة كاملة » (French: « Un jeu entier »)
+- `lant.at.jeu.d.g1.sort.bins.2` « طلاء خارجي » (French: « Un habillage »)
+- `lant.at.jeu.d.g1.sort.rows.0.k` « شريط تقدّم في دورة على الإنترنت » (French: « Une barre de progression dans un cours en ligne »)
+- `lant.at.jeu.d.g1.sort.rows.0.why` « تبقى الدورة دورة؛ والشريط يعيرها نابضاً من نوابض اللعبة: أن ترى أنك تتقدّم. » (French: « Le cours reste un cours ; la barre lui prête un ressort du jeu : voir qu’on avance. »)
+- `lant.at.jeu.d.g1.sort.rows.1.k` « لعبة فيديو تعليمية كاملة » (French: « Un jeu vidéo éducatif complet »)
+- `lant.at.jeu.d.g1.sort.rows.1.why` « صنع لعبة كاملة ليس تلعيباً: إنه لعبة. » (French: « Fabriquer un jeu entier, ce n’est pas de la gamification : c’est un jeu. »)
+- `lant.at.jeu.d.g1.sort.rows.2.k` (changed the same day) « نقاط وشارات توضع على صفحة لا تنفع في شيء آخر » (French: « Des points et des badges posés sur une page qui ne sert à rien d’autre »)
+- `lant.at.jeu.d.g1.sort.rows.2.why` (changed the same day) « اختبار الدرس: إن نزعنا اللعبة ولم يبقَ شيء نافع، فلم يكن ذلك تلعيباً. وقد سمّت مارغريت روبرتسون هذا سنة 2010 «التنقيط». » (French: « Le test de la leçon : si on retire le jeu et qu’il ne reste rien d’utile, ce n’était pas de la gamification. Margaret Robertson appelait cela en 2010 la « pointsification ». »)
+- `lant.at.jeu.d.g1.sort.rows.3.k` « ثمانية ملصقات تُجمع في دورة تبقى دورة » (French: « Huit stickers à collectionner dans un cours qui reste un cours »)
+- `lant.at.jeu.d.g1.sort.rows.3.why` « الجمع نابض من نوابض اللعبة، والدورة تبقى النشاط الحقيقي: هذا ما تفعله هذه الدورة. » (French: « La collection est un ressort du jeu, et le cours reste la vraie activité : c’est ce que fait ce cours. »)
+- `lant.at.jeu.d.g2.ex.t` « كل نابض تحت حاجته » (French: « Chaque ressort sous son besoin »)
+- `lant.at.jeu.d.g2.sort.aria` « رتّب خمسة نوابض تحت الحاجات الثلاث » (French: « Ranger cinq ressorts sous les trois besoins »)
+- `lant.at.jeu.d.g2.sort.bins.0` « قادر » (French: « Capable »)
+- `lant.at.jeu.d.g2.sort.bins.1` « حرّ » (French: « Libre »)
+- `lant.at.jeu.d.g2.sort.bins.2` « مرتبط » (French: « Relié »)
+- `lant.at.jeu.d.g2.sort.rows.0.k` « ردّ فوري بعد كل إجابة » (French: « Un retour immédiat après chaque réponse »)
+- `lant.at.jeu.d.g2.sort.rows.0.why` « ترى نفسك تتقدّم: هذه حاجة الكفاءة. » (French: « On voit qu’on progresse : c’est le besoin de compétence. »)
+- `lant.at.jeu.d.g2.sort.rows.1.k` « أن تختار طريقك وإيقاعك » (French: « Choisir son chemin et son rythme »)
+- `lant.at.jeu.d.g2.sort.rows.1.why` « ما يصير إجبارياً يكفّ عن كونه لعبة: هذه حاجة الاستقلالية. » (French: « Ce qui devient obligatoire cesse d’être un jeu : c’est le besoin d’autonomie. »)
+- `lant.at.jeu.d.g2.sort.rows.2.k` « أن تلعب مع آخرين » (French: « Jouer avec d’autres »)
+- `lant.at.jeu.d.g2.sort.rows.2.why` « هذه حاجة الارتباط. » (French: « C’est le besoin de lien. »)
+- `lant.at.jeu.d.g2.sort.rows.3.k` « درجات في المتناول » (French: « Des paliers à sa portée »)
+- `lant.at.jeu.d.g2.sort.rows.3.why` « درجة تستطيع بلوغها تُريك أنك تتقدّم: الكفاءة مرة أخرى. » (French: « Un palier qu’on peut atteindre montre qu’on progresse : la compétence encore. »)
+- `lant.at.jeu.d.g2.sort.rows.4.k` « أن تنتمي إلى عالم مشترك » (French: « Appartenir à un monde commun »)
+- `lant.at.jeu.d.g2.sort.rows.4.why` « الارتباط ليس اللعب معاً فقط: إنه أيضاً الانتماء إلى عالم مشترك. » (French: « Le lien, ce n’est pas seulement jouer ensemble : c’est aussi appartenir à un monde commun. »)
+- `lant.at.jeu.d.g3.ex.t` « ما تقوله الدراسات، وما لا تقوله » (French: « Ce que disent les études, et ce qu’elles ne disent pas »)
+- `lant.at.jeu.d.g3.sort.aria` « رتّب خمس جمل: تقولها الدراسات، أو لا » (French: « Ranger cinq phrases : les études le disent, ou non »)
+- `lant.at.jeu.d.g3.sort.bins.0` « تقوله الدراسات » (French: « Les études le disent »)
+- `lant.at.jeu.d.g3.sort.bins.1` « لا تقوله » (French: « Elles ne le disent pas »)
+- `lant.at.jeu.d.g3.sort.rows.0.k` « التلعيب يساعد على التعلّم، بآثار صغيرة لكنها حقيقية » (French: « La gamification aide à apprendre, avec des effets petits mais réels »)
+- `lant.at.jeu.d.g3.sort.rows.0.why` « سايلر وهومنر (2020)، 40 تجربة: نعم، آثار صغيرة لكنها حقيقية. » (French: « Sailer et Homner (2020), 40 expériences : oui, des effets petits mais réels. »)
+- `lant.at.jeu.d.g3.sort.rows.1.k` « التلعيب ينجح في كل مرة » (French: « La gamification marche à tous les coups »)
+- `lant.at.jeu.d.g3.sort.rows.1.why` « لا تقول ذلك أيّ منها. كويفيستو وهاماري (2019، 819 دراسة) وجدا حصة لافتة من النتائج المتباينة. » (French: « Aucune ne le dit. Koivisto et Hamari (2019, 819 études) trouvent une part remarquable de résultats mitigés. »)
+- `lant.at.jeu.d.g3.sort.rows.2.k` « أثبت أثر هو على ما يُتعلَّم » (French: « L’effet le plus stable porte sur ce qu’on apprend »)
+- `lant.at.jeu.d.g3.sort.rows.2.why` (changed the same day) « على المعارف، <bdi>g = 0.49</bdi>: أثبت نتيجة في الدراسة، حتى عند الإبقاء على أدقّ التجارب فقط. » (French: « Sur les savoirs, g = 0,49 : le résultat le plus stable de l’étude, même en ne gardant que les expériences les plus rigoureuses. »)
+- `lant.at.jeu.d.g3.sort.rows.3.k` « الأثر على ما يفعله الناس حقاً هو الأقوى بين الثلاثة » (French: « L’effet sur ce qu’on fait vraiment est le plus fort des trois »)
+- `lant.at.jeu.d.g3.sort.rows.3.why` (changed the same day) « العكس: على الأفعال، <bdi>g = 0.25</bdi>، الأصغر بين الثلاثة، وأقل ثباتاً. » (French: « C’est l’inverse : sur les actes, g = 0,25, le plus petit des trois, et moins stable. »)
+- `lant.at.jeu.d.g3.sort.rows.4.k` « الآثار تتوقف كثيراً على السياق وعلى الأشخاص » (French: « Les effets dépendent beaucoup du contexte et des personnes »)
+- `lant.at.jeu.d.g3.sort.rows.4.why` « هاماري وزملاؤه (2014، 24 دراسة): آثار إيجابية تتوقف كثيراً على السياق وعلى الأشخاص. » (French: « Hamari et ses collègues (2014, 24 études) : des effets positifs, qui dépendent beaucoup du contexte et des personnes. »)
+- `lant.at.jeu.d.g4.ex.t` « تعرّف على الآلية » (French: « Reconnaître la mécanique »)
+- `lant.at.jeu.d.g4.sort.aria` « رتّب أربع ملاحظات تحت آليتها » (French: « Ranger quatre observations sous leur mécanique »)
+- `lant.at.jeu.d.g4.sort.bins.0` « التقدّم الممنوح » (French: « L’avance offerte »)
+- `lant.at.jeu.d.g4.sort.bins.1` « الاقتراب من الهدف » (French: « L’approche du but »)
+- `lant.at.jeu.d.g4.sort.bins.2` « الشارات » (French: « Les badges »)
+- `lant.at.jeu.d.g4.sort.bins.3` « السلاسل » (French: « Les séries »)
+- `lant.at.jeu.d.g4.sort.rows.0.k` « بطاقة من عشر خانات، اثنتان منها مختومتان مسبقاً » (French: « Une carte de dix cases, dont deux déjà tamponnées »)
+- `lant.at.jeu.d.g4.sort.rows.0.why` « نونيس ودريز (2006): البدء من 2 على 10 يُلزمك أكثر من البدء من 0 على 8. » (French: « Nunes et Drèze (2006) : commencer à 2 sur 10 engage plus que commencer à 0 sur 8. »)
+- `lant.at.jeu.d.g4.sort.rows.1.k` « كلما اقتربت القهوة المجانية، اشترى الزبائن أكثر » (French: « Plus le café offert est proche, plus on achète souvent »)
+- `lant.at.jeu.d.g4.sort.rows.1.why` « كيفيتز وزملاؤه (2006)، في مقهى حقيقي: نسرع قرب خط النهاية. » (French: « Kivetz et ses collègues (2006), dans un vrai café : on accélère près de la ligne d’arrivée. »)
+- `lant.at.jeu.d.g4.sort.rows.2.k` « النشاط يرتفع قبل مكافأة تظهر على الملف الشخصي، ثم يتراجع » (French: « L’activité monte avant une récompense affichée sur le profil, puis retombe »)
+- `lant.at.jeu.d.g4.sort.rows.2.why` « أندرسون وزملاؤه (2013)، على موقع Stack Overflow. ودراسة من 2020 تدقّق: نحو 20% من المستخدمين يتجاوبون. » (French: « Anderson et ses collègues (2013), sur Stack Overflow. Une étude de 2020 nuance : environ 20 % des utilisateurs y réagissent. »)
+- `lant.at.jeu.d.g4.sort.rows.3.k` « العودة كل يوم كي لا ينقطع عدّ الأيام » (French: « Revenir chaque jour pour ne pas rompre le compte des jours »)
+- `lant.at.jeu.d.g4.sort.rows.3.why` « تقول Duolingo لمساهميها إنها تجري مئات التجارب، ومنها على الإشعارات والسلاسل، لتعيد مستخدميها. » (French: « Duolingo dit à ses actionnaires mener des centaines d’expériences, notamment sur les notifications et les séries, pour faire revenir ses utilisateurs. »)
+- `lant.at.jeu.d.g5.ex.t` « ما تعطيه اللعبة للعلامة، وأين تخذلها » (French: « Ce que le jeu donne à une marque, et où il la dessert »)
+- `lant.at.jeu.d.g5.sort.aria` « رتّب أربعة عناصر: صوت، أو عالم، أو طقس، أو ضد العلامة » (French: « Ranger quatre éléments : une voix, un monde, un rituel, ou contre la marque »)
+- `lant.at.jeu.d.g5.sort.bins.0` « صوت » (French: « Une voix »)
+- `lant.at.jeu.d.g5.sort.bins.1` « عالم » (French: « Un monde »)
+- `lant.at.jeu.d.g5.sort.bins.2` « طقس » (French: « Un rituel »)
+- `lant.at.jeu.d.g5.sort.bins.3` « ضد العلامة » (French: « Contre la marque »)
+- `lant.at.jeu.d.g5.sort.rows.0.k` « كورو يحكم على إجاباتك بكلمتين » (French: « Kūro juge vos réponses en deux mots »)
+- `lant.at.jeu.d.g5.sort.rows.0.why` « علامة تتفاعل مع ما تفعله لها شخصية؛ وعلامة تكتفي بالتلاوة لا شخصية لها. » (French: « Une marque qui réagit à ce que vous faites a un caractère ; une marque qui récite n’en a pas. »)
+- `lant.at.jeu.d.g5.sort.rows.1.k` « الراديو وحاسبة DOURO·8 والأختام كلها من مكان واحد » (French: « La radio, la console DOURO·8 et les sceaux viennent du même endroit »)
+- `lant.at.jeu.d.g5.sort.rows.1.why` « تتعرّف على العلامة من دون أن ترى شعارها. » (French: « On reconnaît la marque sans voir son logo. »)
+- `lant.at.jeu.d.g5.sort.rows.2.k` « طوابع تُكسب حتى آخر الصفحة » (French: « Des tampons à gagner jusqu’au bout de la page »)
+- `lant.at.jeu.d.g5.sort.rows.2.why` « نهايات صغيرة تُبلَغ: سبب لإكمال الصفحة وللعودة إليها. » (French: « De petites fins à atteindre : une raison de finir la page et d’y revenir. »)
+- `lant.at.jeu.d.g5.sort.rows.3.k` « لعبة تخفي السعر أو وسيلة التواصل » (French: « Un jeu qui cache le prix ou le contact »)
+- `lant.at.jeu.d.g5.sort.rows.3.why` « اللعبة تخدم الرسالة ولا تحلّ محلها. » (French: « Le jeu sert le message ; il ne le remplace pas. »)
+- `lant.at.jeu.d.g6.ex.t` « زِن كل مصدر » (French: « Peser chaque source »)
+- `lant.at.jeu.d.g6.sort.aria` « رتّب أربع حالات حسب مصدرها » (French: « Ranger quatre cas selon leur source »)
+- `lant.at.jeu.d.g6.sort.bins.0` « منشور علمي » (French: « Une publication scientifique »)
+- `lant.at.jeu.d.g6.sort.bins.1` « رقم من الشركة » (French: « Un chiffre de l’entreprise »)
+- `lant.at.jeu.d.g6.sort.bins.2` « رقم من حملة » (French: « Un chiffre de campagne »)
+- `lant.at.jeu.d.g6.sort.rows.0.k` « Starbucks Rewards: 59% من المبالغ المحصّلة تأتي من الأعضاء » (French: « Starbucks Rewards : 59 % des montants encaissés viennent des membres »)
+- `lant.at.jeu.d.g6.sort.rows.0.why` « أرقام نشرتها Starbucks نفسها، عن الربع المنتهي أواخر يونيو 2026. » (French: « Des chiffres publiés par Starbucks elle-même, pour le trimestre clos fin juin 2026. »)
+- `lant.at.jeu.d.g6.sort.rows.1.k` « Deloitte: زيادة 37% في المستخدمين كل أسبوع » (French: « Deloitte : 37 % d’utilisateurs en plus chaque semaine »)
+- `lant.at.jeu.d.g6.sort.rows.1.why` « نقلته Harvard Business Review، لكنه رقم من الشركة، بلا مجموعة مقارنة. » (French: « Rapporté par la Harvard Business Review, mais c’est un chiffre de l’entreprise, sans groupe de comparaison. »)
+- `lant.at.jeu.d.g6.sort.rows.2.k` « Foldit: بنية إنزيم حُدّدت بفضل اللاعبين » (French: « Foldit : la structure d’une enzyme trouvée grâce aux joueurs »)
+- `lant.at.jeu.d.g6.sort.rows.2.why` « نُشرت النتيجة في Nature Structural & Molecular Biology (2011). » (French: « Le résultat est publié dans Nature Structural & Molecular Biology (2011). »)
+- `lant.at.jeu.d.g6.sort.rows.3.k` « يانصيب الرادار: من 32 إلى 25 كم/س » (French: « La loterie des radars : de 32 à 25 km/h »)
+- `lant.at.jeu.d.g6.sort.rows.3.why` « ثلاثة أيام، بلا مجموعة ضابطة، ورقم أعطاه الراعي، Volkswagen. » (French: « Trois jours, pas de groupe témoin, et un chiffre donné par le sponsor, Volkswagen. »)
+- `lant.at.jeu.d.g7.ex.t` « اكتشف ما يضرّ » (French: « Repérer ce qui abîme »)
+- `lant.at.jeu.d.g7.sort.aria` « رتّب خمس ممارسات: تضرّ، أو تحفظ الاهتمام » (French: « Ranger cinq pratiques : ça abîme, ou ça garde l’intérêt »)
+- `lant.at.jeu.d.g7.sort.bins.0` « تضرّ » (French: « Ça abîme »)
+- `lant.at.jeu.d.g7.sort.bins.1` « تحفظ الاهتمام » (French: « Ça garde l’intérêt »)
+- `lant.at.jeu.d.g7.sort.rows.0.k` « الوعد بمكافأة على نشاط كان محبوباً من قبل » (French: « Promettre une récompense pour une activité qu’on aimait déjà »)
+- `lant.at.jeu.d.g7.sort.rows.0.why` « ليبر وغرين ونيسبت (1973): بعد مكافأة موعودة يقلّ الاهتمام بالنشاط. » (French: « Lepper, Greene et Nisbett (1973) : après une récompense promise, l’intérêt pour l’activité baisse. »)
+- `lant.at.jeu.d.g7.sort.rows.1.k` « تقديم مكافأة مفاجئة، بعد الفعل » (French: « Offrir une récompense surprise, après coup »)
+- `lant.at.jeu.d.g7.sort.rows.1.why` « في الدراسة نفسها، احتفظ الأطفال الذين نالوا مكافأة مفاجئة باهتمامهم. » (French: « Dans la même étude, les enfants qui reçoivent une récompense surprise gardent leur intérêt. »)
+- `lant.at.jeu.d.g7.sort.rows.2.k` « ترك النشاط يُمارَس من دون وعد بشيء » (French: « Laisser faire l’activité sans rien promettre »)
+- `lant.at.jeu.d.g7.sort.rows.2.why` « من لم ينالوا شيئاً احتفظوا هم أيضاً باهتمامهم (ليبر وغرين ونيسبت، 1973). » (French: « Ceux qui ne reçoivent rien gardent eux aussi leur intérêt (Lepper, Greene et Nisbett, 1973). »)
+- `lant.at.jeu.d.g7.sort.rows.3.k` (changed the same day) « قسم فيه شارات ولوحة ترتيب، ستة عشر أسبوعاً » (French: « Une classe avec badges et classement, seize semaines »)
+- `lant.at.jeu.d.g7.sort.rows.3.why` (changed the same day) « دراسة صغيرة، لكنها تنبّه: عند هانوس وفوكس (2015) انتهى القسم الذي فيه شارات ولوحة ترتيب أقل دافعية وأقل رضا وبنتائج أدنى. » (French: « Une petite étude, mais elle prévient : chez Hanus et Fox (2015), la classe avec badges et classement finit moins motivée, moins satisfaite, avec de moins bonnes notes. »)
+- `lant.at.jeu.d.g7.sort.rows.4.k` « واجهة تدفعك إلى شراء ما كنت لتشتريه » (French: « Une interface qui pousse à un achat qu’on n’aurait pas fait »)
+- `lant.at.jeu.d.g7.sort.rows.4.why` « «نمط مظلم» بحسب تقرير FTC (2022). وفي السنة نفسها قبلت الشركة الناشرة للعبة Fortnite دفع 245 مليون دولار عن مشتريات غير مرغوب فيها. » (French: « Un « dark pattern », selon le rapport de la FTC (2022). La même année, l’éditeur de Fortnite accepte de verser 245 millions de dollars pour des achats non voulus. »)
+- `lant.at.jeu.d.g8.ex.t` « قاعدتنا، أم ما نرفضه؟ » (French: « Notre règle, ou ce que nous refusons ? »)
+- `lant.at.jeu.d.g8.sort.aria` « رتّب خمس ممارسات: يفعلها هذا الموقع، أو يرفضها » (French: « Ranger cinq pratiques : ce site le fait, ou s’y refuse »)
+- `lant.at.jeu.d.g8.sort.bins.0` « يفعله هذا الموقع » (French: « Ce site le fait »)
+- `lant.at.jeu.d.g8.sort.bins.1` « يرفضه هذا الموقع » (French: « Ce site s’y refuse »)
+- `lant.at.jeu.d.g8.sort.rows.0.k` « الراديو ينتظر حركتك ليشتغل » (French: « La radio attend votre geste pour jouer »)
+- `lant.at.jeu.d.g8.sort.rows.0.why` « لا شيء يبدأ وحده: كل شيء ينتظر حركتك، وكل شيء يتوقف بحركة. » (French: « Rien ne démarre seul : tout attend votre geste, et tout s’arrête d’un geste. »)
+- `lant.at.jeu.d.g8.sort.rows.1.k` « سلسلة أيام تخشى انقطاعها » (French: « Une série de jours à ne pas rompre »)
+- `lant.at.jeu.d.g8.sort.rows.1.why` « بلا ضغط: لا سلسلة تخشى انقطاعها، ولا عدّ تنازلي. » (French: « Pas de pression : aucune série à ne pas rompre, aucun compte à rebours. »)
+- `lant.at.jeu.d.g8.sort.rows.2.k` « سبعة أختام تفتح رسماً » (French: « Sept sceaux pour ouvrir un dessin »)
+- `lant.at.jeu.d.g8.sort.rows.2.why` « رسم، لا تخفيض: المكافأة شيء يُنظر إليه. » (French: « Un dessin, pas une remise : on récompense par quelque chose à regarder. »)
+- `lant.at.jeu.d.g8.sort.rows.3.k` « تخفيض مقابل عنوانك » (French: « Une remise en échange de votre adresse »)
+- `lant.at.jeu.d.g8.sort.rows.3.why` « لا مكافأة هنا تُبادَل بعنوانك أو بعملية شراء. » (French: « Aucune récompense ici ne s’échange contre votre adresse ou contre un achat. »)
+- `lant.at.jeu.d.g8.sort.rows.4.k` « لوحة ترتيب بين الزوار » (French: « Un classement entre visiteurs »)
+- `lant.at.jeu.d.g8.sort.rows.4.why` « الطوابع والأختام والملصقات تبقى في متصفحك: لا حساب ولا لوحة ترتيب. » (French: « Tampons, sceaux et stickers restent dans votre navigateur : il n’y a ni compte ni classement. »)

@@ -90,6 +90,9 @@ html.js .note-nojs,html.js .board__nojs{display:none}
 .hero__pitch{max-width:44ch;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:var(--cream)}
 .hero__case{font-size:14px;color:var(--on-navy-2);border-inline-start:3px solid var(--amber);padding-inline-start:10px}
 .hero__copy .btn{align-self:flex-start;margin-top:6px}
+.hero__start{align-self:flex-start;display:inline-block;padding:12px 0;margin-top:-12px;min-height:44px;box-sizing:border-box;color:var(--cream);font-weight:600;font-size:15px;line-height:1.35;text-decoration:underline;text-decoration-color:var(--amber);text-decoration-thickness:2px;text-underline-offset:4px}
+.hero__start::after{content:"→";margin-inline-start:8px;color:var(--amber)}.hero__start:dir(rtl)::after{content:"←"}
+.hero__start:hover{color:var(--amber)}
 .hero--shelf{grid-template-columns:minmax(0,1.1fr) minmax(0,1.4fr)}
 .hero--shelf .hero__pitch{max-width:58ch;font-size:clamp(15px,1.1vw,17px)}
 

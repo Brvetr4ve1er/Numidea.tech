@@ -2836,6 +2836,7 @@ section.band::after,section.band+section.band::after{
 @media print{.m-contact{display:none!important}}
 /* on A4 (794 px) the tablet band laid the Aperçu's and the form's two buttons side by side, past the page: they stack on paper */
 @media print{.prev-actions,.form-acts{flex-wrap:wrap!important}.prev-actions .btn,.form-acts .btn,.form-acts button{max-width:100%;white-space:normal}.dune-strip{display:none!important}}
+@media print{.proj .actions{flex-wrap:wrap}.proj .actions a{max-width:100%;overflow-wrap:anywhere;white-space:normal}}   /* a delivered site's link prints its address after it: it wraps inside the page box (2026-11-24) */
 
 /* ---- Client voices (scripts/build-voices.mjs; absent until a real quote exists) ---- */
 .voices{margin-top:var(--s-7);display:grid;gap:var(--s-5)}
@@ -4274,8 +4275,12 @@ html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
 }
 
 /* ---- the prices: one card at a time on a phone (Studio first), three abreast on a tablet ---- */
-.tier-tabs{display:none}
+.tier-tabs,.tier-from{display:none}
 @media (max-width:960px){
+  /* the floor, said once above the tabs (Studio opens; Essentiel's price is behind a tab) */
+  .tier-from{display:block;margin:0 0 var(--s-2);font-size:var(--t-small);color:var(--muted)}
+  .tier-from b{color:var(--ice);font-weight:600;white-space:nowrap}
+  .tier-from[hidden]{display:none}
   .tier-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:var(--s-4);border:1px solid var(--hairline-2);border-radius:var(--r-sm);overflow:hidden}
   .tier-tabs button{min-height:44px;padding:0 var(--s-2);background:none;border:0;border-inline-start:1px solid var(--hairline-2);cursor:pointer;
     font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--muted);transition:color var(--t-hover),background-color var(--t-hover)}

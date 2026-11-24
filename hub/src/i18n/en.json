@@ -34,7 +34,7 @@
     "skipL": "Skip the intro"
   },
   "hero": {
-    "kicker": "/ SOFTWARE STUDIO · BORDJ BOU ARRÉRIDJ · FR·EN·AR",
+    "kicker": "/ WEB AND SOFTWARE STUDIO · BORDJ BOU ARRÉRIDJ · FR·EN·AR",
     "h1a": "Your idea.",
     "h1b": "One pair of hands.",
     "h1c": "Your product.",
@@ -360,7 +360,6 @@
     ],
     "aside": "The building, foundations included.",
     "pick": "Layers of the brand",
-    "more": "Our own brand, plate by plate →",
     "sectionAlt": "A cross-section of the workshop: the sign on the street, then below the pavement the drawing room, the steel frame and machines, and the foundations where Kūro keeps watch.",
     "prep": "Prepare your brand in nine steps →",
     "how": "The four scenes of the making page →"
@@ -572,7 +571,7 @@
       "Blue and yellow screenprint: a traveller in a varsity jacket stands in the tall grass of a plateau, facing a sun ringed by two blue halos, a pylon and silos on the horizon.",
       "Blue and yellow screenprint: a figure with butterfly wings stands before a large octagonal window in a steel frame, a blue ring behind it."
     ],
-    "more": "See all 36 pieces"
+    "more": "See all 35 pieces"
   },
   "founder": {
     "kicker": "/ 09 · THE STUDIO · ONE PAIR OF HANDS",
@@ -605,7 +604,7 @@
     "photo": "Yasser at his desk at night, with Kūro",
     "duo": "Yasser and Kūro sitting on the floor",
     "desk": "THE DESK",
-    "deskAlt": "Yasser and Kūro at sunset",
+    "deskAlt": "Yasser at his desk in a sunlit loft, Kūro in the background",
     "stickers": "THE STICKERS",
     "stickersAlt": "A sheet of Kūro stickers and merch",
     "bible": "The character bible →",
@@ -2015,8 +2014,7 @@
           ],
           "go": [
             "Open the AlmaFlowClim brand book",
-            "Open the tr4veler.exe brand book",
-            "Open the Numidea Labs brand book"
+            "Open the tr4veler.exe brand book"
           ],
           "note": "These are three identities made in this workshop: they show a mood, not what you will receive. Your identity starts from your brief."
         },
@@ -6268,7 +6266,14 @@
           "brief": "Choose where your users are: each country’s card opens. The exercise is done as soon as one card is open."
         },
         "ficheDone": "Noted: the brief keeps your answer, on this device only.",
-        "labDone": "Diagram worked through to the end. Nothing left this browser."
+        "labDone": "Diagram worked through to the end. Nothing left this browser.",
+        "sort": {
+          "brief": "Put each line in its box: the reason, taken from the lesson and its sources, shows underneath. The exercise is done when every line is in its place. Nothing is sent.",
+          "match": "Right.",
+          "other": "Rather: {b}.",
+          "score": "{n} of {N} in their place",
+          "done": "Every line is in its place. Nothing left this browser."
+        }
       },
       "journalCountMain": {
         "one": "{n}/{N} case note",
@@ -6306,6 +6311,7 @@
       "lore": "Free courses: brand, money, web3, nomad life, games. The Lantern is a night bookshop in the world of Numidea, and each atlas there is a course: you pick a district, settle a situation, do the exercise, and the decision goes into the journal. Nothing leaves here until you press.",
       "fiction": "The Lantern is an invented bookshop: it exists only at night, on this site.",
       "heroCta": "See the free courses",
+      "heroStart": "First visit? Start here: your brand, before the logo.",
       "heroAlt": "The Lantern Bookshop at night: under the red-and-cream striped awning, a giant open book on the counter and a lit lantern; Yasser sits reading an atlas by the stall, Kūro sleeps on the counter, the town’s towers under a starry sky.",
       "rayonsK": "/ THE SHELVES",
       "shelf1": "For your projects",
@@ -7075,7 +7081,36 @@
               "2": "A mascot alone is decoration. If you take the game away and nothing useful remains, it was not gamification."
             },
             "handoff": "A loyalty card, then? Which need it would feed is still open.",
-            "decision": "The class stays a class; it borrows one spring from games."
+            "decision": "The class stays a class; it borrows one spring from games.",
+            "ex": {
+              "t": "Gamification, a whole game or a coat of paint?"
+            },
+            "sort": {
+              "aria": "Sort four examples: gamification, a whole game or a coat of paint",
+              "bins": [
+                "Gamification",
+                "A whole game",
+                "A coat of paint"
+              ],
+              "rows": [
+                {
+                  "k": "A progress bar in an online course",
+                  "why": "The course stays a course; the bar lends it a game’s spring: seeing yourself move forward."
+                },
+                {
+                  "k": "A complete educational video game",
+                  "why": "Building a whole game is not gamification: it is a game."
+                },
+                {
+                  "k": "Points and badges put on a page that does nothing else",
+                  "why": "The lesson’s test: if you take the game away and nothing useful is left, it was not gamification. Margaret Robertson called this “pointsification” in 2010."
+                },
+                {
+                  "k": "Eight stickers to collect in a course that stays a course",
+                  "why": "Collecting is a game’s spring, and the course stays the real activity: that is what this course does."
+                }
+              ]
+            }
           },
           "g2": {
             "name": "Level 2",
@@ -7087,7 +7122,40 @@
               "2": "Connection is playing with others. A progress bar shows what you have already done: it feeds the need to feel capable."
             },
             "handoff": "The need found, the bookseller wants to know whether it really works.",
-            "decision": "The card shows the way done: it serves competence."
+            "decision": "The card shows the way done: it serves competence.",
+            "ex": {
+              "t": "Each spring under its need"
+            },
+            "sort": {
+              "aria": "Sort five springs under the three needs",
+              "bins": [
+                "Capable",
+                "Free",
+                "Connected"
+              ],
+              "rows": [
+                {
+                  "k": "Immediate feedback after each answer",
+                  "why": "You can see yourself improve: that is the need for competence."
+                },
+                {
+                  "k": "Choosing your path and your pace",
+                  "why": "What becomes compulsory stops being a game: that is the need for autonomy."
+                },
+                {
+                  "k": "Playing with others",
+                  "why": "That is the need for relatedness."
+                },
+                {
+                  "k": "Steps within reach",
+                  "why": "A step you can reach shows you improving: competence again."
+                },
+                {
+                  "k": "Belonging to a shared world",
+                  "why": "Relatedness is not only playing together: it is also belonging to a shared world."
+                }
+              ]
+            }
           },
           "g3": {
             "name": "Level 3",
@@ -7099,7 +7167,39 @@
               "2": "The studies do find effects, small but real, when gamification is designed for its audience."
             },
             "handoff": "Cautious, she moves on to the mechanics, one by one.",
-            "decision": "Real, modest effects: promise nothing more."
+            "decision": "Real, modest effects: promise nothing more.",
+            "ex": {
+              "t": "What the studies say, and what they do not"
+            },
+            "sort": {
+              "aria": "Sort five sentences: the studies say it, or not",
+              "bins": [
+                "The studies say it",
+                "They do not say it"
+              ],
+              "rows": [
+                {
+                  "k": "Gamification helps people learn, with small but real effects",
+                  "why": "Sailer and Homner (2020), 40 experiments: yes, small but real effects."
+                },
+                {
+                  "k": "Gamification works every time",
+                  "why": "None of them says so. Koivisto and Hamari (2019, 819 studies) find a remarkable share of mixed results."
+                },
+                {
+                  "k": "The most stable effect is on what is learned",
+                  "why": "On knowledge, g = 0.49: the study’s most stable result, even when only the most rigorous experiments are kept."
+                },
+                {
+                  "k": "The effect on what people actually do is the strongest of the three",
+                  "why": "The reverse: on behaviour, g = 0.25, the smallest of the three, and less stable."
+                },
+                {
+                  "k": "The effects depend greatly on the context and on the people",
+                  "why": "Hamari and colleagues (2014, 24 studies): positive effects that depend greatly on the context and on the people."
+                }
+              ]
+            }
           },
           "g4": {
             "name": "Level 4",
@@ -7111,7 +7211,37 @@
               "2": "Nunes and Drèze found a difference: the card that starts at 2 of 10 is finished more often, and faster."
             },
             "handoff": "The card drawn, what it says about the Lantern remains.",
-            "decision": "A card that starts with two boxes stamped."
+            "decision": "A card that starts with two boxes stamped.",
+            "ex": {
+              "t": "Name the mechanic"
+            },
+            "sort": {
+              "aria": "Sort four observations under their mechanic",
+              "bins": [
+                "A head start",
+                "Nearing the goal",
+                "Badges",
+                "Streaks"
+              ],
+              "rows": [
+                {
+                  "k": "A card of ten boxes, two already stamped",
+                  "why": "Nunes and Drèze (2006): starting at 2 of 10 commits you more than starting at 0 of 8."
+                },
+                {
+                  "k": "The closer the free coffee, the more often people buy",
+                  "why": "Kivetz and colleagues (2006), in a real café: people speed up near the finish line."
+                },
+                {
+                  "k": "Activity rises before a reward shown on the profile, then falls back",
+                  "why": "Anderson and colleagues (2013), on Stack Overflow. A 2020 study adds a caveat: about 20% of users respond."
+                },
+                {
+                  "k": "Coming back every day so as not to break the count of days",
+                  "why": "Duolingo tells its shareholders it runs hundreds of experiments, on notifications and streaks among other things, to bring users back."
+                }
+              ]
+            }
           },
           "g5": {
             "name": "Level 5",
@@ -7123,7 +7253,37 @@
               "2": "Clicks may follow, but what brings people back is character: a voice, a world, a ritual."
             },
             "handoff": "Before launching her card, the bookseller looks at real cases.",
-            "decision": "The Lantern keeps its voice: that is what brings people back."
+            "decision": "The Lantern keeps its voice: that is what brings people back.",
+            "ex": {
+              "t": "What the game gives a brand, and where it lets it down"
+            },
+            "sort": {
+              "aria": "Sort four elements: a voice, a world, a ritual, or against the brand",
+              "bins": [
+                "A voice",
+                "A world",
+                "A ritual",
+                "Against the brand"
+              ],
+              "rows": [
+                {
+                  "k": "Kūro judges your answers in two words",
+                  "why": "A brand that reacts to what you do has a character; a brand that recites has none."
+                },
+                {
+                  "k": "The radio, the DOURO·8 console and the seals come from the same place",
+                  "why": "You recognise the brand without seeing its logo."
+                },
+                {
+                  "k": "Stamps to earn all the way to the end of the page",
+                  "why": "Small ends to reach: a reason to finish the page and to come back to it."
+                },
+                {
+                  "k": "A game that hides the price or the contact",
+                  "why": "The game serves the message; it does not replace it."
+                }
+              ]
+            }
           },
           "g6": {
             "name": "Level 6",
@@ -7135,7 +7295,36 @@
               "2": "The speed camera lottery is a famous but fragile case, from a campaign. The scientific paper is Foldit."
             },
             "handoff": "The figures read, the bookseller looks for where it breaks.",
-            "decision": "Read where a figure comes from before believing it."
+            "decision": "Read where a figure comes from before believing it.",
+            "ex": {
+              "t": "Weigh each source"
+            },
+            "sort": {
+              "aria": "Sort four cases by their source",
+              "bins": [
+                "A scientific publication",
+                "A company figure",
+                "A campaign figure"
+              ],
+              "rows": [
+                {
+                  "k": "Starbucks Rewards: 59% of the money taken comes from members",
+                  "why": "Figures published by Starbucks itself, for the quarter ended in late June 2026."
+                },
+                {
+                  "k": "Deloitte: 37% more users each week",
+                  "why": "Reported by Harvard Business Review, but it is a company figure, with no comparison group."
+                },
+                {
+                  "k": "Foldit: an enzyme’s structure found thanks to the players",
+                  "why": "The result was published in Nature Structural & Molecular Biology (2011)."
+                },
+                {
+                  "k": "The speed camera lottery: from 32 to 25 km/h",
+                  "why": "Three days, no control group, and a figure given by the sponsor, Volkswagen."
+                }
+              ]
+            }
           },
           "g7": {
             "name": "Level 7",
@@ -7147,7 +7336,39 @@
               "2": "Gartner does not point at the technology; it points at poor design."
             },
             "handoff": "The rules of her card are still to be written.",
-            "decision": "No pressure, no reward promised in advance."
+            "decision": "No pressure, no reward promised in advance.",
+            "ex": {
+              "t": "Spot what harms"
+            },
+            "sort": {
+              "aria": "Sort five practices: it harms, or it keeps the interest",
+              "bins": [
+                "It harms",
+                "It keeps the interest"
+              ],
+              "rows": [
+                {
+                  "k": "Promising a reward for an activity people already liked",
+                  "why": "Lepper, Greene and Nisbett (1973): after a promised reward, interest in the activity drops."
+                },
+                {
+                  "k": "Giving a surprise reward, afterwards",
+                  "why": "In the same study, children who got a surprise reward kept their interest."
+                },
+                {
+                  "k": "Letting people do the activity with nothing promised",
+                  "why": "Those who got nothing kept their interest too (Lepper, Greene and Nisbett, 1973)."
+                },
+                {
+                  "k": "A class with badges and a leaderboard, for sixteen weeks",
+                  "why": "A small study, but a warning: in Hanus and Fox (2015), the class with badges and a leaderboard ended less motivated, less satisfied, with lower scores."
+                },
+                {
+                  "k": "An interface that pushes you into a purchase you would not have made",
+                  "why": "A “dark pattern”, in the FTC’s report (2022). The same year the maker of Fortnite agreed to pay 245 million dollars over unwanted purchases."
+                }
+              ]
+            }
           },
           "g8": {
             "name": "Level 8",
@@ -7159,7 +7380,39 @@
               "2": "There is no account and no ranking: the seals stay in your browser, and they open a drawing."
             },
             "handoff": "The card is ready.",
-            "decision": "The Lantern’s card gives a print from the class, never a discount."
+            "decision": "The Lantern’s card gives a print from the class, never a discount.",
+            "ex": {
+              "t": "Our rule, or what we refuse?"
+            },
+            "sort": {
+              "aria": "Sort five practices: this site does it, or refuses to",
+              "bins": [
+                "This site does it",
+                "This site refuses it"
+              ],
+              "rows": [
+                {
+                  "k": "The radio waits for your move to play",
+                  "why": "Nothing starts by itself: everything waits for your move, and everything stops with one."
+                },
+                {
+                  "k": "A streak of days not to break",
+                  "why": "No pressure: no streak to keep, no countdown."
+                },
+                {
+                  "k": "Seven seals to open a drawing",
+                  "why": "A drawing, not a discount: the reward is something to look at."
+                },
+                {
+                  "k": "A discount in exchange for your address",
+                  "why": "No reward here is traded for your address or for a purchase."
+                },
+                {
+                  "k": "A leaderboard between visitors",
+                  "why": "Stamps, seals and stickers stay in your browser: there is no account and no leaderboard."
+                }
+              ]
+            }
           }
         }
       },

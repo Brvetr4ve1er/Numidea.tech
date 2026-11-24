@@ -1,5 +1,5 @@
 {
-  "_note": "« Le jeu juste » (SPEC §4.7): eight levels as districts in three acts, every level asks its situation first, then gives its reading (pick, « À lire »; the template order restored 2026-11-24, L-08; a level is done by its situation, L-07). Copy under lant.at.jeu.* or the course's existing keys. Case: the Lantern's own loyalty card, an invented example (L5). Keepsakes: the eight stickers (jeu.st.*). Reward: the sticker sheet (_sac). Its rules bind the whole Librairie's game layer.",
+  "_note": "« Le jeu juste » (SPEC §4.7): eight levels as districts in three acts, every level asks its situation first, then gives its reading and its exercise (the template order restored 2026-11-24, L-08). Since 2026-11-24 (Q-10) each level's exercise is a sort (bins) of the lesson's own cases, its reasons from the reading and its sources (copy under lant.at.jeu.d.<id>.sort); a level is done when its situation is answered right and every row is in its place (done \"match:\"). Copy under lant.at.jeu.* or the course's existing keys. Case: the Lantern's own loyalty card, an invented example (L5). Keepsakes: the eight stickers (jeu.st.*). Reward: the sticker sheet (_sac). Its rules bind the whole Librairie's game layer.",
   "slug": "jeu",
   "key": "jeu",
   "store": "numidea-lanterne-jeu",
@@ -50,7 +50,8 @@
       "companion": "pigeon",
       "prop": "star",
       "right": 1,
-      "ex": "pick",
+      "ex": "bins",
+      "done": "match:[data-bin-row]",
       "keep": "img/studio/jeu/st-1.webp",
       "icon": "img/studio/jeu/lv-1.webp",
       "keys": {
@@ -58,8 +59,7 @@
         "q": "jeu.items.0.q",
         "a": "jeu.items.0.a",
         "scene": "jeu.items.0.t",
-        "ex.t": "lant.ui.ex.pick.t",
-        "ex.brief": "lant.ui.ex.pick.brief",
+        "ex.brief": "lant.ui.ex.sort.brief",
         "keep": "jeu.st.0",
         "alt": "lant.at.jeu.plate.j1"
       }
@@ -70,7 +70,8 @@
       "companion": "kuro",
       "prop": "ring",
       "right": 0,
-      "ex": "pick",
+      "ex": "bins",
+      "done": "match:[data-bin-row]",
       "keep": "img/studio/jeu/st-2.webp",
       "icon": "img/studio/jeu/lv-2.webp",
       "keys": {
@@ -78,8 +79,7 @@
         "q": "jeu.items.1.q",
         "a": "jeu.items.1.a",
         "scene": "jeu.items.1.t",
-        "ex.t": "lant.ui.ex.pick.t",
-        "ex.brief": "lant.ui.ex.pick.brief",
+        "ex.brief": "lant.ui.ex.sort.brief",
         "keep": "jeu.st.1",
         "alt": "lant.at.jeu.plate.j1"
       }
@@ -90,7 +90,8 @@
       "companion": "kuro",
       "prop": "recorder",
       "right": 1,
-      "ex": "pick",
+      "ex": "bins",
+      "done": "match:[data-bin-row]",
       "keep": "img/studio/jeu/st-3.webp",
       "icon": "img/studio/jeu/lv-3.webp",
       "keys": {
@@ -98,8 +99,7 @@
         "q": "jeu.items.2.q",
         "a": "jeu.items.2.a",
         "scene": "jeu.items.2.t",
-        "ex.t": "lant.ui.ex.pick.t",
-        "ex.brief": "lant.ui.ex.pick.brief",
+        "ex.brief": "lant.ui.ex.sort.brief",
         "keep": "jeu.st.2",
         "alt": "lant.at.jeu.plate.j1"
       }
@@ -110,7 +110,8 @@
       "companion": "kuro",
       "prop": "paper",
       "right": 1,
-      "ex": "pick",
+      "ex": "bins",
+      "done": "match:[data-bin-row]",
       "keep": "img/studio/jeu/st-4.webp",
       "icon": "img/studio/jeu/lv-4.webp",
       "keys": {
@@ -118,8 +119,7 @@
         "q": "jeu.items.3.q",
         "a": "jeu.items.3.a",
         "scene": "jeu.items.3.t",
-        "ex.t": "lant.ui.ex.pick.t",
-        "ex.brief": "lant.ui.ex.pick.brief",
+        "ex.brief": "lant.ui.ex.sort.brief",
         "keep": "jeu.st.3",
         "alt": "lant.at.jeu.plate.j2"
       }
@@ -130,7 +130,8 @@
       "companion": "raven",
       "prop": "feather",
       "right": 1,
-      "ex": "pick",
+      "ex": "bins",
+      "done": "match:[data-bin-row]",
       "keep": "img/studio/jeu/st-5.webp",
       "icon": "img/studio/jeu/lv-5.webp",
       "keys": {
@@ -138,8 +139,7 @@
         "q": "jeu.items.4.q",
         "a": "jeu.items.4.a",
         "scene": "jeu.items.4.t",
-        "ex.t": "lant.ui.ex.pick.t",
-        "ex.brief": "lant.ui.ex.pick.brief",
+        "ex.brief": "lant.ui.ex.sort.brief",
         "keep": "jeu.st.4",
         "alt": "lant.at.jeu.plate.j2"
       }
@@ -150,7 +150,8 @@
       "companion": "pigeon",
       "prop": "eyeflower",
       "right": 1,
-      "ex": "pick",
+      "ex": "bins",
+      "done": "match:[data-bin-row]",
       "keep": "img/studio/jeu/st-6.webp",
       "icon": "img/studio/jeu/lv-6.webp",
       "keys": {
@@ -158,8 +159,7 @@
         "q": "jeu.items.5.q",
         "a": "jeu.items.5.a",
         "scene": "jeu.items.5.t",
-        "ex.t": "lant.ui.ex.pick.t",
-        "ex.brief": "lant.ui.ex.pick.brief",
+        "ex.brief": "lant.ui.ex.sort.brief",
         "keep": "jeu.st.5",
         "alt": "lant.at.jeu.plate.j3"
       }
@@ -170,7 +170,8 @@
       "companion": "pigeon",
       "prop": "cup",
       "right": 1,
-      "ex": "pick",
+      "ex": "bins",
+      "done": "match:[data-bin-row]",
       "keep": "img/studio/jeu/st-7.webp",
       "icon": "img/studio/jeu/lv-7.webp",
       "keys": {
@@ -178,8 +179,7 @@
         "q": "jeu.items.6.q",
         "a": "jeu.items.6.a",
         "scene": "jeu.items.6.t",
-        "ex.t": "lant.ui.ex.pick.t",
-        "ex.brief": "lant.ui.ex.pick.brief",
+        "ex.brief": "lant.ui.ex.sort.brief",
         "keep": "jeu.st.6",
         "alt": "lant.at.jeu.plate.j3"
       }
@@ -190,7 +190,8 @@
       "companion": "kuro",
       "prop": "star",
       "right": 1,
-      "ex": "pick",
+      "ex": "bins",
+      "done": "match:[data-bin-row]",
       "keep": "img/studio/jeu/st-8.webp",
       "icon": "img/studio/jeu/lv-8.webp",
       "keys": {
@@ -198,8 +199,7 @@
         "q": "jeu.items.7.q",
         "a": "jeu.items.7.a",
         "scene": "jeu.items.7.t",
-        "ex.t": "lant.ui.ex.pick.t",
-        "ex.brief": "lant.ui.ex.pick.brief",
+        "ex.brief": "lant.ui.ex.sort.brief",
         "keep": "jeu.st.7",
         "alt": "lant.at.jeu.plate.j3"
       }

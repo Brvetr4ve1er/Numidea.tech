@@ -5,7 +5,7 @@
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-apfW/69o2dXfshz+qtqEQum3vlGrTDio1OzwORZLMp4='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-302xDP8c5Tal+A4lPMdzeBlZ9cFcKbmTRweTdkuMStE='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Les enquêtes de nuit : pointez la preuve · La Librairie Lanterne</title>
 <meta name="description" content="Une affirmation « web3 » attend à l’étal de nuit de la Lanterne. Pariez, pointez six fois la preuve sur un écran factice, tamponnez. Gratuit dans ce navigateur.">
 <meta name="theme-color" content="#D8CBB8">
@@ -45,7 +45,9 @@
      script reveals (the reveals' start, the sting) and nothing else. The
      sting's first frame (paper, two ink bars) covers the Studio from the
      first paint (st-sting-pending: not with reduced motion, not when the
-     gates turn the sting off, not on the manual or the world, which share
+     gates turn the sting off, not when the address names a section (a
+     #hash: /hub/#pricing, a link from la fabrique or the world; since
+     2026-11-24, Q-07, only a bare /hub/ plays it), not on the manual or the world, which share
      this head and name themselves in data-ui; app.js takes it away,
      3.333 s at most; st-gutter: this browser's scrollbars take room, so
      their place is kept while the sting holds the scroll), and
@@ -62,7 +64,7 @@ if(c.href!==h){var m=document.querySelector('meta[property="og:url"]');if(m)m.se
 window.NUMIDEA_LANG=l;
 if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElement('script');sc.src='i18n/enquetes.'+l+'.js?v=202611240443';sc.async=true;sc.setAttribute('fetchpriority','high');document.head.appendChild(sc);window.NUMIDEA_DICT=sc;var r=function(){if(d.hasAttribute('data-i18n-pending')){d.removeAttribute('data-i18n-pending');d.lang='fr';d.dir='ltr';}};setTimeout(r,1500);}if(l==='ar'){['../fonts/reem-kufi-700-arabic.woff2','../../assets/fonts/ibm-plex-sans-arabic-400-arabic.woff2','../../assets/fonts/ibm-plex-sans-arabic-600-arabic.woff2'].forEach(function(f){var p=document.createElement('link');p.rel='preload';p.as='font';p.type='font/woff2';p.crossOrigin='';p.href=f;document.head.appendChild(p);});}
 var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,ss=null;try{ss=sessionStorage.getItem('numidea-sting');}catch(e){}
-if(!rm&&ss!=='1'&&!d.hasAttribute('data-ui')){var g=document.createElement('div');g.style.position='absolute';g.style.width=g.style.height='50px';g.style.overflow='scroll';d.appendChild(g);if(g.offsetWidth>g.clientWidth)d.classList.add('st-gutter');d.removeChild(g);d.classList.add('st-sting-pending');setTimeout(function(){d.classList.remove('st-sting-pending');},3333);window.stDecode=Promise.all(['y-base','y-up','y-smirk','k-wide'].map(function(f){var i=new Image();i.src='../bible/art/rig-'+f+'.webp';return i.decode?i.decode():null;}));}
+if(!rm&&ss!=='1'&&location.hash.length<2&&!d.hasAttribute('data-ui')){var g=document.createElement('div');g.style.position='absolute';g.style.width=g.style.height='50px';g.style.overflow='scroll';d.appendChild(g);if(g.offsetWidth>g.clientWidth)d.classList.add('st-gutter');d.removeChild(g);d.classList.add('st-sting-pending');setTimeout(function(){d.classList.remove('st-sting-pending');},3333);window.stDecode=Promise.all(['y-base','y-up','y-smirk','k-wide'].map(function(f){var i=new Image();i.src='../bible/art/rig-'+f+'.webp';return i.decode?i.decode():null;}));}
 addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.viewTransition.finished.then(null,function(){}):null;});
 })();</script>
 <!-- Faces: hub/fonts/studio.css (cut from fonts.css by the build), one file
@@ -89,16 +91,17 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
 <body class="lt lt-enq" data-lt-enq>
 <a class="skip" href="#main" data-i18n="lant.enq.ui.skip">Aller au jeu</a>
 <header class="mast lt-wrap">
-  <a class="mast__word" href="../" dir="ltr" data-i18n-aria="nav.home" aria-label="Numidea Labs, le site">Numidea Labs</a>
+  <a class="st-wm mast__word" href="../../" data-i18n-aria="nav.home" aria-label="Numidea Labs, le site" dir="ltr"><span class="st-wm__t"><span>NUMIDEA</span> <span class="st-wm__l">LABS</span></span><span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
   <a class="mast__back" href="./" data-i18n="lant.ui.library">La Librairie</a>
   <p class="mast__title" data-i18n="lant.enq.mast">Les enquêtes de nuit</p>
-  <button type="button" class="motion js-only" data-lt-motion aria-pressed="true" data-i18n-title="lant.ui.motionHint" title="Le décor suit la souris. Appuyez pour l’arrêter."><span class="motion__dot" aria-hidden="true"></span><span data-i18n="lant.ui.motion">Mouvement</span></button>
+  <button type="button" class="motion js-only mast__motion" data-lt-motion aria-pressed="true" data-i18n-title="lant.ui.motionHint" title="Le décor suit la souris. Appuyez pour l’arrêter."><span class="motion__dot" aria-hidden="true"></span><span data-i18n="lant.ui.motion">Mouvement</span></button>
   <div class="lang" role="group" data-i18n-aria="nav.lang" aria-label="Langue">
       <a href="?lang=fr" hreflang="fr" lang="fr" data-lt-lang="fr" aria-current="true">FR</a><a href="?lang=en" hreflang="en" lang="en" data-lt-lang="en" aria-current="false">EN</a><a href="?lang=ar" hreflang="ar" lang="ar" data-lt-lang="ar" aria-current="false" aria-label="العربية (ع)"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></a>
     </div>
   <button type="button" class="menu-btn js-only" data-lt-menu-open aria-haspopup="dialog"><span class="menu-btn__bars" aria-hidden="true"></span><span class="menu-btn__t" data-i18n="nav.menu">Menu</span></button>
   <dialog class="menu" data-lt-menu aria-labelledby="lt-menu-h">
     <div class="menu__top"><p class="menu__h" id="lt-menu-h" data-i18n="nav.menu">Menu</p><button type="button" class="btn" data-lt-menu-close><span data-i18n="nav.menuClose">Fermer le menu</span></button></div>
+    <button type="button" class="motion js-only menu__motion" data-lt-motion aria-pressed="true" data-i18n-title="lant.ui.motionHint" title="Le décor suit la souris. Appuyez pour l’arrêter."><span class="motion__dot" aria-hidden="true"></span><span data-i18n="lant.ui.motion">Mouvement</span></button>
     <ul class="menu__list"><li><a href="./"><span data-i18n="lant.ui.library">La Librairie</span></a></li><li><a href="outils.html"><span data-i18n="lant.tools.mast">La boîte à outils</span></a></li><li><a href="./#comptoir"><span data-i18n="lant.shelf.cta">Commencer un cours</span></a></li><li><a href="https://wa.me/213672412578" target="_blank" rel="noopener"><span data-i18n="lant.ui.wa">WhatsApp</span><span class="sr" data-i18n="case.newTab">(nouvel onglet)</span></a></li><li><a href="../"><span data-i18n="lant.ui.studio">Le Studio</span></a></li></ul>
   </dialog>
 </header>
@@ -729,7 +732,10 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
     <p class="enq-law" data-i18n="lant.tools.risk.crypto">Pour apprendre, pas un conseil. Vous pouvez perdre tout ce que vous y mettez. Vérifiez la loi là où vous vivez : en Algérie, la loi 25-10 de juillet 2025 interdit d’acheter, de détenir, d’utiliser et de promouvoir les crypto-actifs.</p>
   </section>
 </main>
-<footer class="foot lt-foot lt-wrap">
+<!-- the Librairie's foot (E-05): the atlases' colophon, the way back and the radio chip -->
+<footer class="st-foot lt-sfoot">
+  <div class="st-wrap">
+  <div class="lt-foot">
   <a href="./" class="mast__back" data-i18n="lant.ui.footerBack">Retour à la Librairie</a>
   <div class="lt-rchip" data-radio-chip role="group" data-i18n-aria="radio.chip" aria-label="La radio">
     <span class="lt-rchip__k" data-i18n="radio.chip">La radio</span>
@@ -737,8 +743,22 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
     <span class="lt-rchip__t" data-radio-title>Deux heures du matin</span>
     <button type="button" class="st-rchip__b" data-radio-next data-i18n-aria="radio.next" aria-label="Morceau suivant" disabled><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4l11 8-11 8zM17 4h3v16h-3z"/></svg></button>
   </div>
-  <a href="../" data-i18n="lant.ui.studio">Le Studio</a>
-  <span data-i18n="footer.line">Construit à Bordj Bou Arréridj, avec du café noir et du JavaScript.</span>
+  </div>
+  <div class="st-foot__in">
+    <span class="st-label st-foot__ok" aria-hidden="true">奥付</span>
+    <a class="st-wm st-wm--foot" href="../../" data-i18n-aria="nav.home" aria-label="Numidea Labs, le site" dir="ltr"><span class="st-wm__t"><span>NUMIDEA</span> <span class="st-wm__l">LABS</span></span><span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
+    <p class="st-foot__line"><span data-i18n="footer.line">Construit à Bordj Bou Arréridj, avec du café noir et du JavaScript.</span></p>
+    <nav class="st-foot__links" data-i18n-aria="footer.nav" aria-label="Liens du pied de page">
+      <a href="../../" data-i18n="footer.site">Accueil</a>
+      <a href="./" data-i18n="lant.ui.library">La Librairie</a>
+      <a href="../" data-i18n="manual.nav.studio">Le Studio</a>
+      <a href="../monde.html" data-i18n="nav.world">Le monde</a>
+      <a href="../#pricing" data-i18n="nav.pricing">Prix</a>
+      <a href="https://wa.me/213672412578" target="_blank" rel="noopener"><span data-i18n="lant.ui.wa">WhatsApp</span><span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span></a>
+    </nav>
+    <span class="st-seal st-seal--fill st-foot__seal" aria-hidden="true">印</span>
+    <p class="st-label st-foot__rights" data-i18n="footer.rights">© 2026 NUMIDEA LABS</p>
+  </div></div>
 </footer>
 <script type="application/json" id="hub-radio">[{"id":"nuit","src":"../audio/nuit.mp3","dur":120},{"id":"cafe","src":"../audio/cafe.mp3","dur":120},{"id":"douro","src":"../audio/douro.mp3","dur":120},{"id":"kuro","src":"../audio/kuro.mp3","dur":120}]</script>
 <!-- hub/lanterne.js reads #lant-data for the page's kind: an empty tools list keeps it to the mast, the menu and the words -->

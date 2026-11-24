@@ -34,7 +34,7 @@
     "skipL": "Passer l’intro"
   },
   "hero": {
-    "kicker": "/ STUDIO LOGICIEL · BORDJ BOU ARRÉRIDJ · FR·EN·AR",
+    "kicker": "/ STUDIO WEB ET LOGICIEL · BORDJ BOU ARRÉRIDJ · FR·EN·AR",
     "h1a": "Votre idée.",
     "h1b": "Une seule main.",
     "h1c": "Votre logiciel.",
@@ -360,7 +360,6 @@
     ],
     "aside": "Le bâtiment, fondations comprises.",
     "pick": "Couches de la marque",
-    "more": "Notre propre marque, planche par planche →",
     "sectionAlt": "Coupe de l’atelier : l’enseigne dans la rue, puis sous le trottoir l’atelier de dessin, la charpente et les machines, et les fondations où veille Kūro.",
     "prep": "Préparer votre marque en neuf étapes →",
     "how": "Les quatre scènes de la fabrique →"
@@ -572,7 +571,7 @@
       "Sérigraphie bleu et jaune : un voyageur en blouson se tient dans les hautes herbes d’un plateau, face à un soleil cerclé de deux anneaux bleus, un pylône et des silos à l’horizon.",
       "Sérigraphie bleu et jaune : une silhouette aux ailes de papillon, debout devant une grande fenêtre octogonale dans une charpente métallique, un anneau bleu derrière elle."
     ],
-    "more": "Voir les 36 pièces"
+    "more": "Voir les 35 pièces"
   },
   "founder": {
     "kicker": "/ 09 · LE STUDIO · UNE SEULE MAIN",
@@ -605,7 +604,7 @@
     "photo": "Yasser à son bureau, la nuit, avec Kūro",
     "duo": "Yasser et Kūro assis par terre",
     "desk": "LE BUREAU",
-    "deskAlt": "Yasser et Kūro au coucher du soleil",
+    "deskAlt": "Yasser à son bureau, dans un loft baigné de lumière, Kūro au fond",
     "stickers": "LES STICKERS",
     "stickersAlt": "Planche de stickers et goodies Kūro",
     "bible": "Le carnet du personnage →",
@@ -2015,8 +2014,7 @@
           ],
           "go": [
             "Ouvrir le livret de marque d’AlmaFlowClim",
-            "Ouvrir le livret de marque de tr4veler.exe",
-            "Ouvrir le livret de marque de Numidea Labs"
+            "Ouvrir le livret de marque de tr4veler.exe"
           ],
           "note": "Ce sont trois identités faites dans cet atelier : elles montrent une ambiance, pas ce que vous recevrez. Votre identité part de votre fiche."
         },
@@ -6268,7 +6266,14 @@
           "brief": "Choisissez où sont vos utilisateurs : la carte de chaque pays s’ouvre. L’exercice est fait dès qu’une carte est ouverte."
         },
         "ficheDone": "Noté : la fiche garde votre réponse, sur cet appareil seulement.",
-        "labDone": "Schéma mené jusqu’au bout. Rien n’est sorti de ce navigateur."
+        "labDone": "Schéma mené jusqu’au bout. Rien n’est sorti de ce navigateur.",
+        "sort": {
+          "brief": "Rangez chaque ligne dans sa case : la raison, tirée de la leçon et de ses sources, s’affiche dessous. L’exercice est fait quand chaque ligne est à sa place. Rien n’est envoyé.",
+          "match": "Juste.",
+          "other": "Plutôt : {b}.",
+          "score": "{n} sur {N} à leur place",
+          "done": "Chaque ligne est à sa place. Rien n’est sorti de ce navigateur."
+        }
       },
       "journalCountMain": {
         "one": "{n} / {N} note",
@@ -6306,6 +6311,7 @@
       "lore": "Des cours gratuits : marque, argent, web3, vie nomade, jeu. La Lanterne est une librairie de nuit dans le monde de Numidea, et chaque atlas y est un cours : on choisit un quartier, on tranche une situation, on fait l’exercice, et la décision s’inscrit au journal. Rien ne sort d’ici tant que vous n’appuyez pas.",
       "fiction": "La Lanterne est une librairie inventée : elle n’existe que la nuit, sur ce site.",
       "heroCta": "Voir les cours gratuits",
+      "heroStart": "Première visite ? Commencez ici : la marque, avant le logo.",
       "heroAlt": "La Librairie Lanterne la nuit : sous l’auvent rayé rouge et crème, un grand livre ouvert sur le comptoir et une lanterne allumée ; Yasser lit un atlas assis devant l’étal, Kūro dort sur le comptoir, les tours de la ville sous un ciel étoilé.",
       "rayonsK": "/ LES RAYONS",
       "shelf1": "Pour vos projets",
@@ -7075,7 +7081,36 @@
               "2": "Une mascotte seule est un habillage. Si on retire le jeu et qu’il ne reste rien d’utile, ce n’était pas de la gamification."
             },
             "handoff": "Une carte de fidélité, alors ? Reste à savoir quel besoin elle nourrirait.",
-            "decision": "Le cours reste un cours ; on lui prête un ressort du jeu."
+            "decision": "Le cours reste un cours ; on lui prête un ressort du jeu.",
+            "ex": {
+              "t": "Gamification, jeu entier ou habillage ?"
+            },
+            "sort": {
+              "aria": "Ranger quatre exemples : gamification, jeu entier ou habillage",
+              "bins": [
+                "Gamification",
+                "Un jeu entier",
+                "Un habillage"
+              ],
+              "rows": [
+                {
+                  "k": "Une barre de progression dans un cours en ligne",
+                  "why": "Le cours reste un cours ; la barre lui prête un ressort du jeu : voir qu’on avance."
+                },
+                {
+                  "k": "Un jeu vidéo éducatif complet",
+                  "why": "Fabriquer un jeu entier, ce n’est pas de la gamification : c’est un jeu."
+                },
+                {
+                  "k": "Des points et des badges posés sur une page qui ne sert à rien d’autre",
+                  "why": "Le test de la leçon : si on retire le jeu et qu’il ne reste rien d’utile, ce n’était pas de la gamification. Margaret Robertson appelait cela en 2010 la « pointsification »."
+                },
+                {
+                  "k": "Huit stickers à collectionner dans un cours qui reste un cours",
+                  "why": "La collection est un ressort du jeu, et le cours reste la vraie activité : c’est ce que fait ce cours."
+                }
+              ]
+            }
           },
           "g2": {
             "name": "Niveau 2",
@@ -7087,7 +7122,40 @@
               "2": "Le lien, c’est jouer avec d’autres. Une barre de progression montre ce qu’on a déjà fait : elle nourrit le besoin de se sentir capable."
             },
             "handoff": "Le besoin trouvé, la libraire veut savoir si ça marche vraiment.",
-            "decision": "La carte montre le chemin fait : elle sert la compétence."
+            "decision": "La carte montre le chemin fait : elle sert la compétence.",
+            "ex": {
+              "t": "Chaque ressort sous son besoin"
+            },
+            "sort": {
+              "aria": "Ranger cinq ressorts sous les trois besoins",
+              "bins": [
+                "Capable",
+                "Libre",
+                "Relié"
+              ],
+              "rows": [
+                {
+                  "k": "Un retour immédiat après chaque réponse",
+                  "why": "On voit qu’on progresse : c’est le besoin de compétence."
+                },
+                {
+                  "k": "Choisir son chemin et son rythme",
+                  "why": "Ce qui devient obligatoire cesse d’être un jeu : c’est le besoin d’autonomie."
+                },
+                {
+                  "k": "Jouer avec d’autres",
+                  "why": "C’est le besoin de lien."
+                },
+                {
+                  "k": "Des paliers à sa portée",
+                  "why": "Un palier qu’on peut atteindre montre qu’on progresse : la compétence encore."
+                },
+                {
+                  "k": "Appartenir à un monde commun",
+                  "why": "Le lien, ce n’est pas seulement jouer ensemble : c’est aussi appartenir à un monde commun."
+                }
+              ]
+            }
           },
           "g3": {
             "name": "Niveau 3",
@@ -7099,7 +7167,39 @@
               "2": "Les études trouvent bien des effets, petits mais réels, quand la gamification est conçue pour son public."
             },
             "handoff": "Prudente, elle passe aux mécaniques, une à une.",
-            "decision": "Des effets réels et modestes : ne rien promettre de plus."
+            "decision": "Des effets réels et modestes : ne rien promettre de plus.",
+            "ex": {
+              "t": "Ce que disent les études, et ce qu’elles ne disent pas"
+            },
+            "sort": {
+              "aria": "Ranger cinq phrases : les études le disent, ou non",
+              "bins": [
+                "Les études le disent",
+                "Elles ne le disent pas"
+              ],
+              "rows": [
+                {
+                  "k": "La gamification aide à apprendre, avec des effets petits mais réels",
+                  "why": "Sailer et Homner (2020), 40 expériences : oui, des effets petits mais réels."
+                },
+                {
+                  "k": "La gamification marche à tous les coups",
+                  "why": "Aucune ne le dit. Koivisto et Hamari (2019, 819 études) trouvent une part remarquable de résultats mitigés."
+                },
+                {
+                  "k": "L’effet le plus stable porte sur ce qu’on apprend",
+                  "why": "Sur les savoirs, g = 0,49 : le résultat le plus stable de l’étude, même en ne gardant que les expériences les plus rigoureuses."
+                },
+                {
+                  "k": "L’effet sur ce qu’on fait vraiment est le plus fort des trois",
+                  "why": "C’est l’inverse : sur les actes, g = 0,25, le plus petit des trois, et moins stable."
+                },
+                {
+                  "k": "Les effets dépendent beaucoup du contexte et des personnes",
+                  "why": "Hamari et ses collègues (2014, 24 études) : des effets positifs, qui dépendent beaucoup du contexte et des personnes."
+                }
+              ]
+            }
           },
           "g4": {
             "name": "Niveau 4",
@@ -7111,7 +7211,37 @@
               "2": "Nunes et Drèze trouvent une différence : la carte qui commence à 2 sur 10 est plus souvent terminée, et plus vite."
             },
             "handoff": "La carte dessinée, reste ce qu’elle dit de la Lanterne.",
-            "decision": "Une carte qui commence avec deux cases tamponnées."
+            "decision": "Une carte qui commence avec deux cases tamponnées.",
+            "ex": {
+              "t": "Reconnaître la mécanique"
+            },
+            "sort": {
+              "aria": "Ranger quatre observations sous leur mécanique",
+              "bins": [
+                "L’avance offerte",
+                "L’approche du but",
+                "Les badges",
+                "Les séries"
+              ],
+              "rows": [
+                {
+                  "k": "Une carte de dix cases, dont deux déjà tamponnées",
+                  "why": "Nunes et Drèze (2006) : commencer à 2 sur 10 engage plus que commencer à 0 sur 8."
+                },
+                {
+                  "k": "Plus le café offert est proche, plus on achète souvent",
+                  "why": "Kivetz et ses collègues (2006), dans un vrai café : on accélère près de la ligne d’arrivée."
+                },
+                {
+                  "k": "L’activité monte avant une récompense affichée sur le profil, puis retombe",
+                  "why": "Anderson et ses collègues (2013), sur Stack Overflow. Une étude de 2020 nuance : environ 20 % des utilisateurs y réagissent."
+                },
+                {
+                  "k": "Revenir chaque jour pour ne pas rompre le compte des jours",
+                  "why": "Duolingo dit à ses actionnaires mener des centaines d’expériences, notamment sur les notifications et les séries, pour faire revenir ses utilisateurs."
+                }
+              ]
+            }
           },
           "g5": {
             "name": "Niveau 5",
@@ -7123,7 +7253,37 @@
               "2": "Les clics peuvent suivre, mais ce qui fait revenir, c’est le caractère : une voix, un monde, un rituel."
             },
             "handoff": "Avant de lancer sa carte, la libraire regarde des cas réels.",
-            "decision": "La Lanterne garde sa voix : c’est elle qui fait revenir."
+            "decision": "La Lanterne garde sa voix : c’est elle qui fait revenir.",
+            "ex": {
+              "t": "Ce que le jeu donne à une marque, et où il la dessert"
+            },
+            "sort": {
+              "aria": "Ranger quatre éléments : une voix, un monde, un rituel, ou contre la marque",
+              "bins": [
+                "Une voix",
+                "Un monde",
+                "Un rituel",
+                "Contre la marque"
+              ],
+              "rows": [
+                {
+                  "k": "Kūro juge vos réponses en deux mots",
+                  "why": "Une marque qui réagit à ce que vous faites a un caractère ; une marque qui récite n’en a pas."
+                },
+                {
+                  "k": "La radio, la console DOURO·8 et les sceaux viennent du même endroit",
+                  "why": "On reconnaît la marque sans voir son logo."
+                },
+                {
+                  "k": "Des tampons à gagner jusqu’au bout de la page",
+                  "why": "De petites fins à atteindre : une raison de finir la page et d’y revenir."
+                },
+                {
+                  "k": "Un jeu qui cache le prix ou le contact",
+                  "why": "Le jeu sert le message ; il ne le remplace pas."
+                }
+              ]
+            }
           },
           "g6": {
             "name": "Niveau 6",
@@ -7135,7 +7295,36 @@
               "2": "La loterie des radars est un cas célèbre mais fragile, venu d’une campagne. La publication scientifique, c’est Foldit."
             },
             "handoff": "Les chiffres lus, la libraire cherche où ça casse.",
-            "decision": "Lire d’où vient un chiffre avant de le croire."
+            "decision": "Lire d’où vient un chiffre avant de le croire.",
+            "ex": {
+              "t": "Peser chaque source"
+            },
+            "sort": {
+              "aria": "Ranger quatre cas selon leur source",
+              "bins": [
+                "Une publication scientifique",
+                "Un chiffre de l’entreprise",
+                "Un chiffre de campagne"
+              ],
+              "rows": [
+                {
+                  "k": "Starbucks Rewards : 59 % des montants encaissés viennent des membres",
+                  "why": "Des chiffres publiés par Starbucks elle-même, pour le trimestre clos fin juin 2026."
+                },
+                {
+                  "k": "Deloitte : 37 % d’utilisateurs en plus chaque semaine",
+                  "why": "Rapporté par la Harvard Business Review, mais c’est un chiffre de l’entreprise, sans groupe de comparaison."
+                },
+                {
+                  "k": "Foldit : la structure d’une enzyme trouvée grâce aux joueurs",
+                  "why": "Le résultat est publié dans Nature Structural & Molecular Biology (2011)."
+                },
+                {
+                  "k": "La loterie des radars : de 32 à 25 km/h",
+                  "why": "Trois jours, pas de groupe témoin, et un chiffre donné par le sponsor, Volkswagen."
+                }
+              ]
+            }
           },
           "g7": {
             "name": "Niveau 7",
@@ -7147,7 +7336,39 @@
               "2": "Ce n’est pas la technologie que Gartner pointe, c’est une mauvaise conception."
             },
             "handoff": "Il reste à écrire les règles de sa carte.",
-            "decision": "Pas de pression, pas de récompense promise d’avance."
+            "decision": "Pas de pression, pas de récompense promise d’avance.",
+            "ex": {
+              "t": "Repérer ce qui abîme"
+            },
+            "sort": {
+              "aria": "Ranger cinq pratiques : ça abîme, ou ça garde l’intérêt",
+              "bins": [
+                "Ça abîme",
+                "Ça garde l’intérêt"
+              ],
+              "rows": [
+                {
+                  "k": "Promettre une récompense pour une activité qu’on aimait déjà",
+                  "why": "Lepper, Greene et Nisbett (1973) : après une récompense promise, l’intérêt pour l’activité baisse."
+                },
+                {
+                  "k": "Offrir une récompense surprise, après coup",
+                  "why": "Dans la même étude, les enfants qui reçoivent une récompense surprise gardent leur intérêt."
+                },
+                {
+                  "k": "Laisser faire l’activité sans rien promettre",
+                  "why": "Ceux qui ne reçoivent rien gardent eux aussi leur intérêt (Lepper, Greene et Nisbett, 1973)."
+                },
+                {
+                  "k": "Une classe avec badges et classement, seize semaines",
+                  "why": "Une petite étude, mais elle prévient : chez Hanus et Fox (2015), la classe avec badges et classement finit moins motivée, moins satisfaite, avec de moins bonnes notes."
+                },
+                {
+                  "k": "Une interface qui pousse à un achat qu’on n’aurait pas fait",
+                  "why": "Un « dark pattern », selon le rapport de la FTC (2022). La même année, l’éditeur de Fortnite accepte de verser 245 millions de dollars pour des achats non voulus."
+                }
+              ]
+            }
           },
           "g8": {
             "name": "Niveau 8",
@@ -7159,7 +7380,39 @@
               "2": "Il n’y a ni compte ni classement : les sceaux restent dans votre navigateur, et ils ouvrent un dessin."
             },
             "handoff": "La carte est prête.",
-            "decision": "La carte de la Lanterne donne un tirage du cours, jamais une remise."
+            "decision": "La carte de la Lanterne donne un tirage du cours, jamais une remise.",
+            "ex": {
+              "t": "Notre règle, ou ce que nous refusons ?"
+            },
+            "sort": {
+              "aria": "Ranger cinq pratiques : ce site le fait, ou s’y refuse",
+              "bins": [
+                "Ce site le fait",
+                "Ce site s’y refuse"
+              ],
+              "rows": [
+                {
+                  "k": "La radio attend votre geste pour jouer",
+                  "why": "Rien ne démarre seul : tout attend votre geste, et tout s’arrête d’un geste."
+                },
+                {
+                  "k": "Une série de jours à ne pas rompre",
+                  "why": "Pas de pression : aucune série à ne pas rompre, aucun compte à rebours."
+                },
+                {
+                  "k": "Sept sceaux pour ouvrir un dessin",
+                  "why": "Un dessin, pas une remise : on récompense par quelque chose à regarder."
+                },
+                {
+                  "k": "Une remise en échange de votre adresse",
+                  "why": "Aucune récompense ici ne s’échange contre votre adresse ou contre un achat."
+                },
+                {
+                  "k": "Un classement entre visiteurs",
+                  "why": "Tampons, sceaux et stickers restent dans votre navigateur : il n’y a ni compte ni classement."
+                }
+              ]
+            }
           }
         }
       },

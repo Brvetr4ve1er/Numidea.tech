@@ -156,6 +156,7 @@ var I18N = {
   'price.tIncl': 'What’s included',
   'price.cur': 'DZD',
   'price.popular': 'Recommended',
+  'price.from': 'from {p} ({n})',
   'price.t1name': 'Essential', 'price.t1for': 'A credible presence, live quickly.', 'price.t1time': '2 to 4 weeks',
   'price.t1a': 'Showcase or landing site, 1 to 5 pages',
   'price.t1b': 'Custom design — never a re-themed template',

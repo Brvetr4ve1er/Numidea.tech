@@ -42,7 +42,9 @@
      script reveals (the reveals' start, the sting) and nothing else. The
      sting's first frame (paper, two ink bars) covers the Studio from the
      first paint (st-sting-pending: not with reduced motion, not when the
-     gates turn the sting off, not on the manual or the world, which share
+     gates turn the sting off, not when the address names a section (a
+     #hash: /hub/#pricing, a link from la fabrique or the world; since
+     2026-11-24, Q-07, only a bare /hub/ plays it), not on the manual or the world, which share
      this head and name themselves in data-ui; app.js takes it away,
      3.333 s at most; st-gutter: this browser's scrollbars take room, so
      their place is kept while the sting holds the scroll), and
@@ -59,7 +61,7 @@ if(c.href!==h){var m=document.querySelector('meta[property="og:url"]');if(m)m.se
 window.NUMIDEA_LANG=l;
 if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElement('script');sc.src='i18n.'+l+'.js?v={{stamp}}';sc.async=true;sc.setAttribute('fetchpriority','high');document.head.appendChild(sc);window.NUMIDEA_DICT=sc;var r=function(){if(d.hasAttribute('data-i18n-pending')){d.removeAttribute('data-i18n-pending');d.lang='fr';d.dir='ltr';}};setTimeout(r,1500);}if(l==='ar'){['fonts/reem-kufi-700-arabic.woff2','../assets/fonts/ibm-plex-sans-arabic-400-arabic.woff2','../assets/fonts/ibm-plex-sans-arabic-600-arabic.woff2'].forEach(function(f){var p=document.createElement('link');p.rel='preload';p.as='font';p.type='font/woff2';p.crossOrigin='';p.href=f;document.head.appendChild(p);});}
 var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,ss=null;try{ss=sessionStorage.getItem('numidea-sting');}catch(e){}
-if(!rm&&ss!=='1'&&!d.hasAttribute('data-ui')){var g=document.createElement('div');g.style.position='absolute';g.style.width=g.style.height='50px';g.style.overflow='scroll';d.appendChild(g);if(g.offsetWidth>g.clientWidth)d.classList.add('st-gutter');d.removeChild(g);d.classList.add('st-sting-pending');setTimeout(function(){d.classList.remove('st-sting-pending');},3333);window.stDecode=Promise.all(['y-base','y-up','y-smirk','k-wide'].map(function(f){var i=new Image();i.src='bible/art/rig-'+f+'.webp';return i.decode?i.decode():null;}));}
+if(!rm&&ss!=='1'&&location.hash.length<2&&!d.hasAttribute('data-ui')){var g=document.createElement('div');g.style.position='absolute';g.style.width=g.style.height='50px';g.style.overflow='scroll';d.appendChild(g);if(g.offsetWidth>g.clientWidth)d.classList.add('st-gutter');d.removeChild(g);d.classList.add('st-sting-pending');setTimeout(function(){d.classList.remove('st-sting-pending');},3333);window.stDecode=Promise.all(['y-base','y-up','y-smirk','k-wide'].map(function(f){var i=new Image();i.src='bible/art/rig-'+f+'.webp';return i.decode?i.decode():null;}));}
 addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.viewTransition.finished.then(null,function(){}):null;});
 })();</script>
 <!-- Faces: hub/fonts/studio.css (cut from fonts.css by the build), one file
@@ -657,7 +659,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
         </dl>
         <p class="st-aside st-brand__aside" data-i18n="brand.aside"></p>
       </div>
-      <p class="st-brand__more" data-reveal><a class="st-btn st-btn--primary" href="{{lant.to.marque}}" data-i18n="brand.prep"></a> <a class="st-btn st-btn--ghost" href="brand/numidea/" data-i18n="brand.more"></a> <a class="st-btn st-btn--ghost" href="fabrique.html#marque" data-i18n="brand.how"></a></p>
+      <p class="st-brand__more" data-reveal><a class="st-btn st-btn--primary" href="{{lant.to.marque}}" data-i18n="brand.prep"></a> <a class="st-btn st-btn--ghost" href="fabrique.html#marque" data-i18n="brand.how"></a></p>
       </div>
     </div>
   </div>
@@ -733,22 +735,10 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
       <h2 class="st-h2 st-h2--narrow" id="studio-h" data-i18n="founder.title"></h2>
     </div>
     </div>
+    <!-- (Q-08, 2026-11-24) the founder block keeps the plate and the facts; the night desk, the three modes, the
+         coffee break and the two polaroids moved to the world page (hub/src/monde.html, the workshop diary), the page
+         of the reader they are for. The facts on the left, the team on the right; one column on a phone. -->
     <div class="st-founder__row">
-      <div class="st-founder__art">
-        <figure class="st-founder__photo"><img class="st-pos-desk3" src="img/studio/m/desk.webp" data-i18n-alt="founder.photo" loading="lazy" decoding="async"><span class="st-founder__disc" aria-hidden="true">夜</span></figure>
-        <ul class="st-modes">
-          <li><figure><img src="img/studio/m/desk2.webp" class="st-pos-m0" data-i18n-alt="founder.modesAlt.0" loading="lazy" decoding="async"><figcaption class="st-label" data-i18n="founder.modes.0"></figcaption></figure></li>
-          <li><figure><img src="img/studio/m/am4.webp" class="st-pos-m1" data-i18n-alt="founder.modesAlt.1" loading="lazy" decoding="async"><figcaption class="st-label" data-i18n="founder.modes.1"></figcaption></figure></li>
-          <li><figure><img src="img/studio/m/clutter.webp" class="st-pos-m2" data-i18n-alt="founder.modesAlt.2" loading="lazy" decoding="async"><figcaption class="st-label" data-i18n="founder.modes.2"></figcaption></figure></li>
-        </ul>
-        <div class="st-founder__floor">
-          <p class="st-label st-founder__floorl" aria-hidden="true" data-i18n="founder.floor"></p>
-          <button type="button" class="st-actor st-actor--duo" data-actor data-seq="4208,1708" data-i18n-aria="founder.duo">
-            <img data-pf="a" src="bible/art/actor-duo-a.webp" alt="" loading="lazy" decoding="async">
-            <img data-pf="b" src="bible/art/actor-duo-b.webp" alt="" loading="lazy" decoding="async">
-          </button>
-        </div>
-      </div>
       <div class="st-founder__copy">
         <div class="st-founder__id">
           <h3 class="st-h3l" data-i18n="founder.name"></h3>
@@ -760,6 +750,8 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
         <div class="st-founder__linkrow">
           <p class="st-links"><a href="bible/" data-i18n="founder.bible"></a><a href="../assets/cv_yasser_hamisse_2026.pdf" data-i18n="founder.cv"></a></p>
         </div>
+      </div>
+      <div class="st-founder__copy st-founder__copy--team">
         <p class="st-aside st-founder__quote" data-i18n="founder.quote"></p>
         <p class="st-aside st-founder__motto" lang="en" dir="ltr" data-i18n="founder.motto"></p>
         <p class="st-label st-founder__teaml" data-i18n="founder.teamL"></p>
@@ -767,10 +759,6 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
           <li><b data-i18n="founder.team.0.r"></b><span data-i18n="founder.team.0.d"></span></li>
           <li><b data-i18n="founder.team.1.r"></b><span data-i18n="founder.team.1.d"></span></li>
         </ul>
-        <div class="st-polas">
-          <figure class="st-pola st-pola--l"><img src="img/studio/m/sunset.webp" data-i18n-alt="founder.deskAlt" loading="lazy" decoding="async"><figcaption data-i18n="founder.desk"></figcaption></figure>
-          <figure class="st-pola st-pola--r"><img src="img/studio/m/props.webp" data-i18n-alt="founder.stickersAlt" loading="lazy" decoding="async"><figcaption data-i18n="founder.stickers"></figcaption></figure>
-        </div>
       </div>
     </div>
     <!-- "What I make", the old page's three roles (28 Oct), each drawn on its own sheet -->

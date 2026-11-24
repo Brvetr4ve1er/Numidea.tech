@@ -156,6 +156,7 @@ var I18N = {
   'price.tIncl': 'Ce qui est inclus',
   'price.cur': 'DA',
   'price.popular': 'Recommandé',
+  'price.from': 'dès {p} ({n})',
   'price.t1name': 'Essentiel', 'price.t1for': 'Une présence crédible, vite en\u00a0ligne.', 'price.t1time': '2 à 4 semaines',
   'price.t1a': 'Vitrine ou landing, 1 à 5 pages',
   'price.t1b': 'Design sur mesure — jamais un modèle tout fait repeint à vos couleurs',

@@ -126,7 +126,7 @@ export function lanterne(ctx) {
       const d = A.districts[id];
       if (!d) { fail(`${at}: district ${id} has no data`); return; }
       for (const f of DISTRICT_KEYS) need(dk(A, id, f), `${at} ${id}`);
-      if (d.done && !/^((touch|seen:[^|]+|sel:[^|]+|text:[^|]+|vis:[^|]+|range:\d+)(\||$))+$/.test(d.done)) fail(`${at} ${id}: done "${d.done}" is not a known condition (touch, seen:, sel:, text:, vis:, range:)`);
+      if (d.done && !/^((touch|seen:[^|]+|match:[^|]+|sel:[^|]+|text:[^|]+|vis:[^|]+|range:\d+)(\||$))+$/.test(d.done)) fail(`${at} ${id}: done "${d.done}" is not a known condition (touch, seen:, match:, sel:, text:, vis:, range:)`);
       for (let j = 0; j < 3; j++) { need(ansK(A, id, 'a', j), `${at} ${id}`); need(fK(A, id, j), `${at} ${id}`); }
       if (Array.isArray((d.keys || {}).f) && !/\.ok$/.test(d.keys.f[d.right])) fail(`${at} ${id}: the right answer's line (${d.keys.f[d.right]}) is not the course's ok line`);
       if (fr(ansK(A, id, 'a', 3)) != null) fail(`${at} ${id}: more than three answers`);
@@ -614,6 +614,9 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
   ${menu([['#rayons', 'lant.shelf.navAtlases'], ['#passeport', 'lant.shelf.navPassport'], ['#radio', 'radio.title'], ['#comptoir', 'lant.shelf.navComptoir'], ...(TOOLS ? [['outils.html', 'lant.tools.mast']] : []), ...enqMenu, ['#ronde', 'lant.shelf.navRonde'], [WA, 'lant.ui.wa'], ['../', 'lant.ui.studio'], ['../fabrique.html', 'nav.fab'], ['../monde.html', 'nav.world']])}
 </header>`;
     holes['lant.shelf.hero'] = `<div class="hero__art hero__art--key" dir="ltr" role="img" data-i18n-aria="lant.shelf.heroAlt"><img class="hero__back" src="${up(k1.src)}" srcset="${up(k1.small.src)} ${k1.small.w}w, ${up(k1.src)} ${k1.w}w" sizes="(max-width:1010px) 94vw, 58vw" width="${k1.w}" height="${k1.h}" alt="" fetchpriority="high" decoding="async"></div>`;
+    /* the first step for a new visitor (Q-11, 2026-11-24): the book marked "start" in shelf.json, named in the hero too */
+    const first = books.find((b) => b.start && ATLAS[b.slug]);
+    holes['lant.shelf.heroStart'] = first ? `<a class="hero__start" href="${first.slug}.html" data-i18n="${need('lant.shelf.heroStart', 'the shelf')}"></a>` : '';
     holes['lant.shelf.rayons'] = rayons;
     holes['lant.shelf.passport'] = passport;
     holes['lant.shelf.passTotal'] = `<p class="hud" data-lt-pass-total="${total}" data-lt-books="${books.length}">${esc(pt(total))}</p>`;
@@ -720,7 +723,7 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
     const byName = (x, y) => x.name.localeCompare(y.name, 'en', { sensitivity: 'base' });
     const shelves = cats.map((c) => { const apps = TOOLS.apps.filter((a) => a.category === c.id).sort(byName); return apps.length ? `
     <section class="tl-cat" id="tl-${c.id}" aria-labelledby="tl-${c.id}-h">
-      <div class="tl-cat__head"><h2 class="tl-cat__h" id="tl-${c.id}-h">${c.glyph ? `<span class="tl-cat__g" lang="ja" aria-hidden="true">${esc(c.glyph)}</span>` : ''}<span data-i18n="${c.key}"></span></h2>${c.note ? `<p class="tl-cat__note" data-i18n="${c.note}"></p>` : ''}</div>${routes(c)}
+      <div class="tl-cat__head"><h2 class="tl-cat__h" id="tl-${c.id}-h">${c.glyph ? `<span class="tl-cat__g" lang="ja" aria-hidden="true" data-decorative>${esc(c.glyph)}</span>` : ''}<span data-i18n="${c.key}"></span></h2>${c.note ? `<p class="tl-cat__note" data-i18n="${c.note}"></p>` : ''}</div>${routes(c)}
       <ul class="tl-grid">${apps.map(card).join('')}
       </ul>
     </section>` : ''; }).join('');
@@ -785,7 +788,7 @@ ${scripts(['../lanterne.js', '../../assets/carry.js'])}
      the page, its checks and the strings its engine writes; its sources' hosts join the toolbox's (a source there is a
      plain link to the page that was read, marked data-app like an app's official address) */
   if (ENQ) {
-    ENQG = enquetes({ LS, HUB, DICT, LANGS, fail, notes, esc, json, need, headFor, swap, menu, langSwitch, scripts, radioJson, WA, TOOLS, WM, stFoot });   // WM, stFoot: the Librairie's mark and foot, for E-05
+    ENQG = enquetes({ LS, HUB, DICT, LANGS, fail, notes, esc, json, need, headFor, swap, menu, motionBtn, langSwitch, scripts, radioJson, WA, TOOLS, WM, stFoot });   // WM, stFoot: the Librairie's mark and foot, for E-05; motionBtn: the mast's motion switch goes into the menu under 651 px, as on the atlases
     if (ENQG) { out.push(ENQG.out); runtime[ENQG.out.page] = ENQG.runtime; for (const hst of ENQG.hosts) appHosts.add(hst); }
   }
 

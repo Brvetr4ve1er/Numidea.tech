@@ -1258,6 +1258,17 @@ figure.st-tile{margin:0}
 .st-diary__tile figcaption span:last-child{color:var(--cream);font-weight:600}
 .st-lab__end{margin-top:clamp(10px,1.6vw,20px);margin-bottom:clamp(24px,3vw,40px)}
 @media (min-width:700px){.st-lab__end{flex-direction:row;align-items:center;justify-content:space-between;gap:24px;padding:22px 24px}.st-lab__end span{max-width:34em;text-align:end}}
+/* (Q-08, 2026-11-24) the founder's extras in the diary: the three modes under the head's title (cream frames on the
+   night band), then the coffee break and the two polaroids at the strip's end, side by side from 700 px */
+.st-diary__modes{max-width:440px;margin-top:4px}
+.st-diary__modes img{border-color:var(--cream);background:#0f1420}
+.st-diary__modes .st-label{color:var(--on-dark-2)}
+@media (max-width:560px){.st-diary__modes{gap:10px}.st-diary__modes .st-label{letter-spacing:.04em}}
+.st-diary__end{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center;gap:36px clamp(24px,4vw,56px);margin-top:clamp(36px,4vw,56px)}
+.st-diary__end .st-founder__floor{margin-inline:0;box-shadow:6px 6px 0 rgba(0,0,0,.45)}
+.st-diary__end .st-founder__floorl{background:var(--cream);color:var(--ink);border:2px solid var(--ink)}
+.st-diary__end .st-polas{flex:1 1 380px;max-width:560px;margin-top:0;padding-bottom:6px}
+.st-diary__end .st-pola{box-shadow:5px 5px 0 rgba(0,0,0,.45);color:var(--ink)}   /* the diary is night, the polaroid is paper: its caption in ink, not the section's cream (2026-11-24) */
 @media (min-width:1000px){
   .st-diary__head{position:relative;background:#0f1420;min-height:0}
   .st-diary__copy{position:absolute;inset-block:0;left:0;width:40%;justify-content:center;padding:clamp(20px,3vw,48px)}
@@ -1265,12 +1276,10 @@ figure.st-tile{margin:0}
 }
 
 /* ---------------- 11 founder ---------------- */
+/* (Q-08, 2026-11-24) the row is the facts and the team, two columns from 900 px; the night desk, the modes, the
+   coffee break and the polaroids moved to the world's diary (the rules for them below, and the diary's own above) */
 .st-founder__row{display:flex;flex-wrap:wrap;gap:40px 56px}
-.st-founder__art{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:16px}
-.st-founder__photo{position:relative;background:var(--floor);border:2px solid var(--ink);box-shadow:var(--shadow)}
-.st-founder__photo img{display:block;width:100%;height:auto;aspect-ratio:5/4;object-fit:cover}
-.st-pos-desk3{object-position:96% center}
-.st-founder__disc{position:absolute;top:10px;inset-inline-end:12px;width:48px;height:48px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:50%;background:var(--paper);font-family:var(--f-jp);font-weight:900;font-size:22px}
+@media (min-width:900px){.st-founder__copy--team{padding-top:8px}}
 .st-modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .st-modes figure{display:flex;flex-direction:column;gap:6px}
 .st-modes img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;background:var(--floor);border:2px solid var(--ink)}
@@ -1941,7 +1950,7 @@ main:focus{outline:none}
   .st-head{margin-bottom:20px;gap:12px 24px}
   .st-process .st-head,.st-pricing .st-head,.st-tech .st-head{margin-bottom:20px}
   .st-kick{gap:12px;letter-spacing:.14em}
-  .st-seal{width:36px;height:36px;font-size:18px}
+  .st-seal{width:36px;height:36px;font-size:19px}   /* 19 px bold stays large text (3:1), 18 px would need 4.5:1 */
   .st-btn{letter-spacing:.1em;padding:0 16px}
   .st-label{letter-spacing:.1em}
   /* the labels that carry a fact (a duration, a delay, the hours) read at 13px, not as fine print */
@@ -2214,7 +2223,6 @@ html .crt .cc__sum,html .crt .cc__p--more{display:none}
   /* the founder */
   .st-plate{margin-bottom:28px}
   .st-founder__row{gap:24px}
-  .st-founder__photo img{aspect-ratio:4/3;object-position:78% 50%}   /* (his face and Kūro, 2026-11-18) */
   .st-modes{gap:8px}
   .st-founder__floor{padding-top:8px}
   .st-actor--duo{width:230px}
@@ -2237,7 +2245,7 @@ html .crt .cc__sum,html .crt .cc__p--more{display:none}
      lazy, so a phone does not fetch them), and « Ce que je fais » is its three roles and their links */
   .st-make__grid{display:flex;flex-direction:column;gap:14px;overflow:visible;margin-inline:0;padding:0}
   .st-make__grid + .st-rowbar,.st-make__fig,.st-make__line{display:none}
-  .st-founder__art,.st-polas,.st-founder__quote,.st-founder__motto,.st-make__aside{display:none}
+  .st-founder__quote,.st-founder__motto,.st-make__aside{display:none}
   .st-make__card{flex-direction:row;flex-wrap:wrap;align-items:center;gap:0 14px;padding-top:8px;border-top:1.5px dashed var(--line)}
   .st-make__role{margin-top:0;font-size:20px}
   /* S-09 (2026-11-24): the price section's console sticker repeats the console right under it; on a phone it is not drawn
@@ -2771,6 +2779,12 @@ html.js [data-ds-has]:not(.is-on){display:none}
 html.js .st-bins__why:empty{display:none}
 .st-bins__row.is-on{border-style:solid;border-color:var(--ink)}
 .st-bins__row.is-match .st-bins__why::before{content:"印";display:inline-grid;place-items:center;width:22px;height:22px;margin-inline-end:8px;background:var(--red);color:var(--cream);font-family:var(--f-jp);font-weight:900;font-size:12px;line-height:1;vertical-align:-5px}
+/* a wrong row says so in its colour and its own mark, not only in its words: the reason in the text red behind a hollow ✕, where a right row has teal behind the red seal (2026-11-24) */
+.st-bins__row.is-off .st-bins__why{color:var(--red-text)}
+.st-bins__row.is-off .st-bins__why::before{content:"✕";display:inline-grid;place-items:center;width:22px;height:22px;margin-inline-end:8px;border:2px solid var(--red-text);box-sizing:border-box;color:var(--red-text);font-weight:900;font-size:12px;line-height:1;vertical-align:-5px}
+/* every chip of a sort keeps room for the tick a press adds, so a pressed label never wraps to a new line and the row never grows (2026-11-24) */
+.st-crs .st-bins .st-chip::before{content:"✓\00a0";visibility:hidden}
+.st-crs .st-bins .st-chip[aria-pressed="true"]::before{visibility:visible}
 .st-bins__ours{grid-column:1 / -1;margin:0;padding-inline-start:10px;border-inline-start:4px solid var(--red);font-size:var(--t-small);line-height:1.45}
 html.js .st-bins__row:not(.is-on) .st-bins__ours{display:none}
 .st-bins__score{font-family:var(--f-mono);font-weight:700;font-size:var(--t-mono);letter-spacing:.04em}
@@ -4474,8 +4488,9 @@ html.js .st-trap.is-live[data-tab="0"] [data-p="0"],html.js .st-trap.is-live[dat
 }
 /* the course bar's short count, shown under 360 px only */
 .st-crs__barS{display:none}
-/* 2.3's three pairs: one per line below 480 px */
-@media (max-width:479px){
+/* 2.3's three pairs: one per line below 480 px; up to 539 px since every chip of a sort keeps room for its tick
+   (2026-11-24: « Gamification » in three columns cut in two from 480 to 530 px) */
+@media (max-width:539px){
   .st-bins[style*="--b:3"] .st-bins__bs{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:359px){
