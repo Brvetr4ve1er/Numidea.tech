@@ -30,7 +30,7 @@ Sheet numbers follow the order of `PROJECTS` (scripts/build-scene.mjs › sheet(
 | Pl. | Slug | Name | Status | Live URL | Pages | Languages | Typefaces | Benefits |
 |---|---|---|---|---|---|---|---|---|
 | 01 | `bordjsteel` | Bordj Steel | live | bordjsteelb2b.netlify.app | 12 | FR | Montserrat | 5 |
-| 02 | `alliance` | Alliance Travel | live | alliancetravel34.netlify.app | 9 | FR · EN · AR | DM Sans, Tajawal | 5 |
+| 02 | `alliance` | Alliance Travel | live | alliancetravel.app | 9 | FR · EN · AR | DM Sans, Tajawal | 5 |
 | 03 | `glaive` | Glaive Store | concept | glaivestore.netlify.app | not given | EN | Archivo, Inter | 4 |
 | 04 | `workspacehq` | WorkspaceHQ v3 | product | `../workspacehq/` | not given | EN | Press Start 2P, VT323 | 5 |
 | 05 | `almaflow` | AlmaFlowClim | live | almaflowclim.netlify.app | 7 | FR | Roboto | 5 |

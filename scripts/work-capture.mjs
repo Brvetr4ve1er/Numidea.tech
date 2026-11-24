@@ -21,7 +21,7 @@ import { mkdirSync } from 'fs';
 import { launch, serve } from './lib/serve.mjs';
 const P={
  bordjsteel:{base:'https://bordjsteelb2b.netlify.app',d:['/','/products','/references','/about/history'],m:['/','/products']},
- alliance:{base:'https://alliancetravel34.netlify.app',d:['/#voyages','/istanbul/','/rendez-vous-visa/','/bali/'],m:['/','/istanbul/'],
+ alliance:{base:'https://alliancetravel.app',d:['/#voyages','/istanbul/','/rendez-vous-visa/','/bali/'],m:['/','/istanbul/'],
   // trip pages: their hero is built dark, and in the light scheme its text and
   // nav are dark on black (their own dark scheme is the one that reads)
   dark:['/istanbul/','/bali/']},

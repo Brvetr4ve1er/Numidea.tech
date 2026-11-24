@@ -119,7 +119,7 @@ export const PROJECTS = [
     slug: 'alliance',
     studio: 'case-alliance',   // its case on the Studio (hub/#case-alliance): the sheet links to it (journey-12)
     name: 'Alliance Travel',
-    url: 'https://alliancetravel34.netlify.app',
+    url: 'https://alliancetravel.app',
     status: 'live',
     pages: [
       { file: 'd1', path: '/#voyages', label: { fr: 'Les voyages', en: 'The trips', ar: 'الرحلات' } },
