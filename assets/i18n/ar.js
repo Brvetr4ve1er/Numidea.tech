@@ -253,7 +253,7 @@ var I18N = {
   'founder.studio': 'الاستوديو بالتفصيل <span aria-hidden="true">←</span>',
   'founder.bible': 'دفتر الشخصية، بالإنجليزية <span aria-hidden="true">←</span>',
   /* the night band (index.html #atelier) and the founder's drawn portrait; premise approved 2026-11-15; AR to review by a native reader */
-  'atelier.kicker': 'برج بوعريريج\u00a0· 36°04′N 4°46′E',
+  'atelier.kicker': 'برج بوعريريج\u00a0· \u206636°04′N 4°46′E\u2069',
   'atelier.title': 'ورشة الليل.',
   'atelier.line': 'نوميديا ورشة ليلية في برج بوعريريج، يبني فيها صانعٌ وقطّه الأسود صفحتك الرئيسية قبل أن تدفع، وكل مشروع يُسلَّم يفتح باباً إلى عالم آخر.',
   'atelier.cta': 'ادخل الورشة <span aria-hidden="true">←</span>',
