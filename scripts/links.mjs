@@ -144,8 +144,9 @@ for (const f of published) {
   for (const m of src.matchAll(/https:\/\/[^\s"'<>`\\)\]}|]+/g)) {
     const u = m[0].replace(/\$\{.*$/, '').replace(/&amp;/g, '&').replace(/[.,;:!?]+$/, '');
     if (/@context["']?\s*:\s*["']$/.test(src.slice(Math.max(0, m.index - 16), m.index))) continue;
-    // RFC 2606 reserved example domains (a lab's sample address, shown as text): no page to fetch
-    if (/^https:\/\/(www\.)?example\.(org|com|net)(\/|$)/.test(u)) continue;
+    // RFC 2606 reserved example domains and the reserved .example top-level domain (a lab's or a case's sample
+    // address, shown as text): no page to fetch
+    if (/^https:\/\/(www\.)?example\.(org|com|net)(\/|$)/.test(u) || /^https:\/\/[^/]+\.example(\/|$)/.test(u)) continue;
     // a CSS attribute selector (a[href^="https://wa.me"]) names a prefix, not a page
     if (/\[[\w-]+[\^$*|~]?=["']?$/.test(src.slice(Math.max(0, m.index - 24), m.index))) continue;
     // built at runtime: 'https://…' + x, or a template literal's `https://…${x}`
