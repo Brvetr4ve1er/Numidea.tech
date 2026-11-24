@@ -7534,6 +7534,8 @@
         "verdict": "Vérifié sur le tableau : {v}. Profondeurs closes : {n} sur 3.",
         "yes": "oui",
         "partly": "en partie",
+        "no": "non",
+        "added": "une ligne ajoutée par l’équipe",
         "verdictN": "Vérifié sur le tableau : {v}. Profondeurs closes : {n} sur {m}.",
         "rowAria": "{pair}. Ses profondeurs.",
         "played": "close",
@@ -7575,36 +7577,54 @@
         "book": {
           "btn": "LE TABLEAU",
           "label": "Le grand livre ouvert. Bouton : le tableau.",
-          "line": "Le livre ouvert garde le tableau du prestataire : dix flèches en lignes. Une enquête close s’y colle. Corrections à côté. Les coquilles restent lisibles.",
+          "line": "Le livre ouvert garde le tableau du prestataire : dix flèches, plus trois lignes ajoutées. Une enquête close s’y colle. Les coquilles restent lisibles.",
           "name": "Le livre ouvert",
-          "slip": "OUVRIR LE BILLET · 4 MIN"
+          "slip": "OUVRIR LE BILLET · 4 MIN",
+          "word": "Livre"
         },
         "kuro": {
           "btn": "LE LIVRET",
           "label": "Kūro, le chat noir, endormi sur le comptoir. Bouton : le livret.",
           "line": "Kūro dort sur le comptoir et juge chaque réponse. Touchez-le pour le livret : titre, flammes, outils. Il n’explique rien.",
-          "name": "Kūro"
+          "name": "Kūro",
+          "word": "Kūro"
         },
         "lantern": {
           "btn": "OUVRIR LE BILLET · 4 MIN",
           "label": "La lanterne sur le comptoir. Bouton : ouvrir le billet, quatre minutes.",
           "line": "La lanterne garde le billet de ce soir. Touchez-la : quatre minutes, six réponses. Trois flammes s’allument au premier essai. Aucune ne s’éteint ; Yasser a essayé.",
-          "name": "La lanterne"
+          "name": "La lanterne",
+          "word": "Lanterne"
         },
         "awning": {
           "label": "L’auvent au-dessus des étagères. Le billet de ce soir est ici. Bouton : l’ouvrir.",
           "name": "L’auvent",
-          "line": "Le billet de ce soir est glissé sous l’auvent, où attend Techno Pigeon. Il l’a apporté. Il ne l’a pas lu."
+          "line": "Le billet de ce soir est glissé sous l’auvent, où attend Techno Pigeon. Il l’a apporté. Il ne l’a pas lu.",
+          "word": "Auvent"
         },
         "shelves": {
           "label": "Les étagères. Le billet de ce soir est ici. Bouton : l’ouvrir.",
           "name": "Les étagères",
-          "line": "Le billet de ce soir est coincé entre deux livres, sur les étagères. Personne ne l’y a rangé. Il attend."
+          "line": "Le billet de ce soir est coincé entre deux livres, sur les étagères. Personne ne l’y a rangé. Il attend.",
+          "word": "Étagères"
         },
         "headphones": {
           "label": "Le casque de Yasser. Le billet de ce soir est ici. Bouton : l’ouvrir.",
           "name": "Le casque de Yasser",
-          "line": "Le billet de ce soir est plié dans le casque de Yasser. Il dit qu’il n’écoutait pas. Le billet ne dit rien."
+          "line": "Le billet de ce soir est plié dans le casque de Yasser. Il dit qu’il n’écoutait pas. Le billet ne dit rien.",
+          "word": "Casque"
+        },
+        "satchel": {
+          "word": "Sacoche",
+          "label": "La sacoche de Yasser. Le billet de ce soir est ici. Bouton : l’ouvrir.",
+          "name": "La sacoche de Yasser",
+          "line": "Le billet de ce soir dépasse de la sacoche de Yasser. Il dit ne pas l’y avoir rangé. Il y est quand même."
+        },
+        "drawers": {
+          "word": "Tiroirs",
+          "label": "Les tiroirs sous le comptoir. Le billet de ce soir est ici. Bouton : l’ouvrir.",
+          "name": "Les tiroirs",
+          "line": "Le billet de ce soir est classé dans les tiroirs, sous le comptoir. Personne ne se souvient de l’y avoir classé."
         }
       },
       "season": {
@@ -7658,7 +7678,7 @@
           "line": "Retiré du site ne veut pas dire retiré du réseau. Samia demande qui décide.",
           "pair": "YouTube → Odysee"
         },
-        "premise": "Le prestataire de Samia a envoyé un tableau de dix flèches. On en vérifie une par nuit. Elle reste hors de la chaîne.",
+        "premise": "Le prestataire de Samia a envoyé un tableau de dix flèches. L’équipe y ajoute trois lignes : deux questions oubliées et une correction. On en vérifie une par nuit. Elle reste hors de la chaîne.",
         "presearch": {
           "line": "Une recherche qui interroge d’autres moteurs. Samia se demande qui répond vraiment.",
           "pair": "Google → Presearch"
@@ -7735,7 +7755,7 @@
           "line": "Une affirmation sur le « web3 » attend. Vous pointez la preuve.",
           "open": "OUVRIR L’ÉTAL",
           "kept": "Un billet laissé ouvert reprend à la première question. Les profondeurs closes et les XP restent.",
-          "season": "Saison un : Dix flèches",
+          "season": "Saison un : dix flèches, treize lignes",
           "start": "ALLUMER LA LANTERNE",
           "title": "LES ENQUÊTES DE NUIT"
         },
@@ -7791,7 +7811,7 @@
         "pos": "{i} sur {n}",
         "posRet": "Retour {i} sur {n}",
         "posStamp": "Tampon",
-        "pvAria": "La pièce à conviction attend derrière le pari.",
+        "pvAria": "Sous scellé jusqu’au pari",
         "quote": "« {t} »",
         "result": "Vous avez parié {bet}. Vous tamponnez {stamp}. Vérifié : {checked}.",
         "right": "Juste.",
@@ -7799,6 +7819,7 @@
         "sealed": "Scellé",
         "skip": "Aller au jeu",
         "slipH": "LE BILLET",
+        "slipKept": "Quitter ou recharger avant le tampon, et ce billet reprend à la première question. Les XP gagnés restent.",
         "slot": "case {n}",
         "slotEmpty": "Case {n}, vide",
         "slotFull": "Case {n} : {t}",
@@ -7843,7 +7864,10 @@
           "shelves": "Le billet de ce soir : sur les étagères · 4 min",
           "headphones": "Le billet de ce soir : dans le casque de Yasser · 4 min",
           "book": "Le billet de ce soir : dans le livre ouvert · 4 min",
-          "lantern": "Le billet de ce soir : dans la lanterne · 4 min"
+          "lantern": "Le billet de ce soir : dans la lanterne · 4 min",
+          "satchel": "Le billet de ce soir : dans la sacoche de Yasser · 4 min",
+          "drawers": "Le billet de ce soir : dans les tiroirs · 4 min",
+          "kuro": "Le billet de ce soir : sous Kūro · 4 min"
         },
         "stallIdle4": "Quatre cercles sur la peinture. Toucher, c’est seulement regarder.",
         "goalNone2": "Pas de nouveau billet ce soir. Rejouez une profondeur depuis le tableau.",
@@ -7903,7 +7927,7 @@
             "0": "Pari. Six réponses. Tampon. Une erreur ne coûte rien."
           },
           "greet": {
-            "0": "L’étal est ouvert. Un billet attend. Quatre minutes."
+            "0": "Touchez le billet : six questions, quatre minutes."
           },
           "noFlameLit": {
             "0": "Pas de flamme ce soir. L’enquête est close quand même."

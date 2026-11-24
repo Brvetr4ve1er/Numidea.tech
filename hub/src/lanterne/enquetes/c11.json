@@ -1,0 +1,1432 @@
+{
+ "id": "c11",
+ "slug": "ipfs",
+ "n": 11,
+ "verdict": "partly",
+ "names": [
+  "Dropbox",
+  "IPFS",
+  "Filecoin"
+ ],
+ "sticker": {
+  "checked": "2026-11-23",
+  "src": [
+   "ipfs-cid",
+   "ipfs-keep",
+   "ipfs-privacy",
+   "filecoin-what",
+   "filecoin-ipfs",
+   "filecoin-token"
+  ],
+  "law": true
+ },
+ "sources": [
+  {
+   "id": "ipfs-what",
+   "url": "https://docs.ipfs.tech/concepts/what-is-ipfs/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ipfs-cid",
+   "url": "https://docs.ipfs.tech/concepts/content-addressing/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ipfs-keep",
+   "url": "https://docs.ipfs.tech/concepts/persistence/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ipfs-privacy",
+   "url": "https://docs.ipfs.tech/concepts/privacy-and-encryption/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ipfs-immutable",
+   "url": "https://docs.ipfs.tech/concepts/immutability/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ipfs-gateway",
+   "url": "https://docs.ipfs.tech/concepts/ipfs-gateway/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ipfs-faq",
+   "url": "https://docs.ipfs.tech/concepts/faq/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "filecoin-what",
+   "url": "https://docs.filecoin.io/getting-started/what-is-filecoin",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "filecoin-ipfs",
+   "url": "https://docs.filecoin.io/getting-started/how-storage-works/filecoin-and-ipfs",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "filecoin-onramps",
+   "url": "https://docs.filecoin.io/getting-started/how-storage-works/storage-onramps",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "filecoin-token",
+   "url": "https://docs.filecoin.io/networks-and-tools/assets/the-fil-token",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "filecoin-model",
+   "url": "https://docs.filecoin.io/getting-started/what-is-filecoin/storage-model",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "dropbox-link",
+   "url": "https://help.dropbox.com/share/create-and-share-link",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "dropbox-recover",
+   "url": "https://help.dropbox.com/delete-restore/recover-deleted-files-folders",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "url",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "rfc2606",
+   "url": "https://www.rfc-editor.org/rfc/rfc2606.txt",
+   "read": "2026-11-23"
+  }
+ ],
+ "depths": [
+  {
+   "id": "ipfs.1",
+   "key": "ipfs.d1",
+   "level": 1,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "ipfs-cid"
+     ]
+    },
+    {
+     "id": "cards",
+     "tag": "labels",
+     "kind": "screen",
+     "template": "four-tiles",
+     "law": true,
+     "parts": [
+      {
+       "id": "cid",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "loc",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "mail",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "reload",
+       "caption": true,
+       "glyph": "reload",
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "cid",
+     "src": [
+      "ipfs-cid",
+      "url",
+      "rfc2606"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "cid",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "loc",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "old",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "loc",
+      "src": [
+       "ipfs-cid",
+       "url",
+       "rfc2606"
+      ]
+     }
+    },
+    {
+     "id": "change",
+     "tag": "read",
+     "kind": "screen",
+     "template": "file-card",
+     "law": true,
+     "parts": [
+      {
+       "id": "name",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "by",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "cid",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "cid",
+     "src": [
+      "ipfs-immutable",
+      "ipfs-cid"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "moves",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "longer",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "same",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "same",
+      "src": [
+       "ipfs-cid"
+      ]
+     }
+    },
+    {
+     "id": "two",
+     "tag": "duo",
+     "kind": "duo",
+     "tries": 1,
+     "law": true,
+     "parts": [
+      {
+       "id": "a",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "b",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "a",
+     "src": [
+      "dropbox-link",
+      "ipfs-cid"
+     ],
+     "return": {
+      "kind": "duo",
+      "tries": 1,
+      "law": true,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "a",
+      "src": [
+       "ipfs-what"
+      ]
+     }
+    },
+    {
+     "id": "note",
+     "tag": "note",
+     "kind": "notes",
+     "law": true,
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n2",
+     "mix": true,
+     "src": [
+      "ipfs-keep",
+      "ipfs-what"
+     ],
+     "return": {
+      "kind": "notes",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r3",
+      "mix": true,
+      "src": [
+       "ipfs-keep",
+       "ipfs-privacy"
+      ]
+     }
+    },
+    {
+     "id": "pin",
+     "tag": "point",
+     "kind": "page",
+     "template": "path",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "own",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "cache",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "svc",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "cache",
+     "src": [
+      "ipfs-keep"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "path",
+      "address": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "own",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "cache",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "svc",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "svc",
+      "src": [
+       "ipfs-keep"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "four-tiles",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "where",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "lock",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "long",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "same",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "same",
+     "src": [
+      "ipfs-cid",
+      "ipfs-immutable",
+      "ipfs-privacy"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "place",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "same",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "ever",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "place",
+      "src": [
+       "filecoin-ipfs",
+       "ipfs-keep",
+       "url",
+       "rfc2606"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "not",
+     "law": true,
+     "src": [
+      "ipfs-cid",
+      "ipfs-keep"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "two"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "pin"
+    }
+   ]
+  },
+  {
+   "id": "ipfs.2",
+   "key": "ipfs.d2",
+   "level": 2,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "ipfs-privacy"
+     ]
+    },
+    {
+     "id": "add",
+     "tag": "eye",
+     "kind": "screen",
+     "template": "upload-page",
+     "law": true,
+     "parts": [
+      {
+       "id": "copy",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "rename",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "add",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "close",
+       "caption": true,
+       "glyph": "cross",
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "add",
+     "src": [
+      "ipfs-keep",
+      "ipfs-cid"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "same",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "two",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "err",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "two",
+      "src": [
+       "ipfs-immutable"
+      ]
+     }
+    },
+    {
+     "id": "diff",
+     "tag": "compare",
+     "kind": "diff",
+     "law": true,
+     "a": [
+      "gateway.example",
+      "/ipfs/",
+      "bafy…k4q"
+     ],
+     "b": [
+      "mirror.example",
+      "/ipfs/",
+      "bafy…k4r"
+     ],
+     "answer": 2,
+     "src": [
+      "ipfs-gateway",
+      "ipfs-cid",
+      "url",
+      "rfc2606"
+     ],
+     "return": {
+      "kind": "diff",
+      "law": true,
+      "a": [
+       "gateway.example",
+       "/ipfs/",
+       "bafy…m7a"
+      ],
+      "b": [
+       "mirror.example",
+       "/ipfs/",
+       "bafy…n7a"
+      ],
+      "answer": 0,
+      "src": [
+       "ipfs-gateway",
+       "url",
+       "rfc2606"
+      ]
+     }
+    },
+    {
+     "id": "ring",
+     "tag": "ring",
+     "kind": "page",
+     "template": "results",
+     "address": true,
+     "ring": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "ad",
+       "text": true,
+       "say": true,
+       "mark": true,
+       "opens": "reports-fast.example/q3/bafy…k4q.pdf",
+       "after": true
+      },
+      {
+       "id": "near",
+       "text": true,
+       "say": true,
+       "opens": "gateway.example/ipfs/bafy…k4r",
+       "after": true
+      },
+      {
+       "id": "own",
+       "text": true,
+       "say": true,
+       "opens": "gateway.example/ipfs/bafy…k4q",
+       "after": true
+      }
+     ],
+     "answer": "own",
+     "src": [
+      "ipfs-gateway",
+      "ipfs-cid",
+      "url",
+      "rfc2606"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "message",
+      "address": true,
+      "ring": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "l1",
+        "text": true,
+        "say": true,
+        "opens": "mirror.example/ipfs/bafy…m7a",
+        "after": true
+       },
+       {
+        "id": "l2",
+        "text": true,
+        "say": true,
+        "opens": "gateway.example/ipfs/bafy…n7a",
+        "after": true
+       },
+       {
+        "id": "l3",
+        "text": true,
+        "say": true,
+        "opens": "files.example/contracts/contract.pdf",
+        "after": true
+       }
+      ],
+      "answer": "l1",
+      "src": [
+       "ipfs-gateway",
+       "ipfs-cid",
+       "url",
+       "rfc2606"
+      ]
+     }
+    },
+    {
+     "id": "encrypt",
+     "tag": "rows",
+     "kind": "screen",
+     "template": "settings-rows",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "file",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "pin",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "enc",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "send",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "enc",
+     "src": [
+      "ipfs-privacy",
+      "filecoin-ipfs",
+      "ipfs-keep"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "her",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "all",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "svc",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "all",
+      "src": [
+       "ipfs-privacy"
+      ]
+     }
+    },
+    {
+     "id": "rows",
+     "tag": "line",
+     "kind": "page",
+     "template": "account-pages",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "count",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "paid",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "gate",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "paid",
+     "src": [
+      "ipfs-keep",
+      "ipfs-gateway"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "account-pages",
+      "address": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "close",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "gate",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "addr",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "close",
+      "src": [
+       "ipfs-keep",
+       "ipfs-gateway",
+       "ipfs-immutable"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "four-tiles",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "lock",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "skip",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "quiet",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "fit",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "fit",
+     "src": [
+      "ipfs-privacy",
+      "ipfs-keep"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "gone",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "others",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "undo",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "others",
+      "src": [
+       "ipfs-privacy",
+       "ipfs-keep",
+       "dropbox-recover"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "true",
+     "law": true,
+     "src": [
+      "ipfs-privacy"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "ring"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "rows"
+    }
+   ]
+  },
+  {
+   "id": "ipfs.3",
+   "key": "ipfs.d3",
+   "level": 3,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "filecoin-what",
+      "filecoin-token"
+     ]
+    },
+    {
+     "id": "layers",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2"
+     ],
+     "mix": true,
+     "src": [
+      "ipfs-faq",
+      "ipfs-keep",
+      "filecoin-what",
+      "filecoin-ipfs"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       },
+       {
+        "id": "r5",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "filecoin-token",
+       "filecoin-what",
+       "filecoin-ipfs"
+      ]
+     }
+    },
+    {
+     "id": "receipt",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "p1",
+       "text": true
+      },
+      {
+       "id": "p2",
+       "text": true
+      },
+      {
+       "id": "p3",
+       "text": true
+      },
+      {
+       "id": "p4",
+       "text": true
+      }
+     ],
+     "answer": [
+      "p1",
+      "p2"
+     ],
+     "mix": true,
+     "src": [
+      "filecoin-token",
+      "filecoin-what",
+      "filecoin-ipfs",
+      "filecoin-model"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "q1",
+        "text": true
+       },
+       {
+        "id": "q2",
+        "text": true
+       },
+       {
+        "id": "q3",
+        "text": true
+       },
+       {
+        "id": "q4",
+        "text": true
+       },
+       {
+        "id": "q5",
+        "text": true
+       }
+      ],
+      "answer": [
+       "q1",
+       "q2"
+      ],
+      "mix": true,
+      "src": [
+       "filecoin-what",
+       "filecoin-ipfs",
+       "filecoin-model"
+      ]
+     }
+    },
+    {
+     "id": "boxes",
+     "tag": "point",
+     "kind": "page",
+     "template": "path",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "addr",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "chain",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "disk",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "disk",
+     "src": [
+      "filecoin-what",
+      "filecoin-ipfs",
+      "filecoin-model",
+      "ipfs-cid"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "path",
+      "address": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "status",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "chain",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "addr",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "chain",
+      "src": [
+       "filecoin-ipfs",
+       "ipfs-cid"
+      ]
+     }
+    },
+    {
+     "id": "pay",
+     "tag": "duo",
+     "kind": "duo",
+     "tries": 1,
+     "law": true,
+     "parts": [
+      {
+       "id": "a",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "b",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "b",
+     "src": [
+      "filecoin-token",
+      "filecoin-ipfs",
+      "filecoin-what"
+     ],
+     "return": {
+      "kind": "duo",
+      "tries": 1,
+      "law": true,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "a",
+      "src": [
+       "filecoin-onramps",
+       "filecoin-what"
+      ]
+     }
+    },
+    {
+     "id": "limits",
+     "tag": "rows",
+     "kind": "screen",
+     "template": "four-tiles",
+     "law": true,
+     "parts": [
+      {
+       "id": "check",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "one",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "alter",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "slow",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "slow",
+     "src": [
+      "ipfs-keep",
+      "filecoin-ipfs",
+      "filecoin-what"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "min",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "once",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "type",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "min",
+      "src": [
+       "ipfs-keep",
+       "filecoin-what"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "build",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "b1",
+       "text": true
+      },
+      {
+       "id": "b2",
+       "text": true
+      },
+      {
+       "id": "b3",
+       "text": true
+      },
+      {
+       "id": "b4",
+       "text": true
+      },
+      {
+       "id": "b5",
+       "text": true
+      },
+      {
+       "id": "b6",
+       "text": true
+      }
+     ],
+     "answer": [
+      "b1",
+      "b2",
+      "b3"
+     ],
+     "mix": true,
+     "src": [
+      "filecoin-what",
+      "filecoin-ipfs",
+      "filecoin-token",
+      "filecoin-model",
+      "ipfs-privacy"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "m1",
+        "text": true
+       },
+       {
+        "id": "m2",
+        "text": true
+       },
+       {
+        "id": "m3",
+        "text": true
+       },
+       {
+        "id": "m4",
+        "text": true
+       },
+       {
+        "id": "m5",
+        "text": true
+       }
+      ],
+      "answer": [
+       "m1",
+       "m2"
+      ],
+      "mix": true,
+      "src": [
+       "filecoin-what",
+       "filecoin-onramps"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "half",
+     "law": true,
+     "src": [
+      "filecoin-what",
+      "filecoin-ipfs",
+      "filecoin-token",
+      "filecoin-model"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "boxes"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "limits"
+    }
+   ]
+  }
+ ]
+}

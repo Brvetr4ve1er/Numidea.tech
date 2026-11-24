@@ -1,0 +1,1498 @@
+{
+ "id": "c10",
+ "slug": "ens",
+ "n": 10,
+ "verdict": "partly",
+ "names": [
+  "GoDaddy",
+  "ENS"
+ ],
+ "sticker": {
+  "checked": "2026-11-23",
+  "src": [
+   "docs",
+   "register",
+   "private",
+   "compromised",
+   "lifecycle"
+  ],
+  "law": true
+ },
+ "sources": [
+  {
+   "id": "docs",
+   "url": "https://docs.ens.domains/learn/protocol",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "register",
+   "url": "https://support.ens.domains/en/articles/17133066-register-a-eth-name",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "v2",
+   "url": "https://support.ens.domains/en/articles/15122781-what-changed-with-ensv2-pricing-discounts-and-grace-period",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "grace",
+   "url": "https://support.ens.domains/en/articles/15180020-expiry-grace-period",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "lifecycle",
+   "url": "https://support.ens.domains/en/articles/15179997-eth-name-lifecycle",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "private",
+   "url": "https://support.ens.domains/en/articles/15516639-is-my-ens-name-private",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "lookalikes",
+   "url": "https://support.ens.domains/en/articles/7901658-what-are-homoglyphs-and-lookalike-ens-names",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "scams",
+   "url": "https://support.ens.domains/en/articles/7900624-avoid-common-ens-scams",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "official",
+   "url": "https://support.ens.domains/en/articles/8874786-official-ens-websites-apps-and-tools",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "renew",
+   "url": "https://support.ens.domains/en/articles/15180010-renew-a-name",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "transfer",
+   "url": "https://support.ens.domains/en/articles/14789290-transfer-a-name",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "compromised",
+   "url": "https://support.ens.domains/en/articles/17640858-recover-a-eth-name-from-a-compromised-wallet",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "godaddy-dns",
+   "url": "https://www.godaddy.com/help/what-is-dns-665",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "godaddy-expiry",
+   "url": "https://www.godaddy.com/help/standard-domain-expiration-timeline-609",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "godaddy-renew",
+   "url": "https://www.godaddy.com/help/renew-my-domains-19070",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "godaddy-privacy",
+   "url": "https://www.godaddy.com/help/what-is-domain-privacy-41145",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "godaddy-web",
+   "url": "https://www.godaddy.com/help/whats-the-difference-between-my-domain-and-my-website-42196",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "godaddy-contact",
+   "url": "https://www.godaddy.com/help/contact-us",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "domain",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "rfc2606",
+   "url": "https://www.rfc-editor.org/rfc/rfc2606.txt",
+   "read": "2026-11-23"
+  }
+ ],
+ "depths": [
+  {
+   "id": "ens.1",
+   "key": "ens.d1",
+   "level": 1,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "register",
+      "scams"
+     ]
+    },
+    {
+     "id": "list",
+     "tag": "labels",
+     "kind": "screen",
+     "template": "settings-rows",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "web",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "mail",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "handle",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "name",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "addr",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "name",
+     "src": [
+      "register",
+      "docs",
+      "godaddy-web"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "com",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "org",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "eth",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "example",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "eth",
+      "src": [
+       "register",
+       "rfc2606"
+      ]
+     }
+    },
+    {
+     "id": "card",
+     "tag": "read",
+     "kind": "screen",
+     "template": "profile",
+     "law": true,
+     "parts": [
+      {
+       "id": "name",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "expires",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "owner",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "address",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "renew",
+       "caption": true,
+       "glyph": "reload",
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "expires",
+     "src": [
+      "register",
+      "grace",
+      "renew",
+      "lifecycle",
+      "docs"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "profile",
+      "law": true,
+      "parts": [
+       {
+        "id": "expires",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "grace",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "owner",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "grace",
+      "src": [
+       "grace"
+      ]
+     }
+    },
+    {
+     "id": "two",
+     "tag": "duo",
+     "kind": "duo",
+     "tries": 1,
+     "law": true,
+     "parts": [
+      {
+       "id": "a",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "b",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "b",
+     "src": [
+      "docs"
+     ],
+     "return": {
+      "kind": "duo",
+      "tries": 1,
+      "law": true,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "b",
+      "src": [
+       "docs"
+      ]
+     }
+    },
+    {
+     "id": "note",
+     "tag": "note",
+     "kind": "notes",
+     "law": true,
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n2",
+     "mix": true,
+     "src": [
+      "register",
+      "scams",
+      "private",
+      "lifecycle",
+      "grace"
+     ],
+     "return": {
+      "kind": "notes",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r2",
+      "mix": true,
+      "src": [
+       "renew",
+       "register"
+      ]
+     }
+    },
+    {
+     "id": "need",
+     "tag": "point",
+     "kind": "page",
+     "template": "help-lines",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "card",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "wallet",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "call",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "refund",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "wallet",
+     "src": [
+      "register",
+      "compromised"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "help-lines",
+      "address": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "forever",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "call",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "key",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "call",
+      "src": [
+       "godaddy-contact",
+       "godaddy-renew",
+       "godaddy-expiry"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "four-tiles",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "free",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "reg",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "grace",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "cool",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "grace",
+     "src": [
+      "lifecycle",
+      "grace"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "free",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "reg",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "grace",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "cool",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "reg",
+      "src": [
+       "lifecycle"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "not",
+     "law": true,
+     "src": [
+      "register",
+      "lifecycle",
+      "scams"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "two"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "need"
+    }
+   ]
+  },
+  {
+   "id": "ens.2",
+   "key": "ens.d2",
+   "level": 2,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "grace",
+      "v2"
+     ]
+    },
+    {
+     "id": "points",
+     "tag": "read",
+     "kind": "screen",
+     "template": "profile",
+     "law": true,
+     "parts": [
+      {
+       "id": "name",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "owner",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "address",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "site",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "expires",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "address",
+     "src": [
+      "docs",
+      "lookalikes",
+      "scams",
+      "private"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "profile",
+      "law": true,
+      "parts": [
+       {
+        "id": "address",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "owner",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "expires",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "owner",
+      "src": [
+       "lifecycle",
+       "scams"
+      ]
+     }
+    },
+    {
+     "id": "diff",
+     "tag": "compare",
+     "kind": "diff",
+     "law": true,
+     "a": [
+      "fri",
+      "end",
+      ".eth"
+     ],
+     "b": [
+      "fri",
+      "eɴd",
+      ".eth"
+     ],
+     "answer": 1,
+     "src": [
+      "lookalikes",
+      "scams"
+     ],
+     "return": {
+      "kind": "diff",
+      "law": true,
+      "a": [
+       "ab",
+       "cd4",
+       ".eth"
+      ],
+      "b": [
+       "ab",
+       "cd٤",
+       ".eth"
+      ],
+      "answer": 1,
+      "src": [
+       "lookalikes"
+      ]
+     }
+    },
+    {
+     "id": "ring",
+     "tag": "ring",
+     "kind": "page",
+     "template": "message",
+     "address": true,
+     "ring": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "l1",
+       "text": true,
+       "say": true,
+       "opens": "app.ens.domains.renew-desk.example/expiry",
+       "after": true
+      },
+      {
+       "id": "l2",
+       "text": true,
+       "say": true,
+       "opens": "app-ens-domains.example/names",
+       "after": true
+      },
+      {
+       "id": "reply",
+       "text": true,
+       "say": true,
+       "opens": "notices@renew-desk.example",
+       "after": true
+      },
+      {
+       "id": "own",
+       "text": true,
+       "say": true,
+       "opens": "app.ens.domains",
+       "after": true
+      }
+     ],
+     "answer": "own",
+     "src": [
+      "scams",
+      "official",
+      "domain",
+      "rfc2606"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "message",
+      "address": true,
+      "ring": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "own",
+        "text": true,
+        "say": true,
+        "opens": "app.ens.domains",
+        "after": true
+       },
+       {
+        "id": "l2",
+        "text": true,
+        "say": true,
+        "opens": "ens.domains.sync-v2.example/upgrade",
+        "after": true
+       },
+       {
+        "id": "reply",
+        "text": true,
+        "say": true,
+        "opens": "sync-v2.example",
+        "after": true
+       },
+       {
+        "id": "l3",
+        "text": true,
+        "say": true,
+        "opens": "official-ens-domains.example/upgrade",
+        "after": true
+       }
+      ],
+      "answer": "own",
+      "src": [
+       "scams",
+       "official",
+       "domain",
+       "rfc2606"
+      ]
+     }
+    },
+    {
+     "id": "rows",
+     "tag": "rows",
+     "kind": "screen",
+     "template": "settings-rows",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "name",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "fee",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "gas",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "with",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "gas",
+     "src": [
+      "register",
+      "v2"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "settings-rows",
+      "address": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "name",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "fee",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "gas",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "with",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "fee",
+      "src": [
+       "register",
+       "v2"
+      ]
+     }
+    },
+    {
+     "id": "grace",
+     "tag": "duo",
+     "kind": "duo",
+     "tries": 1,
+     "law": true,
+     "parts": [
+      {
+       "id": "a",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "b",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "a",
+     "src": [
+      "grace",
+      "transfer"
+     ],
+     "return": {
+      "kind": "duo",
+      "tries": 1,
+      "law": true,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "b",
+      "src": [
+       "grace",
+       "lifecycle"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "four-tiles",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "owner",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "works",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "fee",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "who",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "works",
+     "src": [
+      "grace",
+      "v2"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "back",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "open",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "held",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "open",
+      "src": [
+       "grace",
+       "lifecycle",
+       "compromised"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "half",
+     "law": true,
+     "src": [
+      "grace",
+      "v2"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "ring"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "grace"
+    }
+   ]
+  },
+  {
+   "id": "ens.3",
+   "key": "ens.d3",
+   "level": 3,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "compromised",
+      "lifecycle"
+     ]
+    },
+    {
+     "id": "sheet",
+     "tag": "point",
+     "kind": "page",
+     "template": "path",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "time",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "public",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "hidden",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "phone",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "public",
+     "src": [
+      "private",
+      "godaddy-privacy",
+      "godaddy-expiry",
+      "register",
+      "godaddy-contact",
+      "official"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "path",
+      "address": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "time",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "wallet",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "hidden",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "time",
+      "src": [
+       "godaddy-expiry",
+       "register",
+       "godaddy-privacy",
+       "godaddy-renew"
+      ]
+     }
+    },
+    {
+     "id": "label",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2"
+     ],
+     "mix": true,
+     "src": [
+      "docs",
+      "scams",
+      "private"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "godaddy-dns",
+       "godaddy-web"
+      ]
+     }
+    },
+    {
+     "id": "after",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2"
+     ],
+     "mix": true,
+     "src": [
+      "grace",
+      "lifecycle",
+      "compromised"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "grace",
+       "v2"
+      ]
+     }
+    },
+    {
+     "id": "note",
+     "tag": "note",
+     "kind": "notes",
+     "law": true,
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n2",
+     "mix": true,
+     "src": [
+      "compromised",
+      "transfer"
+     ],
+     "return": {
+      "kind": "notes",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r1",
+      "mix": true,
+      "src": [
+       "private"
+      ]
+     }
+    },
+    {
+     "id": "public",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      },
+      {
+       "id": "c6",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2"
+     ],
+     "mix": true,
+     "src": [
+      "private"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "godaddy-privacy",
+       "private"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "build",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      },
+      {
+       "id": "c6",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2",
+      "c3"
+     ],
+     "mix": true,
+     "src": [
+      "compromised",
+      "lifecycle",
+      "grace",
+      "transfer"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "godaddy-expiry"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "half",
+     "law": true,
+     "src": [
+      "compromised",
+      "lifecycle",
+      "grace"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "after"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "public"
+    }
+   ]
+  }
+ ]
+}

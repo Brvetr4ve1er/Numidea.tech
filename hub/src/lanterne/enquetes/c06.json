@@ -1,0 +1,1435 @@
+{
+ "id": "c06",
+ "slug": "farcaster",
+ "n": 6,
+ "verdict": "no",
+ "names": [
+  "Facebook",
+  "District",
+  "Farcaster",
+  "Mastodon",
+  "Bluesky"
+ ],
+ "sticker": {
+  "checked": "2026-11-23",
+  "src": [
+   "learn",
+   "arch",
+   "acc",
+   "m-servers",
+   "bsky"
+  ],
+  "law": true
+ },
+ "sources": [
+  {
+   "id": "learn",
+   "url": "https://docs.farcaster.xyz/learn/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "acc",
+   "url": "https://docs.farcaster.xyz/learn/what-is-farcaster/accounts",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "user",
+   "url": "https://docs.farcaster.xyz/learn/what-is-farcaster/usernames",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "msg",
+   "url": "https://docs.farcaster.xyz/learn/what-is-farcaster/messages",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "apps",
+   "url": "https://docs.farcaster.xyz/learn/what-is-farcaster/apps",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "chan",
+   "url": "https://docs.farcaster.xyz/learn/what-is-farcaster/channels",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "arch",
+   "url": "https://docs.farcaster.xyz/learn/architecture/overview",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "contracts",
+   "url": "https://docs.farcaster.xyz/learn/architecture/contracts",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "m-home",
+   "url": "https://joinmastodon.org/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "m-servers",
+   "url": "https://joinmastodon.org/servers",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "m-signup",
+   "url": "https://docs.joinmastodon.org/user/signup/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "m-moving",
+   "url": "https://docs.joinmastodon.org/user/moving/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "bsky",
+   "url": "https://bsky.social/about/faq",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "d0x",
+   "url": "https://district0x.io/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "mdn-domain",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "mdn-url",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "rfc2606",
+   "url": "https://www.rfc-editor.org/rfc/rfc2606.txt",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "iana",
+   "url": "https://www.iana.org/help/example-domains",
+   "read": "2026-11-23"
+  }
+ ],
+ "depths": [
+  {
+   "id": "farcaster.1",
+   "key": "farcaster.d1",
+   "level": 1,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "d0x"
+     ]
+    },
+    {
+     "id": "odd",
+     "tag": "labels",
+     "kind": "screen",
+     "template": "four-tiles",
+     "law": true,
+     "parts": [
+      {
+       "id": "farcaster",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "mastodon",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "bluesky",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "district",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "district",
+     "src": [
+      "d0x",
+      "learn",
+      "m-servers",
+      "bsky"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "quoted-lines",
+      "law": true,
+      "parts": [
+       {
+        "id": "m",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "d",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "f",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "d",
+      "src": [
+       "m-home",
+       "d0x",
+       "learn"
+      ]
+     }
+    },
+    {
+     "id": "signup",
+     "tag": "rows",
+     "kind": "screen",
+     "template": "settings-rows",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "m",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "b",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "f",
+       "caption": true,
+       "glyph": "wallet",
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "f",
+     "src": [
+      "apps",
+      "m-servers",
+      "m-signup",
+      "bsky"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "settings-rows",
+      "address": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "w",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "s",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "r",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "s",
+      "src": [
+       "apps",
+       "acc",
+       "m-servers",
+       "m-signup"
+      ]
+     }
+    },
+    {
+     "id": "server",
+     "tag": "read",
+     "kind": "page",
+     "template": "web-page",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "one",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "indep",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "coin",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "indep",
+     "src": [
+      "m-servers"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "web-page",
+      "address": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "c",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "a",
+      "src": [
+       "bsky",
+       "m-servers",
+       "acc"
+      ]
+     }
+    },
+    {
+     "id": "note",
+     "tag": "note",
+     "kind": "notes",
+     "law": true,
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n1",
+     "mix": true,
+     "src": [
+      "m-servers",
+      "m-home",
+      "bsky",
+      "arch"
+     ],
+     "return": {
+      "kind": "notes",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r1",
+      "mix": true,
+      "src": [
+       "m-servers",
+       "m-home",
+       "msg"
+      ]
+     }
+    },
+    {
+     "id": "handle",
+     "tag": "point",
+     "kind": "screen",
+     "template": "three-handles",
+     "law": true,
+     "parts": [
+      {
+       "id": "short",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "full",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "dom",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "full",
+     "src": [
+      "m-signup",
+      "bsky",
+      "rfc2606",
+      "iana"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "message",
+      "law": true,
+      "parts": [
+       {
+        "id": "same",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "maybe",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "fake",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "maybe",
+      "src": [
+       "m-signup"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "quoted-lines",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "indep",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "free",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "rules",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "yours",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "rules",
+     "src": [
+      "m-home"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "message",
+      "law": true,
+      "parts": [
+       {
+        "id": "none",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "hosts",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "vote",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "hosts",
+      "src": [
+       "chan"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "not",
+     "law": true,
+     "src": [
+      "d0x"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "server"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "handle"
+    }
+   ]
+  },
+  {
+   "id": "farcaster.2",
+   "key": "farcaster.d2",
+   "level": 2,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "apps",
+      "acc"
+     ]
+    },
+    {
+     "id": "app",
+     "tag": "eye",
+     "kind": "screen",
+     "template": "settings-rows",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "wallet",
+       "caption": true,
+       "glyph": "wallet",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "connected",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "key",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "connected",
+     "src": [
+      "apps",
+      "acc"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "message",
+      "law": true,
+      "parts": [
+       {
+        "id": "rev",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "take",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "rem",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "rem",
+      "src": [
+       "apps",
+       "contracts"
+      ]
+     }
+    },
+    {
+     "id": "name",
+     "tag": "duo",
+     "kind": "duo",
+     "tries": 1,
+     "law": true,
+     "parts": [
+      {
+       "id": "a",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "b",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "a",
+     "src": [
+      "user"
+     ],
+     "return": {
+      "kind": "duo",
+      "tries": 1,
+      "law": true,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "b",
+      "src": [
+       "user"
+      ]
+     }
+    },
+    {
+     "id": "rent",
+     "tag": "rows",
+     "kind": "screen",
+     "template": "settings-rows",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "name",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "rec",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "apps",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "store",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "store",
+     "src": [
+      "msg",
+      "user",
+      "acc"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "message",
+      "law": true,
+      "parts": [
+       {
+        "id": "prune",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "close",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "stop",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "prune",
+      "src": [
+       "msg"
+      ]
+     }
+    },
+    {
+     "id": "diff",
+     "tag": "compare",
+     "kind": "diff",
+     "law": true,
+     "a": [
+      "joinmastodon",
+      ".org",
+      "/servers"
+     ],
+     "b": [
+      "joinmastodon",
+      ".org.servers.example",
+      "/servers-list"
+     ],
+     "answer": 1,
+     "src": [
+      "m-servers",
+      "mdn-domain",
+      "mdn-url",
+      "rfc2606",
+      "iana"
+     ],
+     "return": {
+      "kind": "diff",
+      "law": true,
+      "a": [
+       "docs",
+       ".farcaster.xyz",
+       "/learn"
+      ],
+      "b": [
+       "docs",
+       ".farcaster.xyz.help.example",
+       "/learn-more"
+      ],
+      "answer": 1,
+      "src": [
+       "learn",
+       "mdn-domain",
+       "mdn-url",
+       "rfc2606",
+       "iana"
+      ]
+     }
+    },
+    {
+     "id": "join",
+     "tag": "ring",
+     "kind": "page",
+     "template": "results",
+     "address": true,
+     "ring": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "ad",
+       "text": true,
+       "say": true,
+       "mark": true,
+       "opens": "mastodon-join.example/servers",
+       "after": true
+      },
+      {
+       "id": "own",
+       "text": true,
+       "say": true,
+       "opens": "joinmastodon.org/servers",
+       "after": true
+      },
+      {
+       "id": "mirror",
+       "text": true,
+       "say": true,
+       "opens": "joinmastodon.org-servers.example/list",
+       "after": true
+      }
+     ],
+     "answer": "own",
+     "src": [
+      "m-servers",
+      "mdn-domain",
+      "mdn-url",
+      "rfc2606",
+      "iana"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "message",
+      "address": true,
+      "ring": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "m1",
+        "text": true,
+        "say": true,
+        "opens": "bsky.app.invite.example/join",
+        "after": true
+       },
+       {
+        "id": "m2",
+        "text": true,
+        "say": true,
+        "opens": "bsky.app",
+        "after": true
+       },
+       {
+        "id": "m3",
+        "text": true,
+        "say": true,
+        "opens": "bsky-app.example/signup",
+        "after": true
+       }
+      ],
+      "answer": "m2",
+      "src": [
+       "bsky",
+       "mdn-domain",
+       "mdn-url",
+       "rfc2606",
+       "iana"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "message",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "f",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "o",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "c",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "u",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "o",
+     "src": [
+      "acc",
+      "apps",
+      "user"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "settings-rows",
+      "address": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "name",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "store",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "rec",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "apps",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "rec",
+      "src": [
+       "acc",
+       "apps",
+       "msg",
+       "user"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "true",
+     "law": true,
+     "src": [
+      "apps",
+      "acc"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "rent"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "join"
+    }
+   ]
+  },
+  {
+   "id": "farcaster.3",
+   "key": "farcaster.d3",
+   "level": 3,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "arch"
+     ]
+    },
+    {
+     "id": "chain",
+     "tag": "read",
+     "kind": "page",
+     "template": "web-page",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "post",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "follow",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "pic",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "rent",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "rent",
+     "src": [
+      "arch"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "web-page",
+      "address": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "c",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "c",
+      "src": [
+       "arch"
+      ]
+     }
+    },
+    {
+     "id": "why",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2"
+     ],
+     "mix": true,
+     "src": [
+      "arch",
+      "msg"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "arch",
+       "msg"
+      ]
+     }
+    },
+    {
+     "id": "live",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2"
+     ],
+     "mix": true,
+     "src": [
+      "m-signup",
+      "m-home",
+      "acc",
+      "learn"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "bsky",
+       "m-moving"
+      ]
+     }
+    },
+    {
+     "id": "rent",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2"
+     ],
+     "mix": true,
+     "src": [
+      "msg",
+      "user"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "msg"
+      ]
+     }
+    },
+    {
+     "id": "say",
+     "tag": "note",
+     "kind": "notes",
+     "law": true,
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n2",
+     "mix": true,
+     "src": [
+      "arch",
+      "learn",
+      "acc",
+      "m-home",
+      "m-servers",
+      "bsky"
+     ],
+     "return": {
+      "kind": "notes",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r2",
+      "mix": true,
+      "src": [
+       "m-servers",
+       "m-home",
+       "bsky"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "build",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2",
+      "c3"
+     ],
+     "mix": true,
+     "src": [
+      "learn",
+      "arch",
+      "d0x"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       },
+       {
+        "id": "r5",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "mix": true,
+      "src": [
+       "m-servers",
+       "m-home",
+       "apps"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "half",
+     "law": true,
+     "src": [
+      "arch"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "live"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "say"
+    }
+   ]
+  }
+ ]
+}

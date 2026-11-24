@@ -1,0 +1,1463 @@
+{
+ "id": "c09",
+ "slug": "siwe",
+ "n": 9,
+ "verdict": "added",
+ "names": [
+  "Google",
+  "Sign-In with Ethereum"
+ ],
+ "sticker": {
+  "checked": "2026-11-23",
+  "src": [
+   "standard",
+   "docs",
+   "google-how",
+   "signature",
+   "sig-phishing"
+  ],
+  "law": true
+ },
+ "sources": [
+  {
+   "id": "standard",
+   "url": "https://eips.ethereum.org/EIPS/eip-4361",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "docs",
+   "url": "https://docs.login.xyz/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "google-how",
+   "url": "https://support.google.com/accounts/answer/12849458",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "google-protect",
+   "url": "https://support.google.com/accounts/answer/112802",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "google-reset",
+   "url": "https://support.google.com/accounts/answer/41078",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "google-links",
+   "url": "https://support.google.com/accounts/answer/13533235",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "signature",
+   "url": "https://support.metamask.com/configure/transactions/what-is-a-signature-in-metamask/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "sig-phishing",
+   "url": "https://support.metamask.com/stay-safe/protect-yourself/wallet-and-hardware/signature-phishing/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "spending-cap",
+   "url": "https://support.metamask.com/configure/tokens/how-to-customize-token-approvals-with-a-spending-cap/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "phrase",
+   "url": "https://support.metamask.com/start/user-guide-secret-recovery-phrase-password-and-private-keys/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "selfheld",
+   "url": "https://support.metamask.com/start/metamask-is-a-self-custodial-wallet/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "guide",
+   "url": "https://ethereum.org/en/wallets/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "safety",
+   "url": "https://ethereum.org/en/security/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "domain",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "url",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "rfc2606",
+   "url": "https://www.rfc-editor.org/rfc/rfc2606.txt",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "iana",
+   "url": "https://www.iana.org/help/example-domains",
+   "read": "2026-11-23"
+  }
+ ],
+ "depths": [
+  {
+   "id": "siwe.1",
+   "key": "siwe.d1",
+   "level": 1,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "standard",
+      "signature"
+     ]
+    },
+    {
+     "id": "buttons",
+     "tag": "labels",
+     "kind": "screen",
+     "template": "sign-in",
+     "law": true,
+     "parts": [
+      {
+       "id": "google",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "email",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "create",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "wallet",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "close",
+       "caption": true,
+       "glyph": "cross",
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "wallet",
+     "src": [
+      "standard",
+      "docs",
+      "google-how"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "google",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "wallet",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "new",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "google",
+      "src": [
+       "google-how",
+       "standard"
+      ]
+     }
+    },
+    {
+     "id": "fields",
+     "tag": "read",
+     "kind": "screen",
+     "template": "sign-request",
+     "law": true,
+     "parts": [
+      {
+       "id": "domain",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "address",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "statement",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "nonce",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "issued",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "domain",
+     "src": [
+      "standard"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "sign-request",
+      "law": true,
+      "parts": [
+       {
+        "id": "domain",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "address",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "uri",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "nonce",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "address",
+      "src": [
+       "standard",
+       "guide"
+      ]
+     }
+    },
+    {
+     "id": "two",
+     "tag": "duo",
+     "kind": "duo",
+     "tries": 1,
+     "law": true,
+     "parts": [
+      {
+       "id": "a",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "b",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "a",
+     "src": [
+      "standard",
+      "signature",
+      "spending-cap"
+     ],
+     "return": {
+      "kind": "duo",
+      "tries": 1,
+      "law": true,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "b",
+      "src": [
+       "spending-cap",
+       "standard"
+      ]
+     }
+    },
+    {
+     "id": "note",
+     "tag": "note",
+     "kind": "notes",
+     "law": true,
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n2",
+     "mix": true,
+     "src": [
+      "signature",
+      "sig-phishing",
+      "standard"
+     ],
+     "return": {
+      "kind": "notes",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r2",
+      "mix": true,
+      "src": [
+       "standard",
+       "docs"
+      ]
+     }
+    },
+    {
+     "id": "lost",
+     "tag": "point",
+     "kind": "page",
+     "template": "path",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "forgot",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "google",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "spare",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "own",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "own",
+     "src": [
+      "standard",
+      "google-how",
+      "signature"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "path",
+      "address": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "recover",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "nobody",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "key",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "recover",
+      "src": [
+       "google-how",
+       "google-reset"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "four-tiles",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "signin",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "cap",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "tx",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "gift",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "signin",
+     "src": [
+      "standard",
+      "signature",
+      "spending-cap",
+      "safety"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "pay",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "key",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "none",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "none",
+      "src": [
+       "signature",
+       "standard"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "not",
+     "law": true,
+     "src": [
+      "standard",
+      "signature",
+      "spending-cap"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "two"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "lost"
+    }
+   ]
+  },
+  {
+   "id": "siwe.2",
+   "key": "siwe.d2",
+   "level": 2,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "standard",
+      "sig-phishing"
+     ]
+    },
+    {
+     "id": "match",
+     "tag": "read",
+     "kind": "screen",
+     "template": "sign-request",
+     "law": true,
+     "parts": [
+      {
+       "id": "sign",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "later",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "words",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "cancel",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "cancel",
+     "src": [
+      "standard",
+      "sig-phishing",
+      "safety",
+      "phrase",
+      "selfheld",
+      "domain",
+      "url",
+      "rfc2606",
+      "iana"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "sign-request",
+      "law": true,
+      "parts": [
+       {
+        "id": "sign",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "cancel",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "words",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "close",
+        "caption": true,
+        "glyph": "cross",
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "sign",
+      "src": [
+       "standard",
+       "safety",
+       "phrase",
+       "selfheld"
+      ]
+     }
+    },
+    {
+     "id": "diff",
+     "tag": "compare",
+     "kind": "diff",
+     "law": true,
+     "a": [
+      "order-desk",
+      ".example",
+      "/login"
+     ],
+     "b": [
+      "order-desk",
+      ".example.sign-in.example",
+      "/sign-in"
+     ],
+     "answer": 1,
+     "src": [
+      "standard",
+      "sig-phishing",
+      "domain",
+      "url",
+      "rfc2606",
+      "iana"
+     ],
+     "return": {
+      "kind": "diff",
+      "law": true,
+      "a": [
+       "order-desk",
+       ".example",
+       "/login"
+      ],
+      "b": [
+       "order-clesk",
+       ".example",
+       "/login"
+      ],
+      "answer": 0,
+      "src": [
+       "standard",
+       "sig-phishing",
+       "domain",
+       "url",
+       "rfc2606",
+       "iana"
+      ]
+     }
+    },
+    {
+     "id": "ring",
+     "tag": "ring",
+     "kind": "page",
+     "template": "results",
+     "address": true,
+     "ring": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "ad",
+       "text": true,
+       "say": true,
+       "mark": true,
+       "opens": "order-desk.example.signin-fast.example/login",
+       "after": true
+      },
+      {
+       "id": "own",
+       "text": true,
+       "say": true,
+       "opens": "order-desk.example/login",
+       "after": true
+      },
+      {
+       "id": "hyphen",
+       "text": true,
+       "say": true,
+       "opens": "order-desk-signin.example/login",
+       "after": true
+      }
+     ],
+     "answer": "own",
+     "src": [
+      "sig-phishing",
+      "safety",
+      "standard",
+      "domain",
+      "url",
+      "rfc2606",
+      "iana"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "message",
+      "address": true,
+      "ring": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "l1",
+        "text": true,
+        "say": true,
+        "opens": "order-desk.example/login",
+        "after": true
+       },
+       {
+        "id": "l2",
+        "text": true,
+        "say": true,
+        "opens": "order-desk.example.secure-check.example/login",
+        "after": true
+       },
+       {
+        "id": "l3",
+        "text": true,
+        "say": true,
+        "opens": "official-order-desk.example/login",
+        "after": true
+       }
+      ],
+      "answer": "l1",
+      "src": [
+       "safety",
+       "sig-phishing",
+       "domain",
+       "url",
+       "rfc2606",
+       "iana"
+      ]
+     }
+    },
+    {
+     "id": "popup",
+     "tag": "duo",
+     "kind": "duo",
+     "tries": 1,
+     "law": true,
+     "parts": [
+      {
+       "id": "a",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "b",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "a",
+     "src": [
+      "standard",
+      "safety"
+     ],
+     "return": {
+      "kind": "duo",
+      "tries": 1,
+      "law": true,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "a",
+      "src": [
+       "standard"
+      ]
+     }
+    },
+    {
+     "id": "rows",
+     "tag": "rows",
+     "kind": "screen",
+     "template": "settings-rows",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "open",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "report",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "stop",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "stop",
+     "src": [
+      "google-links"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "settings-rows",
+      "address": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "three",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "pw",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "all",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "three",
+      "src": [
+       "google-how"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "web-page-with-bar",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "bar",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "address",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "nonce",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "quiet",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "bar",
+     "src": [
+      "standard",
+      "sig-phishing",
+      "domain",
+      "url",
+      "rfc2606",
+      "iana"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "sign-request",
+      "law": true,
+      "parts": [
+       {
+        "id": "anyway",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "reject",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "reload",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "reject",
+      "src": [
+       "standard"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "half",
+     "law": true,
+     "src": [
+      "standard",
+      "sig-phishing"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "ring"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "rows"
+    }
+   ]
+  },
+  {
+   "id": "siwe.3",
+   "key": "siwe.d3",
+   "level": 3,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "standard",
+      "google-how"
+     ]
+    },
+    {
+     "id": "learns",
+     "tag": "point",
+     "kind": "page",
+     "template": "path",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "three",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "code",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "pw",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "addr",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "addr",
+     "src": [
+      "standard",
+      "google-how"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "path",
+      "address": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "suspend",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "key",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "noforgot",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "suspend",
+      "src": [
+       "google-protect",
+       "google-how",
+       "standard"
+      ]
+     }
+    },
+    {
+     "id": "proof",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2"
+     ],
+     "mix": true,
+     "src": [
+      "signature",
+      "guide",
+      "phrase",
+      "google-how"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "signature",
+       "standard"
+      ]
+     }
+    },
+    {
+     "id": "nonce",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2"
+     ],
+     "mix": true,
+     "src": [
+      "standard"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "standard"
+      ]
+     }
+    },
+    {
+     "id": "note",
+     "tag": "note",
+     "kind": "notes",
+     "law": true,
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n2",
+     "mix": true,
+     "src": [
+      "standard",
+      "google-how"
+     ],
+     "return": {
+      "kind": "notes",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r1",
+      "mix": true,
+      "src": [
+       "standard",
+       "guide"
+      ]
+     }
+    },
+    {
+     "id": "reset",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2"
+     ],
+     "mix": true,
+     "src": [
+      "google-how",
+      "google-reset",
+      "standard",
+      "signature"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       },
+       {
+        "id": "r5",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "standard"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "build",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2",
+      "c3"
+     ],
+     "mix": true,
+     "src": [
+      "standard",
+      "google-how",
+      "guide"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "standard"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "half",
+     "law": true,
+     "src": [
+      "standard",
+      "google-how"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "nonce"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "reset"
+    }
+   ]
+  }
+ ]
+}

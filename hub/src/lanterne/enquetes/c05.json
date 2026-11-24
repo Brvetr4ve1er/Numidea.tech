@@ -470,6 +470,7 @@
      "return": {
       "kind": "screen",
       "template": "settings-rows",
+      "address": true,
       "law": true,
       "parts": [
        {

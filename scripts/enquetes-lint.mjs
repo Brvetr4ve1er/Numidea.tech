@@ -46,6 +46,28 @@ assert(/accesskey|\.key\s*===|keydown|keyup|keypress/i.test(src) === false, 'no 
   assert(lost.length === 0, `every literal key of the engine is in the build's list (${lost.join(', ')})`);
 }
 
+/* ---------- Arabic: every Latin run with a hyphen, a dot, a slash, an @, a colon or an ellipsis is set apart, whole ----------
+   (an address, a handle, a file, a date: read right to left in pieces it shows its hyphen or its full stop on the wrong
+   side). The engine's own split() is read; each such run of every Arabic string, the cases' and the dictionary's, must
+   lie inside one piece it marks, and the view writes a dictionary string only through setText (no bare text node). */
+{
+  const split = win.NightCases.split, AR = [];
+  const ar = JSON.parse(readFileSync(join(ROOT, 'hub/src/i18n/ar.json'), 'utf8')).lant.enq;
+  const flat = (o, pre) => Object.entries(o).forEach(([k, v]) => (v && typeof v === 'object' ? flat(v, pre + k + '.') : AR.push([pre + k, v])));
+  flat(ar, 'lant.enq.');
+  for (const r of D.season) { const f = join(ROOT, 'hub/src/lanterne/enquetes', `${r.file}.ar.json`); if (existsSync(f)) for (const [k, v] of Object.entries(JSON.parse(readFileSync(f, 'utf8')))) AR.push([`${r.file} ${k}`, v]); }
+  const RUN = /[@\/.]?[A-Za-z0-9_\u00C0-\u02AF\u1D00-\u1DBF]+(?:[-.\/@:\u2026]+[A-Za-z0-9_\u00C0-\u02AF\u1D00-\u1DBF]+)+\/?|[@\/.][A-Za-z0-9_]+\/?/g;
+  const loose = []; let runs = 0;
+  for (const [k, v] of AR) {
+    const pcs = split(v); let at = 0; const spans = pcs.map((p) => { const x = [at, at + p.t.length, !!p.iso]; at += p.t.length; return x; });
+    if (pcs.map((p) => p.t).join('') !== String(v)) loose.push(`${k}: split() changed the text`);
+    for (const m of String(v).matchAll(RUN)) { runs++; const a = m.index, z = a + m[0].length; if (!spans.some(([s0, s1, iso]) => iso && s0 <= a && z <= s1)) loose.push(`${k}: « ${m[0]} »`); }
+  }
+  assert(loose.length === 0, `every Latin run with - . / @ : or … in an Arabic string is set apart whole (${runs} runs in ${AR.length} strings; not: ${loose.slice(0, 6).join(', ')})`);
+  const bare = [...src.matchAll(/createTextNode\(([^()]*(?:\([^()]*\))?[^()]*)\)/g)].map((m) => m[1]).filter((x) => !['p.t', 'w', "' '"].includes(x.trim()));
+  assert(bare.length === 0, `the view writes strings through setText, no bare text node (${bare.join(' | ')})`);
+}
+
 /* ---------- one case, by a plan: { stepId: 'retry' | 'reveal' | 'hint3' | 'swap', 'ret:stepId': 'wrong' } ---------- */
 function play(g, depth, plan, open) {
   const s = g.state;
@@ -71,6 +93,7 @@ function play(g, depth, plan, open) {
     const tks = g.targets(st), right = tks.filter((t) => t.right), wrong = tks.filter((t) => !t.right);
     const mode = st.ret ? (plan['ret:' + st.id] || 'right') : (plan[st.id] || 'right');
     assert(st.tag === (st.ret ? 'back' : lv.steps.find((x) => x.id === st.id).tag), at + ': its tag');
+    if (st.tag === 'eye') assert(depth === 2 && !st.boss && tks.some((t) => t.caption), at + ': tagged « eye », and the eye flower\'s button is there (depth 2, a captioned part)');
     assert(g.lawShown() === !!st.law, at + ': the law line pinned as marked');
     assert(!!st.hint === !st.ret, at + ': a hint on a first meeting only');
     assert(g.captionsOn(st) === (!st.boss && (depth === 1 || (depth === 2 && s.eye))), at + ': captions by depth');
@@ -196,7 +219,7 @@ for (const r of OPEN) {
   for (const l of ['fr', 'en', 'ar']) { const x = addOf(`${r.file}.${l}.js`); assert(!!x && x.id === r.file && x.lang === l && Object.keys(x.strings || {}).length > 100, `${r.file}: hub/lanterne/enq/${r.file}.${l}.js adds its ${l} strings`); }
 }
 for (const id of LATER) for (const f of [`${id}.js`, `${id}.fr.js`, `${id}.en.js`, `${id}.ar.js`]) assert(!existsSync(join(ROOT, 'hub/lanterne/enq', f)), `${id}: nothing published for a row that is not open (${f})`);
-assert(D.season.length === 13 && OPEN.length === 5 && OPEN.map((r) => r.file).join() === 'c01,c02,c03,c04,c05', 'thirteen rows; this release opens c01 to c05');
+assert(D.season.length === 13 && OPEN.length === 13 && OPEN.map((r) => r.file).join() === D.season.map((r) => r.file).join(), 'thirteen rows; this release opens all thirteen (c01 to c13, 2026-11-24)');
 /* the loader: script elements from the case's id and the language, under hub/lanterne/enq/, nothing else */
 assert((src.match(/'enq\//g) || []).length === 1 && /x\.src = 'enq\/' \+ f \+ '\.js' \+ VER/.test(src) && /want\.push\(id\)/.test(src) && /want\.push\(id \+ '\.' \+ lang\)/.test(src), 'the loader adds enq/<id>.js and enq/<id>.<lang>.js, built from an open row\'s id');
 const mkAll = () => { const g = mkCore(D, { random: () => 0.37 }); g.start(); return g; };
@@ -212,23 +235,26 @@ for (const r of OPEN) for (let d = 1; d <= r.depths; d++) {
 /* tonight's slip, walked from nothing to everything closed: never a row that is not open */
 {
   const g = mkAll(), s = g.state, seq = [];
-  for (let i = 0; i < 40; i++) {
+  for (let i = 0; i < 60; i++) {
     const r = g.rec(); if (!r) break;
     assert(!LATER.includes(r.c) && !!g.row(r.c), `tonight's slip names an open row (${r.c})`);
     seq.push(`${r.c}.${r.d}`);
     play(g, r.d, {}, () => g.openSlip());
     g.toChart(); g.stick(r.c); g.toStall();
   }
-  const want = 'c01.1 c02.1 c01.2 c03.1 c01.3 c04.1 c02.2 c05.1 c02.3 c03.2 c03.3 c04.2 c04.3 c05.2 c05.3';
+  /* the season plan's section 5, worked by hand for thirteen open cases */
+  const want = 'c01.1 c02.1 c01.2 c03.1 c01.3 c04.1 c02.2 c05.1 c02.3 c06.1 c03.2 c07.1 c03.3 c08.1 c04.2 c09.1 c04.3 c10.1 c05.2 c11.1 c05.3 c12.1 c06.2 c13.1 c06.3 '
+    + 'c07.2 c07.3 c08.2 c08.3 c09.2 c09.3 c10.2 c10.3 c11.2 c11.3 c12.2 c12.3 c13.2 c13.3';
   assert(seq.join(' ') === want, `tonight's slip in order: ${seq.join(' ')}, wanted ${want}`);
-  assert(!g.rec() && g.closedCount() === 15 && g.totalXp() === 900, 'all closed: no new slip, 15 depths, 900 XP');
+  assert(!g.rec() && g.closedCount() === 39 && g.totalXp() === 2340, 'all closed: no new slip, 39 depths, 2,340 XP');
   g.openSlip(); assert(s.screen === 'chart', 'with no slip left, the goal line opens the chart');
-  /* titles: the season's numbers; this release reaches Clerk only, and the card can say what it cannot reach */
+  /* titles: the season's numbers; with thirteen open, Bookseller is the top reachable (no depth 4 is written), and the
+     card can say what it cannot reach */
   assert(D.titles.map((t) => `${t.xp}/${t.cases}/${t.at}`).join() === '0/0/0,600/3/2,1500/3/3,2800/3/4,4500/3/5', 'titles: Clerk 600 and 3 cases at depth 2, Bookseller 1,500 and 3 at depth 3, Lamplighter 2,800 and 3 at depth 4, Keeper 4,500 and 3 at depth 5');
-  assert(g.titleIndex() === 1 && g.reach(1) && !g.reach(2) && !g.reach(3) && !g.reach(4), 'all five open cases closed: Clerk; the next titles are out of reach of what is open');
+  assert(g.titleIndex() === 2 && g.reach(1) && g.reach(2) && !g.reach(3) && !g.reach(4), 'all thirteen open cases closed: Bookseller; Lamplighter and Keeper are out of reach of what is open');
   assert(Object.keys(s.st).every((id) => s.st[id] === 3), 'every open case\'s sticker landed in state 3');
   const back = mkCore(D, { saved: JSON.parse(JSON.stringify(g.progress())) });
-  assert(back.totalXp() === 900 && back.titleIndex() === 1 && !back.rec(), 'a reload keeps the season\'s progress');
+  assert(back.totalXp() === 2340 && back.titleIndex() === 2 && !back.rec(), 'a reload keeps the season\'s progress');
 }
 {
   const g = mkAll();

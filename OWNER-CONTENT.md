@@ -4017,6 +4017,72 @@ File: `hub/src/i18n/ar.json`, subtree `lant.enq.*` (794 keys). **Since the seaso
 | `c.brave.d3.tracker.r.p.r4.why` | Une enseigne est une publicité qu’elle peut voir. Elle ne la suit pas. | اللافتة إعلان تراه. لا تتبعها. |
 | `c.brave.d3.tracker.r.prompt` | La même idée, façon rue. | الفكرة نفسها، في صورة شارع. |
 
+### Season one, all thirteen open (2026-11-24)
+
+**Open now, each at depths 1 to 3 in French, English and Arabic** (thirteen cases, 39 depths):
+
+- Chapter 1: 01 Chrome → Brave; 02 Google → Presearch; 03 Spotify → Audius; 04 WhatsApp → Status, Signal shown once;
+  05 YouTube → Odysee; **06 Facebook → Farcaster, beside Mastodon and Bluesky** (verdict: no; looked at, not tried)
+- Chapter 2: **07 Who holds the key** (added); **08 PayPal → MetaMask** (partly); **09 Sign in with Google → Sign-In with
+  Ethereum** (added); **10 GoDaddy → ENS** (partly); **11 Dropbox → IPFS, then Filecoin** (partly); **12 Patreon → Unlock
+  Protocol, as an idea** (no)
+- Finale: **13 The misprint: Patreon → Fantom (now Sonic)** (no)
+
+Cases 06 to 13 are the scripts written and fact-checked on 2026-11-23, unchanged but for one word: case 12's mock pass
+said « Status: Expired » in English, which printed another case's name; it now says « State: Expired » (the French
+« Statut » and the Arabic « الحالة » were already plain words). Every step and return of 06 to 13 carries the law 25-10
+line. No case's translation was missing or broken: each French and Arabic file holds exactly the English file's keys,
+none empty. No row says « pas encore écrit » any more.
+
+**Held back, still: the marketplaces case.** Not one of the thirteen rows; no row, no name on the page (its names stay
+on the never-list).
+
+**Where tonight's slip sits for the new cases:** 06, 09, 10 and 12 in the book (its sheet opens it); 07 in the lantern;
+08 in Yasser's satchel and 11 in the drawers (each draws a fourth ring there, two new places on the painting); 13
+under Kūro (Kūro's sheet gains « OUVRIR LE BILLET · 4 MIN »). With thirteen open, everything closed is 2,340 XP and
+reaches the third title, « Libraire »; the last two need depths 4 and 5, which are not written.
+
+**Fixes from the site audit (E-01 to E-04).** The door no longer says « Dix flèches » over a thirteen-row board: it
+reads « Saison un : dix flèches, treize lignes », and the chart's premise and the book's line say the crew adds three
+rows to the supplier's ten arrows (two missing questions, 07 and 09, and one correction, 12, beside its misprint,
+13). The sealed evidence before the bet is a slip under the paw seal with a visible caption, « Sous scellé jusqu’au
+pari », instead of grey bars. Each ring on the painting has a one-word label under it (Livre, Kūro, Lanterne, and the
+place of tonight's slip), and Yasser's first line is an instruction: « Touchez le billet : six questions, quatre
+minutes. » On a 1440 × 900 screen the game now fills the space under the mast (760 px at most) and the foot sits below
+the fold. The footer item (E-05) is left to the other build.
+
+**Names.** Each new case prints its own list only: 06 Facebook, District, Farcaster, Mastodon, Bluesky; 07 none; 08
+PayPal, MetaMask; 09 Google, Sign-In with Ethereum; 10 GoDaddy, ENS; 11 Dropbox, IPFS, Filecoin; 12 Patreon, Unlock
+Protocol; 13 every chart name. The names law was extended only for words these cases' own sources print (ENS's .eth
+and .org endings and its Price Cooldown phase, GoDaddy's Domain Privacy, IPFS's CID with its bafy and Qm starts, its
+add command, its /ipfs/ path, URLs and GiB, Filecoin's onramps, Sign-In with Ethereum's https), each allowed in its
+own case only, and for the invented pieces of the mock screens (shortened addresses, look-alike address words, two
+invented user names). No token name or ticker is printed.
+
+**Sizes.** The page carries every open case's plain text for readers without scripts and now weighs 189.9 kB (the
+season plan had guessed 130 kB at thirteen: each case's dated sources take more room than planned); its two
+dictionaries 34.8 kB (English) and 47.2 kB (Arabic). Each case's own files load only when it is opened (the largest,
+case 10's Arabic, 53.4 kB). The checks' ceilings were raised to these measured sizes + 10%.
+
+**Review fixes (2026-11-24, after a play-through of all thirteen at 390 and 1440 px in three languages).** The chart's
+verdict line was empty on rows 06, 07, 09, 12 and 13 (« no » and « added » had no word): they now read « non » and
+« une ligne ajoutée par l’équipe », and the build refuses a row verdict without its word. In Arabic an invented address,
+handle, file or date is now one left-to-right piece that never breaks at a hyphen (« order-desk-login.example » no
+longer splits as « -order-desk »). Two depth-2 steps that told the player to tap the eye flower where no button shows
+now say « lisez l’écran », and the build refuses such a tag. Fifteen mock screens that are not settings pages lost the
+« Réglages » title for their own (« Premiers pas », « Facture »…). The slip now says what a reload keeps. A font subset
+asked for after load (case 10's small capital ɴ) is allowed by the browser test; case 13 no longer names Chromium, case
+11's sticker carries its check date, and case 7's French keeps « seulement ». Their Arabic is in §47d.
+
+**Open for you:**
+
+- **The Arabic of cases 06 to 13 and of 25 interface strings** (§47d): none of it is read by a native speaker.
+- **The season's count line** (« dix flèches, treize lignes ») and the premise's three added rows: say if you would
+  rather the door name the thirteen rows only.
+- **The two new places** (Yasser's satchel, the drawers) and their look lines, in the voice of the existing ones.
+- **The makers' own words left in Latin letters in the Arabic** (Price Cooldown, Domain Privacy, CID, onramps…): say
+  if any should be written in Arabic letters.
+
 ## 47c. « Les enquêtes de nuit », season one: every new Arabic string beside its French source, for native review (2026-11-23)
 
 The Arabic written for the season (§47, « Season one »): the 35 new interface strings, then cases 2 to 5 in full. French is the source; the English sits under the same keys (`hub/src/i18n/en.json` for the interface, `hub/src/lanterne/enquetes/cNN.en.json` for a case). None of it has been read by a native speaker. Case 1's strings did not change: they moved to `hub/src/lanterne/enquetes/c01.ar.json` and are listed in §47b under their old keys.
@@ -6014,6 +6080,7 @@ The Arabic written for the season (§47, « Season one »): the 35 new interface
 | `d1.tip.r.p.vis.say` | Visibilité, ligne | الظهور، سطر |
 | `d1.tip.r.p.vis.text` | Visibilité | الظهور |
 | `d1.tip.r.p.vis.why` | Visibilité choisit entre Public, Non répertorié ou Programmé. | الظهور يختار بين: عامّ، أو غير مُدرَج، أو مُجدوَل. |
+| `d1.tip.r.address` | Mise en ligne | استمارة الرفع |
 | `d1.tip.r.prompt` | Les lignes d’un formulaire de mise en ligne. Pointez celle où les spectateurs paieraient en jeton. | أسطر استمارة رفع. أشِر إلى السطر الذي يدفع فيه المشاهدون برمز رقمي. |
 | `d2.bet.prompt` | Votre pari sur la phrase de l’entraîneur ? Sans points. | ما رهانك على قول المدرّب؟ بلا نقاط. |
 | `d2.boss.hint.0` | Parcourez la barre du haut. | انظر على طول الشريط العلوي. |
@@ -6380,3 +6447,4651 @@ The Arabic written for the season (§47, « Season one »): the 35 new interface
 | `tpl.top-bar-phone` | Barre du haut · téléphone | الشريط العلوي · هاتف |
 | `tpl.video-page` | Page vidéo | صفحة فيديو |
 | `tpl.video-page-phone` | Page vidéo · téléphone | صفحة فيديو · هاتف |
+
+## 47d. « Les enquêtes de nuit », season one completed: every new Arabic string beside its French source, for native review (2026-11-24)
+
+The Arabic of the release that opened cases 06 to 13 (§47, « Season one, all thirteen open »): 22 interface strings (five reworded, marked « reworded »), then cases 06 to 13 in full. French is the source; the English sits under the same keys (`hub/src/i18n/en.json` for the interface, `hub/src/lanterne/enquetes/cNN.en.json` for a case). None of it has been read by a native speaker.
+
+### Read these first
+
+- **The words of §47b and §47c hold**: تحقيق, قصاصة, الجدول, البطاقة, العمق, شعلة, ملصق, the verdicts صحيح · نصف صحيح · غير صحيح, نقطة for XP, « رمز رقمي » for a token, « محفظة » for a wallet.
+- **New interface words**: « حقيبة ياسر » (Yasser's satchel), « الأدراج » (the drawers), « تحت كورو » (under Kūro), « مختوم حتى الرهان » (sealed until the bet), and the one-word ring labels; « سمّاعات » stands alone under the headphones' ring, without the article, so that it is part of the ring's spoken name « سمّاعات ياسر ».
+- **The season's count**: « عشرة أسهم، ثلاثة عشر سطراً » on the door; « سؤالين غائبين وتصحيحاً واحداً » in the premise (two missing questions and one correction).
+- **Latin letters in the Arabic**: each case's names (06 Facebook, District, Farcaster, Mastodon, Bluesky; 08 PayPal, MetaMask; 09 Google, Sign-In with Ethereum; 10 GoDaddy, ENS; 11 Dropbox, IPFS, Filecoin; 12 Patreon, Unlock Protocol; 13 every chart name), the makers' own words the sources print (Price Cooldown, Domain Privacy, .eth, .org, CID, bafy, Qm, add, /ipfs/, URL, GiB, onramps, https), the invented addresses under `.example`, shortened hex and content addresses (0x4f2…b81, bafy…k4q) and the invented user names @trainergym and @supplier_desk. Say if any of the makers' words should be written in Arabic letters instead.
+- **Limits**: as in §47b. The build counts an Arabic string over its limit as a note, not a failure.
+
+### The interface (`hub/src/i18n/ar.json`, `lant.enq.*`, 22 keys)
+
+| Key | Français | العربية |
+|---|---|---|
+| `ui.door.season` (reworded) | Saison un : dix flèches, treize lignes | الموسم الأول: عشرة أسهم، ثلاثة عشر سطراً |
+| `season.premise` (reworded) | Le prestataire de Samia a envoyé un tableau de dix flèches. L’équipe y ajoute trois lignes : deux questions oubliées et une correction. On en vérifie une par nuit. Elle reste hors de la chaîne. | أرسل مورّد سامية جدولاً من عشرة أسهم. ويضيف الفريق ثلاثة أسطر: سؤالين غائبين وتصحيحاً واحداً. يُتحقَّق من سطر واحد كلّ ليلة. وهي تبقى خارج السلسلة. |
+| `ring.book.line` (reworded) | Le livre ouvert garde le tableau du prestataire : dix flèches, plus trois lignes ajoutées. Une enquête close s’y colle. Les coquilles restent lisibles. | الكتاب المفتوح يحفظ جدول المورّد: عشرة أسهم، وثلاثة أسطر مضافة. التحقيق المغلق يُلصق هنا. والأخطاء المطبعية تبقى مقروءة. |
+| `ui.pvAria` (reworded) | Sous scellé jusqu’au pari | مختوم حتى الرهان |
+| `v.yasser.greet.0` (reworded) | Touchez le billet : six questions, quatre minutes. | المس القصاصة: ستّة أسئلة، أربع دقائق. |
+| `ui.goalAt.satchel` | Le billet de ce soir : dans la sacoche de Yasser · 4 min | قصاصة الليلة: في حقيبة ياسر · 4 دقائق |
+| `ui.goalAt.drawers` | Le billet de ce soir : dans les tiroirs · 4 min | قصاصة الليلة: في الأدراج · 4 دقائق |
+| `ui.goalAt.kuro` | Le billet de ce soir : sous Kūro · 4 min | قصاصة الليلة: تحت كورو · 4 دقائق |
+| `ring.satchel.label` | La sacoche de Yasser. Le billet de ce soir est ici. Bouton : l’ouvrir. | حقيبة ياسر. قصاصة الليلة هنا. زرّ: افتحها. |
+| `ring.satchel.name` | La sacoche de Yasser | حقيبة ياسر |
+| `ring.satchel.line` | Le billet de ce soir dépasse de la sacoche de Yasser. Il dit ne pas l’y avoir rangé. Il y est quand même. | قصاصة الليلة تطلّ من حقيبة ياسر. يقول إنه لم يضعها فيها. لكنها هناك. |
+| `ring.drawers.label` | Les tiroirs sous le comptoir. Le billet de ce soir est ici. Bouton : l’ouvrir. | الأدراج تحت المنضدة. قصاصة الليلة هنا. زرّ: افتحها. |
+| `ring.drawers.name` | Les tiroirs | الأدراج |
+| `ring.drawers.line` | Le billet de ce soir est classé dans les tiroirs, sous le comptoir. Personne ne se souvient de l’y avoir classé. | قصاصة الليلة محفوظة في الأدراج تحت المنضدة. لا أحد يذكر أنه حفظها هناك. |
+| `ring.book.word` | Livre | الكتاب |
+| `ring.kuro.word` | Kūro | كورو |
+| `ring.lantern.word` | Lanterne | الفانوس |
+| `ring.awning.word` | Auvent | المظلّة |
+| `ring.shelves.word` | Étagères | الرفوف |
+| `ring.headphones.word` | Casque | سمّاعات |
+| `ring.satchel.word` | Sacoche | حقيبة |
+| `ring.drawers.word` | Tiroirs | الأدراج |
+
+### Review fixes of the completed season (2026-11-24): three interface strings, fifteen titles, three rewordings
+
+A review of the thirteen open cases at 390 and 1440 px in the three languages found the chart's verdict empty on the five rows whose verdict is « no » or « added » (the dictionaries had no word for them), a « Settings » title over mock screens that are not settings pages, and a few lines to adjust. The build now refuses a row whose verdict has no word in the three dictionaries.
+
+- **New in `hub/src/i18n/ar.json`** (table below): the two verdicts and the slip's line on what a reload keeps (the door already says it; a phone that drops the tab mid-case loses the open slip, not its XP).
+- **New in the case files**: a title of their own over fifteen settings-row screens, fourteen of them not a settings page and the fifteenth c09’s « linked apps » (`….address`, e.g. « الخطوات الأولى » over c06's three first steps), listed in each case's table under its key (case 05 in §47c).
+- **Reworded** (marked in the tables below): c07 `d1.boss.p.store.after` (French only: « Il livre seulement les applis. », the restriction the English and the Arabic keep); c11 `sticker.back` (its check date added, « جرى التحقّق في 2026-11-23. », like the other stickers); c13 `d1.row.r.p.brave.why` (« مشروع Chromium » became « المحرّك الذي تحت Chrome »: Chromium is not one of the names case 13 prints).
+- **Not a wording change**: in Arabic every invented address, handle, file name, shortened hex address and date is now set left to right as one piece that does not break at a hyphen; an address of more than 30 characters may still wrap after a dot or a slash. A full stop that ends an Arabic sentence after an address sits at the sentence's left end, outside the address, as Arabic punctuation does.
+
+| Key | Français | العربية |
+|---|---|---|
+| `chart.no` | non | لا |
+| `chart.added` | une ligne ajoutée par l’équipe | سطر أضافه الفريق |
+| `ui.slipKept` | Quitter ou recharger avant le tampon, et ce billet reprend à la première question. Les XP gagnés restent. | إن غادرت أو أعدت تحميل الصفحة قبل الختم، تبدأ هذه القصاصة من السؤال الأول من جديد. النقاط المكتسبة تبقى. |
+
+### Case 06, Facebook → Farcaster, beside Mastodon and Bluesky (`hub/src/lanterne/enquetes/c06.ar.json`, 548 keys)
+
+| Key | Français | العربية |
+|---|---|---|
+| `d1.bet.prompt` | Votre pari sur la flèche du tableau ? Sans points. | ما رهانك على سهم الجدول؟ بلا نقاط. |
+| `d1.boss.hint.0` | Elle demande qui est responsable de ce qui est publié. | تسأل: من المسؤول عمّا يُنشر؟ |
+| `d1.boss.hint.1` | Être indépendant, ce n’est pas encore décider. Une ligne nomme qui décide. | أن يكون مستقلاً لا يعني بعدُ أنه يقرّر. سطر واحد يسمّي من يقرّر. |
+| `d1.boss.hint.2` | Réponse : chaque serveur crée ses propres règles. | الجواب: كلّ خادم يضع قواعده الخاصّة. |
+| `d1.boss.kuro` | Chaque serveur. | كلّ خادم. |
+| `d1.boss.p.free.after` | Parle du code. | عن الشيفرة. |
+| `d1.boss.p.free.say` | Ligne deux : logiciel libre et open source | السطر الثاني: برمجيات حرّة ومفتوحة المصدر |
+| `d1.boss.p.free.text` | « Logiciel libre et open source » | «برمجيات حرّة ومفتوحة المصدر» |
+| `d1.boss.p.free.why` | Cela parle du code : chacun peut l’utiliser, le copier, l’étudier et le modifier. | هذا عن الشيفرة: يمكن لأيّ أحد استعمالها ونسخها ودراستها وتعديلها. |
+| `d1.boss.p.indep.after` | Dit qui est séparé. | يقول من هو منفصل. |
+| `d1.boss.p.indep.say` | Ligne un : chaque serveur Mastodon est une entité totalement indépendante | السطر الأول: كلّ خادم Mastodon كيان مستقلّ تماماً |
+| `d1.boss.p.indep.text` | « Chaque serveur Mastodon est une entité totalement indépendante » | «كلّ خادم Mastodon كيان مستقلّ تماماً» |
+| `d1.boss.p.indep.why` | Cette ligne dit que chaque serveur est autonome. Elle ne dit pas qui décide de ce qui est permis. | هذا السطر يقول إن كلّ خادم قائم بذاته. ولا يقول من يقرّر ما هو مسموح. |
+| `d1.boss.p.rules.after` | Règles · fixées par chaque serveur | القواعد · يضعها كلّ خادم |
+| `d1.boss.p.rules.say` | Ligne trois : chaque serveur crée ses propres règles | السطر الثالث: كلّ خادم يضع قواعده الخاصّة |
+| `d1.boss.p.rules.text` | « Chaque serveur crée ses propres règles » | «كلّ خادم يضع قواعده الخاصّة» |
+| `d1.boss.p.rules.why` | La page : chaque serveur crée ses propres règles, appliquées localement, pas d’en haut. | الصفحة: كلّ خادم يضع قواعده الخاصّة، وتُطبَّق محلّياً، لا من الأعلى. |
+| `d1.boss.p.yours.after` | Faire tourner un serveur. | عن تشغيل خادم. |
+| `d1.boss.p.yours.say` | Ligne quatre : sous le contrôle de personne d’autre que vous | السطر الرابع: لا يتحكّم فيه أحد سواك |
+| `d1.boss.p.yours.text` | « sous le contrôle de personne d’autre que vous » | «لا يتحكّم فيه أحد سواك» |
+| `d1.boss.p.yours.why` | Cette ligne parle d’un serveur qu’on fait tourner sur ses propres machines, pas de sa question. | هذا السطر عن خادم يشغّله المرء على أجهزته الخاصّة، لا عن سؤالها. |
+| `d1.boss.prompt` | Samia objecte : « Décentralisé ? Alors personne n’est aux commandes. » Pointez la ligne de Mastodon qui lui répond. | تعترض سامية: «لامركزي؟ إذن لا أحد مسؤول.» أشِر إلى سطر Mastodon الذي يجيبها. |
+| `d1.boss.r.p.hosts.after` | Hôtes · ils fixent les normes | المضيفون · يضعون الأعراف |
+| `d1.boss.r.p.hosts.say` | Les hôtes du canal | مضيفو القناة |
+| `d1.boss.r.p.hosts.text` | Les hôtes du canal | مضيفو القناة |
+| `d1.boss.r.p.hosts.why` | La documentation : les canaux, fonction expérimentale du client Farcaster, appartiennent à leurs créateurs, appelés hôtes, qui les modèrent. | الوثائق: القنوات، وهي ميزة تجريبية في عميل Farcaster، يملكها منشئوها ويشرفون عليها، ويُسمَّون المضيفين. |
+| `d1.boss.r.p.none.after` | Pas selon la documentation. | ليس ما تقوله الوثائق. |
+| `d1.boss.r.p.none.say` | Personne du tout | لا أحد إطلاقاً |
+| `d1.boss.r.p.none.text` | Personne du tout | لا أحد إطلاقاً |
+| `d1.boss.r.p.none.why` | La documentation dit que les canaux ne sont pas des espaces publics où tout est permis. | تقول الوثائق إن القنوات ليست مساحات عامّة يُباح فيها كلّ شيء. |
+| `d1.boss.r.p.vote.after` | Aucun vote décrit. | لا تصويت موصوف. |
+| `d1.boss.r.p.vote.say` | Un vote de tous les utilisateurs | تصويت جميع المستخدمين |
+| `d1.boss.r.p.vote.text` | Un vote de tous les utilisateurs | تصويت جميع المستخدمين |
+| `d1.boss.r.p.vote.why` | La documentation donne le blocage aux hôtes. Elle ne décrit aucun vote. | الوثائق تمنح الحظر للمضيفين. ولا تصف أيّ تصويت. |
+| `d1.boss.r.prompt` | Un canal Farcaster, maintenant. Pointez qui sa documentation autorise à y bloquer un utilisateur. | قناة على Farcaster الآن. أشِر إلى من تسمح له وثائقها بحظر مستخدم فيها. |
+| `d1.bub.a` | Trois pages. Trois premiers pas. J’ai lu chacune deux fois. | ثلاث صفحات. ثلاث خطوات أولى. قرأتُ كلّاً منها مرّتين. |
+| `d1.bub.b` | Elle a répondu. « Décentralisé ? Alors personne n’est aux commandes. » | ردّت برسالة. «لامركزي؟ إذن لا أحد مسؤول.» |
+| `d1.can` | Vous savez maintenant distinguer une place de marché d’un réseau social, et dire ce que chaque inscription demande d’abord. | صرتَ تعرف كيف تميّز السوق من الشبكة الاجتماعية، وتقول ما يطلبه كلّ تسجيل أولاً. |
+| `d1.claim` | District est un réseau social, comme Facebook. | District شبكة اجتماعية، مثل Facebook. |
+| `d1.handle.hint.0` | Une adresse Mastodon fonctionne comme un e-mail. | عنوان Mastodon يعمل مثل البريد الإلكتروني. |
+| `d1.handle.hint.1` | Il lui faut un nom d’utilisateur et un serveur. | يحتاج إلى اسم مستخدم وخادم. |
+| `d1.handle.hint.2` | Réponse : @samiagym@gym.example. | الجواب: @samiagym@gym.example. |
+| `d1.handle.kuro` | Comme un e-mail. | مثل البريد. |
+| `d1.handle.p.dom.after` | Un domaine comme nom. | نطاق بمثابة اسم. |
+| `d1.handle.p.dom.say` | samiagym point example | samiagym.example |
+| `d1.handle.p.dom.text` | samiagym.example | samiagym.example |
+| `d1.handle.p.dom.why` | Un domaine utilisé comme nom d’utilisateur : c’est ce que décrit la page de Bluesky. | استعمال نطاق اسماً للمستخدم أمر تصفه صفحة Bluesky. |
+| `d1.handle.p.full.after` | Nom d’utilisateur · puis le serveur | اسم المستخدم · ثم الخادم |
+| `d1.handle.p.full.say` | arobase samiagym arobase gym point example | @samiagym@gym.example |
+| `d1.handle.p.full.text` | @samiagym@gym.example | @samiagym@gym.example |
+| `d1.handle.p.full.why` | La documentation de Mastodon : un nom d’utilisateur et le domaine du serveur, comme une adresse e-mail. | وثائق Mastodon: اسم مستخدم ونطاق الخادم، تماماً مثل عنوان البريد الإلكتروني. |
+| `d1.handle.p.short.after` | Aucun serveur dedans. | لا خادم فيه. |
+| `d1.handle.p.short.say` | arobase samiagym | @samiagym |
+| `d1.handle.p.short.text` | @samiagym | @samiagym |
+| `d1.handle.p.short.why` | Sur son propre serveur, ça marche. Partagé ailleurs, il y manque le domaine du serveur. | على خادمها هي يعمل. أمّا إن شاركته خارجه، فينقصه نطاق الخادم. |
+| `d1.handle.prompt` | Trois identifiants inventés. Pointez l’adresse Mastodon complète, celle à donner aux autres. | ثلاثة معرّفات متخيَّلة. أشِر إلى عنوان Mastodon الكامل، الذي يُشارَك مع الآخرين. |
+| `d1.handle.r.p.fake.after` | Pas dit non plus. | لم يُقَل هذا أيضاً. |
+| `d1.handle.r.p.fake.say` | Le second est un faux | الثاني مزيَّف |
+| `d1.handle.r.p.fake.text` | Le second est un faux | الثاني مزيَّف |
+| `d1.handle.r.p.fake.why` | Rien ne fait du second un faux. Les noms d’utilisateur sont simplement propres à chaque serveur. | لا شيء يجعل الثاني مزيَّفاً. أسماء المستخدمين خاصّة بكلّ خادم، ببساطة. |
+| `d1.handle.r.p.maybe.after` | Serveurs différents · peut-être personnes différentes | خادمان مختلفان · ربّما شخصان مختلفان |
+| `d1.handle.r.p.maybe.say` | À ne pas prendre pour la même personne | لا يُؤخذان على أنهما الشخص نفسه |
+| `d1.handle.r.p.maybe.text` | À ne pas prendre pour la même personne | لا يُؤخذان على أنهما الشخص نفسه |
+| `d1.handle.r.p.maybe.why` | La documentation : comme pour l’e-mail, ne tenez pas deux alice de deux serveurs pour une même personne. | الوثائق: كما في البريد الإلكتروني، لا تتوقّع أن حسابَي «أليس» على خادمين شخص واحد. |
+| `d1.handle.r.p.same.after` | Pas promis. | غير مضمون. |
+| `d1.handle.r.p.same.say` | La même personne, toujours | الشخص نفسه، دائماً |
+| `d1.handle.r.p.same.text` | La même personne, toujours | الشخص نفسه، دائماً |
+| `d1.handle.r.p.same.why` | Le même nom d’utilisateur peut être pris sur différents serveurs, par différentes personnes. | يمكن أن يُسجَّل اسم المستخدم نفسه على خوادم مختلفة، من قِبل أشخاص مختلفين. |
+| `d1.handle.r.prompt` | Deux comptes s’appellent alice, sur deux serveurs Mastodon. Pointez ce que dit la documentation. | حسابان باسم «أليس»، على خادمين في Mastodon. أشِر إلى ما تقوله الوثائق. |
+| `d1.note.hint.0` | Deux notes emploient le mot blockchain. Vérifiez chacune sur sa page. | ملاحظتان تستعملان عبارة «سلسلة الكتل». تحقّق من كلّ واحدة على صفحتها. |
+| `d1.note.hint.1` | Une note parle de ce qu’un déménagement conserve. | ملاحظة واحدة عمّا يحفظه الانتقال. |
+| `d1.note.hint.2` | Réponse : la page de Bluesky dit qu’un changement de serveur garde les trois. | الجواب: صفحة Bluesky تقول إن تغيير الخادم يحفظ الثلاثة. |
+| `d1.note.kuro` | Les trois gardés. | الثلاثة محفوظة. |
+| `d1.note.p.n1.text` | La page de Bluesky dit qu’un changement de serveur garde nom d’utilisateur, amis et publications. | صفحة Bluesky تقول إن تغيير الخادم يحفظ اسم المستخدم والأصدقاء والمنشورات. |
+| `d1.note.p.n1.why` | Sa page : changer de serveur ne perturbe ni votre nom d’utilisateur, ni vos amis, ni vos publications. | صفحته: تغيير الخوادم لا يمسّ اسم المستخدم ولا الأصدقاء ولا المنشورات. |
+| `d1.note.p.n2.text` | Un réseau social décentralisé veut toujours dire une blockchain. | التواصل الاجتماعي اللامركزي يعني دائماً سلسلة كتل. |
+| `d1.note.p.n2.why` | Mastodon et Bluesky, pages lues ce jour : aucune blockchain nommée. Deux réseaux qu’aucune entreprise seule ne contrôle. | صفحات Mastodon وBluesky المقروءة اليوم لا تذكر أيّ سلسلة كتل. كلتاهما تصف شبكات لا تتحكّم فيها شركة واحدة. |
+| `d1.note.p.n3.text` | Farcaster garde chaque publication sur une blockchain. | Farcaster يحفظ كلّ منشور على سلسلة كتل. |
+| `d1.note.p.n3.why` | Sa documentation met l’identité sur la chaîne, et les données, publications comprises, hors chaîne. | وثائقه تضع الهوية على السلسلة، والبيانات، ومنها المنشورات، خارجها. |
+| `d1.note.prompt` | Trois notes sont arrivées avec le billet. Une seule est vraie. | وصلت مع القصاصة ثلاث ملاحظات. واحدة صحيحة. |
+| `d1.note.r.p.r1.text` | Mastodon n’est pas un site unique : elle choisit un serveur. | Mastodon ليس موقعاً واحداً: هي تختار خادماً. |
+| `d1.note.r.p.r1.why` | Sa page le dit : pour l’utiliser, elle crée un compte chez un fournisseur, appelé serveur. | صفحته تقول ذلك: لتستعمله، تُنشئ حساباً لدى مزوّد يُسمّى خادماً. |
+| `d1.note.r.p.r2.text` | Mastodon affiche des publicités pour se financer. | Mastodon يعرض إعلانات ليموّل نفسه. |
+| `d1.note.r.p.r2.why` | Sa page dit : ni algorithmes ni publicités. Il est développé par une organisation à but non lucratif. | صفحته تقول: لا خوارزميات ولا إعلانات. وتطوّره منظّمة غير ربحية. |
+| `d1.note.r.p.r3.text` | Une publication Farcaster est privée sauf si son auteur la partage. | منشور Farcaster خاصّ ما لم يشاركه صاحبه. |
+| `d1.note.r.p.r3.why` | Sa documentation appelle les casts des messages publics, que tout le monde peut voir. | وثائقه تصف الكاست بأنها رسائل عامّة يستطيع أيّ أحد رؤيتها. |
+| `d1.note.r.prompt` | Trois nouvelles notes. Touchez la vraie. | ثلاث ملاحظات جديدة. المس الصحيحة. |
+| `d1.odd.hint.0` | Trois d’entre eux sont des endroits où publier. | ثلاثة منها أماكن للنشر. |
+| `d1.odd.hint.1` | Une page parle d’acheter et de vendre. | صفحة واحدة تتحدّث عن البيع والشراء. |
+| `d1.odd.hint.2` | Réponse : District. Sa page cite des places de marché. | الجواب: District. صفحته تذكر أسواقاً. |
+| `d1.odd.kuro` | Pas de fil. | لا خلاصة. |
+| `d1.odd.p.bluesky.after` | Une appli sociale. | تطبيق اجتماعي. |
+| `d1.odd.p.bluesky.say` | Bluesky : une appli sociale, tuile | Bluesky: تطبيق اجتماعي، خانة |
+| `d1.odd.p.bluesky.text` | Bluesky : une appli sociale | Bluesky: تطبيق اجتماعي |
+| `d1.odd.p.bluesky.why` | Sa page la dit appli sociale, conçue pour n’être contrôlée par aucune entreprise seule. | صفحته تسمّيه تطبيقاً اجتماعياً، صُمّم كي لا تتحكّم فيه شركة واحدة. |
+| `d1.odd.p.district.after` | Places de marché · aucun fil cité | أسواق · لا خلاصة مذكورة |
+| `d1.odd.p.district.say` | District : un réseau de places de marché, tuile | District: شبكة أسواق، خانة |
+| `d1.odd.p.district.text` | District : un réseau de places de marché | District: شبكة أسواق |
+| `d1.odd.p.district.why` | Sa page : réseau de places de marché et de communautés décentralisées. Elle cite des marchés, une plateforme de subventions. | صفحته تقول: شبكة من الأسواق والمجتمعات اللامركزية. وما تذكره أسواق ومنصّة منح. |
+| `d1.odd.p.farcaster.after` | Un réseau social. | شبكة اجتماعية. |
+| `d1.odd.p.farcaster.say` | Farcaster : un réseau social public, tuile | Farcaster: شبكة اجتماعية عامّة، خانة |
+| `d1.odd.p.farcaster.text` | Farcaster : un réseau social public | Farcaster: شبكة اجتماعية عامّة |
+| `d1.odd.p.farcaster.why` | Sa documentation le dit réseau social public : profils, publications et abonnements. | وثائقه تسمّيه شبكة اجتماعية عامّة: ملفّات شخصية ومنشورات ومتابعات. |
+| `d1.odd.p.mastodon.after` | Média social. | تواصل اجتماعي. |
+| `d1.odd.p.mastodon.say` | Mastodon : plateforme de média social, tuile | Mastodon: منصّة تواصل اجتماعي، خانة |
+| `d1.odd.p.mastodon.text` | Mastodon : plateforme de média social | Mastodon: منصّة تواصل اجتماعي |
+| `d1.odd.p.mastodon.why` | Sa page le dit plateforme de média social décentralisée, libre et open source. | صفحته تسمّيه منصّة تواصل اجتماعي لامركزية، حرّة ومفتوحة المصدر. |
+| `d1.odd.prompt` | Quatre noms, dans les mots de leurs pages. Samia veut un fil. Pointez celui dont la page n’en cite aucun. | أربعة أسماء، بكلمات صفحاتها هي. تريد سامية خلاصة. أشِر إلى الاسم الذي لا تذكر صفحته أيّ خلاصة. |
+| `d1.odd.r.p.d.after` | District · places de marché | District · أسواق |
+| `d1.odd.r.p.d.say` | Ligne deux : un réseau de places de marché et de communautés décentralisées | السطر الثاني: شبكة من الأسواق والمجتمعات اللامركزية |
+| `d1.odd.r.p.d.text` | « Un réseau de places de marché et de communautés décentralisées » | «شبكة من الأسواق والمجتمعات اللامركزية» |
+| `d1.odd.r.p.d.why` | C’est ainsi que la page de District se décrit elle-même. | هكذا تصف صفحة District نفسها. |
+| `d1.odd.r.p.f.after` | La ligne de Farcaster. | سطر Farcaster. |
+| `d1.odd.r.p.f.say` | Ligne trois : les utilisateurs peuvent créer des profils, publier des casts et suivre d’autres personnes | السطر الثالث: يمكن للمستخدمين إنشاء ملفّات شخصية ونشر الكاست ومتابعة الآخرين |
+| `d1.odd.r.p.f.text` | « Les utilisateurs peuvent créer des profils, publier des casts et suivre d’autres personnes » | «يمكن للمستخدمين إنشاء ملفّات شخصية ونشر الكاست ومتابعة الآخرين» |
+| `d1.odd.r.p.f.why` | Cette ligne est dans la documentation de Farcaster. Les casts sont ses publications publiques. | هذا السطر من وثائق Farcaster. والكاست منشوراته العامّة. |
+| `d1.odd.r.p.m.after` | La ligne de Mastodon. | سطر Mastodon. |
+| `d1.odd.r.p.m.say` | Ligne un : chaque serveur Mastodon est une entité totalement indépendante | السطر الأول: كلّ خادم Mastodon كيان مستقلّ تماماً |
+| `d1.odd.r.p.m.text` | « Chaque serveur Mastodon est une entité totalement indépendante » | «كلّ خادم Mastodon كيان مستقلّ تماماً» |
+| `d1.odd.r.p.m.why` | Cette ligne est sur la page de Mastodon, à propos de ses serveurs. | هذا السطر في صفحة Mastodon، عن خوادمه. |
+| `d1.odd.r.prompt` | Trois lignes de trois pages. Pointez celle de District. | ثلاثة أسطر من ثلاث صفحات. أشِر إلى سطر District. |
+| `d1.server.address` | La page des serveurs de Mastodon (un croquis) | صفحة الخوادم في Mastodon (رسم تقريبي) |
+| `d1.server.hint.0` | Ce n’est pas un site unique. | ليس موقعاً واحداً. |
+| `d1.server.hint.1` | Il existe beaucoup de fournisseurs. Chacun est géré à part. | المزوّدون كثيرون. وكلّ واحد يُدار على حدة. |
+| `d1.server.hint.2` | Réponse : une organisation ou une personne indépendante. | الجواب: منظّمة أو فرد مستقلّ. |
+| `d1.server.kuro` | Chacun le sien. | كلٌّ مستقلّ. |
+| `d1.server.p.coin.after` | Aucune pièce nommée. | لا عملة مذكورة. |
+| `d1.server.p.coin.say` | Qui détient le plus de pièces | من يحوز أكثر العملات |
+| `d1.server.p.coin.text` | Qui détient le plus de pièces | من يحوز أكثر العملات |
+| `d1.server.p.coin.why` | La page ne nomme ni pièce ni blockchain. Décentralisé ne veut dire ni l’une ni l’autre. | الصفحة لا تذكر عملة ولا سلسلة كتل. واللامركزي لا يعني أيّاً منهما. |
+| `d1.server.p.indep.after` | Indépendant · un opérateur par serveur | مستقلّ · مشغّل واحد لكلّ خادم |
+| `d1.server.p.indep.say` | Une organisation ou une personne indépendante | منظّمة أو فرد مستقلّ |
+| `d1.server.p.indep.text` | Une organisation ou une personne indépendante | منظّمة أو فرد مستقلّ |
+| `d1.server.p.indep.why` | La page : chaque serveur est exploité par une organisation ou une personne indépendante. | الصفحة: كلّ خادم تشغّله منظّمة أو فرد مستقلّ. |
+| `d1.server.p.one.after` | Pas sur cette page. | ليس في تلك الصفحة. |
+| `d1.server.p.one.say` | Une seule entreprise les gère tous | شركة واحدة تديرها كلّها |
+| `d1.server.p.one.text` | Une seule entreprise les gère tous | شركة واحدة تديرها كلّها |
+| `d1.server.p.one.why` | La page dit que Mastodon n’est pas un site unique. Chaque serveur a son propre opérateur. | الصفحة تقول إن Mastodon ليس موقعاً واحداً. ولكلّ خادم مشغّله الخاصّ. |
+| `d1.server.prompt` | La page de Mastodon pour les nouveaux venus, en croquis. Pointez qui, selon elle, gère chaque serveur. | صفحة Mastodon للقادمين الجدد، في رسم تقريبي. أشِر إلى من يدير كلّ خادم بحسبها. |
+| `d1.server.r.address` | La page de questions de Bluesky (un croquis) | صفحة الأسئلة في Bluesky (رسم تقريبي) |
+| `d1.server.r.p.a.after` | bsky.app · aucune invitation demandée | bsky.app · لا دعوة مطلوبة |
+| `d1.server.r.p.a.say` | Inscrivez-vous sur bsky point app. Aucune invitation requise. | سجّل في bsky.app. لا حاجة إلى دعوات. |
+| `d1.server.r.p.a.text` | Inscrivez-vous sur bsky.app. Aucune invitation requise. | سجّل في bsky.app. لا حاجة إلى دعوات. |
+| `d1.server.r.p.a.why` | Ce sont les mots mêmes de la page sur l’inscription. | هذه كلمات الصفحة نفسها عن الانضمام. |
+| `d1.server.r.p.b.after` | Le premier pas de Mastodon. | خطوة Mastodon الأولى. |
+| `d1.server.r.p.b.say` | Choisir un serveur avant toute chose | اختر خادماً قبل أيّ شيء |
+| `d1.server.r.p.b.text` | Choisir un serveur avant toute chose | اختر خادماً قبل أيّ شيء |
+| `d1.server.r.p.b.why` | C’est la voie de Mastodon. La page de Bluesky dit qu’on peut changer de serveur après l’inscription. | هذه طريقة Mastodon. صفحة Bluesky تقول إن الخادم يمكن تغييره بعد التسجيل. |
+| `d1.server.r.p.c.after` | La voie de Farcaster. | طريقة Farcaster. |
+| `d1.server.r.p.c.say` | Enregistrer une adresse sur une blockchain | سجّل عنواناً على سلسلة كتل |
+| `d1.server.r.p.c.text` | Enregistrer une adresse sur une blockchain | سجّل عنواناً على سلسلة كتل |
+| `d1.server.r.p.c.why` | C’est ainsi que commence un compte Farcaster. La page de Bluesky ne nomme aucune blockchain. | هكذا يبدأ حساب Farcaster. صفحة Bluesky لا تذكر أيّ سلسلة كتل. |
+| `d1.server.r.prompt` | La page de questions de Bluesky, en croquis. Pointez comment elle dit de s’inscrire. | صفحة الأسئلة في Bluesky، في رسم تقريبي. أشِر إلى طريقة الانضمام التي تذكرها. |
+| `d1.signup.hint.0` | Deux d’entre eux ressemblent à n’importe quelle inscription. | اثنتان منها تبدوان كأيّ تسجيل. |
+| `d1.signup.hint.1` | Un premier pas est une appli qui détient une adresse. | خطوة أولى هي تطبيق يحوز عنواناً. |
+| `d1.signup.hint.2` | Réponse : Farcaster. Sa documentation commence par une appli portefeuille. | الجواب: Farcaster. وثائقه تبدأ بتطبيق محفظة. |
+| `d1.signup.kuro` | Portefeuille d’abord. | المحفظة أولاً. |
+| `d1.signup.p.b.after` | Un formulaire d’inscription. | استمارة تسجيل. |
+| `d1.signup.p.b.say` | Bluesky : inscription sur bsky point app, ligne | Bluesky: التسجيل في bsky.app، سطر |
+| `d1.signup.p.b.text` | Bluesky : inscription sur bsky.app | Bluesky: التسجيل في bsky.app |
+| `d1.signup.p.b.why` | La page de Bluesky dit : inscrivez-vous sur bsky.app, sans invitation. Elle ne nomme aucun portefeuille. | صفحة Bluesky تقول: سجّل في bsky.app، بلا دعوة. ولا تذكر أيّ محفظة. |
+| `d1.signup.p.f.after` | Appli portefeuille · elle enregistre le compte | تطبيق محفظة · يسجّل الحساب |
+| `d1.signup.p.f.cap` | Farcaster : appli portefeuille | Farcaster: تطبيق محفظة |
+| `d1.signup.p.f.say` | Farcaster : appli portefeuille, ligne | Farcaster: تطبيق محفظة، سطر |
+| `d1.signup.p.f.why` | Sa documentation : il faut installer une appli portefeuille pour commencer. Elle enregistre le compte. | وثائقه: على المستخدمين تثبيت تطبيق محفظة للبدء. وهو يسجّل الحساب. |
+| `d1.signup.p.m.after` | Une liste où choisir. | قائمة للاختيار منها. |
+| `d1.signup.p.m.say` | Mastodon : choisir un serveur, ligne | Mastodon: اختر خادماً، سطر |
+| `d1.signup.p.m.text` | Mastodon : choisir un serveur | Mastodon: اختر خادماً |
+| `d1.signup.p.m.why` | Les pages de Mastodon : choisir un serveur, puis un nom d’utilisateur, un e-mail et un mot de passe. | صفحات Mastodon تطلب منها اختيار خادم، ثم اسم مستخدم وبريد إلكتروني وكلمة مرور. |
+| `d1.signup.address` | Premiers pas | الخطوات الأولى |
+| `d1.signup.prompt` | Trois premiers pas, un par réseau. Pointez celui qui n’est ni un formulaire ni une liste. | ثلاث خطوات أولى، واحدة لكلّ شبكة. أشِر إلى التي ليست استمارة ولا قائمة. |
+| `d1.signup.r.p.r.after` | Le loyer de Farcaster. | إيجار Farcaster. |
+| `d1.signup.r.p.r.say` | Louer du stockage, ligne | استئجار مساحة تخزين، سطر |
+| `d1.signup.r.p.r.text` | Louer du stockage | استئجار مساحة تخزين |
+| `d1.signup.r.p.r.why` | Louer du stockage est une étape de Farcaster. Les pages de Mastodon lues aujourd’hui n’en nomment aucune. | استئجار التخزين خطوة في Farcaster. صفحات Mastodon المقروءة اليوم لا تذكر شيئاً منه. |
+| `d1.signup.r.p.s.after` | Un serveur · puis nom d’utilisateur, e-mail, mot de passe | خادم · ثم اسم مستخدم وبريد وكلمة مرور |
+| `d1.signup.r.p.s.say` | Choisir un serveur, ligne | اختر خادماً، سطر |
+| `d1.signup.r.p.s.text` | Choisir un serveur | اختر خادماً |
+| `d1.signup.r.p.s.why` | Mastodon n’est pas un site unique. Elle crée son compte sur un serveur. | Mastodon ليس موقعاً واحداً. تُنشئ حسابها على خادم واحد. |
+| `d1.signup.r.p.w.after` | Le premier pas de Farcaster. | خطوة Farcaster الأولى. |
+| `d1.signup.r.p.w.say` | Installer une appli portefeuille, ligne | ثبّت تطبيق محفظة، سطر |
+| `d1.signup.r.p.w.text` | Installer une appli portefeuille | ثبّت تطبيق محفظة |
+| `d1.signup.r.p.w.why` | C’est ainsi que commence la documentation de Farcaster. Les pages de Mastodon ne nomment aucun portefeuille. | هكذا تبدأ وثائق Farcaster. صفحات Mastodon لا تذكر أيّ محفظة. |
+| `d1.signup.r.address` | Premiers pas | الخطوات الأولى |
+| `d1.signup.r.prompt` | Trois premiers pas, encore. Pointez celui de Mastodon. | ثلاث خطوات أولى من جديد. أشِر إلى خطوة Mastodon. |
+| `d1.slip` | Le tableau du prestataire associe Facebook à District : « la même chose, sur le web3 ». Samia cherche un fil où publier. | جدول المورّد يقرن Facebook بـ District: «الشيء نفسه، على ويب 3». سامية تبحث عن خلاصة تنشر فيها. |
+| `d1.slipTag` | ENQUÊTE 06 · exemple inventé | التحقيق 06 · مثال متخيَّل |
+| `d1.stamp.prompt` | La flèche du tableau, encore : District est un réseau social, comme Facebook. Tamponnez : | سهم الجدول مرّة أخرى: District شبكة اجتماعية، مثل Facebook. اختمه: |
+| `d1.stamp.reveal` | Faux. Sa page dit marchés et communautés : un marché de l’emploi, deux places de marché, une plateforme de subventions. | غير صحيح. صفحته تقول أسواقاً ومجتمعات، وتذكر سوق وظائف وسوقين ومنصّة منح. |
+| `d2.app.hint.0` | La documentation nomme deux sortes d’appli. | الوثائق تذكر نوعين من التطبيقات. |
+| `d2.app.hint.1` | Une sorte ne s’ajoute qu’après l’inscription. | نوع واحد لا يُضاف إلا بعد التسجيل. |
+| `d2.app.hint.2` | Réponse : l’appli connectée. | الجواب: التطبيق المتّصل. |
+| `d2.app.kuro` | Appli connectée. | تطبيق متّصل. |
+| `d2.app.p.connected.after` | Appli connectée · publie et consulte seulement | تطبيق متّصل · ينشر ويتصفّح فقط |
+| `d2.app.p.connected.say` | Appli connectée, ligne | تطبيق متّصل، سطر |
+| `d2.app.p.connected.text` | Appli connectée | تطبيق متّصل |
+| `d2.app.p.connected.why` | La documentation : une appli connectée permet seulement de publier et de consulter des messages. Elle s’ajoute après l’inscription. | الوثائق: التطبيق المتّصل يتيح نشر الرسائل وتصفّحها فقط. ويُضاف بعد التسجيل. |
+| `d2.app.p.key.after` | Une clé, pas une appli. | مفتاح، لا تطبيق. |
+| `d2.app.p.key.say` | Clé de compte, ligne | مفتاح الحساب، سطر |
+| `d2.app.p.key.text` | Clé de compte | مفتاح الحساب |
+| `d2.app.p.key.why` | La documentation : les comptes émettent des clés qui laissent des applis écrire des messages. Une clé n’est pas une appli. | الوثائق: الحسابات تُصدر مفاتيح تتيح للتطبيقات كتابة الرسائل. والمفتاح ليس تطبيقاً. |
+| `d2.app.p.wallet.after` | Inscrit aussi. | يسجّل أيضاً. |
+| `d2.app.p.wallet.cap` | Appli portefeuille | تطبيق محفظة |
+| `d2.app.p.wallet.say` | Appli portefeuille, bouton | تطبيق محفظة، زرّ |
+| `d2.app.p.wallet.why` | La documentation : une appli portefeuille permet de s’inscrire, d’ajouter des applis connectées, de publier et de consulter. | الوثائق: تطبيق المحفظة يتيح التسجيل وإضافة تطبيقات متّصلة والنشر والتصفّح. |
+| `d2.app.address` | Sortes d’appli | أنواع التطبيقات |
+| `d2.app.prompt` | La documentation de Farcaster nomme des sortes d’appli. Pointez celle qui peut publier mais ne peut inscrire personne. | وثائق Farcaster تذكر أنواعاً من التطبيقات. أشِر إلى النوع الذي يستطيع النشر لكنه لا يستطيع تسجيل أحد. |
+| `d2.app.r.p.rem.after` | Retirée · sa clé disparaît | أُزيل · ذهب مفتاحه |
+| `d2.app.r.p.rem.say` | Peut être retirée à tout moment | يمكن إزالته في أيّ وقت |
+| `d2.app.r.p.rem.text` | Peut être retirée à tout moment | يمكن إزالته في أيّ وقت |
+| `d2.app.r.p.rem.why` | La documentation : on peut ajouter beaucoup d’applis connectées et les retirer à tout moment. | الوثائق: يستطيع المستخدمون إضافة تطبيقات متّصلة كثيرة وإزالتها في أيّ وقت. |
+| `d2.app.r.p.rev.after` | Pas examinée. | لا تُفحص. |
+| `d2.app.r.p.rev.say` | Examinée par Farcaster | يفحصها Farcaster |
+| `d2.app.r.p.rev.text` | Examinée par Farcaster | يفحصها Farcaster |
+| `d2.app.r.p.rev.why` | La documentation : les applis connectées ne sont pas examinées par Farcaster. On les utilise à ses propres risques. | الوثائق: التطبيقات المتّصلة لا يفحصها Farcaster. واستعمالها على مسؤولية المستخدم. |
+| `d2.app.r.p.take.after` | Ne peut prendre le contrôle. | لا يستطيع السيطرة. |
+| `d2.app.r.p.take.say` | Peut s’emparer du compte | يستطيع الاستيلاء على الحساب |
+| `d2.app.r.p.take.text` | Peut s’emparer du compte | يستطيع الاستيلاء على الحساب |
+| `d2.app.r.p.take.why` | La documentation : une appli connectée malveillante ne peut pas prendre le contrôle du compte. | الوثائق: التطبيق المتّصل الخبيث لا يستطيع السيطرة على الحساب. |
+| `d2.app.r.prompt` | L’entraîneur a ajouté une nouvelle appli à son compte. Pointez ce que dit la documentation des applis connectées. | أضاف المدرّب تطبيقاً جديداً إلى حسابه. أشِر إلى ما تقوله الوثائق عن التطبيقات المتّصلة. |
+| `d2.bet.prompt` | Votre pari sur la phrase de l’entraîneur ? Sans points. | ما رهانك على قول المدرّب؟ بلا نقاط. |
+| `d2.boss.hint.0` | La récupération par e-mail ne dure que tant que l’adresse est celle par défaut de l’appli. | الاسترداد بالبريد الإلكتروني لا يدوم إلا ما دام العنوان هو العنوان الافتراضي للتطبيق. |
+| `d2.boss.hint.1` | La documentation nomme qui peut récupérer le compte une fois l’adresse changée. | الوثائق تسمّي من يستطيع الاسترداد بعد تغيير العنوان. |
+| `d2.boss.hint.2` | Réponse : le détenteur de l’adresse de récupération. | الجواب: مالك عنوان الاسترداد. |
+| `d2.boss.kuro` | Son détenteur. | مالكه. |
+| `d2.boss.p.c.after` | Ne peut prendre le contrôle. | لا يستطيع السيطرة. |
+| `d2.boss.p.c.say` | N’importe quelle appli connectée | أيّ تطبيق متّصل |
+| `d2.boss.p.c.text` | N’importe quelle appli connectée | أيّ تطبيق متّصل |
+| `d2.boss.p.c.why` | Les applis connectées publient et consultent. Elles ne peuvent pas prendre le contrôle d’un compte. | التطبيقات المتّصلة تنشر وتتصفّح. ولا تستطيع السيطرة على حساب. |
+| `d2.boss.p.f.after` | Plus maintenant. | لم يعد كذلك. |
+| `d2.boss.p.f.say` | Farcaster, par e-mail | Farcaster، بالبريد الإلكتروني |
+| `d2.boss.p.f.text` | Farcaster, par e-mail | Farcaster، بالبريد الإلكتروني |
+| `d2.boss.p.f.why` | La documentation : une fois l’adresse par défaut changée, Farcaster ne peut plus récupérer le compte. | الوثائق: بعد تغيير العنوان الافتراضي، لا يستطيع Farcaster استرداد الحساب. |
+| `d2.boss.p.o.after` | Qui détient cette adresse | من يحوز ذلك العنوان |
+| `d2.boss.p.o.say` | Le détenteur de l’adresse de récupération | مالك عنوان الاسترداد |
+| `d2.boss.p.o.text` | Le détenteur de l’adresse de récupération | مالك عنوان الاسترداد |
+| `d2.boss.p.o.why` | La documentation : le détenteur de l’adresse de récupération peut récupérer le compte lui-même. | الوثائق: مالك عنوان الاسترداد يستطيع استرداد الحساب بنفسه. |
+| `d2.boss.p.u.after` | Juste un nom. | اسم فقط. |
+| `d2.boss.p.u.say` | Le nom d’utilisateur | اسم المستخدم |
+| `d2.boss.p.u.text` | Le nom d’utilisateur | اسم المستخدم |
+| `d2.boss.p.u.why` | Un nom d’utilisateur peut changer à tout moment. La documentation confie la récupération à une adresse. | اسم المستخدم يمكن تغييره في أيّ وقت. والوثائق تربط الاسترداد بعنوان. |
+| `d2.boss.prompt` | Il a mis l’adresse de récupération sur son propre portefeuille, puis perdu son téléphone. Pointez qui peut récupérer le compte. | نقل عنوان الاسترداد إلى محفظته الخاصّة، ثم أضاع هاتفه. أشِر إلى من يستطيع استرداد الحساب. |
+| `d2.boss.r.p.apps.after` | Ne peut prendre le contrôle. | لا يستطيع السيطرة. |
+| `d2.boss.r.p.apps.say` | Applis connectées : 2, ligne | التطبيقات المتّصلة: 2، سطر |
+| `d2.boss.r.p.apps.text` | Applis connectées : 2 | التطبيقات المتّصلة: 2 |
+| `d2.boss.r.p.apps.why` | Une appli connectée détient une clé d’appli. Elle ne peut pas prendre le contrôle du compte. | التطبيق المتّصل يحمل مفتاح تطبيق. ولا يستطيع السيطرة على الحساب. |
+| `d2.boss.r.p.name.after` | Juste un nom. | اسم فقط. |
+| `d2.boss.r.p.name.say` | Nom d’utilisateur : arobase trainergym, ligne | اسم المستخدم: @trainergym، سطر |
+| `d2.boss.r.p.name.text` | Nom d’utilisateur : @trainergym | اسم المستخدم: @trainergym |
+| `d2.boss.r.p.name.why` | Un nom d’utilisateur peut changer à tout moment. Il ne restaure rien. | اسم المستخدم يمكن تغييره في أيّ وقت. ولا يستعيد شيئاً. |
+| `d2.boss.r.p.rec.after` | Récupération · par e-mail, tant qu’inchangée | الاسترداد · بالبريد، ما لم يتغيّر العنوان |
+| `d2.boss.r.p.rec.say` | Adresse de récupération : celle par défaut de l’appli, ligne | عنوان الاسترداد: الافتراضي للتطبيق، سطر |
+| `d2.boss.r.p.rec.text` | Adresse de récupération : celle par défaut de l’appli | عنوان الاسترداد: الافتراضي للتطبيق |
+| `d2.boss.r.p.rec.why` | La documentation : les comptes créés dans l’appli se récupèrent par e-mail, sauf si cette adresse a été changée. | الوثائق: الحسابات المُنشأة في التطبيق تُسترَدّ بالبريد الإلكتروني، ما لم يُغيَّر ذلك العنوان. |
+| `d2.boss.r.p.store.after` | Loyer pour les messages. | إيجار للرسائل. |
+| `d2.boss.r.p.store.say` | Stockage : 1 unité, ligne | التخزين: 1 وحدة، سطر |
+| `d2.boss.r.p.store.text` | Stockage : 1 unité | التخزين: 1 وحدة |
+| `d2.boss.r.p.store.why` | Le stockage garde les messages sur le réseau. Il ne restaure pas un compte. | التخزين يحفظ الرسائل على الشبكة. ولا يستعيد حساباً. |
+| `d2.boss.r.address` | Compte | الحساب |
+| `d2.boss.r.prompt` | La page de compte de l’entraîneur, encore. Pointez la ligne qui décide qui peut ramener le compte. | صفحة حساب المدرّب مرّة أخرى. أشِر إلى السطر الذي يحدّد من يستطيع إعادة الحساب. |
+| `d2.bub.a` | Deux liens ensuite. Ils commencent pareil. | رابطان بعد ذلك. يبدآن بالطريقة نفسها. |
+| `d2.bub.b` | Elle a répondu. « Et s’il perd son téléphone ? » | ردّت برسالة. «وإن أضاع هاتفه؟» |
+| `d2.can` | Vous savez maintenant lire une page de compte : nom, loyer, adresse de récupération. Et une adresse par sa fin. | صرتَ تعرف كيف تقرأ صفحة حساب: الاسم، والإيجار، وعنوان الاسترداد. وتقرأ العنوان من نهايته. |
+| `d2.claim` | Un compte Farcaster commence par un portefeuille. | حساب Farcaster يبدأ بمحفظة. |
+| `d2.diff.g.0.after` | Même mot dans les deux. | الكلمة نفسها في الاثنين. |
+| `d2.diff.g.0.say` | morceau un | القطعة الأولى |
+| `d2.diff.g.0.why` | Les deux liens commencent par le même mot. Un début peut se copier. | الرابطان يبدآن بالكلمة نفسها. البداية يمكن نسخها. |
+| `d2.diff.g.1.after` | Finit par servers.example · un autre site | ينتهي بـ servers.example · موقع آخر |
+| `d2.diff.g.1.say` | morceau deux | القطعة الثانية |
+| `d2.diff.g.1.why` | Lisez le nom avant la première barre oblique, depuis la droite : servers.example, pas joinmastodon.org. | اقرأ الاسم قبل أوّل شرطة مائلة، من طرفه الأيمن: servers.example، لا joinmastodon.org. |
+| `d2.diff.g.2.after` | Juste un nom de page. | اسم صفحة فقط. |
+| `d2.diff.g.2.say` | morceau trois | القطعة الثالثة |
+| `d2.diff.g.2.why` | Un nom de page plus long n’est qu’un nom de page. Il ne nomme pas le site. | اسم الصفحة الأطول يبقى اسم صفحة فقط. ولا يسمّي الموقع. |
+| `d2.diff.hint.0` | Comparez morceau par morceau. | قارِن قطعة بقطعة. |
+| `d2.diff.hint.1` | Deux morceaux diffèrent. Un seul nomme le site. | قطعتان تختلفان. واحدة فقط تسمّي الموقع. |
+| `d2.diff.hint.2` | Réponse : le morceau du milieu. Le nom finit ailleurs. | الجواب: القطعة الوسطى. الاسم ينتهي في مكان آخر. |
+| `d2.diff.kuro` | Le bout droit. | الطرف الأيمن. |
+| `d2.diff.prompt` | Deux liens vers la liste des serveurs Mastodon, en trois morceaux. Pointez celui qui fait du second un autre site. | رابطان إلى قائمة خوادم Mastodon، كلّ منهما في ثلاث قطع. أشِر إلى القطعة التي تجعل الثاني موقعاً آخر. |
+| `d2.diff.r.g.0.after` | Même mot dans les deux. | الكلمة نفسها في الاثنين. |
+| `d2.diff.r.g.0.say` | morceau un | القطعة الأولى |
+| `d2.diff.r.g.0.why` | Les deux commencent par docs. N’importe qui peut copier un premier mot. | كلاهما يبدأ بالكلمة نفسها. أيّ أحد يستطيع نسخ الكلمة الأولى. |
+| `d2.diff.r.g.1.after` | Finit par help.example · un autre site | ينتهي بـ help.example · موقع آخر |
+| `d2.diff.r.g.1.say` | morceau deux | القطعة الثانية |
+| `d2.diff.r.g.1.why` | Depuis la droite, le nom se lit help.example. La vraie documentation finit par farcaster.xyz. | من طرفه الأيمن يُقرأ الاسم help.example. الوثائق الحقيقية تنتهي بـ farcaster.xyz. |
+| `d2.diff.r.g.2.after` | Juste un nom de page. | اسم صفحة فقط. |
+| `d2.diff.r.g.2.say` | morceau trois | القطعة الثالثة |
+| `d2.diff.r.g.2.why` | Un nom de page plus long n’est qu’un nom de page. | اسم الصفحة الأطول يبقى اسم صفحة فقط. |
+| `d2.diff.r.prompt` | Deux liens vers la documentation de Farcaster, coupés en trois. Pointez le morceau qui trahit le second. | رابطان إلى وثائق Farcaster، كلّ منهما في ثلاث قطع. أشِر إلى القطعة التي تفضح الثاني. |
+| `d2.diff.r.why` | Depuis la droite, le nom se lit help.example. La vraie documentation finit par farcaster.xyz. | من طرفه الأيمن يُقرأ الاسم help.example. الوثائق الحقيقية تنتهي بـ farcaster.xyz. |
+| `d2.diff.why` | Lisez le nom avant la première barre oblique, depuis la droite : servers.example, pas joinmastodon.org. | اقرأ الاسم قبل أوّل شرطة مائلة، من طرفه الأيمن: servers.example، لا joinmastodon.org. |
+| `d2.join.address` | Résultats de recherche : « serveurs mastodon » | نتائج البحث: «خوادم Mastodon» |
+| `d2.join.hint.0` | Touchez chaque résultat pour voir son adresse. | المس كلّ نتيجة لترى عنوانها. |
+| `d2.join.hint.1` | Lisez le nom avant la première barre oblique, depuis la droite. | اقرأ الاسم قبل أوّل شرطة مائلة، من طرفه الأيمن. |
+| `d2.join.hint.2` | Réponse : joinmastodon.org. | الجواب: joinmastodon.org. |
+| `d2.join.kuro` | La fin d’abord. | النهاية أولاً. |
+| `d2.join.p.ad.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.join.p.ad.mark` | Annonce | إعلان |
+| `d2.join.p.ad.say` | Résultat un, marqué Annonce | النتيجة الأولى، موسومة بـ«إعلان» |
+| `d2.join.p.ad.text` | Mastodon · Rejoindre maintenant | Mastodon · انضمّ الآن |
+| `d2.join.p.ad.why` | La première place a été achetée. Avant la première barre oblique, le nom est mastodon-join.example, un sosie inventé. | المرتبة الأولى مشتراة. قبل أوّل شرطة مائلة الاسم هو mastodon-join.example، شبيه متخيَّل. |
+| `d2.join.p.mirror.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.join.p.mirror.say` | Résultat trois | النتيجة الثالثة |
+| `d2.join.p.mirror.text` | Serveurs Mastodon · Officiel | خوادم Mastodon · رسمي |
+| `d2.join.p.mirror.why` | Un tiret n’est pas un point. Avant la première barre oblique, le nom finit par org-servers.example. | الواصلة ليست نقطة. قبل أوّل شرطة مائلة ينتهي الاسم بـ org-servers.example. |
+| `d2.join.p.own.after` | joinmastodon.org · celle du projet lui-même | joinmastodon.org · قائمة المشروع نفسه |
+| `d2.join.p.own.say` | Résultat deux | النتيجة الثانية |
+| `d2.join.p.own.text` | Serveurs · Mastodon | الخوادم · Mastodon |
+| `d2.join.p.own.why` | Le nom est joinmastodon.org : l’adresse de la liste de serveurs du projet lui-même. | الاسم هو joinmastodon.org: عنوان قائمة الخوادم الخاصّة بالمشروع نفسه. |
+| `d2.join.prompt` | Trois résultats proposent la liste des serveurs de Mastodon. Touchez chacun pour voir son adresse. Puis choisissez celle du projet. | ثلاث نتائج تعرض قائمة خوادم Mastodon. المس كلّ واحدة لترى عنوانها. ثم اختر قائمة المشروع نفسه. |
+| `d2.join.r.address` | Trois messages (inventés) | ثلاث رسائل (متخيَّلة) |
+| `d2.join.r.p.m1.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.join.r.p.m1.say` | Message un | الرسالة الأولى |
+| `d2.join.r.p.m1.text` | Votre invitation vous attend | دعوتك بانتظارك |
+| `d2.join.r.p.m1.why` | Le nom finit par invite.example. La page de Bluesky dit qu’aucune invitation n’est requise. | الاسم ينتهي بـ invite.example. وصفحة Bluesky تقول إنه لا حاجة إلى دعوات. |
+| `d2.join.r.p.m2.after` | bsky.app · l’adresse que donne sa page | bsky.app · العنوان الذي تذكره صفحته |
+| `d2.join.r.p.m2.say` | Message deux | الرسالة الثانية |
+| `d2.join.r.p.m2.text` | Inscrivez-vous sur Bluesky | سجّل في Bluesky |
+| `d2.join.r.p.m2.why` | Le nom est bsky.app, là où la page de Bluesky dit de s’inscrire. | الاسم هو bsky.app، حيث تقول صفحة Bluesky نفسها أن تسجّل. |
+| `d2.join.r.p.m3.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.join.r.p.m3.say` | Message trois | الرسالة الثالثة |
+| `d2.join.r.p.m3.text` | Guichet d’inscription Bluesky | مكتب التسجيل في Bluesky |
+| `d2.join.r.p.m3.why` | Le nom est bsky-app.example. Un tiret en fait un autre nom. | الاسم هو bsky-app.example. الواصلة تجعله اسماً مختلفاً. |
+| `d2.join.r.prompt` | Trois messages disent « rejoignez Bluesky ici ». Touchez chacun pour voir son adresse. Choisissez le vrai. | ثلاث رسائل تقول «انضمّ إلى Bluesky هنا». المس كلّ واحدة لترى عنوانها. اختر الحقيقية. |
+| `d2.name.hint.0` | Il existe deux sortes de noms. | يوجد نوعان من الأسماء. |
+| `d2.name.hint.1` | La sorte gratuite est contrôlée par Farcaster. | النوع المجاني يتحكّم فيه Farcaster. |
+| `d2.name.hint.2` | Réponse : gratuit, et Farcaster peut le révoquer. | الجواب: مجاني، ويستطيع Farcaster سحبه. |
+| `d2.name.kuro` | Gratuit. Révocable. | مجاني. قابل للسحب. |
+| `d2.name.p.a.after` | Gratuit · révocable à tout moment | مجاني · قابل للسحب في أيّ وقت |
+| `d2.name.p.a.say` | À gauche : gratuit, et Farcaster peut le révoquer | الأول: مجاني، ويستطيع Farcaster سحبه |
+| `d2.name.p.a.text` | Gratuit, et Farcaster peut le révoquer | مجاني، ويستطيع Farcaster سحبه |
+| `d2.name.p.a.why` | La documentation : les noms gratuits sont émis par Farcaster et peuvent être révoqués à tout moment. | الوثائق: الأسماء المجانية يُصدرها Farcaster ويمكن سحبها في أيّ وقت. |
+| `d2.name.p.b.after` | Pas la sorte gratuite. | ليس النوع المجاني. |
+| `d2.name.p.b.say` | À droite : gratuit, et à lui pour de bon | الثاني: مجاني، وملكه إلى الأبد |
+| `d2.name.p.b.text` | Gratuit, et à lui pour de bon | مجاني، وملكه إلى الأبد |
+| `d2.name.p.b.why` | Seule la sorte payante, contrôlée par un portefeuille, ne peut pas être révoquée par Farcaster. | النوع المدفوع وحده، الذي تتحكّم فيه محفظة، لا يستطيع Farcaster سحبه. |
+| `d2.name.prompt` | L’entraîneur veut un nom d’utilisateur gratuit. Pointez ce que dit la documentation de la sorte gratuite. | يريد المدرّب اسم مستخدم مجانياً. أشِر إلى ما تقوله الوثائق عن النوع المجاني. |
+| `d2.name.r.p.a.after` | Pas perdus. | لا يضيعان. |
+| `d2.name.r.p.a.say` | À gauche : historique et abonnés sont perdus | الأول: السجلّ والمتابِعون يضيعون |
+| `d2.name.r.p.a.text` | Historique et abonnés sont perdus | السجلّ والمتابِعون يضيعون |
+| `d2.name.r.p.a.why` | La documentation : changer de nom n’affecte ni l’historique ni les abonnés. | الوثائق: تغيير الاسم لا يمسّ السجلّ ولا المتابِعين. |
+| `d2.name.r.p.b.after` | Gardés · seul le nom change | محفوظان · الاسم وحده يتغيّر |
+| `d2.name.r.p.b.say` | À droite : historique et abonnés restent | الثاني: السجلّ والمتابِعون يبقون |
+| `d2.name.r.p.b.text` | Historique et abonnés restent | السجلّ والمتابِعون يبقون |
+| `d2.name.r.p.b.why` | La documentation : un compte peut changer de nom d’utilisateur à tout moment, en gardant historique et abonnés. | الوثائق: يستطيع الحساب تغيير اسم المستخدم في أيّ وقت، مع الاحتفاظ بالسجلّ والمتابِعين. |
+| `d2.name.r.prompt` | L’entraîneur change de nom d’utilisateur. Pointez ce qui se passe, selon la documentation. | يغيّر المدرّب اسم المستخدم. أشِر إلى ما تقول الوثائق إنه يحدث. |
+| `d2.rent.hint.0` | Une ligne a un problème de date. | سطر واحد فيه مشكلة تاريخ. |
+| `d2.rent.hint.1` | Les messages ne restent que tant que quelque chose est loué. | الرسائل لا تبقى إلا ما دام شيء ما مستأجَراً. |
+| `d2.rent.hint.2` | Réponse : le stockage. Un loyer expiré peut lui coûter ses messages. | الجواب: التخزين. الإيجار المنتهي قد يكلّفه رسائله. |
+| `d2.rent.kuro` | Le loyer. | الإيجار. |
+| `d2.rent.p.apps.after` | Des applis. Les publications restent. | تطبيقات. المنشورات تبقى. |
+| `d2.rent.p.apps.say` | Applis connectées : 2, ligne | التطبيقات المتّصلة: 2، سطر |
+| `d2.rent.p.apps.text` | Applis connectées : 2 | التطبيقات المتّصلة: 2 |
+| `d2.rent.p.apps.why` | Les applis connectées écrivent des messages au nom du compte. Le stockage est une autre ligne. | التطبيقات المتّصلة تكتب الرسائل نيابة عن الحساب. والتخزين سطر منفصل. |
+| `d2.rent.p.name.after` | Un nom. Les publications restent. | اسم. المنشورات تبقى. |
+| `d2.rent.p.name.say` | Nom d’utilisateur : arobase trainergym, ligne | اسم المستخدم: @trainergym، سطر |
+| `d2.rent.p.name.text` | Nom d’utilisateur : @trainergym | اسم المستخدم: @trainergym |
+| `d2.rent.p.name.why` | Changer ou garder un nom n’affecte pas l’historique d’un compte. | تغيير الاسم أو إبقاؤه لا يمسّ سجلّ الحساب. |
+| `d2.rent.p.rec.after` | Pour revenir dans le compte. | عن العودة إلى الحساب. |
+| `d2.rent.p.rec.say` | Récupération : celle par défaut de l’appli, ligne | الاسترداد: الافتراضي للتطبيق، سطر |
+| `d2.rent.p.rec.text` | Récupération : celle par défaut de l’appli | الاسترداد: الافتراضي للتطبيق |
+| `d2.rent.p.rec.why` | La récupération dit qui peut restaurer le compte, pas ce que deviennent les publications stockées. | الاسترداد يتعلّق بمن يستطيع استعادة الحساب، لا بالمنشورات المخزّنة. |
+| `d2.rent.p.store.after` | Stockage · expiré, 30 jours de grâce | التخزين · منتهٍ، مهلة سماح 30 يوماً |
+| `d2.rent.p.store.say` | Stockage : 1 unité, expirée, ligne | التخزين: 1 وحدة، منتهية، سطر |
+| `d2.rent.p.store.text` | Stockage : 1 unité, expirée | التخزين: 1 وحدة، منتهية |
+| `d2.rent.p.store.why` | La documentation : une unité dure un an. Expirée, elle a 30 jours de grâce, puis les messages peuvent partir. | الوثائق: الوحدة تدوم سنة. وإن انتهت فلها مهلة سماح 30 يوماً، ثم قد تذهب الرسائل. |
+| `d2.rent.address` | Compte | الحساب |
+| `d2.rent.prompt` | La page de compte de l’entraîneur, inventée, un an plus tard. Pointez la ligne qui peut faire disparaître ses publications. | صفحة حساب المدرّب، متخيَّلة، بعد عام. أشِر إلى السطر الذي قد يجعل منشوراته تختفي. |
+| `d2.rent.r.p.close.after` | Toujours ouvert. | ما زال مفتوحاً. |
+| `d2.rent.r.p.close.say` | Le compte est fermé | الحساب مُغلق |
+| `d2.rent.r.p.close.text` | Le compte est fermé | الحساب مُغلق |
+| `d2.rent.r.p.close.why` | Rien ne ferme. Le compte peut continuer à utiliser le réseau. | لا شيء يُغلق. يستطيع الحساب مواصلة استعمال الشبكة. |
+| `d2.rent.r.p.prune.after` | Le plus ancien sort · le nouveau entre | الأقدم يخرج · الأحدث يدخل |
+| `d2.rent.r.p.prune.say` | Il est élagué pour faire de la place | يُحذف لإفساح مساحة |
+| `d2.rent.r.p.prune.text` | Il est élagué pour faire de la place | يُحذف لإفساح مساحة |
+| `d2.rent.r.p.prune.why` | La documentation : au-delà de la limite, le message le plus ancien est élagué pour faire de la place. | الوثائق: عند تجاوز الحدّ، تُحذف أقدم رسالة لإفساح مساحة. |
+| `d2.rent.r.p.stop.after` | La publication continue. | النشر مستمرّ. |
+| `d2.rent.r.p.stop.say` | La publication s’arrête jusqu’à ce qu’il paie | يتوقّف النشر حتى يدفع |
+| `d2.rent.r.p.stop.text` | La publication s’arrête jusqu’à ce qu’il paie | يتوقّف النشر حتى يدفع |
+| `d2.rent.r.p.stop.why` | La documentation : on peut continuer à utiliser le réseau sans payer plus de stockage. | الوثائق: يستطيع المستخدم مواصلة استعمال الشبكة دون دفع ثمن تخزين إضافي. |
+| `d2.rent.r.prompt` | Le stockage est plein, pas expiré. Pointez ce que dit la documentation du sort de sa plus ancienne publication. | التخزين ممتلئ، لا منتهٍ. أشِر إلى ما تقوله الوثائق عمّا يحدث لأقدم منشوراته. |
+| `d2.slip` | Un entraîneur dit à Samia : « Un compte Farcaster commence par un portefeuille. » Il montre son compte ; elle regarde seulement. | يقول مدرّب لسامية: «حساب Farcaster يبدأ بمحفظة.» ويُريها صفحة حسابه. هي تنظر فقط. |
+| `d2.slipTag` | ENQUÊTE 06 · profondeur 2 · exemple inventé | التحقيق 06 · العمق 2 · مثال متخيَّل |
+| `d2.stamp.prompt` | L’entraîneur, encore : un compte Farcaster commence par un portefeuille. Tamponnez : | قول المدرّب مرّة أخرى: حساب Farcaster يبدأ بمحفظة. اختمه: |
+| `d2.stamp.reveal` | Vrai. Sa documentation dit que l’utiliser demande un portefeuille pour enregistrer le compte. L’appli officielle gère ce parcours. | صحيح. وثائقه تقول إن استعماله يتطلّب محفظة لتسجيل الحساب. والتطبيق الرسمي يتولّى هذه الخطوات. |
+| `d3.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d3.boss.frame` | C’est {1}. Il stocke {2} sur la chaîne et {3} hors chaîne. | إنه {1}. يخزّن {2} على السلسلة و{3} خارجها. |
+| `d3.boss.hint.0` | Commencez par ce que la documentation dit qu’il est. | ابدأ بما تسمّيه به الوثائق. |
+| `d3.boss.hint.1` | Puis dites ce que la chaîne stocke, et ce qui reste en dehors. | ثم قُل ما تخزّنه السلسلة، وما يبقى خارجها. |
+| `d3.boss.hint.2` | Réponse : un réseau social public ; l’identité ; les données, publications comprises. | الجواب: شبكة اجتماعية عامّة؛ الهوية؛ البيانات، ومنها المنشورات. |
+| `d3.boss.kuro` | Quelle partie. | أيّ جزء. |
+| `d3.boss.p.c1.text` | un réseau social public | شبكة اجتماعية عامّة |
+| `d3.boss.p.c1.why` | La documentation : un réseau social public où l’on crée des profils, publie et suit d’autres personnes. | الوثائق: شبكة اجتماعية عامّة يُنشئ فيها المستخدمون ملفّات شخصية وينشرون ويتابعون. |
+| `d3.boss.p.c2.text` | l’identité | الهوية |
+| `d3.boss.p.c2.why` | La documentation : une architecture hybride qui stocke l’identité sur la chaîne et les données hors chaîne. | الوثائق: بنية هجينة تخزّن الهوية على السلسلة والبيانات خارجها. |
+| `d3.boss.p.c3.text` | les données, publications comprises | البيانات، ومنها المنشورات |
+| `d3.boss.p.c3.why` | La documentation : les données sont stockées hors chaîne. Publier un nouveau message public y figure. | الوثائق: البيانات مخزّنة خارج السلسلة. ونشر رسالة عامّة جديدة مذكور هناك. |
+| `d3.boss.p.c4.text` | tout | كلّ شيء |
+| `d3.boss.p.c4.why` | Pas tout, d’aucun côté : la documentation partage. L’identité sur la chaîne, les données hors chaîne. | ليس كلّ شيء، في أيّ من الجانبين: الوثائق تقسم. الهوية على السلسلة، والبيانات خارجها. |
+| `d3.boss.p.c5.text` | une place de marché | سوق |
+| `d3.boss.p.c5.why` | Ça, c’est District, d’après sa propre page. La documentation de Farcaster décrit un réseau social. | هذا District، بحسب صفحته نفسها. أمّا وثائق Farcaster فتصف شبكة اجتماعية. |
+| `d3.boss.prompt` | Samia demande : « Alors, c’est Facebook sur le web3 ? » Construisez la réponse pour elle. | تسأل سامية: «إذن، هل هو Facebook على ويب 3؟» ابنِ لها الجواب. |
+| `d3.boss.r.frame` | Mastodon : {1}, et {2}, donc {3}. | إنه {1}، و{2}، إذن {3}. |
+| `d3.boss.r.p.r1.text` | pas un site unique | ليس موقعاً واحداً |
+| `d3.boss.r.p.r1.why` | Sa page : Mastodon n’est pas un site unique. | صفحته: Mastodon ليس موقعاً واحداً. |
+| `d3.boss.r.p.r2.text` | chaque serveur fixe ses propres règles | كلّ خادم يضع قواعده الخاصّة |
+| `d3.boss.r.p.r2.why` | Sa page : chaque serveur crée ses propres règles. | صفحته: كلّ خادم يضع قواعده الخاصّة. |
+| `d3.boss.r.p.r3.text` | elle choisit d’abord un serveur | تختار أولاً خادماً |
+| `d3.boss.r.p.r3.why` | Le premier pas consiste à décider sur quel serveur créer le compte. | الخطوة الأولى أن تقرّر على أيّ خادم تُنشئ الحساب. |
+| `d3.boss.r.p.r4.text` | elle installe d’abord un portefeuille | تثبّت أولاً محفظة |
+| `d3.boss.r.p.r4.why` | Une appli portefeuille est le premier pas de Farcaster. Les pages de Mastodon n’en nomment aucune. | تطبيق المحفظة هو خطوة Farcaster الأولى. وصفحات Mastodon لا تذكر أيّاً منها. |
+| `d3.boss.r.p.r5.text` | une seule entreprise modère tout | شركة واحدة تشرف على كلّ شيء |
+| `d3.boss.r.p.r5.why` | Les règles sont appliquées localement, pas d’en haut, dit sa page. | القواعد تُطبَّق محلّياً، لا من الأعلى، كما تقول صفحته. |
+| `d3.boss.r.prompt` | Et Mastodon ? Construisez la réponse pour elle. | وماذا عن Mastodon؟ ابنِ لها الجواب. |
+| `d3.bub.a` | Le loyer ensuite. Demandez ce qu’il garde, et ce qu’il arrête. | الإيجار بعد ذلك. اسأل عمّا يحفظه، وعمّا يوقفه. |
+| `d3.bub.b` | Elle a répondu. Cinq mots et un point d’interrogation. | ردّت برسالة. خمس كلمات وعلامة استفهام. |
+| `d3.can` | Vous savez maintenant dire quelle partie d’un compte Farcaster est sur une chaîne, et que deux voisins n’en nomment aucune. | صرتَ تعرف أيّ جزء من حساب Farcaster على سلسلة، وأن جارَيه لا يذكران أيّ سلسلة. |
+| `d3.chain.address` | La page d’architecture de Farcaster (un croquis) | صفحة البنية في وثائق Farcaster (رسم تقريبي) |
+| `d3.chain.hint.0` | La plupart des actions courantes restent en dehors. | معظم الأفعال اليومية تبقى خارجها. |
+| `d3.chain.hint.1` | La chaîne est réservée au compte et à ce qu’il paie. | السلسلة مخصّصة للحساب ولما يدفعه. |
+| `d3.chain.hint.2` | Réponse : payer le loyer pour stocker des données. | الجواب: دفع الإيجار لتخزين البيانات. |
+| `d3.chain.kuro` | Loyer, sur chaîne. | الإيجار. على السلسلة. |
+| `d3.chain.p.follow.after` | Hors de la chaîne. | خارج السلسلة. |
+| `d3.chain.p.follow.say` | Suivre un autre utilisateur | متابعة مستخدم آخر |
+| `d3.chain.p.follow.text` | Suivre un autre utilisateur | متابعة مستخدم آخر |
+| `d3.chain.p.follow.why` | Suivre figure hors chaîne, comme la plupart des actions des utilisateurs. | المتابعة مذكورة خارج السلسلة، مثل معظم أفعال المستخدمين. |
+| `d3.chain.p.pic.after` | Hors de la chaîne. | خارج السلسلة. |
+| `d3.chain.p.pic.say` | Changer de photo de profil | تحديث صورة الملفّ الشخصي |
+| `d3.chain.p.pic.text` | Changer de photo de profil | تحديث صورة الملفّ الشخصي |
+| `d3.chain.p.pic.why` | Changer de photo de profil figure parmi les actions hors chaîne. | تحديث صورة الملفّ الشخصي مذكور بين الأفعال خارج السلسلة. |
+| `d3.chain.p.post.after` | Hors de la chaîne. | خارج السلسلة. |
+| `d3.chain.p.post.say` | Publier un nouveau message public | نشر رسالة عامّة جديدة |
+| `d3.chain.p.post.text` | Publier un nouveau message public | نشر رسالة عامّة جديدة |
+| `d3.chain.p.post.why` | La documentation range la publication parmi les actions effectuées hors chaîne. | الوثائق تضع النشر بين الأفعال التي تُؤدّى خارج السلسلة. |
+| `d3.chain.p.rent.after` | Sur la chaîne · une transaction | على السلسلة · معاملة |
+| `d3.chain.p.rent.say` | Payer le loyer pour stocker des données | دفع الإيجار لتخزين البيانات |
+| `d3.chain.p.rent.text` | Payer le loyer pour stocker des données | دفع الإيجار لتخزين البيانات |
+| `d3.chain.p.rent.why` | La documentation en nomme trois parmi une poignée : créer un compte, payer le loyer, ajouter des clés d’appli. | الوثائق تذكر ثلاثة من بين قلّة: إنشاء حساب، ودفع الإيجار، وإضافة مفاتيح التطبيقات. |
+| `d3.chain.prompt` | Quatre actions tirées de la documentation de Farcaster. Pointez celle qui se fait sur la chaîne. | أربعة أفعال من وثائق Farcaster. أشِر إلى الفعل الذي يتمّ على السلسلة. |
+| `d3.chain.r.address` | La page d’architecture de Farcaster (un croquis) | صفحة البنية في وثائق Farcaster (رسم تقريبي) |
+| `d3.chain.r.p.a.after` | Sur la chaîne. | على السلسلة. |
+| `d3.chain.r.p.a.say` | Créer un compte | إنشاء حساب |
+| `d3.chain.r.p.a.text` | Créer un compte | إنشاء حساب |
+| `d3.chain.r.p.a.why` | Créer un compte figure parmi les actions sur la chaîne. | إنشاء حساب مذكور بين الأفعال على السلسلة. |
+| `d3.chain.r.p.b.after` | Sur la chaîne. | على السلسلة. |
+| `d3.chain.r.p.b.say` | Ajouter une clé pour une appli connectée | إضافة مفتاح لتطبيق متّصل |
+| `d3.chain.r.p.b.text` | Ajouter une clé pour une appli connectée | إضافة مفتاح لتطبيق متّصل |
+| `d3.chain.r.p.b.why` | Ajouter des clés de compte pour des applis connectées figure sur la chaîne. | إضافة مفاتيح الحساب للتطبيقات المتّصلة مذكورة على السلسلة. |
+| `d3.chain.r.p.c.after` | Hors de la chaîne · comme la plupart des actions | خارج السلسلة · مثل معظم الأفعال |
+| `d3.chain.r.p.c.say` | Réagir à une publication | التفاعل مع منشور |
+| `d3.chain.r.p.c.text` | Réagir à une publication | التفاعل مع منشور |
+| `d3.chain.r.p.c.why` | Les réactions figurent hors chaîne, avec les publications et les abonnements. | التفاعلات مذكورة خارج السلسلة، مع المنشورات والمتابعات. |
+| `d3.chain.r.prompt` | Trois actions de plus. Pointez celle qui se fait hors de la chaîne. | ثلاثة أفعال أخرى. أشِر إلى الفعل الذي يتمّ خارج السلسلة. |
+| `d3.claim` | Farcaster met toute sa vie sociale sur une blockchain. | Farcaster يضع حياتها الاجتماعية كلّها على سلسلة كتل. |
+| `d3.live.frame` | Sur Mastodon, il est hébergé par {1}. Sur Farcaster, il appartient à {2}. | على Mastodon يستضيفه {1}. وعلى Farcaster يعود إلى {2}. |
+| `d3.live.hint.0` | Un réseau est fait de nombreux sites indépendants. | إحدى الشبكتين مواقع مستقلّة كثيرة. |
+| `d3.live.hint.1` | L’autre enregistre les comptes par une transaction. | الأخرى تسجّل الحسابات بمعاملة. |
+| `d3.live.hint.2` | Réponse : le serveur qu’elle a choisi ; une adresse sur une blockchain. | الجواب: الخادم الذي اختارته؛ عنوان على سلسلة كتل. |
+| `d3.live.kuro` | Deux foyers. | بيتان. |
+| `d3.live.p.c1.text` | le serveur qu’elle a choisi | الخادم الذي اختارته |
+| `d3.live.p.c1.why` | La documentation de Mastodon : le site où elle s’inscrit héberge son compte, son profil et son fil d’accueil. | وثائق Mastodon: الموقع الذي تسجّل فيه يستضيف حسابها وملفّها الشخصي وخلاصتها الرئيسية. |
+| `d3.live.p.c2.text` | une adresse sur une blockchain | عنوان على سلسلة كتل |
+| `d3.live.p.c2.why` | La documentation de Farcaster : un compte est attribué à une adresse par une transaction sur la chaîne. | وثائق Farcaster: يُسنَد الحساب إلى عنوان عبر معاملة على السلسلة. |
+| `d3.live.p.c3.text` | une seule entreprise pour tous | شركة واحدة للجميع |
+| `d3.live.p.c3.why` | Aucune des deux ne le dit. Serveurs Mastodon indépendants ; la documentation de Farcaster : les utilisateurs possèdent leur compte. | لا تقول أيّ من الصفحتين ذلك. خوادم Mastodon مستقلّة؛ ووثائق Farcaster تقول إن المستخدمين يملكون حساباتهم. |
+| `d3.live.p.c4.text` | son fournisseur d’e-mail | مزوّد بريدها الإلكتروني |
+| `d3.live.p.c4.why` | L’e-mail est demandé à l’inscription. Il n’héberge pas le compte. | البريد الإلكتروني يُطلب عند التسجيل. ولا يستضيف الحساب. |
+| `d3.live.prompt` | Où vit un compte, sur deux réseaux. Touchez une pastille, puis sa case. | أين يقيم الحساب، على شبكتين. المس رقعة، ثم خانتها. |
+| `d3.live.r.frame` | Bluesky : un nouveau serveur garde {1}. Mastodon : un déménagement garde {2}. | Bluesky: الخادم الجديد يحفظ {1}. Mastodon: الانتقال يحفظ {2}. |
+| `d3.live.r.p.r1.text` | nom d’utilisateur, amis et publications | اسم المستخدم والأصدقاء والمنشورات |
+| `d3.live.r.p.r1.why` | La page de Bluesky : changer de serveur ne perturbe ni votre nom d’utilisateur, ni vos amis, ni vos publications. | صفحة Bluesky: تغيير الخوادم لا يمسّ اسم المستخدم ولا الأصدقاء ولا المنشورات. |
+| `d3.live.r.p.r2.text` | les abonnés, pas les publications | المتابِعين، لا المنشورات |
+| `d3.live.r.p.r2.why` | La documentation de Mastodon : les abonnés sont transférés ; les publications ne seront pas déplacées, en raison de limites techniques. | وثائق Mastodon: المتابِعون ينتقلون؛ أمّا المنشورات فلن تُنقل، بسبب قيود تقنية. |
+| `d3.live.r.p.r3.text` | rien : elle repart de zéro | لا شيء: تبدأ من الصفر |
+| `d3.live.r.p.r3.why` | Repartir de zéro, c’est ce que la page de Bluesky dit des plateformes fermées. | البدء من الصفر هو ما تقوله صفحة Bluesky عن المنصّات المغلقة. |
+| `d3.live.r.p.r4.text` | un solde de pièces | رصيداً من العملات |
+| `d3.live.r.p.r4.why` | Aucune des deux pages ne nomme de pièce ni de solde. | لا تذكر أيّ من الصفحتين عملة ولا رصيداً. |
+| `d3.live.r.prompt` | Déménager, sur deux réseaux. Touchez une pastille, puis sa case. | الانتقال، على شبكتين. المس رقعة، ثم خانتها. |
+| `d3.rent.frame` | Le loyer garde {1} sur le réseau. Le faire payer {2}. | الإيجار يحفظ {1} على الشبكة. وفرضه {2}. |
+| `d3.rent.hint.0` | Le loyer est payé par le compte, pas au compte. | الإيجار يدفعه الحساب، لا يُدفع له. |
+| `d3.rent.hint.1` | Il achète de la place pour une seule sorte de chose. | يشتري مساحة لنوع واحد من الأشياء. |
+| `d3.rent.hint.2` | Réponse : les messages d’un compte ; empêche le spam. | الجواب: رسائل الحساب؛ يمنع الرسائل المزعجة. |
+| `d3.rent.kuro` | Place louée. | مساحة مستأجَرة. |
+| `d3.rent.p.c1.text` | les messages d’un compte | رسائل الحساب |
+| `d3.rent.p.c1.why` | La documentation : un compte doit payer un loyer pour garder ses messages sur le réseau. | الوثائق: على الحساب دفع إيجار ليحفظ رسائله على الشبكة. |
+| `d3.rent.p.c2.text` | empêche le spam | يمنع الرسائل المزعجة |
+| `d3.rent.p.c2.why` | La documentation : faire payer un loyer empêche les utilisateurs de spammer le réseau. | الوثائق: فرض الإيجار يمنع المستخدمين من إغراق الشبكة بالرسائل المزعجة. |
+| `d3.rent.p.c3.text` | le nom d’utilisateur d’un compte | اسم مستخدم الحساب |
+| `d3.rent.p.c3.why` | Les noms sont à part. Il en existe une sorte gratuite, émise par Farcaster. | الأسماء أمر منفصل. يوجد نوع مجاني منها، يُصدره Farcaster. |
+| `d3.rent.p.c4.text` | paie les utilisateurs pour publier | يدفع للمستخدمين مقابل النشر |
+| `d3.rent.p.c4.why` | Les pages lues ne décrivent aucun paiement à un utilisateur. Le loyer, c’est ce que paie le compte. | الصفحات المقروءة لا تصف أيّ دفع لمستخدم. الإيجار هو ما يدفعه الحساب. |
+| `d3.rent.prompt` | À quoi sert le loyer, dans les mots de la documentation. Touchez une pastille, puis sa case. | لِمَ الإيجار، بكلمات الوثائق. المس رقعة، ثم خانتها. |
+| `d3.rent.r.frame` | Une unité se loue par {1} et dure {2}. | تُستأجر الوحدة عبر {1} وتدوم {2}. |
+| `d3.rent.r.p.r1.text` | une transaction sur la chaîne | معاملة على السلسلة |
+| `d3.rent.r.p.r1.why` | La documentation : une unité de stockage se loue par une transaction sur la chaîne. | الوثائق: وحدة التخزين تُستأجر بإجراء معاملة على السلسلة. |
+| `d3.rent.r.p.r2.text` | un an | سنة واحدة |
+| `d3.rent.r.p.r2.why` | La documentation : une unité dure un an. | الوثائق: الوحدة تدوم سنة واحدة. |
+| `d3.rent.r.p.r3.text` | toute une vie | مدى الحياة |
+| `d3.rent.r.p.r3.why` | Une unité expire. Après 30 jours de grâce, des messages peuvent être perdus. | الوحدة تنتهي. وبعد مهلة سماح مدّتها 30 يوماً، قد تضيع رسائل. |
+| `d3.rent.r.p.r4.text` | chaque publication | كلّ منشور على حدة |
+| `d3.rent.r.p.r4.why` | Le loyer se paie par unité de stockage, pas par publication. | الإيجار لكلّ وحدة تخزين، لا لكلّ منشور. |
+| `d3.rent.r.prompt` | Le loyer, dans le temps. Touchez une pastille, puis sa case. | الإيجار، عبر الزمن. المس رقعة، ثم خانتها. |
+| `d3.say.hint.0` | Chaque note dit ce qui est sur une chaîne. Vérifiez d’abord Farcaster. | كلّ ملاحظة تقول ما الموجود على سلسلة. تحقّق من Farcaster أولاً. |
+| `d3.say.hint.1` | Sa documentation met l’identité sur la chaîne et les publications en dehors. | وثائقه تضع الهوية على السلسلة والمنشورات خارجها. |
+| `d3.say.hint.2` | Réponse : les comptes sur une chaîne pour Farcaster ; aucune nommée pour les deux autres. | الجواب: الحسابات على سلسلة في Farcaster؛ ولا سلسلة مذكورة للاثنين الآخرين. |
+| `d3.say.kuro` | Un par un. | واحداً واحداً. |
+| `d3.say.p.n1.text` | « Farcaster : publications sur une chaîne. Mastodon, Bluesky : aucune nommée. » | «Farcaster: المنشورات على سلسلة. Mastodon وBluesky: لا سلسلة مذكورة.» |
+| `d3.say.p.n1.why` | À moitié juste. La documentation de Farcaster stocke les données, publications comprises, hors chaîne. L’identité est sur la chaîne. | نصف صحيح. وثائق Farcaster تخزّن البيانات، ومنها المنشورات، خارج السلسلة. والهوية هي ما على السلسلة. |
+| `d3.say.p.n2.text` | « Farcaster : comptes sur une chaîne. Mastodon, Bluesky : aucune nommée. » | «Farcaster: الحسابات على سلسلة. Mastodon وBluesky: لا سلسلة مذكورة.» |
+| `d3.say.p.n2.why` | Cela correspond aux trois : identité sur la chaîne pour l’un, aucune blockchain nommée pour les deux autres. | هذا يطابق الثلاثة: الهوية على السلسلة في واحد، ولا سلسلة كتل مذكورة في الاثنين الآخرين. |
+| `d3.say.p.n3.text` | « Les trois : comptes sur une chaîne. Seules les publications diffèrent. » | «الثلاثة: الحسابات على سلسلة. المنشورات وحدها تختلف.» |
+| `d3.say.p.n3.why` | Les pages de Mastodon et de Bluesky lues aujourd’hui ne nomment aucune blockchain. Seule la documentation de Farcaster le fait. | صفحات Mastodon وBluesky المقروءة اليوم لا تذكر أيّ سلسلة كتل. وثائق Farcaster وحدها تفعل. |
+| `d3.say.prompt` | Trois façons de le dire à Samia. Touchez la bonne. | ثلاث طرق لقول ذلك لسامية. المس الصائبة. |
+| `d3.say.r.p.r1.text` | Mastodon est un seul site géré par une seule entreprise. | Mastodon موقع واحد تديره شركة واحدة. |
+| `d3.say.r.p.r1.why` | Sa page : pas un site unique. Chaque serveur est une entité totalement indépendante. | صفحته: ليس موقعاً واحداً. كلّ خادم كيان مستقلّ تماماً. |
+| `d3.say.r.p.r2.text` | Chaque serveur Mastodon fixe ses propres règles. | كلّ خادم Mastodon يضع قواعده الخاصّة. |
+| `d3.say.r.p.r2.why` | Sa page : chaque serveur crée ses propres règles, appliquées localement. | صفحته: كلّ خادم يضع قواعده الخاصّة، وتُطبَّق محلّياً. |
+| `d3.say.r.p.r3.text` | Bluesky est conçu pour être contrôlé par une seule entreprise. | Bluesky مصمَّم لتتحكّم فيه شركة واحدة. |
+| `d3.say.r.p.r3.why` | Sa page dit le contraire : conçu pour n’être contrôlé par aucune entreprise seule. | صفحته تقول العكس: مصمَّم كي لا تتحكّم فيه شركة واحدة. |
+| `d3.say.r.prompt` | Trois nouvelles notes. Touchez la vraie. | ثلاث ملاحظات جديدة. المس الصحيحة. |
+| `d3.slip` | Le prestataire récrit : « Farcaster met toute votre vie sociale sur une blockchain. » Samia demande quelle partie, exactement. | المورّد يكتب من جديد: «Farcaster يضع حياتك الاجتماعية كلّها على سلسلة كتل.» تسأل سامية: أيّ جزء بالضبط؟ |
+| `d3.slipTag` | ENQUÊTE 06 · profondeur 3 · exemple inventé | التحقيق 06 · العمق 3 · مثال متخيَّل |
+| `d3.stamp.prompt` | Le prestataire, encore : Farcaster met toute sa vie sociale sur une blockchain. Tamponnez : | قول المورّد مرّة أخرى: Farcaster يضع حياتها الاجتماعية كلّها على سلسلة كتل. اختمه: |
+| `d3.stamp.reveal` | À moitié. Compte, loyer et clés d’appli sont sur une chaîne. Publications, abonnements et réactions restent hors chaîne. | نصف صحيح. الحساب والإيجار ومفاتيح التطبيقات على سلسلة. أمّا المنشورات والمتابعات والتفاعلات فتبقى خارجها. |
+| `d3.why.frame` | Sur la chaîne quand {1} sont critiques. Hors chaîne quand {2} sont critiques. | على السلسلة حين يكون {1} أمراً حاسماً. وخارجها حين يكون {2} أمراً حاسماً. |
+| `d3.why.hint.0` | La chaîne reçoit ce qui ne doit jamais être contesté. | السلسلة تنال ما يجب ألّا يكون محلّ نزاع أبداً. |
+| `d3.why.hint.1` | Les actions courantes vont là où vitesse et prix comptent. | الأفعال اليومية تذهب حيث تهمّ السرعة والسعر. |
+| `d3.why.hint.2` | Réponse : la sécurité et la cohérence ; la performance et le coût. | الجواب: الأمن والاتّساق؛ الأداء والتكلفة. |
+| `d3.why.kuro` | Leurs raisons. | أسبابها. |
+| `d3.why.p.c1.text` | la sécurité et la cohérence | الأمن والاتّساق |
+| `d3.why.p.c1.why` | La documentation : les actions se font sur la chaîne seulement quand la sécurité et la cohérence sont critiques. | الوثائق: تُؤدّى الأفعال على السلسلة فقط حين يكون الأمن والاتّساق أمراً حاسماً. |
+| `d3.why.p.c2.text` | la performance et le coût | الأداء والتكلفة |
+| `d3.why.p.c2.why` | La documentation : les actions se font hors chaîne quand la performance et le coût sont critiques. | الوثائق: تُؤدّى الأفعال خارج السلسلة حين يكون الأداء والتكلفة أمراً حاسماً. |
+| `d3.why.p.c3.text` | la confidentialité et le secret | الخصوصية والسرّية |
+| `d3.why.p.c3.why` | Aucun côté n’est secret. La documentation appelle les casts des messages publics, visibles par tous. | لا جانب سرّي. الوثائق تصف الكاست بأنها رسائل عامّة يراها أيّ أحد. |
+| `d3.why.p.c4.text` | la rapidité et la commodité | السرعة والسهولة |
+| `d3.why.p.c4.why` | Proche d’un côté, mais les mots de la documentation y sont performance et coût. | قريب من أحد الجانبين، لكن كلمات الوثائق هناك هي الأداء والتكلفة. |
+| `d3.why.prompt` | Pourquoi ce partage ? Construisez la raison donnée par la documentation. Touchez une pastille, puis sa case. | لماذا هذا التقسيم؟ ابنِ السبب الذي تذكره الوثائق. المس رقعة، ثم خانتها. |
+| `d3.why.r.frame` | L’identité est stockée {1}. Les données sont stockées {2}. | الهوية مخزّنة {1}. والبيانات مخزّنة {2}. |
+| `d3.why.r.p.r1.text` | sur une blockchain | على سلسلة كتل |
+| `d3.why.r.p.r1.why` | La documentation : une architecture hybride qui stocke l’identité sur la chaîne. | الوثائق: بنية هجينة تخزّن الهوية على السلسلة. |
+| `d3.why.r.p.r2.text` | sur un réseau pair-à-pair de serveurs | على شبكة خوادم من نظير إلى نظير |
+| `d3.why.r.p.r2.why` | La documentation : les données des utilisateurs sont hors chaîne, sur un réseau pair-à-pair de serveurs. | الوثائق: بيانات المستخدمين خارج السلسلة، على شبكة خوادم من نظير إلى نظير. |
+| `d3.why.r.p.r3.text` | sur le serveur d’une seule entreprise | على خادم شركة واحدة |
+| `d3.why.r.p.r3.why` | La documentation décrit un réseau de serveurs, pas la machine d’une seule entreprise. | الوثائق تصف شبكة خوادم، لا جهاز شركة واحدة. |
+| `d3.why.r.p.r4.text` | sur un seul téléphone | على هاتف واحد فقط |
+| `d3.why.r.p.r4.why` | Un message publié se répand dans tout le réseau en quelques secondes. | الرسالة المنشورة تنتشر في الشبكة كلّها خلال ثوانٍ. |
+| `d3.why.r.prompt` | Le même partage, en lieux. Touchez une pastille, puis sa case. | التقسيم نفسه، في صورة أماكن. المس رقعة، ثم خانتها. |
+| `row` | Regardé, pas essayé. D’après la documentation de Farcaster, un compte commence par une appli portefeuille et un stockage loué. | نُظر فيه ولم يُجرَّب. بحسب وثائق Farcaster نفسها، يبدأ الحساب بتطبيق محفظة وبمساحة تخزين مستأجَرة. |
+| `sticker.back` | Ce que c’est : Farcaster, réseau social public ; compte sur blockchain, publications hors chaîne. À côté : Mastodon, Bluesky ; leurs pages ne nomment aucune chaîne. Ce que vous détenez : un compte lié à une adresse. Ce que vous cédez : la récupération par e-mail de l’appli, adresse déplacée. L’idée fausse : décentralisé veut dire blockchain. Cité comme exemple, pas comme recommandation. Vérifié le 2026-11-23. | ما هو: Farcaster، شبكة اجتماعية عامّة؛ الحساب على سلسلة كتل، والمنشورات خارجها. بجانبه: Mastodon وBluesky؛ صفحاتهما لا تذكر أيّ سلسلة. ما تحوزه: حساب مرتبط بعنوان. ما تتخلّى عنه: استرداد التطبيق بالبريد الإلكتروني، بعد نقل العنوان. الفكرة الخاطئة: أن اللامركزي يعني سلسلة الكتل. مذكور كمثال، لا كتوصية. جرى التحقّق في 2026-11-23. |
+| `sticker.line` | Décentralisé n’est pas un autre mot pour blockchain. | اللامركزي ليس كلمة أخرى لسلسلة الكتل. |
+| `sticker.name` | Demande quelle partie | يسأل أيّ جزء |
+| `tpl.quoted-lines` | Ce que dit la page | ما تقوله الصفحة |
+| `tpl.three-handles` | Trois identifiants | ثلاثة معرّفات |
+
+### Case 07, Who holds the key (`hub/src/lanterne/enquetes/c07.ar.json`, 563 keys)
+
+| Key | Français | العربية |
+|---|---|---|
+| `d1.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d1.boss.hint.0` | Le titre du billet est la question. | عنوان القصاصة هو السؤال. |
+| `d1.boss.hint.1` | Trois d’entre eux sont des entreprises. | ثلاثة من هذه شركات. |
+| `d1.boss.hint.2` | Réponse : elle seule. | الجواب: هي وحدها. |
+| `d1.boss.kuro` | À elle seule. | لها وحدها. |
+| `d1.boss.p.maker.after` | Il n’y a pas accès. | لا يصل إليها. |
+| `d1.boss.p.maker.say` | L’éditeur de l’appli, tuile | صانع التطبيق، خانة |
+| `d1.boss.p.maker.text` | L’éditeur de l’appli | صانع التطبيق |
+| `d1.boss.p.maker.why` | L’aide de l’éditeur dit qu’il ne peut ni accéder à ses mots ni récupérer le portefeuille. | صفحات المساعدة لدى الصانع تقول إنه لا يستطيع الوصول إلى كلماتها ولا استرجاع المحفظة. |
+| `d1.boss.p.she.after` | Elle seule · sur papier, avec elle | هي وحدها · على الورق، معها |
+| `d1.boss.p.she.say` | Elle seule, tuile | هي وحدها، خانة |
+| `d1.boss.p.she.text` | Elle seule | هي وحدها |
+| `d1.boss.p.she.why` | Autodétenu veut dire qu’elle détient la clé maîtresse. Sans intermédiaire, dit l’aide de l’éditeur. | «ذاتية الحفظ» تعني أنها تحوز المفتاح الرئيسي. بلا وسيط، كما تقول صفحات المساعدة لدى الصانع. |
+| `d1.boss.p.store.after` (reworded 2026-11-24) | Il livre seulement les applis. | يوصل التطبيقات فقط. |
+| `d1.boss.p.store.say` | La boutique d’applis, tuile | متجر التطبيقات، خانة |
+| `d1.boss.p.store.text` | La boutique d’applis | متجر التطبيقات |
+| `d1.boss.p.store.why` | Une boutique fournit l’appli. Les mots sont générés plus tard, à la configuration. | المتجر يسلّم التطبيق. أمّا الكلمات فتتولّد لاحقاً، عند الإعداد. |
+| `d1.boss.p.support.after` | Impossible pour lui aussi. | هم أيضاً لا يستطيعون. |
+| `d1.boss.p.support.say` | Son support, tuile | مكتب الدعم لديه، خانة |
+| `d1.boss.p.support.text` | Son support | مكتب الدعم لديه |
+| `d1.boss.p.support.why` | Le support ne demande jamais les mots et ne peut pas les restaurer, dit l’aide. | الدعم لا يطلب الكلمات أبداً ولا يستطيع استعادتها، كما تقول صفحات المساعدة. |
+| `d1.boss.prompt` | Samia objecte : « Quelqu’un garde forcément un double de la clé. » Pointez qui la détient, dans un portefeuille autodétenu. | تعترض سامية: «لا بدّ أن أحداً يحتفظ بمفتاح احتياطي.» أشِر إلى من يحوزه، في محفظة ذاتية الحفظ. |
+| `d1.boss.r.p.cust.after` | Dépositaire · un gardien détient la clé | بحفظ الغير · حافظ يحوز المفتاح |
+| `d1.boss.r.p.cust.say` | Dépositaire, tuile | بحفظ الغير، خانة |
+| `d1.boss.r.p.cust.text` | Dépositaire | بحفظ الغير |
+| `d1.boss.r.p.cust.why` | L’aide d’un éditeur : dans un portefeuille dépositaire, un tiers le contrôle et suit ses instructions. | صفحات المساعدة لدى أحد الصانعين: في المحفظة بحفظ الغير، يتحكّم فيها طرف ثالث ويتصرّف وفق تعليماتها. |
+| `d1.boss.r.p.off.after` | Où, pas qui. | أين، لا مَن. |
+| `d1.boss.r.p.off.say` | Hors ligne, tuile | دون اتّصال، خانة |
+| `d1.boss.r.p.off.text` | Hors ligne | دون اتّصال |
+| `d1.boss.r.p.off.why` | Hors ligne dit où une clé est gardée. Cela ne dit pas qui la détient. | «دون اتّصال» تقول أين يُحفظ المفتاح. ولا تقول من يحوزه. |
+| `d1.boss.r.p.self.after` | Celui-là est à elle seule. | هذه لها وحدها. |
+| `d1.boss.r.p.self.say` | Autodétenu, tuile | ذاتية الحفظ، خانة |
+| `d1.boss.r.p.self.text` | Autodétenu | ذاتية الحفظ |
+| `d1.boss.r.p.self.why` | Autodétenu, ou en autoconservation, veut dire qu’elle détient elle-même la clé maîtresse. | «ذاتية الحفظ»، أو الحفظ الذاتي، تعني أنها تحوز المفتاح الرئيسي بنفسها. |
+| `d1.boss.r.prompt` | L’autre sorte : une entreprise garde la clé et suit ses instructions. Pointez son nom. | النوع الآخر: شركة تحفظ المفتاح وتنفّذ تعليماتها. أشِر إلى اسمه. |
+| `d1.bub.a` | L’appli est inventée. Les douze mots à la configuration, non. | التطبيق متخيَّل. أمّا الكلمات الـ12 عند الإعداد فلا. |
+| `d1.bub.b` | Elle a répondu : « Sur papier ? À notre époque ? » Je porte, c’est tout. | ردّت برسالة: «على الورق؟ في هذا القرن؟» أنا أحملها فقط. |
+| `d1.can` | Vous savez maintenant distinguer une clé qu’une entreprise peut réinitialiser d’une clé qu’elle seule détient. | صرتَ تعرف كيف تميّز مفتاحاً تستطيع شركة إعادة تعيينه من مفتاح تحوزه هي وحدها. |
+| `d1.claim` | L’éditeur d’un portefeuille autodétenu peut toujours lui envoyer une autre clé. | صانع المحفظة ذاتية الحفظ يستطيع دائماً أن يرسل إليها مفتاحاً آخر. |
+| `d1.first.address` | Premier lancement d’une appli portefeuille (inventée) | التشغيل الأول لتطبيق محفظة (متخيَّل) |
+| `d1.first.hint.0` | Un mot de passe protège un seul appareil. | كلمة المرور تحمي جهازاً واحداً. |
+| `d1.first.hint.1` | Un écran lui demande d’écrire quelque chose à la main. | شاشة واحدة تطلب منها أن تكتب شيئاً بخطّ يدها. |
+| `d1.first.hint.2` | Réponse : les douze mots. | الجواب: الكلمات الـ12. |
+| `d1.first.kuro` | Douze mots. | 12 كلمة. |
+| `d1.first.p.notif.after` | Alertes activées. Aucune clé. | التنبيهات مفعّلة. لا مفتاح. |
+| `d1.first.p.notif.say` | Écran trois : Autoriser les notifications | الشاشة الثالثة: السماح بالإشعارات |
+| `d1.first.p.notif.text` | Autoriser les notifications | السماح بالإشعارات |
+| `d1.first.p.notif.why` | Les notifications sont des alertes. Elles ne contiennent rien. | الإشعارات تنبيهات. لا تحمل شيئاً. |
+| `d1.first.p.pw.after` | Déverrouille cet appareil seulement. | تفتح هذا الجهاز فقط. |
+| `d1.first.p.pw.say` | Écran un : Choisissez un mot de passe | الشاشة الأولى: اختر كلمة مرور |
+| `d1.first.p.pw.text` | Choisissez un mot de passe | اختر كلمة مرور |
+| `d1.first.p.pw.why` | L’aide d’un éditeur : le mot de passe déverrouille l’appli sur cet appareil. Il ne récupère pas le portefeuille. | صفحات المساعدة لدى أحد الصانعين: كلمة المرور تفتح التطبيق على ذلك الجهاز. ولا تسترجع المحفظة. |
+| `d1.first.p.words.after` | Douze mots · la clé maîtresse, affichée pour elle | 12 كلمة · المفتاح الرئيسي، يُعرض عليها |
+| `d1.first.p.words.say` | Écran deux : Notez ces douze mots | الشاشة الثانية: دوِّن هذه الكلمات الـ12 |
+| `d1.first.p.words.text` | Notez ces douze mots | دوِّن هذه الكلمات الـ12 |
+| `d1.first.p.words.why` | Les mots sont générés à la configuration et affichés pour elle. L’aide les appelle la clé maîtresse. | تتولّد الكلمات عند الإعداد وتُعرض عليها. وصفحات المساعدة تسمّيها المفتاح الرئيسي. |
+| `d1.first.prompt` | Premier lancement, trois écrans. Pointez l’écran où elle reçoit la clé maîtresse. | التشغيل الأول، ثلاث شاشات. أشِر إلى الشاشة التي تتلقّى فيها المفتاح الرئيسي. |
+| `d1.first.r.address` | Après la configuration (inventé) | بعد الإعداد (متخيَّل) |
+| `d1.first.r.p.none.after` | Aucun des deux · elle seule les a | لا هذه ولا تلك · لا يملكهما سواها |
+| `d1.first.r.p.none.say` | Aucun des deux | لا هذه ولا تلك |
+| `d1.first.r.p.none.text` | Aucun des deux | لا هذه ولا تلك |
+| `d1.first.r.p.none.why` | Les deux restent avec elle. C’est le sens d’autodétenu : la clé maîtresse est à elle seule. | كلاهما يبقى معها. هذا معنى «ذاتية الحفظ»: المفتاح الرئيسي لها وحدها. |
+| `d1.first.r.p.pw.after` | Il ne le connaît pas. | لا يعرفها. |
+| `d1.first.r.p.pw.say` | Son mot de passe | كلمة مرورها |
+| `d1.first.r.p.pw.text` | Son mot de passe | كلمة مرورها |
+| `d1.first.r.p.pw.why` | L’aide d’un autre éditeur : il ne connaît pas son mot de passe et ne peut pas le réinitialiser. | صفحات المساعدة لدى صانع آخر: لا يعرف كلمة مرورها ولا يستطيع إعادة تعيينها. |
+| `d1.first.r.p.words.after` | Hors de sa portée. | بعيدة عن متناوله. |
+| `d1.first.r.p.words.say` | Ses douze mots | كلماتها الـ12 |
+| `d1.first.r.p.words.text` | Ses douze mots | كلماتها الـ12 |
+| `d1.first.r.p.words.why` | L’aide de l’éditeur dit qu’il ne peut pas accéder à ses mots. | صفحات المساعدة لدى الصانع تقول إنه لا يستطيع الوصول إلى كلماتها. |
+| `d1.first.r.prompt` | Elle l’a configuré avec des mots écrits. Pointez ce à quoi l’éditeur peut accéder. | أعدّته بكلمات مكتوبة. أشِر إلى ما يستطيع الصانع الوصول إليه. |
+| `d1.forgot.hint.0` | Les champs veulent ce qu’elle n’a plus. | الحقول تريد ما لم يعد لديها. |
+| `d1.forgot.hint.1` | Un lien est fait exactement pour ça. | رابط واحد صُنع لهذا بالضبط. |
+| `d1.forgot.hint.2` | Réponse : « Problème de connexion ? ». L’entreprise la laisse revenir. | الجواب: «مشكلة في تسجيل الدخول؟». الشركة تعيدها إلى حسابها. |
+| `d1.forgot.kuro` | Ils le réinitialisent. | يعيدون تعيينها. |
+| `d1.forgot.p.create.after` | Un nouveau compte, vide. | حساب جديد فارغ. |
+| `d1.forgot.p.create.say` | Créer un compte, bouton | إنشاء حساب، زرّ |
+| `d1.forgot.p.create.text` | Créer un compte | إنشاء حساب |
+| `d1.forgot.p.create.why` | Un nouveau compte est un autre compte. L’ancien reste fermé. | الحساب الجديد حساب آخر. والقديم يبقى مغلقاً. |
+| `d1.forgot.p.email.after` | Tapée. Toujours bloquée dehors. | كُتب. وما زال مقفلاً. |
+| `d1.forgot.p.email.say` | Adresse e-mail, champ | عنوان البريد الإلكتروني، حقل |
+| `d1.forgot.p.email.text` | Adresse e-mail | عنوان البريد الإلكتروني |
+| `d1.forgot.p.email.why` | Son adresse dit quel compte. Elle ne l’ouvre pas. | عنوانها يقول أيّ حساب. ولا يفتحه. |
+| `d1.forgot.p.forgot.after` | Des questions, puis un e-mail · l’entreprise la laisse revenir | أسئلة، ثم رسالة · الشركة تعيدها إلى حسابها |
+| `d1.forgot.p.forgot.say` | Problème de connexion ?, lien | مشكلة في تسجيل الدخول؟، رابط |
+| `d1.forgot.p.forgot.text` | Problème de connexion ? | مشكلة في تسجيل الدخول؟ |
+| `d1.forgot.p.forgot.why` | L’aide d’un service d’e-mail : il pose des questions pour confirmer que c’est elle, puis envoie un e-mail. | صفحات المساعدة لدى شركة بريد إلكتروني: تطرح أسئلة لتتأكّد أنها هي، ثم ترسل رسالة. |
+| `d1.forgot.p.pw.after` | Vide. Elle l’a oublié. | فارغ. نسيتها. |
+| `d1.forgot.p.pw.say` | Mot de passe, champ | كلمة المرور، حقل |
+| `d1.forgot.p.pw.text` | Mot de passe | كلمة المرور |
+| `d1.forgot.p.pw.why` | Ce champ veut justement le mot de passe qu’elle a oublié. | هذا الحقل يريد كلمة المرور نفسها التي نسيتها. |
+| `d1.forgot.prompt` | Une page de connexion e-mail (inventée). Elle est bloquée dehors. Pointez ce qui permet à l’entreprise d’aider. | صفحة دخول إلى بريد إلكتروني (متخيَّلة). لا تستطيع الدخول. أشِر إلى ما يتيح للشركة أن تساعد. |
+| `d1.forgot.r.p.mail.after` | Réinitialisé par son entreprise · des questions, puis un e-mail | تعيد شركته تعيينها · أسئلة، ثم رسالة |
+| `d1.forgot.r.p.mail.say` | Un compte e-mail, tuile | حساب بريد إلكتروني، خانة |
+| `d1.forgot.r.p.mail.text` | Un compte e-mail | حساب بريد إلكتروني |
+| `d1.forgot.r.p.mail.why` | Son entreprise peut vérifier que c’est elle et réinitialiser le mot de passe. | شركته تستطيع التحقّق من أنها هي وإعادة تعيين كلمة المرور. |
+| `d1.forgot.r.p.profile.after` | Personne ne le réinitialise. | لا أحد يعيد تعيينه. |
+| `d1.forgot.r.p.profile.say` | Un profil de messagerie fait de clés, tuile | ملفّ محادثة مصنوع من مفاتيح، خانة |
+| `d1.forgot.r.p.profile.text` | Un profil de messagerie fait de clés | ملفّ محادثة مصنوع من مفاتيح |
+| `d1.forgot.r.p.profile.why` | L’aide de son éditeur : il ne connaît pas son mot de passe et ne peut pas le réinitialiser. | صفحات المساعدة لدى صانعه: لا يعرف كلمة مرورها ولا يستطيع إعادة تعيينها. |
+| `d1.forgot.r.p.wallet.after` | Aucune réinitialisation n’existe. | لا وجود لإعادة تعيين. |
+| `d1.forgot.r.p.wallet.say` | Un portefeuille sans gardien, tuile | محفظة بلا حافظ، خانة |
+| `d1.forgot.r.p.wallet.text` | Un portefeuille sans gardien | محفظة بلا حافظ |
+| `d1.forgot.r.p.wallet.why` | L’aide d’un éditeur de portefeuille : aucune récupération de compte centralisée. Il ne peut pas récupérer le portefeuille. | صفحات المساعدة لدى صانع محفظة: لا استرجاع مركزياً للحساب. ولا يستطيع استرجاع المحفظة. |
+| `d1.forgot.r.p.words.after` | Illisibles pour tout autre. | لا يستطيع غيرها قراءتها. |
+| `d1.forgot.r.p.words.say` | Douze mots écrits, tuile | 12 كلمة مكتوبة، خانة |
+| `d1.forgot.r.p.words.text` | Douze mots écrits | 12 كلمة مكتوبة |
+| `d1.forgot.r.p.words.why` | L’éditeur ne peut pas accéder à ses mots. Des mots perdus ne sont pas renvoyés. | الصانع لا يستطيع الوصول إلى كلماتها. والكلمات الضائعة لا تُرسل من جديد. |
+| `d1.forgot.r.prompt` | Quatre choses verrouillées. Pointez celle qu’une entreprise peut lui rouvrir. | أربعة أشياء مقفلة. أشِر إلى الشيء الذي تستطيع شركة أن تعيد فتحه لها. |
+| `d1.keep.hint.0` | Trois choix ne laissent aucune copie hors ligne. | ثلاثة خيارات لا تترك أيّ نسخة دون اتّصال. |
+| `d1.keep.hint.1` | L’aide se fie à quelque chose de plus ancien qu’un téléphone. | صفحات المساعدة تثق بشيء أقدم من الهاتف. |
+| `d1.keep.hint.2` | Réponse : les écrire sur papier. | الجواب: كتابتها على الورق. |
+| `d1.keep.kuro` | À la main. | بخطّ اليد. |
+| `d1.keep.p.close.after` | Fermé. Rien d’écrit. | أُغلق. لم يُكتب شيء. |
+| `d1.keep.p.close.cap` | Fermer | إغلاق |
+| `d1.keep.p.close.say` | Fermer, bouton | إغلاق، زرّ |
+| `d1.keep.p.close.why` | Fermer n’écrit rien. Sans les mots, il n’y a pas de retour. | الإغلاق لا يكتب شيئاً. ومن دون الكلمات لا طريق للعودة. |
+| `d1.keep.p.cloud.after` | En ligne. Peut être volé. | على الإنترنت. يمكن سرقته. |
+| `d1.keep.p.cloud.say` | Enregistrer en note dans le cloud, bouton | حفظ في ملاحظة سحابية، زرّ |
+| `d1.keep.p.cloud.text` | Enregistrer en note dans le cloud | حفظ في ملاحظة سحابية |
+| `d1.keep.p.cloud.why` | L’aide de l’éditeur : un document enregistré dans le cloud se pirate facilement. | صفحات المساعدة لدى الصانع: المستند المحفوظ سحابياً يسهل اختراقه. |
+| `d1.keep.p.paper.after` | Sur papier · hors ligne, dans l’ordre | على الورق · دون اتّصال، بالترتيب |
+| `d1.keep.p.paper.say` | Je les ai écrits sur papier, case à cocher | كتبتُها على الورق، خانة اختيار |
+| `d1.keep.p.paper.text` | Je les ai écrits sur papier | كتبتُها على الورق |
+| `d1.keep.p.paper.why` | L’aide dit de les écrire à la main : le papier ne peut pas être volé en ligne. | صفحات المساعدة تقول: اكتبها بخطّ يدك، فالورق لا يمكن سرقته عبر الإنترنت. |
+| `d1.keep.p.shot.after` | Enregistrée. Peut se synchroniser. | حُفظت. قد تُزامَن عبر الإنترنت. |
+| `d1.keep.p.shot.say` | Faire une capture d’écran, bouton | التقاط لقطة شاشة، زرّ |
+| `d1.keep.p.shot.text` | Faire une capture d’écran | التقاط لقطة شاشة |
+| `d1.keep.p.shot.why` | Un guide public prévient : une capture d’écran peut se synchroniser dans un cloud, à portée des voleurs. | دليل عامّ يحذّر: لقطة الشاشة قد تُزامَن إلى سحابة، في متناول اللصوص. |
+| `d1.keep.prompt` | Les douze mots sont à l’écran (une maquette). Pointez ce que l’aide dit d’en faire. | الكلمات الـ12 على الشاشة (شاشة تجريبية). أشِر إلى ما تقول صفحات المساعدة أن تفعله بها. |
+| `d1.keep.r.p.mail.after` | En ligne. Peut être volé. | على الإنترنت. يمكن سرقته. |
+| `d1.keep.r.p.mail.say` | Dans un e-mail à elle-même | في رسالة إلى نفسها |
+| `d1.keep.r.p.mail.text` | Dans un e-mail à elle-même | في رسالة إلى نفسها |
+| `d1.keep.r.p.mail.why` | L’exemple même de l’aide pour un endroit facile à pirater. | مثال صفحات المساعدة نفسها على مكان يسهل اختراقه. |
+| `d1.keep.r.p.note.after` | Tout passant le lit. | يقرؤها كلّ مارّ. |
+| `d1.keep.r.p.note.say` | Sur une note collée à l’écran | على ورقة ملصقة بالشاشة |
+| `d1.keep.r.p.note.text` | Sur une note collée à l’écran | على ورقة ملصقة بالشاشة |
+| `d1.keep.r.p.note.why` | L’exemple même de l’aide pour un endroit facile à découvrir. | مثال صفحات المساعدة نفسها على مكان يسهل اكتشافه. |
+| `d1.keep.r.p.safe.after` | Hors ligne · elle seule y accède | دون اتّصال · لا يصل إليه سواها |
+| `d1.keep.r.p.safe.say` | Un endroit qu’elle seule peut atteindre | مكان لا يصل إليه سواها |
+| `d1.keep.r.p.safe.text` | Un endroit qu’elle seule peut atteindre | مكان لا يصل إليه سواها |
+| `d1.keep.r.p.safe.why` | L’aide : un lieu physique et sûr, auquel elle seule a accès, et qu’elle n’oubliera pas. | صفحات المساعدة: مكان مادّي آمن لا يصل إليه سواها، ولن تنساه. |
+| `d1.keep.r.prompt` | Les mots sont sur papier. Pointez où l’aide garderait le papier. | الكلمات على الورق. أشِر إلى حيث تحفظ صفحات المساعدة الورقة. |
+| `d1.note.hint.0` | Deux notes traitent pareil des choses différentes. | ملاحظتان تعاملان أشياء مختلفة كأنها واحدة. |
+| `d1.note.hint.1` | Une note parle du chemin de retour. | ملاحظة واحدة تتحدّث عن طريق العودة. |
+| `d1.note.hint.2` | Réponse : les mots écrits sont le seul chemin de retour. | الجواب: الكلمات المكتوبة هي طريق العودة الوحيد. |
+| `d1.note.kuro` | Une seule voie. | طريق واحد. |
+| `d1.note.p.n1.text` | Mot de passe e-mail perdu, mots du portefeuille perdus : même solution. | كلمة مرور بريد ضائعة، وكلمات محفظة ضائعة: الحلّ نفسه. |
+| `d1.note.p.n1.why` | E-mail : l’entreprise le réinitialise. Portefeuille autodétenu : l’aide de son éditeur dit qu’il ne peut pas le récupérer. | البريد: الشركة تعيد تعيينها. المحفظة ذاتية الحفظ: صفحات المساعدة لدى صانعها تقول إنه لا يستطيع استرجاعها. |
+| `d1.note.p.n2.text` | Configuré avec des mots écrits, un portefeuille a un seul chemin de retour : ces mots. | المحفظة التي أُعدّت بكلمات مكتوبة لها طريق عودة واحد: تلك الكلمات. |
+| `d1.note.p.n2.why` | Un guide public le dit de la phrase : le seul moyen de récupérer le portefeuille. | دليل عامّ يقول ذلك عن العبارة: الطريقة الوحيدة لاسترجاع المحفظة. |
+| `d1.note.p.n3.text` | L’adresse doit rester secrète, comme les mots. | العنوان يجب أن يبقى سرّاً، مثل الكلمات. |
+| `d1.note.p.n3.why` | L’adresse peut être partagée librement. Les mots et la clé secrète, non. | العنوان يمكن مشاركته بحرّية. أمّا الكلمات والمفتاح السرّي فلا. |
+| `d1.note.prompt` | Trois notes sont arrivées avec le billet. Une seule est vraie. | وصلت مع القصاصة ثلاث ملاحظات. واحدة صحيحة. |
+| `d1.note.r.p.r1.text` | Un e-mail de réinitialisation peut ramener un portefeuille autodétenu. | رسالة إعادة تعيين تستطيع إرجاع محفظة ذاتية الحفظ. |
+| `d1.note.r.p.r1.why` | L’aide de son éditeur : il n’existe aucune récupération de mot de passe ni de compte centralisée. | صفحات المساعدة لدى صانعها: لا استرجاع لكلمة المرور ولا استرجاع مركزياً للحساب. |
+| `d1.note.r.p.r2.text` | L’adresse fonctionne comme une adresse e-mail : on peut la partager. | العنوان يعمل مثل عنوان البريد الإلكتروني: لا بأس بمشاركته. |
+| `d1.note.r.p.r2.why` | Un guide public compare l’adresse à celle d’une boîte e-mail, partagée librement. | دليل عامّ يشبّه العنوان بعنوان صندوق بريد إلكتروني، يُشارَك بحرّية. |
+| `d1.note.r.p.r3.text` | L’entreprise a choisi ses douze mots et en a classé une copie. | الشركة اختارت كلماتها الـ12 واحتفظت بنسخة منها. |
+| `d1.note.r.p.r3.why` | L’appli génère les mots à la configuration. L’aide de l’éditeur dit qu’il ne peut pas y accéder. | التطبيق يولّد الكلمات عند الإعداد. وصفحات المساعدة لدى الصانع تقول إنه لا يستطيع الوصول إليها. |
+| `d1.note.r.prompt` | Trois nouvelles notes. Touchez la vraie. | ثلاث ملاحظات جديدة. المس الصحيحة. |
+| `d1.pair.hint.0` | Trois d’entre eux ouvrent quelque chose. | ثلاثة من هذه تفتح شيئاً. |
+| `d1.pair.hint.1` | Un seul permet juste qu’on la trouve. | واحد يتيح للناس أن يجدوها فقط. |
+| `d1.pair.hint.2` | Réponse : l’adresse. | الجواب: العنوان. |
+| `d1.pair.kuro` | Moitié publique. | النصف العامّ. |
+| `d1.pair.p.address.after` | 0x4f2…b81 · à donner sans crainte | 0x4f2…b81 · لا بأس بإعطائه |
+| `d1.pair.p.address.say` | L’adresse, tuile | العنوان، خانة |
+| `d1.pair.p.address.text` | L’adresse | العنوان |
+| `d1.pair.p.address.why` | Une clé crée l’adresse. Un guide public dit qu’elle peut être partagée librement, comme une adresse e-mail. | مفتاح واحد يصنع العنوان. دليل عامّ يقول إنه يمكن مشاركته بحرّية، مثل عنوان البريد الإلكتروني. |
+| `d1.pair.p.password.after` | À elle seule. | لها وحدها. |
+| `d1.pair.p.password.say` | Le mot de passe de l’appli, tuile | كلمة مرور التطبيق، خانة |
+| `d1.pair.p.password.text` | Le mot de passe de l’appli | كلمة مرور التطبيق |
+| `d1.pair.p.password.why` | Le mot de passe déverrouille l’appli sur son appareil. L’aide d’un éditeur dit : ne le partagez avec personne. | كلمة المرور تفتح التطبيق على جهازها. وصفحات المساعدة لدى أحد الصانعين تقول: لا تشاركها مع أحد. |
+| `d1.pair.p.secret.after` | Jamais partagée. | لا يُشارَك أبداً. |
+| `d1.pair.p.secret.say` | La clé secrète, tuile | المفتاح السرّي، خانة |
+| `d1.pair.p.secret.text` | La clé secrète | المفتاح السرّي |
+| `d1.pair.p.secret.why` | La moitié secrète signe pour elle. Qui la détient contrôle ce compte. | النصف السرّي يوقّع عنها. ومن يملكه يتحكّم في ذلك الحساب. |
+| `d1.pair.p.words.after` | Jamais partagés non plus. | ولا تُشارَك أبداً أيضاً. |
+| `d1.pair.p.words.say` | Les douze mots écrits, tuile | الكلمات الـ12 المكتوبة، خانة |
+| `d1.pair.p.words.text` | Les douze mots écrits | الكلمات الـ12 المكتوبة |
+| `d1.pair.p.words.why` | Les mots refont chaque clé. Ils sont la clé maîtresse, jamais montrée à personne. | الكلمات تعيد صنع كلّ مفتاح. إنها المفتاح الرئيسي، لا تُعرض على أحد. |
+| `d1.pair.prompt` | Un compte de portefeuille est une paire de clés. Quatre choses l’entourent. Pointez ce qu’elle peut partager. | حساب المحفظة زوج من المفاتيح. وحوله أربعة أشياء. أشِر إلى ما تستطيع مشاركته. |
+| `d1.pair.r.p.copy.after` | Privé, lui aussi. | خاصّ أيضاً. |
+| `d1.pair.r.p.copy.say` | Le moyen de tailler une nouvelle clé, tuile | طريقة نسخ مفتاح جديد، خانة |
+| `d1.pair.r.p.copy.text` | Le moyen de tailler une nouvelle clé | طريقة نسخ مفتاح جديد |
+| `d1.pair.r.p.copy.why` | Notre ajout à l’image. L’aide : les mots écrits peuvent régénérer la clé. Gardez-les en sécurité. | إضافتنا إلى الصورة. صفحات المساعدة: الكلمات المكتوبة تستطيع إعادة توليد المفتاح. احفظها في أمان. |
+| `d1.pair.r.p.door.after` | La porte · publique, comme l’adresse | الباب · عامّ، مثل العنوان |
+| `d1.pair.r.p.door.say` | La porte, tuile | الباب، خانة |
+| `d1.pair.r.p.door.text` | La porte | الباب |
+| `d1.pair.r.p.door.why` | Son aide : la porte est publique et visible de tous, comme une clé publique. | صفحات المساعدة لديه: الباب عامّ ومرئي للجميع، مثل المفتاح العامّ. |
+| `d1.pair.r.p.key.after` | Privée. Gardée sur soi. | خاصّ. يبقى قريباً. |
+| `d1.pair.r.p.key.say` | La clé de la porte, tuile | مفتاح الباب، خانة |
+| `d1.pair.r.p.key.text` | La clé de la porte | مفتاح الباب |
+| `d1.pair.r.p.key.why` | Les clés de porte sont privées et personnelles, dit l’aide, comme la clé secrète. | مفاتيح الأبواب خاصّة وشخصية، كما تقول صفحات المساعدة، مثل المفتاح السرّي. |
+| `d1.pair.r.prompt` | Une porte et sa clé, une image tirée de l’aide d’un éditeur. Pointez la partie que tous peuvent voir. | باب ومفتاحه، صورة من صفحات المساعدة لدى أحد الصانعين. أشِر إلى الجزء الذي يحقّ للجميع رؤيته. |
+| `d1.slip` | Nouveau billet : « Qui détient la clé ». Le prestataire : l’éditeur d’un portefeuille peut toujours lui renvoyer une clé. Samia s’interroge. | قصاصة جديدة: «من يحوز المفتاح». يقول المورّد إن صانع المحفظة يستطيع دائماً أن يرسل إليها مفتاحاً آخر. سامية تتساءل. |
+| `d1.slipTag` | ENQUÊTE 07 · exemple inventé | التحقيق 07 · مثال متخيَّل |
+| `d1.stamp.prompt` | Le prestataire, encore : l’éditeur d’un portefeuille autodétenu peut toujours lui envoyer une autre clé. Tamponnez : | قول المورّد مرّة أخرى: صانع المحفظة ذاتية الحفظ يستطيع دائماً أن يرسل إليها مفتاحاً آخر. اختمه: |
+| `d1.stamp.reveal` | Faux. Portefeuille autodétenu : l’éditeur n’a pas accès à sa clé, ne peut ni la récupérer ni en renvoyer. | غير صحيح. في المحفظة ذاتية الحفظ لا يستطيع الصانع الوصول إلى مفتاحها. ولا يستطيع استرجاعه ولا إرسال غيره. |
+| `d2.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d2.boss.hint.0` | Qui a écrit en premier ? | من كتب أولاً؟ |
+| `d2.boss.hint.1` | Trois d’entre eux ouvriraient chacun quelque chose à elle. | كلّ واحد من ثلاثة سيفتح شيئاً من أشيائها. |
+| `d2.boss.hint.2` | Réponse : ne rien envoyer, et le signaler. | الجواب: لا ترسل شيئاً، وأبلِغ عنه. |
+| `d2.boss.kuro` | Rien. Jamais. | لا شيء. أبداً. |
+| `d2.boss.p.none.after` | Rien d’envoyé · signalé | لم يُرسَل شيء · أُبلغ عنه |
+| `d2.boss.p.none.say` | Rien. Le signaler, bouton | لا شيء. أبلِغ عنه، زرّ |
+| `d2.boss.p.none.text` | Rien. Le signaler. | لا شيء. أبلِغ عنه. |
+| `d2.boss.p.none.why` | L’aide : l’équipe ne demande jamais ces choses. Qui les demande doit être signalé. | صفحات المساعدة: الفريق لا يطلب هذه أبداً. ومن يطلبها يجب الإبلاغ عنه. |
+| `d2.boss.p.pw.after` | Jamais demandé honnêtement. | لا يُطلب بنزاهة أبداً. |
+| `d2.boss.p.pw.say` | Seulement le mot de passe, bouton | كلمة المرور فقط، زرّ |
+| `d2.boss.p.pw.text` | Seulement le mot de passe | كلمة المرور فقط |
+| `d2.boss.p.pw.why` | L’éditeur ne demande jamais un mot de passe par e-mail, appel ou message, dit son aide. | الصانع لا يرسل بريداً ولا يتّصل ولا يراسل أبداً ليطلب كلمة مرور، كما تقول صفحات المساعدة لديه. |
+| `d2.boss.p.secret.after` | Ce compte, livré. | ذلك الحساب سُلّم. |
+| `d2.boss.p.secret.say` | Une seule clé secrète, bouton | مفتاح سرّي واحد فقط، زرّ |
+| `d2.boss.p.secret.text` | Une seule clé secrète | مفتاح سرّي واحد فقط |
+| `d2.boss.p.secret.why` | Une clé secrète contrôle son compte. L’aide : ne la partagez jamais non plus. | المفتاح السرّي يتحكّم في حسابه. صفحات المساعدة: لا تشاركه أبداً أيضاً. |
+| `d2.boss.p.words.after` | Portefeuille livré. | المحفظة سُلّمت. |
+| `d2.boss.p.words.say` | Les douze mots, bouton | الكلمات الـ12، زرّ |
+| `d2.boss.p.words.text` | Les douze mots | الكلمات الـ12 |
+| `d2.boss.p.words.why` | Qui a les mots contrôle le portefeuille. Il pourrait le vider. | من يملك الكلمات يتحكّم في المحفظة. ويستطيع إفراغها. |
+| `d2.boss.prompt` | Samia objecte : « Le support a écrit en premier. Il lui faut une seule chose pour réparer. » Pointez ce qu’elle envoie. | تعترض سامية: «الدعم كتب أولاً. لا يحتاج إلا إلى شيء واحد ليُصلح الأمر.» أشِر إلى ما ترسله. |
+| `d2.boss.r.p.allow.after` | Il voit l’écran. | يرى الشاشة. |
+| `d2.boss.r.p.allow.say` | Autoriser : les mots ne partent pas | اسمح بذلك: الكلمات تبقى دون إرسال |
+| `d2.boss.r.p.allow.text` | Autoriser : les mots ne partent pas | اسمح بذلك: الكلمات تبقى دون إرسال |
+| `d2.boss.r.p.allow.why` | Le guide le range à côté des mots : n’autorisez jamais personne à accéder à distance. | الدليل يذكره إلى جانب الكلمات: لا تسمح لأحد أبداً بالوصول عن بُعد. |
+| `d2.boss.r.p.five.after` | Cinq minutes suffisent bien. | خمس دقائق تكفي. |
+| `d2.boss.r.p.five.say` | Autoriser pendant cinq minutes | اسمح بذلك خمس دقائق |
+| `d2.boss.r.p.five.text` | Autoriser pendant cinq minutes | اسمح بذلك خمس دقائق |
+| `d2.boss.r.p.five.why` | Le guide ne fixe aucune durée. Son mot, c’est jamais. | الدليل لا يحدّد مهلة. كلمته هي «أبداً». |
+| `d2.boss.r.p.refuse.after` | Refusé · rien d’ouvert | رُفض · لم يُفتح شيء |
+| `d2.boss.r.p.refuse.say` | Refuser | رفض |
+| `d2.boss.r.p.refuse.text` | Refuser | رفض |
+| `d2.boss.r.p.refuse.why` | Le guide : n’autorisez jamais personne à accéder à distance à votre ordinateur. | الدليل: لا تسمح لأحد أبداً بالوصول عن بُعد إلى حاسوبك. |
+| `d2.boss.r.prompt` | Son interlocuteur demande plutôt un accès à distance à son ordinateur. Pointez ce que dit un guide public. | يطلب المساعِد بدلاً من ذلك وصولاً عن بُعد إلى حاسوبها. أشِر إلى ما يقوله دليل عامّ. |
+| `d2.bub.a` | Les adresses, maintenant. Les sosies sont de moi. Lisez depuis la droite. | الآن العناوين. الأشباه من صنعي. اقرأ من اليمين. |
+| `d2.bub.b` | Un autre billet. Quelqu’un se disant le support lui a écrit d’abord. | قصاصة أخرى. شخص يقدّم نفسه على أنه الدعم كتب إليها أولاً. |
+| `d2.can` | Vous savez maintenant revenir grâce aux mots, et éconduire quiconque les demande. | صرتَ تعرف كيف تعود بالكلمات، وكيف تردّ كلّ من يطلبها. |
+| `d2.claim` | Qui détient les douze mots détient le portefeuille. | من يحوز الكلمات الـ12 يحوز المحفظة. |
+| `d2.diff.g.0.after` | Même mot des deux côtés. | الكلمة نفسها في الاثنين. |
+| `d2.diff.g.0.say` | morceau un | القطعة الأولى |
+| `d2.diff.g.0.why` | Les deux commencent par help. N’importe qui peut copier un premier mot. | كلاهما يبدأ بـ help. أيّ أحد يستطيع نسخ الكلمة الأولى. |
+| `d2.diff.g.1.after` | Finit par restore-now.example · un autre site | ينتهي بـ restore-now.example · موقع آخر |
+| `d2.diff.g.1.say` | morceau deux | القطعة الثانية |
+| `d2.diff.g.1.why` | Lisez le nom avant la première barre oblique, depuis la droite : restore-now.example, pas wallet-app.example. | اقرأ الاسم قبل أوّل شرطة مائلة، من طرفه الأيمن: restore-now.example، لا wallet-app.example. |
+| `d2.diff.g.2.after` | Juste un nom de page. | مجرّد اسم صفحة. |
+| `d2.diff.g.2.say` | morceau trois | القطعة الثالثة |
+| `d2.diff.g.2.why` | Un nom de page plus long reste un nom de page. Il ne nomme pas le site. | اسم الصفحة الأطول يبقى اسم صفحة. ولا يسمّي الموقع. |
+| `d2.diff.hint.0` | Comparez morceau par morceau. | قارِن قطعة بقطعة. |
+| `d2.diff.hint.1` | Deux morceaux diffèrent. Un seul nomme le site. | قطعتان تختلفان. واحدة فقط تسمّي الموقع. |
+| `d2.diff.hint.2` | Réponse : le morceau du milieu. Le nom finit ailleurs. | الجواب: القطعة الوسطى. الاسم ينتهي في مكان آخر. |
+| `d2.diff.kuro` | Par la droite. | الطرف الأيمن. |
+| `d2.diff.prompt` | Son favori et un lien reçu par e-mail, coupés en trois. Pointez le morceau qui trahit le second. | إشارتها المرجعية ورابط من رسالة بريد، كلّ منهما في ثلاث قطع. أشِر إلى القطعة التي تفضح الثاني. |
+| `d2.diff.r.g.0.after` | Un seul nouveau nom · un autre site | اسم جديد واحد · موقع آخر |
+| `d2.diff.r.g.0.say` | morceau un | القطعة الأولى |
+| `d2.diff.r.g.0.why` | Un tiret n’est pas un point : wallet-app-support.example est un seul nouveau nom, pas le site de son favori. | الشرطة ليست نقطة: wallet-app-support.example اسم جديد واحد، لا موقع إشارتها المرجعية. |
+| `d2.diff.r.g.1.after` | Même fin des deux côtés. | النهاية نفسها في الاثنين. |
+| `d2.diff.r.g.1.say` | morceau deux | القطعة الثانية |
+| `d2.diff.r.g.1.why` | Les deux finissent par .example. Une fin seule ne prouve rien. | كلاهما ينتهي بـ .example. والنهاية وحدها لا تُثبت شيئاً. |
+| `d2.diff.r.g.2.after` | Même nom de page. | اسم الصفحة نفسه. |
+| `d2.diff.r.g.2.say` | morceau trois | القطعة الثالثة |
+| `d2.diff.r.g.2.why` | Le même nom de page peut se trouver sur n’importe quel site. | اسم الصفحة نفسه قد يوجد على أيّ موقع. |
+| `d2.diff.r.prompt` | Son favori et un lien venu d’un forum, coupés en trois. Pointez le morceau qui trahit le second. | إشارتها المرجعية ورابط من منتدى، كلّ منهما في ثلاث قطع. أشِر إلى القطعة التي تفضح الثاني. |
+| `d2.diff.r.why` | Un tiret n’est pas un point : wallet-app-support.example est un seul nouveau nom, pas le site de son favori. | الشرطة ليست نقطة: wallet-app-support.example اسم جديد واحد، لا موقع إشارتها المرجعية. |
+| `d2.diff.why` | Lisez le nom avant la première barre oblique, depuis la droite : restore-now.example, pas wallet-app.example. | اقرأ الاسم قبل أوّل شرطة مائلة، من طرفه الأيمن: restore-now.example، لا wallet-app.example. |
+| `d2.ring.address` | Résultats de recherche : « appli portefeuille » | نتائج البحث: «تطبيق محفظة» |
+| `d2.ring.hint.0` | Touchez chaque résultat pour voir son adresse. | المس كلّ نتيجة لترى عنوانها. |
+| `d2.ring.hint.1` | Lisez le nom avant la première barre oblique, depuis la droite. | اقرأ الاسم قبل أوّل شرطة مائلة، من طرفه الأيمن. |
+| `d2.ring.hint.2` | Réponse : wallet-app.example. | الجواب: wallet-app.example. |
+| `d2.ring.kuro` | La fin d’abord. | النهاية أولاً. |
+| `d2.ring.p.ad.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.p.ad.mark` | Annonce | إعلان |
+| `d2.ring.p.ad.say` | Résultat un, marqué Annonce | النتيجة الأولى، موسومة بـ«إعلان» |
+| `d2.ring.p.ad.text` | Appli portefeuille · Obtenez-la maintenant | تطبيق محفظة · احصل عليه الآن |
+| `d2.ring.p.ad.why` | Une place achetée ; son nom finit par get-now.example. L’aide prévient : des applis clonées enregistrent les mots. | مرتبة مشتراة؛ ينتهي اسمها بـ get-now.example. صفحات المساعدة تحذّر: التطبيقات المستنسخة تسجّل الكلمات. |
+| `d2.ring.p.maker.after` | wallet-app.example · celui de l’éditeur | wallet-app.example · موقع الصانع نفسه |
+| `d2.ring.p.maker.say` | Résultat deux | النتيجة الثانية |
+| `d2.ring.p.maker.text` | Appli portefeuille | تطبيق محفظة |
+| `d2.ring.p.maker.why` | Le nom est wallet-app.example, le même que dans son favori. | الاسم هو wallet-app.example، مثل إشارتها المرجعية. |
+| `d2.ring.p.mirror.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.p.mirror.say` | Résultat trois | النتيجة الثالثة |
+| `d2.ring.p.mirror.text` | Appli portefeuille · Téléchargement officiel | تطبيق محفظة · التنزيل الرسمي |
+| `d2.ring.p.mirror.why` | Le mot official se trouve dans un nouveau nom : wallet-app-official.example. | كلمة official داخل اسم جديد: wallet-app-official.example. |
+| `d2.ring.prompt` | Trois résultats proposent l’appli portefeuille. Touchez chacun pour voir son adresse. Puis choisissez celui de l’éditeur. | ثلاث نتائج تعرض تطبيق المحفظة. المس كلّاً منها لترى عنوانها. ثم اختر موقع الصانع نفسه. |
+| `d2.ring.r.address` | Un fil de forum (inventé) | سلسلة نقاش في منتدى (متخيَّلة) |
+| `d2.ring.r.p.l1.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.r.p.l1.say` | Lien un | الرابط الأول |
+| `d2.ring.r.p.l1.text` | Centre d’aide (rapide) | مركز المساعدة (سريع) |
+| `d2.ring.r.p.l1.why` | Avant la première barre oblique, le nom finit par help-fast.example. | قبل أوّل شرطة مائلة ينتهي الاسم بـ help-fast.example. |
+| `d2.ring.r.p.l2.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.r.p.l2.say` | Lien deux | الرابط الثاني |
+| `d2.ring.r.p.l2.text` | Aide officielle | المساعدة الرسمية |
+| `d2.ring.r.p.l2.why` | Le nom est help-wallet-app.example : un seul nouveau nom, relié par des tirets. | الاسم هو help-wallet-app.example: اسم جديد واحد، موصول بشرطات. |
+| `d2.ring.r.p.l3.after` | wallet-app.example/help · celui de l’éditeur | wallet-app.example/help · موقع الصانع نفسه |
+| `d2.ring.r.p.l3.say` | Lien trois | الرابط الثالث |
+| `d2.ring.r.p.l3.text` | Centre d’aide | مركز المساعدة |
+| `d2.ring.r.p.l3.why` | Avant la première barre oblique, le nom est wallet-app.example. Ce qui suit est une page. | قبل أوّل شرطة مائلة الاسم هو wallet-app.example. وما يليه صفحة. |
+| `d2.ring.r.prompt` | Trois liens de forum, tous présentés comme l’aide du portefeuille. Touchez chacun pour voir son adresse. Choisissez celui de l’éditeur. | ثلاثة روابط في منتدى، كلّ منها يُسمّى صفحة مساعدة المحفظة. المس كلّاً منها لترى عنوانه. اختر موقع الصانع نفسه. |
+| `d2.rows.hint.0` | Demandez-vous pour chaque ligne : qui pourrait la faire revenir ? | اسأل عن كلّ سطر: من يستطيع أن يعيدها إلى حسابها؟ |
+| `d2.rows.hint.1` | Deux lignes offrent un retour par une entreprise. | سطران يتيحان طريق عودة عبر شركة. |
+| `d2.rows.hint.2` | Réponse : l’appli portefeuille sans réinitialisation. | الجواب: تطبيق المحفظة الذي لا إعادة تعيين فيه. |
+| `d2.rows.kuro` | Aucune réinitialisation. | لا إعادة تعيين. |
+| `d2.rows.p.exchange.after` | Le site la détient. | الموقع يحوزه. |
+| `d2.rows.p.exchange.say` | Compte sur un site d’échange, identifiant et mot de passe, ligne | حساب في موقع تداول، اسم مستخدم وكلمة مرور، سطر |
+| `d2.rows.p.exchange.text` | Compte sur un site d’échange · identifiant et mot de passe | حساب في موقع تداول · اسم مستخدم وكلمة مرور |
+| `d2.rows.p.exchange.why` | Identifiant et mot de passe récupérables : le site, une plateforme d’échange, a la garde, dit un guide public. | اسم مستخدم وكلمة مرور يمكنها استرجاعهما: موقع التداول، وهو منصّة تداول، يتولّى الحفظ، كما يقول دليل عامّ. |
+| `d2.rows.p.mail.after` | L’entreprise le réinitialise. | الشركة تعيد تعيينها. |
+| `d2.rows.p.mail.say` | Compte e-mail, Mot de passe oublié ?, ligne | حساب بريد إلكتروني، نسيت كلمة المرور؟، سطر |
+| `d2.rows.p.mail.text` | Compte e-mail · Mot de passe oublié ? | حساب بريد إلكتروني · نسيت كلمة المرور؟ |
+| `d2.rows.p.mail.why` | Un lien de réinitialisation veut dire que l’entreprise peut la faire revenir. | رابط إعادة التعيين يعني أن الشركة تستطيع إعادتها إلى حسابها. |
+| `d2.rows.p.wallet.after` | Aucune réinitialisation · la clé est à elle | لا إعادة تعيين · المفتاح لها |
+| `d2.rows.p.wallet.say` | Appli portefeuille, douze mots, aucune réinitialisation, ligne | تطبيق محفظة، 12 كلمة، لا إعادة تعيين، سطر |
+| `d2.rows.p.wallet.text` | Appli portefeuille · douze mots, aucune réinitialisation | تطبيق محفظة · 12 كلمة، لا إعادة تعيين |
+| `d2.rows.p.wallet.why` | Aucune réinitialisation, et des mots qu’elle seule possède : c’est un portefeuille autodétenu. | لا إعادة تعيين، وكلمات لا يملكها سواها: هذه محفظة ذاتية الحفظ. |
+| `d2.rows.address` | Comptes | الحسابات |
+| `d2.rows.prompt` | Trois comptes sur une liste fictive. Pointez celui où elle seule détient la clé. | ثلاثة حسابات في قائمة تجريبية. أشِر إلى الحساب الذي تحوز فيه المفتاح وحدها. |
+| `d2.rows.r.p.call.after` | Une entreprise la détient. | شركة تحوزه. |
+| `d2.rows.r.p.call.say` | Appelez-nous pour débloquer votre compte, ligne | اتّصل بنا لفتح حسابك، سطر |
+| `d2.rows.r.p.call.text` | Appelez-nous pour débloquer votre compte | اتّصل بنا لفتح حسابك |
+| `d2.rows.r.p.call.why` | Si un appel le débloque, quelqu’un d’autre peut l’ouvrir. | إن كانت مكالمة تفتحه، فشخص آخر يستطيع فتحه. |
+| `d2.rows.r.p.cannot.after` | Aucun gardien · autodétenu | لا حافظ · ذاتية الحفظ |
+| `d2.rows.r.p.cannot.say` | Nous ne pouvons pas récupérer votre portefeuille pour vous, ligne | لا نستطيع استرجاع محفظتك نيابة عنك، سطر |
+| `d2.rows.r.p.cannot.text` | Nous ne pouvons pas récupérer votre portefeuille pour vous | لا نستطيع استرجاع محفظتك نيابة عنك |
+| `d2.rows.r.p.cannot.why` | L’aide d’un éditeur dit exactement ceci : il ne peut pas récupérer le portefeuille pour elle. | صفحات المساعدة لدى أحد الصانعين تقول هذا بالضبط: لا يستطيع استرجاع المحفظة نيابة عنها. |
+| `d2.rows.r.p.mail.after` | Une entreprise la détient. | شركة تحوزه. |
+| `d2.rows.r.p.mail.say` | Réinitialisation par e-mail en deux minutes, ligne | إعادة تعيين بالبريد في دقيقتين، سطر |
+| `d2.rows.r.p.mail.text` | Réinitialisation par e-mail en deux minutes | إعادة تعيين بالبريد في دقيقتين |
+| `d2.rows.r.p.mail.why` | Une réinitialisation par e-mail veut dire que l’entreprise garde l’accès. | إعادة التعيين بالبريد تعني أن الشركة تحتفظ بطريق الدخول. |
+| `d2.rows.r.address` | Aide | المساعدة |
+| `d2.rows.r.prompt` | Trois lignes d’aide (inventées). Pointez celle qu’imprimerait un portefeuille autodétenu. | ثلاثة أسطر مساعدة (متخيَّلة). أشِر إلى السطر الذي تطبعه محفظة ذاتية الحفظ. |
+| `d2.slip` | Samia imagine douze mots sur papier. Le prestataire hausse les épaules : qui détient ces mots détient le portefeuille. Samia s’interroge. | تتخيّل سامية 12 كلمة على الورق. يهزّ المورّد كتفيه: من يحوز تلك الكلمات يحوز المحفظة. سامية تتساءل. |
+| `d2.slipTag` | ENQUÊTE 07 · exemple inventé | التحقيق 07 · مثال متخيَّل |
+| `d2.stamp.prompt` | Le prestataire, encore : qui détient les douze mots détient le portefeuille. Tamponnez : | قول المورّد مرّة أخرى: من يحوز الكلمات الـ12 يحوز المحفظة. اختمه: |
+| `d2.stamp.reveal` | Vrai. Les mots sont la clé maîtresse : qui les contrôle contrôle le portefeuille. Aucun service honnête ne les demande jamais. | صحيح. الكلمات هي المفتاح الرئيسي: من يتحكّم فيها يتحكّم في المحفظة. ولا تطلبها أيّ خدمة نزيهة أبداً. |
+| `d2.store.hint.0` | Les mots ne sont pas un mot de passe. | الكلمات ليست كلمة مرور. |
+| `d2.store.hint.1` | L’un des deux refait chaque clé. | أحد الاثنين يعيد صنع كلّ مفتاح. |
+| `d2.store.hint.2` | Réponse : ses douze mots. | الجواب: كلماتها الـ12. |
+| `d2.store.kuro` | Pas un code. | ليست كلمة مرور. |
+| `d2.store.p.a.after` | Mot de passe, pas clé. | كلمة مرور، لا المفتاح. |
+| `d2.store.p.a.say` | À gauche : son mot de passe d’appli | اليسار: كلمة مرور تطبيقها |
+| `d2.store.p.a.text` | Son mot de passe d’appli | كلمة مرور تطبيقها |
+| `d2.store.p.a.why` | L’aide accepte qu’un gestionnaire de mots de passe le crée. Elle se méfie seulement de l’y stocker. | صفحات المساعدة تسمح لمدير كلمات المرور بإنشاء كلمة المرور. وتتحفّظ فقط على تخزينها فيه. |
+| `d2.store.p.b.after` | Douze mots · jamais en ligne | 12 كلمة · لا على الإنترنت أبداً |
+| `d2.store.p.b.say` | À droite : ses douze mots | اليمين: كلماتها الـ12 |
+| `d2.store.p.b.text` | Ses douze mots | كلماتها الـ12 |
+| `d2.store.p.b.why` | L’aide : le stockage en ligne, gestionnaires de mots de passe compris, n’est pas sûr pour les mots. | صفحات المساعدة: التخزين على الإنترنت، ومنه مديرو كلمات المرور، ليس آمناً للكلمات. |
+| `d2.store.prompt` | Deux choses qu’elle doit garder. Pointez celle que l’aide exclut de tout gestionnaire de mots de passe. | شيئان عليها أن تحفظهما. أشِر إلى ما تمنع صفحات المساعدة وضعه في أيّ مدير كلمات مرور. |
+| `d2.store.r.p.a.after` | Mêmes mots, même ordre | الكلمات نفسها، بالترتيب نفسه |
+| `d2.store.r.p.a.say` | À gauche : les douze, dans l’ordre donné | اليسار: الكلمات الـ12 كلّها، بالترتيب المعطى |
+| `d2.store.r.p.a.text` | Les douze, dans l’ordre donné | الكلمات الـ12 كلّها، بالترتيب المعطى |
+| `d2.store.r.p.a.why` | L’aide : vérifier l’orthographe, et chaque mot dans l’ordre donné. | صفحات المساعدة: تحقّق من الإملاء، ومن كلّ كلمة بالترتيب المعطى. |
+| `d2.store.r.p.b.after` | Ordre changé. Pas de portefeuille. | تغيّر الترتيب. لا محفظة. |
+| `d2.store.r.p.b.say` | À droite : les douze, deux inversés | اليمين: الكلمات الـ12 كلّها، اثنتان مبدّلتان |
+| `d2.store.r.p.b.text` | Les douze, deux inversés | الكلمات الـ12 كلّها، اثنتان مبدّلتان |
+| `d2.store.r.p.b.why` | L’aide dit de ne pas changer l’ordre des mots. | صفحات المساعدة تقول: لا تغيّر ترتيب الكلمات. |
+| `d2.store.r.prompt` | Elle a recopié les mots. Pointez la copie que l’aide accepte. | نسخت الكلمات. أشِر إلى النسخة التي تقبلها صفحات المساعدة. |
+| `d2.unlock.hint.0` | Un mot de passe déverrouille un appareil, pas plus. | كلمة المرور تفتح جهازاً واحداً، لا أكثر. |
+| `d2.unlock.hint.1` | Quelque chose sur papier l’emporte sur le mot de passe. | شيء على الورق يفوق كلمة المرور. |
+| `d2.unlock.hint.2` | Réponse : Utiliser la phrase de récupération. | الجواب: استعمال عبارة الاسترداد. |
+| `d2.unlock.kuro` | Les mots gagnent. | الكلمات تغلب. |
+| `d2.unlock.p.phrase.after` | Douze mots tapés · un nouveau mot de passe choisi | كُتبت الكلمات الـ12 · وعُيّنت كلمة مرور جديدة |
+| `d2.unlock.p.phrase.say` | Utiliser la phrase de récupération, ligne | استعمال عبارة الاسترداد، سطر |
+| `d2.unlock.p.phrase.text` | Utiliser la phrase de récupération | استعمال عبارة الاسترداد |
+| `d2.unlock.p.phrase.why` | L’aide de l’éditeur : un mot de passe oublié se rétablit avec les mots écrits, par elle seule. | صفحات المساعدة لدى الصانع: كلمة المرور المنسية تستعيدها هي وحدها، بالكلمات المكتوبة. |
+| `d2.unlock.p.pw.after` | Vide. Elle l’a oublié. | فارغ. نسيتها. |
+| `d2.unlock.p.pw.say` | Mot de passe, champ | كلمة المرور، حقل |
+| `d2.unlock.p.pw.text` | Mot de passe | كلمة المرور |
+| `d2.unlock.p.pw.why` | Le champ veut ce qu’elle a oublié. Personne ne peut le lui envoyer. | الحقل يريد ما نسيته. ولا أحد يستطيع إرساله إليها. |
+| `d2.unlock.p.reload.after` | Encore le même écran. | الشاشة نفسها مجدّداً. |
+| `d2.unlock.p.reload.cap` | Recharger | إعادة التحميل |
+| `d2.unlock.p.reload.say` | Recharger, bouton | إعادة التحميل، زرّ |
+| `d2.unlock.p.reload.why` | Recharger affiche le même écran verrouillé. | إعادة التحميل تعرض الشاشة المقفلة نفسها. |
+| `d2.unlock.p.support.after` | Il ne peut le réinitialiser. | لا يستطيعون إعادة تعيينها. |
+| `d2.unlock.p.support.say` | Contacter le support, ligne | التواصل مع الدعم، سطر |
+| `d2.unlock.p.support.text` | Contacter le support | التواصل مع الدعم |
+| `d2.unlock.p.support.why` | L’aide de l’éditeur : il ne peut pas récupérer un portefeuille. Le support ne demande jamais les mots non plus. | صفحات المساعدة لدى الصانع: لا يستطيع استرجاع محفظة. والدعم لا يطلب الكلمات أبداً أيضاً. |
+| `d2.unlock.prompt` | Même téléphone, même appli, mot de passe oublié. Elle a ses mots écrits. Pointez son chemin de retour. | الهاتف نفسه، التطبيق نفسه، وكلمة المرور منسية. لديها كلماتها المكتوبة. أشِر إلى طريق عودتها. |
+| `d2.unlock.r.p.mail.after` | Pas liée à lui. | غير مرتبط بها. |
+| `d2.unlock.r.p.mail.say` | Son adresse e-mail | عنوان بريدها الإلكتروني |
+| `d2.unlock.r.p.mail.text` | Son adresse e-mail | عنوان بريدها الإلكتروني |
+| `d2.unlock.r.p.mail.why` | Configuré avec des mots écrits, le portefeuille n’a aucune récupération par e-mail. | المحفظة التي أُعدّت بكلمات مكتوبة لا استرجاع لها بالبريد الإلكتروني. |
+| `d2.unlock.r.p.pw.after` | Resté sur cet appareil. | بقيت مع ذلك الجهاز. |
+| `d2.unlock.r.p.pw.say` | Son ancien mot de passe | كلمة مرورها القديمة |
+| `d2.unlock.r.p.pw.text` | Son ancien mot de passe | كلمة مرورها القديمة |
+| `d2.unlock.r.p.pw.why` | Un mot de passe protège l’accès appareil par appareil. Il ne restaure rien ailleurs. | كلمة المرور تحمي الدخول جهازاً جهازاً. ولا تستعيد شيئاً في مكان آخر. |
+| `d2.unlock.r.p.words.after` | Douze mots tapés · portefeuille restauré | كُتبت الكلمات الـ12 · استُعيدت المحفظة |
+| `d2.unlock.r.p.words.say` | Ses mots écrits | كلماتها المكتوبة |
+| `d2.unlock.r.p.words.text` | Ses mots écrits | كلماتها المكتوبة |
+| `d2.unlock.r.p.words.why` | L’aide : les mots restaurent le portefeuille sur un nouvel appareil. | صفحات المساعدة: الكلمات تستعيد المحفظة على جهاز جديد. |
+| `d2.unlock.r.prompt` | Nouveau téléphone, l’ancien perdu. Pointez ce qui y ramène le portefeuille. | هاتف جديد، والقديم ضائع. أشِر إلى ما يجلب المحفظة إليه. |
+| `d3.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d3.boss.frame` | Un risque disparaît : {1}. Une aide disparaît : {2}. Donc {3}. | يذهب خطر: {1}. ويذهب عون: {2}. إذن {3}. |
+| `d3.boss.hint.0` | Un risque part, une aide part, puis ce qui en découle. | خطر يذهب، وعون يذهب، ثم ما يترتّب على ذلك. |
+| `d3.boss.hint.1` | Vous avez pesé chaque côté ce soir. | وزنتَ كلّ جانب الليلة. |
+| `d3.boss.hint.2` | Réponse : le gardien qui pourrait faillir ; quiconque pourrait réinitialiser ou annuler ; la sécurité repose sur elle seule. | الجواب: الحافظ الذي قد يفشل؛ من يستطيع إعادة التعيين أو التراجع؛ الأمان يقع عليها وحدها. |
+| `d3.boss.kuro` | À moitié. Exactement. | نصف. بالضبط. |
+| `d3.boss.p.c1.text` | le gardien qui pourrait faillir | الحافظ الذي قد يفشل |
+| `d3.boss.p.c1.why` | Sans dépositaire, aucun gardien ne peut faillir ni filer avec ce que la clé ouvre. | من دون أمين حفظ، لا حافظ يمكن أن يفشل أو يفرّ بما يفتحه المفتاح. |
+| `d3.boss.p.c2.text` | quiconque pourrait réinitialiser ou annuler | من يستطيع إعادة التعيين أو التراجع |
+| `d3.boss.p.c2.why` | Aucune récupération par l’éditeur, aucun support, rien d’annulé : les pages disent les trois. | لا استرجاع من الصانع، ولا دعم، ولا تراجع عن شيء: الصفحات تقول الثلاثة. |
+| `d3.boss.p.c3.text` | la sécurité repose sur elle seule | الأمان يقع عليها وحدها |
+| `d3.boss.p.c3.why` | L’aide : elle est entièrement responsable, et la seule à y avoir accès. | صفحات المساعدة: هي المسؤولة كلّياً، والوحيدة التي تملك الوصول. |
+| `d3.boss.p.c4.text` | tout risque | كلّ خطر |
+| `d3.boss.p.c4.why` | La perte et le vol des mots demeurent, sans personne pour les annuler. | فقدان الكلمات وسرقتها يبقيان، ولا أحد يتراجع عنهما. |
+| `d3.boss.p.c5.text` | c’est plus sûr pour tout le monde | هذا أكثر أماناً للجميع |
+| `d3.boss.p.c5.why` | Les pages lues ne classent aucun côté. Elles nomment ce que chacun coûte. | الصفحات المقروءة لا تفضّل جانباً على آخر. بل تسمّي ثمن كلّ منهما. |
+| `d3.boss.prompt` | Samia demande : « Donc ma propre clé est tout simplement plus sûre ? » Répondez-lui. | تسأل سامية: «إذن مفتاحي الخاصّ أكثر أماناً ببساطة؟» أجِبها. |
+| `d3.boss.r.frame` | Un dépositaire ajoute {1}, au prix de {2}. | أمين الحفظ يضيف {1}، مقابل {2}. |
+| `d3.boss.r.p.r1.text` | un retour possible si elle oublie | طريق عودة حين تنسى |
+| `d3.boss.r.p.r1.why` | Un guide public : identifiant et mot de passe récupérables de façon classique. | دليل عامّ: اسم مستخدم وكلمة مرور يمكن استرجاعهما بالطريقة التقليدية. |
+| `d3.boss.r.p.r2.text` | lui confier la clé | ائتمانه على المفتاح |
+| `d3.boss.r.p.r2.why` | Le même guide : elle confie la garde à ce gardien. | الدليل نفسه: إنها تأتمن ذلك الحافظ على الحفظ. |
+| `d3.boss.r.p.r3.text` | une deuxième clé secrète | مفتاح سرّي ثانٍ |
+| `d3.boss.r.p.r3.why` | Un dépositaire ne lui donne aucune clé en plus. Il détient la clé lui-même. | أمين الحفظ لا يعطيها مفتاحاً إضافياً. بل يحوز المفتاح بنفسه. |
+| `d3.boss.r.p.r4.text` | une garantie | ضمان |
+| `d3.boss.r.p.r4.why` | Les pages lues n’en promettent aucune : si le gardien a des ennuis, ce qu’il détient est menacé. | الصفحات المقروءة لا تعِد بأيّ ضمان: إن واجه الحافظ متاعب، صار ما يحوزه في خطر. |
+| `d3.boss.r.prompt` | Et l’autre côté. Touchez une pastille, puis sa case. | والجانب الآخر. المس رقعة، ثم خانتها. |
+| `d3.bub.a` | Aucun accès, donc aucune réinitialisation. Le reste du billet en découle. | لا مدخل، إذن لا إعادة تعيين. وبقيّة القصاصة تتبع ذلك. |
+| `d3.bub.b` | Elle a répondu d’un mot : « Plus sûr ? » J’ai porté le point d’interrogation. | ردّت بكلمة واحدة: «أكثر أماناً؟» حملتُ علامة الاستفهام. |
+| `d3.can` | Vous savez maintenant expliquer pourquoi une clé autodétenue n’a pas de réinitialisation, et ce que chaque côté échange. | صرتَ تعرف كيف تشرح لماذا لا إعادة تعيين لمفتاح ذاتي الحفظ، وما يقايضه كلّ جانب. |
+| `d3.claim` | Détenir sa propre clé est tout simplement plus sûr que la confier à une entreprise. | أن تحوز مفتاحك بنفسك أكثر أماناً ببساطة من أن تتركه لشركة تحوزه. |
+| `d3.custody.frame` | Dépositaire : {1}. Autodétenu : {2}. | بحفظ الغير: {1}. ذاتية الحفظ: {2}. |
+| `d3.custody.hint.0` | La garde, c’est conserver quelque chose pour quelqu’un. | الحفظ يعني أن تحتفظ بشيء لأجل شخص آخر. |
+| `d3.custody.hint.1` | Un côté a un gardien. L’autre n’en a aucun. | جانب له حافظ. وجانب لا حافظ له. |
+| `d3.custody.hint.2` | Réponse : un tiers le contrôle ; elle détient la clé maîtresse. | الجواب: طرف ثالث يتحكّم فيها؛ هي تحوز المفتاح الرئيسي. |
+| `d3.custody.kuro` | Qui garde. | من يحفظ. |
+| `d3.custody.p.c1.text` | un tiers le contrôle pour elle | طرف ثالث يتحكّم فيها لأجلها |
+| `d3.custody.p.c1.why` | L’aide d’un éditeur : un tiers contrôle un portefeuille dépositaire et suit ses instructions. | صفحات المساعدة لدى أحد الصانعين: طرف ثالث يتحكّم في المحفظة بحفظ الغير ويتصرّف وفق تعليماتها. |
+| `d3.custody.p.c2.text` | elle détient elle-même la clé maîtresse | تحوز المفتاح الرئيسي بنفسها |
+| `d3.custody.p.c2.why` | La même aide décrit ainsi un portefeuille autodétenu. | صفحات المساعدة نفسها تصف المحفظة ذاتية الحفظ هكذا. |
+| `d3.custody.p.c3.text` | la clé est gardée hors ligne | المفتاح يُحفظ دون اتّصال |
+| `d3.custody.p.c3.why` | Hors ligne dit où une clé est gardée, pas qui la détient. | «دون اتّصال» تقول أين يُحفظ المفتاح، لا من يحوزه. |
+| `d3.custody.p.c4.text` | l’appli est gratuite | التطبيق مجاني |
+| `d3.custody.p.c4.why` | Gratuit ou payant ne dit rien de qui détient la clé. | مجاني أو مدفوع لا يقول شيئاً عمّن يحوز المفتاح. |
+| `d3.custody.p.c5.text` | l’éditeur garde un double | الصانع يحتفظ بنسخة احتياطية |
+| `d3.custody.p.c5.why` | L’aide de l’éditeur : il ne peut ni accéder à ses mots ni récupérer le portefeuille. | صفحات المساعدة لدى الصانع: لا يستطيع الوصول إلى كلماتها ولا استرجاع المحفظة. |
+| `d3.custody.prompt` | Nommez les deux côtés. Touchez une pastille, puis sa case. | سمِّ الجانبين. المس رقعة، ثم خانتها. |
+| `d3.custody.r.frame` | Avec un dépositaire : {1}. En la détenant elle-même : {2}. | مع أمين حفظ: {1}. وحين تحوزه بنفسها: {2}. |
+| `d3.custody.r.p.r1.text` | un gardien qui reste honnête et solvable | بقاء الحافظ نزيهاً وقادراً على الوفاء |
+| `d3.custody.r.p.r1.why` | L’aide : seule la confiance, ou presque, empêche un dépositaire de filer. Un guide ajoute les difficultés financières. | صفحات المساعدة: لا شيء تقريباً سوى الثقة يمنع أمين الحفظ من الفرار. ويضيف دليل المتاعب المالية. |
+| `d3.custody.r.p.r2.text` | le soin qu’elle prend des mots | عنايتها هي بالكلمات |
+| `d3.custody.r.p.r2.why` | Autodétenu : elle est entièrement responsable de la sécurité du portefeuille. | ذاتية الحفظ: هي المسؤولة كلّياً عن حماية المحفظة. |
+| `d3.custody.r.p.r3.text` | le support de l’éditeur | مكتب الدعم لدى الصانع |
+| `d3.custody.r.p.r3.why` | Aucun support ne peut récupérer un portefeuille autodétenu. Avec un dépositaire, la sécurité repose sur la confiance dans le gardien. | لا مكتب دعم يستطيع استرجاع محفظة ذاتية الحفظ. ومع أمين الحفظ، يقوم الأمان على الثقة بالحافظ. |
+| `d3.custody.r.p.r4.text` | une adresse qui reste secrète | بقاء العنوان سرّاً |
+| `d3.custody.r.p.r4.why` | L’adresse est publique : elle peut être partagée librement. Rien ne repose sur son secret. | العنوان عامّ: يمكن مشاركته بحرّية. ولا شيء يقوم على إخفائه. |
+| `d3.custody.r.prompt` | Qu’est-ce qui le protège, de chaque côté ? Touchez une pastille, puis sa case. | ما الذي يحميها في كلّ جانب؟ المس رقعة، ثم خانتها. |
+| `d3.pair.frame` | Une clé crée {1}, qu’elle peut partager. L’autre {2}, et reste secrète. | مفتاح يصنع {1}، ويمكنها مشاركته. والآخر {2}، ويبقى سرّاً. |
+| `d3.pair.hint.0` | Une paire : une moitié publique, une moitié secrète. | زوج: نصف عامّ، ونصف سرّي. |
+| `d3.pair.hint.1` | La moitié publique permet qu’on la trouve. La moitié secrète prouve que c’est elle. | النصف العامّ يتيح للناس أن يجدوها. والنصف السرّي يُثبت أنها هي. |
+| `d3.pair.hint.2` | Réponse : l’adresse ; signe pour elle. | الجواب: العنوان؛ يوقّع عنها. |
+| `d3.pair.kuro` | Deux moitiés. | نصفان. |
+| `d3.pair.p.c1.text` | l’adresse | العنوان |
+| `d3.pair.p.c1.why` | Un guide public : une clé sert à créer l’adresse qu’elle peut partager librement. | دليل عامّ: مفتاح يُستعمل لإنشاء العنوان الذي يمكنها مشاركته بحرّية. |
+| `d3.pair.p.c2.text` | signe pour elle | يوقّع عنها |
+| `d3.pair.p.c2.why` | L’autre clé est gardée secrète parce qu’elle sert à signer. | المفتاح الآخر يبقى سرّاً لأنه يُستعمل للتوقيع. |
+| `d3.pair.p.c3.text` | le mot de passe | كلمة المرور |
+| `d3.pair.p.c3.why` | Elle choisit un mot de passe. Il protège des clés sur un appareil ; aucune clé ne le crée. | هي تختار كلمة المرور. تحمي المفاتيح على جهاز؛ ولا مفتاح يصنعها. |
+| `d3.pair.p.c4.text` | les douze mots | الكلمات الـ12 |
+| `d3.pair.p.c4.why` | Les mots refont les clés. Aucune clé ne les crée, et ils ne sont jamais partagés. | الكلمات تعيد صنع المفاتيح. لا مفتاح يصنعها، ولا تُشارَك أبداً. |
+| `d3.pair.p.c5.text` | est gardée par l’éditeur | يحفظه الصانع |
+| `d3.pair.p.c5.why` | L’aide de l’éditeur dit qu’il n’a accès ni à ses mots ni à ses clés. | صفحات المساعدة لدى الصانع تقول إنه لا يصل إلى كلماتها ولا إلى مفاتيحها. |
+| `d3.pair.prompt` | Qu’est-ce que la paire de clés ? Touchez une pastille, puis sa case. | ما زوج المفاتيح؟ المس رقعة، ثم خانتها. |
+| `d3.pair.r.frame` | Les mots refont {1}. La clé secrète d’un compte contrôle {2}. | الكلمات تعيد صنع {1}. والمفتاح السرّي لحساب واحد يتحكّم في {2}. |
+| `d3.pair.r.p.r1.text` | chaque clé du portefeuille | كلّ مفتاح في المحفظة |
+| `d3.pair.r.p.r1.why` | L’aide : les comptes dérivent des mots, qui les récupèrent tous. | صفحات المساعدة: الحسابات مشتقّة من الكلمات، وهي تسترجعها كلّها. |
+| `d3.pair.r.p.r2.text` | ce compte seulement | ذلك الحساب فقط |
+| `d3.pair.r.p.r2.why` | Chaque compte a sa propre clé secrète, qui contrôle ce seul compte. | لكلّ حساب مفتاحه السرّي الخاصّ، يتحكّم في ذلك الحساب وحده. |
+| `d3.pair.r.p.r3.text` | l’ancien mot de passe | كلمة المرور القديمة |
+| `d3.pair.r.p.r3.why` | Les mots ne ramènent aucun mot de passe. Elle en choisit un nouveau après la restauration. | الكلمات لا تعيد أيّ كلمة مرور. تعيّن كلمة جديدة بعد الاستعادة. |
+| `d3.pair.r.p.r4.text` | les registres de l’éditeur | سجلّات الصانع |
+| `d3.pair.r.p.r4.why` | L’aide de l’éditeur dit qu’il ne peut pas accéder à ses mots. Il n’a rien à refaire. | صفحات المساعدة لدى الصانع تقول إنه لا يستطيع الوصول إلى كلماتها. فلا شيء لديه ليعيد صنعه. |
+| `d3.pair.r.prompt` | Mots et clés. Touchez une pastille, puis sa case. | الكلمات والمفاتيح. المس رقعة، ثم خانتها. |
+| `d3.say.hint.0` | Deux lignes promettent que rien ne tourne mal. | سطران يَعِدان بأن لا شيء يسوء. |
+| `d3.say.hint.1` | Une ligne nomme un risque de chaque côté. | سطر واحد يسمّي خطراً في كلّ جانب. |
+| `d3.say.hint.2` | Réponse : chaque côté garde un risque bien à lui. | الجواب: لكلّ جانب خطره الخاصّ. |
+| `d3.say.kuro` | Chacun coûte. | لكلٍّ ثمنه. |
+| `d3.say.p.n1.text` | Autodétenu, c’est plus sûr : pas d’entreprise, rien ne tourne mal. | ذاتية الحفظ أكثر أماناً: لا شركة، ولا شيء يسوء. |
+| `d3.say.p.n1.why` | Un guide public : pas de service client, et un envoi ne peut pas être annulé. Les erreurs restent. | دليل عامّ: لا خدمة عملاء، وما يُرسل لا يمكن التراجع عنه. والأخطاء تبقى. |
+| `d3.say.p.n2.text` | Une entreprise, c’est plus sûr : elle rend toujours tout. | الشركة أكثر أماناً: تعيد كلّ شيء دائماً. |
+| `d3.say.p.n2.why` | Le même guide : si le gardien a des difficultés financières, ce qu’il détient est menacé. | الدليل نفسه: إن واجه الحافظ متاعب مالية، صار ما يحوزه في خطر. |
+| `d3.say.p.n3.text` | Chaque côté garde un risque bien à lui : le gardien, ou son propre soin. | لكلّ جانب خطره الخاصّ: الحافظ، أو عنايتها هي. |
+| `d3.say.p.n3.why` | L’autodétention supprime le gardien. Elle supprime aussi réinitialisations, support et annulations. | ذاتية الحفظ تزيل الحافظ. وتزيل أيضاً إعادة التعيين والدعم والتراجع. |
+| `d3.say.prompt` | Trois phrases pour le prestataire. Touchez la bonne. | ثلاثة أسطر للمورّد. المس الصحيح. |
+| `d3.say.r.p.r1.text` | Un agent du support peut lui rendre ce qu’elle a perdu, contre sa clé secrète. | موظّف دعم يستطيع أن يعيد إليها ما فقدته، مقابل مفتاحها السرّي. |
+| `d3.say.r.p.r1.why` | Un guide public : le réseau n’a aucune fonction de ce genre. Cette offre est une arnaque. | دليل عامّ: لا وظيفة كهذه في الشبكة. هذا العرض احتيال. |
+| `d3.say.r.p.r2.text` | Une transaction envoyée peut être rappelée dans la journée. | المعاملة المرسلة يمكن استدعاؤها خلال يوم. |
+| `d3.say.r.p.r2.why` | Le guide : une transaction envoyée est irréversible. Seul le destinataire pourrait la renvoyer. | الدليل: المعاملة المرسلة لا رجعة فيها. وحده المستلم يستطيع إعادتها. |
+| `d3.say.r.p.r3.text` | En détenant sa propre clé, elle est son propre support. | حين تحوز مفتاحها بنفسها، تكون هي مكتب دعمها. |
+| `d3.say.r.p.r3.why` | Le guide le dit clairement : pas de service client, et les clés relèvent de sa responsabilité. | الدليل يقولها بوضوح: لا خدمة عملاء، والمفاتيح مسؤوليتها. |
+| `d3.say.r.prompt` | Trois autres phrases. Touchez la vraie. | ثلاثة أسطر أخرى. المس الصحيح. |
+| `d3.sides.address` | Détenir une clé : deux façons | حيازة مفتاح: طريقتان |
+| `d3.sides.hint.0` | Trois lignes supposent une entreprise dans le tableau. | ثلاثة أسطر تحتاج إلى شركة في الصورة. |
+| `d3.sides.hint.1` | Une ligne retire l’entreprise. | سطر واحد يُخرج الشركة. |
+| `d3.sides.hint.2` | Réponse : sans intermédiaire. | الجواب: بلا وسيط. |
+| `d3.sides.kuro` | Sans intermédiaire. | بلا وسيط. |
+| `d3.sides.p.fail.after` | Le côté de l’entreprise. | جانب الشركة. |
+| `d3.sides.p.fail.say` | Ligne quatre : le gardien peut faillir | السطر الرابع: الحافظ قد يفشل |
+| `d3.sides.p.fail.text` | Le gardien peut faillir | الحافظ قد يفشل |
+| `d3.sides.p.fail.why` | Ce risque vient avec un gardien : si une plateforme d’échange a des ennuis, ce qu’elle détient est menacé. | هذا الخطر يأتي مع الحافظ: إن واجهت منصّة تداول متاعب، صار ما تحوزه في خطر. |
+| `d3.sides.p.middle.after` | Sans intermédiaire · autodétenu | بلا وسيط · ذاتية الحفظ |
+| `d3.sides.p.middle.say` | Ligne deux : sans intermédiaire | السطر الثاني: بلا وسيط |
+| `d3.sides.p.middle.text` | Sans intermédiaire | بلا وسيط |
+| `d3.sides.p.middle.why` | L’aide d’un éditeur : dans un portefeuille autodétenu, elle détient la clé maîtresse, sans intermédiaire. | صفحات المساعدة لدى أحد الصانعين: في المحفظة ذاتية الحفظ تحوز المفتاح الرئيسي، بلا وسيط. |
+| `d3.sides.p.phone.after` | Le côté de l’entreprise. | جانب الشركة. |
+| `d3.sides.p.phone.say` | Ligne trois : quelqu’un répond quand ça tourne mal | السطر الثالث: أحدٌ يجيب حين يسوء الأمر |
+| `d3.sides.p.phone.text` | Quelqu’un répond quand ça tourne mal | أحدٌ يجيب حين يسوء الأمر |
+| `d3.sides.p.phone.why` | Un guide public : ici, il n’y a pas de service client. Elle est responsable de ses clés. | دليل عامّ: لا خدمة عملاء هنا. هي المسؤولة عن مفاتيحها. |
+| `d3.sides.p.reset.after` | Le côté de l’entreprise. | جانب الشركة. |
+| `d3.sides.p.reset.say` | Ligne un : un mot de passe oublié peut être réinitialisé | السطر الأول: كلمة المرور المنسية يمكن إعادة تعيينها |
+| `d3.sides.p.reset.text` | Un mot de passe oublié peut être réinitialisé | كلمة المرور المنسية يمكن إعادة تعيينها |
+| `d3.sides.p.reset.why` | Une réinitialisation demande quelqu’un d’autre qui peut ouvrir le compte : un gardien. | إعادة التعيين تحتاج إلى شخص آخر يستطيع فتح الحساب: حافظ. |
+| `d3.sides.prompt` | Une fiche comparative. Pointez la ligne vraie seulement quand elle détient la clé. | ورقة مقارنة. أشِر إلى السطر الذي لا يصحّ إلا حين تحوز المفتاح هي. |
+| `d3.sides.r.address` | Détenir une clé : deux façons | حيازة مفتاح: طريقتان |
+| `d3.sides.r.p.alone.after` | Son côté à elle. | جانبها هي. |
+| `d3.sides.r.p.alone.say` | Ligne un : elle seule peut l’atteindre | السطر الأول: لا يصل إليه سواها |
+| `d3.sides.r.p.alone.text` | Elle seule peut l’atteindre | لا يصل إليه سواها |
+| `d3.sides.r.p.alone.why` | Elle seule y a accès quand elle détient la clé, dit l’aide. | حين تحوز المفتاح لا يصل إليه سواها، كما تقول صفحات المساعدة. |
+| `d3.sides.r.p.resp.after` | Son côté à elle. | جانبها هي. |
+| `d3.sides.r.p.resp.say` | Ligne deux : elle seule répond de sa sécurité | السطر الثاني: هي وحدها مسؤولة عن أمانه |
+| `d3.sides.r.p.resp.text` | Elle seule répond de sa sécurité | هي وحدها مسؤولة عن أمانه |
+| `d3.sides.r.p.resp.why` | Autodétenu veut dire qu’elle est entièrement responsable de la sécurité du portefeuille. | ذاتية الحفظ تعني أنها المسؤولة كلّياً عن حماية المحفظة. |
+| `d3.sides.r.p.trad.after` | Récupéré · le gardien la fait entrer | استُرجعت · الحافظ يُدخلها |
+| `d3.sides.r.p.trad.say` | Ligne trois : un mot de passe perdu se récupère de façon classique | السطر الثالث: كلمة المرور الضائعة تُسترجع بالطريقة المعتادة |
+| `d3.sides.r.p.trad.text` | Un mot de passe perdu se récupère de façon classique | كلمة المرور الضائعة تُسترجع بالطريقة المعتادة |
+| `d3.sides.r.p.trad.why` | Un guide public : une plateforme d’échange donne un identifiant et un mot de passe récupérables de façon classique. | دليل عامّ: منصّة التداول تعطي اسم مستخدم وكلمة مرور يمكن استرجاعهما بالطريقة التقليدية. |
+| `d3.sides.r.prompt` | La même fiche. Pointez la ligne vraie seulement quand une entreprise détient la clé. | الورقة نفسها. أشِر إلى السطر الذي لا يصحّ إلا حين تحوز شركة المفتاح. |
+| `d3.slip` | Le prestataire résume : détenir sa propre clé est tout simplement plus sûr que la confier à une entreprise. Samia s’interroge. | يلخّص المورّد: أن تحوز مفتاحك بنفسك أكثر أماناً ببساطة من أن تتركه لشركة. سامية تتساءل. |
+| `d3.slipTag` | ENQUÊTE 07 · exemple inventé | التحقيق 07 · مثال متخيَّل |
+| `d3.stamp.prompt` | Le prestataire, encore : détenir sa propre clé est tout simplement plus sûr que la confier à une entreprise. Tamponnez : | قول المورّد مرّة أخرى: أن تحوز مفتاحك بنفسك أكثر أماناً ببساطة من أن تحوزه شركة. اختمه: |
+| `d3.stamp.reveal` | À moitié. Nul dépositaire à croire, ni qui faillisse. Personne pour réinitialiser, annuler, répondre. Un compromis, pas un classement. | نصف صحيح. لا أمين حفظ يُؤتمن أو يفشل. ولا أحد يعيد التعيين أو يتراجع أو يجيب. مقايضة، لا ترتيب. |
+| `d3.why.frame` | Une entreprise peut réinitialiser {1} parce que {2}. Avec une clé autodétenue, {3}. | تستطيع شركة إعادة تعيين {1}، والسبب: {2}. ومع مفتاح ذاتي الحفظ، {3}. |
+| `d3.why.hint.0` | Qui peut ouvrir le compte sans elle ? | من يستطيع فتح الحساب من دونها؟ |
+| `d3.why.hint.1` | Une réinitialisation demande quelqu’un qui a l’accès. | إعادة التعيين تحتاج إلى من يملك طريق الدخول. |
+| `d3.why.hint.2` | Réponse : un mot de passe e-mail ; elle gère le compte ; l’éditeur ne peut pas l’ouvrir. | الجواب: كلمة مرور بريد إلكتروني؛ أنها تدير الحساب؛ الصانع لا يستطيع فتحه. |
+| `d3.why.kuro` | Aucun accès. | لا مدخل. |
+| `d3.why.p.c1.text` | un mot de passe e-mail | كلمة مرور بريد إلكتروني |
+| `d3.why.p.c1.why` | Un service d’e-mail réinitialise un mot de passe oublié : son aide décrit les étapes. | شركة البريد الإلكتروني تعيد تعيين كلمة المرور المنسية: صفحات المساعدة لديها تصف الخطوات. |
+| `d3.why.p.c2.text` | elle gère le compte | أنها تدير الحساب |
+| `d3.why.p.c2.why` | Elle pose des questions pour confirmer que c’est elle, puis la fait revenir. | تطرح أسئلة لتتأكّد أنها هي، ثم تعيدها إلى حسابها. |
+| `d3.why.p.c3.text` | l’éditeur ne peut pas l’ouvrir | الصانع لا يستطيع فتحه |
+| `d3.why.p.c3.why` | L’aide de l’éditeur : il ne peut pas accéder à ses mots, donc il ne peut pas la faire revenir. | صفحات المساعدة لدى الصانع: لا يستطيع الوصول إلى كلماتها، فلا يستطيع إعادتها إلى حسابها. |
+| `d3.why.p.c4.text` | les douze mots | الكلمات الـ12 |
+| `d3.why.p.c4.why` | Personne ne réinitialise les mots : l’aide de l’éditeur dit qu’il ne peut ni y accéder ni les récupérer. | لا أحد يعيد تعيين الكلمات: صفحات المساعدة لدى الصانع تقول إنه لا يستطيع الوصول إليها ولا استرجاعها. |
+| `d3.why.p.c5.text` | une réinitialisation coûte trop cher | أنّ إعادة التعيين مكلفة جدّاً |
+| `d3.why.p.c5.why` | Le coût n’est pas la raison. L’éditeur ne peut pas accéder à ses mots. | الكلفة ليست السبب. الصانع لا يستطيع الوصول إلى كلماتها. |
+| `d3.why.prompt` | Pourquoi aucune réinitialisation ? Touchez une pastille, puis sa case. | لماذا لا إعادة تعيين؟ المس رقعة، ثم خانتها. |
+| `d3.why.r.frame` | {1} déverrouille un appareil. {2} restaure le portefeuille partout. | {1} تفتح جهازاً واحداً. {2} تستعيد المحفظة في أيّ مكان. |
+| `d3.why.r.p.r1.text` | Le mot de passe | كلمة المرور |
+| `d3.why.r.p.r1.why` | L’aide : le mot de passe déverrouille l’appli sur cet appareil. Il ne récupère pas le portefeuille. | صفحات المساعدة: كلمة المرور تفتح التطبيق على ذلك الجهاز. ولا تسترجع المحفظة. |
+| `d3.why.r.p.r2.text` | La phrase écrite | العبارة المكتوبة |
+| `d3.why.r.p.r2.why` | Les mots restaurent le portefeuille sur un nouvel appareil. | الكلمات تستعيد المحفظة على جهاز جديد. |
+| `d3.why.r.p.r3.text` | L’adresse | العنوان |
+| `d3.why.r.p.r3.why` | L’adresse permet de trouver le compte. Elle n’ouvre rien. | العنوان يتيح للناس أن يجدوا الحساب. ولا يفتح شيئاً. |
+| `d3.why.r.p.r4.text` | Un ticket au support | تذكرة دعم |
+| `d3.why.r.p.r4.why` | L’aide de l’éditeur : il ne peut pas récupérer le portefeuille pour elle. | صفحات المساعدة لدى الصانع: لا يستطيع استرجاع المحفظة نيابة عنها. |
+| `d3.why.r.prompt` | Mot de passe et mots. Touchez une pastille, puis sa case. | كلمة المرور والكلمات. المس رقعة، ثم خانتها. |
+| `row` | Sous chaque flèche : soit une entreprise détient la clé et peut la réinitialiser, soit elle la détient et personne ne le peut. | تحت كلّ سهم: إمّا أن شركة تحوز المفتاح وتستطيع إعادة تعيينه، وإمّا أنها تحوزه هي ولا أحد يستطيع ذلك. |
+| `sticker.back` | Ce que c’est : la question sous chaque flèche. Soit une entreprise détient la clé et peut la réinitialiser, soit c’est elle. Ce que vous détenez : la clé maîtresse, en mots écrits. Ce que vous cédez : réinitialisations, support, annulations. L’idée fausse : que quelqu’un garde un double. Une idée, pas un produit. Vérifié le 2026-11-23. | ما هو: السؤال تحت كلّ سهم. إمّا أن شركة تحوز المفتاح وتستطيع إعادة تعيينه، وإمّا أنها هي التي تحوزه. ما تحوزه: المفتاح الرئيسي، في صورة كلمات مكتوبة. ما تتخلّى عنه: إعادة التعيين، والدعم، والتراجع. الفكرة الخاطئة: أن أحداً يحتفظ بنسخة احتياطية. فكرة، لا منتَج. جرى التحقّق في 2026-11-23. |
+| `sticker.line` | Première question, à chaque fois : qui détient la clé ? | السؤال الأول، في كلّ مرّة: من يحوز المفتاح؟ |
+| `sticker.name` | Trouve qui détient la clé | يجد حائز المفتاح |
+| `tpl.backup-screen` | Sauvegarde | النسخ الاحتياطي |
+| `tpl.first-run` | Premier lancement | التشغيل الأول |
+| `tpl.path` | Le trajet | المسار |
+| `tpl.sign-in` | Connexion | تسجيل الدخول |
+| `tpl.unlock-screen` | Déverrouillage | فتح القفل |
+
+### Case 08, PayPal → MetaMask (`hub/src/lanterne/enquetes/c08.ar.json`, 565 keys)
+
+| Key | Français | العربية |
+|---|---|---|
+| `d1.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d1.boss.hint.0` | Trois lignes promettent ce que son aide exclut. | ثلاثة أسطر تَعِد بما تستبعده صفحات المساعدة لديه. |
+| `d1.boss.hint.1` | Une ligne dit seulement où aller demander. | سطر واحد يقول فقط إلى أين تذهب لتسأل. |
+| `d1.boss.hint.2` | Réponse : demandez au Centre d’aide. | الجواب: اسأل في مركز المساعدة. |
+| `d1.boss.kuro` | Personne n’appelle. | لا أحد يتّصل. |
+| `d1.boss.p.center.after` | Centre d’aide · elle s’y rend | مركز المساعدة · تذهب إليه |
+| `d1.boss.p.center.say` | Demandez au Centre d’aide, ligne | اسأل في مركز المساعدة، سطر |
+| `d1.boss.p.center.text` | Demandez au Centre d’aide | اسأل في مركز المساعدة |
+| `d1.boss.p.center.why` | L’aide cite trois voies officielles : articles, communauté, agents. Toutes partent de son Centre d’aide. | صفحات المساعدة تذكر ثلاث طرق رسمية: مقالات، ومجتمع، وموظّفون. وكلّها تُبلغ من مركز المساعدة لديه. |
+| `d1.boss.p.first.after` | Jamais en premier. | ليس أولاً أبداً. |
+| `d1.boss.p.first.say` | Nous vous écrivons en premier, ligne | نحن نكتب إليك أولاً، سطر |
+| `d1.boss.p.first.text` | Nous vous écrivons en premier | نحن نكتب إليك أولاً |
+| `d1.boss.p.first.why` | Son aide : le support ne contacte jamais en premier, ni par message direct ni par e-mail. | صفحات المساعدة لديه: الدعم لا يبادر أبداً بالتواصل، لا برسالة مباشرة ولا ببريد إلكتروني. |
+| `d1.boss.p.phone.after` | Ce numéro n’existe pas. | لا رقم كهذا. |
+| `d1.boss.p.phone.say` | Appelez-nous, jour et nuit, ligne | اتّصل بنا ليلاً ونهاراً، سطر |
+| `d1.boss.p.phone.text` | Appelez-nous, jour et nuit | اتّصل بنا ليلاً ونهاراً |
+| `d1.boss.p.phone.why` | Son aide : MetaMask n’a pas de numéro de téléphone. | صفحات المساعدة لديه: ليس لدى MetaMask رقم هاتف. |
+| `d1.boss.p.phrase.after` | Jamais demandée. | لا تُطلب أبداً. |
+| `d1.boss.p.phrase.say` | Envoyez-nous votre phrase, ligne | أرسل إلينا عبارتك، سطر |
+| `d1.boss.p.phrase.text` | Envoyez-nous votre phrase | أرسل إلينا عبارتك |
+| `d1.boss.p.phrase.why` | Il ne demande jamais la phrase. Qui la demande cherche à l’arnaquer, dit l’aide. | لا يطلب العبارة أبداً. ومن يطلبها يحاول الاحتيال عليها، كما تقول صفحات المساعدة. |
+| `d1.boss.prompt` | Samia objecte : « Si ça tourne mal, je les appelle. » Pointez la ligne que porte vraiment son aide. | تعترض سامية: «إن ساء الأمر، أتّصل بهم.» أشِر إلى السطر الذي تحمله صفحات المساعدة لديه فعلاً. |
+| `d1.boss.r.p.answer.after` | Ils le peuvent. | يستطيعون. |
+| `d1.boss.r.p.answer.say` | Répondre à sa question | الإجابة عن سؤالها |
+| `d1.boss.r.p.answer.text` | Répondre à sa question | الإجابة عن سؤالها |
+| `d1.boss.r.p.answer.why` | Répondre aux questions : c’est le rôle que l’aide donne aux agents du support. | الإجابة عن الأسئلة هي ما تذكر صفحات المساعدة أن موظّفي الدعم موجودون من أجله. |
+| `d1.boss.r.p.article.after` | Ils le peuvent. | يستطيعون. |
+| `d1.boss.r.p.article.say` | L’orienter vers un article | توجيهها إلى مقال |
+| `d1.boss.r.p.article.text` | L’orienter vers un article | توجيهها إلى مقال |
+| `d1.boss.r.p.article.why` | Les articles sont la première des trois voies officielles. | المقالات أولى الطرق الرسمية الثلاث. |
+| `d1.boss.r.p.reverse.after` | Impossible · confirmé, ça reste | مستحيل · المؤكَّد يبقى |
+| `d1.boss.r.p.reverse.say` | Inverser un transfert confirmé | عكس تحويل مؤكَّد |
+| `d1.boss.r.p.reverse.text` | Inverser un transfert confirmé | عكس تحويل مؤكَّد |
+| `d1.boss.r.p.reverse.why` | L’aide : les transactions ne peuvent être inversées, ni les fonds manquants restitués. Il ne peut intervenir. | صفحات المساعدة: لا يمكن عكس المعاملات، ولا استرجاع الأموال المفقودة. ولا يستطيع التدخّل. |
+| `d1.boss.r.prompt` | Ces agents du support existent. Pointez ce qu’ils ne peuvent pas faire. | موظّفو الدعم هؤلاء موجودون. أشِر إلى ما لا يستطيعون فعله. |
+| `d1.bub.a` | Le portefeuille est une maquette. La ligne des frais est réelle. | المحفظة شاشة تجريبية. أمّا سطر الرسوم فحقيقي. |
+| `d1.bub.b` | Elle a répondu : « Alors, j’appelle qui ? » Je porte, c’est tout. | ردّت برسالة: «إذن، بمن أتّصل؟» أنا أحملها فقط. |
+| `d1.can` | Vous savez maintenant pointer l’adresse, les frais de réseau et la clé maîtresse sur un écran de portefeuille. | صرتَ تعرف كيف تشير إلى العنوان ورسوم الشبكة والمفتاح الرئيسي على شاشة محفظة. |
+| `d1.cards.hint.0` | Une carte ne sert que sur un seul appareil. | بطاقة واحدة لا تعمل إلا على جهاز واحد. |
+| `d1.cards.hint.1` | Une carte est publique. | بطاقة واحدة عامّة. |
+| `d1.cards.hint.2` | Réponse : la Phrase secrète de récupération. | الجواب: عبارة الاسترداد السرّية. |
+| `d1.cards.kuro` | Douze mots. | 12 كلمة. |
+| `d1.cards.p.address.after` | Publique. N’ouvre rien. | عامّ. لا يفتح شيئاً. |
+| `d1.cards.p.address.say` | Adresse du compte, tuile | عنوان الحساب، خانة |
+| `d1.cards.p.address.text` | Adresse du compte | عنوان الحساب |
+| `d1.cards.p.address.why` | L’adresse sert à recevoir. On la donne à un expéditeur, et elle n’ouvre rien. | العنوان للاستقبال. يُعطى للمُرسِل، ولا يفتح شيئاً. |
+| `d1.cards.p.password.after` | Déverrouille cet appareil. | يفتح قفل هذا الجهاز. |
+| `d1.cards.p.password.say` | Mot de passe, tuile | كلمة المرور، خانة |
+| `d1.cards.p.password.text` | Mot de passe | كلمة المرور |
+| `d1.cards.p.password.why` | L’aide de MetaMask : le mot de passe déverrouille l’appli sur cet appareil. Il ne récupère pas le portefeuille. | صفحات المساعدة لدى MetaMask: كلمة المرور تفتح قفل التطبيق على ذلك الجهاز. ولا تستردّ المحفظة. |
+| `d1.cards.p.phrase.after` | Douze mots · la clé maîtresse | 12 كلمة · المفتاح الرئيسي |
+| `d1.cards.p.phrase.say` | Phrase secrète de récupération, douze mots, tuile | عبارة الاسترداد السرّية، 12 كلمة، خانة |
+| `d1.cards.p.phrase.text` | Phrase secrète de récupération · douze mots | عبارة الاسترداد السرّية · 12 كلمة |
+| `d1.cards.p.phrase.why` | L’aide : c’est la clé maîtresse. Qui contrôle la phrase contrôle le portefeuille. | صفحات المساعدة: إنها المفتاح الرئيسي. من يتحكّم في العبارة يتحكّم في المحفظة. |
+| `d1.cards.prompt` | Trois cartes de la configuration, avec des mots écrits. Pointez la clé maîtresse. | ثلاث بطاقات من الإعداد، مع كلمات مكتوبة. أشِر إلى المفتاح الرئيسي. |
+| `d1.cards.r.p.none.after` | Ni l’un ni l’autre · aucune réinitialisation | لا هذا ولا ذاك · لا إعادة تعيين |
+| `d1.cards.r.p.none.say` | Ni l’un ni l’autre | لا هذا ولا ذاك |
+| `d1.cards.r.p.none.text` | Ni l’un ni l’autre | لا هذا ولا ذاك |
+| `d1.cards.r.p.none.why` | Les mots de l’aide : il n’y a aucune récupération de mot de passe ni de compte centralisée. | كلمات صفحات المساعدة: لا يوجد استرداد لكلمة المرور ولا استرداد مركزي للحساب. |
+| `d1.cards.r.p.password.after` | Pas de réinitialisation par l’éditeur. | لا يعيد الصانع تعيينها. |
+| `d1.cards.r.p.password.say` | Le mot de passe | كلمة المرور |
+| `d1.cards.r.p.password.text` | Le mot de passe | كلمة المرور |
+| `d1.cards.r.p.password.why` | Son aide : « Nous ne pouvons pas réinitialiser votre mot de passe. » Elle le rétablit elle-même, avec la phrase. | صفحات المساعدة لديه: «لا نستطيع إعادة تعيين كلمة مرورك.» تستعيدها هي بنفسها، بالعبارة. |
+| `d1.cards.r.p.phrase.after` | N’y a pas accès. | لا يصل إليها. |
+| `d1.cards.r.p.phrase.say` | La phrase | العبارة |
+| `d1.cards.r.p.phrase.text` | La phrase | العبارة |
+| `d1.cards.r.p.phrase.why` | L’aide : MetaMask n’a pas accès à sa phrase et ne peut pas récupérer le portefeuille. | صفحات المساعدة: لا يستطيع MetaMask الوصول إلى عبارتها ولا استرداد المحفظة. |
+| `d1.cards.r.prompt` | Mot de passe, phrase, ou ni l’un ni l’autre. Pointez ce que MetaMask peut réinitialiser pour elle. | كلمة المرور، أو العبارة، أو لا هذا ولا ذاك. أشِر إلى ما يستطيع MetaMask إعادة تعيينه لها. |
+| `d1.claim` | Avec MetaMask, son argent est dans l’appli, comme sur un compte. | مع MetaMask يقيم مالها داخل التطبيق، كما في حساب. |
+| `d1.fee.hint.0` | Deux lignes disent qui et combien. | سطران يقولان: من، وكم. |
+| `d1.fee.hint.1` | Une ligne est un coût en plus du montant. | سطر واحد تكلفة فوق المبلغ. |
+| `d1.fee.hint.2` | Réponse : Frais de réseau. | الجواب: رسوم الشبكة. |
+| `d1.fee.kuro` | Les frais. | الرسوم. |
+| `d1.fee.p.amount.after` | Ce qui est envoyé. | ما يُرسَل. |
+| `d1.fee.p.amount.say` | Montant : un jeton | المبلغ: رمز رقمي واحد |
+| `d1.fee.p.amount.text` | Montant · 1 jeton | المبلغ · 1 رمز رقمي |
+| `d1.fee.p.amount.why` | Le montant est ce qui irait vers l’autre adresse. | المبلغ هو ما سينتقل إلى العنوان الآخر. |
+| `d1.fee.p.confirm.after` | Pas encore. Lisez d’abord. | ليس بعد. اقرأ أولاً. |
+| `d1.fee.p.confirm.say` | Confirmer, bouton | تأكيد، زرّ |
+| `d1.fee.p.confirm.text` | Confirmer | تأكيد |
+| `d1.fee.p.confirm.why` | Confirmer l’envoie. Une fois confirmé, un transfert ne peut être inversé, dit l’aide. | «تأكيد» يرسله. وبعد تأكيده لا يمكن عكس التحويل، كما تقول صفحات المساعدة. |
+| `d1.fee.p.fee.after` | Frais de réseau · le coût du transport | رسوم الشبكة · كلفة نقله |
+| `d1.fee.p.fee.say` | Frais de réseau | رسوم الشبكة |
+| `d1.fee.p.fee.text` | Frais de réseau | رسوم الشبكة |
+| `d1.fee.p.fee.why` | L’aide de MetaMask : Frais de réseau, ce sont les frais de gas, que l’on paie pour faire valider une transaction. | صفحات المساعدة لدى MetaMask: رسوم الشبكة هي رسوم الغاز، أي ما يدفعه المستخدمون للتحقّق من صحّة المعاملة. |
+| `d1.fee.p.to.after` | Qui reçoit. | من يستلم. |
+| `d1.fee.p.to.say` | À : adresse 0x9c1…77e | إلى: العنوان 0x9c1…77e |
+| `d1.fee.p.to.text` | À · 0x9c1…77e | إلى · 0x9c1…77e |
+| `d1.fee.p.to.why` | Cette ligne est l’adresse du destinataire. | هذا السطر عنوان من يستلم. |
+| `d1.fee.prompt` | Une maquette d’écran d’envoi, rien de réel. Pointez ce qui est payé pour transporter le transfert. | شاشة إرسال تجريبية، لا شيء فيها حقيقي. أشِر إلى ما يُدفع مقابل نقل التحويل. |
+| `d1.fee.r.p.maker.after` | Rien de tel ici. | لا شيء كهذا هنا. |
+| `d1.fee.r.p.maker.say` | Un abonnement à l’appli | اشتراك في التطبيق |
+| `d1.fee.r.p.maker.text` | Un abonnement à l’appli | اشتراك في التطبيق |
+| `d1.fee.r.p.maker.why` | L’aide décrit ces frais comme le coût d’une transaction, pas un abonnement. | صفحات المساعدة تصف الرسوم بأنها كلفة معاملة، لا اشتراك. |
+| `d1.fee.r.p.network.after` | Validée · par le réseau | مُتحقَّق منها · بواسطة الشبكة |
+| `d1.fee.r.p.network.say` | Faire valider la transaction | التحقّق من صحّة المعاملة |
+| `d1.fee.r.p.network.text` | Faire valider la transaction | التحقّق من صحّة المعاملة |
+| `d1.fee.r.p.network.why` | L’aide : c’est ce que paient les utilisateurs pour faire valider leur transaction par le réseau. | صفحات المساعدة: هي ما يدفعه المستخدمون لكي تتحقّق الشبكة من صحّة معاملتهم. |
+| `d1.fee.r.p.receiver.after` | Pas le destinataire. | ليست للمستلِم. |
+| `d1.fee.r.p.receiver.say` | Un pourboire pour le destinataire | إكرامية للمستلِم |
+| `d1.fee.r.p.receiver.text` | Un pourboire pour le destinataire | إكرامية للمستلِم |
+| `d1.fee.r.p.receiver.why` | Le destinataire reçoit le montant. Les frais paient le traitement. | المستلِم ينال المبلغ. والرسوم مقابل المعالجة. |
+| `d1.fee.r.prompt` | Frais de réseau : pointez ce qu’ils paient. | رسوم الشبكة: أشِر إلى ما تُدفع مقابله. |
+| `d1.home.hint.0` | Trois éléments montrent un chiffre, agissent ou ouvrent quelque chose. | ثلاثة أجزاء تعرض رقماً، أو تنفّذ فعلاً، أو تفتح شيئاً. |
+| `d1.home.hint.1` | Un seul élément dit où la trouver. | جزء واحد يقول فقط أين يُعثر عليها. |
+| `d1.home.hint.2` | Réponse : l’adresse à côté de « Compte 1 ». | الجواب: العنوان بجانب «الحساب 1». |
+| `d1.home.kuro` | L’adresse. | العنوان. |
+| `d1.home.p.address.after` | 0x4f2…b81 · copiée pour l’expéditeur | 0x4f2…b81 · نُسخ للمُرسِل |
+| `d1.home.p.address.say` | Compte 1, adresse 0x4f2…b81, bouton | الحساب 1، العنوان 0x4f2…b81، زرّ |
+| `d1.home.p.address.text` | Compte 1 · 0x4f2…b81 | الحساب 1 · 0x4f2…b81 |
+| `d1.home.p.address.why` | L’aide de MetaMask : elle copie son adresse publique et la partage avec qui lui envoie. | صفحات المساعدة لدى MetaMask: تنسخ عنوانها العامّ وتشاركه مع من يرسل إليها. |
+| `d1.home.p.balance.after` | Un chiffre. Rien à donner. | رقم. لا شيء يُعطى. |
+| `d1.home.p.balance.say` | Solde : zéro, un jeton | الرصيد: صفر، رمز رقمي |
+| `d1.home.p.balance.text` | 0 · un jeton | 0 · رمز رقمي |
+| `d1.home.p.balance.why` | Le solde est un chiffre que l’appli lit dans un registre. Il n’y a rien dedans à remettre. | الرصيد رقم يقرؤه التطبيق من سجلّ. ليس فيه ما يُسلَّم. |
+| `d1.home.p.menu.after` | Les réglages s’ouvrent. | تنفتح الإعدادات. |
+| `d1.home.p.menu.cap` | Menu | القائمة |
+| `d1.home.p.menu.say` | Menu, bouton | القائمة، زرّ |
+| `d1.home.p.menu.why` | Le menu ouvre les réglages. Rien là ne sert à un expéditeur. | القائمة تفتح الإعدادات. لا شيء هناك للمُرسِل. |
+| `d1.home.p.send.after` | Demande une adresse. | يطلب عنواناً. |
+| `d1.home.p.send.say` | Envoyer, bouton | إرسال، زرّ |
+| `d1.home.p.send.text` | Envoyer | إرسال |
+| `d1.home.p.send.why` | Envoyer fait sortir des jetons du compte. Il ne donne à personne de quoi la trouver. | «إرسال» يُخرج رموزاً رقمية من الحساب. ولا يعطي أحداً طريقاً إليها. |
+| `d1.home.prompt` | Une maquette d’accueil de portefeuille, rien de réel dedans. Pointez ce qu’un expéditeur doit obtenir d’elle. | شاشة رئيسية تجريبية لمحفظة، لا شيء حقيقي فيها. أشِر إلى الجزء الذي يحتاجه المُرسِل منها. |
+| `d1.home.r.p.address.after` | Une adresse · où envoyer | عنوان · إلى أين يُرسَل |
+| `d1.home.r.p.address.say` | Une adresse, tuile | عنوان، خانة |
+| `d1.home.r.p.address.text` | Une adresse | عنوان |
+| `d1.home.r.p.address.why` | Une adresse ne fait que recevoir. L’aide dit tout de même de ne pas l’afficher publiquement. | العنوان يستقبل فقط. ومع ذلك تقول صفحات المساعدة ألّا يُنشر علناً. |
+| `d1.home.r.p.password.after` | Déverrouille cet appareil. | يفتح قفل هذا الجهاز. |
+| `d1.home.r.p.password.say` | Un mot de passe, tuile | كلمة مرور، خانة |
+| `d1.home.r.p.password.text` | Un mot de passe | كلمة مرور |
+| `d1.home.r.p.password.why` | Dans une configuration par mots écrits, le mot de passe déverrouille l’appli sur cet appareil. | في إعداد بكلمات مكتوبة، تفتح كلمة المرور قفل التطبيق على ذلك الجهاز. |
+| `d1.home.r.p.phrase.after` | La clé maîtresse. | المفتاح الرئيسي. |
+| `d1.home.r.p.phrase.say` | Douze mots secrets, tuile | 12 كلمة سرّية، خانة |
+| `d1.home.r.p.phrase.text` | Douze mots secrets | 12 كلمة سرّية |
+| `d1.home.r.p.phrase.why` | L’aide appelle ces mots la clé maîtresse : qui les contrôle contrôle le portefeuille. | صفحات المساعدة تسمّي الكلمات المفتاح الرئيسي: من يتحكّم فيها يتحكّم في المحفظة. |
+| `d1.home.r.prompt` | Trois cartes d’une configuration de portefeuille. Pointez celle qui ne fait que recevoir. | ثلاث بطاقات من إعداد محفظة. أشِر إلى التي تستقبل فقط. |
+| `d1.note.hint.0` | Deux notes placent quelque chose dans l’appli ou chez l’entreprise. | ملاحظتان تضعان شيئاً داخل التطبيق أو لدى الشركة. |
+| `d1.note.hint.1` | Une note sépare les clés du registre. | ملاحظة واحدة تفصل المفاتيح عن السجلّ. |
+| `d1.note.hint.2` | Réponse : il gère des clés ; les jetons sont des entrées dans un registre. | الجواب: يدير مفاتيح؛ والرموز الرقمية قيود في سجلّ. |
+| `d1.note.kuro` | Clés. Registre. | مفاتيح. سجلّ. |
+| `d1.note.p.n1.text` | L’appli contient ses jetons, comme un porte-monnaie contient des pièces. | التطبيق يحفظ رموزها الرقمية، كما يحوي كيس النقود القطع النقدية. |
+| `d1.note.p.n1.why` | Un guide public : le portefeuille est une fenêtre sur le registre. Son fournisseur n’en a pas la garde. | دليل عامّ: المحفظة نافذة على السجلّ. ومزوّدها لا يتولّى الحفظ. |
+| `d1.note.p.n2.text` | MetaMask gère des clés. Les jetons sont des entrées dans un registre public. | MetaMask يدير مفاتيح. والرموز الرقمية قيود في سجلّ عامّ. |
+| `d1.note.p.n2.why` | Son aide : il lui permet de gérer ses clés privées. Ce qu’elles signent est inscrit sur la blockchain. | صفحات المساعدة لديه: يتيح لها إدارة مفاتيحها الخاصّة. وما توقّعه يُسجَّل على سلسلة الكتل. |
+| `d1.note.p.n3.text` | MetaMask peut retrouver ses clés pour elle. | MetaMask يستطيع البحث عن مفاتيحها نيابةً عنها. |
+| `d1.note.p.n3.why` | Son aide : « nous ne pouvons pas retrouver votre Phrase secrète de récupération. » | صفحات المساعدة لديه: «لا نستطيع البحث عن عبارة الاسترداد السرّية الخاصّة بك.» |
+| `d1.note.prompt` | Trois notes sont arrivées avec le billet. Une seule est vraie. | وصلت مع القصاصة ثلاث ملاحظات. واحدة صحيحة. |
+| `d1.note.r.p.r1.text` | Supprimer l’appli supprime ses jetons. | حذف التطبيق يحذف رموزها الرقمية. |
+| `d1.note.r.p.r1.why` | Le registre est hors de l’appli. Avec ses mots écrits, le portefeuille est restauré. | السجلّ خارج التطبيق. وبكلماتها المكتوبة تُستعاد المحفظة. |
+| `d1.note.r.p.r2.text` | On peut échanger une appli portefeuille contre une autre. Les clés décident. | يمكن استبدال تطبيق محفظة بآخر. المفاتيح هي الفيصل. |
+| `d1.note.r.p.r2.why` | Un guide public : elle peut changer de fournisseur de portefeuille à tout moment. L’aide : une clé peut être importée ailleurs. | دليل عامّ: تستطيع تغيير مزوّد المحفظة في أيّ وقت. صفحات المساعدة: يمكن استيراد المفتاح إلى مكان آخر. |
+| `d1.note.r.p.r3.text` | Son mot de passe est ce que le réseau vérifie. | كلمة مرورها هي ما تتحقّق منه الشبكة. |
+| `d1.note.r.p.r3.why` | Le mot de passe ne fait que déverrouiller l’appli sur son appareil. Les clés signent ce que le réseau enregistre. | كلمة المرور تفتح قفل التطبيق على جهازها فقط. والمفاتيح توقّع ما تسجّله الشبكة. |
+| `d1.note.r.prompt` | Trois nouvelles notes. Touchez la vraie. | ثلاث ملاحظات جديدة. المس الصحيحة. |
+| `d1.slip` | Flèche huit : PayPal → MetaMask. Selon le prestataire, son argent serait dans l’appli, comme sur un compte. Samia s’interroge. | السهم الثامن: PayPal → MetaMask. يقول المورّد إن مالها سيقيم داخل التطبيق، كما في حساب. تتساءل سامية. |
+| `d1.slipTag` | ENQUÊTE 08 · exemple inventé | التحقيق 08 · مثال متخيَّل |
+| `d1.stamp.prompt` | Le prestataire, encore : avec MetaMask, son argent est dans l’appli, comme sur un compte. Tamponnez : | قول المورّد مرّة أخرى: مع MetaMask يقيم مالها داخل التطبيق، كما في حساب. اختمه: |
+| `d1.stamp.reveal` | Faux. L’appli gère des clés et montre un registre public. L’entreprise ne peut pas atteindre ses jetons. | غير صحيح. التطبيق يدير مفاتيح ويعرض سجلّاً عامّاً. والشركة لا تستطيع الوصول إلى رموزها الرقمية. |
+| `d1.where.hint.0` | L’appli peut être fermée. Le chiffre reste le même. | يمكن إغلاق التطبيق. ويبقى الرقم نفسه. |
+| `d1.where.hint.1` | L’aide dit que le chiffre peut être vérifié hors de l’appli. | صفحات المساعدة تقول إن الرقم يمكن التحقّق منه خارج التطبيق. |
+| `d1.where.hint.2` | Réponse : sur un registre public, la blockchain. | الجواب: في سجلّ عامّ، سلسلة الكتل. |
+| `d1.where.kuro` | Sur le registre. | في السجلّ. |
+| `d1.where.p.app.after` | L’appli ne fait que montrer. | التطبيق يعرض فقط. |
+| `d1.where.p.app.say` | Dans l’appli, tuile | داخل التطبيق، خانة |
+| `d1.where.p.app.text` | Dans l’appli | داخل التطبيق |
+| `d1.where.p.app.why` | Un guide public : un portefeuille est une fenêtre pour voir les actifs. Son fournisseur n’en a pas la garde. | دليل عامّ: المحفظة نافذة لرؤية الأصول. ومزوّدها لا يتولّى حفظها. |
+| `d1.where.p.chain.after` | La blockchain · un registre hors de l’appli | سلسلة الكتل · سجلّ خارج التطبيق |
+| `d1.where.p.chain.say` | Sur un registre public, la blockchain, tuile | في سجلّ عامّ، سلسلة الكتل، خانة |
+| `d1.where.p.chain.text` | Sur un registre public, la blockchain | في سجلّ عامّ، سلسلة الكتل |
+| `d1.where.p.chain.why` | Les transactions sont inscrites sur la blockchain. L’aide : un solde peut y être vérifié, hors de l’appli. | المعاملات تُسجَّل على سلسلة الكتل. صفحات المساعدة: يمكن التحقّق من الرصيد هناك، خارج التطبيق. |
+| `d1.where.p.company.after` | Elle ne détient rien. | لا تحوز شيئاً. |
+| `d1.where.p.company.say` | Chez l’entreprise derrière l’appli, tuile | لدى الشركة التي تقف خلفه، خانة |
+| `d1.where.p.company.text` | Chez l’entreprise derrière l’appli | لدى الشركة التي تقف خلفه |
+| `d1.where.p.company.why` | L’aide de MetaMask : il n’a pas accès à ses actifs. | صفحات المساعدة لدى MetaMask: ليس لديه وصول إلى أصولها. |
+| `d1.where.p.phone.after` | Pas gardé là. | لا يُحفظ هناك. |
+| `d1.where.p.phone.say` | Dans la mémoire de son téléphone, tuile | في ذاكرة هاتفها، خانة |
+| `d1.where.p.phone.text` | Dans la mémoire de son téléphone | في ذاكرة هاتفها |
+| `d1.where.p.phone.why` | Supprimez l’appli : le chiffre reste sur le registre. Ses mots écrits le ramènent. | احذف التطبيق ويبقى الرقم في السجلّ. وكلماتها المكتوبة تعيده. |
+| `d1.where.prompt` | L’appli affiche un solde. Pointez où ce solde est réellement inscrit. | التطبيق يعرض رصيداً. أشِر إلى المكان الذي يُسجَّل فيه هذا الرصيد فعلاً. |
+| `d1.where.r.p.address.after` | Revient aussi. | يعود هو أيضاً. |
+| `d1.where.r.p.address.say` | Son adresse | عنوانها |
+| `d1.where.r.p.address.text` | Son adresse | عنوانها |
+| `d1.where.r.p.address.why` | Les comptes sont dérivés des mots, dit l’aide. Les mêmes mots les redonnent. | الحسابات مشتقّة من الكلمات، كما تقول صفحات المساعدة. والكلمات نفسها تعيدها. |
+| `d1.where.r.p.app.after` | Seulement l’appli · restaurée avec les mots | التطبيق وحده · يُستعاد بالكلمات |
+| `d1.where.r.p.app.say` | Seulement l’appli elle-même | التطبيق نفسه فقط |
+| `d1.where.r.p.app.text` | Seulement l’appli elle-même | التطبيق نفسه فقط |
+| `d1.where.r.p.app.why` | L’aide : les mots restaurent le portefeuille, sur le même appareil ou un autre. | صفحات المساعدة: الكلمات تستعيد المحفظة، على الجهاز نفسه أو على غيره. |
+| `d1.where.r.p.tokens.after` | Toujours sur le registre. | ما زالت في السجلّ. |
+| `d1.where.r.p.tokens.say` | Ses jetons | رموزها الرقمية |
+| `d1.where.r.p.tokens.text` | Ses jetons | رموزها الرقمية |
+| `d1.where.r.p.tokens.why` | Le registre n’est pas dans l’appli. L’aide : les mots récupèrent les comptes et les soldes. | السجلّ ليس في التطبيق. صفحات المساعدة: الكلمات تستردّ الحسابات والأرصدة. |
+| `d1.where.r.prompt` | L’appli est supprimée de son téléphone. Elle a gardé ses mots écrits. Pointez ce qui est perdu. | حُذف التطبيق من هاتفها. واحتفظت بكلماتها المكتوبة. أشِر إلى ما ضاع. |
+| `d2.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d2.boss.hint.0` | Lisez ce qui est demandé, et par qui. | اقرأ ما يُطلب، ومن يطلبه. |
+| `d2.boss.hint.1` | Une ligne est un chiffre, pas un nom ni un bouton. | سطر واحد رقم، لا اسم ولا زرّ. |
+| `d2.boss.hint.2` | Réponse : Plafond de dépenses · illimité. | الجواب: حدّ الإنفاق · غير محدود. |
+| `d2.boss.kuro` | Lisez le plafond. | اقرأ الحدّ. |
+| `d2.boss.p.cap.after` | Illimité · aucun plafond | غير محدود · بلا سقف |
+| `d2.boss.p.cap.say` | Plafond de dépenses : illimité | حدّ الإنفاق: غير محدود |
+| `d2.boss.p.cap.text` | Plafond de dépenses · illimité | حدّ الإنفاق · غير محدود |
+| `d2.boss.p.cap.why` | Illimité : aucun plafond à ce que ce site peut prendre de ce jeton. L’aide y voit un risque de vol. | غير محدود: لا سقف لما قد يأخذه ذلك الموقع من ذلك الرمز الرقمي. وصفحات المساعدة تعدّه خطر سرقة. |
+| `d2.boss.p.confirm.after` | Accès accordé. Illimité. | مُنح الوصول. غير محدود. |
+| `d2.boss.p.confirm.say` | Confirmer, bouton | تأكيد، زرّ |
+| `d2.boss.p.confirm.text` | Confirmer | تأكيد |
+| `d2.boss.p.confirm.why` | L’aide : sur un site malveillant, des jetons peuvent être volés dès qu’elle approuve. | صفحات المساعدة: على موقع خبيث، يمكن سرقة الرموز الرقمية بمجرّد موافقتها. |
+| `d2.boss.p.reject.after` | Refusé. | رُفض. |
+| `d2.boss.p.reject.say` | Refuser, bouton | رفض، زرّ |
+| `d2.boss.p.reject.text` | Refuser | رفض |
+| `d2.boss.p.reject.why` | Refuser n’accorde rien. Mais cette ligne ne dit rien du montant. | الرفض لا يمنح شيئاً. لكنّ هذا السطر لا يقول شيئاً عن المقدار. |
+| `d2.boss.p.site.after` | Dit seulement qui demande. | يقول فقط من يطلب. |
+| `d2.boss.p.site.say` | Demande de prize-claim.example | طلب من prize-claim.example |
+| `d2.boss.p.site.text` | Demande de · prize-claim.example | طلب من · prize-claim.example |
+| `d2.boss.p.site.why` | Qui demande, pas combien. L’aide dit aussi de vérifier le site. | من يطلب، لا كم. وصفحات المساعدة تقول أيضاً أن تتحقّق من الموقع. |
+| `d2.boss.prompt` | Samia objecte : « Ce n’est qu’un bouton pour un lot. » Pointez la ligne qui dit combien ce site pourrait prendre. | تعترض سامية: «إنه مجرّد زرّ جائزة.» أشِر إلى السطر الذي يقول كم قد يأخذ ذلك الموقع. |
+| `d2.boss.r.p.delete.after` | L’autorisation demeure. | يبقى الإذن. |
+| `d2.boss.r.p.delete.say` | Supprimer l’appli | حذف التطبيق |
+| `d2.boss.r.p.delete.text` | Supprimer l’appli | حذف التطبيق |
+| `d2.boss.r.p.delete.why` | L’autorisation est sur le registre, pas dans l’appli. Supprimer l’appli l’y laisse. | الإذن في السجلّ، لا في التطبيق. وحذف التطبيق يتركه هناك. |
+| `d2.boss.r.p.never.after` | Pas pour toujours. | ليس إلى الأبد. |
+| `d2.boss.r.p.never.say` | Rien : une autorisation, c’est pour toujours | لا شيء: الإذن إلى الأبد |
+| `d2.boss.r.p.never.text` | Rien : une autorisation, c’est pour toujours | لا شيء: الإذن إلى الأبد |
+| `d2.boss.r.p.never.why` | L’aide : une autorisation peut être révoquée, et le site ne peut plus atteindre les jetons. | صفحات المساعدة: يمكن سحب الإذن، فلا يعود الموقع قادراً على الوصول إلى الرموز الرقمية. |
+| `d2.boss.r.p.revoke.after` | Révoquée · une nouvelle transaction, avec ses frais | سُحب · معاملة جديدة، برسومها |
+| `d2.boss.r.p.revoke.say` | La révoquer, contre des frais de réseau | سحبه، مقابل رسوم الشبكة |
+| `d2.boss.r.p.revoke.text` | La révoquer, contre des frais de réseau | سحبه، مقابل رسوم الشبكة |
+| `d2.boss.r.p.revoke.why` | L’aide : la révocation se fait aussi sur la chaîne, donc elle coûte des frais de réseau. | صفحات المساعدة: السحب يتمّ على السلسلة أيضاً، لذا يكلّف رسوم شبكة. |
+| `d2.boss.r.prompt` | Une autorisation a été accordée par erreur la semaine dernière. Pointez ce qui peut encore se faire, selon l’aide. | مُنح إذن خطأً الأسبوع الماضي. أشِر إلى ما تقول صفحات المساعدة إنه ما زال ممكناً. |
+| `d2.bub.a` | Maintenant, deux adresses. Le sosie est de moi. Comparez morceau par morceau. | الآن عنوانان. الشبيه من صنعي. قارِن قطعة بقطعة. |
+| `d2.bub.b` | Autre billet. Un site lui offrait un lot, puis un bouton. | قصاصة أخرى. عرض عليها موقع جائزة، ثم زرّاً. |
+| `d2.can` | Vous savez maintenant lire un écran d’envoi, comparer deux adresses et lire un plafond de dépenses. | صرتَ تعرف كيف تقرأ شاشة إرسال، وتقارن عنوانين، وتقرأ حدّ إنفاق. |
+| `d2.claim` | Une fois confirmé, aucune entreprise ne peut défaire un transfert fait avec MetaMask. | بعد التأكيد، لا تستطيع أيّ شركة التراجع عن تحويل أُجري بـ MetaMask. |
+| `d2.copy.hint.0` | Son adresse est près du nom du compte. | عنوانها قرب اسم الحساب. |
+| `d2.copy.hint.1` | Une petite icône à côté fait une seule chose. | أيقونة صغيرة بجانبه تفعل شيئاً واحداً. |
+| `d2.copy.hint.2` | Réponse : l’icône de copie. | الجواب: أيقونة النسخ. |
+| `d2.copy.kuro` | Copiée. | نُسخ. |
+| `d2.copy.p.activity.after` | Transferts passés listés. | قائمة التحويلات السابقة. |
+| `d2.copy.p.activity.say` | Activité, onglet | النشاط، تبويب |
+| `d2.copy.p.activity.text` | Activité | النشاط |
+| `d2.copy.p.activity.why` | L’aide met en garde contre la copie d’adresses depuis l’historique : on y plante des sosies. | صفحات المساعدة تحذّر من نسخ العناوين من المعاملات السابقة: فهناك تُزرع الأشباه. |
+| `d2.copy.p.copy.after` | Copiée · 0x4f2…b81 | نُسخ · 0x4f2…b81 |
+| `d2.copy.p.copy.cap` | Copier l’adresse | نسخ العنوان |
+| `d2.copy.p.copy.say` | Copier l’adresse, bouton | نسخ العنوان، زرّ |
+| `d2.copy.p.copy.why` | L’aide de MetaMask : elle copie son adresse publique depuis l’écran d’accueil et la donne à l’expéditeur. | صفحات المساعدة لدى MetaMask: تنسخ عنوانها العامّ من الشاشة الرئيسية وتعطيه للمُرسِل. |
+| `d2.copy.p.menu.after` | Les réglages s’ouvrent. | تنفتح الإعدادات. |
+| `d2.copy.p.menu.cap` | Menu | القائمة |
+| `d2.copy.p.menu.say` | Menu, bouton | القائمة، زرّ |
+| `d2.copy.p.menu.why` | Le menu ouvre les réglages, pas une copie rapide. | القائمة تفتح الإعدادات، لا نسخاً سريعاً. |
+| `d2.copy.p.send.after` | Demande où envoyer. | يسأل إلى أين يُرسَل. |
+| `d2.copy.p.send.say` | Envoyer, bouton | إرسال، زرّ |
+| `d2.copy.p.send.text` | Envoyer | إرسال |
+| `d2.copy.p.send.why` | Envoyer sert à faire sortir des jetons. Il ne donne pas son adresse. | «إرسال» لإخراج الرموز الرقمية. ولا يعطي عنوانها. |
+| `d2.copy.prompt` | Quelqu’un doit lui envoyer (une maquette). Pointez la commande qui copie son adresse. | شخص سيرسل إليها (شاشة تجريبية). أشِر إلى عنصر التحكّم الذي ينسخ عنوانها. |
+| `d2.copy.r.p.check.after` | Vérifiée · même adresse | تمّ التحقّق · العنوان نفسه |
+| `d2.copy.r.p.check.say` | La comparer à la sienne | مطابقته مع عنوانها |
+| `d2.copy.r.p.check.text` | La comparer à la sienne | مطابقته مع عنوانها |
+| `d2.copy.r.p.check.why` | L’aide : vérifiez toujours deux fois l’adresse après l’avoir collée. | صفحات المساعدة: تحقّق دائماً مرّتين من العنوان بعد لصقه. |
+| `d2.copy.r.p.retype.after` | Trop longue à retenir. | أطول من أن يُحفظ. |
+| `d2.copy.r.p.retype.say` | La retaper de mémoire | إعادة كتابته من الذاكرة |
+| `d2.copy.r.p.retype.text` | La retaper de mémoire | إعادة كتابته من الذاكرة |
+| `d2.copy.r.p.retype.why` | L’aide dit les adresses très, très difficiles à retenir. Les taper invite à l’erreur. | صفحات المساعدة تصف العناوين بأنها صعبة الحفظ جدّاً جدّاً. والكتابة تجلب الأخطاء. |
+| `d2.copy.r.p.send.after` | Non vérifiée. | دون تحقّق. |
+| `d2.copy.r.p.send.say` | L’envoyer tout de suite | إرساله فوراً |
+| `d2.copy.r.p.send.text` | L’envoyer tout de suite | إرساله فوراً |
+| `d2.copy.r.p.send.why` | L’aide : une adresse collée différente de la sienne peut signaler un logiciel malveillant sur l’appareil. | صفحات المساعدة: العنوان الملصوق الذي يختلف عن عنوانها قد يعني وجود برمجية خبيثة على الجهاز. |
+| `d2.copy.r.prompt` | Elle a collé l’adresse dans un message. Pointez ce que l’aide dit de faire ensuite. | لصقت العنوان في رسالة. أشِر إلى ما تقول صفحات المساعدة أن تفعله بعد ذلك. |
+| `d2.diff.g.0.after` | Pareil dans les deux. | متطابق في الاثنين. |
+| `d2.diff.g.0.say` | morceau un | القطعة الأولى |
+| `d2.diff.g.0.why` | Même début dans les deux. Un sosie planté copie le début. | البداية نفسها في الاثنين. والشبيه المزروع ينسخ البداية. |
+| `d2.diff.g.1.after` | 82 contre 28 · une autre adresse | 82 مقابل 28 · عنوان آخر |
+| `d2.diff.g.1.say` | morceau deux | القطعة الثانية |
+| `d2.diff.g.1.why` | 82 contre 28. L’aide de MetaMask : regardez de près les caractères du milieu. | 82 مقابل 28. صفحات المساعدة لدى MetaMask: انتبه جيّداً إلى الأحرف الوسطى. |
+| `d2.diff.g.2.after` | Pareil dans les deux. | متطابق في الاثنين. |
+| `d2.diff.g.2.say` | morceau trois | القطعة الثالثة |
+| `d2.diff.g.2.why` | Même fin dans les deux. Un sosie planté copie aussi la fin. | النهاية نفسها في الاثنين. والشبيه المزروع ينسخ النهاية أيضاً. |
+| `d2.diff.hint.0` | Le début et la fin peuvent concorder exprès. | قد تتطابق البداية والنهاية عمداً. |
+| `d2.diff.hint.1` | Les adresses raccourcies montrent le début et la fin. Regardez ailleurs. | العناوين المختصرة تُظهر البداية والنهاية. انظر في مكان آخر. |
+| `d2.diff.hint.2` | Réponse : le morceau du milieu. | الجواب: القطعة الوسطى. |
+| `d2.diff.kuro` | Le milieu. | الوسط. |
+| `d2.diff.prompt` | L’adresse de son ami et une de son historique, coupées en trois. Pointez le morceau qui trahit la seconde. | عنوان صديقها وعنوان من معاملاتها السابقة، كلّ منهما في ثلاث قطع. أشِر إلى القطعة التي تفضح الثاني. |
+| `d2.diff.r.g.0.after` | Pareil dans les deux. | متطابق في الاثنين. |
+| `d2.diff.r.g.0.say` | morceau un | القطعة الأولى |
+| `d2.diff.r.g.0.why` | Même début dans les deux. | البداية نفسها في الاثنين. |
+| `d2.diff.r.g.1.after` | Pareil dans les deux. | متطابق في الاثنين. |
+| `d2.diff.r.g.1.say` | morceau deux | القطعة الثانية |
+| `d2.diff.r.g.1.why` | Même milieu dans les deux. Cette fois, la différence est ailleurs. | الوسط نفسه في الاثنين. هذه المرّة الفرق في مكان آخر. |
+| `d2.diff.r.g.2.after` | 81 contre 18 · pas son adresse | 81 مقابل 18 · ليس عنوانها |
+| `d2.diff.r.g.2.say` | morceau trois | القطعة الثالثة |
+| `d2.diff.r.g.2.why` | 81 contre 18. L’aide : une adresse collée qui ne correspond pas peut signaler un logiciel malveillant. | 81 مقابل 18. صفحات المساعدة: العنوان الملصوق غير المطابق قد يعني برمجية خبيثة. |
+| `d2.diff.r.prompt` | Sa propre adresse et celle qu’elle vient de coller, chacune coupée en trois. Pointez le morceau qui diffère. | عنوانها هي والعنوان الذي لصقته للتوّ، كلّ منهما في ثلاث قطع. أشِر إلى القطعة المختلفة. |
+| `d2.diff.r.why` | 81 contre 18. L’aide : une adresse collée qui ne correspond pas peut signaler un logiciel malveillant. | 81 مقابل 18. صفحات المساعدة: العنوان الملصوق غير المطابق قد يعني برمجية خبيثة. |
+| `d2.diff.why` | 82 contre 28. L’aide de MetaMask : regardez de près les caractères du milieu. | 82 مقابل 28. صفحات المساعدة لدى MetaMask: انتبه جيّداً إلى الأحرف الوسطى. |
+| `d2.ring.address` | Résultats de recherche : « support MetaMask » | نتائج البحث: «دعم MetaMask» |
+| `d2.ring.hint.0` | Touchez chaque résultat pour voir son adresse. | المس كلّ نتيجة لترى عنوانها. |
+| `d2.ring.hint.1` | Lisez le nom avant la première barre oblique, depuis son bout droit. | اقرأ الاسم الذي قبل أوّل شرطة مائلة، من طرفه الأيمن. |
+| `d2.ring.hint.2` | Réponse : support.metamask.com. | الجواب: support.metamask.com. |
+| `d2.ring.kuro` | Listé. | مُدرَج. |
+| `d2.ring.p.ad.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.p.ad.mark` | Annonce | إعلان |
+| `d2.ring.p.ad.say` | Résultat un, marqué Annonce | النتيجة الأولى، موسومة «إعلان» |
+| `d2.ring.p.ad.text` | Centre d’assistance MetaMask | مركز دعم MetaMask |
+| `d2.ring.p.ad.why` | Avant la première barre oblique : metamask-support.example, un nouveau nom. Et MetaMask n’a pas de numéro de téléphone. | قبل أوّل شرطة مائلة: metamask-support.example، اسم جديد. وليس لدى MetaMask رقم هاتف. |
+| `d2.ring.p.center.after` | support.metamask.com · sur sa propre liste | support.metamask.com · على قائمته نفسها |
+| `d2.ring.p.center.say` | Résultat trois | النتيجة الثالثة |
+| `d2.ring.p.center.text` | Centre d’aide MetaMask | مركز مساعدة MetaMask |
+| `d2.ring.p.center.why` | L’aide cite cette adresse en premier parmi ses canaux de support officiels. | صفحات المساعدة تذكر هذا العنوان أوّلاً بين قنوات الدعم الرسمية لديه. |
+| `d2.ring.p.lookalike.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.p.lookalike.say` | Résultat deux | النتيجة الثانية |
+| `d2.ring.p.lookalike.text` | Centre d’aide MetaMask · officiel | مركز مساعدة MetaMask · رسمي |
+| `d2.ring.p.lookalike.why` | Lisez depuis la droite : le nom est help.example. Le faux support demande un message direct, prévient l’aide. | اقرأ من اليمين: الاسم هو help.example. والدعم المزيّف يطلب رسالة مباشرة، كما تحذّر صفحات المساعدة. |
+| `d2.ring.prompt` | Trois résultats pour « support MetaMask ». Touchez chacun pour voir son adresse. Puis choisissez celui que cite son aide. | ثلاث نتائج لـ«دعم MetaMask». المس كلّ واحدة لترى عنوانها. ثم اختر التي تذكرها صفحات المساعدة لديه. |
+| `d2.ring.r.address` | Un fil de forum (inventé) | موضوع في منتدى (متخيَّل) |
+| `d2.ring.r.p.l1.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.r.p.l1.say` | Lien un | الرابط الأول |
+| `d2.ring.r.p.l1.text` | Service d’assistance officiel | مكتب الدعم الرسمي |
+| `d2.ring.r.p.l1.why` | Avant la première barre oblique, le nom finit par help-desk.example. | قبل أوّل شرطة مائلة ينتهي الاسم بـ help-desk.example. |
+| `d2.ring.r.p.l2.after` | community.metamask.com · sur sa propre liste | community.metamask.com · على قائمته نفسها |
+| `d2.ring.r.p.l2.say` | Lien deux | الرابط الثاني |
+| `d2.ring.r.p.l2.text` | Communauté | المجتمع |
+| `d2.ring.r.p.l2.why` | L’aide cite cette adresse de communauté parmi ses canaux officiels. | صفحات المساعدة تذكر عنوان المجتمع هذا بين قنواته الرسمية. |
+| `d2.ring.r.p.l3.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.r.p.l3.say` | Lien trois | الرابط الثالث |
+| `d2.ring.r.p.l3.text` | Support de la communauté | دعم المجتمع |
+| `d2.ring.r.p.l3.why` | Un seul nouveau nom, lié par un trait d’union : metamask-community.example. | اسم جديد واحد موصول بشَرطة: metamask-community.example. |
+| `d2.ring.r.prompt` | Trois liens de forum, chacun dit « support officiel ». Touchez chacun pour voir son adresse. Choisissez celui qui est listé. | ثلاثة روابط في منتدى، كلّ منها يُسمّى «الدعم الرسمي». المس كلّاً منها لترى عنوانه. اختر المُدرَج. |
+| `d2.sheet.hint.0` | Un sosie imite un seul genre de chose. | الشبيه يقلّد نوعاً واحداً من الأشياء. |
+| `d2.sheet.hint.1` | Une seule ligne est collée. | سطر واحد فقط يُلصق. |
+| `d2.sheet.hint.2` | Réponse : la ligne À. | الجواب: سطر «إلى». |
+| `d2.sheet.kuro` | Vérifiez deux fois. | تحقّق مرّتين. |
+| `d2.sheet.p.amount.after` | Elle l’a tapé elle-même. | كتبته بنفسها. |
+| `d2.sheet.p.amount.say` | Montant : un jeton | المبلغ: رمز رقمي واحد |
+| `d2.sheet.p.amount.text` | Montant · 1 jeton | المبلغ · 1 رمز رقمي |
+| `d2.sheet.p.amount.why` | Le montant, c’est elle qui le tape. Un sosie est une adresse. | المبلغ تكتبه هي. والشبيه عنوان. |
+| `d2.sheet.p.confirm.after` | Pas encore. | ليس بعد. |
+| `d2.sheet.p.confirm.say` | Confirmer, bouton | تأكيد، زرّ |
+| `d2.sheet.p.confirm.text` | Confirmer | تأكيد |
+| `d2.sheet.p.confirm.why` | Confirmer est un bouton. L’aide dit de vérifier l’adresse avant d’appuyer. | «تأكيد» زرّ. وصفحات المساعدة تقول أن تتحقّق من العنوان قبل الضغط عليه. |
+| `d2.sheet.p.fee.after` | Calculés par l’appli. | يحسبها التطبيق. |
+| `d2.sheet.p.fee.say` | Frais de réseau | رسوم الشبكة |
+| `d2.sheet.p.fee.text` | Frais de réseau | رسوم الشبكة |
+| `d2.sheet.p.fee.why` | L’aide : l’appli calcule pour elle les frais de réseau. Rien n’est collé là. | صفحات المساعدة: التطبيق يحسب لها رسوم الشبكة. لا شيء يُلصق هناك. |
+| `d2.sheet.p.to.after` | À · la ligne à vérifier deux fois | إلى · السطر الذي يُتحقَّق منه مرّتين |
+| `d2.sheet.p.to.say` | À : adresse 0x9c1…77e | إلى: العنوان 0x9c1…77e |
+| `d2.sheet.p.to.text` | À · 0x9c1…77e | إلى · 0x9c1…77e |
+| `d2.sheet.p.to.why` | L’aide de MetaMask : des escrocs plantent des quasi-copies d’une adresse dans l’historique. Vérifiez deux fois l’adresse du destinataire. | صفحات المساعدة لدى MetaMask: المحتالون يزرعون نسخاً شبه مطابقة لعنوان في المعاملات السابقة. تحقّق مرّتين من عنوان المستلِم. |
+| `d2.sheet.prompt` | Une maquette d’écran d’envoi. Des escrocs plantent des quasi-copies d’adresses. Pointez la ligne à vérifier deux fois. | شاشة إرسال تجريبية. المحتالون يزرعون نسخاً شبه مطابقة للعناوين. أشِر إلى السطر الذي يُتحقَّق منه مرّتين. |
+| `d2.sheet.r.p.faster.after` | La hâte est le piège. | العجلة هي الفخّ. |
+| `d2.sheet.r.p.faster.say` | Confirmer plus vite | التأكيد بسرعة أكبر |
+| `d2.sheet.r.p.faster.text` | Confirmer plus vite | التأكيد بسرعة أكبر |
+| `d2.sheet.r.p.faster.why` | L’aide : cette arnaque compte avant tout sur l’inattention et la hâte. | صفحات المساعدة: هذا الاحتيال يعتمد على الإهمال والعجلة قبل كلّ شيء. |
+| `d2.sheet.r.p.fee.after` | Pas une question de vitesse. | السرعة ليست المسألة. |
+| `d2.sheet.r.p.fee.say` | Augmenter les frais de réseau | رفع رسوم الشبكة |
+| `d2.sheet.r.p.fee.text` | Augmenter les frais de réseau | رفع رسوم الشبكة |
+| `d2.sheet.r.p.fee.why` | Des frais plus élevés ne font qu’accélérer un transfert. Ils ne rendent pas l’adresse juste. | الرسوم الأعلى تسرّع التحويل فقط. ولا تجعل العنوان صحيحاً. |
+| `d2.sheet.r.p.verify.after` | Vérifiée · caractère par caractère | تمّ التحقّق · حرفاً حرفاً |
+| `d2.sheet.r.p.verify.say` | Vérifier l’adresse avant d’envoyer | التحقّق من العنوان قبل الإرسال |
+| `d2.sheet.r.p.verify.text` | Vérifier l’adresse avant d’envoyer | التحقّق من العنوان قبل الإرسال |
+| `d2.sheet.r.p.verify.why` | L’aide : l’avertissement lui donne l’occasion de vérifier l’adresse avant de poursuivre. | صفحات المساعدة: التحذير يمنحها فرصة التحقّق من العنوان قبل المتابعة. |
+| `d2.sheet.r.prompt` | L’appli prévient : « Cette adresse ressemble à une adresse que vous avez utilisée. » Pointez ce que l’avertissement lui demande. | ينبّه التطبيق: «هذا العنوان يشبه عنواناً استعملته.» أشِر إلى ما يطلبه التحذير منها. |
+| `d2.slip` | Le prestataire se vante : confirmé, un transfert MetaMask, aucune entreprise ne peut le défaire. Qui réparerait une erreur ? Samia s’interroge. | يتباهى المورّد: بعد التأكيد، لا تستطيع أيّ شركة التراجع عن تحويل MetaMask. تتساءل سامية: من يستطيع التراجع عن خطأ؟ |
+| `d2.slipTag` | ENQUÊTE 08 · exemple inventé | التحقيق 08 · مثال متخيَّل |
+| `d2.stamp.prompt` | Le prestataire se vante, encore : confirmé, un transfert MetaMask, aucune entreprise ne peut le défaire. Tamponnez : | تباهي المورّد مرّة أخرى: بعد التأكيد، لا تستطيع أيّ شركة التراجع عن تحويل MetaMask. اختمه: |
+| `d2.stamp.reveal` | Vrai. Confirmé, c’est définitif : le support ne peut pas l’inverser. Un retour serait un nouveau transfert, par le destinataire. | صحيح. المؤكَّد نهائي: الدعم لا يستطيع عكسه. والإرجاع يكون تحويلاً جديداً، من المستلِم. |
+| `d2.state.hint.0` | Le réseau n’a pas encore réglé l’un des deux. | أحدهما لم تحسمه الشبكة بعد. |
+| `d2.state.hint.1` | Confirmé veut dire que le réseau a fini. | «مؤكَّد» يعني أن الشبكة انتهت منه. |
+| `d2.state.hint.2` | Réponse : En attente. | الجواب: قيد الانتظار. |
+| `d2.state.kuro` | Tant qu’en attente. | وهو قيد الانتظار. |
+| `d2.state.p.a.after` | En attente · une annulation peut être tentée | قيد الانتظار · يمكن محاولة الإلغاء |
+| `d2.state.p.a.say` | À gauche : En attente | الأول: قيد الانتظار |
+| `d2.state.p.a.text` | En attente | قيد الانتظار |
+| `d2.state.p.a.why` | L’aide de MetaMask : une annulation ne peut être tentée que si la transaction est encore en attente. | صفحات المساعدة لدى MetaMask: لا يمكن محاولة الإلغاء إلا ما دامت المعاملة قيد الانتظار. |
+| `d2.state.p.b.after` | Confirmé. Il reste. | مؤكَّد. يبقى. |
+| `d2.state.p.b.say` | À droite : Confirmé | الثاني: مؤكَّد |
+| `d2.state.p.b.text` | Confirmé | مؤكَّد |
+| `d2.state.p.b.why` | L’aide : les transactions déjà confirmées ne peuvent pas être inversées. | صفحات المساعدة: المعاملات التي تأكّدت بالفعل لا يمكن عكسها. |
+| `d2.state.prompt` | Deux transferts dans l’onglet Activité (une maquette). Pointez celui où une annulation peut encore être tentée. | تحويلان في تبويب «النشاط» (شاشة تجريبية). أشِر إلى الذي ما زال يمكن فيه محاولة الإلغاء. |
+| `d2.state.r.p.a.after` | Ils ne peuvent pas intervenir. | لا يستطيعون التدخّل. |
+| `d2.state.r.p.a.say` | À gauche : le support de MetaMask | الأول: دعم MetaMask |
+| `d2.state.r.p.a.text` | Le support de MetaMask | دعم MetaMask |
+| `d2.state.r.p.a.why` | L’aide : il ne peut ni inverser les transactions, ni intervenir pour sauver des fonds. | صفحات المساعدة: لا يستطيع عكس المعاملات، ولا التدخّل لإنقاذ الأموال. |
+| `d2.state.r.p.b.after` | Le détenteur · par un nouveau transfert | المالك · بتحويل جديد |
+| `d2.state.r.p.b.say` | À droite : qui détient cette adresse | الثاني: مالك ذلك العنوان، أيّاً كان |
+| `d2.state.r.p.b.text` | Qui détient cette adresse | مالك ذلك العنوان، أيّاً كان |
+| `d2.state.r.p.b.why` | L’aide : si elle connaît le détenteur, elle peut lui demander de le renvoyer, par un nouvel envoi. | صفحات المساعدة: إن كانت تعرف المالك، فلها أن تطلب منه إعادة إرساله، من جديد. |
+| `d2.state.r.prompt` | Confirmé, et envoyé à une mauvaise adresse. Pointez qui pourrait encore le rendre. | مؤكَّد، وأُرسل إلى عنوان خاطئ. أشِر إلى من يستطيع إعادته بعد. |
+| `d3.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d3.boss.frame` | Il {1}, comme une appli de paiement. Mais {2}, donc {3}. | إنه {1}، مثل تطبيق دفع. لكنْ {2}، إذن {3}. |
+| `d3.boss.hint.0` | Ce qu’il fait, qui détient les clés, ce qui s’ensuit : dans cet ordre. | ما يفعله، ومن يحوز المفاتيح، وما يترتّب على ذلك: بهذا الترتيب. |
+| `d3.boss.hint.1` | Ce soir, vous avez pesé les clés et le retour en arrière. | وزنتَ الليلة المفاتيح والتراجع. |
+| `d3.boss.hint.2` | Réponse : envoie à une adresse ; elle seule détient les clés ; personne ne peut réinitialiser ni défaire. | الجواب: يرسل إلى عنوان؛ هي وحدها تحوز المفاتيح؛ لا أحد يستطيع إعادة التعيين أو التراجع. |
+| `d3.boss.kuro` | Bien construit. | بناء متين. |
+| `d3.boss.p.c1.text` | envoie à une adresse | يرسل إلى عنوان |
+| `d3.boss.p.c1.why` | Son site range l’envoi parmi ce qu’il fait. | موقعه يذكر الإرسال بين ما يفعله. |
+| `d3.boss.p.c2.text` | elle seule détient les clés | هي وحدها تحوز المفاتيح |
+| `d3.boss.p.c2.why` | Son aide : elle détient la clé maîtresse. Elle seule peut accéder au portefeuille. | صفحات المساعدة لديه: هي تحوز المفتاح الرئيسي. ولا يصل إلى المحفظة سواها. |
+| `d3.boss.p.c3.text` | personne ne peut réinitialiser ni défaire | لا أحد يستطيع إعادة التعيين أو التراجع |
+| `d3.boss.p.c3.why` | Aucune récupération de compte, aucune inversion d’un transfert confirmé : son aide dit les deux. | لا استرداد للحساب، ولا عكس لتحويل مؤكَّد: صفحات المساعدة لديه تقول الأمرين. |
+| `d3.boss.p.c4.text` | garde son solde | يحفظ رصيدها |
+| `d3.boss.p.c4.why` | Son aide : MetaMask n’a pas accès à ses actifs. | صفحات المساعدة لديه: ليس لدى MetaMask وصول إلى أصولها. |
+| `d3.boss.p.c5.text` | rembourse une erreur | يردّ المال عند الخطأ |
+| `d3.boss.p.c5.why` | Son aide : « les transactions ne peuvent être inversées, ni les fonds manquants restitués. » | صفحات المساعدة لديه: «لا يمكن عكس المعاملات، ولا استرجاع الأموال المفقودة.» |
+| `d3.boss.p.c6.text` | réinitialise sa phrase | يعيد تعيين عبارتها |
+| `d3.boss.p.c6.why` | Son aide : aucune récupération de mot de passe ni de compte centralisée. | صفحات المساعدة لديه: لا استرداد لكلمة المرور ولا استرداد مركزي للحساب. |
+| `d3.boss.prompt` | Samia demande : « Alors, le nouveau PayPal ? » Construisez la réponse. | تسأل سامية: «إذن، PayPal الجديد؟» ابنِ الجواب. |
+| `d3.boss.r.frame` | La flèche est juste sur {1} et trompeuse sur {2}. | السهم منصف في {1} ومضلّل في {2}. |
+| `d3.boss.r.p.r1.text` | ce qu’il fait : l’envoi | ما يفعله: الإرسال |
+| `d3.boss.r.p.r1.why` | Son site range l’envoi et la dépense parmi ce qu’il fait. | موقعه يذكر الإرسال والإنفاق بين ما يفعله. |
+| `d3.boss.r.p.r2.text` | qui garde les clés | من يحتفظ بالمفاتيح |
+| `d3.boss.r.p.r2.why` | Son aide : elle détient la clé maîtresse. C’est là que la flèche trompe. | صفحات المساعدة لديه: هي تحوز المفتاح الرئيسي. وهنا يضلّل السهم. |
+| `d3.boss.r.p.r3.text` | les frais de réseau | رسوم الشبكة |
+| `d3.boss.r.p.r3.why` | Des frais existent. Ce que la flèche cache, c’est qui détient les clés. | الرسوم موجودة. وما يخفيه السهم هو من يحوز المفاتيح. |
+| `d3.boss.r.p.r4.text` | sa nouveauté | مدى جدّته |
+| `d3.boss.r.p.r4.why` | Neuf ou ancien, là n’est pas la question. Les clés, si. | جديد أو قديم، ليس هذا المهمّ. المهمّ المفاتيح. |
+| `d3.boss.r.prompt` | Où la flèche tient, et où elle ne tient pas. Touchez une pastille, puis sa case. | أين يصمد السهم، وأين لا يصمد. المس رقعة، ثم خانتها. |
+| `d3.bub.a` | MetaMask ne peut lire sa phrase, donc pas de bouton. Maintenant, défaire. | لا يستطيع MetaMask قراءة عبارتها، إذن لا زرّ. والآن التراجع. |
+| `d3.bub.b` | Elle a répondu d’une ligne : « Alors, c’est ça, ou pas ? » | ردّت بسطر واحد: «إذن، هل هو كذلك أم لا؟» |
+| `d3.can` | Vous savez maintenant expliquer pourquoi un trousseau n’est pas un compte. | صرتَ تعرف كيف تشرح لماذا حلقة المفاتيح ليست حساباً. |
+| `d3.claim` | MetaMask, c’est le nouveau PayPal. | MetaMask هو PayPal الجديد. |
+| `d3.final.frame` | Un transfert confirmé reste, car {1} ; pour le rendre, il n’y a que {2}. | التحويل المؤكَّد يبقى، لأنّ {1}؛ ولا يستطيع إعادته إلا {2}. |
+| `d3.final.hint.0` | D’abord la raison. Puis le seul chemin de retour. | السبب أولاً. ثم طريق العودة الوحيد. |
+| `d3.final.hint.1` | Personne au milieu ne peut modifier le registre. | لا أحد في الوسط يستطيع تعديل السجلّ. |
+| `d3.final.hint.2` | Réponse : le registre ne peut être modifié ; le destinataire, par un nouveau transfert. | الجواب: السجلّ لا يمكن تعديله؛ المستلِم، بتحويل جديد. |
+| `d3.final.kuro` | Définitif. | نهائي. |
+| `d3.final.p.c1.text` | le registre ne peut être modifié | السجلّ لا يمكن تعديله |
+| `d3.final.p.c1.why` | L’aide dit les transactions sur la chaîne immuables : non modifiées une fois confirmées. | صفحات المساعدة تصف المعاملات على السلسلة بأنها ثابتة: لا تُعدَّل بعد تأكيدها. |
+| `d3.final.p.c2.text` | le destinataire, par un nouveau transfert | المستلِم، بتحويل جديد |
+| `d3.final.p.c2.why` | L’aide : elle peut demander au détenteur de l’adresse de le renvoyer. | صفحات المساعدة: تستطيع أن تطلب من مالك العنوان إعادة إرساله. |
+| `d3.final.p.c3.text` | MetaMask en garde une copie | MetaMask يحتفظ بنسخة |
+| `d3.final.p.c3.why` | L’aide : il ne peut pas intervenir pour sauver des fonds. | صفحات المساعدة: لا يستطيع التدخّل لإنقاذ الأموال. |
+| `d3.final.p.c4.text` | un service d’assistance | مكتب دعم |
+| `d3.final.p.c4.why` | Le support existe, mais son aide dit : nous ne pouvons pas inverser les transactions. | الدعم موجود، لكنّ صفحات المساعدة لديه تقول: لا نستطيع عكس المعاملات. |
+| `d3.final.p.c5.text` | des frais plus élevés | رسوم أعلى |
+| `d3.final.p.c5.why` | Des frais plus élevés accélèrent un transfert en attente. Ils n’inversent rien. | الرسوم الأعلى تسرّع تحويلاً قيد الانتظار. ولا تعكس شيئاً. |
+| `d3.final.prompt` | Pourquoi rien n’est défait. Construisez-le. | لماذا لا يُتراجع عن شيء. ابنِه. |
+| `d3.final.r.frame` | Tant qu’il est {1}, une annulation peut être tentée ; une fois {2}, non. | ما دام {1}، يمكن محاولة الإلغاء؛ وبعد أن يصبح {2}، لا يمكن. |
+| `d3.final.r.p.r1.text` | en attente | قيد الانتظار |
+| `d3.final.r.p.r1.why` | L’aide : une annulation ne peut être tentée que tant qu’il est en attente. | صفحات المساعدة: لا يمكن محاولة الإلغاء إلا ما دام قيد الانتظار. |
+| `d3.final.r.p.r2.text` | confirmé | مؤكَّداً |
+| `d3.final.r.p.r2.why` | L’aide : les transactions confirmées ne peuvent pas être inversées. | صفحات المساعدة: المعاملات المؤكَّدة لا يمكن عكسها. |
+| `d3.final.r.p.r3.text` | remboursé | مستردّاً |
+| `d3.final.r.p.r3.why` | Sur le registre, un transfert est en attente ou confirmé. Rien n’y est dit remboursé. | التحويل في السجلّ إمّا قيد الانتظار أو مؤكَّد. ولا شيء فيه يُسمّى مستردّاً. |
+| `d3.final.r.p.r4.text` | signalé | مُبلَّغاً عنه |
+| `d3.final.r.p.r4.why` | Signaler une arnaque est possible. Cela ne ramène pas un transfert. | الإبلاغ عن احتيال ممكن. لكنه لا يعيد التحويل. |
+| `d3.final.r.prompt` | Avant et après. Touchez une pastille, puis sa case. | قبل وبعد. المس رقعة، ثم خانتها. |
+| `d3.forgot.frame` | Pas de bouton, car {1}, donc {2}. | لا زرّ لأنّ {1}، إذن {2}. |
+| `d3.forgot.hint.0` | Une réinitialisation exige quelqu’un qui puisse atteindre la phrase. | إعادة التعيين تحتاج إلى من يستطيع الوصول إلى العبارة. |
+| `d3.forgot.hint.1` | D’abord qui ne peut pas l’atteindre. Puis ce qui s’ensuit. | أولاً من لا يستطيع الوصول إليها. ثم ما يترتّب على ذلك. |
+| `d3.forgot.hint.2` | Réponse : MetaMask n’a pas accès à sa phrase ; MetaMask ne peut pas la renvoyer. | الجواب: MetaMask لا يستطيع الوصول إلى عبارتها؛ MetaMask لا يستطيع إرسالها مرّة أخرى. |
+| `d3.forgot.kuro` | Aucun accès. | لا وصول. |
+| `d3.forgot.p.c1.text` | MetaMask n’a pas accès à sa phrase | MetaMask لا يستطيع الوصول إلى عبارتها |
+| `d3.forgot.p.c1.why` | Son aide le dit en ces termes. | صفحات المساعدة لديه تقول ذلك بهذه الكلمات. |
+| `d3.forgot.p.c2.text` | MetaMask ne peut pas la renvoyer | MetaMask لا يستطيع إرسالها مرّة أخرى |
+| `d3.forgot.p.c2.why` | L’éditeur n’a pas accès à la phrase : il n’a donc rien à envoyer. | الصانع لا يصل إلى العبارة، فليس لديه ما يرسله. |
+| `d3.forgot.p.c3.text` | MetaMask cache le bouton | MetaMask يخفي الزرّ |
+| `d3.forgot.p.c3.why` | Il n’y a aucun bouton à cacher. Son aide : aucune récupération de mot de passe ni de compte centralisée. | لا زرّ ليُخفى. صفحات المساعدة لديه: لا استرداد لكلمة المرور ولا استرداد مركزي للحساب. |
+| `d3.forgot.p.c4.text` | ce n’est qu’un mot de passe | العبارة ليست إلا كلمة مرور |
+| `d3.forgot.p.c4.why` | L’aide : la phrase est la clé maîtresse. Le mot de passe ne déverrouille qu’un appareil. | صفحات المساعدة: العبارة هي المفتاح الرئيسي. وكلمة المرور تفتح قفل جهاز واحد فقط. |
+| `d3.forgot.p.c5.text` | le support peut la lire à voix haute | الدعم يستطيع قراءتها لها |
+| `d3.forgot.p.c5.why` | Son aide : « nous ne pouvons pas retrouver votre Phrase secrète de récupération. » | صفحات المساعدة لديه: «لا نستطيع البحث عن عبارة الاسترداد السرّية الخاصّة بك.» |
+| `d3.forgot.prompt` | Configuration par mots écrits. Pourquoi pas de bouton « phrase oubliée » ? | إعداد بكلمات مكتوبة. لماذا لا يوجد زرّ «نسيتُ عبارتي»؟ |
+| `d3.forgot.r.frame` | Un mot de passe oublié se rétablit avec {1}, par {2}. | كلمة المرور المنسيّة تُستعاد بواسطة {1}، والفاعل: {2}. |
+| `d3.forgot.r.p.r1.text` | la Phrase secrète de récupération | عبارة الاسترداد السرّية |
+| `d3.forgot.r.p.r1.why` | L’aide : un mot de passe oublié se rétablit à l’aide de la phrase. | صفحات المساعدة: كلمة المرور المنسيّة تُستعاد باستعمال العبارة. |
+| `d3.forgot.r.p.r2.text` | elle seule | هي وحدها |
+| `d3.forgot.r.p.r2.why` | Elle seule a la phrase. L’éditeur ne peut pas le faire pour elle. | هي وحدها تملك العبارة. والصانع لا يستطيع فعل ذلك نيابةً عنها. |
+| `d3.forgot.r.p.r3.text` | un e-mail de réinitialisation | رسالة بريد لإعادة التعيين |
+| `d3.forgot.r.p.r3.why` | L’aide : l’éditeur ne propose aucune récupération du mot de passe. | صفحات المساعدة: لا استرداد لكلمة المرور من جهة الصانع. |
+| `d3.forgot.r.p.r4.text` | le service d’assistance | مكتب الدعم |
+| `d3.forgot.r.p.r4.why` | Le support ne peut pas récupérer un portefeuille, et ne demande jamais la phrase. | الدعم لا يستطيع استرداد محفظة، ولا يطلب العبارة أبداً. |
+| `d3.forgot.r.prompt` | Configuration par mots écrits ; mot de passe oublié. Touchez une pastille, puis sa case. | إعداد بكلمات مكتوبة؛ وكلمة المرور منسيّة. المس رقعة، ثم خانتها. |
+| `d3.say.hint.0` | Deux lignes disent qu’au fond, c’est l’ancienne chose. | سطران يقولان إنه الشيء القديم في جوهره. |
+| `d3.say.hint.1` | Une ligne dit qui le détient et ce que personne ne peut faire. | سطر واحد يقول من يحوزه وما لا يستطيع أحد فعله. |
+| `d3.say.hint.2` | Réponse : un trousseau qu’elle détient ; personne ne peut réinitialiser ni défaire. | الجواب: حلقة مفاتيح تحوزها هي؛ لا أحد يستطيع إعادة التعيين أو التراجع. |
+| `d3.say.kuro` | Un trousseau. | حلقة مفاتيح. |
+| `d3.say.p.n1.text` | C’est la même chose au fond, avec une technologie plus récente. | إنه الشيء نفسه في جوهره، بتقنية أحدث. |
+| `d3.say.p.n1.why` | Au fond, il diffère : son aide dit qu’elle détient la clé maîtresse et qu’il ne peut atteindre ses actifs. | في جوهره يختلف: صفحات المساعدة لديه تقول إنها تحوز المفتاح الرئيسي وإنه لا يستطيع الوصول إلى أصولها. |
+| `d3.say.p.n2.text` | C’est un trousseau qu’elle détient. Personne ne peut réinitialiser ni défaire. | إنه حلقة مفاتيح تحوزها هي. لا أحد يستطيع إعادة التعيين أو التراجع. |
+| `d3.say.p.n2.why` | Ses pages le disent : elle détient la clé maîtresse, aucun portefeuille n’est récupéré, les transferts confirmés restent. | صفحاته تقول ذلك: هي تحوز المفتاح الرئيسي، ولا تُستردّ أيّ محفظة، والتحويلات المؤكَّدة تبقى. |
+| `d3.say.p.n3.text` | C’est un compte avec un mot de passe plus long. | إنه حساب بكلمة مرور أطول. |
+| `d3.say.p.n3.why` | La phrase est la clé maîtresse, pas un mot de passe : MetaMask ne peut récupérer le portefeuille, dit son aide. | العبارة هي المفتاح الرئيسي، لا كلمة مرور: MetaMask لا يستطيع استرداد المحفظة، كما تقول صفحات المساعدة لديه. |
+| `d3.say.prompt` | Trois lignes pour le prestataire. Touchez la bonne. | ثلاثة أسطر للمورّد. المس الصحيح. |
+| `d3.say.r.p.r1.text` | Pas d’intermédiaire veut dire que rien ne peut mal tourner. | لا وسيط يعني أن لا شيء يمكن أن يسوء. |
+| `d3.say.r.p.r1.why` | Cela veut aussi dire personne pour défaire une erreur. L’aide : les transactions ne peuvent être inversées. | ويعني أيضاً لا أحد يتراجع عن خطأ. صفحات المساعدة: لا يمكن عكس المعاملات. |
+| `d3.say.r.p.r2.text` | Pas d’intermédiaire veut dire qu’elle seule est responsable. | لا وسيط يعني أنها وحدها المسؤولة. |
+| `d3.say.r.p.r2.why` | L’aide : elle est entièrement responsable de la sécurité du portefeuille. | صفحات المساعدة: هي مسؤولة بالكامل عن حماية المحفظة. |
+| `d3.say.r.p.r3.text` | Pas d’intermédiaire veut dire pas de frais. | لا وسيط يعني لا رسوم. |
+| `d3.say.r.p.r3.why` | L’aide montre des frais de réseau sur l’écran de confirmation d’une transaction. | صفحات المساعدة تُظهر رسوم شبكة على شاشة تأكيد المعاملة. |
+| `d3.say.r.prompt` | Trois lignes de plus. Touchez la vraie. | ثلاثة أسطر أخرى. المس الصحيح. |
+| `d3.sheet.address` | Une fiche produit (inventée) | بطاقة منتَج (متخيَّلة) |
+| `d3.sheet.hint.0` | Trois lignes iraient à bien des applis de paiement. | ثلاثة أسطر تصلح لكثير من تطبيقات الدفع. |
+| `d3.sheet.hint.1` | Une ligne parle de qui garde quelque chose. | سطر واحد عمّن يحتفظ بشيء. |
+| `d3.sheet.hint.2` | Réponse : vous détenez les clés ; pas de réinitialisation. | الجواب: أنت تحوز المفاتيح؛ لا إعادة تعيين. |
+| `d3.sheet.kuro` | Qui détient. | من يحوز. |
+| `d3.sheet.p.card.after` | Un plus, venu d’autres. | إضافة، من آخرين. |
+| `d3.sheet.p.card.say` | Ligne trois : une carte, par des partenaires | السطر الثالث: بطاقة، من شركاء |
+| `d3.sheet.p.card.text` | Une carte, par des partenaires | بطاقة، من شركاء |
+| `d3.sheet.p.card.why` | Son site : la carte vient de partenaires extérieurs. Elle ne change rien aux clés. | موقعه: البطاقة تأتي من شركاء خارجيين. ولا تغيّر شيئاً في أمر المفاتيح. |
+| `d3.sheet.p.does.after` | Une chose qu’il fait. | شيء يفعله. |
+| `d3.sheet.p.does.say` | Ligne un : envoyer et recevoir | السطر الأول: إرسال واستقبال |
+| `d3.sheet.p.does.text` | Envoyer et recevoir | إرسال واستقبال |
+| `d3.sheet.p.does.why` | C’est ce qu’il fait. Cela ne dit pas qui détient les clés. | هذا ما يفعله. ولا يقول من يحوز المفاتيح. |
+| `d3.sheet.p.free.after` | Sur l’appli seulement. | عن التطبيق فقط. |
+| `d3.sheet.p.free.say` | Ligne deux : gratuit sur téléphone et navigateur | السطر الثاني: مجاني على الهاتف والمتصفّح |
+| `d3.sheet.p.free.text` | Gratuit sur téléphone et navigateur | مجاني على الهاتف والمتصفّح |
+| `d3.sheet.p.free.why` | Gratuit concerne l’appli. Chaque transfert porte quand même des frais de réseau. | «مجاني» يخصّ التطبيق. وكلّ تحويل يحمل مع ذلك رسوم شبكة. |
+| `d3.sheet.p.keys.after` | Ses clés · pas de réinitialisation | مفاتيحها · لا إعادة تعيين |
+| `d3.sheet.p.keys.say` | Ligne quatre : vous détenez les clés, pas de réinitialisation | السطر الرابع: أنت تحوز المفاتيح، لا إعادة تعيين |
+| `d3.sheet.p.keys.text` | Vous détenez les clés. Pas de réinitialisation. | أنت تحوز المفاتيح. لا إعادة تعيين. |
+| `d3.sheet.p.keys.why` | Son aide : elle détient la clé maîtresse, et il n’y a aucune récupération de compte centralisée. | صفحات المساعدة لديه: هي تحوز المفتاح الرئيسي، ولا استرداد مركزي للحساب. |
+| `d3.sheet.prompt` | Une fiche produit. Pointez la ligne qu’aucune entreprise gardant son compte ne pourrait imprimer. | بطاقة منتَج. أشِر إلى السطر الذي لا تستطيع أيّ شركة تحفظ حسابها أن تطبعه. |
+| `d3.sheet.r.address` | Une fiche produit (inventée) | بطاقة منتَج (متخيَّلة) |
+| `d3.sheet.r.p.alone.after` | Imprimé, et vrai. | مطبوع، وصحيح. |
+| `d3.sheet.r.p.alone.say` | Ligne trois : vous seul pouvez accéder à votre portefeuille | السطر الثالث: أنت وحدك تستطيع الوصول إلى محفظتك |
+| `d3.sheet.r.p.alone.text` | Vous seul pouvez accéder à votre portefeuille | أنت وحدك تستطيع الوصول إلى محفظتك |
+| `d3.sheet.r.p.alone.why` | Ce sont les mots mêmes de son aide sur un portefeuille auto-dépositaire. | هذه كلمات صفحات المساعدة لديه نفسها عن محفظة ذاتية الحفظ. |
+| `d3.sheet.r.p.fee.after` | Imprimé, et vrai. | مطبوع، وصحيح. |
+| `d3.sheet.r.p.fee.say` | Ligne deux : des frais de réseau s’appliquent | السطر الثاني: تُطبَّق رسوم شبكة |
+| `d3.sheet.r.p.fee.text` | Des frais de réseau s’appliquent | تُطبَّق رسوم شبكة |
+| `d3.sheet.r.p.fee.why` | L’aide montre Frais de réseau sur l’écran de confirmation. | صفحات المساعدة تُظهر «رسوم الشبكة» على شاشة التأكيد. |
+| `d3.sheet.r.p.final.after` | Imprimé, et vrai. | مطبوع، وصحيح. |
+| `d3.sheet.r.p.final.say` | Ligne quatre : les transferts confirmés sont définitifs | السطر الرابع: التحويلات المؤكَّدة نهائية |
+| `d3.sheet.r.p.final.text` | Les transferts confirmés sont définitifs | التحويلات المؤكَّدة نهائية |
+| `d3.sheet.r.p.final.why` | L’aide : les transactions déjà confirmées ne peuvent pas être inversées. | صفحات المساعدة: المعاملات التي تأكّدت بالفعل لا يمكن عكسها. |
+| `d3.sheet.r.p.reset.after` | Jamais imprimé · aucun accès | لا يُطبع أبداً · لا وصول |
+| `d3.sheet.r.p.reset.say` | Ligne un : phrase oubliée ? Nous vous la renvoyons | السطر الأول: نسيتَ عبارتك؟ نرسلها إليك مرّة أخرى |
+| `d3.sheet.r.p.reset.text` | Phrase oubliée ? Nous vous la renvoyons | نسيتَ عبارتك؟ نرسلها إليك مرّة أخرى |
+| `d3.sheet.r.p.reset.why` | Son aide : MetaMask n’a pas accès à sa phrase et ne peut pas récupérer le portefeuille. | صفحات المساعدة لديه: لا يستطيع MetaMask الوصول إلى عبارتها ولا استرداد المحفظة. |
+| `d3.sheet.r.prompt` | Quatre lignes de plus. Pointez celle qu’un trousseau ne pourrait jamais imprimer. | أربعة أسطر أخرى. أشِر إلى السطر الذي لا يمكن أن تطبعه حلقة مفاتيح أبداً. |
+| `d3.slip` | Le prestataire résume la flèche : « MetaMask, c’est le nouveau PayPal. » Samia se demande ce que cache le mot « nouveau ». | يلخّص المورّد السهم: «MetaMask هو PayPal الجديد.» تتساءل سامية عمّا تخفيه كلمة «الجديد». |
+| `d3.slipTag` | ENQUÊTE 08 · exemple inventé | التحقيق 08 · مثال متخيَّل |
+| `d3.stamp.prompt` | Le prestataire, encore : MetaMask, c’est le nouveau PayPal. Tamponnez : | قول المورّد مرّة أخرى: MetaMask هو PayPal الجديد. اختمه: |
+| `d3.stamp.reveal` | À moitié. Il sait envoyer. Mais c’est un trousseau : elle détient les clés, sans réinitialisation ni retour en arrière. | نصف صحيح. يستطيع الإرسال. لكنه حلقة مفاتيح: هي تحوز المفاتيح، بلا إعادة تعيين ولا تراجع. |
+| `d3.what.frame` | MetaMask gère {1} ; les jetons restent {2}. | MetaMask يدير {1}؛ والرموز الرقمية تبقى {2}. |
+| `d3.what.hint.0` | Un trousseau contient un seul genre de chose. | حلقة المفاتيح تحمل نوعاً واحداً من الأشياء. |
+| `d3.what.hint.1` | Le registre n’est ni dans l’appli, ni chez une entreprise. | السجلّ ليس في التطبيق، ولا لدى شركة. |
+| `d3.what.hint.2` | Réponse : ses clés privées ; sur un registre public. | الجواب: مفاتيحها الخاصّة؛ في سجلّ عامّ. |
+| `d3.what.kuro` | Clés, pas pièces. | مفاتيح، لا نقود. |
+| `d3.what.p.c1.text` | ses clés privées | مفاتيحها الخاصّة |
+| `d3.what.p.c1.why` | Son aide : il lui permet de gérer ses clés privées. | صفحات المساعدة لديه: يتيح لها إدارة مفاتيحها الخاصّة. |
+| `d3.what.p.c2.text` | sur un registre public | في سجلّ عامّ |
+| `d3.what.p.c2.why` | Un guide public : un portefeuille est une fenêtre sur le registre. Son fournisseur n’en a pas la garde. | دليل عامّ: المحفظة نافذة على السجلّ. ومزوّدها لا يتولّى الحفظ. |
+| `d3.what.p.c3.text` | ses jetons | رموزها الرقمية |
+| `d3.what.p.c3.why` | Il gère ce qui signe pour les jetons, pas les jetons eux-mêmes. | يدير ما يوقّع عن الرموز الرقمية، لا الرموز نفسها. |
+| `d3.what.p.c4.text` | dans l’appli | داخل التطبيق |
+| `d3.what.p.c4.why` | L’appli montre le registre. Elle ne le contient pas. | التطبيق يعرض السجلّ. ولا يحتويه. |
+| `d3.what.p.c5.text` | chez l’entreprise | لدى الشركة |
+| `d3.what.p.c5.why` | Son aide : MetaMask n’a pas accès à ses actifs. | صفحات المساعدة لديه: ليس لدى MetaMask وصول إلى أصولها. |
+| `d3.what.prompt` | Ce que c’est, en une phrase. Touchez une pastille, puis sa case. | ما هو، في جملة واحدة. المس رقعة، ثم خانتها. |
+| `d3.what.r.frame` | L’adresse est comme {1} ; la clé privée est comme {2}. | العنوان مثل {1}؛ والمفتاح الخاصّ مثل {2}. |
+| `d3.what.r.p.r1.text` | le numéro sur la boîte | الرقم على الصندوق |
+| `d3.what.r.p.r1.why` | Une adresse dit seulement où. Un guide public la compare à une adresse e-mail. | العنوان يقول أين فقط. ودليل عامّ يشبّهه بعنوان بريد إلكتروني. |
+| `d3.what.r.p.r2.text` | la seule clé qui l’ouvre | المفتاح الوحيد له |
+| `d3.what.r.p.r2.why` | La clé privée signe. L’aide : elle contrôle ce compte, et ne se partage jamais. | المفتاح الخاصّ يوقّع. صفحات المساعدة: يتحكّم في ذلك الحساب، ولا يُشارَك أبداً. |
+| `d3.what.r.p.r3.text` | la poste | مكتب البريد |
+| `d3.what.r.p.r3.why` | Aucun bureau ne s’interpose. Pas d’intermédiaire, dit l’aide. | لا مكتب يقف في الوسط. لا وسيط، كما تقول صفحات المساعدة. |
+| `d3.what.r.p.r4.text` | les lettres dedans | الرسائل في داخله |
+| `d3.what.r.p.r4.why` | Les lettres seraient les jetons. Ni l’adresse ni la clé ne sont les jetons. | الرسائل ستكون الرموز الرقمية. لا العنوان ولا المفتاح هو الرموز. |
+| `d3.what.r.prompt` | Une clé et une boîte postale. Touchez une pastille, puis sa case. | مفتاح وصندوق بريد. المس رقعة، ثم خانتها. |
+| `row` | Un trousseau, pas une banque : elle détient les clés ; personne ne peut les réinitialiser ni défaire un transfert. | حلقة مفاتيح، لا مصرف: هي تحوز المفاتيح؛ ولا أحد يستطيع إعادة تعيينها أو التراجع عن تحويل. |
+| `sticker.back` | Ce que c’est : MetaMask, une appli qui gère des clés. Ce que vous détenez : les clés, en douze mots écrits. Ce que vous cédez : toute réinitialisation, tout service qui puisse défaire, toute inversion d’un transfert confirmé. L’idée fausse : l’argent serait dans l’appli. Cité comme exemple, pas comme recommandation. Vérifié le 2026-11-23. | ما هو: MetaMask، تطبيق يدير المفاتيح. ما تحوزه: المفاتيح، في صورة 12 كلمة مكتوبة. ما تتخلّى عنه: أيّ إعادة تعيين، وأيّ مكتب يستطيع التراجع، وأيّ سبيل لعكس تحويل مؤكَّد. الفكرة الخاطئة: أن المال يقيم في التطبيق. مذكور كمثال، لا كتوصية. جرى التحقّق في 2026-11-23. |
+| `sticker.line` | Un trousseau, pas une banque. | حلقة مفاتيح، لا مصرف. |
+| `sticker.name` | Distingue trousseau et banque | يميّز حلقة المفاتيح من المصرف |
+| `tpl.help-lines` | Ce que dit l’aide | ما تقوله صفحات المساعدة |
+| `tpl.send-sheet` | Envoyer | إرسال |
+| `tpl.wallet-home` | Portefeuille | المحفظة |
+
+### Case 09, Sign in with Google → Sign-In with Ethereum (`hub/src/lanterne/enquetes/c09.ar.json`, 567 keys)
+
+| Key | Français | العربية |
+|---|---|---|
+| `d1.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d1.boss.hint.0` | Une connexion dit qui veut qu’elle se connecte. | رسالة تسجيل الدخول تقول من يريدها أن تسجّل الدخول. |
+| `d1.boss.hint.1` | Trois demandes parlent de dépenser, d’envoyer ou de réclamer. | ثلاثة طلبات تتعلّق بالإنفاق أو الإرسال أو المطالبة. |
+| `d1.boss.hint.2` | Réponse : order-desk.example vous demande de vous connecter. | الجواب: order-desk.example يريدك أن تسجّل الدخول. |
+| `d1.boss.kuro` | Lisez-le. | اقرأه. |
+| `d1.boss.p.cap.after` | Laisse un site dépenser. | يتيح لموقع أن ينفق. |
+| `d1.boss.p.cap.say` | Demande deux : demande de plafond de dépenses pour un jeton | الطلب الثاني: طلب حدّ إنفاق لرمز رقمي |
+| `d1.boss.p.cap.text` | Demande de plafond de dépenses pour un jeton | طلب حدّ إنفاق لرمز رقمي |
+| `d1.boss.p.cap.why` | L’aide : avec elle, un site peut prendre ce jeton sur son compte. | صفحات المساعدة: بهذا الطلب قد يأخذ موقع ذلك الرمز الرقمي من حسابها. |
+| `d1.boss.p.gift.after` | Une réclamation. Aucune connexion. | مطالبة. لا تسجيل دخول. |
+| `d1.boss.p.gift.say` | Demande quatre : approuvez pour réclamer votre cadeau | الطلب الرابع: وافِق لتطالب بهديّتك |
+| `d1.boss.p.gift.text` | Approuvez pour réclamer votre cadeau | وافِق لتطالب بهديّتك |
+| `d1.boss.p.gift.why` | Un guide public décrit ce piège : un site promet un cadeau, puis lui demande d’approuver une transaction. | دليل عامّ يصف هذا الفخّ: موقع يعِد بهديّة، ثم يطلب منها الموافقة على معاملة. |
+| `d1.boss.p.signin.after` | Un message de connexion · non publié sur la blockchain | رسالة تسجيل دخول · لا تُنشر على سلسلة الكتل |
+| `d1.boss.p.signin.say` | Demande un : order-desk.example vous demande de vous connecter | الطلب الأول: order-desk.example يريدك أن تسجّل الدخول |
+| `d1.boss.p.signin.text` | order-desk.example vous demande de vous connecter | order-desk.example يريدك أن تسجّل الدخول |
+| `d1.boss.p.signin.why` | Il ouvre une session sur ce site. L’aide : les messages ne sont pas publiés sur la blockchain. | يفتح جلسة مع ذلك الموقع. صفحات المساعدة: الرسائل لا تُنشر على سلسلة الكتل. |
+| `d1.boss.p.tx.after` | Va d’habitude sur la blockchain. | تذهب عادةً إلى سلسلة الكتل. |
+| `d1.boss.p.tx.say` | Demande trois : demande de transaction | الطلب الثالث: طلب معاملة |
+| `d1.boss.p.tx.text` | Demande de transaction | طلب معاملة |
+| `d1.boss.p.tx.why` | Une transaction est en général publiée sur la blockchain. Un message de connexion, non. | المعاملة تُنشر عادةً على سلسلة الكتل. أمّا رسالة تسجيل الدخول فلا. |
+| `d1.boss.prompt` | Samia objecte : « Une signature est une signature. » Quatre demandes. Pointez celle qui ne fait rien sortir de son compte. | تعترض سامية: «التوقيع توقيع.» أربعة طلبات. أشِر إلى الطلب الذي لا يُخرج شيئاً من حسابها. |
+| `d1.boss.r.p.key.after` | La clé ne sort jamais. | المفتاح لا يغادر أبداً. |
+| `d1.boss.r.p.key.say` | Une copie de sa clé | نسخة من مفتاحها |
+| `d1.boss.r.p.key.text` | Une copie de sa clé | نسخة من مفتاحها |
+| `d1.boss.r.p.key.why` | Elle signe avec la clé privée. Seule la signature part vers le site. | توقّع بالمفتاح الخاصّ. التوقيع وحده يذهب إلى الموقع. |
+| `d1.boss.r.p.none.after` | Non publié · il va au site | لا يُنشر · يذهب إلى الموقع |
+| `d1.boss.r.p.none.say` | Rien : les messages n’y sont pas publiés | لا شيء: الرسائل لا تُنشر هناك |
+| `d1.boss.r.p.none.text` | Rien : les messages n’y sont pas publiés | لا شيء: الرسائل لا تُنشر هناك |
+| `d1.boss.r.p.none.why` | L’aide : les transactions sont en général publiées sur la blockchain, les messages non. | صفحات المساعدة: المعاملات تُنشر عادةً على سلسلة الكتل، أمّا الرسائل فلا. |
+| `d1.boss.r.p.pay.after` | Aucun montant dessus. | لا مبلغ فيها. |
+| `d1.boss.r.p.pay.say` | Un paiement | دفعة |
+| `d1.boss.r.p.pay.text` | Un paiement | دفعة |
+| `d1.boss.r.p.pay.why` | Le message a un site, une adresse, un nonce et une heure. Aucune ligne de montant. | في الرسالة موقع وعنوان وقيمة المرّة الواحدة ووقت. ولا يوجد سطر للمبلغ. |
+| `d1.boss.r.prompt` | Elle demande ce qu’un message de connexion laisse sur la blockchain. Pointez la réponse. | تسأل ماذا تترك رسالة تسجيل الدخول على سلسلة الكتل. أشِر إلى الجواب. |
+| `d1.bub.a` | Les fenêtres sont de moi. Lisez le titre avant le bouton. | النوافذ المنبثقة من صنعي. اقرأ العنوان قبل الزرّ. |
+| `d1.bub.b` | Elle a répondu : « Aucune réinitialisation ? Vraiment aucune ? » Je porte, c’est tout. | ردّت برسالة: «لا إعادة تعيين؟ إطلاقاً؟» أنا أحملها فقط. |
+| `d1.buttons.hint.0` | Un bouton s’appuie sur une entreprise, deux sur un mot de passe. | زرّ واحد يعتمد على شركة، واثنان على كلمة مرور. |
+| `d1.buttons.hint.1` | Un bouton ouvre un message à signer. | زرّ واحد يفتح رسالة للتوقيع. |
+| `d1.buttons.hint.2` | Réponse : Se connecter avec un portefeuille. | الجواب: تسجيل الدخول بالمحفظة. |
+| `d1.buttons.kuro` | Sa clé. | مفتاحها. |
+| `d1.buttons.p.close.after` | Fermé. Personne de connecté. | أُغلق. لم يسجّل أحد الدخول. |
+| `d1.buttons.p.close.cap` | Fermer | إغلاق |
+| `d1.buttons.p.close.say` | Fermer, bouton | إغلاق، زرّ |
+| `d1.buttons.p.close.why` | Fermer la page ne connecte personne. | إغلاق الصفحة لا يُدخل أحداً. |
+| `d1.buttons.p.create.after` | Nouveau mot de passe ici. | كلمة مرور جديدة هنا. |
+| `d1.buttons.p.create.say` | Créer un compte, bouton | إنشاء حساب، زرّ |
+| `d1.buttons.p.create.text` | Créer un compte | إنشاء حساب |
+| `d1.buttons.p.create.why` | Un nouveau mot de passe sur ce site. Aucune signature. | كلمة مرور جديدة على هذا الموقع. لا توقيع. |
+| `d1.buttons.p.email.after` | Mot de passe à taper. | كلمة مرور تُكتب. |
+| `d1.buttons.p.email.say` | Continuer avec un e-mail, bouton | المتابعة بالبريد الإلكتروني، زرّ |
+| `d1.buttons.p.email.text` | Continuer avec un e-mail | المتابعة بالبريد الإلكتروني |
+| `d1.buttons.p.email.why` | Un e-mail et un mot de passe, tapés sur le site lui-même. | بريد إلكتروني وكلمة مرور، يُكتبان في الموقع نفسه. |
+| `d1.buttons.p.google.after` | Un code de Google. | شيفرة من Google. |
+| `d1.buttons.p.google.say` | Continuer avec Google, bouton | المتابعة باستخدام Google، زرّ |
+| `d1.buttons.p.google.text` | Continuer avec Google | المتابعة باستخدام Google |
+| `d1.buttons.p.google.why` | Aucune signature d’elle : le bouton utilise un code transmis de façon sécurisée, issu de son compte Google. | لا توقيع منها: الزرّ يستعمل شيفرة تُنقل بأمان، مبنيّة على حسابها على Google. |
+| `d1.buttons.p.wallet.after` | Un message à signer · sa propre clé répond | رسالة للتوقيع · مفتاحها هي يجيب |
+| `d1.buttons.p.wallet.say` | Se connecter avec un portefeuille, bouton | تسجيل الدخول بالمحفظة، زرّ |
+| `d1.buttons.p.wallet.text` | Se connecter avec un portefeuille | تسجيل الدخول بالمحفظة |
+| `d1.buttons.p.wallet.why` | Le standard, Sign-In with Ethereum : son compte signe un message. Aucun mot de passe n’est tapé. | المعيار، Sign-In with Ethereum: حسابها يوقّع رسالة. ولا تُكتب أيّ كلمة مرور. |
+| `d1.buttons.prompt` | Une page de connexion (inventée). Pointez le bouton où sa propre signature la fait entrer. | صفحة تسجيل دخول (متخيَّلة). أشِر إلى الزرّ الذي يُدخلها فيه توقيعها هي. |
+| `d1.buttons.r.p.google.after` | Nom, e-mail, photo de profil · partagés avec son accord | الاسم، البريد الإلكتروني، صورة الملفّ الشخصي · تُشارَك بموافقتها |
+| `d1.buttons.r.p.google.say` | Se connecter avec Google, tuile | تسجيل الدخول باستخدام Google، خانة |
+| `d1.buttons.r.p.google.text` | Se connecter avec Google | تسجيل الدخول باستخدام Google |
+| `d1.buttons.r.p.google.why` | L’aide de Google : l’appli crée un compte avec ce que Google partage, comme nom, e-mail, photo de profil. | صفحات مساعدة Google: التطبيق ينشئ حساباً ممّا يشاركه Google، مثل الاسم والبريد الإلكتروني وصورة الملفّ الشخصي. |
+| `d1.buttons.r.p.new.after` | Rien de transmis. | لا شيء يُسلَّم. |
+| `d1.buttons.r.p.new.say` | Créer un nouveau mot de passe, tuile | إنشاء كلمة مرور جديدة، خانة |
+| `d1.buttons.r.p.new.text` | Créer un nouveau mot de passe | إنشاء كلمة مرور جديدة |
+| `d1.buttons.r.p.new.why` | Un nouveau mot de passe n’apporte rien d’un autre compte. | كلمة المرور الجديدة لا تجلب شيئاً من حساب آخر. |
+| `d1.buttons.r.p.wallet.after` | Une adresse. Aucun nom. | عنوان. لا اسم. |
+| `d1.buttons.r.p.wallet.say` | Se connecter avec un portefeuille, tuile | تسجيل الدخول بالمحفظة، خانة |
+| `d1.buttons.r.p.wallet.text` | Se connecter avec un portefeuille | تسجيل الدخول بالمحفظة |
+| `d1.buttons.r.p.wallet.why` | Le message à signer porte l’adresse de son compte. Ni nom ni e-mail n’y figurent. | الرسالة المراد توقيعها تحمل عنوان حسابها. ولا اسم فيها ولا بريد إلكتروني. |
+| `d1.buttons.r.prompt` | Trois façons d’entrer. Pointez celle qui donne au site son nom, son e-mail et sa photo. | ثلاث طرق للدخول. أشِر إلى الطريقة التي تسلّم الموقع اسمها وبريدها الإلكتروني وصورتها. |
+| `d1.can` | Vous savez maintenant distinguer un message de connexion d’une demande qui laisse un site dépenser. | صرتَ تعرف كيف تميّز رسالة تسجيل الدخول من طلب يتيح لموقع أن ينفق. |
+| `d1.claim` | Se connecter avec un portefeuille est un paiement. | تسجيل الدخول بالمحفظة عملية دفع. |
+| `d1.fields.hint.0` | Qui demande, c’est un site : cherchez donc un nom de site. | من يطلب موقع، فابحث عن اسم موقع. |
+| `d1.fields.hint.1` | Une ligne commence par un nom et dit ce qu’il veut. | سطر واحد يبدأ باسم ويقول ما يريده. |
+| `d1.fields.hint.2` | Réponse : la première ligne, order-desk.example. | الجواب: السطر الأول، order-desk.example. |
+| `d1.fields.kuro` | Première ligne. | السطر الأول. |
+| `d1.fields.p.address.after` | Sa propre adresse. | عنوانها هي. |
+| `d1.fields.p.address.say` | Ligne deux : une adresse, abrégée | السطر الثاني: عنوان، مختصَر |
+| `d1.fields.p.address.text` | 0x4f2…b81 | 0x4f2…b81 |
+| `d1.fields.p.address.why` | C’est l’adresse de son compte : qui signe, pas qui demande. | هذا عنوان حسابها: من يوقّع، لا من يطلب. |
+| `d1.fields.p.domain.after` | order-desk.example · le site qui demande | order-desk.example · الموقع الذي يطلب |
+| `d1.fields.p.domain.say` | Ligne un : order-desk.example vous demande de vous connecter | السطر الأول: order-desk.example يريدك أن تسجّل الدخول |
+| `d1.fields.p.domain.text` | order-desk.example vous demande de vous connecter | order-desk.example يريدك أن تسجّل الدخول |
+| `d1.fields.p.domain.why` | Le standard place en premier le nom du site qui demande. Un portefeuille doit l’afficher avant qu’elle signe. | المعيار يضع اسم الموقع الطالب أولاً. وعلى المحفظة أن تعرضه قبل أن توقّع. |
+| `d1.fields.p.issued.after` | Juste une heure. | وقت فقط. |
+| `d1.fields.p.issued.say` | Ligne cinq : Émis le | السطر الخامس: وقت الإصدار |
+| `d1.fields.p.issued.text` | Émis le : 2026-11-23T21:04:00Z | وقت الإصدار: 2026-11-23T21:04:00Z |
+| `d1.fields.p.issued.why` | L’heure où le message a été créé. Elle ne nomme personne. | الوقت الذي أُنشئت فيه الرسالة. ولا يسمّي أحداً. |
+| `d1.fields.p.nonce.after` | Une chaîne aléatoire. | سلسلة عشوائية. |
+| `d1.fields.p.nonce.say` | Ligne quatre : Nonce | السطر الرابع: قيمة المرّة الواحدة |
+| `d1.fields.p.nonce.text` | Nonce : 32891756 | قيمة المرّة الواحدة: 32891756 |
+| `d1.fields.p.nonce.why` | Une chaîne aléatoire choisie par le site. Elle ne nomme personne. | سلسلة عشوائية يختارها الموقع. ولا تسمّي أحداً. |
+| `d1.fields.p.statement.after` | Une phrase à accepter. | جملة للقبول. |
+| `d1.fields.p.statement.say` | Ligne trois : J’accepte les conditions d’utilisation | السطر الثالث: أوافق على شروط الخدمة |
+| `d1.fields.p.statement.text` | J’accepte les conditions d’utilisation | أوافق على شروط الخدمة |
+| `d1.fields.p.statement.why` | La déclaration est une phrase facultative qu’elle accepte. N’importe quel site peut écrire n’importe quelle phrase. | البيان جملة اختيارية توافق عليها. وأيّ موقع يستطيع أن يكتب أيّ جملة. |
+| `d1.fields.prompt` | Le portefeuille montre ce qu’elle signerait. Pointez la ligne qui nomme qui demande. | المحفظة تعرض ما ستوقّعه. أشِر إلى السطر الذي يسمّي من يطلب. |
+| `d1.fields.r.p.address.after` | 0x4f2…b81 · son compte | 0x4f2…b81 · حسابها |
+| `d1.fields.r.p.address.say` | Ligne deux : une adresse, abrégée | السطر الثاني: عنوان، مختصَر |
+| `d1.fields.r.p.address.text` | 0x4f2…b81 | 0x4f2…b81 |
+| `d1.fields.r.p.address.why` | Le standard : l’adresse qui effectue la signature. C’est l’adresse de son compte. | المعيار: العنوان الذي يُجري التوقيع. إنه عنوان حسابها. |
+| `d1.fields.r.p.domain.after` | Le site qui demande. | الموقع الذي يطلب. |
+| `d1.fields.r.p.domain.say` | Ligne un : order-desk.example vous demande de vous connecter | السطر الأول: order-desk.example يريدك أن تسجّل الدخول |
+| `d1.fields.r.p.domain.text` | order-desk.example vous demande de vous connecter | order-desk.example يريدك أن تسجّل الدخول |
+| `d1.fields.r.p.domain.why` | Cette ligne nomme qui demande. Le signataire vient ensuite. | هذا السطر يسمّي من يطلب. والموقِّع يأتي بعده. |
+| `d1.fields.r.p.nonce.after` | Une chaîne aléatoire. | سلسلة عشوائية. |
+| `d1.fields.r.p.nonce.say` | Ligne quatre : Nonce | السطر الرابع: قيمة المرّة الواحدة |
+| `d1.fields.r.p.nonce.text` | Nonce : 32891756 | قيمة المرّة الواحدة: 32891756 |
+| `d1.fields.r.p.nonce.why` | Le site le choisit. Ce n’est pas un compte. | الموقع يختارها. وليست حساباً. |
+| `d1.fields.r.p.uri.after` | La page du site. | صفحة الموقع. |
+| `d1.fields.r.p.uri.say` | Ligne trois : URI | السطر الثالث: معرّف المورد |
+| `d1.fields.r.p.uri.text` | URI : https://order-desk.example/login | معرّف المورد: https://order-desk.example/login |
+| `d1.fields.r.p.uri.why` | L’URI désigne la page visée par la connexion. Elle appartient au site, pas à elle. | معرّف المورد هو الصفحة التي يخصّها تسجيل الدخول. إنها للموقع، لا لها. |
+| `d1.fields.r.prompt` | La même demande. Pointez la ligne qui dit quel compte signe. | الطلب نفسه. أشِر إلى السطر الذي يقول أيّ حساب يوقّع. |
+| `d1.lost.address` | Bouton portefeuille : aide | زرّ المحفظة: المساعدة |
+| `d1.lost.hint.0` | Trois lignes promettent un chemin de retour. | ثلاثة أسطر تعِد بطريق للعودة. |
+| `d1.lost.hint.1` | Le standard nomme un bouton qu’il n’a pas. | المعيار يسمّي زرّاً ليس لديه. |
+| `d1.lost.hint.2` | Réponse : votre clé, à vous seul. | الجواب: مفتاحك، لك وحدك. |
+| `d1.lost.kuro` | Aucune réinitialisation. | لا إعادة تعيين. |
+| `d1.lost.p.forgot.after` | Ce bouton n’existe pas. | لا زرّ كهذا. |
+| `d1.lost.p.forgot.say` | Ligne un : Clé perdue ? Nous envoyons un lien par e-mail | السطر الأول: أضعت المفتاح؟ نرسل رابطاً بالبريد الإلكتروني |
+| `d1.lost.p.forgot.text` | Clé perdue ? Nous envoyons un lien par e-mail | أضعت المفتاح؟ نرسل رابطاً بالبريد الإلكتروني |
+| `d1.lost.p.forgot.why` | Le standard le dit clairement : il n’y a pas ici de bouton « mot de passe oublié ». | المعيار يقولها صراحة: لا يوجد هنا زرّ «نسيت كلمة المرور». |
+| `d1.lost.p.google.after` | Google n’y est pas. | Google لا يتدخّل فيه. |
+| `d1.lost.p.google.say` | Ligne deux : Google rétablit l’accès | السطر الثاني: Google يستعيد الوصول |
+| `d1.lost.p.google.text` | Google rétablit l’accès | Google يستعيد الوصول |
+| `d1.lost.p.google.why` | Google récupère les comptes Google. La connexion du standard ne demande à aucune entreprise de se porter garante. | Google يستردّ حسابات Google. وتسجيل الدخول وفق المعيار لا يطلب من أيّ شركة أن تشهد لها. |
+| `d1.lost.p.own.after` | Aucune réinitialisation · la clé est à elle | لا إعادة تعيين · المفتاح لها |
+| `d1.lost.p.own.say` | Ligne quatre : Votre clé, à vous seul | السطر الرابع: مفتاحك، لك وحدك |
+| `d1.lost.p.own.text` | Votre clé, à vous seul | مفتاحك، لك وحدك |
+| `d1.lost.p.own.why` | Le standard : elle obtient le contrôle par ses clés, et la responsabilité qui va avec. | المعيار: تنال التحكّم عبر مفاتيحها، والمسؤولية التي تأتي معه. |
+| `d1.lost.p.spare.after` | Le site n’en détient aucune. | الموقع لا يحوز أيّاً منها. |
+| `d1.lost.p.spare.say` | Ligne trois : Nous gardons un double de la clé | السطر الثالث: نحتفظ بمفتاح احتياطي |
+| `d1.lost.p.spare.text` | Nous gardons un double de la clé | نحتفظ بمفتاح احتياطي |
+| `d1.lost.p.spare.why` | Le site ne fait que vérifier les signatures avec sa clé publique. Il ne détient jamais la secrète. | الموقع يتحقّق من التواقيع بمفتاحها العامّ فقط. ولا يحوز السرّي أبداً. |
+| `d1.lost.prompt` | Une page d’aide pour le bouton portefeuille (inventée). Pointez la seule ligne vraie. | صفحة مساعدة لزرّ المحفظة (متخيَّلة). أشِر إلى السطر الصحيح الوحيد. |
+| `d1.lost.r.address` | Aide : se connecter avec Google | المساعدة: تسجيل الدخول باستخدام Google |
+| `d1.lost.r.p.key.after` | Aucune clé à elle. | لا مفتاح لها. |
+| `d1.lost.r.p.key.say` | Ligne trois : Votre propre clé signe chaque visite | السطر الثالث: مفتاحك أنت يوقّع كلّ زيارة |
+| `d1.lost.r.p.key.text` | Votre propre clé signe chaque visite | مفتاحك أنت يوقّع كلّ زيارة |
+| `d1.lost.r.p.key.why` | Le bouton Google utilise un code issu de son compte Google. Aucune clé à elle ne signe. | زرّ Google يستعمل شيفرة من حسابها على Google. ولا يوقّع أيّ مفتاح لها. |
+| `d1.lost.r.p.nobody.after` | Google intervient. | Google يتدخّل. |
+| `d1.lost.r.p.nobody.say` | Ligne deux : Aucune entreprise n’intervient | السطر الثاني: لا تتدخّل أيّ شركة |
+| `d1.lost.r.p.nobody.text` | Aucune entreprise n’intervient | لا تتدخّل أيّ شركة |
+| `d1.lost.r.p.nobody.why` | Elle doit être connectée à son compte Google. Un code issu de ce compte fait le reste. | يجب أن تكون قد سجّلت الدخول إلى حسابها على Google. وشيفرة مبنيّة عليه تتولّى الباقي. |
+| `d1.lost.r.p.recover.after` | Récupération · Google a une procédure de demande | الاسترداد · لدى Google طريقة للطلب |
+| `d1.lost.r.p.recover.say` | Ligne un : Du mal à vous connecter ? Google propose la récupération de compte | السطر الأول: مشكلة في الدخول؟ لدى Google استرداد الحساب |
+| `d1.lost.r.p.recover.text` | Du mal à vous connecter ? Google propose la récupération de compte | مشكلة في الدخول؟ لدى Google استرداد الحساب |
+| `d1.lost.r.p.recover.why` | L’aide de Google renvoie à la récupération du compte Google quand l’accès pose problème. | صفحات مساعدة Google تحيل إلى استرداد حساب Google حين تكون المشكلة في الوصول. |
+| `d1.lost.r.prompt` | Une page d’aide pour le bouton Google (inventée). Pointez la seule ligne vraie. | صفحة مساعدة لزرّ Google (متخيَّلة). أشِر إلى السطر الصحيح الوحيد. |
+| `d1.note.hint.0` | Deux notes parlent de ce qui sort de son portefeuille. | ملاحظتان عمّا يغادر محفظتها. |
+| `d1.note.hint.1` | Une signature se vérifie sans la clé qui l’a produite. | يمكن التحقّق من التوقيع دون المفتاح الذي صنعه. |
+| `d1.note.hint.2` | Réponse : se connecter prouve que le compte est à elle ; la clé reste. | الجواب: تسجيل الدخول يُثبت أن الحساب لها؛ والمفتاح يبقى. |
+| `d1.note.kuro` | La clé reste. | المفتاح يبقى. |
+| `d1.note.p.n1.text` | Pour se connecter, le portefeuille montre au site sa clé secrète. | لتسجيل الدخول، تُري المحفظة الموقعَ مفتاحها السرّي. |
+| `d1.note.p.n1.why` | L’aide d’un éditeur de portefeuille : la clé privée signe. Le site vérifie avec la clé publique. | صفحات المساعدة لدى صانع محفظة: المفتاح الخاصّ يوقّع. والموقع يتحقّق بالمفتاح العامّ. |
+| `d1.note.p.n2.text` | Se connecter prouve que le compte est à elle. La clé reste chez elle. | تسجيل الدخول يُثبت أن الحساب لها. والمفتاح يبقى معها. |
+| `d1.note.p.n2.why` | L’aide : elle signe avec sa clé privée ; l’autre partie vérifie avec la publique. | صفحات المساعدة: توقّع بمفتاحها الخاصّ؛ والطرف الآخر يتحقّق بالعامّ. |
+| `d1.note.p.n3.text` | Toute demande de signature est une connexion sans danger. | كلّ طلب توقيع تسجيلُ دخول لا ضرر فيه. |
+| `d1.note.p.n3.why` | Le même éditeur prévient : une signature trompeuse peut céder une approbation de jeton. | الصانع نفسه يحذّر: توقيع مضلِّل قد يسلّم موافقة على رمز رقمي. |
+| `d1.note.prompt` | Trois notes sont arrivées avec le billet. Une seule est vraie. | وصلت مع القصاصة ثلاث ملاحظات. واحدة صحيحة. |
+| `d1.note.r.p.r1.text` | Sign-In with Ethereum est une entreprise, comme Google. | Sign-In with Ethereum شركة، مثل Google. |
+| `d1.note.r.p.r1.why` | C’est un standard publié. Il ne demande aucun serveur autre que ceux que le site a déjà. | إنه معيار منشور. لا يحتاج إلى خادم غير الخوادم التي يشغّلها الموقع أصلاً. |
+| `d1.note.r.p.r2.text` | Sign-In with Ethereum est un standard : un format de message fixe. | Sign-In with Ethereum معيار: صيغة رسالة ثابتة واحدة. |
+| `d1.note.r.p.r2.why` | Sa page lui donne le statut « Final » : un format de message standard pour se connecter. | صفحته تصنّفه «نهائياً»: صيغة رسالة معيارية لتسجيل الدخول. |
+| `d1.note.r.p.r3.text` | Sign-In with Ethereum est un brouillon, publié cette année. | Sign-In with Ethereum مسوّدة، نُشرت هذا العام. |
+| `d1.note.r.p.r3.why` | Sa page indique « Final », créé le 2021-10-11. | صفحته تقول «نهائي»، أُنشئ في 2021-10-11. |
+| `d1.note.r.prompt` | Trois nouvelles notes. Touchez la vraie. | ثلاث ملاحظات جديدة. المس الصحيحة. |
+| `d1.slip` | Nouveau bouton sur le site de commande du prestataire : « Se connecter avec un portefeuille ». Signer, dit-il, c’est payer. Samia s’interroge. | موقع الطلبات لدى المورّد فيه زرّ جديد: «تسجيل الدخول بالمحفظة». يقول إن التوقيع دفع. سامية تتساءل. |
+| `d1.slipTag` | ENQUÊTE 09 · exemple inventé | التحقيق 09 · مثال متخيَّل |
+| `d1.stamp.prompt` | Le prestataire, encore : se connecter avec un portefeuille est un paiement. Tamponnez : | قول المورّد مرّة أخرى: تسجيل الدخول بالمحفظة عملية دفع. اختمه: |
+| `d1.stamp.reveal` | Faux. Une connexion est un message qu’elle signe, sans montant. D’autres demandes peuvent laisser un site dépenser. | غير صحيح. تسجيل الدخول رسالة توقّعها، بلا مبلغ. وطلبات أخرى قد تتيح لموقع أن ينفق. |
+| `d1.two.hint.0` | Lisez chaque titre avant tout bouton. | اقرأ كلّ عنوان قبل أيّ زرّ. |
+| `d1.two.hint.1` | Un titre parle de dépenser. | عنوان واحد يتعلّق بالإنفاق. |
+| `d1.two.hint.2` | Réponse : la demande de connexion. | الجواب: طلب تسجيل الدخول. |
+| `d1.two.kuro` | Connexion seule. | تسجيل دخول فقط. |
+| `d1.two.p.a.after` | Un message · il prouve que le compte est à elle | رسالة · تُثبت أن الحساب لها |
+| `d1.two.p.a.say` | À gauche : demande de connexion venant de order-desk.example | الأول: طلب تسجيل دخول من order-desk.example |
+| `d1.two.p.a.text` | Demande de connexion · order-desk.example | طلب تسجيل دخول · order-desk.example |
+| `d1.two.p.a.why` | Une connexion est un message qu’elle signe. Il dit au site que le compte est à elle. | تسجيل الدخول رسالة توقّعها. تخبر الموقع أن الحساب لها. |
+| `d1.two.p.b.after` | Laisse un site dépenser. | يتيح لموقع أن ينفق. |
+| `d1.two.p.b.say` | À droite : demande de plafond de dépenses pour un jeton | الثاني: طلب حدّ إنفاق لرمز رقمي |
+| `d1.two.p.b.text` | Demande de plafond de dépenses · un jeton | طلب حدّ إنفاق · رمز رقمي |
+| `d1.two.p.b.why` | L’aide d’un éditeur de portefeuille : un plafond de dépenses laisse un site prendre ce jeton sur son compte. | صفحات المساعدة لدى صانع محفظة: حدّ الإنفاق يتيح لموقع أن يأخذ ذلك الرمز الرقمي من حسابها. |
+| `d1.two.prompt` | Deux fenêtres de portefeuille (une maquette). Pointez celle qui prouve que le compte est à elle. | نافذتان منبثقتان من المحفظة (شاشة تجريبية). أشِر إلى النافذة التي تُثبت أن الحساب لها. |
+| `d1.two.r.p.a.after` | Juste une connexion. | تسجيل دخول فقط. |
+| `d1.two.r.p.a.say` | À gauche : demande de connexion | الأول: طلب تسجيل دخول |
+| `d1.two.r.p.a.text` | Demande de connexion | طلب تسجيل دخول |
+| `d1.two.r.p.a.why` | Le standard : un message signé qui ouvre une session sur le site. | المعيار: رسالة موقَّعة تفتح جلسة مع الموقع. |
+| `d1.two.r.p.b.after` | Un plafond · le site peut prendre ce jeton | حدّ · قد يأخذ الموقع ذلك الرمز الرقمي |
+| `d1.two.r.p.b.say` | À droite : demande de plafond de dépenses | الثاني: طلب حدّ إنفاق |
+| `d1.two.r.p.b.text` | Demande de plafond de dépenses | طلب حدّ إنفاق |
+| `d1.two.r.p.b.why` | L’aide de l’éditeur : le site obtient la permission de prendre ce jeton directement sur son compte. | صفحات المساعدة لدى الصانع: ينال الموقع إذناً بأخذ ذلك الرمز الرقمي مباشرة من حسابها. |
+| `d1.two.r.prompt` | Deux titres de demande. Pointez celui qui pourrait laisser un site prendre un jeton. | عنوانا طلبين. أشِر إلى العنوان الذي قد يتيح لموقع أن يأخذ رمزاً رقمياً. |
+| `d2.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d2.boss.hint.0` | Le portefeuille a comparé deux choses. Que n’a-t-il pas comparé ? | قارنت المحفظة شيئين. ما الذي لم تقارنه؟ |
+| `d2.boss.hint.1` | Lisez la barre depuis la droite. | اقرأ الشريط من طرفه الأيمن. |
+| `d2.boss.hint.2` | Réponse : la barre d’adresse. Elle finit par account-check.example. | الجواب: شريط العنوان. ينتهي بـ account-check.example. |
+| `d2.boss.kuro` | La barre. | الشريط. |
+| `d2.boss.p.address.after` | Sa propre adresse. | عنوانها هي. |
+| `d2.boss.p.address.say` | Une adresse, abrégée | عنوان، مختصَر |
+| `d2.boss.p.address.text` | 0x4f2…b81 | 0x4f2…b81 |
+| `d2.boss.p.address.why` | Son adresse est juste sur n’importe quel site qui demande. Elle ne prouve rien sur le site. | عنوانها صحيح على أيّ موقع يطلب. ولا يُثبت شيئاً عن الموقع. |
+| `d2.boss.p.bar.after` | Finit par account-check.example · pas le site du prestataire | ينتهي بـ account-check.example · ليس موقع المورّد |
+| `d2.boss.p.bar.say` | Barre d’adresse | شريط العنوان |
+| `d2.boss.p.bar.text` | order-desk.example.account-check.example | order-desk.example.account-check.example |
+| `d2.boss.p.bar.why` | Le portefeuille compare demande et page. Si la page est celle du prestataire, seule la barre le lui dit. | المحفظة تقارن الطلب بالصفحة. أمّا هل الصفحة للمورّد، فلا يخبرها بذلك إلا الشريط. |
+| `d2.boss.p.nonce.after` | Une chaîne aléatoire. | سلسلة عشوائية. |
+| `d2.boss.p.nonce.say` | Nonce | قيمة المرّة الواحدة |
+| `d2.boss.p.nonce.text` | Nonce : 71650248 | قيمة المرّة الواحدة: 71650248 |
+| `d2.boss.p.nonce.why` | N’importe quel site peut choisir une chaîne aléatoire. | أيّ موقع يستطيع أن يختار سلسلة عشوائية. |
+| `d2.boss.p.quiet.after` | Silence. Toujours un inconnu. | صمت. والموقع غريب مع ذلك. |
+| `d2.boss.p.quiet.say` | Aucun avertissement affiché | لا تحذير ظاهر |
+| `d2.boss.p.quiet.text` | Aucun avertissement affiché | لا تحذير ظاهر |
+| `d2.boss.p.quiet.why` | Silence veut dire que demande et page concordent. Les deux peuvent appartenir à un inconnu. | الصمت يعني أن الطلب والصفحة متوافقان. وكلاهما قد يكون لغريب. |
+| `d2.boss.prompt` | Samia objecte : « Demande et page concordent, et le portefeuille se tait. » Pointez ce qui le trahit quand même. | تعترض سامية: «الطلب والصفحة متطابقان، والمحفظة صامتة.» أشِر إلى ما يفضح الأمر رغم ذلك. |
+| `d2.boss.r.p.anyway.after` | Signé pour un inconnu. | وُقّع لغريب. |
+| `d2.boss.r.p.anyway.say` | Signer quand même, bouton | التوقيع رغم ذلك، زرّ |
+| `d2.boss.r.p.anyway.text` | Signer quand même | التوقيع رغم ذلك |
+| `d2.boss.r.p.anyway.why` | Le standard demande au portefeuille de rejeter cela, pas seulement d’avertir. Signer quand même jette ce contrôle. | المعيار يطلب من المحفظة أن ترفض هذا، لا أن تحذّر فقط. والتوقيع رغم ذلك يُسقط هذا الفحص. |
+| `d2.boss.r.p.reject.after` | Rejeté · rien de signé | رُفض · لم يُوقَّع شيء |
+| `d2.boss.r.p.reject.say` | Rejeter, bouton | رفض، زرّ |
+| `d2.boss.r.p.reject.text` | Rejeter | رفض |
+| `d2.boss.r.p.reject.why` | Le standard : quand demande et page diffèrent, un portefeuille doit rejeter. Elle aussi. | المعيار: حين يختلف الطلب عن الصفحة، يجب على المحفظة أن ترفض. وكذلك تفعل هي. |
+| `d2.boss.r.p.reload.after` | Même écart, encore. | الاختلاف نفسه مجدداً. |
+| `d2.boss.r.p.reload.say` | Recharger et signer, bouton | إعادة التحميل والتوقيع، زرّ |
+| `d2.boss.r.p.reload.text` | Recharger et signer | إعادة التحميل والتوقيع |
+| `d2.boss.r.p.reload.why` | Recharger ne change aucun des deux noms. Ils diffèrent toujours. | إعادة التحميل لا تغيّر أيّاً من الاسمين. ما زالا مختلفين. |
+| `d2.boss.r.prompt` | Son portefeuille avertit au lieu de rejeter : la demande nomme un autre site que la page. Pointez ce qu’elle touche. | محفظتها تحذّر بدل أن ترفض: الطلب يسمّي موقعاً غير الصفحة. أشِر إلى ما تلمسه. |
+| `d2.bub.a` | Les sosies sont de moi. Lisez chaque nom depuis la droite. | الأشباه من صنعي. اقرأ كلّ اسم من اليمين. |
+| `d2.bub.b` | Un autre billet. Selon elle, le portefeuille s’est tu. Je le porte. | قصاصة أخرى. تقول إن المحفظة بقيت صامتة. أنا أحملها. |
+| `d2.can` | Vous savez maintenant comparer le nom qui demande avec la barre, et refuser une demande qui diffère. | صرتَ تعرف كيف تقارن الاسم الطالب بالشريط، وكيف ترفض طلباً يختلف عنه. |
+| `d2.claim` | Le portefeuille vérifie qui demande, donc elle peut signer sans lire. | المحفظة تتحقّق ممّن يطلب، إذن تستطيع أن توقّع دون قراءة. |
+| `d2.diff.g.0.after` | Même mot des deux côtés. | الكلمة نفسها في الاثنين. |
+| `d2.diff.g.0.say` | morceau un | القطعة الأولى |
+| `d2.diff.g.0.why` | Les deux commencent par order-desk. N’importe qui peut copier un premier mot. | كلاهما يبدأ بـ order-desk. وأيّ أحد يستطيع نسخ الكلمة الأولى. |
+| `d2.diff.g.1.after` | Finit par sign-in.example · un autre site | ينتهي بـ sign-in.example · موقع آخر |
+| `d2.diff.g.1.say` | morceau deux | القطعة الثانية |
+| `d2.diff.g.1.why` | Lisez le nom depuis la droite : sign-in.example, pas order-desk.example. | اقرأ الاسم من طرفه الأيمن: sign-in.example، لا order-desk.example. |
+| `d2.diff.g.2.after` | Un autre nom de page. | اسم صفحة آخر فقط. |
+| `d2.diff.g.2.say` | morceau trois | القطعة الثالثة |
+| `d2.diff.g.2.why` | Un nom de page peut être n’importe quoi. Il ne change pas à qui est le site. | اسم الصفحة قد يكون أيّ شيء. ولا يغيّر صاحب الموقع. |
+| `d2.diff.hint.0` | Comparez morceau par morceau. | قارِن قطعة بقطعة. |
+| `d2.diff.hint.1` | Deux morceaux diffèrent. Un seul change à qui est le site. | قطعتان تختلفان. واحدة فقط تغيّر صاحب الموقع. |
+| `d2.diff.hint.2` | Réponse : le morceau du milieu. Le nom finit ailleurs. | الجواب: القطعة الوسطى. الاسم ينتهي في مكان آخر. |
+| `d2.diff.kuro` | Par la droite. | الطرف الأيمن. |
+| `d2.diff.prompt` | La barre et le nom d’une demande, coupés en trois. Pointez le morceau qui trahit la demande. | الشريط والاسم في طلب، كلّ منهما في ثلاث قطع. أشِر إلى القطعة التي تفضح الطلب. |
+| `d2.diff.r.g.0.after` | cl pour d · un autre nom | الحرفان c وl مكان d · اسم آخر |
+| `d2.diff.r.g.0.say` | morceau un | القطعة الأولى |
+| `d2.diff.r.g.0.why` | Deux lettres à la place d’une : cl pour d. C’est un autre nom, donc un autre site. | حرفان مكان حرف واحد: c وl مكان d. إنه اسم آخر، إذن موقع آخر. |
+| `d2.diff.r.g.1.after` | Même fin des deux côtés. | النهاية نفسها في الاثنين. |
+| `d2.diff.r.g.1.say` | morceau deux | القطعة الثانية |
+| `d2.diff.r.g.1.why` | Les deux finissent par .example. Une fin seule ne prouve rien. | كلاهما ينتهي بـ .example. والنهاية وحدها لا تُثبت شيئاً. |
+| `d2.diff.r.g.2.after` | Même nom de page. | اسم الصفحة نفسه. |
+| `d2.diff.r.g.2.say` | morceau trois | القطعة الثالثة |
+| `d2.diff.r.g.2.why` | Le même nom de page peut se trouver sur n’importe quel site. | اسم الصفحة نفسه قد يوجد على أيّ موقع. |
+| `d2.diff.r.prompt` | La barre et le nom d’une autre demande, coupés en trois. Pointez le morceau qui la trahit. | الشريط والاسم في طلب آخر، كلّ منهما في ثلاث قطع. أشِر إلى القطعة التي تفضحه. |
+| `d2.diff.r.why` | Deux lettres à la place d’une : cl pour d. C’est un autre nom, donc un autre site. | حرفان مكان حرف واحد: c وl مكان d. إنه اسم آخر، إذن موقع آخر. |
+| `d2.diff.why` | Lisez le nom depuis la droite : sign-in.example, pas order-desk.example. | اقرأ الاسم من طرفه الأيمن: sign-in.example، لا order-desk.example. |
+| `d2.match.hint.0` | Comparez d’abord le nom qui demande avec la barre. | قارِن أولاً الاسم الطالب بالشريط. |
+| `d2.match.hint.1` | Lettre par lettre, les deux noms ne sont pas les mêmes. | حرفاً حرفاً، الاسمان ليسا متطابقين. |
+| `d2.match.hint.2` | Réponse : Annuler. Les noms diffèrent. | الجواب: إلغاء. الاسمان مختلفان. |
+| `d2.match.kuro` | Pas le sien. | ليس موقعه. |
+| `d2.match.p.cancel.after` | Refusé · rien de signé | رُفض · لم يُوقَّع شيء |
+| `d2.match.p.cancel.say` | Annuler, bouton | إلغاء، زرّ |
+| `d2.match.p.cancel.text` | Annuler | إلغاء |
+| `d2.match.p.cancel.why` | Le standard : quand les noms diffèrent, un portefeuille doit rejeter. Elle aussi. | المعيار: حين يختلف الاسمان، يجب على المحفظة أن ترفض. وكذلك تفعل هي. |
+| `d2.match.p.later.after` | Trop tard pour vérifier. | فات أوان التحقّق. |
+| `d2.match.p.later.say` | Signer, puis vérifier, bouton | التوقيع ثم التحقّق، زرّ |
+| `d2.match.p.later.text` | Signer, puis vérifier | التوقيع ثم التحقّق |
+| `d2.match.p.later.why` | L’aide d’un éditeur de portefeuille : qui recueille une signature peut s’en servir quand il veut. | صفحات المساعدة لدى صانع محفظة: من يجمع توقيعاً يستطيع استعماله متى شاء. |
+| `d2.match.p.sign.after` | Signé pour un autre site. | وُقّع لموقع آخر. |
+| `d2.match.p.sign.say` | Signer, bouton | توقيع، زرّ |
+| `d2.match.p.sign.text` | Signer | توقيع |
+| `d2.match.p.sign.why` | Le nom qui demande n’est pas le site de la barre. La signature servirait quelqu’un d’autre. | الاسم الطالب ليس الموقع الذي في الشريط. والتوقيع سيخدم شخصاً آخر. |
+| `d2.match.p.words.after` | Jamais tapés ici. | لا تُكتب هنا أبداً. |
+| `d2.match.p.words.say` | Saisissez vos douze mots, champ | أدخِل كلماتك الـ12، حقل |
+| `d2.match.p.words.text` | Saisissez vos douze mots | أدخِل كلماتك الـ12 |
+| `d2.match.p.words.why` | Une connexion demande une signature. Un guide public : aucun site légitime ne demande jamais les mots. | تسجيل الدخول يطلب توقيعاً. دليل عامّ: لا يطلب أيّ موقع مشروع هذه الكلمات أبداً. |
+| `d2.match.prompt` | La barre affiche order-desk.example. La demande nomme order-desk-login.example. Pointez ce qu’elle touche. | الشريط يُظهر order-desk.example. والطلب يسمّي order-desk-login.example. أشِر إلى ما تلمسه. |
+| `d2.match.r.p.cancel.after` | Refusé. Pas connectée. | رُفض. لم تسجّل الدخول. |
+| `d2.match.r.p.cancel.say` | Annuler, bouton | إلغاء، زرّ |
+| `d2.match.r.p.cancel.text` | Annuler | إلغاء |
+| `d2.match.r.p.cancel.why` | Annuler ne fait que refuser. Rien n’allait mal : les noms concordaient. | الإلغاء رفض فقط. لم يكن هناك خطأ: الاسمان متطابقان. |
+| `d2.match.r.p.close.after` | Fermé. Pas connectée. | أُغلق. لم تسجّل الدخول. |
+| `d2.match.r.p.close.cap` | Fermer | إغلاق |
+| `d2.match.r.p.close.say` | Fermer, bouton | إغلاق، زرّ |
+| `d2.match.r.p.close.why` | Fermer la laisse déconnectée. La demande n’avait rien de faux. | الإغلاق يُبقيها خارج الحساب. ولم يكن في الطلب خطأ. |
+| `d2.match.r.p.sign.after` | Connectée · les noms concordaient | سجّلت الدخول · الاسمان متطابقان |
+| `d2.match.r.p.sign.say` | Signer, bouton | توقيع، زرّ |
+| `d2.match.r.p.sign.text` | Signer | توقيع |
+| `d2.match.r.p.sign.why` | Le nom qui demande est celui de la barre : le contrôle que le standard fixe au portefeuille. | الاسم الطالب هو الاسم الذي في الشريط: الفحص الذي يفرضه المعيار على المحفظة. |
+| `d2.match.r.p.words.after` | Jamais tapés ici. | لا تُكتب هنا أبداً. |
+| `d2.match.r.p.words.say` | Saisissez vos douze mots, champ | أدخِل كلماتك الـ12، حقل |
+| `d2.match.r.p.words.text` | Saisissez vos douze mots | أدخِل كلماتك الـ12 |
+| `d2.match.r.p.words.why` | Une connexion demande une signature. Un guide public : aucun site légitime ne demande jamais les mots. | تسجيل الدخول يطلب توقيعاً. دليل عامّ: لا يطلب أيّ موقع مشروع هذه الكلمات أبداً. |
+| `d2.match.r.prompt` | La barre affiche order-desk.example. La demande nomme order-desk.example. Elle venait pour ses commandes. Pointez ce qu’elle touche. | الشريط يُظهر order-desk.example. والطلب يسمّي order-desk.example. جاءت من أجل طلباتها. أشِر إلى ما تلمسه. |
+| `d2.popup.hint.0` | Laquelle la laisse lire chaque ligne d’abord ? | أيّهما يتيح لها قراءة كلّ سطر أولاً؟ |
+| `d2.popup.hint.1` | Le standard parle du bas du texte. | المعيار يتحدّث عن أسفل النصّ. |
+| `d2.popup.hint.2` | Réponse : faire défiler jusqu’en bas, puis signer. | الجواب: مرِّر إلى الأسفل، ثم وقّع. |
+| `d2.popup.kuro` | Jusqu’au bout. | حتى النهاية. |
+| `d2.popup.p.a.after` | Lu jusqu’au bout · puis le bouton | قُرئ حتى النهاية · ثم الزرّ |
+| `d2.popup.p.a.say` | À gauche : faire défiler jusqu’en bas, puis signer | الأول: مرِّر إلى الأسفل، ثم وقّع |
+| `d2.popup.p.a.text` | Faire défiler jusqu’en bas, puis signer | مرِّر إلى الأسفل، ثم وقّع |
+| `d2.popup.p.a.why` | Le standard : un portefeuille qui affiche le message en clair devrait exiger de défiler jusqu’en bas avant de signer. | المعيار: المحفظة التي تعرض الرسالة نصّاً صريحاً ينبغي أن تفرض التمرير إلى الأسفل قبل التوقيع. |
+| `d2.popup.p.b.after` | Signé sans lire. | وُقّع دون قراءة. |
+| `d2.popup.p.b.say` | À droite : signer en haut, lire après | الثاني: وقّع في الأعلى، واقرأ لاحقاً |
+| `d2.popup.p.b.text` | Signer en haut, lire après | وقّع في الأعلى، واقرأ لاحقاً |
+| `d2.popup.p.b.why` | Un guide public : lire un message de transaction avant de signer est une bonne pratique. Après, c’est trop tard. | دليل عامّ: من الممارسات الجيّدة قراءة رسالة المعاملة قبل التوقيع. ولاحقاً يكون الأوان قد فات. |
+| `d2.popup.prompt` | La demande est longue. Pointez ce que le standard demande au portefeuille de lui faire faire. | الطلب طويل. أشِر إلى ما يطلب المعيار من المحفظة أن تجعلها تفعله. |
+| `d2.popup.r.p.a.after` | Affichés d’abord · puis elle décide | تُعرض أولاً · ثم تقرّر |
+| `d2.popup.r.p.a.say` | À gauche : le site qui demande, son adresse, la déclaration | الأول: الموقع الطالب، عنوانها، البيان |
+| `d2.popup.r.p.a.text` | Le site qui demande, son adresse, la déclaration | الموقع الطالب، عنوانها، البيان |
+| `d2.popup.r.p.a.why` | Le standard : un portefeuille doit afficher le domaine, l’adresse et la déclaration avant la signature. | المعيار: يجب على المحفظة أن تعرض النطاق والعنوان والبيان قبل التوقيع. |
+| `d2.popup.r.p.b.after` | Deux lignes, pas celles-là. | سطران، لكن ليسا المطلوبين. |
+| `d2.popup.r.p.b.say` | À droite : seulement le nonce et l’heure | الثاني: قيمة المرّة الواحدة والوقت فقط |
+| `d2.popup.r.p.b.text` | Seulement le nonce et l’heure | قيمة المرّة الواحدة والوقت فقط |
+| `d2.popup.r.p.b.why` | Ceux-là doivent aussi être disponibles. Affichés par défaut : le site, son adresse, la déclaration. | هذان يجب أن يكونا متاحين أيضاً. أمّا ما يُعرض افتراضياً: الموقع، وعنوانها، والبيان. |
+| `d2.popup.r.prompt` | Avant qu’elle signe, quelles lignes un portefeuille doit-il afficher par défaut ? Pointez la réponse du standard. | قبل أن توقّع، أيّ الأسطر يجب أن تعرضها المحفظة افتراضياً؟ أشِر إلى جواب المعيار. |
+| `d2.ring.address` | Résultats de recherche : « order desk connexion » | نتائج البحث: «تسجيل الدخول إلى مكتب الطلبات» |
+| `d2.ring.hint.0` | Touchez chaque résultat pour voir son adresse. | المس كلّ نتيجة لترى عنوانها. |
+| `d2.ring.hint.1` | Lisez le nom avant la première barre oblique, depuis la droite. | اقرأ الاسم قبل أوّل شرطة مائلة، من طرفه الأيمن. |
+| `d2.ring.hint.2` | Réponse : order-desk.example/login. | الجواب: order-desk.example/login. |
+| `d2.ring.kuro` | La fin d’abord. | النهاية أولاً. |
+| `d2.ring.p.ad.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.p.ad.mark` | Annonce | إعلان |
+| `d2.ring.p.ad.say` | Résultat un, marqué Annonce | النتيجة الأولى، موسومة «إعلان» |
+| `d2.ring.p.ad.text` | Order desk · Connectez-vous maintenant | مكتب الطلبات · سجّل الدخول الآن |
+| `d2.ring.p.ad.why` | Une place achetée. Avant la première barre oblique, son nom finit par signin-fast.example. | مكان مشترى. قبل أوّل شرطة مائلة ينتهي اسمه بـ signin-fast.example. |
+| `d2.ring.p.hyphen.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.p.hyphen.say` | Résultat trois | النتيجة الثالثة |
+| `d2.ring.p.hyphen.text` | Order desk · Connexion officielle | مكتب الطلبات · تسجيل الدخول الرسمي |
+| `d2.ring.p.hyphen.why` | Les tirets forment un seul nouveau nom : order-desk-signin.example. Ce n’est pas son site. | الشرطات تصنع اسماً جديداً واحداً: order-desk-signin.example. ليس موقعه. |
+| `d2.ring.p.own.after` | order-desk.example/login · celle du prestataire | order-desk.example/login · عنوان المورّد نفسه |
+| `d2.ring.p.own.say` | Résultat deux | النتيجة الثانية |
+| `d2.ring.p.own.text` | Order desk | مكتب الطلبات |
+| `d2.ring.p.own.why` | Avant la première barre oblique, le nom est order-desk.example. La suite est une page. | قبل أوّل شرطة مائلة الاسم هو order-desk.example. وما يليه صفحة. |
+| `d2.ring.prompt` | Trois résultats proposent la connexion au site de commande. Touchez chacun pour voir son adresse. Choisissez celui du prestataire. | ثلاث نتائج تعرض تسجيل الدخول إلى موقع الطلبات. المس كلّ واحدة لترى عنوانها. اختر عنوان المورّد نفسه. |
+| `d2.ring.r.address` | Un e-mail (inventé) | رسالة بريد إلكتروني (متخيَّلة) |
+| `d2.ring.r.p.l1.after` | order-desk.example/login · celle du prestataire | order-desk.example/login · عنوان المورّد نفسه |
+| `d2.ring.r.p.l1.say` | Lien un | الرابط الأول |
+| `d2.ring.r.p.l1.text` | Connectez-vous pour confirmer votre commande | سجّل الدخول لتأكيد طلبك |
+| `d2.ring.r.p.l1.why` | Avant la première barre oblique, le nom est order-desk.example. | قبل أوّل شرطة مائلة الاسم هو order-desk.example. |
+| `d2.ring.r.p.l2.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.r.p.l2.say` | Lien deux | الرابط الثاني |
+| `d2.ring.r.p.l2.text` | Connexion (sécurisée) | تسجيل الدخول (آمن) |
+| `d2.ring.r.p.l2.why` | Avant la première barre oblique, le nom finit par secure-check.example. | قبل أوّل شرطة مائلة ينتهي الاسم بـ secure-check.example. |
+| `d2.ring.r.p.l3.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.r.p.l3.say` | Lien trois | الرابط الثالث |
+| `d2.ring.r.p.l3.text` | Connexion (officielle) | تسجيل الدخول (رسمي) |
+| `d2.ring.r.p.l3.why` | Le nom est official-order-desk.example : un seul nouveau nom, joint par des tirets. | الاسم هو official-order-desk.example: اسم جديد واحد، موصول بالشرطات. |
+| `d2.ring.r.prompt` | Trois liens dans un e-mail, chacun appelé connexion au site de commande. Touchez chacun. Choisissez celui du prestataire. | ثلاثة روابط في رسالة، كلٌّ منها «تسجيل الدخول» إلى موقع الطلبات. المس كلّاً منها. اختر عنوان المورّد. |
+| `d2.rows.hint.0` | Deux lignes ouvrent ou signalent. Une ligne met fin à quelque chose. | سطران يفتحان أو يُبلغان. وسطر واحد يُنهي شيئاً. |
+| `d2.rows.hint.1` | Signaler prévient Google. Ouvrir l’appli ne met fin à rien. | الإبلاغ يُخبر Google. وفتح التطبيق لا يُنهي شيئاً. |
+| `d2.rows.hint.2` | Réponse : Ne plus utiliser Se connecter avec Google. | الجواب: إيقاف استخدام «تسجيل الدخول باستخدام Google». |
+| `d2.rows.kuro` | Lien coupé. | الرابط مقطوع. |
+| `d2.rows.p.open.after` | L’appli s’ouvre. Toujours liée. | يُفتح التطبيق. ما زال مرتبطاً. |
+| `d2.rows.p.open.say` | Ouvrir l’appli, ligne | فتح التطبيق، سطر |
+| `d2.rows.p.open.text` | Ouvrir l’appli | فتح التطبيق |
+| `d2.rows.p.open.why` | Ouvrir l’appli ne met fin à rien. Le lien avec son compte Google reste. | فتح التطبيق لا يُنهي شيئاً. والارتباط بحسابها على Google يبقى. |
+| `d2.rows.p.report.after` | Signalée. Toujours liée. | أُبلغ عنه. ما زال مرتبطاً. |
+| `d2.rows.p.report.say` | Signaler cette appli, ligne | الإبلاغ عن هذا التطبيق، سطر |
+| `d2.rows.p.report.text` | Signaler cette appli | الإبلاغ عن هذا التطبيق |
+| `d2.rows.p.report.why` | L’aide de Google : signaler sert pour une appli qui fait mauvais usage des données. Le lien reste. | صفحات مساعدة Google: الإبلاغ مخصّص لتطبيق يسيء استخدام البيانات. والارتباط يبقى. |
+| `d2.rows.p.stop.after` | Lien supprimé · l’appli garde ses données | أُزيل الارتباط · يحتفظ التطبيق ببياناتها |
+| `d2.rows.p.stop.say` | Ne plus utiliser Se connecter avec Google, ligne | إيقاف استخدام «تسجيل الدخول باستخدام Google»، سطر |
+| `d2.rows.p.stop.text` | Ne plus utiliser Se connecter avec Google | إيقاف استخدام «تسجيل الدخول باستخدام Google» |
+| `d2.rows.p.stop.why` | L’aide de Google : Google cesse de l’y connecter. Ses données dans l’appli ne sont pas supprimées. | صفحات مساعدة Google: يتوقّف Google عن إدخالها هناك. ولا تُحذف بياناتها في التطبيق. |
+| `d2.rows.address` | Applis liées | التطبيقات المرتبطة |
+| `d2.rows.prompt` | Applis liées (une maquette) : elle ne veut plus que Google la fasse entrer dans cette appli. Pointez la ligne. | التطبيقات المرتبطة (شاشة تجريبية): لم تعد تريد أن يُدخلها Google إلى هذا التطبيق. أشِر إلى السطر. |
+| `d2.rows.r.p.all.after` | Bien moins que ça. | أقلّ من ذلك بكثير. |
+| `d2.rows.r.p.all.say` | Tout ce que contient son compte Google, ligne | كلّ ما في حسابها على Google، سطر |
+| `d2.rows.r.p.all.text` | Tout ce que contient son compte Google | كلّ ما في حسابها على Google |
+| `d2.rows.r.p.all.why` | L’aide cite nom, e-mail et photo de profil pour ce bouton. | صفحات المساعدة تذكر الاسم والبريد الإلكتروني وصورة الملفّ الشخصي لهذا الزرّ. |
+| `d2.rows.r.p.pw.after` | Pas envoyé. | لا تُرسل. |
+| `d2.rows.r.p.pw.say` | Son mot de passe Google, ligne | كلمة مرورها في Google، سطر |
+| `d2.rows.r.p.pw.text` | Son mot de passe Google | كلمة مرورها في Google |
+| `d2.rows.r.p.pw.why` | L’aide parle d’un code transmis de façon sécurisée. Aucun mot de passe ne fait partie du partage. | صفحات المساعدة تتحدّث عن شيفرة تُنقل بأمان. ولا كلمة مرور بين ما يُشارَك. |
+| `d2.rows.r.p.three.after` | Trois éléments · partagés avec son accord | ثلاثة أشياء · تُشارَك بموافقتها |
+| `d2.rows.r.p.three.say` | Nom, e-mail et photo de profil, ligne | الاسم والبريد الإلكتروني وصورة الملفّ الشخصي، سطر |
+| `d2.rows.r.p.three.text` | Nom, e-mail et photo de profil | الاسم والبريد الإلكتروني وصورة الملفّ الشخصي |
+| `d2.rows.r.p.three.why` | L’aide de Google nomme ces trois-là, partagés quand elle consent. | صفحات مساعدة Google تذكر هذه الثلاثة، وتُشارَك حين توافق. |
+| `d2.rows.r.address` | Première visite | الزيارة الأولى |
+| `d2.rows.r.prompt` | Première visite avec le bouton Google (une maquette). Pointez ce que reçoit l’appli. | الزيارة الأولى بزرّ Google (شاشة تجريبية). أشِر إلى ما يتلقّاه التطبيق. |
+| `d2.slip` | Le prestataire hausse les épaules : le portefeuille vérifie qui demande, donc elle peut signer sans lire. Samia s’interroge. | يهزّ المورّد كتفيه: المحفظة تتحقّق ممّن يطلب، إذن تستطيع أن توقّع دون قراءة. سامية تتساءل. |
+| `d2.slipTag` | ENQUÊTE 09 · exemple inventé | التحقيق 09 · مثال متخيَّل |
+| `d2.stamp.prompt` | Le prestataire, encore : le portefeuille vérifie qui demande, donc elle peut signer sans lire. Tamponnez : | قول المورّد مرّة أخرى: المحفظة تتحقّق ممّن يطلب، إذن تستطيع أن توقّع دون قراءة. اختمه: |
+| `d2.stamp.reveal` | À moitié. Un portefeuille conforme doit comparer demande et page, sans savoir quel site elle visait. Elle lit la barre. | نصف صحيح. على المحفظة الملتزمة بالمعيار أن تقارن الطلب بالصفحة. ولا تستطيع معرفة الموقع الذي قصدته. هي تقرأ الشريط. |
+| `d3.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d3.boss.frame` | Contrairement au bouton Google, il n’envoie pas {1}, mais {2} ; un site peut consulter {3}. | على خلاف زرّ Google، لا يرسل {1}، بل يرسل {2}؛ وقد يطّلع موقع على {3}. |
+| `d3.boss.hint.0` | Commencez par ce que partage le bouton Google. | ابدأ بما يشاركه زرّ Google. |
+| `d3.boss.hint.1` | Une chose figure sur chaque message de connexion. | شيء واحد موجود في كلّ رسالة تسجيل دخول. |
+| `d3.boss.hint.2` | Réponse : son nom ou son e-mail ; son adresse ; ce que détient cette adresse. | الجواب: الاسم أو البريد الإلكتروني؛ عنوانها؛ ما يحوزه ذلك العنوان. |
+| `d3.boss.kuro` | Une adresse parle. | العنوان يتكلّم. |
+| `d3.boss.p.c1.text` | son nom ou son e-mail | الاسم أو البريد الإلكتروني |
+| `d3.boss.p.c1.why` | Le bouton de Google partage nom, e-mail et photo. Le message n’en porte aucun. | زرّ Google يشارك الاسم والبريد الإلكتروني والصورة. والرسالة لا تحمل أيّاً منها. |
+| `d3.boss.p.c2.text` | son adresse | عنوانها |
+| `d3.boss.p.c2.why` | L’adresse est une ligne obligatoire du message. | العنوان سطر إلزامي في الرسالة. |
+| `d3.boss.p.c3.text` | ce que détient cette adresse | ما يحوزه ذلك العنوان |
+| `d3.boss.p.c3.why` | Le standard : un site pourrait récupérer des données liées à l’adresse, comme des soldes. | المعيار: قد يجلب موقع بيانات مرتبطة بالعنوان، مثل الأرصدة. |
+| `d3.boss.p.c4.text` | sa clé secrète | مفتاحها السرّي |
+| `d3.boss.p.c4.why` | Aucun des deux boutons n’envoie de clé. La différence, ce sont le nom et l’e-mail. | لا يرسل أيّ من الزرّين مفتاحاً. الفرق هو الاسم والبريد الإلكتروني. |
+| `d3.boss.p.c5.text` | son mot de passe Google | كلمة مرورها في Google |
+| `d3.boss.p.c5.why` | Aucun des deux boutons ne l’envoie. | لا يرسلها أيّ من الزرّين. |
+| `d3.boss.prompt` | Samia demande : « Donc le site n’apprend rien ? » Construisez la réponse. | تسأل سامية: «إذن لا يعرف الموقع شيئاً؟» ابنِ الجواب. |
+| `d3.boss.r.frame` | Pour la vie privée, le standard juge idéal {1} ; la réutilisation donne {2}. | للخصوصية، يعدّ المعيار {1} أمراً مثالياً؛ وإعادة الاستعمال تعطي {2}. |
+| `d3.boss.r.p.r1.text` | une nouvelle adresse à chaque fois | عنواناً جديداً في كلّ مرّة |
+| `d3.boss.r.p.r1.why` | Le standard : pour une vie privée parfaite, un nouvel identifiant non corrélé à chaque fois serait idéal. | المعيار: للوصول إلى خصوصية تامّة، يكون المثالي معرّفاً جديداً غير مرتبط بغيره في كلّ مرّة. |
+| `d3.boss.r.p.r2.text` | une seule identité que les sites peuvent relier | هويّة واحدة تستطيع المواقع ربطها |
+| `d3.boss.r.p.r2.why` | Le standard : la réutilisation garde une seule identité corrélée sur de nombreux services. | المعيار: إعادة الاستعمال تُبقي هويّة واحدة مترابطة عبر خدمات كثيرة. |
+| `d3.boss.r.p.r3.text` | un seul mot de passe partout | كلمة مرور واحدة في كلّ مكان |
+| `d3.boss.r.p.r3.why` | Aucun mot de passe n’intervient dans une connexion par clé. | لا دخل لأيّ كلمة مرور في تسجيل الدخول بالمفتاح. |
+| `d3.boss.r.p.r4.text` | une adresse secrète | عنواناً سرّياً |
+| `d3.boss.r.p.r4.why` | Un guide public : l’adresse peut être partagée librement. Le message l’affiche. | دليل عامّ: العنوان يمكن مشاركته بحرّية. والرسالة تعرضه. |
+| `d3.boss.r.prompt` | Et sur de nombreux sites ? Touchez une pastille, puis sa case. | وعبر مواقع كثيرة؟ المس رقعة، ثم خانتها. |
+| `d3.bub.a` | Une signature copiée ne sert pas deux fois. C’est le nonce. | التوقيع المنسوخ لا يصلح مرّتين. هذه وظيفة قيمة المرّة الواحدة. |
+| `d3.bub.b` | Sa réponse était courte : « Rien sur moi ? » Je porte, c’est tout. | كان ردّها قصيراً: «لا شيء عنّي؟» أنا أحمله فقط. |
+| `d3.can` | Vous savez maintenant expliquer ce que prouve une connexion par clé, ce qu’elle montre à un site, et ce qu’elle ne peut réinitialiser. | صرتَ تعرف كيف تشرح ما يُثبته تسجيل الدخول بالمفتاح، وما يُظهره لموقع، وما لا يمكن إعادة تعيينه. |
+| `d3.claim` | Se connecter avec une clé n’apprend rien d’elle au site. | تسجيل الدخول بالمفتاح لا يخبر الموقع بشيء عنها. |
+| `d3.learns.address` | Ce que reçoit le site | ما يتلقّاه الموقع |
+| `d3.learns.hint.0` | Deux lignes nomment Google. | سطران يذكران Google. |
+| `d3.learns.hint.1` | Une ligne n’est vraie pour aucun des deux boutons. | سطر واحد لا يصحّ على أيّ من الزرّين. |
+| `d3.learns.hint.2` | Réponse : l’adresse de son compte. | الجواب: عنوان حسابها. |
+| `d3.learns.kuro` | Une adresse. | عنوان. |
+| `d3.learns.p.addr.after` | Une adresse · dans chaque message de connexion | عنوان · في كلّ رسالة تسجيل دخول |
+| `d3.learns.p.addr.say` | Ligne quatre : l’adresse de son compte | السطر الرابع: عنوان حسابها |
+| `d3.learns.p.addr.text` | L’adresse de son compte | عنوان حسابها |
+| `d3.learns.p.addr.why` | Le standard : l’adresse qui effectue la signature est une ligne obligatoire du message. | المعيار: العنوان الذي يُجري التوقيع سطر إلزامي في الرسالة. |
+| `d3.learns.p.code.after` | Côté bouton Google. | جانب زرّ Google. |
+| `d3.learns.p.code.say` | Ligne deux : un code issu de son compte Google | السطر الثاني: شيفرة من حسابها على Google |
+| `d3.learns.p.code.text` | Un code issu de son compte Google | شيفرة من حسابها على Google |
+| `d3.learns.p.code.why` | L’aide de Google : ce code permet à l’appli de l’authentifier. | صفحات مساعدة Google: هذه الشيفرة تتيح للتطبيق التحقّق من هويّتها. |
+| `d3.learns.p.pw.after` | Aucun des deux. | لا هذا ولا ذاك. |
+| `d3.learns.p.pw.say` | Ligne trois : son mot de passe | السطر الثالث: كلمة مرورها |
+| `d3.learns.p.pw.text` | Son mot de passe | كلمة مرورها |
+| `d3.learns.p.pw.why` | Aucun des deux boutons ne remet de mot de passe au site. | لا يسلّم أيّ من الزرّين الموقعَ كلمة مرور. |
+| `d3.learns.p.three.after` | Côté bouton Google. | جانب زرّ Google. |
+| `d3.learns.p.three.say` | Ligne un : nom, e-mail et photo de profil | السطر الأول: الاسم والبريد الإلكتروني وصورة الملفّ الشخصي |
+| `d3.learns.p.three.text` | Nom, e-mail et photo de profil | الاسم والبريد الإلكتروني وصورة الملفّ الشخصي |
+| `d3.learns.p.three.why` | L’aide de Google les cite pour Se connecter avec Google. | صفحات مساعدة Google تذكرها لميزة تسجيل الدخول باستخدام Google. |
+| `d3.learns.prompt` | Une fiche de comparaison. Pointez la ligne vraie seulement pour la connexion par clé. | ورقة مقارنة. أشِر إلى السطر الذي لا يصحّ إلا على تسجيل الدخول بالمفتاح. |
+| `d3.learns.r.address` | Ce qu’il y a derrière : deux boutons | ما يقف خلفهما: زرّان |
+| `d3.learns.r.p.key.after` | Côté clé. | جانب المفتاح. |
+| `d3.learns.r.p.key.say` | Ligne deux : sa propre clé signe chaque visite | السطر الثاني: مفتاحها هي يوقّع كلّ زيارة |
+| `d3.learns.r.p.key.text` | Sa propre clé signe chaque visite | مفتاحها هي يوقّع كلّ زيارة |
+| `d3.learns.r.p.key.why` | Le bouton Google utilise un code issu de son compte. Aucune clé à elle ne signe. | زرّ Google يستعمل شيفرة من حسابها. ولا يوقّع أيّ مفتاح لها. |
+| `d3.learns.r.p.noforgot.after` | Côté clé. | جانب المفتاح. |
+| `d3.learns.r.p.noforgot.say` | Ligne trois : il n’y a pas de bouton mot de passe oublié | السطر الثالث: لا يوجد زرّ نسيت كلمة المرور |
+| `d3.learns.r.p.noforgot.text` | Il n’y a pas de bouton « mot de passe oublié » | لا يوجد زرّ «نسيت كلمة المرور» |
+| `d3.learns.r.p.noforgot.why` | Le standard le dit de lui-même. Google a la récupération de compte. | المعيار يقول ذلك عن نفسه. ولدى Google استرداد الحساب. |
+| `d3.learns.r.p.suspend.after` | Suspendu · les applis liées peuvent la déconnecter | معلَّق · قد تُخرجها التطبيقات المرتبطة |
+| `d3.learns.r.p.suspend.say` | Ligne un : une entreprise peut suspendre le compte derrière | السطر الأول: شركة تستطيع تعليق الحساب الذي خلفه |
+| `d3.learns.r.p.suspend.text` | Une entreprise peut suspendre le compte derrière | شركة تستطيع تعليق الحساب الذي خلفه |
+| `d3.learns.r.p.suspend.why` | L’aide de Google : quand un compte Google est suspendu ou désactivé, une appli participante peut la déconnecter. | صفحات مساعدة Google: حين يُعلَّق حساب Google أو يُعطَّل، قد يُخرجها تطبيق مشارك. |
+| `d3.learns.r.prompt` | Une deuxième fiche. Pointez la ligne vraie seulement pour le bouton Google. | ورقة ثانية. أشِر إلى السطر الذي لا يصحّ إلا على زرّ Google. |
+| `d3.nonce.frame` | Le nonce est {1} ; son but : {2}. | قيمة المرّة الواحدة هي {1}، والغاية: {2}. |
+| `d3.nonce.hint.0` | Il figure sur la demande comme une suite de caractères. | تظهر في الطلب سلسلةً من المحارف. |
+| `d3.nonce.hint.1` | Pensez à quelqu’un qui copie un message signé. | فكّر في شخص ينسخ رسالة موقَّعة. |
+| `d3.nonce.hint.2` | Réponse : une chaîne aléatoire ; aucune signature captée ne peut resservir. | الجواب: سلسلة عشوائية، كي لا يُعاد استعمال توقيع ملتقَط. |
+| `d3.nonce.kuro` | Pas de rejeu. | لا إعادة إرسال. |
+| `d3.nonce.p.c1.text` | une chaîne aléatoire choisie par le site | سلسلة عشوائية يختارها الموقع |
+| `d3.nonce.p.c1.why` | Le standard : une chaîne aléatoire, en général choisie par le site. | المعيار: سلسلة عشوائية يختارها الموقع عادةً. |
+| `d3.nonce.p.c2.text` | aucune signature captée ne peut resservir | ألّا يُعاد استعمال توقيع ملتقَط |
+| `d3.nonce.p.c2.why` | Le standard : il empêche le rejeu, quand quelqu’un capte une signature et la renvoie. | المعيار: تمنع إعادة الإرسال، أي أن يلتقط أحدهم توقيعاً ويرسله من جديد. |
+| `d3.nonce.p.c3.text` | sa clé secrète | مفتاحها السرّي |
+| `d3.nonce.p.c3.why` | La clé n’apparaît jamais dans le message. | المفتاح لا يظهر في الرسالة أبداً. |
+| `d3.nonce.p.c4.text` | le montant à payer | المبلغ الواجب دفعه |
+| `d3.nonce.p.c4.why` | Un message de connexion n’a pas de ligne de montant. | رسالة تسجيل الدخول ليس فيها سطر للمبلغ. |
+| `d3.nonce.p.c5.text` | le site apprend son nom | أن يعرف الموقع اسمها |
+| `d3.nonce.p.c5.why` | Le message porte une adresse, pas un nom. | الرسالة تحمل عنواناً، لا اسماً. |
+| `d3.nonce.prompt` | À quoi sert le nonce ? Construisez la phrase. | ما فائدة قيمة المرّة الواحدة؟ ابنِ الجملة. |
+| `d3.nonce.r.frame` | « Émis le » indique {1} ; « Expire le », s’il figure, indique {2}. | «وقت الإصدار» يقول {1}؛ و«وقت الانتهاء»، إن وُجد، يقول {2}. |
+| `d3.nonce.r.p.r1.text` | quand le message a été créé | متى أُنشئت الرسالة |
+| `d3.nonce.r.p.r1.why` | Le standard : l’heure à laquelle le message a été généré. | المعيار: وقت توليد الرسالة. |
+| `d3.nonce.r.p.r2.text` | quand le message signé cesse d’être valide | متى تفقد الرسالة الموقَّعة صلاحيتها |
+| `d3.nonce.r.p.r2.why` | Le standard : l’heure à laquelle le message signé n’est plus valide. | المعيار: الوقت الذي تفقد فيه الرسالة الموقَّعة صلاحيتها. |
+| `d3.nonce.r.p.r3.text` | qui demande | من يطلب |
+| `d3.nonce.r.p.r3.why` | La première ligne le dit, pas une ligne d’heure. | السطر الأول يقول ذلك، لا سطر وقت. |
+| `d3.nonce.r.p.r4.text` | quel compte signe | أيّ حساب يوقّع |
+| `d3.nonce.r.p.r4.why` | La ligne d’adresse le dit. | سطر العنوان يقول ذلك. |
+| `d3.nonce.r.prompt` | Deux lignes d’heure du message. Touchez une pastille, puis sa case. | سطرا الوقت في الرسالة. المس رقعة، ثم خانتها. |
+| `d3.note.hint.0` | Une note appartient à l’autre bouton. | ملاحظة واحدة تخصّ الزرّ الآخر. |
+| `d3.note.hint.1` | Une note promet plus que le standard. | ملاحظة واحدة تعِد بأكثر ممّا يعِد به المعيار. |
+| `d3.note.hint.2` | Réponse : une seule adresse partout peut être reliée. | الجواب: العنوان الواحد في كلّ مكان يمكن ربطه. |
+| `d3.note.kuro` | Même adresse. | العنوان نفسه. |
+| `d3.note.p.n1.text` | Une connexion par clé transmet son nom et son e-mail. | تسجيل الدخول بالمفتاح يسلّم اسمها وبريدها الإلكتروني. |
+| `d3.note.p.n1.why` | Ceux-là viennent avec le bouton Google. Le message porte son adresse. | هذه تأتي مع زرّ Google. والرسالة تحمل عنوانها. |
+| `d3.note.p.n2.text` | Une seule adresse partout : les sites peuvent relier ses visites. | عنوان واحد في كلّ مكان: المواقع تستطيع ربط زياراتها. |
+| `d3.note.p.n2.why` | Le standard le dit : un identifiant réutilisé forme une seule identité corrélée entre services. | المعيار يقول ذلك: المعرّف المعاد استعماله هويّة واحدة مترابطة عبر الخدمات. |
+| `d3.note.p.n3.text` | Le standard crée une nouvelle adresse à chaque fois. | المعيار يصنع عنواناً جديداً في كلّ مرّة. |
+| `d3.note.p.n3.why` | Le standard juge cela idéal, et hors de son champ. Il n’en crée aucune. | المعيار يرى ذلك مثالياً، وخارج نطاقه. ولا يصنع أيّ عنوان. |
+| `d3.note.prompt` | Trois notes sur sa phrase. Touchez la bonne. | ثلاث ملاحظات على قوله. المس الصحيحة. |
+| `d3.note.r.p.r1.text` | Un site peut consulter ce que détient son adresse sur la blockchain. | قد يطّلع موقع على ما يحوزه عنوانها على سلسلة الكتل. |
+| `d3.note.r.p.r1.why` | Le standard : le site pourrait récupérer des données liées à l’adresse, comme des soldes de compte. | المعيار: قد يجلب الموقع بيانات مرتبطة بالعنوان، مثل أرصدة الحساب. |
+| `d3.note.r.p.r2.text` | L’adresse reste secrète jusqu’à ce qu’elle paie. | العنوان يبقى سرّاً حتى تدفع. |
+| `d3.note.r.p.r2.why` | Un guide public : l’adresse est la partie qu’elle peut partager librement. | دليل عامّ: العنوان هو الجزء الذي تستطيع مشاركته بحرّية. |
+| `d3.note.r.p.r3.text` | Le message de connexion cache son adresse au site. | رسالة تسجيل الدخول تُخفي عنوانها عن الموقع. |
+| `d3.note.r.p.r3.why` | L’adresse est une ligne obligatoire du message. | العنوان سطر إلزامي في الرسالة. |
+| `d3.note.r.prompt` | Trois nouvelles notes. Touchez la vraie. | ثلاث ملاحظات جديدة. المس الصحيحة. |
+| `d3.proof.frame` | Elle signe avec {1} ; le site vérifie avec {2}. | توقّع بـ{1}؛ ويتحقّق الموقع بـ{2}. |
+| `d3.proof.hint.0` | Une clé reste secrète. Une autre peut être partagée. | مفتاح يبقى سرّياً. وآخر يمكن مشاركته. |
+| `d3.proof.hint.1` | La secrète signe. | السرّي هو الذي يوقّع. |
+| `d3.proof.hint.2` | Réponse : sa clé privée, puis sa clé publique. | الجواب: مفتاحها الخاصّ، ثم مفتاحها العامّ. |
+| `d3.proof.kuro` | Deux clés. | مفتاحان. |
+| `d3.proof.p.c1.text` | sa clé privée | مفتاحها الخاصّ |
+| `d3.proof.p.c1.why` | L’aide : elle utilise sa clé privée pour signer le message. | صفحات المساعدة: تستعمل مفتاحها الخاصّ لتوقيع الرسالة. |
+| `d3.proof.p.c2.text` | sa clé publique | مفتاحها العامّ |
+| `d3.proof.p.c2.why` | L’aide : le destinataire utilise sa clé publique pour la vérifier. | صفحات المساعدة: المتلقّي يستعمل مفتاحها العامّ للتحقّق منها. |
+| `d3.proof.p.c3.text` | son mot de passe | كلمة مرورها |
+| `d3.proof.p.c3.why` | Aucun mot de passe n’est tapé. Une clé signe à la place. | لا تُكتب أيّ كلمة مرور. بل يوقّع مفتاح. |
+| `d3.proof.p.c4.text` | un code de Google | شيفرة من Google |
+| `d3.proof.p.c4.why` | Ça, c’est l’autre bouton. Ici, aucune entreprise n’envoie de code. | هذا هو الزرّ الآخر. هنا لا ترسل أيّ شركة شيفرة. |
+| `d3.proof.p.c5.text` | ses douze mots | كلماتها الـ12 |
+| `d3.proof.p.c5.why` | Les mots sont la clé maîtresse du portefeuille. Ils ne vont à personne. | الكلمات هي المفتاح الرئيسي للمحفظة. ولا تذهب إلى أحد. |
+| `d3.proof.prompt` | Comment une signature prouve-t-elle que c’est elle ? Touchez une pastille, puis sa case. | كيف يُثبت التوقيع أنها هي؟ المس رقعة، ثم خانتها. |
+| `d3.proof.r.frame` | En général, la blockchain publie {1} ; {2}, non. | سلسلة الكتل تنشر عادةً {1}؛ ولا تنشر {2}. |
+| `d3.proof.r.p.r1.text` | une transaction | المعاملة |
+| `d3.proof.r.p.r1.why` | L’aide : les transactions sont en général publiées sur la blockchain. | صفحات المساعدة: المعاملات تُنشر عادةً على سلسلة الكتل. |
+| `d3.proof.r.p.r2.text` | un message de connexion | رسالة تسجيل الدخول |
+| `d3.proof.r.p.r2.why` | L’aide : les messages, non. Le standard dit la connexion hors chaîne. | صفحات المساعدة: الرسائل لا تُنشر. والمعيار يصف تسجيل الدخول بأنه خارج السلسلة. |
+| `d3.proof.r.p.r3.text` | un mot de passe | كلمة المرور |
+| `d3.proof.r.p.r3.why` | Un mot de passe se tape sur un site. Rien ici n’en publie. | كلمة المرور تُكتب في موقع. ولا شيء هنا ينشرها. |
+| `d3.proof.r.p.r4.text` | un nonce | قيمة المرّة الواحدة |
+| `d3.proof.r.p.r4.why` | Un nonce est une ligne à l’intérieur du message. | قيمة المرّة الواحدة سطر داخل الرسالة. |
+| `d3.proof.r.prompt` | Où va chacun ? Touchez une pastille, puis sa case. | إلى أين يذهب كلّ منها؟ المس رقعة، ثم خانتها. |
+| `d3.reset.frame` | Avec Google, {1} peut la faire revenir ; avec une clé, {2}. | مع Google، يستطيع {1} أن يعيدها؛ ومع المفتاح، {2}. |
+| `d3.reset.hint.0` | Un côté a une entreprise à qui demander. | لدى جانب واحد شركة يُطلب منها. |
+| `d3.reset.hint.1` | Le standard nomme ce qui lui manque. | المعيار يسمّي ما ينقصه. |
+| `d3.reset.hint.2` | Réponse : la récupération de compte Google ; pas de bouton « mot de passe oublié ». | الجواب: استرداد حساب Google؛ لا زرّ «نسيت كلمة المرور». |
+| `d3.reset.kuro` | Pas de bouton. | لا زرّ. |
+| `d3.reset.p.c1.text` | la récupération de compte Google | استرداد حساب Google |
+| `d3.reset.p.c1.why` | L’aide de Google : des questions pour confirmer que c’est elle, puis un e-mail. | صفحات مساعدة Google: أسئلة لتأكيد أنها هي، ثم رسالة بريد إلكتروني. |
+| `d3.reset.p.c2.text` | il n’y a pas de bouton « mot de passe oublié » | لا يوجد زرّ «نسيت كلمة المرور» |
+| `d3.reset.p.c2.why` | Le standard le dit de lui-même, en ces mots. | المعيار يقول ذلك عن نفسه، بهذه الكلمات. |
+| `d3.reset.p.c3.text` | le site la réinitialise | الموقع يعيد تعيينه |
+| `d3.reset.p.c3.why` | Le site ne fait que vérifier les signatures. Il ne détient aucune clé à réinitialiser. | الموقع يتحقّق من التواقيع فقط. ولا يحوز مفتاحاً ليعيد تعيينه. |
+| `d3.reset.p.c4.text` | le standard envoie une clé par e-mail | المعيار يرسل مفتاحاً بالبريد الإلكتروني |
+| `d3.reset.p.c4.why` | Un standard est un texte. Il n’envoie aucun e-mail. | المعيار نصّ. لا يرسل أيّ بريد. |
+| `d3.reset.p.c5.text` | un nouveau nonce | قيمة جديدة للمرّة الواحدة |
+| `d3.reset.p.c5.why` | Un nonce est une chaîne aléatoire pour une connexion. Il ne rétablit rien. | قيمة المرّة الواحدة سلسلة عشوائية لتسجيل دخول واحد. ولا تستعيد شيئاً. |
+| `d3.reset.prompt` | Bloquée dehors. Et alors ? Construisez la phrase. | لا تستطيع الدخول. فماذا بعد؟ ابنِ الجملة. |
+| `d3.reset.r.frame` | Le standard lui donne {1}, et avec cela {2}. | يمنحها المعيار {1}، ومعه {2}. |
+| `d3.reset.r.p.r1.text` | le contrôle par ses clés | التحكّم عبر مفاتيحها |
+| `d3.reset.r.p.r1.why` | Le standard : il donne aux utilisateurs le contrôle par leurs clés. | المعيار: يمنح المستخدمين التحكّم عبر مفاتيحهم. |
+| `d3.reset.r.p.r2.text` | une responsabilité dont elle n’a peut-être pas l’habitude | مسؤولية قد لا تكون معتادة عليها |
+| `d3.reset.r.p.r2.why` | Le standard : une responsabilité en plus, dont le grand public n’a peut-être pas l’habitude. | المعيار: مسؤولية إضافية قد لا يكون عامّة المستخدمين معتادين عليها. |
+| `d3.reset.r.p.r3.text` | une réinitialisation par e-mail | إعادة تعيين بالبريد الإلكتروني |
+| `d3.reset.r.p.r3.why` | Le standard n’a pas de bouton « mot de passe oublié ». | المعيار ليس فيه زرّ «نسيت كلمة المرور». |
+| `d3.reset.r.p.r4.text` | une entreprise qui se porte garante | شركة تشهد لها |
+| `d3.reset.r.p.r4.why` | Son but : une alternative aux fournisseurs d’identité. | غايته بديل عن مزوّدي الهويّة. |
+| `d3.reset.r.p.r5.text` | une garantie | ضمان |
+| `d3.reset.r.p.r5.why` | Le standard n’en promet aucune. Il qualifie la gestion des clés de problème difficile. | المعيار لا يعِد بأيّ ضمان. ويصف إدارة المفاتيح بأنها مشكلة صعبة. |
+| `d3.reset.r.prompt` | Ce que le standard lui remet. Touchez une pastille, puis sa case. | ما يسلّمها إيّاه المعيار. المس رقعة، ثم خانتها. |
+| `d3.slip` | Le prestataire résume : se connecter avec une clé n’apprend rien d’elle au site. Samia s’interroge. | يلخّص المورّد: تسجيل الدخول بالمفتاح لا يخبر الموقع بشيء عنها. سامية تتساءل. |
+| `d3.slipTag` | ENQUÊTE 09 · exemple inventé | التحقيق 09 · مثال متخيَّل |
+| `d3.stamp.prompt` | Le prestataire, encore : se connecter avec une clé n’apprend rien d’elle au site. Tamponnez : | قول المورّد مرّة أخرى: تسجيل الدخول بالمفتاح لا يخبر الموقع بشيء عنها. اختمه: |
+| `d3.stamp.reveal` | À moitié. Ni nom ni e-mail dans le message. Son adresse, oui : réutilisée, elle la relie entre sites. | نصف صحيح. الرسالة لا تحمل اسماً ولا بريداً إلكترونياً. تحمل عنوانها، والعنوان المعاد استعماله يربطها عبر المواقع. |
+| `row` | Un bouton demande à une entreprise de se porter garante d’elle ; l’autre demande à sa propre clé de signer un message. | زرّ يطلب من شركة أن تشهد لها؛ والآخر يطلب من مفتاحها هي أن يوقّع رسالة. |
+| `sticker.back` | Ce que c’est : un message standard signé par son portefeuille, prouvant que le compte est à elle. Ce que vous détenez : la clé signataire. Ce que vous cédez : « mot de passe oublié » ; la vie privée, si l’adresse sert partout. L’idée fausse : chaque signature, une connexion anodine. Un standard, pas un produit. Cité comme exemple, pas comme recommandation. Vérifié le 2026-11-23. | ما هو: رسالة معيارية توقّعها محفظتها، ليعرف الموقع أن الحساب لها. ما تحوزه: المفتاح الذي يوقّع. ما تتخلّى عنه: «نسيت كلمة المرور»، والخصوصية إن ذهب عنوان واحد إلى كلّ مكان. الفكرة الخاطئة: كلّ توقيع تسجيلُ دخول لا ضرر فيه. معيار، لا منتَج. مذكور كمثال، لا كتوصية. جرى التحقّق في 2026-11-23. |
+| `sticker.line` | Qui demande ? Lisez cette ligne d’abord. | من يطلب؟ اقرأ هذا السطر أولاً. |
+| `sticker.name` | Lit la demande | يقرأ الطلب |
+| `tpl.path` | Le trajet | المسار |
+| `tpl.sign-in` | Connexion | تسجيل الدخول |
+| `tpl.sign-request` | Demande de signature | طلب توقيع |
+
+### Case 10, GoDaddy → ENS (`hub/src/lanterne/enquetes/c10.ar.json`, 588 keys)
+
+| Key | Français | العربية |
+|---|---|---|
+| `d1.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d1.boss.hint.0` | Un nom passe les étapes dans l’ordre. | يمرّ الاسم بالمراحل بالترتيب. |
+| `d1.boss.hint.1` | Le temps payé finit à la date d’expiration. Et ensuite ? | الوقت المدفوع ينتهي في تاريخ الانتهاء. وماذا بعده؟ |
+| `d1.boss.hint.2` | Réponse : Période de grâce. | الجواب: مهلة السماح. |
+| `d1.boss.kuro` | Il expire. | ينتهي أجله. |
+| `d1.boss.p.cool.after` | Vient après la grâce. | تأتي بعد مهلة السماح. |
+| `d1.boss.p.cool.say` | Étape quatre : Price Cooldown | المرحلة الرابعة: Price Cooldown |
+| `d1.boss.p.cool.text` | Price Cooldown | Price Cooldown |
+| `d1.boss.p.cool.why` | L’aide : cette étape ne commence que si personne ne renouvelle pendant la grâce. | صفحات المساعدة: لا تبدأ هذه المرحلة إلا إن لم يجدّده أحد خلال مهلة السماح. |
+| `d1.boss.p.free.after` | Personne ne le possède encore. | لا أحد يملكه بعد. |
+| `d1.boss.p.free.say` | Étape un : disponible à l’enregistrement | المرحلة الأولى: متاح للتسجيل |
+| `d1.boss.p.free.text` | Disponible à l’enregistrement | متاح للتسجيل |
+| `d1.boss.p.free.why` | Disponible : personne n’a encore enregistré ce nom. | «متاح» يعني أن أحداً لم يسجّل الاسم بعد. |
+| `d1.boss.p.grace.after` | Période de grâce · elle commence quand le nom expire | مهلة السماح · تبدأ حين ينتهي الاسم |
+| `d1.boss.p.grace.say` | Étape trois : période de grâce | المرحلة الثالثة: مهلة السماح |
+| `d1.boss.p.grace.text` | Période de grâce | مهلة السماح |
+| `d1.boss.p.grace.why` | L’aide : quand le nom expire, sa période de grâce commence. Seul un renouvellement garde le nom. | صفحات المساعدة: حين ينتهي الاسم، تبدأ مهلة السماح الخاصة به. ولا يحفظ الاسمَ إلا التجديد. |
+| `d1.boss.p.reg.after` | Le temps payé. | الوقت المدفوع. |
+| `d1.boss.p.reg.say` | Étape deux : enregistré | المرحلة الثانية: مسجَّل |
+| `d1.boss.p.reg.text` | Enregistré | مسجَّل |
+| `d1.boss.p.reg.why` | L’aide : le nom est possédé jusqu’à sa date d’expiration. Puis l’étape suivante commence. | صفحات المساعدة: الاسم مملوك حتى تاريخ انتهائه. ثم تبدأ المرحلة التالية. |
+| `d1.boss.prompt` | Samia objecte : « Il a payé. Donc c’est à lui pour de bon. » Pointez l’étape qui commence à la date d’expiration. | تعترض سامية: «لقد دفع. إذن هو له إلى الأبد.» أشِر إلى المرحلة التي تبدأ في تاريخ الانتهاء. |
+| `d1.boss.r.p.cool.after` | Après la grâce. | بعد مهلة السماح. |
+| `d1.boss.r.p.cool.say` | Étape quatre : Price Cooldown | المرحلة الرابعة: Price Cooldown |
+| `d1.boss.r.p.cool.text` | Price Cooldown | Price Cooldown |
+| `d1.boss.r.p.cool.why` | L’aide : elle suit une période de grâce où personne n’a renouvelé. | صفحات المساعدة: تلي مهلة سماح لم يجدّد فيها أحد. |
+| `d1.boss.r.p.free.after` | Personne ne le possède encore. | لا أحد يملكه بعد. |
+| `d1.boss.r.p.free.say` | Étape un : disponible à l’enregistrement | المرحلة الأولى: متاح للتسجيل |
+| `d1.boss.r.p.free.text` | Disponible à l’enregistrement | متاح للتسجيل |
+| `d1.boss.r.p.free.why` | Disponible : personne n’a encore enregistré ce nom. | «متاح» يعني أن أحداً لم يسجّل الاسم بعد. |
+| `d1.boss.r.p.grace.after` | Commence à l’expiration. | تبدأ عند الانتهاء. |
+| `d1.boss.r.p.grace.say` | Étape trois : période de grâce | المرحلة الثالثة: مهلة السماح |
+| `d1.boss.r.p.grace.text` | Période de grâce | مهلة السماح |
+| `d1.boss.r.p.grace.why` | L’aide : la grâce commence quand le nom expire. | صفحات المساعدة: مهلة السماح تبدأ حين ينتهي الاسم. |
+| `d1.boss.r.p.reg.after` | Enregistré · possédé jusqu’à la date d’expiration | مسجَّل · مملوك حتى تاريخ الانتهاء |
+| `d1.boss.r.p.reg.say` | Étape deux : enregistré | المرحلة الثانية: مسجَّل |
+| `d1.boss.r.p.reg.text` | Enregistré | مسجَّل |
+| `d1.boss.r.p.reg.why` | L’aide : le nom est possédé jusqu’à sa date d’expiration. Renouveler ajoute du temps. | صفحات المساعدة: الاسم مملوك حتى تاريخ انتهائه. والتجديد يضيف وقتاً. |
+| `d1.boss.r.prompt` | Les mêmes quatre étapes. Pointez celle qui dure jusqu’à la date d’expiration. | المراحل الأربع نفسها. أشِر إلى التي تدوم حتى تاريخ الانتهاء. |
+| `d1.bub.a` | Le nom est l’étiquette. L’adresse est la porte. | الاسم هو اللافتة. والعنوان هو الباب. |
+| `d1.bub.b` | Elle a répondu : « Ni carte, ni numéro ? » Je porte, c’est tout. | ردّت برسالة: «لا بطاقة؟ ولا رقم هاتف؟» أنا أحملها فقط. |
+| `d1.can` | Vous savez maintenant distinguer un nom en .eth de l’adresse derrière lui, et trouver sa date de fin. | صرتَ تعرف كيف تميّز اسماً ينتهي بـ .eth من العنوان الذي خلفه، وتجد تاريخ انتهائه. |
+| `d1.card.hint.0` | Jusqu’à quand : cherchez une date. | حتى متى: ابحث عن تاريخ. |
+| `d1.card.hint.1` | Une ligne commence par un verbe de fin. | سطر واحد يبدأ بفعل عن الانتهاء. |
+| `d1.card.hint.2` | Réponse : Expire le 14 mars 2027. | الجواب: ينتهي في 14 مارس 2027. |
+| `d1.card.kuro` | La date. | التاريخ. |
+| `d1.card.p.address.after` | Où il pointe. | إلى أين يشير. |
+| `d1.card.p.address.say` | Adresse, une adresse, ligne | العنوان، عنوان، سطر |
+| `d1.card.p.address.text` | Adresse 0x71c…9a2 | العنوان 0x71c…9a2 |
+| `d1.card.p.address.why` | La ligne Adresse montre où pointe le nom. Elle ne porte aucune date. | سطر العنوان يُظهر إلى أين يشير الاسم. ولا يحمل أيّ تاريخ. |
+| `d1.card.p.expires.after` | Expire le 14 mars 2027 · la fin du temps payé | ينتهي في 14 مارس 2027 · نهاية الوقت المدفوع |
+| `d1.card.p.expires.say` | Expire le 14 mars 2027, ligne | ينتهي في 14 مارس 2027، سطر |
+| `d1.card.p.expires.text` | Expire le 14 mars 2027 | ينتهي في 14 مارس 2027 |
+| `d1.card.p.expires.why` | L’aide : un nom en .eth est à vous pour le temps que vous payez. Cette ligne en est la fin. | صفحات المساعدة: الاسم المنتهي بـ .eth لك طوال الوقت الذي تدفع ثمنه. وهذا السطر نهايته. |
+| `d1.card.p.name.after` | Le nom lui-même. | الاسم نفسه. |
+| `d1.card.p.name.say` | abcde point eth, titre | abcde.eth، العنوان الرئيسي |
+| `d1.card.p.name.text` | abcde.eth | abcde.eth |
+| `d1.card.p.name.why` | Le nom dit comment il s’appelle, pas jusqu’à quand. | الاسم يقول ما يُسمّى، لا حتى متى. |
+| `d1.card.p.owner.after` | Qui le possède. | من يملكه. |
+| `d1.card.p.owner.say` | Propriétaire, une adresse, ligne | المالك، عنوان، سطر |
+| `d1.card.p.owner.text` | Propriétaire 0x9d4…e07 | المالك 0x9d4…e07 |
+| `d1.card.p.owner.why` | La ligne Propriétaire montre quelle adresse possède le nom. Elle ne porte aucune date. | سطر المالك يُظهر أيّ عنوان يملك الاسم. ولا يحمل أيّ تاريخ. |
+| `d1.card.p.renew.after` | Ajoute du temps, n’affiche rien. | يضيف وقتاً. ولا يُظهر شيئاً. |
+| `d1.card.p.renew.cap` | Renouveler | تجديد |
+| `d1.card.p.renew.say` | Renouveler, bouton | تجديد، زرّ |
+| `d1.card.p.renew.why` | L’aide : renouveler ajoute du temps au nom. La date elle-même est sur une autre ligne. | صفحات المساعدة: التجديد يضيف وقتاً إلى الاسم. أمّا التاريخ نفسه فعلى سطر آخر. |
+| `d1.card.prompt` | Sa fiche de nom (une maquette). Pointez la ligne qui dit jusqu’à quand le nom est à lui. | بطاقة اسمه (شاشة تجريبية). أشِر إلى السطر الذي يقول حتى متى يبقى الاسم له. |
+| `d1.card.r.p.expires.after` | Fin du temps payé. | انتهى الوقت المدفوع. |
+| `d1.card.r.p.expires.say` | Expire le 14 mars 2027, ligne | ينتهي في 14 مارس 2027، سطر |
+| `d1.card.r.p.expires.text` | Expire le 14 mars 2027 | ينتهي في 14 مارس 2027 |
+| `d1.card.r.p.expires.why` | L’aide : « Expire », c’est le jour où l’enregistrement a pris fin. | صفحات المساعدة: «ينتهي» هو اليوم الذي انتهى فيه التسجيل. |
+| `d1.card.r.p.grace.after` | Fin de la période de grâce · le dernier jour pour renouveler | نهاية مهلة السماح · آخر يوم للتجديد |
+| `d1.card.r.p.grace.say` | Fin de la période de grâce : 11 avril 2027, ligne | تنتهي مهلة السماح في 11 أبريل 2027، سطر |
+| `d1.card.r.p.grace.text` | Fin de la période de grâce : 11 avril 2027 | تنتهي مهلة السماح في 11 أبريل 2027 |
+| `d1.card.r.p.grace.why` | L’aide : « Fin de la période de grâce », c’est le dernier jour où le nom peut être renouvelé. | صفحات المساعدة: «تنتهي مهلة السماح» هو آخر يوم يمكن فيه تجديد الاسم. |
+| `d1.card.r.p.owner.after` | Qui le possède. | من يملكه. |
+| `d1.card.r.p.owner.say` | Propriétaire, une adresse, ligne | المالك، عنوان، سطر |
+| `d1.card.r.p.owner.text` | Propriétaire 0x9d4…e07 | المالك 0x9d4…e07 |
+| `d1.card.r.p.owner.why` | Une ligne Propriétaire ne porte aucune date. | سطر المالك لا يحمل أيّ تاريخ. |
+| `d1.card.r.prompt` | Une fiche en période de grâce montre deux dates (une maquette). Pointez le dernier jour pour renouveler. | بطاقة في مهلة السماح تُظهر تاريخين (شاشة تجريبية). أشِر إلى آخر يوم للتجديد. |
+| `d1.claim` | Un nom en .eth se paie une fois et se garde pour de bon. | الاسم المنتهي بـ .eth يُدفع ثمنه مرّة واحدة ويبقى إلى الأبد. |
+| `d1.list.hint.0` | Trois lignes relèvent du web, de l’e-mail ou d’un réseau social. | ثلاثة أسطر تخصّ الويب أو البريد الإلكتروني أو موقعاً اجتماعياً. |
+| `d1.list.hint.1` | Des deux dernières, l’une est lisible. | من السطرين الأخيرين، واحد مقروء. |
+| `d1.list.hint.2` | Réponse : abcde.eth. | الجواب: abcde.eth. |
+| `d1.list.kuro` | Cette fin. | تلك النهاية. |
+| `d1.list.p.addr.after` | Une adresse, pas un nom. | عنوان، لا اسم. |
+| `d1.list.p.addr.say` | Ligne cinq : une adresse, raccourcie | السطر الخامس: عنوان، مختصَر |
+| `d1.list.p.addr.text` | 0x71c…9a2 | 0x71c…9a2 |
+| `d1.list.p.addr.why` | Cette suite de caractères est une adresse. Un nom est l’étiquette lisible qui en tient lieu. | هذه السلسلة عنوان. أمّا الاسم فهو اللافتة المقروءة التي تنوب عن عنوان. |
+| `d1.list.p.handle.after` | Un pseudo de réseau social. | اسم مستخدم في موقع اجتماعي. |
+| `d1.list.p.handle.say` | Ligne trois : un pseudo | السطر الثالث: اسم مستخدم |
+| `d1.list.p.handle.text` | @supplier_desk | @supplier_desk |
+| `d1.list.p.handle.why` | Il commence par @ : un pseudo sur un réseau social. | يبدأ بـ @: اسم مستخدم في موقع اجتماعي واحد. |
+| `d1.list.p.mail.after` | Une adresse e-mail. | عنوان بريد إلكتروني. |
+| `d1.list.p.mail.say` | Ligne deux : une adresse e-mail | السطر الثاني: عنوان بريد إلكتروني |
+| `d1.list.p.mail.text` | orders@supplier-desk.example | orders@supplier-desk.example |
+| `d1.list.p.mail.why` | Un @ au milieu en fait une adresse e-mail. | وجود @ في الوسط يجعله عنوان بريد إلكتروني. |
+| `d1.list.p.name.after` | abcde.eth · un nom qui finit par .eth | abcde.eth · اسم ينتهي بـ .eth |
+| `d1.list.p.name.say` | Ligne quatre : abcde point eth | السطر الرابع: abcde.eth |
+| `d1.list.p.name.text` | abcde.eth | abcde.eth |
+| `d1.list.p.name.why` | D’après l’aide d’ENS, on y enregistre les noms qui finissent par .eth. Celui-ci est l’exemple de l’aide elle-même. | بحسب صفحات مساعدة ENS، تُسجَّل هناك الأسماء المنتهية بـ .eth. وهذا الاسم مثال صفحات المساعدة نفسها. |
+| `d1.list.p.web.after` | Une adresse web. | عنوان ويب. |
+| `d1.list.p.web.say` | Ligne un : une adresse web | السطر الأول: عنوان ويب |
+| `d1.list.p.web.text` | www.supplier-desk.example | www.supplier-desk.example |
+| `d1.list.p.web.why` | Une adresse web : l’aide de GoDaddy dit qu’on tape un domaine dans un navigateur pour trouver un site. | عنوان ويب: صفحات مساعدة GoDaddy تقول إن النطاق يُكتب في متصفّح للعثور على موقع. |
+| `d1.list.address` | Facture | الفاتورة |
+| `d1.list.prompt` | Cinq lignes de la facture (inventée). Pointez le nom ENS. | خمسة أسطر من الفاتورة (متخيَّلة). أشِر إلى اسم ENS. |
+| `d1.list.r.p.com.after` | Une terminaison web. | نهاية عنوان ويب. |
+| `d1.list.r.p.com.say` | point com | نقطة com |
+| `d1.list.r.p.com.text` | .com | .com |
+| `d1.list.r.p.com.why` | L’aide : un nom DNS comme un .com ne peut pas y être enregistré. | صفحات المساعدة: اسم من نظام أسماء النطاقات، مثل .com، لا يمكن تسجيله هناك. |
+| `d1.list.r.p.eth.after` | .eth · la terminaison qu’enregistre ENS | .eth · النهاية التي يسجّلها ENS |
+| `d1.list.r.p.eth.say` | point eth | نقطة eth |
+| `d1.list.r.p.eth.text` | .eth | .eth |
+| `d1.list.r.p.eth.why` | L’aide : peut-on enregistrer un nom qui ne finit pas par .eth ? Non. | صفحات المساعدة: هل يمكن تسجيل اسم لا ينتهي بـ .eth؟ لا. |
+| `d1.list.r.p.example.after` | Réservée aux exemples. | محجوزة للأمثلة. |
+| `d1.list.r.p.example.say` | point example | نقطة example |
+| `d1.list.r.p.example.text` | .example | .example |
+| `d1.list.r.p.example.why` | Cette terminaison est réservée aux exemples. Personne ne l’enregistre. | هذه النهاية محجوزة للأمثلة. لا أحد يسجّلها. |
+| `d1.list.r.p.org.after` | Une terminaison web. | نهاية عنوان ويب. |
+| `d1.list.r.p.org.say` | point org | نقطة org |
+| `d1.list.r.p.org.text` | .org | .org |
+| `d1.list.r.p.org.why` | Une autre terminaison web. L’aide répond « Non » pour tout nom qui ne finit pas par .eth. | نهاية ويب أخرى. صفحات المساعدة تجيب «لا» عن أيّ اسم لا ينتهي بـ .eth. |
+| `d1.list.r.prompt` | Quatre terminaisons. Pointez la seule qu’ENS enregistre, selon son aide. | أربع نهايات. أشِر إلى الوحيدة التي يسجّلها ENS بحسب صفحات مساعدته. |
+| `d1.need.address` | Enregistrer un nom : aide | تسجيل اسم: مساعدة |
+| `d1.need.hint.0` | Trois lignes promettent ce que promettrait une boutique. | ثلاثة أسطر تَعِد بما قد يَعِد به متجر. |
+| `d1.need.hint.1` | L’aide nomme ce qui doit être connecté d’abord. | صفحات المساعدة تسمّي ما يجب وصله أولاً. |
+| `d1.need.hint.2` | Réponse : un portefeuille connecté qui détient un crypto-actif. | الجواب: محفظة موصولة تحوز أصلاً مشفّراً. |
+| `d1.need.kuro` | Pas de carte. | لا بطاقة. |
+| `d1.need.p.call.after` | Personne ne peut le restaurer. | لا أحد يستطيع استعادته. |
+| `d1.need.p.call.say` | Ligne trois : accès perdu, appelez-nous | السطر الثالث: فقدت الوصول، اتّصل بنا |
+| `d1.need.p.call.text` | Accès perdu ? Appelez-nous | فقدت الوصول؟ اتّصل بنا |
+| `d1.need.p.call.why` | L’aide : le support d’ENS ne peut ni déplacer, ni geler, ni récupérer un nom. | صفحات المساعدة: دعم ENS لا يستطيع نقل اسم ولا تجميده ولا استرداده. |
+| `d1.need.p.card.after` | Aucune carte acceptée. | لا تُقبل أيّ بطاقة. |
+| `d1.need.p.card.say` | Ligne un : payer par carte bancaire | السطر الأول: الدفع ببطاقة مصرفية |
+| `d1.need.p.card.text` | Payer par carte bancaire | الدفع ببطاقة مصرفية |
+| `d1.need.p.card.why` | L’aide : non. Le paiement vient d’un portefeuille connecté, en crypto-actif. | صفحات المساعدة: لا. الدفع يتمّ من محفظة موصولة، بأصل مشفّر. |
+| `d1.need.p.refund.after` | Aucun remboursement. | لا استرداد للمال. |
+| `d1.need.p.refund.say` | Ligne quatre : remboursement sous 30 jours | السطر الرابع: استرداد المال خلال 30 يوماً |
+| `d1.need.p.refund.text` | Remboursement sous 30 jours | استرداد المال خلال 30 يوماً |
+| `d1.need.p.refund.why` | L’aide : un enregistrement confirmé ne peut être ni annulé ni remboursé. | صفحات المساعدة: التسجيل المؤكَّد لا يمكن التراجع عنه ولا استرداد ثمنه. |
+| `d1.need.p.wallet.after` | Un portefeuille · les frais et les frais de réseau en sortent | محفظة · منها يُدفع الرسم ورسوم الشبكة |
+| `d1.need.p.wallet.say` | Ligne deux : il faut un portefeuille connecté qui détient un crypto-actif | السطر الثاني: تلزم محفظة موصولة تحوز أصلاً مشفّراً |
+| `d1.need.p.wallet.text` | Il faut un portefeuille connecté qui détient un crypto-actif | تلزم محفظة موصولة تحوز أصلاً مشفّراً |
+| `d1.need.p.wallet.why` | L’aide : un portefeuille connecté doit détenir assez pour les frais annuels et les frais de réseau. | صفحات المساعدة: يجب أن تحوز المحفظة الموصولة ما يكفي للرسم السنوي ولرسوم الشبكة. |
+| `d1.need.prompt` | Une page d’aide sur les noms en .eth (inventée). Pointez la seule ligne vraie. | صفحة مساعدة عن الأسماء المنتهية بـ .eth (متخيَّلة). أشِر إلى السطر الصحيح الوحيد. |
+| `d1.need.r.address` | Un domaine GoDaddy : aide | نطاق من GoDaddy: مساعدة |
+| `d1.need.r.p.call.after` | Une ligne téléphonique · une entreprise répond | خطّ هاتفي · شركة تجيب |
+| `d1.need.r.p.call.say` | Ligne deux : appelez-nous, aide à toute heure | السطر الثاني: اتّصل بنا، مساعدة في أيّ ساعة |
+| `d1.need.r.p.call.text` | Appelez-nous : aide à toute heure | اتّصل بنا: مساعدة في أيّ ساعة |
+| `d1.need.r.p.call.why` | La page contact de GoDaddy propose un appel et un chat, 24/7. Une entreprise se tient derrière le domaine. | صفحة الاتصال لدى GoDaddy تعرض مكالمة ودردشة، 24/7. وخلف النطاق شركة. |
+| `d1.need.r.p.forever.after` | Il expire aussi. | ينتهي هو أيضاً. |
+| `d1.need.r.p.forever.say` | Ligne un : enregistré une fois, pour toujours | السطر الأول: يُسجَّل مرّة، إلى الأبد |
+| `d1.need.r.p.forever.text` | Enregistré une fois, pour toujours | يُسجَّل مرّة، إلى الأبد |
+| `d1.need.r.p.forever.why` | L’aide de GoDaddy : un domaine s’enregistre pour 1 à 10 ans et doit être renouvelé. | صفحات مساعدة GoDaddy: يُسجَّل النطاق لمدّة من 1 إلى 10 سنوات، ويجب تجديده. |
+| `d1.need.r.p.key.after` | Aucune clé à elle. | لا مفتاح لها. |
+| `d1.need.r.p.key.say` | Ligne trois : votre propre clé signe chaque renouvellement | السطر الثالث: مفتاحك أنت يوقّع كلّ تجديد |
+| `d1.need.r.p.key.text` | Votre propre clé signe chaque renouvellement | مفتاحك أنت يوقّع كلّ تجديد |
+| `d1.need.r.p.key.why` | L’aide de GoDaddy : elle se connecte à son compte et valide une commande. Aucune clé ne signe. | صفحات مساعدة GoDaddy: تدخل إلى حسابها وتُتمّ عملية شراء. لا مفتاح يوقّع. |
+| `d1.need.r.prompt` | Une page d’aide sur un domaine GoDaddy (inventée). Pointez la seule ligne vraie. | صفحة مساعدة عن نطاق من GoDaddy (متخيَّلة). أشِر إلى السطر الصحيح الوحيد. |
+| `d1.note.hint.0` | Une note parle de payer, une autre de cacher. | ملاحظة عن الدفع، وأخرى عن الإخفاء. |
+| `d1.note.hint.1` | Pensez à la date sur la fiche du nom. | فكّر في التاريخ على بطاقة الاسم. |
+| `d1.note.hint.2` | Réponse : il expire, puis a une période de grâce pour renouveler. | الجواب: ينتهي، ثم تُمنح له مهلة سماح للتجديد. |
+| `d1.note.kuro` | Puis la grâce. | ثم المهلة. |
+| `d1.note.p.n1.text` | Un nom en .eth peut se payer par carte bancaire. | الاسم المنتهي بـ .eth يمكن دفع ثمنه ببطاقة مصرفية. |
+| `d1.note.p.n1.why` | L’aide : puis-je payer par carte ? Non. Le paiement vient d’un portefeuille connecté. | صفحات المساعدة: هل يمكنني الدفع ببطاقة؟ لا. الدفع يتمّ من محفظة موصولة. |
+| `d1.note.p.n2.text` | Un nom en .eth expire, puis a une période de grâce pour renouveler. | الاسم المنتهي بـ .eth ينتهي، ثم تُمنح له مهلة سماح للتجديد. |
+| `d1.note.p.n2.why` | L’aide : le nom est possédé jusqu’à sa date d’expiration. Puis sa période de grâce commence. | صفحات المساعدة: الاسم مملوك حتى تاريخ انتهائه. ثم تبدأ مهلة السماح الخاصة به. |
+| `d1.note.p.n3.text` | Un nom en .eth garde son propriétaire hors de vue. | الاسم المنتهي بـ .eth يُبقي مالكه بعيداً عن الأنظار. |
+| `d1.note.p.n3.why` | L’aide : tout ce qui est sur un nom ENS est public sur la chaîne, l’adresse où il pointe comprise. | صفحات المساعدة: كلّ ما على اسم ENS عامّ على السلسلة، بما في ذلك العنوان الذي يشير إليه. |
+| `d1.note.prompt` | Trois notes sont arrivées avec le billet. Une seule est vraie. | وصلت مع القصاصة ثلاث ملاحظات. واحدة صحيحة. |
+| `d1.note.r.p.r1.text` | Seul le propriétaire peut renouveler un nom en .eth. | المالك وحده يستطيع تجديد اسم ينتهي بـ .eth. |
+| `d1.note.r.p.r1.why` | L’aide : n’importe qui peut renouveler n’importe quel nom en .eth. Renouveler ne change jamais qui le possède. | صفحات المساعدة: أيّ شخص يستطيع تجديد أيّ اسم ينتهي بـ .eth. والتجديد لا يغيّر مالكه أبداً. |
+| `d1.note.r.p.r2.text` | Un enregistrement confirmé ne peut être ni annulé ni remboursé. | التسجيل المؤكَّد لا يمكن التراجع عنه ولا استرداد ثمنه. |
+| `d1.note.r.p.r2.why` | L’aide : un enregistrement confirmé ne peut être ni annulé ni remboursé. | صفحات المساعدة: التسجيل المؤكَّد لا يمكن التراجع عنه ولا استرداد ثمنه. |
+| `d1.note.r.p.r3.text` | Un nom en .eth peut tenir en une seule lettre. | يمكن أن يتكوّن اسم ينتهي بـ .eth من حرف واحد. |
+| `d1.note.r.p.r3.why` | L’aide : les noms commencent à 3 caractères. | صفحات المساعدة: الأسماء تبدأ من 3 محارف. |
+| `d1.note.r.prompt` | Trois nouvelles notes. Touchez la vraie. | ثلاث ملاحظات جديدة. المس الصحيحة. |
+| `d1.slip` | Sur la facture du prestataire : « abcde.eth ». Payé une fois, dit-il, le nom est à lui pour de bon. Samia s’interroge. | فاتورة المورّد صارت تحمل «abcde.eth». يقول إنه دفع مرّة واحدة وإن الاسم له إلى الأبد. تتساءل سامية. |
+| `d1.slipTag` | ENQUÊTE 10 · exemple inventé | التحقيق 10 · مثال متخيَّل |
+| `d1.stamp.prompt` | Le prestataire, encore : un nom en .eth se paie une fois et se garde pour de bon. Tamponnez : | قول المورّد مرّة أخرى: الاسم المنتهي بـ .eth يُدفع ثمنه مرّة واحدة ويبقى إلى الأبد. اختمه: |
+| `d1.stamp.reveal` | Faux. L’aide : un nom en .eth est à vous pour le temps que vous payez. Puis il expire. | غير صحيح. صفحات المساعدة: الاسم المنتهي بـ .eth لك طوال الوقت الذي تدفع ثمنه. ثم ينتهي. |
+| `d1.two.hint.0` | Une ligne est faite pour les gens, l’autre pour les machines. | سطر صُنع للناس، وآخر للآلات. |
+| `d1.two.hint.1` | Un nom pointe vers quelque chose de plus long. | الاسم يشير إلى شيء أطول. |
+| `d1.two.hint.2` | Réponse : la ligne qui commence par 0x. | الجواب: السطر الذي يبدأ بـ 0x. |
+| `d1.two.kuro` | Derrière. | خلفه. |
+| `d1.two.p.a.after` | Le nom lisible. | الاسم المقروء. |
+| `d1.two.p.a.say` | À gauche : abcde point eth | الأول: abcde.eth |
+| `d1.two.p.a.text` | abcde.eth | abcde.eth |
+| `d1.two.p.a.why` | C’est le nom, fait pour les gens. Il pointe vers l’autre ligne. | هذا هو الاسم، مصنوع للناس. يشير إلى السطر الآخر. |
+| `d1.two.p.b.after` | 0x71c…9a2 · lisible par une machine, l’adresse derrière le nom | 0x71c…9a2 · مقروء آلياً، العنوان الذي خلف الاسم |
+| `d1.two.p.b.say` | À droite : une adresse, raccourcie | الثاني: عنوان، مختصَر |
+| `d1.two.p.b.text` | 0x71c…9a2 | 0x71c…9a2 |
+| `d1.two.p.b.why` | La documentation d’ENS : un nom lisible correspond à un identifiant lisible par une machine, comme une adresse. | وثائق ENS: الاسم المقروء يقابل معرّفاً مقروءاً آلياً، كالعنوان. |
+| `d1.two.prompt` | Deux lignes de sa facture. Pointez celle que lit une machine. | سطران من فاتورته. أشِر إلى الذي تقرؤه الآلة. |
+| `d1.two.r.p.a.after` | Fait pour les machines. | مصنوع للآلات. |
+| `d1.two.r.p.a.say` | À gauche : une adresse, raccourcie | الأول: عنوان، مختصَر |
+| `d1.two.r.p.a.text` | 0x71c…9a2 | 0x71c…9a2 |
+| `d1.two.r.p.a.why` | La documentation d’ENS appelle une adresse un identifiant lisible par une machine. | وثائق ENS تسمّي العنوان معرّفاً مقروءاً آلياً. |
+| `d1.two.r.p.b.after` | abcde.eth · fait pour être lu | abcde.eth · مصنوع ليُقرأ |
+| `d1.two.r.p.b.say` | À droite : abcde point eth | الثاني: abcde.eth |
+| `d1.two.r.p.b.text` | abcde.eth | abcde.eth |
+| `d1.two.r.p.b.why` | La documentation d’ENS : il fait correspondre des noms lisibles par l’humain à des identifiants lisibles par une machine. | وثائق ENS: يربط أسماء يقرؤها البشر بمعرّفات تقرؤها الآلات. |
+| `d1.two.r.prompt` | Deux lignes. Pointez celle qu’on peut dire à voix haute. | سطران. أشِر إلى الذي يمكن نطقه بصوت عالٍ. |
+| `d2.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d2.boss.hint.0` | Trois choses restent telles quelles pendant la grâce. | ثلاثة أشياء تبقى كما كانت خلال مهلة السماح. |
+| `d2.boss.hint.1` | Pensez à quelqu’un qui cherche le nom ce jour-là. | فكّر في شخص يبحث عن الاسم في ذلك اليوم. |
+| `d2.boss.hint.2` | Réponse : si le nom fonctionne. | الجواب: هل يعمل الاسم. |
+| `d2.boss.kuro` | Il s’arrête. | يتوقّف. |
+| `d2.boss.p.fee.after` | Toujours le tarif normal. | ما زال الرسم العادي. |
+| `d2.boss.p.fee.say` | Les frais de renouvellement | رسم التجديد |
+| `d2.boss.p.fee.text` | Les frais de renouvellement | رسم التجديد |
+| `d2.boss.p.fee.why` | L’aide : pendant la grâce, il se renouvelle au tarif normal. | صفحات المساعدة: خلال مهلة السماح يُجدَّد بالرسم العادي. |
+| `d2.boss.p.owner.after` | Même propriétaire. | المالك نفسه. |
+| `d2.boss.p.owner.say` | Le propriétaire | المالك |
+| `d2.boss.p.owner.text` | Le propriétaire | المالك |
+| `d2.boss.p.owner.why` | L’aide : renouveler ne change jamais qui le possède. Pendant la grâce, le propriétaire reste. | صفحات المساعدة: التجديد لا يغيّر مالكه أبداً. وخلال مهلة السماح يبقى المالك. |
+| `d2.boss.p.who.after` | Toujours personne d’autre. | ما زال لا أحد غيره. |
+| `d2.boss.p.who.say` | Qui peut l’enregistrer | من يحقّ له تسجيله |
+| `d2.boss.p.who.text` | Qui peut l’enregistrer | من يحقّ له تسجيله |
+| `d2.boss.p.who.why` | L’aide : personne d’autre ne peut l’enregistrer pendant la grâce. | صفحات المساعدة: لا أحد غيره يستطيع تسجيله خلال مهلة السماح. |
+| `d2.boss.p.works.after` | Un nom mis à niveau s’arrête · il ne pointe nulle part jusqu’au renouvellement | الاسم المُرقّى يتوقّف · لا يشير إلى أيّ مكان حتى يُجدَّد |
+| `d2.boss.p.works.say` | Si le nom fonctionne | هل يعمل الاسم |
+| `d2.boss.p.works.text` | Si le nom fonctionne | هل يعمل الاسم |
+| `d2.boss.p.works.why` | L’aide : un nom mis à niveau ne pointe plus nulle part avant renouvellement. Les autres marchent encore, 90 jours. | صفحات المساعدة: الاسم المُرقّى لا يشير إلى أيّ مكان حتى يُجدَّد. وغير المُرقّى يظلّ يعمل، 90 يوماً. |
+| `d2.boss.prompt` | Samia objecte : « Donc, pendant la grâce, rien ne change. » Pointez ce qui change à la date d’expiration. | تعترض سامية: «إذن، خلال مهلة السماح لا يتغيّر شيء.» أشِر إلى ما يتغيّر فعلاً في تاريخ الانتهاء. |
+| `d2.boss.r.p.back.after` | Aucune priorité. | لا أولوية. |
+| `d2.boss.r.p.back.say` | L’ancien propriétaire le récupère en premier | المالك السابق يستعيده أولاً |
+| `d2.boss.r.p.back.text` | L’ancien propriétaire le récupère en premier | المالك السابق يستعيده أولاً |
+| `d2.boss.r.p.back.why` | L’aide : l’ancien propriétaire n’a aucune priorité. | صفحات المساعدة: ليس للمالك السابق أيّ أولوية. |
+| `d2.boss.r.p.held.after` | Le support ne garde rien. | الدعم لا يحتفظ بشيء. |
+| `d2.boss.r.p.held.say` | Le support d’ENS le garde | دعم ENS يحتفظ به |
+| `d2.boss.r.p.held.text` | Le support d’ENS le garde | دعم ENS يحتفظ به |
+| `d2.boss.r.p.held.why` | L’aide : le support ne peut ni déplacer, ni geler, ni récupérer un nom. | صفحات المساعدة: الدعم لا يستطيع نقل اسم ولا تجميده ولا استرداده. |
+| `d2.boss.r.p.open.after` | Ouvert à tous · un supplément au début | مفتوح للجميع · برسم إضافي في البداية |
+| `d2.boss.r.p.open.say` | N’importe qui peut l’enregistrer, avec un supplément au début | أيّ شخص يستطيع تسجيله، برسم إضافي في البداية |
+| `d2.boss.r.p.open.text` | N’importe qui peut l’enregistrer, avec un supplément au début | أيّ شخص يستطيع تسجيله، برسم إضافي في البداية |
+| `d2.boss.r.p.open.why` | L’aide : n’importe qui peut l’enregistrer. Le supplément baisse vite et prend fin après 21 jours. | صفحات المساعدة: أيّ شخص يستطيع تسجيله. والرسم الإضافي ينخفض بسرعة وينتهي بعد 21 يوماً. |
+| `d2.boss.r.prompt` | La grâce est finie et personne n’a renouvelé. Pointez ce qui vient ensuite, selon l’aide. | انتهت مهلة السماح ولم يجدّد أحد. أشِر إلى ما تقول صفحات المساعدة إنه يأتي بعدها. |
+| `d2.bub.a` | L’échéance est réelle. Les liens sont de moi. N’en ouvrez aucun. | الموعد النهائي حقيقي. والروابط من صنعي. لا تفتح أيّاً منها. |
+| `d2.bub.b` | Un autre billet. Elle demande ce que « grâce » lui laisse. Je porte. | قصاصة أخرى. تسأل ماذا تترك له «مهلة السماح». أنا أحملها. |
+| `d2.can` | Vous savez maintenant lire où pointe un nom, repérer un caractère substitué et refuser un lien de renouvellement. | صرتَ تعرف كيف تقرأ إلى أين يشير اسم، وتكشف حرفاً مُبدَّلاً، وترفض رابط تجديد. |
+| `d2.claim` | Ratez la date d’expiration, et le nom est perdu le jour même. | فوّت تاريخ الانتهاء، فيضيع الاسم في اليوم نفسه. |
+| `d2.diff.g.0.after` | Mêmes lettres des deux côtés. | الحروف نفسها في الاثنين. |
+| `d2.diff.g.0.say` | morceau un | القطعة الأولى |
+| `d2.diff.g.0.why` | Les deux commencent par fri : les trois mêmes lettres. | كلاهما يبدأ بـ fri: الحروف الثلاثة نفسها. |
+| `d2.diff.g.1.after` | eɴd pour end · un autre nom | eɴd بدل end · اسم مختلف |
+| `d2.diff.g.1.say` | morceau deux | القطعة الثانية |
+| `d2.diff.g.1.why` | Une petite capitale ɴ se tient là où était le n. L’aide : c’est un autre nom, un autre portefeuille. | حرف ɴ، وهو حرف كبير مصغَّر، يقف حيث كان n. صفحات المساعدة: إنه اسم مختلف، ومحفظة أخرى. |
+| `d2.diff.g.2.after` | Même fin des deux côtés. | النهاية نفسها في الاثنين. |
+| `d2.diff.g.2.say` | morceau trois | القطعة الثالثة |
+| `d2.diff.g.2.why` | Les deux finissent par .eth. Une terminaison ne prouve rien. | كلاهما ينتهي بـ .eth. والنهاية لا تثبت شيئاً. |
+| `d2.diff.hint.0` | Comparez morceau par morceau. | قارن قطعة بقطعة. |
+| `d2.diff.hint.1` | Une lettre est dessinée un peu autrement. | حرف واحد مرسوم بشكل مختلف قليلاً. |
+| `d2.diff.hint.2` | Réponse : le morceau du milieu. Une petite capitale remplace le n. | الجواب: القطعة الوسطى. حرف كبير مصغَّر يحلّ محلّ n. |
+| `d2.diff.kuro` | Une lettre. | حرف واحد. |
+| `d2.diff.prompt` | Un nom qu’elle attendait et un nom qu’on lui a envoyé, coupés en trois. Pointez le morceau qui diffère. | اسم كانت تنتظره واسم أُرسل إليها، كلّ منهما في ثلاث قطع. أشِر إلى القطعة المختلفة. |
+| `d2.diff.r.g.0.after` | Mêmes lettres des deux côtés. | الحروف نفسها في الاثنين. |
+| `d2.diff.r.g.0.say` | morceau un | القطعة الأولى |
+| `d2.diff.r.g.0.why` | Les deux commencent par ab. | كلاهما يبدأ بـ ab. |
+| `d2.diff.r.g.1.after` | ٤ pour 4 · un autre nom | ٤ بدل 4 · اسم مختلف |
+| `d2.diff.r.g.1.say` | morceau deux | القطعة الثانية |
+| `d2.diff.r.g.1.why` | Un ٤ indo-arabe se tient là où était le 4 latin. L’aide cite cette substitution. | الرقم ٤ بالشكل الهندي العربي يقف حيث كان 4 اللاتيني. وصفحات المساعدة تذكر هذا الإبدال. |
+| `d2.diff.r.g.2.after` | Même fin des deux côtés. | النهاية نفسها في الاثنين. |
+| `d2.diff.r.g.2.say` | morceau trois | القطعة الثالثة |
+| `d2.diff.r.g.2.why` | Les deux finissent par .eth. | كلاهما ينتهي بـ .eth. |
+| `d2.diff.r.prompt` | Une autre paire, coupée en trois. Pointez le morceau qui diffère. | زوج آخر، كلّ منهما في ثلاث قطع. أشِر إلى القطعة المختلفة. |
+| `d2.diff.r.why` | Un ٤ indo-arabe se tient là où était le 4 latin. L’aide cite cette substitution. | الرقم ٤ بالشكل الهندي العربي يقف حيث كان 4 اللاتيني. وصفحات المساعدة تذكر هذا الإبدال. |
+| `d2.diff.why` | Une petite capitale ɴ se tient là où était le n. L’aide : c’est un autre nom, un autre portefeuille. | حرف ɴ، وهو حرف كبير مصغَّر، يقف حيث كان n. صفحات المساعدة: إنه اسم مختلف، ومحفظة أخرى. |
+| `d2.grace.hint.0` | La grâce existe pour une seule action. | مهلة السماح موجودة لفعل واحد. |
+| `d2.grace.hint.1` | L’autre action attend que celle-là soit faite. | الفعل الآخر ينتظر حتى يُنجَز ذلك الفعل. |
+| `d2.grace.hint.2` | Réponse : le renouveler. | الجواب: جدِّده. |
+| `d2.grace.kuro` | Toujours à lui. | ما زال له. |
+| `d2.grace.p.a.after` | Renouvelé · même propriétaire, tarif normal | جُدِّد · المالك نفسه، الرسم العادي |
+| `d2.grace.p.a.say` | À gauche : le renouveler au tarif normal | الأول: جدِّده بالرسم العادي |
+| `d2.grace.p.a.text` | Le renouveler au tarif normal | جدِّده بالرسم العادي |
+| `d2.grace.p.a.why` | L’aide : pendant la grâce, n’importe qui peut le renouveler au tarif normal. Le propriétaire reste. | صفحات المساعدة: خلال مهلة السماح يستطيع أيّ شخص تجديده بالرسم العادي. ويبقى المالك. |
+| `d2.grace.p.b.after` | Pas pendant la grâce. | ليس خلال المهلة. |
+| `d2.grace.p.b.say` | À droite : le transférer vers un autre portefeuille | الثاني: انقله إلى محفظة أخرى |
+| `d2.grace.p.b.text` | Le transférer vers un autre portefeuille | انقله إلى محفظة أخرى |
+| `d2.grace.p.b.why` | L’aide : un nom en période de grâce ne peut pas être transféré. Renouvelez-le d’abord. | صفحات المساعدة: الاسم في مهلة السماح لا يمكن نقله. جدِّده أولاً. |
+| `d2.grace.prompt` | abcde.eth a expiré hier : il est en période de grâce. Pointez ce qu’on peut encore faire. | انتهى abcde.eth أمس: إنه في مهلة السماح. أشِر إلى ما يمكن فعله بعد. |
+| `d2.grace.r.p.a.after` | Pas pendant la grâce. | ليس خلال المهلة. |
+| `d2.grace.r.p.a.say` | À gauche : un inconnu, aujourd’hui | الأول: غريب، اليوم |
+| `d2.grace.r.p.a.text` | Un inconnu, aujourd’hui | غريب، اليوم |
+| `d2.grace.r.p.a.why` | Pas pendant la grâce. Après, n’importe qui le peut, d’abord avec un supplément. | ليس خلال مهلة السماح. بعدها يستطيع أيّ شخص، في البداية برسم إضافي. |
+| `d2.grace.r.p.b.after` | Personne · renouveler est tout ce qu’on peut faire | لا أحد · التجديد هو كلّ ما يستطيعه أيّ شخص |
+| `d2.grace.r.p.b.say` | À droite : personne, jusqu’à la fin de la grâce | الثاني: لا أحد، حتى تنتهي المهلة |
+| `d2.grace.r.p.b.text` | Personne, jusqu’à la fin de la grâce | لا أحد، حتى تنتهي المهلة |
+| `d2.grace.r.p.b.why` | L’aide : personne d’autre ne peut enregistrer le nom pendant sa période de grâce. | صفحات المساعدة: لا أحد غيره يستطيع تسجيل الاسم خلال مهلة السماح الخاصة به. |
+| `d2.grace.r.prompt` | Toujours en grâce. Pointez qui peut enregistrer le nom pour soi. | ما زال في مهلة السماح. أشِر إلى من يحقّ له تسجيل الاسم لنفسه. |
+| `d2.points.hint.0` | Deux lignes portent une adresse. Lisez leur premier mot. | سطران يحملان عنواناً. اقرأ كلمتهما الأولى. |
+| `d2.points.hint.1` | L’une d’elles dit qui contrôle le nom. | أحدهما يقول من يتحكّم في الاسم. |
+| `d2.points.hint.2` | Réponse : la ligne qui commence par Adresse. | الجواب: السطر الذي يبدأ بـ «العنوان». |
+| `d2.points.kuro` | Là. | هناك. |
+| `d2.points.p.address.after` | 0x71c…9a2 · là où pointe le nom | 0x71c…9a2 · حيث يشير الاسم |
+| `d2.points.p.address.say` | Adresse, une adresse, ligne | العنوان، عنوان، سطر |
+| `d2.points.p.address.text` | Adresse 0x71c…9a2 | العنوان 0x71c…9a2 |
+| `d2.points.p.address.why` | La documentation : le nom correspond à cette adresse. L’aide dit de la comparer avec ce qui a été envoyé. | الوثائق: الاسم يقابل هذا العنوان. وصفحات المساعدة تقول أن تقارنه بما أُرسل. |
+| `d2.points.p.expires.after` | Seulement une date. | تاريخ فقط. |
+| `d2.points.p.expires.say` | Expire le 14 mars 2027, ligne | ينتهي في 14 مارس 2027، سطر |
+| `d2.points.p.expires.text` | Expire le 14 mars 2027 | ينتهي في 14 مارس 2027 |
+| `d2.points.p.expires.why` | Une date dit jusqu’à quand, pas où. | التاريخ يقول حتى متى، لا إلى أين. |
+| `d2.points.p.name.after` | Le nom lui-même. | الاسم نفسه. |
+| `d2.points.p.name.say` | abcde point eth, titre | abcde.eth، العنوان الرئيسي |
+| `d2.points.p.name.text` | abcde.eth | abcde.eth |
+| `d2.points.p.name.why` | Le nom est l’étiquette. Là où il pointe est sur une autre ligne. | الاسم هو اللافتة. أمّا إلى أين يشير فعلى سطر آخر. |
+| `d2.points.p.owner.after` | Qui le contrôle. | من يتحكّم فيه. |
+| `d2.points.p.owner.say` | Propriétaire, une adresse, ligne | المالك، عنوان، سطر |
+| `d2.points.p.owner.text` | Propriétaire 0x9d4…e07 | المالك 0x9d4…e07 |
+| `d2.points.p.owner.why` | L’aide : le propriétaire du nom choisit l’adresse. Ici, le propriétaire est une autre adresse. | صفحات المساعدة: من يملك الاسم يختار العنوان. وهنا المالك عنوان آخر. |
+| `d2.points.p.site.after` | Un lien enregistré. | رابط محفوظ. |
+| `d2.points.p.site.say` | Site web, ligne | الموقع، سطر |
+| `d2.points.p.site.text` | Site web supplier-desk.example | الموقع supplier-desk.example |
+| `d2.points.p.site.why` | L’aide : un site web est l’une des entrées qu’un profil peut montrer. C’est un lien. | صفحات المساعدة: الموقع أحد السجلّات التي يمكن أن يعرضها الملف الشخصي. إنه رابط. |
+| `d2.points.prompt` | Un profil public pour abcde.eth (une maquette). Pointez la ligne vers laquelle mène le nom. | ملف شخصي عامّ لـ abcde.eth (شاشة تجريبية). أشِر إلى السطر الذي يقود إليه الاسم. |
+| `d2.points.r.p.address.after` | Où il pointe. | إلى أين يشير. |
+| `d2.points.r.p.address.say` | Adresse, une adresse, ligne | العنوان، عنوان، سطر |
+| `d2.points.r.p.address.text` | Adresse 0x71c…9a2 | العنوان 0x71c…9a2 |
+| `d2.points.r.p.address.why` | C’est là que pointe le nom. Quelqu’un l’a choisi. | هناك يشير الاسم. وأحدهم اختار ذلك. |
+| `d2.points.r.p.expires.after` | Seulement une date. | تاريخ فقط. |
+| `d2.points.r.p.expires.say` | Expire le 14 mars 2027, ligne | ينتهي في 14 مارس 2027، سطر |
+| `d2.points.r.p.expires.text` | Expire le 14 mars 2027 | ينتهي في 14 مارس 2027 |
+| `d2.points.r.p.expires.why` | Une date ne change rien par elle-même. | التاريخ لا يغيّر شيئاً بنفسه. |
+| `d2.points.r.p.owner.after` | Propriétaire · contrôle les entrées | المالك · يتحكّم في السجلّات |
+| `d2.points.r.p.owner.say` | Propriétaire, une adresse, ligne | المالك، عنوان، سطر |
+| `d2.points.r.p.owner.text` | Propriétaire 0x9d4…e07 | المالك 0x9d4…e07 |
+| `d2.points.r.p.owner.why` | L’aide : le propriétaire contrôle ses entrées et peut transférer le nom. | صفحات المساعدة: المالك يتحكّم في سجلّاته ويستطيع نقل الاسم. |
+| `d2.points.r.prompt` | Le même profil. Pointez la ligne qui dit qui peut changer ses entrées. | الملف الشخصي نفسه. أشِر إلى السطر الذي يقول من يستطيع تغيير سجلّاته. |
+| `d2.ring.address` | Un e-mail (inventé) : « abcde.eth expire aujourd’hui » | بريد إلكتروني (متخيَّل): «abcde.eth ينتهي اليوم» |
+| `d2.ring.hint.0` | Touchez chaque ligne pour voir où elle mène. | المس كلّ سطر لترى إلى أين يقود. |
+| `d2.ring.hint.1` | Lisez chaque adresse par sa fin, à droite. | اقرأ كلّ عنوان من طرفه الأيمن. |
+| `d2.ring.hint.2` | Réponse : taper app.ens.domains à la main. | الجواب: اكتب app.ens.domains بيدك. |
+| `d2.ring.kuro` | À la main. | باليد. |
+| `d2.ring.p.l1.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.p.l1.say` | Lien un : voir ma date d’expiration | الرابط الأول: اطّلع على تاريخ انتهائي |
+| `d2.ring.p.l1.text` | Voir ma date d’expiration | اطّلع على تاريخ انتهائي |
+| `d2.ring.p.l1.why` | Avant la première barre oblique, le nom finit par renew-desk.example. L’aide : ne renouvelez jamais depuis un lien dans un message. | قبل أول شرطة مائلة ينتهي الاسم بـ renew-desk.example. صفحات المساعدة: لا تجدّد أبداً من رابط في رسالة. |
+| `d2.ring.p.l2.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.p.l2.say` | Lien deux : vérifier mon nom | الرابط الثاني: تحقّق من اسمي |
+| `d2.ring.p.l2.text` | Vérifier mon nom | تحقّق من اسمي |
+| `d2.ring.p.l2.why` | Des traits d’union lient un seul nouveau nom : app-ens-domains.example. Il n’est pas sous ens.domains. | الشرطات تصل اسماً واحداً جديداً: app-ens-domains.example. وهو ليس تحت ens.domains. |
+| `d2.ring.p.own.after` | app.ens.domains · tapé, pas suivi | app.ens.domains · مكتوب، لا متّبَع |
+| `d2.ring.p.own.say` | Ligne quatre : taper l’adresse à la main | السطر الرابع: اكتب العنوان بيدك |
+| `d2.ring.p.own.text` | Taper l’adresse à la main | اكتب العنوان بيدك |
+| `d2.ring.p.own.why` | L’aide : les sites officiels sont sous ens.domains, et une date se vérifie là, jamais par un message. | صفحات المساعدة: المواقع الرسمية تحت ens.domains، والتاريخ يُتحقَّق منه هناك، لا عبر رسالة أبداً. |
+| `d2.ring.p.reply.after` | Retour à l’expéditeur. | عائد إلى المرسِل. |
+| `d2.ring.p.reply.say` | Ligne trois : répondre et leur demander | السطر الثالث: ردّ واسألهم |
+| `d2.ring.p.reply.text` | Répondre et leur demander | ردّ واسألهم |
+| `d2.ring.p.reply.why` | Une réponse va à l’expéditeur, chez renew-desk.example. L’aide : vérifiez la date vous-même, sur app.ens.domains. | الردّ يذهب إلى المرسِل، عند renew-desk.example. صفحات المساعدة: تحقّق من التاريخ بنفسك، على app.ens.domains. |
+| `d2.ring.prompt` | Quatre façons de vérifier la date. Touchez chacune pour voir où elle mène. | أربع طرق للتحقّق من التاريخ. المس كلّ واحدة لترى إلى أين تقود. |
+| `d2.ring.r.address` | Un message direct (inventé) | رسالة مباشرة (متخيَّلة) |
+| `d2.ring.r.p.l2.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.r.p.l2.say` | Lien deux : synchro pour la v2 | الرابط الثاني: مزامنة للإصدار 2 |
+| `d2.ring.r.p.l2.text` | Synchro pour la v2 | مزامنة للإصدار 2 |
+| `d2.ring.r.p.l2.why` | Avant la première barre oblique, le nom finit par sync-v2.example. L’aide classe ces messages parmi les faux. | قبل أول شرطة مائلة ينتهي الاسم بـ sync-v2.example. صفحات المساعدة تعدّ مثل هذه الرسائل مزيّفة. |
+| `d2.ring.r.p.l3.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.r.p.l3.say` | Lien quatre : mise à niveau, officielle | الرابط الرابع: ترقية، رسمية |
+| `d2.ring.r.p.l3.text` | Mise à niveau (officielle) | ترقية (رسمية) |
+| `d2.ring.r.p.l3.why` | Un seul nouveau nom, lié par des traits d’union : official-ens-domains.example. Il n’est pas sous ens.domains. | اسم واحد جديد تصله الشرطات: official-ens-domains.example. وهو ليس تحت ens.domains. |
+| `d2.ring.r.p.own.after` | app.ens.domains · ouvert à la main | app.ens.domains · مفتوح باليد |
+| `d2.ring.r.p.own.say` | Ligne un : ouvrir l’appli à la main | السطر الأول: افتح التطبيق بيدك |
+| `d2.ring.r.p.own.text` | Ouvrir l’appli à la main | افتح التطبيق بيدك |
+| `d2.ring.r.p.own.why` | L’aide : la mise à niveau est facultative, sans échéance, et jamais faite depuis un lien dans un message. | صفحات المساعدة: الترقية اختيارية وبلا موعد نهائي، ولا تتمّ أبداً من رابط في رسالة. |
+| `d2.ring.r.p.reply.after` | Retour à l’expéditeur. | عائد إلى المرسِل. |
+| `d2.ring.r.p.reply.say` | Ligne trois : répondre à l’expéditeur | السطر الثالث: ردّ على المرسِل |
+| `d2.ring.r.p.reply.text` | Répondre à l’expéditeur | ردّ على المرسِل |
+| `d2.ring.r.p.reply.why` | Une réponse retourne à l’expéditeur, chez sync-v2.example. L’aide : les sites officiels sont sous ens.domains. | الردّ يعود إلى المرسِل، عند sync-v2.example. صفحات المساعدة: المواقع الرسمية تحت ens.domains. |
+| `d2.ring.r.prompt` | Un message dit : faites la mise à niveau avant une échéance. Touchez chaque voie pour voir où elle mène. | رسالة تقول: قُم بالترقية قبل موعد نهائي. المس كلّ طريق لترى إلى أين يقود. |
+| `d2.rows.hint.0` | Une ligne, ce sont les frais eux-mêmes. | سطر واحد هو الرسم نفسه. |
+| `d2.rows.hint.1` | Un autre coût va au réseau, pas au nom. | كلفة أخرى تذهب إلى الشبكة، لا إلى الاسم. |
+| `d2.rows.hint.2` | Réponse : Frais de réseau (estimés). | الجواب: رسوم الشبكة (تقديرية). |
+| `d2.rows.kuro` | En plus. | فوقه. |
+| `d2.rows.p.fee.after` | Les frais eux-mêmes. | الرسم نفسه. |
+| `d2.rows.p.fee.say` | Frais annuels, ligne | الرسم السنوي، سطر |
+| `d2.rows.p.fee.text` | Frais annuels | الرسم السنوي |
+| `d2.rows.p.fee.why` | Les frais pour le nom lui-même. Les frais de réseau sont un coût à part. | الرسم مقابل الاسم نفسه. ورسوم الشبكة كلفة منفصلة. |
+| `d2.rows.p.gas.after` | Frais de réseau · en plus des frais annuels | رسوم الشبكة · فوق الرسم السنوي |
+| `d2.rows.p.gas.say` | Frais de réseau, estimés, ligne | رسوم الشبكة، تقديرية، سطر |
+| `d2.rows.p.gas.text` | Frais de réseau (estimés) | رسوم الشبكة (تقديرية) |
+| `d2.rows.p.gas.why` | L’aide : à l’enregistrement ou au renouvellement, les frais de réseau s’ajoutent. | صفحات المساعدة: عند التسجيل أو التجديد، تُضاف رسوم الشبكة. |
+| `d2.rows.p.name.after` | Le nom et la durée. | الاسم والمدّة. |
+| `d2.rows.p.name.say` | abcde point eth, un an, ligne | abcde.eth، سنة واحدة، سطر |
+| `d2.rows.p.name.text` | abcde.eth · 1 an | abcde.eth · سنة واحدة |
+| `d2.rows.p.name.why` | Cette ligne dit ce qui est enregistré, et pour combien de temps. | هذا السطر يقول ما المسجَّل ولأيّ مدّة. |
+| `d2.rows.p.with.after` | Comment, pas combien. | كيف، لا كم. |
+| `d2.rows.p.with.say` | Payer avec, ligne | الدفع بـ، سطر |
+| `d2.rows.p.with.text` | Payer avec : un crypto-actif | الدفع بـ: أصل مشفّر |
+| `d2.rows.p.with.why` | L’aide : le paiement vient du portefeuille connecté. Cette ligne n’ajoute aucun coût. | صفحات المساعدة: الدفع يتمّ من المحفظة الموصولة. وهذا السطر لا يضيف أيّ كلفة. |
+| `d2.rows.address` | Récapitulatif | ملخّص التسجيل |
+| `d2.rows.prompt` | Un récapitulatif d’enregistrement (une maquette, montants masqués). Pointez la ligne qui s’ajoute aux frais annuels. | ملخّص تسجيل (شاشة تجريبية، المبالغ مخفيّة). أشِر إلى السطر الذي يأتي فوق الرسم السنوي. |
+| `d2.rows.r.p.fee.after` | Frais annuels · fixés par la longueur du nom | الرسم السنوي · يحدّده طول الاسم |
+| `d2.rows.r.p.fee.say` | Frais annuels, ligne | الرسم السنوي، سطر |
+| `d2.rows.r.p.fee.text` | Frais annuels | الرسم السنوي |
+| `d2.rows.r.p.fee.why` | L’aide : les frais annuels dépendent de la longueur du nom. Les noms commencent à 3 caractères. | صفحات المساعدة: الرسم السنوي يتوقّف على طول الاسم. والأسماء تبدأ من 3 محارف. |
+| `d2.rows.r.p.gas.after` | Payés au réseau. | تُدفع للشبكة. |
+| `d2.rows.r.p.gas.say` | Frais de réseau, estimés, ligne | رسوم الشبكة، تقديرية، سطر |
+| `d2.rows.r.p.gas.text` | Frais de réseau (estimés) | رسوم الشبكة (تقديرية) |
+| `d2.rows.r.p.gas.why` | L’aide : les frais de réseau s’ajoutent, à l’enregistrement ou au renouvellement. | صفحات المساعدة: رسوم الشبكة تُضاف، عند التسجيل أو التجديد. |
+| `d2.rows.r.p.name.after` | Ce qui est enregistré. | ما المسجَّل. |
+| `d2.rows.r.p.name.say` | abcde point eth, un an, ligne | abcde.eth، سنة واحدة، سطر |
+| `d2.rows.r.p.name.text` | abcde.eth · 1 an | abcde.eth · سنة واحدة |
+| `d2.rows.r.p.name.why` | Cette ligne nomme ce qui est enregistré, et pour combien de temps. Elle ne fixe pas de frais. | هذا السطر يسمّي ما المسجَّل ولأيّ مدّة. ولا يحدّد أيّ رسم. |
+| `d2.rows.r.p.with.after` | Comment, pas combien. | كيف، لا كم. |
+| `d2.rows.r.p.with.say` | Payer avec, ligne | الدفع بـ، سطر |
+| `d2.rows.r.p.with.text` | Payer avec : un crypto-actif | الدفع بـ: أصل مشفّر |
+| `d2.rows.r.p.with.why` | L’aide : le paiement vient du portefeuille connecté. Cette ligne n’ajoute aucun coût. | صفحات المساعدة: الدفع يتمّ من المحفظة الموصولة. وهذا السطر لا يضيف أيّ كلفة. |
+| `d2.rows.r.address` | Récapitulatif | ملخّص التسجيل |
+| `d2.rows.r.prompt` | Le même récapitulatif. Pointez la ligne qui dépend de la longueur du nom. | الملخّص نفسه. أشِر إلى السطر الذي يتوقّف على طول الاسم. |
+| `d2.slip` | Le prestataire hausse les épaules : ratez la date d’expiration, et le nom est perdu le jour même. Samia s’interroge. | يهزّ المورّد كتفيه: فوّت تاريخ الانتهاء، فيضيع الاسم في اليوم نفسه. تتساءل سامية. |
+| `d2.slipTag` | ENQUÊTE 10 · exemple inventé | التحقيق 10 · مثال متخيَّل |
+| `d2.stamp.prompt` | Le prestataire, encore : ratez la date d’expiration, et le nom est perdu le jour même. Tamponnez : | قول المورّد مرّة أخرى: فوّت تاريخ الانتهاء، فيضيع الاسم في اليوم نفسه. اختمه: |
+| `d2.stamp.reveal` | À moitié. Un nom mis à niveau s’arrête ce jour-là, mais 28 jours durant, un renouvellement le sauve encore. | نصف صحيح. الاسم المُرقّى يتوقّف عن العمل في ذلك اليوم، لكنّ التجديد ما زال ينقذه طوال 28 يوماً. |
+| `d3.after.frame` | Après la grâce, {1} peut enregistrer le nom ; l’ancien propriétaire {2}. | بعد مهلة السماح، يستطيع {1} تسجيل الاسم؛ والمالك السابق {2}. |
+| `d3.after.hint.0` | La grâce était le dernier temps réservé pour lui. | مهلة السماح كانت آخر وقت محجوز له. |
+| `d3.after.hint.1` | L’aide emploie le mot priorité. | صفحات المساعدة تستعمل كلمة «أولوية». |
+| `d3.after.hint.2` | Réponse : n’importe qui ; n’a aucune priorité. | الجواب: أيّ شخص؛ ليست له أيّ أولوية. |
+| `d3.after.kuro` | Aucune priorité. | لا أولوية. |
+| `d3.after.p.c1.text` | n’importe qui | أيّ شخص |
+| `d3.after.p.c1.why` | L’aide : après la grâce, n’importe qui peut enregistrer le nom, d’abord avec un supplément. | صفحات المساعدة: بعد مهلة السماح يستطيع أيّ شخص تسجيل الاسم، في البداية برسم إضافي. |
+| `d3.after.p.c2.text` | n’a aucune priorité | ليست له أيّ أولوية |
+| `d3.after.p.c2.why` | L’aide : l’ancien propriétaire n’a aucune priorité. | صفحات المساعدة: ليس للمالك السابق أيّ أولوية. |
+| `d3.after.p.c3.text` | seul le support d’ENS | دعم ENS وحده |
+| `d3.after.p.c3.why` | L’aide : le support ne peut ni déplacer, ni geler, ni récupérer un nom. | صفحات المساعدة: الدعم لا يستطيع نقل اسم ولا تجميده ولا استرداده. |
+| `d3.after.p.c4.text` | le récupère sans frais | يستعيده بلا كلفة |
+| `d3.after.p.c4.why` | L’aide : aucune priorité. Il l’enregistre comme n’importe qui. | صفحات المساعدة: لا أولوية. يسجّله كأيّ شخص آخر. |
+| `d3.after.p.c5.text` | le renouvelle comme avant | يجدّده كما من قبل |
+| `d3.after.p.c5.why` | L’aide : une fois la grâce finie, le nom doit être enregistré à nouveau. | صفحات المساعدة: حين تنتهي مهلة السماح، يجب تسجيل الاسم من جديد. |
+| `d3.after.prompt` | Le lendemain de la fin de la grâce : et alors ? Construisez la phrase. | اليوم التالي لانتهاء مهلة السماح: ثم ماذا؟ ابنِ الجملة. |
+| `d3.after.r.frame` | Pendant la grâce, un nom mis à niveau {1}, pourtant l’enregistrer reste permis à {2}. | في مهلة السماح، الاسم المُرقّى {1}، ومع ذلك فمن يستطيع تسجيله: {2}. |
+| `d3.after.r.p.r1.text` | cesse de fonctionner | يتوقّف عن العمل |
+| `d3.after.r.p.r1.why` | L’aide : un nom mis à niveau cesse de pointer où que ce soit jusqu’à son renouvellement. | صفحات المساعدة: الاسم المُرقّى يكفّ عن الإشارة إلى أيّ مكان حتى يُجدَّد. |
+| `d3.after.r.p.r2.text` | personne d’autre | لا أحد غيره |
+| `d3.after.r.p.r2.why` | L’aide : personne d’autre ne peut l’enregistrer pendant la période de grâce. | صفحات المساعدة: لا أحد غيره يستطيع تسجيله خلال مهلة السماح. |
+| `d3.after.r.p.r3.text` | continue de fonctionner | يظلّ يعمل |
+| `d3.after.r.p.r3.why` | L’aide : seul un nom non mis à niveau continue de fonctionner pendant la grâce. | صفحات المساعدة: وحده الاسم غير المُرقّى يظلّ يعمل خلال مهلة السماح. |
+| `d3.after.r.p.r4.text` | n’importe qui | أيّ شخص |
+| `d3.after.r.p.r4.why` | Pas pendant la grâce. Cela vient après. | ليس خلال مهلة السماح. ذلك يأتي بعدها. |
+| `d3.after.r.prompt` | Et pendant la grâce ? Touchez une pastille, puis sa case. | وخلال مهلة السماح؟ المس رقعة، ثم خانتها. |
+| `d3.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d3.boss.frame` | Le support d’ENS ne peut pas {1}, mais le nom, lui, {2}, et {3} peut le transférer. | دعم ENS لا يستطيع {1}، لكنّ الاسم ما زال {2}، و{3} يستطيع نقله. |
+| `d3.boss.hint.0` | Commencez par ce que le support ne peut pas faire. | ابدأ بما لا يستطيعه الدعم. |
+| `d3.boss.hint.1` | Deux choses peuvent encore mettre fin à sa prise : le temps, et un portefeuille en d’autres mains. | شيئان ما زالا يستطيعان إنهاء سيطرته: الوقت، ومحفظة في أيدٍ أخرى. |
+| `d3.boss.hint.2` | Réponse : le déplacer ni le geler ; expire s’il n’est pas renouvelé ; quiconque détient son portefeuille. | الجواب: نقله ولا تجميده؛ ينتهي ما لم يُجدَّد؛ من يحوز محفظته. |
+| `d3.boss.kuro` | À moitié sien. | نصفه له. |
+| `d3.boss.p.c1.text` | le déplacer ni le geler | نقله ولا تجميده |
+| `d3.boss.p.c1.why` | L’aide : ENS ne peut ni déplacer ni geler un nom. | صفحات المساعدة: ENS لا يستطيع نقل اسم ولا تجميده. |
+| `d3.boss.p.c2.text` | expire s’il n’est pas renouvelé | ينتهي ما لم يُجدَّد |
+| `d3.boss.p.c2.why` | L’aide : le nom est possédé jusqu’à sa date d’expiration. Après la grâce, n’importe qui peut l’enregistrer. | صفحات المساعدة: الاسم مملوك حتى تاريخ انتهائه. وبعد مهلة السماح يستطيع أيّ شخص تسجيله. |
+| `d3.boss.p.c3.text` | quiconque détient son portefeuille | من يحوز محفظته |
+| `d3.boss.p.c3.why` | L’aide : tant qu’un portefeuille compromis possède le nom, l’attaquant peut le déplacer. | صفحات المساعدة: ما دامت محفظة مخترَقة تملك الاسم، يستطيع المهاجم نقله. |
+| `d3.boss.p.c4.text` | dure pour de bon | يدوم إلى الأبد |
+| `d3.boss.p.c4.why` | Il a une date d’expiration. L’aide : tout nom expire. | له تاريخ انتهاء. صفحات المساعدة: كلّ اسم ينتهي. |
+| `d3.boss.p.c5.text` | seul le prestataire | المورّد وحده |
+| `d3.boss.p.c5.why` | Le portefeuille déplace le nom, quel que soit son détenteur. Un transfert ne peut pas être annulé. | المحفظة تنقل الاسم، أيّاً كان من يحوزها. والنقل لا يمكن التراجع عنه. |
+| `d3.boss.p.c6.text` | lire ses entrées | قراءة سجلّاته |
+| `d3.boss.p.c6.why` | L’aide : chaque entrée est stockée sur la chaîne, où n’importe qui peut la lire. Le support aussi. | صفحات المساعدة: كلّ سجلّ مخزَّن على السلسلة، حيث يستطيع أيّ شخص قراءته. والدعم أيضاً. |
+| `d3.boss.prompt` | Samia : « Donc personne ne peut le lui prendre ? » Construisez la réponse. | سامية: «إذن، لا أحد يستطيع أخذه منه؟» ابنِ الجواب. |
+| `d3.boss.r.frame` | Un domaine GoDaddy, lui aussi, {1} ; des semaines après la date, il peut être récupéré {2}. | نطاق GoDaddy أيضاً {1}؛ وبعد التاريخ بأسابيع قد يُستردّ {2}. |
+| `d3.boss.r.p.r1.text` | expire s’il n’est pas renouvelé | ينتهي ما لم يُجدَّد |
+| `d3.boss.r.p.r1.why` | L’aide de GoDaddy : les domaines doivent être renouvelés avant leur date d’expiration. | صفحات مساعدة GoDaddy: يجب تجديد النطاقات قبل تاريخ انتهائها. |
+| `d3.boss.r.p.r2.text` | contre des frais de rachat, pour un temps | برسم استرداد، لمدّة محدودة |
+| `d3.boss.r.p.r2.why` | Le calendrier de GoDaddy : dès 18 jours après l’expiration, la récupération coûte des frais de rachat, jusqu’au retrait du domaine. | الجدول الزمني لدى GoDaddy: بدءاً من 18 يوماً بعد الانتهاء، يكلّف الاسترداد رسم استرداد، حتى يُزال النطاق. |
+| `d3.boss.r.p.r3.text` | sans frais, à tout moment | بلا كلفة، في أيّ وقت |
+| `d3.boss.r.p.r3.why` | Le calendrier nomme des frais de rachat, et un jour après lequel il ne peut plus être renouvelé. | الجدول الزمني يذكر رسم استرداد، ويوماً لا يمكن بعده تجديده. |
+| `d3.boss.r.p.r4.text` | n’expire jamais | لا ينتهي أبداً |
+| `d3.boss.r.p.r4.why` | L’aide de GoDaddy : chaque domaine est enregistré pour une période donnée. | صفحات مساعدة GoDaddy: كلّ نطاق يُسجَّل لمدّة محدّدة. |
+| `d3.boss.r.prompt` | Un domaine GoDaddy après sa date ? Construisez la phrase. | نطاق GoDaddy بعد تاريخه؟ ابنِ الجملة. |
+| `d3.bub.a` | Pas de renouvellement, pas de nom. Aucune clé n’y change rien. | لا تجديد، لا اسم. ولا مفتاح يغيّر ذلك. |
+| `d3.bub.b` | Sa réponse fut brève : « Public ? Tout ça ? » Je porte, c’est tout. | جاء ردّها قصيراً: «عامّ؟ كلّه؟» أنا أحملها فقط. |
+| `d3.can` | Vous savez maintenant expliquer ce qu’est un nom en .eth, ce que l’expiration lui fait, et qui peut le déplacer. | صرتَ تعرف كيف تشرح ما الاسم المنتهي بـ .eth، وما يفعله به الانتهاء، ومن يستطيع نقله. |
+| `d3.claim` | Avec ENS, le nom est à lui seul, et personne ne peut le lui prendre. | مع ENS الاسم له وحده، ولا أحد يستطيع أخذه منه. |
+| `d3.label.frame` | Un nom en .eth est {1} qui pointe vers {2}. | الاسم المنتهي بـ .eth هو {1}، ويشير إلى {2}. |
+| `d3.label.hint.0` | Commencez par ce à quoi sert un nom : être lu. | ابدأ بما يُصنع الاسم من أجله: القراءة. |
+| `d3.label.hint.1` | Il tient lieu de quelque chose de long que quelqu’un a choisi. | ينوب عن شيء طويل اختاره أحدهم. |
+| `d3.label.hint.2` | Réponse : une étiquette lisible ; une adresse choisie par son propriétaire. | الجواب: لافتة مقروءة؛ عنوان اختاره مالكه. |
+| `d3.label.kuro` | Une étiquette. | لافتة. |
+| `d3.label.p.c1.text` | une étiquette lisible | لافتة مقروءة |
+| `d3.label.p.c1.why` | La documentation d’ENS : il fait correspondre des noms lisibles par l’humain à des identifiants lisibles par une machine. | وثائق ENS: يربط أسماء يقرؤها البشر بمعرّفات تقرؤها الآلات. |
+| `d3.label.p.c2.text` | une adresse choisie par son propriétaire | عنوان اختاره مالكه |
+| `d3.label.p.c2.why` | L’aide : le nom peut pointer vers n’importe quelle adresse ; son propriétaire choisit. | صفحات المساعدة: يمكن أن يشير الاسم إلى أيّ عنوان؛ ومالكه هو من يختار. |
+| `d3.label.p.c3.text` | un compte bancaire | حساب مصرفي |
+| `d3.label.p.c3.why` | La documentation parle d’adresses. Aucun compte bancaire n’entre en jeu. | الوثائق تتحدّث عن عناوين. لا دخل لأيّ حساب مصرفي. |
+| `d3.label.p.c4.text` | une clé secrète | مفتاح سرّي |
+| `d3.label.p.c4.why` | Une clé reste secrète. Tout ce qui est sur un nom est public, dit l’aide. | المفتاح يبقى سرّياً. وكلّ ما على الاسم عامّ، كما تقول صفحات المساعدة. |
+| `d3.label.p.c5.text` | un site web | موقع ويب |
+| `d3.label.p.c5.why` | Un site web n’est qu’une entrée qu’un profil peut montrer. Le nom pointe vers une adresse. | الموقع ليس إلا سجلّاً واحداً يمكن أن يعرضه الملف الشخصي. والاسم يشير إلى عنوان. |
+| `d3.label.prompt` | Qu’est-ce qu’un nom en .eth ? Touchez une pastille, puis sa case. | ما الاسم المنتهي بـ .eth؟ المس رقعة، ثم خانتها. |
+| `d3.label.r.frame` | Le DNS transforme {1} en {2}, pour qu’un navigateur trouve le site. | نظام أسماء النطاقات يحوّل {1} إلى {2}، فيجد المتصفّح الموقع. |
+| `d3.label.r.p.r1.text` | un nom de domaine | اسم نطاق |
+| `d3.label.r.p.r1.why` | L’aide de GoDaddy : le DNS convertit des noms alphabétiques en adresses IP numériques. | صفحات مساعدة GoDaddy: نظام أسماء النطاقات يحوّل الأسماء الأبجدية إلى عناوين بروتوكول إنترنت رقمية. |
+| `d3.label.r.p.r2.text` | une adresse IP numérique | عنوان بروتوكول إنترنت رقمي |
+| `d3.label.r.p.r2.why` | L’aide de GoDaddy : ce nombre est ce que le navigateur utilise pour afficher le bon contenu. | صفحات مساعدة GoDaddy: هذا الرقم هو ما يستعمله المتصفّح لعرض المحتوى الصحيح. |
+| `d3.label.r.p.r3.text` | une adresse de portefeuille | عنوان محفظة |
+| `d3.label.r.p.r3.why` | C’est ce vers quoi pointe un nom en .eth, d’après l’aide d’ENS. | هذا ما يشير إليه اسم ينتهي بـ .eth، بحسب صفحات مساعدة ENS. |
+| `d3.label.r.p.r4.text` | une date d’expiration | تاريخ انتهاء |
+| `d3.label.r.p.r4.why` | Une date dit jusqu’à quand. Le DNS change des noms en nombres. | التاريخ يقول حتى متى. ونظام أسماء النطاقات يحوّل الأسماء إلى أرقام. |
+| `d3.label.r.prompt` | Et un domaine GoDaddy ? Touchez une pastille, puis sa case. | ونطاق GoDaddy؟ المس رقعة، ثم خانتها. |
+| `d3.note.hint.0` | Deux notes promettent un retour en arrière. | ملاحظتان تَعِدان بطريق للرجوع. |
+| `d3.note.hint.1` | Le nom est dans un portefeuille. Qui ouvre le portefeuille ? | الاسم في محفظة. من يفتح المحفظة؟ |
+| `d3.note.hint.2` | Réponse : qui contrôle le portefeuille contrôle le nom. | الجواب: من يتحكّم في المحفظة يتحكّم في الاسم. |
+| `d3.note.kuro` | Le portefeuille. | المحفظة. |
+| `d3.note.p.n1.text` | Perdez le portefeuille, et le support d’ENS déplace le nom. | افقد المحفظة، فينقل دعم ENS الاسم. |
+| `d3.note.p.n1.why` | L’aide : le support d’ENS ne peut ni déplacer, ni geler, ni récupérer un nom. | صفحات المساعدة: دعم ENS لا يستطيع نقل اسم ولا تجميده ولا استرداده. |
+| `d3.note.p.n2.text` | Qui contrôle le portefeuille contrôle le nom, voleurs compris. | من يتحكّم في المحفظة يتحكّم في الاسم، بمن في ذلك اللصوص. |
+| `d3.note.p.n2.why` | L’aide sur un portefeuille compromis : tant qu’il possède le nom, l’attaquant peut le déplacer. | صفحات المساعدة عن المحفظة المخترَقة: ما دامت تملك الاسم، يستطيع المهاجم نقله. |
+| `d3.note.p.n3.text` | Un nom envoyé à une mauvaise adresse revient plus tard. | الاسم المرسَل إلى عنوان خاطئ يعود لاحقاً. |
+| `d3.note.p.n3.why` | L’aide : un transfert ne peut pas être annulé. Seul le portefeuille destinataire peut le renvoyer. | صفحات المساعدة: النقل لا يمكن التراجع عنه. والمحفظة المستلِمة وحدها تستطيع إعادته. |
+| `d3.note.prompt` | Trois notes sur sa phrase. Touchez la bonne. | ثلاث ملاحظات على قوله. المس الصائبة. |
+| `d3.note.r.p.r1.text` | Supprimer une entrée la masque des applis ; son historique reste public. | إزالة سجلّ تُخفيه عن التطبيقات؛ وتاريخه يبقى عامّاً. |
+| `d3.note.r.p.r1.why` | L’aide : la suppression l’empêche de s’afficher. L’historique sur la chaîne garde trace qu’elle a existé. | صفحات المساعدة: الإزالة توقف ظهوره. وتاريخ السلسلة يحفظ أنه وُجد يوماً. |
+| `d3.note.r.p.r2.text` | Un e-mail enregistré comme entrée ne s’affiche qu’aux amis. | بريد إلكتروني محفوظ كسجلّ لا يظهر إلا للأصدقاء. |
+| `d3.note.r.p.r2.why` | L’aide : il n’existe aucun réglage de confidentialité par entrée. Tout visiteur la voit. | صفحات المساعدة: لا يوجد مفتاح خصوصية لكلّ سجلّ. وكلّ زائر يراه. |
+| `d3.note.r.p.r3.text` | ENS masque une entrée sur demande. | ENS يُخفي سجلّاً عند الطلب. |
+| `d3.note.r.p.r3.why` | L’aide : ENS ne peut pas les masquer. La confidentialité, c’est choisir ce qu’on y attache. | صفحات المساعدة: ENS لا يستطيع إخفاءها. والخصوصية هي اختيار ما تُرفقه. |
+| `d3.note.r.prompt` | Trois nouvelles notes. Touchez la vraie. | ثلاث ملاحظات جديدة. المس الصحيحة. |
+| `d3.public.frame` | Un inconnu peut lire {1}, car les entrées sont stockées {2}. | يستطيع غريب أن يقرأ {1}، لأنّ السجلّات مخزَّنة {2}. |
+| `d3.public.hint.0` | L’aide dit qu’un nom est public par conception. | صفحات المساعدة تصف الاسم بأنه عامّ بحكم التصميم. |
+| `d3.public.hint.1` | Où les entrées sont-elles conservées ? | أين تُحفظ السجلّات؟ |
+| `d3.public.hint.2` | Réponse : chaque entrée qu’il a enregistrée ; sur la chaîne. | الجواب: كلّ سجلّ حفظه؛ على السلسلة. |
+| `d3.public.kuro` | Par conception. | بحكم التصميم. |
+| `d3.public.p.c1.text` | chaque entrée qu’il a enregistrée | كلّ سجلّ حفظه |
+| `d3.public.p.c1.why` | L’aide : qui consulte le nom voit tout ce qui est enregistré comme entrée. | صفحات المساعدة: من يبحث عن الاسم يرى كلّ ما حُفظ كسجلّ. |
+| `d3.public.p.c2.text` | sur la chaîne | على السلسلة |
+| `d3.public.p.c2.why` | L’aide : tout ce qui est réglé sur le nom est stocké sur la chaîne, où n’importe qui peut le lire. | صفحات المساعدة: كلّ ما يُضبط على الاسم مخزَّن على السلسلة، حيث يستطيع أيّ شخص قراءته. |
+| `d3.public.p.c3.text` | seulement ce qu’il marque public | ما يعلّمه عامّاً فقط |
+| `d3.public.p.c3.why` | L’aide : il n’existe aucun réglage de confidentialité par entrée. | صفحات المساعدة: لا يوجد مفتاح خصوصية لكلّ سجلّ. |
+| `d3.public.p.c4.text` | sur les serveurs d’ENS | على خوادم ENS نفسه |
+| `d3.public.p.c4.why` | L’aide : tout ce qui est réglé sur le nom est stocké sur la chaîne. ENS ne peut pas les masquer. | صفحات المساعدة: كلّ ما يُضبط على الاسم مخزَّن على السلسلة. وENS لا يستطيع إخفاءه. |
+| `d3.public.p.c5.text` | dans son appli de portefeuille | في تطبيق محفظته |
+| `d3.public.p.c5.why` | L’aide : tout ce que vous réglez sur le nom est stocké sur la chaîne, où n’importe qui peut le lire. | صفحات المساعدة: كلّ ما تضبطه على الاسم مخزَّن على السلسلة، حيث يستطيع أيّ شخص قراءته. |
+| `d3.public.p.c6.text` | le nom et rien d’autre | الاسم لا غير |
+| `d3.public.p.c6.why` | L’adresse vers laquelle il pointe s’affiche aussi, dit l’aide. | العنوان الذي يشير إليه يظهر أيضاً، كما تقول صفحات المساعدة. |
+| `d3.public.prompt` | Que peut lire un inconnu à partir du nom ? Construisez la phrase. | ماذا يستطيع غريب أن يقرأ من الاسم؟ ابنِ الجملة. |
+| `d3.public.r.frame` | Par défaut, GoDaddy masque : {1} ; ENS montre à tous : {2}. | افتراضياً يُخفي GoDaddy: {1}؛ ويُظهر ENS للجميع: {2}. |
+| `d3.public.r.p.r1.text` | les coordonnées dans l’annuaire public | بيانات الاتصال في الدليل العامّ |
+| `d3.public.r.p.r1.why` | L’aide de GoDaddy : Domain Privacy, active par défaut, remplace les coordonnées qui y sont affichées. | صفحات مساعدة GoDaddy: Domain Privacy، المفعَّلة افتراضياً، تستبدل بيانات الاتصال المعروضة هناك. |
+| `d3.public.r.p.r2.text` | chaque entrée enregistrée | كلّ سجلّ محفوظ |
+| `d3.public.r.p.r2.why` | L’aide d’ENS : qui consulte le nom voit tout ce qui est enregistré comme entrée. | صفحات مساعدة ENS: من يبحث عن الاسم يرى كلّ ما حُفظ كسجلّ. |
+| `d3.public.r.p.r3.text` | le nom de domaine lui-même | اسم النطاق نفسه |
+| `d3.public.r.p.r3.why` | Le nom reste visible. Domain Privacy remplace les coordonnées. | الاسم يبقى ظاهراً. وDomain Privacy تستبدل بيانات الاتصال. |
+| `d3.public.r.p.r4.text` | aucune entrée | لا سجلّ على الإطلاق |
+| `d3.public.r.p.r4.why` | ENS montre chaque entrée enregistrée. Son aide dit qu’il ne peut pas les masquer. | ENS يُظهر كلّ سجلّ محفوظ. وصفحات مساعدته تقول إنه لا يستطيع إخفاءها. |
+| `d3.public.r.prompt` | Deux sortes de confidentialité. Touchez une pastille, puis sa case. | نوعان من الخصوصية. المس رقعة، ثم خانتها. |
+| `d3.sheet.address` | Derrière un nom | خلف اسم |
+| `d3.sheet.hint.0` | Une ligne vaut pour les deux noms. | سطر واحد يصحّ على الاسمين. |
+| `d3.sheet.hint.1` | Deux lignes décrivent une entreprise et ses services. | سطران يصفان شركة وخدماتها. |
+| `d3.sheet.hint.2` | Réponse : chaque entrée publique, aucun réglage de confidentialité. | الجواب: كلّ سجلّ عامّ، بلا مفتاح خصوصية. |
+| `d3.sheet.kuro` | Tout est public. | كلّه عامّ. |
+| `d3.sheet.p.hidden.after` | Côté GoDaddy. | جانب GoDaddy. |
+| `d3.sheet.p.hidden.say` | Ligne trois : coordonnées masquées par défaut | السطر الثالث: بيانات الاتصال مخفيّة افتراضياً |
+| `d3.sheet.p.hidden.text` | Coordonnées masquées par défaut | بيانات الاتصال مخفيّة افتراضياً |
+| `d3.sheet.p.hidden.why` | L’aide de GoDaddy : Domain Privacy est active par défaut et masque les coordonnées de l’annuaire public. | صفحات مساعدة GoDaddy: Domain Privacy مفعَّلة افتراضياً وتُخفي بيانات الاتصال عن الدليل العامّ. |
+| `d3.sheet.p.phone.after` | Côté GoDaddy. | جانب GoDaddy. |
+| `d3.sheet.p.phone.say` | Ligne quatre : aide par téléphone | السطر الرابع: مساعدة عبر الهاتف |
+| `d3.sheet.p.phone.text` | Aide par téléphone, 24/7 | مساعدة عبر الهاتف، 24/7 |
+| `d3.sheet.p.phone.why` | La page contact de GoDaddy propose un appel, 24/7. L’aide d’ENS renvoie vers une fenêtre de chat. | صفحة الاتصال لدى GoDaddy تعرض مكالمة، 24/7. وصفحات مساعدة ENS تحيل إلى نافذة دردشة. |
+| `d3.sheet.p.public.after` | Public · aucun réglage de confidentialité par entrée | عامّ · لا مفتاح خصوصية لكلّ سجلّ |
+| `d3.sheet.p.public.say` | Ligne deux : chaque entrée publique, aucun réglage de confidentialité | السطر الثاني: كلّ سجلّ عامّ، بلا مفتاح خصوصية |
+| `d3.sheet.p.public.text` | Chaque entrée publique, aucun réglage de confidentialité | كلّ سجلّ عامّ، بلا مفتاح خصوصية |
+| `d3.sheet.p.public.why` | L’aide d’ENS : tout ce qui est réglé sur le nom est stocké sur la chaîne, lisible par tous. | صفحات مساعدة ENS: كلّ ما يُضبط على الاسم مخزَّن على السلسلة، حيث يستطيع أيّ شخص قراءته. |
+| `d3.sheet.p.time.after` | Vrai des deux. | يصحّ على الاثنين. |
+| `d3.sheet.p.time.say` | Ligne un : enregistré pour une durée fixée | السطر الأول: مسجَّل لمدّة محدّدة |
+| `d3.sheet.p.time.text` | Enregistré pour une durée fixée | مسجَّل لمدّة محدّدة |
+| `d3.sheet.p.time.why` | Les deux expirent : l’aide de GoDaddy dit 1 à 10 ans, celle d’ENS le temps payé. | كلاهما ينتهي: صفحات مساعدة GoDaddy تقول من 1 إلى 10 سنوات، وصفحات ENS تقول الوقت المدفوع. |
+| `d3.sheet.prompt` | Une feuille de comparaison. Pointez la ligne vraie seulement du nom ENS. | ورقة مقارنة. أشِر إلى السطر الذي يصحّ على اسم ENS وحده. |
+| `d3.sheet.r.address` | Derrière un nom | خلف اسم |
+| `d3.sheet.r.p.hidden.after` | Côté GoDaddy. | جانب GoDaddy. |
+| `d3.sheet.r.p.hidden.say` | Ligne trois : coordonnées masquées par défaut | السطر الثالث: بيانات الاتصال مخفيّة افتراضياً |
+| `d3.sheet.r.p.hidden.text` | Coordonnées masquées par défaut | بيانات الاتصال مخفيّة افتراضياً |
+| `d3.sheet.r.p.hidden.why` | L’aide de GoDaddy décrit Domain Privacy. L’aide d’ENS : il n’existe aucun réglage de confidentialité par entrée. | صفحات مساعدة GoDaddy تصف Domain Privacy. صفحات مساعدة ENS: لا يوجد مفتاح خصوصية لكلّ سجلّ. |
+| `d3.sheet.r.p.time.after` | Les deux · chacun a une date d’expiration | الاثنان · لكلّ منهما تاريخ انتهاء |
+| `d3.sheet.r.p.time.say` | Ligne un : enregistré pour une durée fixée, puis renouvelé ou perdu | السطر الأول: مسجَّل لمدّة محدّدة، ثم يُجدَّد أو يضيع |
+| `d3.sheet.r.p.time.text` | Enregistré pour une durée fixée, puis renouvelé ou perdu | مسجَّل لمدّة محدّدة، ثم يُجدَّد أو يضيع |
+| `d3.sheet.r.p.time.why` | L’aide de GoDaddy : enregistré pour 1 à 10 ans. L’aide d’ENS : à vous pour le temps payé. | صفحات مساعدة GoDaddy: يُسجَّل لمدّة من 1 إلى 10 سنوات. صفحات مساعدة ENS: لك طوال الوقت المدفوع. |
+| `d3.sheet.r.p.wallet.after` | Le côté ENS. | جانب ENS. |
+| `d3.sheet.r.p.wallet.say` | Ligne deux : payé depuis un portefeuille, en crypto-actif | السطر الثاني: يُدفع من محفظة، بأصل مشفّر |
+| `d3.sheet.r.p.wallet.text` | Payé depuis un portefeuille, en crypto-actif | يُدفع من محفظة، بأصل مشفّر |
+| `d3.sheet.r.p.wallet.why` | L’aide d’ENS le dit des noms en .eth. L’aide de GoDaddy parle d’un panier et d’une commande. | صفحات مساعدة ENS تقول ذلك عن الأسماء المنتهية بـ .eth. وصفحات مساعدة GoDaddy تتحدّث عن سلّة وإتمام شراء. |
+| `d3.sheet.r.prompt` | La même feuille. Pointez la ligne vraie des deux noms. | الورقة نفسها. أشِر إلى السطر الذي يصحّ على الاسمين. |
+| `d3.slip` | Le prestataire résume : avec ENS, le nom est à lui seul, et personne ne peut le lui prendre. Samia s’interroge. | يلخّص المورّد: مع ENS الاسم له وحده، ولا أحد يستطيع أخذه منه. تتساءل سامية. |
+| `d3.slipTag` | ENQUÊTE 10 · exemple inventé | التحقيق 10 · مثال متخيَّل |
+| `d3.stamp.prompt` | Le prestataire, encore : avec ENS, le nom est à lui seul, et personne ne peut le lui prendre. Tamponnez : | قول المورّد مرّة أخرى: مع ENS الاسم له وحده، ولا أحد يستطيع أخذه منه. اختمه: |
+| `d3.stamp.reveal` | À moitié. Le support ne peut le déplacer ni le geler. Il expire ; qui tient le portefeuille peut le déplacer. | نصف صحيح. الدعم لا يستطيع نقله ولا تجميده. لكنه ما زال ينتهي، ومن يحوز المحفظة يستطيع نقله. |
+| `row` | Deux noms à date d’expiration : l’un mène un navigateur à un site, l’autre pointe vers une adresse. | كلاهما اسم له تاريخ انتهاء: أحدهما يقود المتصفّح إلى موقع، والآخر يشير إلى عنوان. |
+| `sticker.back` | Ce que c’est : un nom lisible en .eth, qui pointe vers une adresse, enregistré à l’année. Ce que vous détenez : le nom, dans votre portefeuille. Ce que vous cédez : le paiement par carte, un support pouvant récupérer le nom, des entrées privées. L’idée fausse : payé une fois, pour de bon. Cité comme exemple, pas comme recommandation. Vérifié le 2026-11-23. | ما هو: اسم مقروء ينتهي بـ .eth ويشير إلى عنوان، يُسجَّل بالسنة. ما تحوزه: الاسم، في محفظتك أنت. ما تتخلّى عنه: الدفع بالبطاقة، ودعم يستطيع استرداد الاسم، والسجلّات الخاصّة. الفكرة الخاطئة: أنه يُدفع مرّة واحدة، إلى الأبد. مذكور كمثال، لا كتوصية. جرى التحقّق في 2026-11-23. |
+| `sticker.line` | Un nom est une étiquette. Lisez sa date. | الاسم لافتة. اقرأ تاريخه. |
+| `sticker.name` | Trouve la date d’expiration | يجد تاريخ الانتهاء |
+| `tpl.help-lines` | Ce que dit l’aide | ما تقوله صفحات المساعدة |
+| `tpl.path` | Le chemin | المسار |
+| `tpl.profile` | Profil | الملف الشخصي |
+
+### Case 11, Dropbox → IPFS, then Filecoin (`hub/src/lanterne/enquetes/c11.ar.json`, 570 keys)
+
+| Key | Français | العربية |
+|---|---|---|
+| `d1.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d1.boss.hint.0` | Une adresse de contenu est faite à partir du contenu. | عنوان المحتوى يُصنع من المحتوى نفسه. |
+| `d1.boss.hint.1` | Déplacer le fichier ne le modifie pas. | نقل الملفّ لا يعدّله. |
+| `d1.boss.hint.2` | Réponse : elle reste la même. | الجواب: يبقى كما هو. |
+| `d1.boss.kuro` | Du contenu. | من المحتوى. |
+| `d1.boss.p.lock.after` | Elle ne verrouille rien. | لا يقفل شيئاً. |
+| `d1.boss.p.lock.say` | Elle devient un mot de passe | يصير كلمة مرور |
+| `d1.boss.p.lock.text` | Elle devient un mot de passe | يصير كلمة مرور |
+| `d1.boss.p.lock.why` | Doc IPFS : quiconque a le CID peut télécharger et voir les données. | وثائق IPFS: كلّ من لديه الـCID يستطيع تنزيل البيانات والاطّلاع عليها. |
+| `d1.boss.p.long.after` | Courte, à toute taille. | قصير مهما كان الحجم. |
+| `d1.boss.p.long.say` | Elle s’allonge | يصير أطول |
+| `d1.boss.p.long.text` | Elle s’allonge | يصير أطول |
+| `d1.boss.p.long.why` | Doc IPFS : les CID sont courts, quelle que soit la taille de leur contenu. | وثائق IPFS: الـCID قصيرة، مهما كان حجم محتواها. |
+| `d1.boss.p.same.after` | Même contenu · même adresse | المحتوى نفسه · العنوان نفسه |
+| `d1.boss.p.same.say` | Elle reste la même | يبقى كما هو |
+| `d1.boss.p.same.text` | Elle reste la même | يبقى كما هو |
+| `d1.boss.p.same.why` | Doc IPFS : un CID repose sur le contenu, pas sur l’endroit où il est stocké. Contenu inchangé, CID inchangé. | وثائق IPFS: الـCID مبنيّ على المحتوى، لا على مكان تخزينه. محتوى لم يتغيّر، CID لم يتغيّر. |
+| `d1.boss.p.where.after` | Ne nomme aucun ordinateur. | لا يسمّي أيّ حاسوب. |
+| `d1.boss.p.where.say` | Elle nomme le nouvel ordinateur | يسمّي الحاسوب الجديد |
+| `d1.boss.p.where.text` | Elle nomme le nouvel ordinateur | يسمّي الحاسوب الجديد |
+| `d1.boss.p.where.why` | Doc IPFS : un CID n’indique pas où le contenu est stocké. | وثائق IPFS: الـCID لا يدلّ على مكان تخزين المحتوى. |
+| `d1.boss.prompt` | Samia objecte : « Une adresse est une adresse. » Son fichier, inchangé, change d’ordinateur. Pointez ce que fait son adresse. | تعترض سامية: «العنوان عنوان.» ينتقل ملفّها، دون تعديل، إلى حاسوب آخر. أشِر إلى ما يفعله عنوانه. |
+| `d1.boss.r.p.ever.after` | Les pages disparaissent. | الصفحات تختفي. |
+| `d1.boss.r.p.ever.say` | Que le fichier reste pour toujours | أن الملفّ يبقى إلى الأبد |
+| `d1.boss.r.p.ever.text` | Que le fichier reste pour toujours | أن الملفّ يبقى إلى الأبد |
+| `d1.boss.r.p.ever.why` | La doc IPFS cite une étude de 2011 : une page web durait 100 jours en moyenne. | وثائق IPFS تذكر دراسة من 2011: صفحة الويب كانت تدوم 100 يوم في المتوسّط. |
+| `d1.boss.r.p.place.after` | Un endroit où demander · rien de plus | مكان للسؤال · لا أكثر |
+| `d1.boss.r.p.place.say` | Où demander : un site et un chemin | أين تسأل: موقع ومسار |
+| `d1.boss.r.p.place.text` | Où demander : un site et un chemin | أين تسأل: موقع ومسار |
+| `d1.boss.r.p.place.why` | Le domaine nomme le serveur à interroger ; le chemin, une ressource sur ce serveur. | النطاق يسمّي الخادم الذي يُسأل؛ والمسار يسمّي مورداً عليه. |
+| `d1.boss.r.p.same.after` | Ne dit rien du contenu. | لا يقول شيئاً عن المحتوى. |
+| `d1.boss.r.p.same.say` | Que le fichier n’a jamais changé | أن الملفّ لم يتغيّر قطّ |
+| `d1.boss.r.p.same.text` | Que le fichier n’a jamais changé | أن الملفّ لم يتغيّر قطّ |
+| `d1.boss.r.p.same.why` | La doc Filecoin dit des URL qu’elles sont des identifiants fragiles. Elles nomment un endroit, pas les données. | وثائق Filecoin تصف عناوين URL بأنها معرّفات هشّة. تسمّي مكاناً، لا البيانات. |
+| `d1.boss.r.prompt` | Elle demande ce que promet files.example/reports/q3.pdf. Pointez la réponse. | تسأل عمّا يَعِد به files.example/reports/q3.pdf. أشِر إلى الجواب. |
+| `d1.bub.a` | Mes cartes. Cette longue suite n’est pas un mot de passe. | البطاقات من صنعي. ذلك النصّ الطويل ليس كلمة مرور. |
+| `d1.bub.b` | Elle a répondu : « Alors, qui le garde ? » Je porte, c’est tout. | ردّت برسالة: «إذن من يحتفظ به؟» أنا أحملها فقط. |
+| `d1.can` | Vous savez maintenant distinguer une adresse de lieu d’une adresse de contenu, et dire ce que fait un épinglage. | صرتَ تعرف كيف تميّز عنوان مكان من عنوان محتوى، وكيف تقول ما يفعله التثبيت. |
+| `d1.cards.hint.0` | Trois cartes sont des adresses. Deux d’entre elles nomment un site. | ثلاث بطاقات عناوين. اثنتان منها تسمّيان موقعاً. |
+| `d1.cards.hint.1` | Une suite ne contient aucun nom de site. | نصّ واحد لا يحمل أيّ اسم موقع. |
+| `d1.cards.hint.2` | Réponse : la suite qui commence par bafy. | الجواب: النصّ الذي يبدأ بـ bafy. |
+| `d1.cards.kuro` | Aucun site. | بلا موقع. |
+| `d1.cards.p.cid.after` | Une adresse de contenu · faite à partir du fichier | عنوان محتوى · مصنوع من الملفّ |
+| `d1.cards.p.cid.say` | Carte un : une suite qui commence par b a f y, abrégée | البطاقة الأولى: نصّ يبدأ بـ b a f y، مختصر |
+| `d1.cards.p.cid.text` | bafy…k4q | bafy…k4q |
+| `d1.cards.p.cid.why` | Doc IPFS : un CID est une adresse fondée sur le contenu lui-même, pas sur l’endroit où il est stocké. | وثائق IPFS: الـCID عنوان مبنيّ على المحتوى نفسه، لا على مكان تخزينه. |
+| `d1.cards.p.loc.after` | Un site et un chemin. | موقع ومسار. |
+| `d1.cards.p.loc.say` | Carte deux : files.example, reports, q3.pdf | البطاقة الثانية: files.example، reports، q3.pdf |
+| `d1.cards.p.loc.text` | files.example/reports/q3.pdf | files.example/reports/q3.pdf |
+| `d1.cards.p.loc.why` | Un nom de site, puis un chemin. Il dit où demander, pas ce qu’est le fichier. | اسم موقع، ثم مسار. يقول أين تسأل، لا ما هو الملفّ. |
+| `d1.cards.p.mail.after` | Une boîte mail. | صندوق بريد. |
+| `d1.cards.p.mail.say` | Carte trois : samia arobase gym.example | البطاقة الثالثة: samia@gym.example |
+| `d1.cards.p.mail.text` | samia@gym.example | samia@gym.example |
+| `d1.cards.p.mail.why` | Une adresse e-mail nomme une boîte mail. Aucun fichier n’y est. | عنوان البريد الإلكتروني يسمّي صندوق بريد. لا ملفّ فيه. |
+| `d1.cards.p.reload.after` | Recharge les cartes. | يعيد تحميل البطاقات. |
+| `d1.cards.p.reload.cap` | Actualiser | تحديث |
+| `d1.cards.p.reload.say` | Actualiser, bouton | تحديث، زرّ |
+| `d1.cards.p.reload.why` | La flèche recharge les cartes. Ce n’est pas une adresse. | السهم يعيد تحميل البطاقات. ليس عنواناً. |
+| `d1.cards.prompt` | Quatre cartes sorties des tiroirs (inventées). Pointez l’adresse faite à partir du fichier lui-même. | أربع بطاقات من الأدراج (متخيَّلة). أشِر إلى العنوان المصنوع من الملفّ نفسه. |
+| `d1.cards.r.p.cid.after` | Aucun site dedans. | لا موقع فيه. |
+| `d1.cards.r.p.cid.say` | Carte un : une suite qui commence par b a f y, abrégée | البطاقة الأولى: نصّ يبدأ بـ b a f y، مختصر |
+| `d1.cards.r.p.cid.text` | bafy…k4q | bafy…k4q |
+| `d1.cards.r.p.cid.why` | Une adresse de contenu. Elle nomme ce qu’est le fichier, pas un site. | عنوان محتوى. يسمّي ما هو الملفّ، لا موقعاً. |
+| `d1.cards.r.p.loc.after` | Un site, puis un chemin · un lieu | موقع، ثم مسار · مكان |
+| `d1.cards.r.p.loc.say` | Carte deux : files.example, reports, q3.pdf | البطاقة الثانية: files.example، reports، q3.pdf |
+| `d1.cards.r.p.loc.text` | files.example/reports/q3.pdf | files.example/reports/q3.pdf |
+| `d1.cards.r.p.loc.why` | Le domaine dit quel serveur interroger. Le chemin dit quelle ressource sur ce serveur. | النطاق يقول أيّ خادم تسأل. والمسار يقول أيّ مورد عليه. |
+| `d1.cards.r.p.old.after` | Une adresse de contenu ancienne. | عنوان محتوى أقدم. |
+| `d1.cards.r.p.old.say` | Carte trois : une suite qui commence par Q m, abrégée | البطاقة الثالثة: نصّ يبدأ بـ Q m، مختصر |
+| `d1.cards.r.p.old.text` | QmW…gP | QmW…gP |
+| `d1.cards.r.p.old.why` | Doc IPFS : un CID de 46 caractères qui commence par Qm est l’ancienne forme. | وثائق IPFS: الـCID المؤلّف من 46 حرفاً والذي يبدأ بـ Qm هو الصيغة الأقدم. |
+| `d1.cards.r.prompt` | Trois cartes. Pointez celle qui nomme un site et un chemin de dossier. | ثلاث بطاقات. أشِر إلى التي تسمّي موقعاً ومسار مجلّد. |
+| `d1.change.hint.0` | Corriger une coquille change le contenu, pas l’étiquette. | تصحيح خطأ مطبعي يغيّر المحتوى، لا التسمية. |
+| `d1.change.hint.1` | Une ligne est faite à partir du contenu. | سطر واحد مصنوع من المحتوى. |
+| `d1.change.hint.2` | Réponse : la ligne Adresse. | الجواب: سطر العنوان. |
+| `d1.change.kuro` | Nouvelle adresse. | عنوان جديد. |
+| `d1.change.p.by.after` | Toujours Samia. | ما زالت سامية. |
+| `d1.change.p.by.say` | Ligne deux : Ajouté par Samia | السطر الثاني: أضافته سامية |
+| `d1.change.p.by.text` | Ajouté par : Samia | أضافته: سامية |
+| `d1.change.p.by.why` | Qui ajoute un fichier ne fait pas partie de son adresse. | من يضيف الملفّ ليس جزءاً من عنوانه. |
+| `d1.change.p.cid.after` | Une nouvelle adresse · le contenu a changé | عنوان جديد · المحتوى تغيّر |
+| `d1.change.p.cid.say` | Ligne trois : Adresse, une suite qui commence par b a f y | السطر الثالث: العنوان، نصّ يبدأ بـ b a f y |
+| `d1.change.p.cid.text` | Adresse : bafy…k4q | العنوان: bafy…k4q |
+| `d1.change.p.cid.why` | Doc IPFS : le contenu d’un fichier ne peut pas changer sans que son CID change. | وثائق IPFS: لا يمكن أن يتغيّر محتوى الملفّ دون أن يتغيّر الـCID الخاصّ به. |
+| `d1.change.p.name.after` | Même nom. | الاسم نفسه. |
+| `d1.change.p.name.say` | Ligne un : Nom, report.pdf | السطر الأول: الاسم، report.pdf |
+| `d1.change.p.name.text` | Nom : report.pdf | الاسم: report.pdf |
+| `d1.change.p.name.why` | Elle ne l’a pas renommé. Un nom n’est pas fait à partir du contenu. | لم تغيّر اسمه. الاسم لا يُصنع من المحتوى. |
+| `d1.change.prompt` | Elle corrige une coquille dans le rapport et l’ajoute à nouveau. Pointez la ligne qui change. | تصحّح خطأً مطبعياً واحداً في التقرير وتضيفه من جديد. أشِر إلى السطر الذي يتغيّر. |
+| `d1.change.r.p.longer.after` | Une adresse, deux copies. | عنوان واحد للنسختين. |
+| `d1.change.r.p.longer.say` | Une seconde adresse : une par copie | عنوان ثانٍ: واحد لكلّ نسخة |
+| `d1.change.r.p.longer.text` | Une seconde adresse : une par copie | عنوان ثانٍ: واحد لكلّ نسخة |
+| `d1.change.r.p.longer.why` | Doc IPFS : le même contenu, avec les mêmes réglages, produit le même CID. | وثائق IPFS: المحتوى نفسه بالإعدادات نفسها ينتج الـCID نفسه. |
+| `d1.change.r.p.moves.after` | Ne nomme aucun ordinateur. | لا يسمّي أيّ حاسوب. |
+| `d1.change.r.p.moves.say` | Elle change : un autre ordinateur | يتغيّر: حاسوب آخر |
+| `d1.change.r.p.moves.text` | Elle change : un autre ordinateur | يتغيّر: حاسوب آخر |
+| `d1.change.r.p.moves.why` | Doc IPFS : un CID n’indique pas où le contenu est stocké. | وثائق IPFS: الـCID لا يدلّ على مكان تخزين المحتوى. |
+| `d1.change.r.p.same.after` | Même contenu · même adresse | المحتوى نفسه · العنوان نفسه |
+| `d1.change.r.p.same.say` | Elle reste la même | يبقى كما هو |
+| `d1.change.r.p.same.text` | Elle reste la même | يبقى كما هو |
+| `d1.change.r.p.same.why` | Doc IPFS : le même contenu, ajouté sur deux nœuds avec les mêmes réglages, donne le même CID. | وثائق IPFS: المحتوى نفسه، إذا أُضيف على عقدتين بالإعدادات نفسها، يعطي الـCID نفسه. |
+| `d1.change.r.prompt` | Un collègue ajoute exactement le même fichier, mêmes réglages, sur un autre ordinateur. Pointez ce que fait l’adresse. | زميل يضيف الملفّ نفسه تماماً، بالإعدادات نفسها، على حاسوب آخر. أشِر إلى ما يفعله العنوان. |
+| `d1.claim` | Une adresse IPFS lui dit où le fichier est conservé. | عنوان IPFS يخبرها أين يُحفظ الملفّ. |
+| `d1.note.hint.0` | Deux notes promettent que quelqu’un garde toujours le fichier. | ملاحظتان تَعِدان بأن أحداً يحتفظ دائماً بالملفّ. |
+| `d1.note.hint.1` | Un protocole ne garde rien. Les nœuds, si. | البروتوكول لا يحتفظ بشيء. العُقد هي التي تحتفظ. |
+| `d1.note.hint.2` | Réponse : il reste tant qu’un nœud en garde une copie. | الجواب: يبقى ما دامت عقدة ما تحتفظ بنسخة منه. |
+| `d1.note.kuro` | Qui garde ? | من يحتفظ؟ |
+| `d1.note.p.n1.text` | Une fois sur IPFS, un fichier y reste pour toujours. | ما إن يصير الملفّ على IPFS حتى يبقى إلى الأبد. |
+| `d1.note.p.n1.why` | Doc IPFS : le contenu peut être trouvé. Rien ne garantit qu’il reste disponible. | وثائق IPFS: المحتوى قابل للاكتشاف. ولا شيء يضمن أن يبقى متاحاً. |
+| `d1.note.p.n2.text` | Un fichier reste sur IPFS tant qu’un nœud en garde une copie. | يبقى الملفّ على IPFS ما دامت عقدة ما تحتفظ بنسخة منه. |
+| `d1.note.p.n2.why` | Doc IPFS : les nœuds vident leur cache pour faire de la place. Les données épinglées sont gardées. | وثائق IPFS: العُقد تمسح البيانات المخزَّنة مؤقتاً لتوفير المساحة. أمّا البيانات المثبَّتة فتُحفظ. |
+| `d1.note.p.n3.text` | IPFS garde lui-même une copie de secours de chaque fichier. | IPFS نفسه يحتفظ بنسخة احتياطية من كلّ ملفّ. |
+| `d1.note.p.n3.why` | Doc IPFS : IPFS lui-même est un protocole, pas un fournisseur. Il ne garde aucune copie de secours. | وثائق IPFS: IPFS نفسه بروتوكول، لا مزوّد خدمة. لا يحتفظ بأيّ نسخة احتياطية. |
+| `d1.note.prompt` | Trois notes sont arrivées avec le billet. Une seule est vraie. | وصلت مع القصاصة ثلاث ملاحظات. واحدة صحيحة. |
+| `d1.note.r.p.r1.text` | Épingler cache un fichier aux inconnus. | التثبيت يُخفي الملفّ عن الغرباء. |
+| `d1.note.r.p.r1.why` | Épingler, c’est garder. Doc IPFS : les fichiers sont publics, sauf s’ils sont chiffrés. | التثبيت يتعلّق بالحفظ. وثائق IPFS: الملفّات عامّة ما لم تُشفَّر. |
+| `d1.note.r.p.r2.text` | Épingler, c’est payer sur une blockchain. | التثبيت دفعة على سلسلة كتل. |
+| `d1.note.r.p.r2.why` | Un épinglage se pose sur un nœud IPFS : garde ces données. | التثبيت يُضبط على عقدة IPFS: احتفظ بهذه البيانات. |
+| `d1.note.r.p.r3.text` | Épingler dit à un nœud de garder les données. | التثبيت يطلب من العقدة الاحتفاظ بالبيانات. |
+| `d1.note.r.p.r3.why` | Doc IPFS : les données épinglées ne sont pas supprimées lors du ramasse-miettes. | وثائق IPFS: البيانات المثبَّتة لا تُحذف أثناء جمع المهملات. |
+| `d1.note.r.prompt` | Trois nouvelles notes sur l’épinglage. Touchez la vraie. | ثلاث ملاحظات جديدة عن التثبيت. المس الصحيحة. |
+| `d1.pin.address` | Ses fichiers | ملفّاتها |
+| `d1.pin.hint.0` | Lisez les mots après chaque nom de fichier. | اقرأ الكلمات بعد كلّ اسم ملفّ. |
+| `d1.pin.hint.1` | Un fichier n’est épinglé nulle part. | ملفّ واحد غير مثبَّت في أيّ مكان. |
+| `d1.pin.hint.2` | Réponse : video.mp4, en cache, non épinglé. | الجواب: video.mp4، مخزَّن مؤقتاً، غير مثبَّت. |
+| `d1.pin.kuro` | Pas épinglé. | غير مثبَّت. |
+| `d1.pin.p.cache.after` | Non épinglé · peut être effacé | غير مثبَّت · قد يُمسح |
+| `d1.pin.p.cache.say` | Ligne deux : video.mp4, en cache, non épinglé | السطر الثاني: video.mp4، مخزَّن مؤقتاً، غير مثبَّت |
+| `d1.pin.p.cache.text` | video.mp4 · en cache, non épinglé | video.mp4 · مخزَّن مؤقتاً، غير مثبَّت |
+| `d1.pin.p.cache.why` | Doc IPFS : les nœuds vident leur cache pour faire de la place. Seules les données épinglées sont protégées. | وثائق IPFS: العُقد تمسح البيانات المخزَّنة مؤقتاً لتوفير المساحة. البيانات المثبَّتة وحدها محميّة. |
+| `d1.pin.p.own.after` | Épinglé. Gardé. | مثبَّت. محفوظ. |
+| `d1.pin.p.own.say` | Ligne un : report.pdf, épinglé sur cet ordinateur | السطر الأول: report.pdf، مثبَّت على هذا الحاسوب |
+| `d1.pin.p.own.text` | report.pdf · épinglé sur cet ordinateur | report.pdf · مثبَّت على هذا الحاسوب |
+| `d1.pin.p.own.why` | Un fichier épinglé est protégé du ramasse-miettes sur ce nœud. | الملفّ المثبَّت محميّ من جمع المهملات على تلك العقدة. |
+| `d1.pin.p.svc.after` | Gardé par un service. | تحفظه خدمة. |
+| `d1.pin.p.svc.say` | Ligne trois : logo.png, épinglé par un service d’épinglage | السطر الثالث: logo.png، مثبَّت لدى خدمة تثبيت |
+| `d1.pin.p.svc.text` | logo.png · épinglé par un service d’épinglage | logo.png · مثبَّت لدى خدمة تثبيت |
+| `d1.pin.p.svc.why` | Doc IPFS : les services d’épinglage épinglent les données sur leurs propres nœuds, contre paiement. | وثائق IPFS: خدمات التثبيت تثبّت البيانات على عُقدها الخاصّة، مقابل رسوم. |
+| `d1.pin.prompt` | Une liste de fichiers dans une appli IPFS inventée. Pointez le fichier qui peut disparaître. | قائمة ملفّات في تطبيق IPFS متخيَّل. أشِر إلى الملفّ الذي قد يختفي. |
+| `d1.pin.r.address` | Ses fichiers | ملفّاتها |
+| `d1.pin.r.p.cache.after` | Personne n’est payé. | لا أحد يتقاضى أجراً. |
+| `d1.pin.r.p.cache.say` | Ligne deux : video.mp4, en cache, non épinglé | السطر الثاني: video.mp4، مخزَّن مؤقتاً، غير مثبَّت |
+| `d1.pin.r.p.cache.text` | video.mp4 · en cache, non épinglé | video.mp4 · مخزَّن مؤقتاً، غير مثبَّت |
+| `d1.pin.r.p.cache.why` | Une copie en cache n’est la promesse de personne. Elle peut être effacée pour faire de la place. | النسخة المخزَّنة مؤقتاً ليست وعداً من أحد. قد تُمسح لتوفير المساحة. |
+| `d1.pin.r.p.own.after` | Son propre disque. | قرصها هي. |
+| `d1.pin.r.p.own.say` | Ligne un : report.pdf, épinglé sur cet ordinateur | السطر الأول: report.pdf، مثبَّت على هذا الحاسوب |
+| `d1.pin.r.p.own.text` | report.pdf · épinglé sur cet ordinateur | report.pdf · مثبَّت على هذا الحاسوب |
+| `d1.pin.r.p.own.why` | Son propre nœud le garde. Pas de facture, mais son matériel à gérer. | عقدتها هي تحتفظ به. بلا فاتورة، لكنّ عليها أن تدير عتادها. |
+| `d1.pin.r.p.svc.after` | Un épinglage payé · perdu si impayé | تثبيت مدفوع · يضيع إن لم يُدفع |
+| `d1.pin.r.p.svc.say` | Ligne trois : logo.png, épinglé par un service d’épinglage | السطر الثالث: logo.png، مثبَّت لدى خدمة تثبيت |
+| `d1.pin.r.p.svc.text` | logo.png · épinglé par un service d’épinglage | logo.png · مثبَّت لدى خدمة تثبيت |
+| `d1.pin.r.p.svc.why` | Doc IPFS : si l’unique financeur cesse de payer cet épinglage, le contenu peut être perdu. | وثائق IPFS: إذا توقّف الراعي الوحيد عن الدفع مقابل ذلك التثبيت، فقد يضيع المحتوى. |
+| `d1.pin.r.prompt` | La même liste. Pointez le fichier qui ne reste que tant qu’une facture est payée. | القائمة نفسها. أشِر إلى الملفّ الذي لا يبقى إلا ما دامت فاتورة تُدفع. |
+| `d1.slip` | Flèche onze : Dropbox → IPFS. Le prestataire dit qu’une adresse IPFS lui indique où le fichier est conservé. Samia s’interroge. | السهم الحادي عشر: Dropbox → IPFS. يقول المورّد إن عنوان IPFS يخبرها أين يُحفظ الملفّ. سامية تتساءل. |
+| `d1.slipTag` | ENQUÊTE 11 · exemple inventé | التحقيق 11 · مثال متخيَّل |
+| `d1.stamp.prompt` | Le prestataire, encore : une adresse IPFS lui dit où le fichier est conservé. Tamponnez : | قول المورّد مرّة أخرى: عنوان IPFS يخبرها أين يُحفظ الملفّ. اختمه: |
+| `d1.stamp.reveal` | Faux. Une adresse de contenu est tirée du fichier lui-même. Elle ne nomme aucun lieu et ne garde rien. | غير صحيح. عنوان المحتوى يُصنع من الملفّ نفسه. لا يسمّي أيّ مكان ولا يحفظ شيئاً. |
+| `d1.two.hint.0` | Demandez qui, ou quoi, fabrique chaque adresse. | اسأل من، أو ما، يصنع كلّ عنوان. |
+| `d1.two.hint.1` | L’une vient du fichier lui-même, quel que soit qui le partage. | أحدهما يأتي من الملفّ نفسه، أيّاً كان من يشاركه. |
+| `d1.two.hint.2` | Réponse : le lien Dropbox en lecture seule. | الجواب: رابط Dropbox للعرض فقط. |
+| `d1.two.kuro` | Leur lien. | رابطهم. |
+| `d1.two.p.a.after` | Créé par Dropbox · au partage | أنشأه Dropbox · عند المشاركة |
+| `d1.two.p.a.say` | Gauche : un lien Dropbox en lecture seule | اليسار: رابط Dropbox للعرض فقط |
+| `d1.two.p.a.text` | Un lien Dropbox en lecture seule | رابط Dropbox للعرض فقط |
+| `d1.two.p.a.why` | L’aide de Dropbox : Dropbox crée le lien. Qui l’a peut prévisualiser, pas modifier. | مساعدة Dropbox: الرابط ينشئه Dropbox. من لديه يستطيع المعاينة، لا التعديل. |
+| `d1.two.p.b.after` | Fait à partir du contenu. | مصنوع من المحتوى. |
+| `d1.two.p.b.say` | Droite : une adresse de contenu IPFS | اليمين: عنوان محتوى IPFS |
+| `d1.two.p.b.text` | Une adresse de contenu IPFS | عنوان محتوى IPFS |
+| `d1.two.p.b.why` | Doc IPFS : un CID est une sorte d’adresse fondée sur le contenu lui-même. | وثائق IPFS: الـCID نوع من العناوين مبنيّ على المحتوى نفسه. |
+| `d1.two.prompt` | Deux liens vers un même rapport (une maquette). Pointez celui qu’une entreprise a créé quand elle a partagé. | رابطان إلى تقرير واحد (شاشة تجريبية). أشِر إلى الرابط الذي أنشأته شركة حين شاركت. |
+| `d1.two.r.p.a.after` | Des protocoles · pas un fournisseur | بروتوكولات · لا مزوّد |
+| `d1.two.r.p.a.say` | Gauche : un ensemble de protocoles ouverts | اليسار: مجموعة من البروتوكولات المفتوحة |
+| `d1.two.r.p.a.text` | Un ensemble de protocoles ouverts | مجموعة من البروتوكولات المفتوحة |
+| `d1.two.r.p.a.why` | Doc IPFS : un ensemble de protocoles ouverts pour adresser, router et transférer des données. | وثائق IPFS: مجموعة من البروتوكولات المفتوحة لعنونة البيانات وتوجيهها ونقلها. |
+| `d1.two.r.p.b.after` | Pas un fournisseur. | ليس مزوّداً. |
+| `d1.two.r.p.b.say` | Droite : un fournisseur de stockage avec des dossiers | اليمين: مزوّد تخزين بمجلّدات |
+| `d1.two.r.p.b.text` | Un fournisseur de stockage avec des dossiers | مزوّد تخزين بمجلّدات |
+| `d1.two.r.p.b.why` | Doc IPFS : IPFS lui-même est un protocole, pas un fournisseur. | وثائق IPFS: IPFS نفسه بروتوكول، لا مزوّد. |
+| `d1.two.r.prompt` | Deux lignes du tableau du prestataire. Pointez celle que la doc IPFS emploie pour IPFS. | سطران في جدول المورّد. أشِر إلى السطر الذي تستعمله وثائق IPFS لوصف IPFS. |
+| `d2.add.hint.0` | L’adresse est calculée quand le fichier entre. | العنوان يُحسب حين يدخل الملفّ. |
+| `d2.add.hint.1` | Un bouton fait entrer le fichier. | زرّ واحد يُدخل الملفّ. |
+| `d2.add.hint.2` | Réponse : Ajouter. | الجواب: إضافة. |
+| `d2.add.kuro` | D’abord ajouter. | الإضافة أولاً. |
+| `d2.add.p.add.after` | Ajouté · bafy…k4q · épinglé ici | أُضيف · bafy…k4q · مثبَّت هنا |
+| `d2.add.p.add.say` | Ajouter, bouton | إضافة، زرّ |
+| `d2.add.p.add.text` | Ajouter | إضافة |
+| `d2.add.p.add.why` | Doc IPFS : la commande add renvoie le CID et épingle le fichier sur son nœud. | وثائق IPFS: أمر add يعيد الـCID ويثبّت الملفّ على عقدتها. |
+| `d2.add.p.close.after` | Fermé. Rien d’ajouté. | أُغلق. لم يُضف شيء. |
+| `d2.add.p.close.cap` | Fermer | إغلاق |
+| `d2.add.p.close.say` | Fermer, bouton | إغلاق، زرّ |
+| `d2.add.p.close.why` | Fermer n’ajoute rien, donc aucune adresse n’est créée. | الإغلاق لا يضيف شيئاً، فلا يُصنع أيّ عنوان. |
+| `d2.add.p.copy.after` | Rien à copier encore. | لا شيء يُنسخ بعد. |
+| `d2.add.p.copy.say` | Copier l’adresse, bouton | نسخ العنوان، زرّ |
+| `d2.add.p.copy.text` | Copier l’adresse | نسخ العنوان |
+| `d2.add.p.copy.why` | Aucune adresse n’existe avant l’ajout du fichier. Elle est calculée à partir du contenu. | لا عنوان قبل إضافة الملفّ. فهو يُحسب من المحتوى. |
+| `d2.add.p.rename.after` | Juste un nouveau nom. | اسم جديد فقط. |
+| `d2.add.p.rename.say` | Renommer, bouton | إعادة التسمية، زرّ |
+| `d2.add.p.rename.text` | Renommer | إعادة التسمية |
+| `d2.add.p.rename.why` | Le nom, c’est elle qui le choisit. L’adresse vient du contenu. | الاسم تختاره هي. أمّا العنوان فيأتي من المحتوى. |
+| `d2.add.prompt` | Un outil inventé. Elle a choisi report.pdf. Pointez ce qu’elle touche pour obtenir son adresse. | أداة متخيَّلة. اختارت report.pdf. أشِر إلى ما تلمسه لتحصل على عنوانه. |
+| `d2.add.r.p.err.after` | Pas de tel refus. | لا رفض كهذا. |
+| `d2.add.r.p.err.say` | Une erreur : déjà ajouté | خطأ: أُضيف من قبل |
+| `d2.add.r.p.err.text` | Une erreur : déjà ajouté | خطأ: أُضيف من قبل |
+| `d2.add.r.p.err.why` | Un fichier modifié est un nouveau contenu. Il reçoit sa propre adresse. | الملفّ المعدَّل محتوى جديد. يحصل على عنوانه الخاصّ. |
+| `d2.add.r.p.same.after` | Elle ne peut pas rester. | لا يمكن أن يبقى. |
+| `d2.add.r.p.same.say` | La même adresse, mise à jour | العنوان نفسه، محدَّثاً |
+| `d2.add.r.p.same.text` | La même adresse, mise à jour | العنوان نفسه، محدَّثاً |
+| `d2.add.r.p.same.why` | Doc IPFS : le contenu ne peut pas changer sans modifier le CID. | وثائق IPFS: لا يمكن أن يتغيّر المحتوى دون أن يتغيّر الـCID. |
+| `d2.add.r.p.two.after` | Deux adresses · l’ancienne existe toujours | عنوانان · القديم ما زال قائماً |
+| `d2.add.r.p.two.say` | Une seconde adresse à côté de la première | عنوان ثانٍ بجانب الأول |
+| `d2.add.r.p.two.text` | Une seconde adresse à côté de la première | عنوان ثانٍ بجانب الأول |
+| `d2.add.r.p.two.why` | Doc IPFS : l’ancien CID existe toujours. Rien n’est écrasé. | وثائق IPFS: الـCID القديم ما زال موجوداً. لا شيء يُكتب فوقه. |
+| `d2.add.r.prompt` | Le fichier est ajouté. Elle modifie une ligne et l’ajoute à nouveau. Pointez ce que l’outil affiche. | أُضيف الملفّ. تعدّل سطراً واحداً وتضيفه من جديد. أشِر إلى ما تعرضه الأداة. |
+| `d2.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d2.boss.hint.0` | Deux questions à chaque fois : qui peut le lire, qui le garde. | سؤالان في كلّ مرّة: من يستطيع قراءته، ومن يحتفظ به. |
+| `d2.boss.hint.1` | Un seul plan répond aux deux pour le contrat. | خطّة واحدة تجيب عن السؤالين بالنسبة إلى العقد. |
+| `d2.boss.hint.2` | Réponse : contrat chiffré d’abord, les deux épinglés. | الجواب: العقد مشفَّر أولاً، والاثنان مثبَّتان. |
+| `d2.boss.kuro` | Lire. Garder. | القراءة. الحفظ. |
+| `d2.boss.p.fit.after` | Le privé chiffré · les deux gardés | الخاصّ مشفَّر · الاثنان محفوظان |
+| `d2.boss.p.fit.say` | Plan quatre : contrat chiffré d’abord, les deux épinglés | الخطّة الرابعة: العقد مشفَّر أولاً، والاثنان مثبَّتان |
+| `d2.boss.p.fit.text` | Contrat chiffré d’abord, les deux épinglés | العقد مشفَّر أولاً، والاثنان مثبَّتان |
+| `d2.boss.p.fit.why` | Doc IPFS : contenus publics sauf chiffrement, et à l’abri du nettoyage seulement là où ils sont épinglés. | وثائق IPFS: المحتويات عامّة ما لم تُشفَّر، ولا تَسلم من المسح إلا حيث تُثبَّت. |
+| `d2.boss.p.lock.after` | Une adresse ne verrouille rien. | العنوان لا يقفل شيئاً. |
+| `d2.boss.p.lock.say` | Plan un : les deux tels quels, l’adresse les verrouille | الخطّة الأولى: الاثنان كما هما، والعنوان يقفلهما |
+| `d2.boss.p.lock.text` | Les deux tels quels : l’adresse les verrouille | الاثنان كما هما: العنوان يقفلهما |
+| `d2.boss.p.lock.why` | Doc IPFS : quiconque a un CID peut télécharger et voir les données. | وثائق IPFS: كلّ من لديه CID يستطيع تنزيل البيانات والاطّلاع عليها. |
+| `d2.boss.p.quiet.after` | Les demandes sont publiques. | الطلبات علنية. |
+| `d2.boss.p.quiet.say` | Plan trois : contrat non chiffré, adresse envoyée à un seul client | الخطّة الثالثة: العقد غير مشفَّر، والعنوان مُرسَل إلى عميل واحد |
+| `d2.boss.p.quiet.text` | Contrat non chiffré, adresse envoyée à un seul client | العقد غير مشفَّر، والعنوان مُرسَل إلى عميل واحد |
+| `d2.boss.p.quiet.why` | Doc IPFS : des tiers peuvent observer quelles adresses sont demandées, et par qui. | وثائق IPFS: تستطيع أطراف ثالثة مراقبة العناوين المطلوبة، ومن يطلبها. |
+| `d2.boss.p.skip.after` | Rien ne les garde. | لا شيء يحفظهما. |
+| `d2.boss.p.skip.say` | Plan deux : les deux chiffrés, non épinglés, IPFS garde tout | الخطّة الثانية: الاثنان مشفَّران، غير مثبَّتين، وIPFS يحتفظ بكلّ شيء |
+| `d2.boss.p.skip.text` | Les deux chiffrés, non épinglés : IPFS garde tout | الاثنان مشفَّران، غير مثبَّتين: IPFS يحتفظ بكلّ شيء |
+| `d2.boss.p.skip.why` | Les données non épinglées peuvent être effacées. Trouvable ne veut pas dire gardé. | البيانات غير المثبَّتة قد تُمسح. قابل للاكتشاف لا يعني محفوظاً. |
+| `d2.boss.prompt` | Un planning public, un contrat client. Pointez le plan conforme à la doc IPFS. | جدول مواعيد عامّ، وعقد عميل. أشِر إلى الخطّة التي توافق وثائق IPFS. |
+| `d2.boss.r.p.gone.after` | Seulement son propre nœud. | عقدتها هي فقط. |
+| `d2.boss.r.p.gone.say` | Il disparaît de tous les nœuds à la fois | يختفي من كلّ العُقد دفعة واحدة |
+| `d2.boss.r.p.gone.text` | Il disparaît de tous les nœuds à la fois | يختفي من كلّ العُقد دفعة واحدة |
+| `d2.boss.r.p.gone.why` | Le ramasse-miettes libère de la place sur son propre nœud. Il ne commande aucun autre nœud. | جمع المهملات يحرّر المساحة على عقدتها هي. ولا يأمر أيّ عقدة أخرى. |
+| `d2.boss.r.p.others.after` | Des copies peuvent rester | قد تبقى نسخ |
+| `d2.boss.r.p.others.say` | Les nœuds qui l’ont récupéré peuvent encore le servir | العُقد التي جلبته قد تظلّ تقدّمه |
+| `d2.boss.r.p.others.text` | Les nœuds qui l’ont récupéré peuvent encore le servir | العُقد التي جلبته قد تظلّ تقدّمه |
+| `d2.boss.r.p.others.why` | Doc IPFS : un nœud qui récupère des données les remet à disposition un temps, par défaut. | وثائق IPFS: العقدة التي تجلب بيانات تعيد إتاحتها لفترة، افتراضياً. |
+| `d2.boss.r.p.undo.after` | Absent des pages lues. | لا ذكر له فيما قُرئ. |
+| `d2.boss.r.p.undo.say` | Un délai de récupération, comme sur Dropbox | مهلة استرجاع، كما في Dropbox |
+| `d2.boss.r.p.undo.text` | Un délai de récupération, comme sur Dropbox | مهلة استرجاع، كما في Dropbox |
+| `d2.boss.r.p.undo.why` | L’aide de Dropbox décrit un délai de récupération. Les pages IPFS lues aujourd’hui n’en décrivent aucun. | مساعدة Dropbox تصف مهلة استرجاع. وصفحات IPFS المقروءة اليوم لا تصف أيّ مهلة. |
+| `d2.boss.r.prompt` | Elle retire le contrat non chiffré de son propre nœud. Pointez ce que la doc lui permet d’attendre. | تزيل العقد غير المشفَّر من عقدتها هي. أشِر إلى ما تسمح لها الوثائق بتوقّعه. |
+| `d2.bub.a` | Les liens sont de moi. Lisez ce qui suit /ipfs/, jusqu’au bout. | الروابط من صنعي. اقرأ ما يلي /ipfs/ حتى النهاية. |
+| `d2.bub.b` | Un autre billet. Elle demande qui lit ce que personne n’a verrouillé. | قصاصة أخرى. تسأل من يقرأ شيئاً لم يقفله أحد. |
+| `d2.can` | Vous savez maintenant lire quel contenu un lien demande, et dire pourquoi un fichier privé se chiffre d’abord. | صرتَ تعرف كيف تقرأ أيّ محتوى يطلبه الرابط، وكيف تقول لماذا يُشفَّر الملفّ الخاصّ أولاً. |
+| `d2.claim` | Quiconque a l’adresse peut lire un fichier qu’elle ajoute à IPFS sans le chiffrer. | كلّ من لديه العنوان يستطيع قراءة ملفّ تضيفه إلى IPFS دون تشفير. |
+| `d2.diff.g.0.after` | Une autre entrée. | مدخل آخر. |
+| `d2.diff.g.0.say` | morceau un | القطعة الأولى |
+| `d2.diff.g.0.why` | Une autre passerelle. N’importe quelle passerelle résout n’importe quelle adresse de contenu. | بوّابة أخرى. أيّ بوّابة تحلّ أيّ عنوان محتوى. |
+| `d2.diff.g.1.after` | Même marqueur. | العلامة نفسها. |
+| `d2.diff.g.1.say` | morceau deux | القطعة الثانية |
+| `d2.diff.g.1.why` | Le même marqueur dans les deux : une adresse de contenu le suit. | العلامة نفسها في الاثنين: يليها عنوان محتوى. |
+| `d2.diff.g.2.after` | Finit par k4r · pas son adresse | ينتهي بـ k4r · ليس عنوانها |
+| `d2.diff.g.2.say` | morceau trois | القطعة الثالثة |
+| `d2.diff.g.2.why` | Elle finit par k4r, pas k4q. C’est une autre adresse de contenu, pas celle de son billet. | ينتهي بـ k4r، لا k4q. هذا عنوان محتوى آخر، لا الذي على قصاصتها. |
+| `d2.diff.hint.0` | Comparez morceau par morceau. Les vraies adresses se comparent en entier. | قارِن قطعة بقطعة. العناوين الحقيقية تُقارَن كاملة. |
+| `d2.diff.hint.1` | Demandez-vous quel morceau nomme le contenu. | اسأل أيّ قطعة تسمّي المحتوى. |
+| `d2.diff.hint.2` | Réponse : le dernier morceau. Il finit par k4r. | الجواب: القطعة الأخيرة. تنتهي بـ k4r. |
+| `d2.diff.kuro` | Dernière lettre. | الحرف الأخير. |
+| `d2.diff.prompt` | Son billet indique bafy…k4q (abrégé). Deux liens diffèrent deux fois. Pointez la différence qui compte. | على قصاصتها bafy…k4q (مختصراً). رابطان يختلفان مرّتين. أشِر إلى الفرق المهمّ. |
+| `d2.diff.r.g.0.after` | Une autre passerelle · même contenu demandé | بوّابة أخرى · المحتوى المطلوب نفسه |
+| `d2.diff.r.g.0.say` | morceau un | القطعة الأولى |
+| `d2.diff.r.g.0.why` | Seulement l’entrée. Doc IPFS : toute passerelle résout toute adresse de contenu demandée. | المدخل فقط. وثائق IPFS: أيّ بوّابة تحلّ أيّ عنوان محتوى مطلوب. |
+| `d2.diff.r.g.1.after` | Même marqueur. | العلامة نفسها. |
+| `d2.diff.r.g.1.say` | morceau deux | القطعة الثانية |
+| `d2.diff.r.g.1.why` | Le même marqueur dans les deux. | العلامة نفسها في الاثنين. |
+| `d2.diff.r.g.2.after` | Une autre adresse. | عنوان آخر. |
+| `d2.diff.r.g.2.say` | morceau trois | القطعة الثالثة |
+| `d2.diff.r.g.2.why` | Elle finit par n7a, pas m7a. C’est une adresse de contenu différente. | ينتهي بـ n7a، لا m7a. هذا عنوان محتوى مختلف. |
+| `d2.diff.r.prompt` | Deux autres liens diffèrent deux fois. Pointez la différence qui ne change pas le contenu demandé. | رابطان آخران يختلفان مرّتين. أشِر إلى الفرق الذي لا يغيّر المحتوى المطلوب. |
+| `d2.diff.r.why` | Seulement l’entrée. Doc IPFS : toute passerelle résout toute adresse de contenu demandée. | المدخل فقط. وثائق IPFS: أيّ بوّابة تحلّ أيّ عنوان محتوى مطلوب. |
+| `d2.diff.why` | Elle finit par k4r, pas k4q. C’est une autre adresse de contenu, pas celle de son billet. | ينتهي بـ k4r، لا k4q. هذا عنوان محتوى آخر، لا الذي على قصاصتها. |
+| `d2.encrypt.hint.0` | Un contrat est privé. Vérifiez chaque interrupteur. | العقد خاصّ. افحص كلّ زرّ تبديل. |
+| `d2.encrypt.hint.1` | Un interrupteur décide si des inconnus peuvent le lire. | زرّ تبديل واحد يقرّر هل يستطيع الغرباء قراءته. |
+| `d2.encrypt.hint.2` | Réponse : Chiffrer avant le dépôt. | الجواب: التشفير قبل الرفع. |
+| `d2.encrypt.kuro` | D’abord chiffrer. | التشفير أولاً. |
+| `d2.encrypt.p.enc.after` | Activé · seul un mot de passe l’ouvre | مفعَّل · كلمة مرور وحدها تفتحه |
+| `d2.encrypt.p.enc.say` | Ligne trois : Chiffrer avant le dépôt, désactivé | السطر الثالث: التشفير قبل الرفع، متوقّف |
+| `d2.encrypt.p.enc.text` | Chiffrer avant le dépôt : désactivé | التشفير قبل الرفع: متوقّف |
+| `d2.encrypt.p.enc.why` | Doc IPFS : le contenu des fichiers est public sauf s’il est chiffré. Le chiffrement lui revient. | وثائق IPFS: محتويات الملفّات عامّة ما لم تُشفَّر. والتشفير متروك لها. |
+| `d2.encrypt.p.file.after` | Le bon fichier. | الملفّ الصحيح. |
+| `d2.encrypt.p.file.say` | Ligne un : Fichier, contract.pdf | السطر الأول: الملفّ، contract.pdf |
+| `d2.encrypt.p.file.text` | Fichier : contract.pdf | الملفّ: contract.pdf |
+| `d2.encrypt.p.file.why` | C’est le fichier qu’elle veut envoyer. Rien à changer ici. | هو الملفّ الذي تنوي إرساله. لا شيء يُغيَّر هنا. |
+| `d2.encrypt.p.pin.after` | Épingler ne fait que garder. | التثبيت يحفظ فقط. |
+| `d2.encrypt.p.pin.say` | Ligne deux : Épingler après le dépôt, activé | السطر الثاني: التثبيت بعد الرفع، مفعَّل |
+| `d2.encrypt.p.pin.text` | Épingler après le dépôt : activé | التثبيت بعد الرفع: مفعَّل |
+| `d2.encrypt.p.pin.why` | Épingler garde un fichier. Cela ne cache rien. | التثبيت يحفظ الملفّ. ولا يُخفي شيئاً. |
+| `d2.encrypt.p.send.after` | Envoyé lisible. | أُرسل مقروءاً. |
+| `d2.encrypt.p.send.say` | Déposer, bouton | رفع، زرّ |
+| `d2.encrypt.p.send.text` | Déposer | رفع |
+| `d2.encrypt.p.send.why` | Envoyé tel quel, quiconque a l’adresse peut le télécharger et le voir. | إن أُرسل كما هو، استطاع كلّ من لديه العنوان تنزيله والاطّلاع عليه. |
+| `d2.encrypt.address` | Fiche de dépôt | ورقة الرفع |
+| `d2.encrypt.prompt` | Une fiche de dépôt (une maquette), prête à envoyer un contrat client. Pointez ce qu’il faut changer d’abord. | ورقة رفع (شاشة تجريبية)، مضبوطة لإرسال عقد عميل. أشِر إلى ما يجب تغييره أولاً. |
+| `d2.encrypt.r.p.all.after` | Quiconque a l’adresse | كلّ من لديه العنوان |
+| `d2.encrypt.r.p.all.say` | Quiconque a son adresse | كلّ من لديه عنوانه |
+| `d2.encrypt.r.p.all.text` | Quiconque a son adresse | كلّ من لديه عنوانه |
+| `d2.encrypt.r.p.all.why` | Doc IPFS : n’importe qui peut télécharger et voir ces données s’il a le CID. | وثائق IPFS: أيّ أحد يستطيع تنزيل تلك البيانات والاطّلاع عليها إن كان لديه الـCID. |
+| `d2.encrypt.r.p.her.after` | Pas seulement elle. | ليست هي وحدها. |
+| `d2.encrypt.r.p.her.say` | Samia seule | سامية وحدها |
+| `d2.encrypt.r.p.her.text` | Samia seule | سامية وحدها |
+| `d2.encrypt.r.p.her.why` | IPFS ne chiffre les données que pendant le transfert. À l’arrivée, le fichier est lisible. | IPFS يشفّر البيانات أثناء النقل فقط. وعند الوصول يكون الملفّ مقروءاً. |
+| `d2.encrypt.r.p.svc.after` | Plus que ces deux-là. | أكثر من هذين. |
+| `d2.encrypt.r.p.svc.say` | Samia et son service d’épinglage | سامية وخدمة التثبيت لديها |
+| `d2.encrypt.r.p.svc.text` | Samia et son service d’épinglage | سامية وخدمة التثبيت لديها |
+| `d2.encrypt.r.p.svc.why` | La doc ne pose aucune limite de ce genre. Le CID suffit à un lecteur. | الوثائق لا تضع حدّاً كهذا. الـCID هو كلّ ما يحتاجه القارئ. |
+| `d2.encrypt.r.prompt` | Le contrat est parti sans chiffrement. Pointez qui peut le lire. | رُفع العقد غير مشفَّر. أشِر إلى من يستطيع قراءته. |
+| `d2.ring.address` | Résultats de recherche : « rapport T3 » | نتائج البحث: «تقرير الربع الثالث» |
+| `d2.ring.hint.0` | Touchez chaque résultat pour voir son adresse. | المس كلّ نتيجة لترى عنوانها. |
+| `d2.ring.hint.1` | Lisez ce qui suit /ipfs/, aussi loin que c’est affiché. | اقرأ ما يلي /ipfs/، بقدر ما يظهر. |
+| `d2.ring.hint.2` | Réponse : gateway.example/ipfs/bafy…k4q. | الجواب: gateway.example/ipfs/bafy…k4q. |
+| `d2.ring.kuro` | Après /ipfs/. | بعد /ipfs/. |
+| `d2.ring.p.ad.after` | Juste un nom de fichier. | اسم ملفّ فقط. |
+| `d2.ring.p.ad.mark` | Annonce | إعلان |
+| `d2.ring.p.ad.say` | Résultat un, marqué Annonce | النتيجة الأولى، موسومة بـ«إعلان» |
+| `d2.ring.p.ad.text` | Rapport T3 · téléchargement | تقرير الربع الثالث · تنزيل |
+| `d2.ring.p.ad.why` | Ici, la suite est un nom de fichier sur un site. Rien ne suit /ipfs/. | هنا النصّ اسم ملفّ على موقع. لا شيء يلي /ipfs/. |
+| `d2.ring.p.near.after` | Finit par k4r. | ينتهي بـ k4r. |
+| `d2.ring.p.near.say` | Résultat deux | النتيجة الثانية |
+| `d2.ring.p.near.text` | Rapport T3 · final | تقرير الربع الثالث · نهائي |
+| `d2.ring.p.near.why` | Après /ipfs/, l’adresse finit par k4r. Ce n’est pas celle de son billet. | بعد /ipfs/ ينتهي العنوان بـ k4r. ليس الذي على قصاصتها. |
+| `d2.ring.p.own.after` | gateway.example/ipfs/bafy…k4q · son adresse | gateway.example/ipfs/bafy…k4q · عنوانها |
+| `d2.ring.p.own.say` | Résultat trois | النتيجة الثالثة |
+| `d2.ring.p.own.text` | Rapport T3 | تقرير الربع الثالث |
+| `d2.ring.p.own.why` | Doc IPFS : une passerelle, puis /ipfs/, puis l’adresse de contenu. Celle-ci est la sienne. | وثائق IPFS: بوّابة، ثم /ipfs/، ثم عنوان المحتوى. هذا عنوانها. |
+| `d2.ring.prompt` | Trois résultats proposent son rapport. Touchez chacun pour voir son adresse. Choisissez celui qui demande bafy…k4q. | ثلاث نتائج تعرض تقريرها. المس كلّ واحدة لترى عنوانها. اختر التي تطلب bafy…k4q. |
+| `d2.ring.r.address` | Un message (inventé) | رسالة (متخيَّلة) |
+| `d2.ring.r.p.l1.after` | mirror.example/ipfs/bafy…m7a · son adresse | mirror.example/ipfs/bafy…m7a · عنوانها |
+| `d2.ring.r.p.l1.say` | Lien un | الرابط الأول |
+| `d2.ring.r.p.l1.text` | Le contrat | العقد |
+| `d2.ring.r.p.l1.why` | Une autre passerelle, la même adresse de contenu. Toute passerelle la résout. | بوّابة أخرى، وعنوان المحتوى نفسه. أيّ بوّابة تحلّه. |
+| `d2.ring.r.p.l2.after` | Finit par n7a. | ينتهي بـ n7a. |
+| `d2.ring.r.p.l2.say` | Lien deux | الرابط الثاني |
+| `d2.ring.r.p.l2.text` | Le contrat (signé) | العقد (موقَّع) |
+| `d2.ring.r.p.l2.why` | Après /ipfs/, l’adresse indique n7a, pas m7a. | بعد /ipfs/ يُقرأ العنوان n7a، لا m7a. |
+| `d2.ring.r.p.l3.after` | Un site et un chemin. | موقع ومسار. |
+| `d2.ring.r.p.l3.say` | Lien trois | الرابط الثالث |
+| `d2.ring.r.p.l3.text` | Le contrat (dernière version) | العقد (الأحدث) |
+| `d2.ring.r.p.l3.why` | Un lieu. Il dit où demander. Rien ne le lie à son adresse de contenu. | مكان. يقول أين تسأل. ولا شيء يربطه بعنوان محتواها. |
+| `d2.ring.r.prompt` | Trois liens dans un message, chacun appelé « le contrat ». Touchez chacun. Choisissez celui qui demande bafy…m7a. | ثلاثة روابط في رسالة، كلّ منها يُسمّى «العقد». المس كلّاً منها. اختر الذي يطلب bafy…m7a. |
+| `d2.rows.address` | Service d’épinglage : compte | خدمة التثبيت: الحساب |
+| `d2.rows.hint.0` | Garder coûte quelque chose à quelqu’un. | الحفظ يكلّف أحداً شيئاً. |
+| `d2.rows.hint.1` | Une ligne porte une date. | سطر واحد يحمل تاريخاً. |
+| `d2.rows.hint.2` | Réponse : Forfait, payé jusqu’au 2027-05-01. | الجواب: الخطّة، مدفوعة حتى 2027-05-01. |
+| `d2.rows.kuro` | La date. | التاريخ. |
+| `d2.rows.p.count.after` | Juste un décompte. | عدد فقط. |
+| `d2.rows.p.count.say` | Ligne un : Fichiers épinglés, 14 | السطر الأول: الملفّات المثبَّتة، 14 |
+| `d2.rows.p.count.text` | Fichiers épinglés : 14 | الملفّات المثبَّتة: 14 |
+| `d2.rows.p.count.why` | Un nombre de fichiers. Il ne promet rien pour le mois prochain. | عدد ملفّات. لا يَعِد بشيء عن الشهر القادم. |
+| `d2.rows.p.gate.after` | Juste une entrée. | مدخل فقط. |
+| `d2.rows.p.gate.say` | Ligne trois : Passerelle, gateway.example | السطر الثالث: البوّابة، gateway.example |
+| `d2.rows.p.gate.text` | Passerelle : gateway.example | البوّابة: gateway.example |
+| `d2.rows.p.gate.why` | Une passerelle récupère du contenu. Elle ne décide pas de ce qui est gardé. | البوّابة تجلب المحتوى. ولا تقرّر ما يُحفظ. |
+| `d2.rows.p.paid.after` | Payé jusque-là · épinglé jusque-là | مدفوعة حتى ذلك الحين · مثبَّتة حتى ذلك الحين |
+| `d2.rows.p.paid.say` | Ligne deux : Forfait, payé jusqu’au 1er mai 2027 | السطر الثاني: الخطّة، مدفوعة حتى 1 مايو 2027 |
+| `d2.rows.p.paid.text` | Forfait : payé jusqu’au 2027-05-01 | الخطّة: مدفوعة حتى 2027-05-01 |
+| `d2.rows.p.paid.why` | Doc IPFS : si l’unique financeur cesse de payer cet épinglage, le contenu peut être perdu. | وثائق IPFS: إذا توقّف الراعي الوحيد عن الدفع مقابل ذلك التثبيت، فقد يضيع المحتوى. |
+| `d2.rows.prompt` | La page de compte d’un service d’épinglage (inventé). Pointez la ligne qui décide si son fichier reste. | صفحة حساب لدى خدمة تثبيت (متخيَّلة). أشِر إلى السطر الذي يقرّر هل يبقى ملفّها. |
+| `d2.rows.r.address` | Service d’épinglage : avis | خدمة التثبيت: إشعار |
+| `d2.rows.r.p.addr.after` | Vrai, et sans réconfort. | صحيح، ولا عزاء فيه. |
+| `d2.rows.r.p.addr.say` | Ligne trois : Vos adresses ne changeront pas | السطر الثالث: عناوينك لن تتغيّر |
+| `d2.rows.r.p.addr.text` | Vos adresses ne changeront pas | عناوينك لن تتغيّر |
+| `d2.rows.r.p.addr.why` | Vrai : une adresse vient du contenu. C’est le gardien qui s’en va. | صحيح: العنوان يأتي من المحتوى. الحافظ هو الذي يرحل. |
+| `d2.rows.r.p.close.after` | Plus de service · plus d’épinglage | لا خدمة · لا تثبيت |
+| `d2.rows.r.p.close.say` | Ligne un : Ce service ferme le 1er mai 2027 | السطر الأول: هذه الخدمة تُغلق في 1 مايو 2027 |
+| `d2.rows.r.p.close.text` | Ce service ferme le 2027-05-01 | هذه الخدمة تُغلق في 2027-05-01 |
+| `d2.rows.r.p.close.why` | Doc IPFS : rien ne garantit qu’une entreprise tierce maintienne son service d’épinglage. | وثائق IPFS: لا شيء يضمن أن تُبقي شركة خارجية خدمة التثبيت لديها قائمة. |
+| `d2.rows.r.p.gate.after` | Une autre entrée. | مدخل آخر. |
+| `d2.rows.r.p.gate.say` | Ligne deux : Nouvelle adresse de passerelle le mois prochain | السطر الثاني: عنوان بوّابة جديد الشهر القادم |
+| `d2.rows.r.p.gate.text` | Nouvelle adresse de passerelle le mois prochain | عنوان بوّابة جديد الشهر القادم |
+| `d2.rows.r.p.gate.why` | Toute passerelle résout toute adresse de contenu. L’entrée a changé, pas le fichier. | أيّ بوّابة تحلّ أيّ عنوان محتوى. تغيّر المدخل، لا الملفّ. |
+| `d2.rows.r.prompt` | Le même service publie un avis (inventé). Pointez la ligne qui met ses fichiers en danger. | الخدمة نفسها تنشر إشعاراً (متخيَّلاً). أشِر إلى السطر الذي يعرّض ملفّاتها للخطر. |
+| `d2.slip` | Samia veut ses contrats clients hors du portable. Le prestataire prévient : sur IPFS, l’adresse ouvre un fichier non chiffré. | تريد سامية إخراج عقود عملائها من حاسوبها المحمول. يحذّر المورّد: على IPFS، من لديه العنوان يقرأ الملفّ غير المشفَّر. |
+| `d2.slipTag` | ENQUÊTE 11 · exemple inventé | التحقيق 11 · مثال متخيَّل |
+| `d2.stamp.prompt` | Le prestataire, encore : quiconque a l’adresse peut lire son fichier non chiffré. Tamponnez : | قول المورّد مرّة أخرى: كلّ من لديه العنوان يستطيع قراءة ملفّها غير المشفَّر. اختمه: |
+| `d2.stamp.reveal` | Vrai. IPFS chiffre les données pendant le transfert, pas le fichier. Quiconque a l’adresse peut le télécharger et le voir. | صحيح. IPFS يشفّر البيانات أثناء النقل، لا الملفّ. كلّ من لديه العنوان يستطيع تنزيله والاطّلاع عليه. |
+| `d3.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d3.boss.frame` | Son fichier est gardé par {1}, pour {2}, et il est {3}. | ملفّها يحفظه {1}، {2}، وهو {3}. |
+| `d3.boss.hint.0` | Demandez où, pour combien de temps, et qui peut lire. | اسأل: أين، وإلى متى، ومن يستطيع القراءة. |
+| `d3.boss.hint.1` | Une pastille de durée a une fin. | رقعة زمنية واحدة لها نهاية. |
+| `d3.boss.hint.2` | Réponse : des fournisseurs payés, une durée fixée, public sauf s’il est chiffré. | الجواب: مزوّدون مدفوع لهم، لمدّة محدّدة، عامّ ما لم يُشفَّر. |
+| `d3.boss.kuro` | Où ? Jusqu’à quand ? | أين؟ إلى متى؟ |
+| `d3.boss.p.b1.text` | des fournisseurs payés | مزوّدون مدفوع لهم |
+| `d3.boss.p.b1.why` | Doc Filecoin : les clients paient des fournisseurs de stockage, dont les preuves quotidiennes montrent que les données sont toujours là. | وثائق Filecoin: العملاء يدفعون لمزوّدي التخزين، وإثباتاتهم اليومية تُظهر أن البيانات ما زالت هناك. |
+| `d3.boss.p.b2.text` | une durée fixée | لمدّة محدّدة |
+| `d3.boss.p.b2.why` | Doc Filecoin : le paiement se fait à l’avance, pour une certaine durée. | وثائق Filecoin: الدفع يتمّ مقدّماً، لمدّة معيّنة. |
+| `d3.boss.p.b3.text` | public sauf s’il est chiffré | عامّ ما لم يُشفَّر |
+| `d3.boss.p.b3.why` | Doc Filecoin : ne pas chiffrer un fichier le rend public. | وثائق Filecoin: عدم تشفير الملفّ يجعله عامّاً. |
+| `d3.boss.p.b4.text` | la blockchain elle-même | سلسلة الكتل نفسها |
+| `d3.boss.p.b4.why` | Pas selon la présentation : les preuves quotidiennes situent les données dans le centre de données d’un fournisseur. | ليس هذا ما تقوله النظرة العامّة: الإثباتات اليومية تُظهر البيانات في مركز بيانات لدى مزوّد. |
+| `d3.boss.p.b5.text` | toujours | إلى الأبد |
+| `d3.boss.p.b5.why` | Doc Filecoin : un accord fixe une durée ; les secteurs ont une durée de vie fixée, qui peut être prolongée. | وثائق Filecoin: الاتفاق يحدّد مدّة؛ وللقطاعات عمر محدّد يمكن تمديده. |
+| `d3.boss.p.b6.text` | privé par défaut | خاصّ افتراضياً |
+| `d3.boss.p.b6.why` | Doc IPFS : tout le trafic est public, contenu des fichiers compris, sauf chiffrement. | وثائق IPFS: كلّ حركة البيانات عامّة، بما فيها محتويات الملفّات، ما لم تُشفَّر. |
+| `d3.boss.prompt` | Un prospectus : « En sécurité sur la blockchain, pour toujours. » Construisez plutôt ce que la doc soutient. | منشور إعلاني: «آمن على سلسلة الكتل، إلى الأبد.» ابنِ بدلاً منه ما تدعمه الوثائق. |
+| `d3.boss.r.frame` | Filecoin est {1} que les développeurs atteignent par {2}. | Filecoin هو {1} يصل إليه المطوّرون عبر {2}. |
+| `d3.boss.r.p.m1.text` | un marché ouvert du stockage | سوق مفتوحة للتخزين |
+| `d3.boss.r.p.m1.why` | Doc Filecoin : un marché ouvert du stockage et de la récupération de fichiers, accessible à tous. | وثائق Filecoin: سوق مفتوحة لتخزين الملفّات واسترجاعها، متاحة للجميع. |
+| `d3.boss.r.p.m2.text` | des services appelés onramps | خدمات تُسمّى onramps |
+| `d3.boss.r.p.m2.why` | Doc Filecoin : interfaces web, API ou bibliothèques permettent aux développeurs d’envoyer des données aux onramps de stockage. | وثائق Filecoin: يستعمل المطوّرون واجهات ويب أو واجهات برمجة أو مكتبات لإرسال البيانات إلى onramps التخزين. |
+| `d3.boss.r.p.m3.text` | une appli de dossiers qui synchronise | تطبيق مجلّدات يزامن الملفّات |
+| `d3.boss.r.p.m3.why` | Les pages Filecoin lues aujourd’hui ne décrivent aucune appli de dossiers. Leur présentation s’adresse aux développeurs. | صفحات Filecoin المقروءة اليوم لا تصف أيّ تطبيق مجلّدات. ونظرتها العامّة تخاطب المطوّرين. |
+| `d3.boss.r.p.m4.text` | les disques loués d’une seule entreprise | أقراص مستأجرة لشركة واحدة |
+| `d3.boss.r.p.m4.why` | Doc Filecoin : la disponibilité et le prix du stockage ne sont contrôlés par aucune entité unique. | وثائق Filecoin: توافر التخزين وأسعاره لا تتحكّم فيهما أيّ جهة منفردة. |
+| `d3.boss.r.p.m5.text` | un dossier de téléphone synchronisé | مجلّد هاتف متزامن |
+| `d3.boss.r.p.m5.why` | Les pages Filecoin lues aujourd’hui ne décrivent aucun dossier de téléphone. Elles s’adressent aux développeurs. | صفحات Filecoin المقروءة اليوم لا تصف أيّ مجلّد هاتف. إنها تخاطب المطوّرين. |
+| `d3.boss.r.prompt` | La flèche dit Dropbox → Filecoin. Construisez ce que décrit la doc Filecoin. | السهم يقول Dropbox → Filecoin. ابنِ ما تصفه وثائق Filecoin. |
+| `d3.boxes.address` | Où est le fichier ? | أين الملفّ؟ |
+| `d3.boxes.hint.0` | Un cadre nomme le fichier. Un autre consigne les accords. | إطار يسمّي الملفّ. وإطار يسجّل الاتفاقات. |
+| `d3.boxes.hint.1` | Les preuves disent où les données sont encore. | الإثباتات تقول أين ما زالت البيانات. |
+| `d3.boxes.hint.2` | Réponse : le centre de données d’un fournisseur de stockage. | الجواب: مركز بيانات لدى مزوّد تخزين. |
+| `d3.boxes.kuro` | Sur des disques. | على أقراص. |
+| `d3.boxes.p.addr.after` | Un nom pour elles. | اسم لها. |
+| `d3.boxes.p.addr.say` | Cadre un : l’adresse | الإطار الأول: العنوان |
+| `d3.boxes.p.addr.text` | L’adresse bafy…k4q | العنوان bafy…k4q |
+| `d3.boxes.p.addr.why` | Une adresse identifie les données. Elle ne stocke rien. | العنوان يعرّف البيانات. ولا يخزّن شيئاً. |
+| `d3.boxes.p.chain.after` | L’accord est consigné. | الاتفاق مسجَّل. |
+| `d3.boxes.p.chain.say` | Cadre deux : la chaîne, l’accord | الإطار الثاني: السلسلة، الاتفاق |
+| `d3.boxes.p.chain.text` | La chaîne : l’accord | السلسلة: الاتفاق |
+| `d3.boxes.p.chain.why` | La doc Filecoin place sur la chaîne les accords et l’historique des fournisseurs. | وثائق Filecoin تضع على السلسلة الاتفاقات وسجلّ أداء المزوّدين. |
+| `d3.boxes.p.disk.after` | Gardées là · prouvées chaque jour | محفوظة هناك · مُثبَتة يومياً |
+| `d3.boxes.p.disk.say` | Cadre trois : le centre de données d’un fournisseur de stockage | الإطار الثالث: مركز بيانات لدى مزوّد تخزين |
+| `d3.boxes.p.disk.text` | Le centre de données d’un fournisseur de stockage | مركز بيانات لدى مزوّد تخزين |
+| `d3.boxes.p.disk.why` | Doc Filecoin : les preuves quotidiennes attestent que les données sont toujours dans le centre de données. | وثائق Filecoin: الإثباتات اليومية دليل على أن البيانات ما زالت في مركز البيانات. |
+| `d3.boxes.prompt` | Trois cadres sur un croquis. Pointez où, selon la doc, ses données sont gardées. | ثلاثة أُطر على رسم تقريبي. أشِر إلى حيث تقول الوثائق إن بياناتها تُحفظ. |
+| `d3.boxes.r.address` | Où est l’historique ? | أين السجلّ؟ |
+| `d3.boxes.r.p.addr.after` | Ne consigne aucun passé. | لا يسجّل أيّ ماضٍ. |
+| `d3.boxes.r.p.addr.say` | Cadre trois : l’adresse | الإطار الثالث: العنوان |
+| `d3.boxes.r.p.addr.text` | L’adresse bafy…k4q | العنوان bafy…k4q |
+| `d3.boxes.r.p.addr.why` | Une adresse identifie des données. Elle ne consigne le passé de personne. | العنوان يعرّف البيانات. ولا يسجّل ماضي أحد. |
+| `d3.boxes.r.p.chain.after` | Publié · ouvert à tout observateur | منشور · مفتوح لأيّ مراقب |
+| `d3.boxes.r.p.chain.say` | Cadre deux : la chaîne | الإطار الثاني: السلسلة |
+| `d3.boxes.r.p.chain.text` | La chaîne | السلسلة |
+| `d3.boxes.r.p.chain.why` | Doc Filecoin : l’historique des fournisseurs est publié sur la blockchain. | وثائق Filecoin: سجلّات أداء المزوّدين منشورة على سلسلة الكتل. |
+| `d3.boxes.r.p.status.after` | Sa propre parole. | كلمته هو. |
+| `d3.boxes.r.p.status.say` | Cadre un : la page d’état du fournisseur | الإطار الأول: صفحة حالة المزوّد |
+| `d3.boxes.r.p.status.text` | La page d’état du fournisseur | صفحة حالة المزوّد |
+| `d3.boxes.r.p.status.why` | Doc Filecoin : les utilisateurs n’ont pas à se fier aux pages d’état ni aux statistiques autodéclarées. | وثائق Filecoin: لا يحتاج المستخدمون إلى الاعتماد على صفحات الحالة أو إحصاءات يعلنها المزوّد عن نفسه. |
+| `d3.boxes.r.prompt` | Le même croquis. Pointez où la doc publie l’historique d’un fournisseur. | الرسم نفسه. أشِر إلى حيث تنشر الوثائق سجلّ أداء المزوّد. |
+| `d3.bub.a` | Trois cadres, mon croquis. La preuve quotidienne vient de la doc. | ثلاثة أُطر، رسمي أنا. الإثبات اليومي من الوثائق. |
+| `d3.bub.b` | Elle a souligné « pour toujours ». Je ne porte que ses traits. | وضعت خطّاً تحت «إلى الأبد». أنا أحمل علامات القلم فقط. |
+| `d3.can` | Vous savez maintenant expliquer qui garde un fichier sur Filecoin, ce qu’il doit prouver, et pour combien de temps. | صرتَ تعرف كيف تشرح من يحفظ الملفّ على Filecoin، وما عليه أن يُثبته، ولأيّ مدّة. |
+| `d3.claim` | Sur Filecoin, quelqu’un est payé pour garder son fichier, donc il est gardé pour toujours. | على Filecoin يتقاضى أحدٌ أجراً ليحفظ ملفّها، إذن يُحفظ إلى الأبد. |
+| `d3.layers.frame` | IPFS {1}. Filecoin {2}. | IPFS {1}. وFilecoin {2}. |
+| `d3.layers.hint.0` | L’un trouve et transporte. L’autre garde. | أحدهما يجد وينقل. والآخر يحفظ. |
+| `d3.layers.hint.1` | Un seul des deux implique un paiement. | واحد فقط من الاثنين فيه دفع. |
+| `d3.layers.hint.2` | Réponse : IPFS adresse et déplace le contenu ; Filecoin est là où des clients paient des fournisseurs pour garder des données. | الجواب: IPFS يعنون المحتوى وينقله؛ وFilecoin هو حيث يدفع العملاء للمزوّدين ليحفظوا البيانات. |
+| `d3.layers.kuro` | Deux couches. | طبقتان. |
+| `d3.layers.p.c1.text` | adresse et déplace le contenu | يعنون المحتوى وينقله |
+| `d3.layers.p.c1.why` | Doc IPFS : IPFS adresse et déplace le contenu. | وثائق IPFS: IPFS يعنون المحتوى وينقله. |
+| `d3.layers.p.c2.text` | est là où des clients paient des fournisseurs pour garder des données | هو حيث يدفع العملاء للمزوّدين ليحفظوا البيانات |
+| `d3.layers.p.c2.why` | Doc IPFS : Filecoin est une couche d’incitation pour conserver les données. Les clients paient ; les fournisseurs stockent et prouvent. | وثائق IPFS: Filecoin طبقة حوافز لإبقاء البيانات. العملاء يدفعون؛ والمزوّدون يخزّنون ويُثبتون. |
+| `d3.layers.p.c3.text` | garde chaque fichier pour toujours | يحفظ كلّ ملفّ إلى الأبد |
+| `d3.layers.p.c3.why` | Aucun des deux. IPFS garantit que le contenu peut être trouvé, pas qu’il reste disponible. | لا هذا ولا ذاك. IPFS يضمن أن المحتوى قابل للاكتشاف، لا أن يبقى متاحاً. |
+| `d3.layers.p.c4.text` | est le disque d’une seule entreprise | هو قرص شركة واحدة |
+| `d3.layers.p.c4.why` | Aucun des deux. Doc Filecoin : aucune entité unique ne contrôle la disponibilité ni le prix. | لا هذا ولا ذاك. وثائق Filecoin: لا جهة منفردة تتحكّم في التوافر أو السعر. |
+| `d3.layers.p.c5.text` | chiffre ses fichiers à sa place | يشفّر ملفّاتها نيابة عنها |
+| `d3.layers.p.c5.why` | Aucun des deux. Dans les deux docs, un fichier laissé non chiffré est public. | لا هذا ولا ذاك. في الوثائق كلتيهما، الملفّ المتروك دون تشفير عامّ. |
+| `d3.layers.prompt` | Qui fait quoi ? Touchez une pastille, puis sa case. | أيّهما يفعل ماذا؟ المس رقعة، ثم خانتها. |
+| `d3.layers.r.frame` | Le client {1}. Le fournisseur {2}. | العميل {1}. والمزوّد {2}. |
+| `d3.layers.r.p.r1.text` | paie d’avance, pour une durée fixée | يدفع مقدّماً، لمدّة محدّدة |
+| `d3.layers.r.p.r1.why` | Doc Filecoin : le paiement se fait à l’avance, pour la durée de stockage des données. | وثائق Filecoin: الدفع يتمّ مقدّماً، عن المدّة التي ستُخزَّن فيها البيانات. |
+| `d3.layers.r.p.r2.text` | stocke les données, le prouve chaque jour | يخزّن البيانات، ويُثبت ذلك يومياً |
+| `d3.layers.r.p.r2.why` | Doc Filecoin : les fournisseurs donnent chaque jour des preuves cryptographiques que les données sont toujours là. | وثائق Filecoin: المزوّدون يقدّمون يومياً إثباتات تشفيرية على أن البيانات ما زالت هناك. |
+| `d3.layers.r.p.r3.text` | paie une fois, pour toujours | يدفع مرّة واحدة، إلى الأبد |
+| `d3.layers.r.p.r3.why` | Doc Filecoin : le paiement se fait à l’avance, pour une certaine durée. | وثائق Filecoin: الدفع يتمّ مقدّماً، لمدّة معيّنة. |
+| `d3.layers.r.p.r4.text` | les stocke gratuitement | يخزّنها مجاناً |
+| `d3.layers.r.p.r4.why` | C’était l’épinglage IPFS des débuts : aucune incitation financière à rester en ligne. Filecoin ajoute le paiement. | هكذا كان التثبيت على IPFS في بداياته: بلا حافز مالي للبقاء متّصلاً. وFilecoin يضيف الدفع. |
+| `d3.layers.r.p.r5.text` | le prouve une fois | يُثبت ذلك مرّة واحدة |
+| `d3.layers.r.p.r5.why` | Une preuve est due dans chaque fenêtre de 24 heures, pas une seule fois. | الإثبات مستحقّ في كلّ نافذة من 24 ساعة، لا مرّة واحدة. |
+| `d3.layers.r.prompt` | Qui fait quoi dans un accord ? Touchez une pastille, puis sa case. | من يفعل ماذا في الاتفاق؟ المس رقعة، ثم خانتها. |
+| `d3.limits.hint.0` | Trois lignes trouvent réponse dans les preuves quotidiennes ou l’adresse. | ثلاثة أسطر تجيب عنها الإثباتات اليومية أو العنوان. |
+| `d3.limits.hint.1` | Une seule parle de récupérer le fichier. | سطر واحد يتعلّق باسترجاع الملفّ. |
+| `d3.limits.hint.2` | Réponse : récupérer un fichier peut être plus lent. | الجواب: استرجاع الملفّ قد يكون أبطأ. |
+| `d3.limits.kuro` | Retour plus lent. | استرجاع أبطأ. |
+| `d3.limits.p.alter.after` | Elle peut vérifier. | تستطيع التحقّق. |
+| `d3.limits.p.alter.say` | Un fichier stocké peut être échangé sans qu’on le voie | الملفّ المخزَّن قد يُستبدل دون أن يُلاحَظ |
+| `d3.limits.p.alter.text` | Un fichier stocké peut être échangé sans qu’on le voie | الملفّ المخزَّن قد يُستبدل دون أن يُلاحَظ |
+| `d3.limits.p.alter.why` | Doc Filecoin : les utilisateurs peuvent vérifier qu’ils ont reçu le bon fichier, intact. | وثائق Filecoin: يستطيع المستخدمون التحقّق من أنهم تلقّوا الملفّ الصحيح، سليماً. |
+| `d3.limits.p.check.after` | Vérifié chaque jour. | يُفحص يومياً. |
+| `d3.limits.p.check.say` | Personne ne peut vérifier un fichier stocké | لا أحد يستطيع فحص ملفّ مخزَّن |
+| `d3.limits.p.check.text` | Personne ne peut vérifier un fichier stocké | لا أحد يستطيع فحص ملفّ مخزَّن |
+| `d3.limits.p.check.why` | Doc Filecoin : les fournisseurs prouvent le stockage dans chaque fenêtre de 24 heures. Les clients peuvent consulter cet historique. | وثائق Filecoin: المزوّدون يُثبتون التخزين في كلّ نافذة من 24 ساعة. ويستطيع العملاء تفحّص هذا السجلّ. |
+| `d3.limits.p.one.after` | Ouvert à tous. | مفتوح للجميع. |
+| `d3.limits.p.one.say` | Une seule entreprise peut stocker des fichiers | شركة واحدة فقط يحقّ لها تخزين الملفّات |
+| `d3.limits.p.one.text` | Une seule entreprise peut stocker des fichiers | شركة واحدة فقط يحقّ لها تخزين الملفّات |
+| `d3.limits.p.one.why` | Doc Filecoin : n’importe qui peut devenir fournisseur de stockage. | وثائق Filecoin: أيّ أحد يستطيع الانضمام مزوّداً للتخزين. |
+| `d3.limits.p.slow.after` | Plus lent qu’un service d’épinglage, parfois | أبطأ من خدمة تثبيت، أحياناً |
+| `d3.limits.p.slow.say` | Récupérer un fichier peut être plus lent | استرجاع الملفّ قد يكون أبطأ |
+| `d3.limits.p.slow.text` | Récupérer un fichier peut être plus lent | استرجاع الملفّ قد يكون أبطأ |
+| `d3.limits.p.slow.why` | Doc IPFS : la récupération n’est pas toujours aussi rapide qu’avec un service d’épinglage IPFS. | وثائق IPFS: الاسترجاع ليس دائماً بسرعة خدمة تثبيت على IPFS. |
+| `d3.limits.prompt` | Quatre lignes sur Filecoin. Pointez la limite que nomme la doc IPFS. | أربعة أسطر عن Filecoin. أشِر إلى الحدّ الذي تذكره وثائق IPFS. |
+| `d3.limits.r.p.min.after` | Plusieurs Gio, au moins | عدّة GiB، على الأقلّ |
+| `d3.limits.r.p.min.say` | Un fournisseur peut n’accepter que de gros fichiers | قد لا يقبل المزوّد إلا الملفّات الكبيرة |
+| `d3.limits.r.p.min.text` | Un fournisseur peut n’accepter que de gros fichiers | قد لا يقبل المزوّد إلا الملفّات الكبيرة |
+| `d3.limits.r.p.min.why` | Doc IPFS : la taille minimale acceptée par un fournisseur peut être de plusieurs Gio. | وثائق IPFS: الحجم الأدنى الذي يقبله المزوّد قد يبلغ عدّة GiB. |
+| `d3.limits.r.p.once.after` | Absent des pages lues. | لا ذكر له فيما قُرئ. |
+| `d3.limits.r.p.once.say` | Un fichier ne peut être récupéré qu’une fois | لا يمكن جلب الملفّ إلا مرّة واحدة |
+| `d3.limits.r.p.once.text` | Un fichier ne peut être récupéré qu’une fois | لا يمكن جلب الملفّ إلا مرّة واحدة |
+| `d3.limits.r.p.once.why` | Doc IPFS : elle envoie une demande et le fournisseur lui renvoie les données. | وثائق IPFS: ترسل طلباً، فيعيد المزوّد إليها البيانات. |
+| `d3.limits.r.p.type.after` | Beaucoup de types de données. | أنواع بيانات كثيرة. |
+| `d3.limits.r.p.type.say` | Seuls les fichiers texte sont acceptés | لا تُقبل إلا الملفّات النصّية |
+| `d3.limits.r.p.type.text` | Seuls les fichiers texte sont acceptés | لا تُقبل إلا الملفّات النصّية |
+| `d3.limits.r.p.type.why` | Doc Filecoin : il est compatible avec divers types de données, dont l’audio et la vidéo. | وثائق Filecoin: متوافق مع أنواع بيانات متعدّدة، منها الصوت والفيديو. |
+| `d3.limits.r.prompt` | Trois autres lignes. Pointez une autre limite que nomme la doc IPFS. | ثلاثة أسطر أخرى. أشِر إلى حدّ آخر تذكره وثائق IPFS. |
+| `d3.pay.hint.0` | Tout le système repose sur une incitation. | التصميم كلّه يقوم على حافز. |
+| `d3.pay.hint.1` | Une ligne nomme ce avec quoi le réseau paie. | سطر واحد يسمّي ما تدفع به الشبكة. |
+| `d3.pay.hint.2` | Réponse : payé dans le jeton propre au réseau. | الجواب: يُدفع برمز الشبكة الرقمي الخاصّ بها. |
+| `d3.pay.kuro` | Stockage payé. | تخزين مدفوع. |
+| `d3.pay.p.a.after` | Payé, par conception. | مدفوع، بحكم التصميم. |
+| `d3.pay.p.a.say` | Gauche : gratuit, personne n’est payé pour le garder | اليسار: مجاني، لا أحد يتقاضى أجراً ليحفظه |
+| `d3.pay.p.a.text` | Gratuit : personne n’est payé pour le garder | مجاني: لا أحد يتقاضى أجراً ليحفظه |
+| `d3.pay.p.a.why` | Doc Filecoin : comme le stockage est payé, les fichiers ont une raison économique de rester. | وثائق Filecoin: لأن التخزين مدفوع، للملفّات سبب اقتصادي لتبقى. |
+| `d3.pay.p.b.after` | Un jeton · ou d’autres conditions du fournisseur | رمز رقمي · أو شروط أخرى لدى المزوّد |
+| `d3.pay.p.b.say` | Droite : payé dans le jeton propre au réseau | اليمين: يُدفع برمز الشبكة الرقمي الخاصّ بها |
+| `d3.pay.p.b.text` | Payé dans le jeton propre au réseau | يُدفع برمز الشبكة الرقمي الخاصّ بها |
+| `d3.pay.p.b.why` | Doc Filecoin : les utilisateurs paient les fournisseurs dans son jeton. Les fournisseurs peuvent proposer d’autres conditions, comme la monnaie fiduciaire. | وثائق Filecoin: المستخدمون يدفعون للمزوّدين برمزها الرقمي. وقد يعرض المزوّدون شروطاً أخرى، كالعملة الرسمية. |
+| `d3.pay.prompt` | Deux lignes sur le paiement du stockage sur Filecoin. Pointez celle que décrit sa doc. | سطران عن الدفع مقابل التخزين على Filecoin. أشِر إلى ما تصفه وثائقه. |
+| `d3.pay.r.p.a.after` | Onramps · interfaces web, API, bibliothèques | onramps · واجهات ويب، واجهات برمجة، مكتبات |
+| `d3.pay.r.p.a.say` | Gauche : des développeurs, par des services appelés onramps | اليسار: المطوّرون، عبر خدمات تُسمّى onramps |
+| `d3.pay.r.p.a.text` | Des développeurs, par des services appelés onramps | المطوّرون، عبر خدمات تُسمّى onramps |
+| `d3.pay.r.p.a.why` | Doc Filecoin : interfaces web, API ou bibliothèques permettent aux développeurs d’envoyer des données aux onramps de stockage. | وثائق Filecoin: يستعمل المطوّرون واجهات ويب أو واجهات برمجة أو مكتبات لإرسال البيانات إلى onramps التخزين. |
+| `d3.pay.r.p.b.after` | Absent des pages lues. | لا ذكر له فيما قُرئ. |
+| `d3.pay.r.p.b.say` | Droite : n’importe qui, depuis un dossier de téléphone synchronisé | اليمين: أيّ أحد، من مجلّد هاتف متزامن |
+| `d3.pay.r.p.b.text` | N’importe qui, depuis un dossier de téléphone synchronisé | أيّ أحد، من مجلّد هاتف متزامن |
+| `d3.pay.r.p.b.why` | Les pages Filecoin lues aujourd’hui ne décrivent aucun dossier de téléphone. Elles s’adressent aux développeurs. | صفحات Filecoin المقروءة اليوم لا تصف أيّ مجلّد هاتف. إنها تخاطب المطوّرين. |
+| `d3.pay.r.prompt` | Deux lignes sur qui envoie des données à Filecoin. Pointez celle que décrit sa doc. | سطران عمّن يرسل البيانات إلى Filecoin. أشِر إلى ما تصفه وثائقه. |
+| `d3.receipt.frame` | Un paiement montre {1}. Une preuve quotidienne montre {2}. | الدفع يُظهر {1}. والإثبات اليومي يُظهر {2}. |
+| `d3.receipt.hint.0` | Une ligne a été fixée à la conclusion de l’accord. | سطر واحد ضُبط حين عُقد الاتفاق. |
+| `d3.receipt.hint.1` | L’autre ligne se renouvelle chaque jour. | السطر الآخر يتجدّد كلّ يوم. |
+| `d3.receipt.hint.2` | Réponse : un paiement montre combien de temps dure l’accord ; une preuve montre que les données sont toujours stockées. | الجواب: الدفع يُظهر مدّة الاتفاق؛ والإثبات يُظهر أن البيانات ما زالت مخزَّنة. |
+| `d3.receipt.kuro` | Preuve quotidienne. | إثبات يومي. |
+| `d3.receipt.p.p1.text` | combien de temps dure l’accord | مدّة الاتفاق |
+| `d3.receipt.p.p1.why` | Doc Filecoin : le paiement se fait à l’avance, pour une durée de stockage fixée. | وثائق Filecoin: الدفع يتمّ مقدّماً، لمدّة تخزين محدّدة. |
+| `d3.receipt.p.p2.text` | que les données sont toujours stockées | أن البيانات ما زالت مخزَّنة |
+| `d3.receipt.p.p2.why` | Doc Filecoin : les preuves quotidiennes attestent que les données sont toujours dans le centre de données. | وثائق Filecoin: الإثباتات اليومية دليل على أن البيانات ما زالت في مركز البيانات. |
+| `d3.receipt.p.p3.text` | qui peut le lire | من يستطيع قراءته |
+| `d3.receipt.p.p3.why` | Aucune ligne ne le dit. Doc Filecoin : un fichier est public quand elle ne le chiffre pas. | لا هذا السطر ولا ذاك. وثائق Filecoin: الملفّ عامّ حين لا تشفّره. |
+| `d3.receipt.p.p4.text` | que le fichier est sur la chaîne | أن الملفّ على السلسلة |
+| `d3.receipt.p.p4.why` | Aucune ligne. La doc Filecoin publie l’accord sur la chaîne ; les preuves montrent des données dans un centre de données. | لا هذا ولا ذاك. وثائق Filecoin تنشر الاتفاق على السلسلة؛ والإثباتات تُظهر البيانات في مركز بيانات. |
+| `d3.receipt.prompt` | Son reçu (inventé) : une ligne de paiement, une ligne de preuve. Finissez la phrase. | إيصالها (متخيَّل): سطر دفع، وسطر إثبات. أكمل الجملة. |
+| `d3.receipt.r.frame` | Le fournisseur bloque {1}. Si ses preuves échouent sans cesse, {2}. | المزوّد يحجز {1}. وإن ظلّت إثباتاته تفشل، {2}. |
+| `d3.receipt.r.p.q1.text` | une garantie | ضماناً |
+| `d3.receipt.r.p.q1.why` | Doc Filecoin : les fournisseurs de stockage bloquent un certain montant en garantie. | وثائق Filecoin: مزوّدو التخزين يحجزون مبلغاً معيّناً ضماناً. |
+| `d3.receipt.r.p.q2.text` | cette garantie est brûlée | يُحرق ذلك الضمان |
+| `d3.receipt.r.p.q2.why` | Doc Filecoin : s’ils échouent à plusieurs reprises à fournir une preuve, leur garantie est brûlée. | وثائق Filecoin: إن أخفقوا مراراً في تقديم إثبات، يُحرق ضمانهم. |
+| `d3.receipt.r.p.q3.text` | son fichier | ملفّها |
+| `d3.receipt.r.p.q3.why` | Doc Filecoin : le fournisseur bloque une garantie. Son fichier, c’est ce qu’il doit prouver détenir. | وثائق Filecoin: المزوّد يحجز ضماناً. وملفّها هو ما عليه أن يُثبت أنه يحفظه. |
+| `d3.receipt.r.p.q4.text` | le client paie une amende | يدفع العميل غرامة |
+| `d3.receipt.r.p.q4.why` | Pas le client. Le fournisseur a bloqué la garantie, donc c’est lui qui la perd. | ليس العميل. المزوّد هو من حجز الضمان، فهو من يخسره. |
+| `d3.receipt.r.p.q5.text` | rien ne se passe : c’était payé | لا يحدث شيء: فقد دُفع |
+| `d3.receipt.r.p.q5.why` | Doc Filecoin : tout observateur peut voir les défaillances d’un fournisseur. Le paiement n’en excuse aucune. | وثائق Filecoin: أيّ مراقب يستطيع رؤية إخفاقات المزوّد. والدفع لا يعفي من أيّ منها. |
+| `d3.receipt.r.prompt` | Un fournisseur échoue sans cesse à ses preuves. Touchez une pastille, puis sa case. | مزوّد تظلّ إثباتاته تفشل. المس رقعة، ثم خانتها. |
+| `d3.slip` | Le prestataire finit sur Filecoin : quelqu’un est payé pour garder son fichier, donc il est gardé pour toujours. Samia s’interroge. | ينتهي المورّد عند Filecoin: أحدٌ يتقاضى أجراً ليحفظ ملفّها، إذن يُحفظ إلى الأبد. سامية تتساءل. |
+| `d3.slipTag` | ENQUÊTE 11 · exemple inventé | التحقيق 11 · مثال متخيَّل |
+| `d3.stamp.prompt` | Le prestataire, encore : quelqu’un est payé pour garder son fichier, donc il est gardé pour toujours. Tamponnez : | قول المورّد مرّة أخرى: أحدٌ يتقاضى أجراً ليحفظ ملفّها، إذن يُحفظ إلى الأبد. اختمه: |
+| `d3.stamp.reveal` | À moitié. Payés, les fournisseurs doivent prouver le stockage chaque jour. Mais un accord couvre une durée fixée, pas l’éternité. | نصف صحيح. المزوّدون يتقاضون أجراً وعليهم إثبات التخزين يومياً. لكنّ الاتفاق يغطّي مدّة محدّدة، لا الأبد. |
+| `row` | IPFS nomme un fichier par son contenu ; sur Filecoin, un client paie quelqu’un pour le garder, un temps. Aucun des deux n’est une appli de dossiers. | IPFS يسمّي الملفّ بمحتواه؛ وعلى Filecoin يدفع العميل لأحد ليحفظه، لمدّة. وليس أيّ منهما تطبيق مجلّدات. |
+| `sticker.back` (reworded 2026-11-24) | Ce que c’est : IPFS tire l’adresse d’un fichier de son contenu ; sur Filecoin, des fournisseurs le gardent contre paiement. Ce que vous détenez : une adresse qui vérifie le fichier. Ce que vous cédez : la confidentialité sans chiffrement, un gardien sans épinglage ni paiement. L’idée fausse : « payé une fois, gardé pour toujours ». Cités comme exemples, pas comme recommandation. Vérifié le 2026-11-23. | ما هو: IPFS يعطي الملفّ عنواناً مصنوعاً من محتواه؛ وعلى Filecoin يدفع العملاء للمزوّدين ليحفظوه. ما تحوزه: عنوان يتحقّق من الملفّ. ما تتخلّى عنه: الخصوصية ما لم تشفّر، والحافظ ما لم يثبّته أحد أو يدفع. الفكرة الخاطئة: «دُفع مرّة، حُفظ إلى الأبد». مذكوران كمثالين، لا كتوصية. جرى التحقّق في 2026-11-23. |
+| `sticker.line` | Une adresse n’est pas un gardien. | العنوان ليس حافظاً. |
+| `sticker.name` | Demande qui le garde | يسأل من يحفظه |
+| `tpl.account-pages` | Compte | الحساب |
+| `tpl.file-card` | Fichier | الملفّ |
+| `tpl.path` | Le trajet | المسار |
+| `tpl.upload-page` | Dépôt | الرفع |
+
+### Case 12, Patreon → Unlock Protocol, as an idea (`hub/src/lanterne/enquetes/c12.ar.json`, 577 keys)
+
+| Key | Français | العربية |
+|---|---|---|
+| `d1.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d1.boss.hint.0` | Trois tuiles sont des choses qu’on ouvre. | ثلاث خانات أشياء يفتحها المرء. |
+| `d1.boss.hint.1` | La documentation dit que les outils par-dessus sont entièrement facultatifs. | تقول الوثائق إن الأدوات التي فوقه اختيارية تماماً. |
+| `d1.boss.hint.2` | Réponse : Contrats intelligents. | الجواب: العقود الذكية. |
+| `d1.boss.kuro` | Dessous. | في الأساس. |
+| `d1.boss.p.checkout.after` | Un outil par-dessus. | أداة فوقه. |
+| `d1.boss.p.checkout.say` | Fenêtre de paiement | نافذة الدفع |
+| `d1.boss.p.checkout.text` | Fenêtre de paiement | نافذة الدفع |
+| `d1.boss.p.checkout.why` | La documentation : une application de paiement bâtie sur le protocole de base. | الوثائق: تطبيق دفع مبنيّ فوق البروتوكول الأساسي. |
+| `d1.boss.p.contracts.after` | Contrats intelligents · le protocole lui-même | العقود الذكية · البروتوكول نفسه |
+| `d1.boss.p.contracts.say` | Contrats intelligents | العقود الذكية |
+| `d1.boss.p.contracts.text` | Contrats intelligents | العقود الذكية |
+| `d1.boss.p.contracts.why` | La documentation : le protocole est une suite de contrats intelligents qui créent des adhésions sous forme de jetons. | الوثائق: البروتوكول مجموعة من العقود الذكية تُنشئ العضويات على شكل رموز رقمية. |
+| `d1.boss.p.dash.after` | Un outil de gestion. | أداة إدارة. |
+| `d1.boss.p.dash.say` | Appli de gestion | تطبيق الإدارة |
+| `d1.boss.p.dash.text` | Appli de gestion | تطبيق الإدارة |
+| `d1.boss.p.dash.why` | La documentation : une appli web pour gérer Serrures et Clés. Pas les contrats. | الوثائق: تطبيق ويب لإدارة الأقفال والمفاتيح. ليس العقود. |
+| `d1.boss.p.page.after` | Le travail de la salle. | عمل القاعة نفسها. |
+| `d1.boss.p.page.say` | La page de la salle | صفحة القاعة |
+| `d1.boss.p.page.text` | La page de la salle | صفحة القاعة |
+| `d1.boss.p.page.why` | Cette page appartient à qui l’a construite. Elle utilise le protocole ; elle n’est pas le protocole. | تلك الصفحة ملك من بناها. تستخدم البروتوكول؛ وليست البروتوكول. |
+| `d1.boss.prompt` | Samia objecte : « Il a des applis. Donc c’est un site. » Pointez ce que sa documentation appelle le protocole. | سامية تعترض: «له تطبيقات. إذن هو موقع.» أشِر إلى ما تسمّيه وثائقه البروتوكول. |
+| `d1.boss.r.p.checkout.after` | Facultative. | اختيارية. |
+| `d1.boss.r.p.checkout.say` | Fenêtre de paiement | نافذة الدفع |
+| `d1.boss.r.p.checkout.text` | Fenêtre de paiement | نافذة الدفع |
+| `d1.boss.r.p.checkout.why` | La documentation : une fenêtre de paiement fait partie des outils entièrement facultatifs. | الوثائق: نافذة الدفع من الأدوات الاختيارية تماماً. |
+| `d1.boss.r.p.contracts.after` | Les contrats · le protocole lui-même | العقود · البروتوكول نفسه |
+| `d1.boss.r.p.contracts.say` | Contrats intelligents | العقود الذكية |
+| `d1.boss.r.p.contracts.text` | Contrats intelligents | العقود الذكية |
+| `d1.boss.r.p.contracts.why` | La documentation : le protocole, ce sont les contrats intelligents sur la chaîne. On peut se passer entièrement des outils par-dessus. | الوثائق: البروتوكول هو العقود الذكية على السلسلة. ويمكن الاستغناء تماماً عن الأدوات التي فوقه. |
+| `d1.boss.r.p.dash.after` | Un outil par-dessus. | أداة فوقه. |
+| `d1.boss.r.p.dash.say` | Appli de gestion | تطبيق الإدارة |
+| `d1.boss.r.p.dash.text` | Appli de gestion | تطبيق الإدارة |
+| `d1.boss.r.p.dash.why` | La documentation : une appli web pour gérer Serrures et Clés. Elle repose sur les contrats. | الوثائق: تطبيق ويب لإدارة الأقفال والمفاتيح. يقوم فوق العقود. |
+| `d1.boss.r.prompt` | Trois tuiles. Pointez celle que la documentation ne dit pas facultative. | ثلاث خانات. أشِر إلى التي لا تصفها الوثائق بأنها اختيارية. |
+| `d1.bub.a` | L’une est inscrite pour vous. L’autre, vous la portez. | واحدة تُدوَّن لك. وأخرى تحملها أنت. |
+| `d1.bub.b` | Elle a répondu : « Qui a construit la page, alors ? » Je porte. | ردّت برسالة: «إذن، من بنى الصفحة؟» أنا أحملها فقط. |
+| `d1.can` | Vous savez maintenant distinguer une Clé d’une Serrure, trouver sa date de fin, et distinguer un protocole d’un site. | صرتَ تعرف كيف تميّز المفتاح من القفل، وتجد تاريخ انتهائه، وتميّز البروتوكول من الموقع. |
+| `d1.claim` | Unlock Protocol est un nouveau Patreon : un site de créateurs géré par une seule entreprise. | Unlock Protocol هو Patreon جديد: موقع للمبدعين تديره شركة واحدة. |
+| `d1.note.hint.0` | Une note porte sur ce que c’est, deux sur les Clés. | ملاحظة عمّا هو، واثنتان عن المفاتيح. |
+| `d1.note.hint.1` | Pensez à la date sur le pass. | فكّر في التاريخ المكتوب على البطاقة. |
+| `d1.note.hint.2` | Réponse : une Clé porte une date d’expiration. | الجواب: المفتاح يحمل تاريخ انتهاء. |
+| `d1.note.kuro` | Datée. | مؤرَّخ. |
+| `d1.note.p.n1.text` | Unlock Protocol est le site web d’une seule entreprise. | Unlock Protocol موقع ويب لشركة واحدة. |
+| `d1.note.p.n1.why` | Sa documentation : un protocole à code ouvert, une suite de contrats intelligents. Les applis par-dessus sont des outils facultatifs. | وثائقه: بروتوكول مفتوح المصدر، مجموعة من العقود الذكية. والتطبيقات التي فوقه أدوات اختيارية. |
+| `d1.note.p.n2.text` | Une Clé porte une date d’expiration. | المفتاح يحمل تاريخ انتهاء. |
+| `d1.note.p.n2.why` | La documentation : une fois une Clé créée, une expiration lui est fixée. | الوثائق: حين يُصنع المفتاح، يُحدَّد له تاريخ انتهاء. |
+| `d1.note.p.n3.text` | Chaque renouvellement crée une toute nouvelle Clé. | كلّ تجديد يصنع مفتاحاً جديداً تماماً. |
+| `d1.note.p.n3.why` | La documentation : aucune nouvelle Clé n’est créée lors des renouvellements. La même Clé reçoit une date plus tardive. | الوثائق: لا تُصنع مفاتيح جديدة عند التجديد. المفتاح نفسه يحصل على تاريخ لاحق. |
+| `d1.note.prompt` | Trois notes sont arrivées avec le billet. Une seule est vraie. | وصلت مع القصاصة ثلاث ملاحظات. واحدة صحيحة. |
+| `d1.note.r.p.r1.text` | Une Clé expirée peut encore être passée à un ami. | المفتاح المنتهي الصلاحية يمكن مع ذلك أن يُعطى لصديق. |
+| `d1.note.r.p.r1.why` | La documentation : les Clés expirées ne peuvent pas être transférées. | الوثائق: المفاتيح المنتهية الصلاحية لا يمكن نقلها. |
+| `d1.note.r.p.r2.text` | Quelqu’un d’autre peut payer pour prolonger la Clé d’un membre. | يستطيع شخص آخر أن يدفع لتمديد مفتاح عضو. |
+| `d1.note.r.p.r2.why` | La documentation : l’expéditeur paie la prolongation, même s’il n’est pas le propriétaire. | الوثائق: المُرسِل يدفع ثمن التمديد، حتى إن لم يكن هو المالك. |
+| `d1.note.r.p.r3.text` | Une seule Clé ouvre toutes les Serrures. | مفتاح واحد يفتح كلّ الأقفال. |
+| `d1.note.r.p.r3.why` | La documentation : les Clés d’une Serrure ne valent que pour la Serrure qui les a créées. | الوثائق: مفاتيح القفل الواحد لا تصلح إلا للقفل الذي صنعها. |
+| `d1.note.r.prompt` | Trois nouvelles notes. Touchez la vraie. | ثلاث ملاحظات جديدة. المس الصحيحة. |
+| `d1.page.address` | La page d’inscription d’une salle de sport (inventée) | صفحة تسجيل في قاعة رياضية (متخيَّلة) |
+| `d1.page.hint.0` | Trois lignes disent combien de temps, comment payer, à qui demander. | ثلاثة أسطر تقول: كم المدّة، كيف تدفع، ومن تسأل. |
+| `d1.page.hint.1` | Une ligne commence par « Vous recevez ». | سطر واحد يبدأ بـ «تحصل على». |
+| `d1.page.hint.2` | Réponse : Vous recevez : une Clé (un jeton). | الجواب: تحصل على: مفتاح (رمز رقمي). |
+| `d1.page.kuro` | Un jeton. | رمز رقمي. |
+| `d1.page.p.ask.after` | À qui demander. | من تسأل. |
+| `d1.page.p.ask.say` | Ligne quatre : des questions, écrivez à la salle | السطر الرابع: أسئلة، اكتب إلى القاعة |
+| `d1.page.p.ask.text` | Des questions ? Écrivez à la salle | أسئلة؟ اكتب إلى القاعة |
+| `d1.page.p.ask.why` | Cela dit qui répond. La page est celle de la salle, bâtie sur le protocole. | هذا يقول من يجيب. الصفحة ملك القاعة، مبنيّة على البروتوكول. |
+| `d1.page.p.dur.after` | Combien de temps, pas quoi. | كم المدّة، لا ماذا. |
+| `d1.page.p.dur.say` | Ligne un : pass membres, 30 jours | السطر الأول: بطاقة الأعضاء، 30 يوماً |
+| `d1.page.p.dur.text` | Pass membres · 30 jours | بطاقة الأعضاء · 30 يوماً |
+| `d1.page.p.dur.why` | C’est la durée. La documentation laisse un créateur fixer la durée d’une adhésion. | هذه هي المدّة. الوثائق تتيح للمبدع أن يحدّد كم تدوم العضوية. |
+| `d1.page.p.get.after` | Une Clé · l’adhésion elle-même | مفتاح · العضوية نفسها |
+| `d1.page.p.get.say` | Ligne deux : vous recevez une Clé, un jeton | السطر الثاني: تحصل على مفتاح، رمز رقمي |
+| `d1.page.p.get.text` | Vous recevez : une Clé (un jeton) | تحصل على: مفتاح (رمز رقمي) |
+| `d1.page.p.get.why` | La documentation : l’adhésion est une Clé, un jeton créé par la Serrure. | الوثائق: العضوية مفتاح، رمز رقمي يصنعه القفل. |
+| `d1.page.p.pay.after` | Comment, pas quoi. | كيف، لا ماذا. |
+| `d1.page.p.pay.say` | Ligne trois : payer par carte ou depuis un portefeuille | السطر الثالث: ادفع بالبطاقة البنكية أو من محفظة |
+| `d1.page.p.pay.text` | Payer par carte ou depuis un portefeuille | ادفع بالبطاقة البنكية أو من محفظة |
+| `d1.page.p.pay.why` | C’est le moyen de payer. La documentation range le paiement par carte parmi les outils facultatifs. | هذه طريقة الدفع. الوثائق تعدّ الدفع بالبطاقة من الأدوات الاختيارية. |
+| `d1.page.prompt` | Pointez la ligne qui dit ce que le membre finit par détenir. | أشِر إلى السطر الذي يقول ما الذي سيحوزه العضو في النهاية. |
+| `d1.page.r.address` | La page d’inscription d’une salle de sport (inventée) | صفحة تسجيل في قاعة رياضية (متخيَّلة) |
+| `d1.page.r.p.dur.after` | 30 jours · la durée fixée par le créateur | 30 يوماً · المدّة التي حدّدها المبدع |
+| `d1.page.r.p.dur.say` | Ligne un : pass membres, 30 jours | السطر الأول: بطاقة الأعضاء، 30 يوماً |
+| `d1.page.r.p.dur.text` | Pass membres · 30 jours | بطاقة الأعضاء · 30 يوماً |
+| `d1.page.r.p.dur.why` | La documentation cite « Fixer la durée de l’adhésion » : le créateur choisit la durée de chaque période. | الوثائق تذكر «تحديد مدّة العضوية»: المبدع يختار كم تدوم كلّ فترة. |
+| `d1.page.r.p.get.after` | Quoi, pas combien de temps. | ماذا، لا كم المدّة. |
+| `d1.page.r.p.get.say` | Ligne trois : vous recevez une Clé, un jeton | السطر الثالث: تحصل على مفتاح، رمز رقمي |
+| `d1.page.r.p.get.text` | Vous recevez : une Clé (un jeton) | تحصل على: مفتاح (رمز رقمي) |
+| `d1.page.r.p.get.why` | Cette ligne dit ce qui est reçu, pas pour combien de temps. | هذا السطر يقول ما الذي يُتسلَّم، لا لأيّ مدّة. |
+| `d1.page.r.p.pay.after` | Comment, pas combien de temps. | كيف، لا كم المدّة. |
+| `d1.page.r.p.pay.say` | Ligne deux : payer par carte ou depuis un portefeuille | السطر الثاني: ادفع بالبطاقة البنكية أو من محفظة |
+| `d1.page.r.p.pay.text` | Payer par carte ou depuis un portefeuille | ادفع بالبطاقة البنكية أو من محفظة |
+| `d1.page.r.p.pay.why` | Cette ligne parle du paiement. Elle ne porte aucune durée. | هذا السطر عن الدفع. ولا يحمل أيّ مدّة. |
+| `d1.page.r.prompt` | La même page. Pointez la ligne qui dit combien de temps dure le pass. | الصفحة نفسها. أشِر إلى السطر الذي يقول كم تدوم البطاقة. |
+| `d1.pass.hint.0` | Jusqu’à quand : cherchez une date. | حتى متى: ابحث عن تاريخ. |
+| `d1.pass.hint.1` | Une ligne commence par le mot « Valide ». | سطر واحد يبدأ بكلمة «صالح». |
+| `d1.pass.hint.2` | Réponse : Valide jusqu’au 31 janvier 2027. | الجواب: صالح حتى 31 يناير 2027. |
+| `d1.pass.kuro` | La date. | التاريخ. |
+| `d1.pass.p.extend.after` | Ajoute du temps. N’affiche rien. | يضيف وقتاً. ولا يُظهره. |
+| `d1.pass.p.extend.cap` | Prolonger | تمديد |
+| `d1.pass.p.extend.say` | Prolonger, bouton | تمديد، زرّ |
+| `d1.pass.p.extend.why` | Prolonger repousse la date. La date elle-même est écrite sur une autre ligne. | التمديد يؤخّر التاريخ. أمّا التاريخ نفسه فمكتوب في سطر آخر. |
+| `d1.pass.p.owner.after` | Le portefeuille de qui. | محفظة من. |
+| `d1.pass.p.owner.say` | Propriétaire, une adresse, ligne | المالك، عنوان، سطر |
+| `d1.pass.p.owner.text` | Propriétaire 0x4e2…b18 | المالك 0x4e2…b18 |
+| `d1.pass.p.owner.why` | La documentation : une Clé apparaît dans le portefeuille de son propriétaire. Cette ligne ne porte aucune date. | الوثائق: المفتاح يظهر في محفظة مالكه. وهذا السطر لا يحمل أيّ تاريخ. |
+| `d1.pass.p.title.after` | Quel pass c’est. | أيّ بطاقة هي. |
+| `d1.pass.p.title.say` | Membres de la salle, Clé numéro 214, titre | أعضاء القاعة، المفتاح رقم 214، العنوان الرئيسي |
+| `d1.pass.p.title.text` | Membres de la salle · Clé n° 214 | أعضاء القاعة · المفتاح رقم 214 |
+| `d1.pass.p.title.why` | Cela nomme la Serrure et la Clé. Cela ne porte aucune date. | هذا يسمّي القفل والمفتاح. ولا يحمل أيّ تاريخ. |
+| `d1.pass.p.until.after` | Valide jusqu’au 31 janvier 2027 · son expiration | صالح حتى 31 يناير 2027 · تاريخ انتهائه |
+| `d1.pass.p.until.say` | Valide jusqu’au 31 janvier 2027, ligne | صالح حتى 31 يناير 2027، سطر |
+| `d1.pass.p.until.text` | Valide jusqu’au 31 janvier 2027 | صالح حتى 31 يناير 2027 |
+| `d1.pass.p.until.why` | La documentation : une fois une Clé créée, une expiration lui est fixée. Au-delà, la Clé n’est plus valide. | الوثائق: حين يُصنع المفتاح، يُحدَّد له تاريخ انتهاء. وبعده لا يعود المفتاح صالحاً. |
+| `d1.pass.prompt` | Le pass d’un membre (une maquette). Pointez la ligne qui dit jusqu’à quand il compte. | بطاقة عضو (شاشة تجريبية). أشِر إلى السطر الذي يقول حتى متى تبقى سارية. |
+| `d1.pass.r.p.owner.after` | Le portefeuille de qui. | محفظة من. |
+| `d1.pass.r.p.owner.say` | Propriétaire, une adresse, ligne | المالك، عنوان، سطر |
+| `d1.pass.r.p.owner.text` | Propriétaire 0x4e2…b18 | المالك 0x4e2…b18 |
+| `d1.pass.r.p.owner.why` | La ligne du propriétaire dit quel portefeuille, pas si le pass compte. | سطر المالك يقول محفظة من، لا هل البطاقة سارية. |
+| `d1.pass.r.p.status.after` | Statut : Expirée · plus valide | الحالة: منتهي الصلاحية · لم يعد صالحاً |
+| `d1.pass.r.p.status.say` | Statut : expirée, ligne | الحالة: منتهي الصلاحية، سطر |
+| `d1.pass.r.p.status.text` | Statut : Expirée | الحالة: منتهي الصلاحية |
+| `d1.pass.r.p.status.why` | La documentation : une fois expirée, une Clé n’est plus considérée comme valide. Elle peut encore être renouvelée. | الوثائق: حين تنتهي صلاحية المفتاح، لا يعود يُعدّ صالحاً. ومع ذلك يمكن تجديده. |
+| `d1.pass.r.p.title.after` | Quel pass c’est. | أيّ بطاقة هي. |
+| `d1.pass.r.p.title.say` | Membres de la salle, Clé numéro 214, titre | أعضاء القاعة، المفتاح رقم 214، العنوان الرئيسي |
+| `d1.pass.r.p.title.text` | Membres de la salle · Clé n° 214 | أعضاء القاعة · المفتاح رقم 214 |
+| `d1.pass.r.p.title.why` | Le nom d’un pass ne dit pas s’il compte encore. | اسم البطاقة لا يقول هل ما زالت سارية. |
+| `d1.pass.r.prompt` | Le même pass, plus tard (une maquette). Pointez la ligne qui dit qu’il ne compte plus. | البطاقة نفسها، لاحقاً (شاشة تجريبية). أشِر إلى السطر الذي يقول إنها لم تعد سارية. |
+| `d1.slip` | Le tableau du prestataire indique « Patreon → Unlock Protocol » : un nouveau site de créateurs, géré par une seule entreprise. Samia s’interroge. | جدول المورّد يقول «Patreon → Unlock Protocol»: موقع جديد للمبدعين، تديره شركة واحدة. تتساءل سامية. |
+| `d1.slipTag` | ENQUÊTE 12 · exemple inventé | التحقيق 12 · مثال متخيَّل |
+| `d1.stamp.prompt` | Le prestataire, encore : Unlock Protocol est un nouveau Patreon, un site de créateurs géré par une seule entreprise. Tamponnez : | قول المورّد مرّة أخرى: Unlock Protocol هو Patreon جديد، موقع للمبدعين تديره شركة واحدة. اختمه: |
+| `d1.stamp.reveal` | Faux. Sa documentation : un protocole à code ouvert, des contrats intelligents créant des adhésions en jetons. Applis par-dessus : facultatives. | غير صحيح. وثائقه: بروتوكول مفتوح المصدر، عقود ذكية تُنشئ العضويات على شكل رموز رقمية. والتطبيقات التي فوقه اختيارية. |
+| `d1.two.hint.0` | L’une est inscrite par une entreprise. | واحدة تدوّنها شركة. |
+| `d1.two.hint.1` | L’autre est un jeton. | والأخرى رمز رقمي. |
+| `d1.two.hint.2` | Réponse : la Clé créée par une Serrure. | الجواب: المفتاح الذي يصنعه قفل. |
+| `d1.two.kuro` | Portée. | محمولة. |
+| `d1.two.p.a.after` | Une Clé · elle apparaît dans le portefeuille du propriétaire | مفتاح · يظهر في محفظة المالك |
+| `d1.two.p.a.say` | À gauche : une Clé créée par une Serrure | الأول: مفتاح يصنعه قفل |
+| `d1.two.p.a.text` | Une Clé créée par une Serrure | مفتاح يصنعه قفل |
+| `d1.two.p.a.why` | La documentation : la Clé apparaîtra dans le portefeuille de son propriétaire. | الوثائق: سيظهر المفتاح في محفظة مالكه. |
+| `d1.two.p.b.after` | Gardée par Patreon. | يحفظه Patreon. |
+| `d1.two.p.b.say` | À droite : une fiche dans la liste de Patreon | الثاني: سجلّ في قائمة Patreon |
+| `d1.two.p.b.text` | Une fiche dans la liste de Patreon | سجلّ في قائمة Patreon |
+| `d1.two.p.b.why` | La documentation développeurs de Patreon : un Membre est la fiche de l’adhésion d’un utilisateur. Patreon la garde. | وثائق المطوّرين لدى Patreon: «العضو» هو سجلّ عضوية المستخدم. ويحفظه Patreon. |
+| `d1.two.prompt` | Deux adhésions. Pointez celle qui se trouve dans le portefeuille du membre lui-même. | عضويتان. أشِر إلى التي تقيم في محفظة العضو نفسه. |
+| `d1.two.r.p.a.after` | Dans le portefeuille du membre. | في محفظة العضو. |
+| `d1.two.r.p.a.say` | À gauche : une Clé dans un portefeuille | الأول: مفتاح في محفظة |
+| `d1.two.r.p.a.text` | Une Clé dans un portefeuille | مفتاح في محفظة |
+| `d1.two.r.p.a.why` | La documentation : une Clé apparaît dans le portefeuille de son propriétaire, pas sur la liste d’une entreprise. | الوثائق: المفتاح يظهر في محفظة مالكه، لا في قائمة شركة. |
+| `d1.two.r.p.b.after` | Une fiche Membre · gardée par Patreon | سجلّ عضو · يحفظه Patreon |
+| `d1.two.r.p.b.say` | À droite : une fiche Membre sur Patreon | الثاني: سجلّ عضو على Patreon |
+| `d1.two.r.p.b.text` | Une fiche Membre sur Patreon | سجلّ عضو على Patreon |
+| `d1.two.r.p.b.why` | La documentation développeurs de Patreon : un Membre est la fiche de l’adhésion d’un utilisateur à une campagne. | وثائق المطوّرين لدى Patreon: «العضو» هو سجلّ عضوية مستخدم في حملة. |
+| `d1.two.r.prompt` | Encore deux adhésions. Pointez celle qu’une entreprise garde dans ses propres fichiers. | عضويتان مرّة أخرى. أشِر إلى التي تحفظها شركة في سجلّاتها. |
+| `d1.words.hint.0` | Deux tuiles nomment des outils qui s’ouvrent sur un écran. | خانتان تسمّيان أدوات تُفتح على الشاشة. |
+| `d1.words.hint.1` | Des deux autres, l’une crée, l’autre est créée. | ومن الاثنتين الأخريين، واحدة تصنع وأخرى تُصنع. |
+| `d1.words.hint.2` | Réponse : Clé. | الجواب: مفتاح. |
+| `d1.words.kuro` | Celle-là. | هذا. |
+| `d1.words.p.dash.after` | Un outil de gestion. | أداة إدارة. |
+| `d1.words.p.dash.say` | Appli de gestion | تطبيق الإدارة |
+| `d1.words.p.dash.text` | Appli de gestion | تطبيق الإدارة |
+| `d1.words.p.dash.why` | La documentation : une appli web pour créer des Serrures et gérer des Clés. | الوثائق: تطبيق ويب لإنشاء الأقفال وإدارة المفاتيح. |
+| `d1.words.p.key.after` | Clé · le pass que détient un membre | مفتاح · البطاقة التي يحوزها العضو |
+| `d1.words.p.key.say` | Clé | مفتاح |
+| `d1.words.p.key.text` | Clé | مفتاح |
+| `d1.words.p.key.why` | La documentation : une Clé est un jeton créé par une Serrure, avec une date d’expiration. C’est l’adhésion. | الوثائق: المفتاح رمز رقمي يصنعه قفل، وله تاريخ انتهاء. إنه العضوية. |
+| `d1.words.p.lock.after` | Crée les pass. | يصنع البطاقات. |
+| `d1.words.p.lock.say` | Serrure | قفل |
+| `d1.words.p.lock.text` | Serrure | قفل |
+| `d1.words.p.lock.why` | La documentation : une Serrure est un contrat intelligent qui crée les pass. Ce n’est pas le pass. | الوثائق: القفل عقد ذكي يصنع البطاقات. وليس البطاقة. |
+| `d1.words.p.paywall.after` | Une fenêtre d’inscription. | نافذة تسجيل. |
+| `d1.words.p.paywall.say` | Fenêtre d’inscription | نافذة التسجيل |
+| `d1.words.p.paywall.text` | Fenêtre d’inscription | نافذة التسجيل |
+| `d1.words.p.paywall.why` | La documentation : une interface où l’on obtient des Clés. Ce n’est pas la Clé. | الوثائق: واجهة يحصل منها الناس على المفاتيح. وليست المفتاح. |
+| `d1.words.prompt` | Quatre tuiles. Pointez celle que sa documentation emploie pour le pass que détient un membre. | أربع خانات. أشِر إلى التي تستعملها وثائقه للبطاقة التي يحوزها العضو. |
+| `d1.words.r.p.dash.after` | Un outil de gestion. | أداة إدارة. |
+| `d1.words.r.p.dash.say` | Appli de gestion | تطبيق الإدارة |
+| `d1.words.r.p.dash.text` | Appli de gestion | تطبيق الإدارة |
+| `d1.words.r.p.dash.why` | La documentation : une appli web. Le contrat est en dessous. | الوثائق: تطبيق ويب. والعقد تحته. |
+| `d1.words.r.p.key.after` | Le pass lui-même. | البطاقة نفسها. |
+| `d1.words.r.p.key.say` | Clé | مفتاح |
+| `d1.words.r.p.key.text` | Clé | مفتاح |
+| `d1.words.r.p.key.why` | La Clé est ce qui est créé. Autre chose la crée. | المفتاح هو ما يُصنع. وشيء آخر يصنعه. |
+| `d1.words.r.p.lock.after` | Serrure · le contrat intelligent qui crée les Clés | قفل · العقد الذكي الذي يصنع المفاتيح |
+| `d1.words.r.p.lock.say` | Serrure | قفل |
+| `d1.words.r.p.lock.text` | Serrure | قفل |
+| `d1.words.r.p.lock.why` | La documentation : une Serrure est un contrat intelligent qui crée les jetons appelés Clés. | الوثائق: القفل عقد ذكي يصنع الرموز الرقمية المسمّاة مفاتيح. |
+| `d1.words.r.p.paywall.after` | Une fenêtre d’inscription. | نافذة تسجيل. |
+| `d1.words.r.p.paywall.say` | Fenêtre d’inscription | نافذة التسجيل |
+| `d1.words.r.p.paywall.text` | Fenêtre d’inscription | نافذة التسجيل |
+| `d1.words.r.p.paywall.why` | La documentation : une interface sur une page web. Elle ne crée rien par elle-même. | الوثائق: واجهة على صفحة ويب. لا تصنع شيئاً بنفسها. |
+| `d1.words.r.prompt` | Les mêmes quatre tuiles. Pointez le contrat intelligent qui crée les pass. | الخانات الأربع نفسها. أشِر إلى العقد الذكي الذي يصنع البطاقات. |
+| `d2.back.hint.0` | Deux commandes sont des icônes. La fleur à l’œil montre leurs légendes. | عنصرا تحكّم أيقونتان. الزهرة ذات العين تُظهر تسمياتهما. |
+| `d2.back.hint.1` | Une commande ajoute du temps à une Clé. | عنصر تحكّم واحد يضيف وقتاً إلى المفتاح. |
+| `d2.back.hint.2` | Réponse : Prolonger. | الجواب: تمديد. |
+| `d2.back.kuro` | Valide à nouveau. | صالح من جديد. |
+| `d2.back.p.cancel.after` | Y met fin plus tôt. | ينهيها أبكر. |
+| `d2.back.p.cancel.cap` | Annuler | إلغاء |
+| `d2.back.p.cancel.say` | Annuler, bouton | إلغاء، زرّ |
+| `d2.back.p.cancel.why` | Annuler met fin à une adhésion. La documentation donne ce droit au Gestionnaire de Clé. | الإلغاء ينهي العضوية. والوثائق تعطي هذا الحقّ لمدير المفتاح. |
+| `d2.back.p.extend.after` | Prolongée · valide à nouveau | مُدِّد · صالح من جديد |
+| `d2.back.p.extend.cap` | Prolonger | تمديد |
+| `d2.back.p.extend.say` | Prolonger, bouton | تمديد، زرّ |
+| `d2.back.p.extend.why` | La documentation : une Clé expirée peut être renouvelée. Sa date d’expiration est prolongée. | الوثائق: المفتاح المنتهي الصلاحية يمكن تجديده. ويُمدَّد تاريخ انتهائه. |
+| `d2.back.p.status.after` | Ne fait que le dire. | يقول ذلك فقط. |
+| `d2.back.p.status.say` | Statut : expirée, ligne | الحالة: منتهي الصلاحية، سطر |
+| `d2.back.p.status.text` | Statut : Expirée | الحالة: منتهي الصلاحية |
+| `d2.back.p.status.why` | Cette ligne signale l’état. La documentation : une fois expirée, une Clé n’est plus considérée comme valide. | هذا السطر يُبلغ عن الحالة. الوثائق: حين تنتهي صلاحية المفتاح، لا يعود يُعدّ صالحاً. |
+| `d2.back.p.transfer.after` | Bloqué tant qu’expirée. | محظور ما دام منتهياً. |
+| `d2.back.p.transfer.say` | Transférer, bouton | نقل، زرّ |
+| `d2.back.p.transfer.text` | Transférer | نقل |
+| `d2.back.p.transfer.why` | La documentation : les Clés expirées ne peuvent pas être transférées. La passer à quelqu’un ne règle rien. | الوثائق: المفاتيح المنتهية الصلاحية لا يمكن نقلها. وتمريره إلى غيرك لا يصلح شيئاً. |
+| `d2.back.prompt` | Le pass d’un membre ne compte plus (une maquette). Pointez la commande qui le fait compter à nouveau. | بطاقة عضو لم تعد سارية (شاشة تجريبية). أشِر إلى عنصر التحكّم الذي يعيدها سارية. |
+| `d2.back.r.p.cancel.after` | Y met fin. | ينهيها. |
+| `d2.back.r.p.cancel.cap` | Annuler | إلغاء |
+| `d2.back.r.p.cancel.say` | Annuler, bouton | إلغاء، زرّ |
+| `d2.back.r.p.cancel.why` | Annuler met fin à une adhésion. Cela n’ajoute aucun temps. | الإلغاء ينهي العضوية. ولا يضيف أيّ وقت. |
+| `d2.back.r.p.extend.after` | Prolongée · valide à nouveau | مُدِّد · صالح من جديد |
+| `d2.back.r.p.extend.cap` | Prolonger | تمديد |
+| `d2.back.r.p.extend.say` | Prolonger, bouton | تمديد، زرّ |
+| `d2.back.r.p.extend.why` | La documentation : une Clé expirée peut être renouvelée, et la même Clé reçoit une date plus tardive. | الوثائق: المفتاح المنتهي الصلاحية يمكن تجديده، فيحصل المفتاح نفسه على تاريخ لاحق. |
+| `d2.back.r.p.status.after` | Ne fait que le dire. | يقول ذلك فقط. |
+| `d2.back.r.p.status.say` | Statut : expirée, ligne | الحالة: منتهي الصلاحية، سطر |
+| `d2.back.r.p.status.text` | Statut : Expirée | الحالة: منتهي الصلاحية |
+| `d2.back.r.p.status.why` | Une ligne de statut signale l’état. Elle ne change rien. | سطر الحالة يُبلغ عن الحالة. ولا يغيّر شيئاً. |
+| `d2.back.r.p.transfer.after` | Bloqué tant qu’expirée. | محظور ما دام منتهياً. |
+| `d2.back.r.p.transfer.say` | Transférer, bouton | نقل، زرّ |
+| `d2.back.r.p.transfer.text` | Transférer | نقل |
+| `d2.back.r.p.transfer.why` | La documentation : les Clés expirées ne peuvent pas être transférées. La déplacer n’ajoute aucun temps. | الوثائق: المفاتيح المنتهية الصلاحية لا يمكن نقلها. ونقله لا يضيف أيّ وقت. |
+| `d2.back.r.prompt` | Un autre pass, expiré hier (une maquette). Pointez la commande qui le rend valide à nouveau. | بطاقة أخرى، انتهت صلاحيتها أمس (شاشة تجريبية). أشِر إلى عنصر التحكّم الذي يعيدها صالحة. |
+| `d2.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d2.boss.hint.0` | Un renouvellement doit bien être payé quelque part. | التجديد لا بدّ أن يُدفع من مكان ما. |
+| `d2.boss.hint.1` | Une ligne dit combien le propriétaire a autorisé à dépenser. | سطر واحد يقول كم أذن المالك بإنفاقه. |
+| `d2.boss.hint.2` | Réponse : Approuvé pour les renouvellements : plus rien. | الجواب: المأذون به للتجديد: لم يبقَ شيء. |
+| `d2.boss.kuro` | Il expire. | ينقضي. |
+| `d2.boss.p.auto.after` | Un simple réglage. | مجرّد إعداد. |
+| `d2.boss.p.auto.say` | Renouvellement automatique, activé, ligne | التجديد التلقائي، مفعَّل، سطر |
+| `d2.boss.p.auto.text` | Renouvellement automatique : activé | التجديد التلقائي: مفعَّل |
+| `d2.boss.p.auto.why` | Activé n’est qu’un réglage. Autre chose, sur ce pass, doit autoriser le paiement. | «مفعَّل» مجرّد إعداد. لا بدّ أن يأذن شيء آخر في هذه البطاقة بالدفع. |
+| `d2.boss.p.key.after` | Quelle Clé. | أيّ مفتاح. |
+| `d2.boss.p.key.say` | Clé numéro 214, ligne | المفتاح رقم 214، سطر |
+| `d2.boss.p.key.text` | Clé n° 214 | المفتاح رقم 214 |
+| `d2.boss.p.key.why` | Cela nomme la Clé. Cela ne dit rien du paiement. | هذا يسمّي المفتاح. ولا يقول شيئاً عن الدفع. |
+| `d2.boss.p.left.after` | Rien d’approuvé · le renouvellement ne peut aboutir | لا شيء مأذون به · لا يمكن أن ينجح التجديد |
+| `d2.boss.p.left.say` | Approuvé pour les renouvellements, plus rien, ligne | المأذون به للتجديد، لم يبقَ شيء، سطر |
+| `d2.boss.p.left.text` | Approuvé pour les renouvellements : plus rien | المأذون به للتجديد: لم يبقَ شيء |
+| `d2.boss.p.left.why` | La documentation : un renouvellement automatique n’aboutit que si le propriétaire a approuvé un montant suffisant. | الوثائق: التجديد التلقائي لا ينجح إلا إذا أذن المالك بمبلغ كافٍ. |
+| `d2.boss.p.until.after` | La date de fin. | تاريخ النهاية. |
+| `d2.boss.p.until.say` | Valide jusqu’au 31 janvier 2027, ligne | صالح حتى 31 يناير 2027، سطر |
+| `d2.boss.p.until.text` | Valide jusqu’au 31 janvier 2027 | صالح حتى 31 يناير 2027 |
+| `d2.boss.p.until.why` | C’est la date d’expiration de la Clé. Elle ne dit pas si un renouvellement peut se faire. | هذا موعد انتهاء صلاحية المفتاح. ولا يقول هل يمكن أن يجري تجديد. |
+| `d2.boss.prompt` | Samia objecte : « Automatique : activé. Donc il ne peut pas expirer. » Pointez la ligne qui bloque le renouvellement. | سامية تعترض: «التلقائي: مفعَّل. إذن لا يمكن أن تنقضي.» أشِر إلى السطر الذي يوقف التجديد. |
+| `d2.boss.r.p.key.after` | Quelle Clé. | أيّ مفتاح. |
+| `d2.boss.r.p.key.say` | Clé numéro 87, ligne | المفتاح رقم 87، سطر |
+| `d2.boss.r.p.key.text` | Clé n° 87 | المفتاح رقم 87 |
+| `d2.boss.r.p.key.why` | Un numéro nomme la Clé. Il ne paie rien. | الرقم يسمّي المفتاح. ولا يدفع ثمن شيء. |
+| `d2.boss.r.p.ok.after` | Approuvé · un renouvellement peut aboutir | مأذون به · يمكن أن ينجح التجديد |
+| `d2.boss.r.p.ok.say` | Approuvé pour les renouvellements, suffisant, ligne | المأذون به للتجديد، كافٍ، سطر |
+| `d2.boss.r.p.ok.text` | Approuvé pour les renouvellements : suffisant | المأذون به للتجديد: كافٍ |
+| `d2.boss.r.p.ok.why` | La documentation : le propriétaire doit avoir approuvé un montant suffisant pour que le renouvellement aboutisse. | الوثائق: يجب أن يكون المالك قد أذن بمبلغ كافٍ لكي ينجح التجديد. |
+| `d2.boss.r.p.until.after` | La date de fin. | تاريخ النهاية. |
+| `d2.boss.r.p.until.say` | Valide jusqu’au 14 mars 2027, ligne | صالح حتى 14 مارس 2027، سطر |
+| `d2.boss.r.p.until.text` | Valide jusqu’au 14 mars 2027 | صالح حتى 14 مارس 2027 |
+| `d2.boss.r.p.until.why` | Une date dit quand la Clé expire, pas ce qui paie la période suivante. | التاريخ يقول متى ينتهي المفتاح، لا ما الذي يدفع ثمن الفترة التالية. |
+| `d2.boss.r.prompt` | Un autre pass. L’automatique est activé. Pointez l’autre ligne dont un renouvellement a besoin. | بطاقة أخرى. التلقائي مفعَّل. أشِر إلى السطر الآخر الذي يحتاجه التجديد. |
+| `d2.bub.a` | Trois liens, une seule salle. Les sosies, c’étaient les miens. | ثلاثة روابط، وقاعة واحدة. والروابط الشبيهة من صنعي. |
+| `d2.bub.b` | Un autre billet. Elle demande ce qu’il faut à « automatique ». Je porte. | قصاصة أخرى. تسأل ماذا يحتاج «التلقائي». أنا أحملها. |
+| `d2.can` | Vous savez maintenant lire ce qui ramène une Clé expirée, et ce dont un renouvellement automatique a besoin. | صرتَ تعرف كيف تقرأ ما يعيد مفتاحاً منتهي الصلاحية، وما يحتاجه التجديد التلقائي. |
+| `d2.card.address` | Payer par carte : notes (inventées) | الدفع بالبطاقة البنكية: ملاحظات (متخيَّلة) |
+| `d2.card.hint.0` | Une ligne nie qu’une Clé existe. | سطر واحد ينفي أن يوجد مفتاح. |
+| `d2.card.hint.1` | La documentation traite un paiement par carte comme non définitif. | الوثائق تعامل الدفع بالبطاقة على أنه غير نهائي. |
+| `d2.card.hint.2` | Réponse : un paiement par carte annulé peut mettre fin à l’adhésion. | الجواب: الدفع بالبطاقة إذا استُرجع قد ينهي العضوية. |
+| `d2.card.kuro` | Pas définitif. | ليس نهائياً. |
+| `d2.card.p.final.after` | Pas définitif. | ليس نهائياً. |
+| `d2.card.p.final.say` | Ligne trois : un paiement par carte est définitif tout de suite | السطر الثالث: الدفع بالبطاقة نهائي فوراً |
+| `d2.card.p.final.text` | Un paiement par carte est définitif tout de suite | الدفع بالبطاقة نهائي فوراً |
+| `d2.card.p.final.why` | La documentation : un paiement par carte ne peut être considéré comme définitif. Il peut être annulé. | الوثائق: الدفع بالبطاقة لا يمكن عدّه نهائياً. فقد يُسترجَع. |
+| `d2.card.p.none.after` | Une Clé est créée. | يُصنع مفتاح. |
+| `d2.card.p.none.say` | Ligne un : aucune Clé n’est créée pour qui paie par carte | السطر الأول: لا يُصنع مفتاح لمن يدفع بالبطاقة |
+| `d2.card.p.none.text` | Aucune Clé n’est créée pour qui paie par carte | لا يُصنع مفتاح لمن يدفع بالبطاقة |
+| `d2.card.p.none.why` | La documentation : après un paiement par carte, l’adhésion est tout de même créée pour le membre. | الوثائق: بعد الدفع بالبطاقة، تُنشأ العضوية للعضو مع ذلك. |
+| `d2.card.p.rev.after` | Paiement annulé · la Clé peut être annulée | استُرجع · يمكن إلغاء المفتاح |
+| `d2.card.p.rev.say` | Ligne deux : un paiement par carte annulé peut mettre fin à l’adhésion | السطر الثاني: الدفع بالبطاقة إذا استُرجع قد ينهي العضوية |
+| `d2.card.p.rev.text` | Un paiement par carte annulé peut mettre fin à l’adhésion | الدفع بالبطاقة إذا استُرجع قد ينهي العضوية |
+| `d2.card.p.rev.why` | La documentation conseille, pour ce cas, de laisser les droits d’annulation à qui a encaissé le paiement par carte. | الوثائق تنصح، لهذه الحالة، بترك صلاحية الإلغاء لمن تسلّم الدفع بالبطاقة. |
+| `d2.card.prompt` | Un membre a payé par carte. Pointez la seule ligne que la documentation soutient. | عضو دفع بالبطاقة. أشِر إلى السطر الوحيد الذي تؤيّده الوثائق. |
+| `d2.card.r.address` | Payer par carte : qui peut annuler (inventé) | الدفع بالبطاقة البنكية: من يستطيع الإلغاء (متخيَّل) |
+| `d2.card.r.p.member.after` | Pas conseillé. | غير منصوح به. |
+| `d2.card.r.p.member.say` | Ligne un : le membre qui a payé | السطر الأول: العضو الذي دفع |
+| `d2.card.r.p.member.text` | Le membre qui a payé | العضو الذي دفع |
+| `d2.card.r.p.member.why` | La documentation désigne un autre titulaire, pour qu’un paiement annulé puisse aussi mettre fin à la Clé. | الوثائق تسمّي صاحب صلاحية آخر، كي ينهي الدفع المسترجَع المفتاح أيضاً. |
+| `d2.card.r.p.nobody.after` | Elles peuvent l’être. | يمكن إلغاؤها. |
+| `d2.card.r.p.nobody.say` | Ligne trois : personne, les Clés payées par carte ne peuvent être annulées | السطر الثالث: لا أحد، مفاتيح البطاقة لا يمكن إلغاؤها |
+| `d2.card.r.p.nobody.text` | Personne : les Clés payées par carte ne peuvent être annulées | لا أحد: مفاتيح البطاقة لا يمكن إلغاؤها |
+| `d2.card.r.p.nobody.why` | La documentation : si le paiement par carte est annulé, l’adhésion peut aussi être annulée. | الوثائق: إذا استُرجع الدفع بالبطاقة، يمكن إلغاء العضوية أيضاً. |
+| `d2.card.r.p.payer.after` | Qui encaisse le paiement · peut annuler la Clé | متسلّم الدفع · يستطيع إلغاء المفتاح |
+| `d2.card.r.p.payer.say` | Ligne deux : qui a encaissé le paiement par carte | السطر الثاني: من تسلّم الدفع بالبطاقة |
+| `d2.card.r.p.payer.text` | Qui a encaissé le paiement par carte | من تسلّم الدفع بالبطاقة |
+| `d2.card.r.p.payer.why` | La documentation conseille comme Gestionnaire de Clé celui qui a déclenché le paiement par carte, pour pouvoir annuler la Clé. | الوثائق تنصح بأن يكون مدير المفتاح هو من أطلق الدفع بالبطاقة، كي يمكن إلغاء المفتاح. |
+| `d2.card.r.prompt` | Un paiement par carte peut être annulé. Pointez à qui la documentation conseille de laisser les droits d’annulation. | الدفع بالبطاقة قد يُسترجَع. أشِر إلى من تنصح الوثائق بأن يحوز صلاحية الإلغاء. |
+| `d2.claim` | Avec Unlock Protocol, une adhésion se renouvelle toute seule, comme n’importe quel abonnement. | مع Unlock Protocol تتجدّد العضوية من تلقاء نفسها، مثل أيّ اشتراك. |
+| `d2.ring.address` | Un message (inventé). La salle : night-gym.example | رسالة (متخيَّلة). القاعة: night-gym.example |
+| `d2.ring.hint.0` | Touchez chaque ligne pour voir son adresse. | المس كلّ سطر لترى عنوانه. |
+| `d2.ring.hint.1` | Lisez le nom avant la première barre oblique, depuis la droite. | اقرأ الاسم قبل أوّل شرطة مائلة، من طرفه الأيمن. |
+| `d2.ring.hint.2` | Réponse : le lien qui ouvre night-gym.example/join. | الجواب: الرابط الذي يفتح night-gym.example/join. |
+| `d2.ring.kuro` | Par la droite. | الطرف الأيمن. |
+| `d2.ring.p.l1.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.p.l1.say` | Lien un : obtenir mon pass | الرابط الأول: احصل على بطاقتي |
+| `d2.ring.p.l1.text` | Obtenir mon pass | احصل على بطاقتي |
+| `d2.ring.p.l1.why` | Avant la première barre oblique, le nom finit par pass-desk.example. Ce qui précède est de la déco. | قبل أوّل شرطة مائلة ينتهي الاسم بـ pass-desk.example. وما قبله مجرّد زينة. |
+| `d2.ring.p.l3.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.p.l3.say` | Lien trois : membres, s’inscrire | الرابط الثالث: الأعضاء، سجّل |
+| `d2.ring.p.l3.text` | Membres : s’inscrire | الأعضاء: سجّل |
+| `d2.ring.p.l3.why` | Les tirets forment un seul nouveau nom, qui finit par join-pass.example. Ce n’est pas la salle. | الشرطات تصنع اسماً جديداً واحداً، ينتهي بـ join-pass.example. ليس القاعة. |
+| `d2.ring.p.own.after` | night-gym.example · la salle elle-même | night-gym.example · القاعة نفسها |
+| `d2.ring.p.own.say` | Lien deux : rejoindre la salle | الرابط الثاني: انضمّ إلى القاعة |
+| `d2.ring.p.own.text` | Rejoindre la salle | انضمّ إلى القاعة |
+| `d2.ring.p.own.why` | Avant la première barre oblique : night-gym.example. La documentation : une fenêtre de paiement peut se trouver sur le site d’un créateur. | الاسم قبل أوّل شرطة مائلة هو night-gym.example. الوثائق: نافذة الدفع يمكن أن تقيم في موقع المبدع نفسه. |
+| `d2.ring.prompt` | Trois liens d’inscription. Touchez chacun pour voir son adresse. Choisissez celui du site de la salle. | ثلاثة روابط تسجيل. المس كلّاً منها لترى عنوانه. اختر الذي على موقع القاعة نفسه. |
+| `d2.ring.r.address` | Un SMS (inventé). Le club : book-club.example | رسالة نصّية (متخيَّلة). النادي: book-club.example |
+| `d2.ring.r.p.l2.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.r.p.l2.say` | Lien deux : renouveler, membres | الرابط الثاني: جدِّد، الأعضاء |
+| `d2.ring.r.p.l2.text` | Renouveler (membres) | جدِّد (الأعضاء) |
+| `d2.ring.r.p.l2.why` | Avant la première barre oblique, le nom finit par members.example. Le club vient après la barre. | قبل أوّل شرطة مائلة ينتهي الاسم بـ members.example. والنادي يأتي بعد الشرطة. |
+| `d2.ring.r.p.l3.after` | Le site de quelqu’un d’autre. | موقع شخص آخر. |
+| `d2.ring.r.p.l3.say` | Lien trois : garder ma place | الرابط الثالث: احفظ مكاني |
+| `d2.ring.r.p.l3.text` | Garder ma place | احفظ مكاني |
+| `d2.ring.r.p.l3.why` | Un seul nouveau nom, formé avec un tiret, qui finit par renew.example. Ce n’est pas le club. | اسم جديد واحد تصله شرطة، ينتهي بـ renew.example. ليس النادي. |
+| `d2.ring.r.p.own.after` | book-club.example · le club lui-même | book-club.example · النادي نفسه |
+| `d2.ring.r.p.own.say` | Lien un : renouveler mon pass | الرابط الأول: جدِّد بطاقتي |
+| `d2.ring.r.p.own.text` | Renouveler mon pass | جدِّد بطاقتي |
+| `d2.ring.r.p.own.why` | Le nom avant la première barre oblique est book-club.example, et rien ne le suit. | الاسم قبل أوّل شرطة مائلة هو book-club.example، ولا شيء يليه. |
+| `d2.ring.r.prompt` | Trois liens de renouvellement. Touchez chacun pour voir son adresse. Choisissez celui du site du club. | ثلاثة روابط تجديد. المس كلّاً منها لترى عنوانه. اختر الذي على موقع النادي نفسه. |
+| `d2.rows.hint.0` | Passer une Clé à quelqu’un a son propre mot dans la documentation. | لتمرير المفتاح إلى غيرك كلمة خاصّة في الوثائق. |
+| `d2.rows.hint.1` | Cherchez la ligne qui parle de déplacer une Clé. | ابحث عن السطر الذي يتعلّق بنقل المفتاح. |
+| `d2.rows.hint.2` | Réponse : Transferts : activés. | الجواب: النقل: مفعَّل. |
+| `d2.rows.kuro` | Interrupteur trouvé. | وُجد الزرّ. |
+| `d2.rows.p.dur.after` | Combien de temps elle dure. | كم تدوم. |
+| `d2.rows.p.dur.say` | Durée de l’adhésion, 30 jours, ligne | مدّة العضوية، 30 يوماً، سطر |
+| `d2.rows.p.dur.text` | Durée de l’adhésion : 30 jours | مدّة العضوية: 30 يوماً |
+| `d2.rows.p.dur.why` | La documentation range la durée parmi les réglages. Elle dit combien de temps, pas qui peut transmettre une Clé. | الوثائق تعدّ المدّة إعداداً. تقول كم تدوم، لا من يجوز له تمرير المفتاح. |
+| `d2.rows.p.per.after` | Une chacun. | واحد لكلٍّ. |
+| `d2.rows.p.per.say` | Clés par membre, une, ligne | المفاتيح لكلّ عضو، واحد، سطر |
+| `d2.rows.p.per.text` | Clés par membre : 1 | المفاتيح لكلّ عضو: 1 |
+| `d2.rows.p.per.why` | La documentation : par défaut, un utilisateur ne peut détenir qu’une seule Clé d’une Serrure à la fois. | الوثائق: افتراضياً لا يجوز للمستخدم أن يملك إلا مفتاحاً واحداً من القفل في الوقت نفسه. |
+| `d2.rows.p.qty.after` | Combien il en existe. | كم يوجد منها. |
+| `d2.rows.p.qty.say` | Clés en vente, 200, ligne | المفاتيح المعروضة للبيع، 200، سطر |
+| `d2.rows.p.qty.text` | Clés en vente : 200 | المفاتيح المعروضة للبيع: 200 |
+| `d2.rows.p.qty.why` | Cela plafonne le nombre de Clés vendables. Cela n’empêche pas une Clé de bouger. | هذا يحدّ عدد المفاتيح التي يمكن بيعها. ولا يمنع المفتاح من الانتقال. |
+| `d2.rows.p.tr.after` | Transferts · peuvent être coupés | النقل · يمكن إيقافه |
+| `d2.rows.p.tr.say` | Transferts, activés, ligne | النقل، مفعَّل، سطر |
+| `d2.rows.p.tr.text` | Transferts : activés | النقل: مفعَّل |
+| `d2.rows.p.tr.why` | La documentation : une Serrure peut désactiver entièrement les transferts. Pour arrêter les ventes, ses Clés en vente passent à zéro. | الوثائق: يمكن للقفل أن يعطّل النقل تماماً. ولإيقاف المبيعات، تُجعل مفاتيحه المعروضة للبيع صفراً. |
+| `d2.rows.prompt` | Les réglages d’une Serrure (une maquette). Pointez la ligne qui peut empêcher les membres de passer une Clé à d’autres. | إعدادات قفل (شاشة تجريبية). أشِر إلى السطر الذي يستطيع منع الأعضاء من تمرير المفتاح. |
+| `d2.rows.r.p.dur.after` | Combien de temps elle dure. | كم تدوم. |
+| `d2.rows.r.p.dur.say` | Durée de l’adhésion, 30 jours, ligne | مدّة العضوية، 30 يوماً، سطر |
+| `d2.rows.r.p.dur.text` | Durée de l’adhésion : 30 jours | مدّة العضوية: 30 يوماً |
+| `d2.rows.r.p.dur.why` | La durée fixe la longueur d’une période. Elle n’arrête pas les ventes. | المدّة تحدّد طول الفترة. ولا توقف المبيعات. |
+| `d2.rows.r.p.qty.after` | Clés en vente · à zéro, les ventes s’arrêtent | المفاتيح المعروضة للبيع · إن صارت صفراً توقّفت المبيعات |
+| `d2.rows.r.p.qty.say` | Clés en vente, 200, ligne | المفاتيح المعروضة للبيع، 200، سطر |
+| `d2.rows.r.p.qty.text` | Clés en vente : 200 | المفاتيح المعروضة للبيع: 200 |
+| `d2.rows.r.p.qty.why` | La documentation : pour arrêter complètement les ventes, mettre les Clés en vente à zéro. Des Clés peuvent encore être octroyées. | الوثائق: لإيقاف المبيعات كلّياً، تُجعل المفاتيح المعروضة للبيع صفراً. ويظلّ منح المفاتيح ممكناً. |
+| `d2.rows.r.p.tr.after` | Sur le déplacement des Clés. | عن نقل المفاتيح. |
+| `d2.rows.r.p.tr.say` | Transferts, activés, ligne | النقل، مفعَّل، سطر |
+| `d2.rows.r.p.tr.text` | Transferts : activés | النقل: مفعَّل |
+| `d2.rows.r.p.tr.why` | Cette ligne concerne les Clés qui existent déjà, pas les nouvelles. | هذا السطر يتعلّق بمفاتيح موجودة أصلاً، لا بمفاتيح جديدة. |
+| `d2.rows.r.prompt` | Les mêmes réglages. Pointez la ligne qui peut arrêter toute nouvelle vente. | الإعدادات نفسها. أشِر إلى السطر الذي يستطيع إيقاف كلّ بيع جديد. |
+| `d2.same.hint.0` | Un renouvellement change une seule chose sur le pass. | التجديد يغيّر شيئاً واحداً في البطاقة. |
+| `d2.same.hint.1` | Pensez à la date, pas au nombre. | فكّر في التاريخ، لا في العدد. |
+| `d2.same.hint.2` | Réponse : la même Clé, une date plus tardive. | الجواب: المفتاح نفسه، بتاريخ لاحق. |
+| `d2.same.kuro` | Une seule Clé. | مفتاح واحد. |
+| `d2.same.p.a.after` | Une seule Clé. | مفتاح واحد فقط. |
+| `d2.same.p.a.say` | À gauche : deux Clés, l’ancienne et la nouvelle | الأول: مفتاحان، قديم وجديد |
+| `d2.same.p.a.text` | Deux Clés, l’ancienne et la nouvelle | مفتاحان، قديم وجديد |
+| `d2.same.p.a.why` | La documentation : aucune nouvelle Clé ni aucun jeton d’adhésion n’est créé lors des renouvellements. | الوثائق: لا تُصنع مفاتيح جديدة ولا رموز عضوية جديدة عند التجديد. |
+| `d2.same.p.b.after` | Une Clé · son expiration prolongée | مفتاح واحد · مُدِّد تاريخ انتهائه |
+| `d2.same.p.b.say` | À droite : la même Clé, une date plus tardive | الثاني: المفتاح نفسه، بتاريخ لاحق |
+| `d2.same.p.b.text` | La même Clé, une date plus tardive | المفتاح نفسه، بتاريخ لاحق |
+| `d2.same.p.b.why` | La documentation : au renouvellement, la date d’expiration de la Clé est prolongée. | الوثائق: حين يُجدَّد المفتاح، يُمدَّد تاريخ انتهائه. |
+| `d2.same.prompt` | Après un renouvellement. Pointez ce que le membre détient désormais. | بعد التجديد. أشِر إلى ما يحوزه العضو الآن. |
+| `d2.same.r.p.a.after` | Une Clé · sa date prolongée deux fois | مفتاح واحد · مُدِّد تاريخه مرّتين |
+| `d2.same.r.p.a.say` | À gauche : une Clé, une date plus tardive | الأول: مفتاح واحد، بتاريخ لاحق |
+| `d2.same.r.p.a.text` | Une Clé, une date plus tardive | مفتاح واحد، بتاريخ لاحق |
+| `d2.same.r.p.a.why` | La documentation : chaque renouvellement prolonge la même Clé. Aucune nouvelle Clé n’est créée. | الوثائق: كلّ تجديد يمدّد المفتاح نفسه. ولا تُصنع مفاتيح جديدة. |
+| `d2.same.r.p.b.after` | Une seule Clé. | مفتاح واحد فقط. |
+| `d2.same.r.p.b.say` | À droite : trois Clés | الثاني: ثلاثة مفاتيح |
+| `d2.same.r.p.b.text` | Trois Clés | ثلاثة مفاتيح |
+| `d2.same.r.p.b.why` | La documentation : aucune nouvelle Clé ni aucun jeton d’adhésion n’est créé lors des renouvellements. | الوثائق: لا تُصنع مفاتيح جديدة ولا رموز عضوية جديدة عند التجديد. |
+| `d2.same.r.prompt` | Une Clé a été renouvelée deux fois. Pointez ce que détient le membre. | جُدِّد مفتاح مرّتين. أشِر إلى ما يحوزه العضو. |
+| `d2.slip` | Le prestataire ajoute : avec Unlock Protocol, une adhésion se renouvelle toute seule, comme n’importe quel abonnement. Samia s’interroge. | يضيف المورّد: مع Unlock Protocol تتجدّد العضوية من تلقاء نفسها، مثل أيّ اشتراك. تتساءل سامية. |
+| `d2.slipTag` | ENQUÊTE 12 · exemple inventé | التحقيق 12 · مثال متخيَّل |
+| `d2.stamp.prompt` | Le prestataire, encore : avec Unlock Protocol, une adhésion se renouvelle toute seule, comme n’importe quel abonnement. Tamponnez : | قول المورّد مرّة أخرى: مع Unlock Protocol تتجدّد العضوية من تلقاء نفسها، مثل أيّ اشتراك. اختمه: |
+| `d2.stamp.reveal` | À moitié. Pas de renouvellement sans un montant suffisant approuvé par le propriétaire. Sinon, la Clé reste expirée. | نصف صحيح. لا يمكن أن يُطلَق التجديد إلا إذا أذن المالك بمبلغ كافٍ. وإلا بقي المفتاح منتهي الصلاحية. |
+| `d3.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d3.boss.frame` | La Clé {1}, mais {2} peut {3}. | المفتاح {1}، لكنّ {2} يستطيع {3}. |
+| `d3.boss.hint.0` | Case un : où se trouve la Clé. | الخانة الأولى: أين يقيم المفتاح. |
+| `d3.boss.hint.1` | Case deux : le rôle que détient par défaut le créateur de la Serrure. | الخانة الثانية: الدور الذي يحوزه منشئ القفل افتراضياً. |
+| `d3.boss.hint.2` | Réponse : est dans son portefeuille ; un Gestionnaire de Serrure ; changer sa date ou la déplacer. | الجواب: موجود في محفظته؛ مدير القفل؛ أن يغيّر تاريخه أو ينقله. |
+| `d3.boss.kuro` | Détenue. Pas seul. | محوز. ليس وحده. |
+| `d3.boss.p.c1.text` | est dans son portefeuille | موجود في محفظته |
+| `d3.boss.p.c1.why` | La documentation : la Clé apparaîtra dans le portefeuille de son propriétaire. | الوثائق: سيظهر المفتاح في محفظة مالكه. |
+| `d3.boss.p.c2.text` | un Gestionnaire de Serrure | مدير القفل |
+| `d3.boss.p.c2.why` | La documentation : le créateur de la Serrure en est le Gestionnaire par défaut, avec le plus haut niveau de permissions. | الوثائق: منشئ القفل هو مديره افتراضياً، وله أعلى مستوى من الصلاحيات. |
+| `d3.boss.p.c3.text` | changer sa date ou la déplacer | أن يغيّر تاريخه أو ينقله |
+| `d3.boss.p.c3.why` | La documentation : un Gestionnaire de Serrure peut modifier la date de fin de toute Clé, et toujours transférer des Clés. | الوثائق: مدير القفل يستطيع تعديل تاريخ نهاية أيّ مفتاح، ويستطيع دائماً نقل المفاتيح. |
+| `d3.boss.p.c4.text` | figure sur la liste de la salle | مُدرَج في قائمة القاعة |
+| `d3.boss.p.c4.why` | La documentation : la Clé apparaît dans le portefeuille de son propriétaire, pas sur une liste tenue par la salle. | الوثائق: المفتاح يظهر في محفظة مالكه، لا في قائمة تحفظها القاعة. |
+| `d3.boss.p.c5.text` | seul son propriétaire | مالكه وحده |
+| `d3.boss.p.c5.why` | La documentation : pour la déplacer, le propriétaire doit aussi être son Gestionnaire de Clé. Un autre rôle le peut. | الوثائق: لا يجوز للمالك نقل المفتاح إلا إذا كان أيضاً مدير المفتاح. ودور آخر يستطيع ذلك. |
+| `d3.boss.p.c6.text` | juste regarder | أن ينظر فقط |
+| `d3.boss.p.c6.why` | La documentation : un Gestionnaire de Serrure peut changer la date de fin de toute Clé. C’est plus que regarder. | الوثائق: مدير القفل يستطيع تغيير تاريخ نهاية أيّ مفتاح. وهذا أكثر من النظر. |
+| `d3.boss.prompt` | Samia objecte : « Dans son portefeuille. Donc à lui seul. » Construisez la réponse. | سامية تعترض: «في محفظته. إذن هو له وحده.» ابنِ الجواب. |
+| `d3.boss.r.frame` | Le propriétaire d’une Clé peut la transférer ou l’annuler {1} aussi {2}. | يجوز لمالك المفتاح أن ينقله أو يلغيه {1} أيضاً {2}. |
+| `d3.boss.r.p.r1.text` | seulement s’il est | فقط إن كان |
+| `d3.boss.r.p.r1.why` | La documentation : le propriétaire ne peut ni la transférer, ni la partager, ni l’annuler, sauf à une condition. | الوثائق: لا يجوز لمالك المفتاح أن ينقله أو يشاركه أو يلغيه، إلا بشرط واحد. |
+| `d3.boss.r.p.r2.text` | son Gestionnaire de Clé | مدير مفتاحه |
+| `d3.boss.r.p.r2.why` | La documentation : sauf s’il est aussi le Gestionnaire de Clé de cette Clé. | الوثائق: إلا إذا كان أيضاً مدير المفتاح لهذا المفتاح. |
+| `d3.boss.r.p.r3.text` | même sans être | حتى إن لم يكن |
+| `d3.boss.r.p.r3.why` | La documentation : posséder une Clé ne donne pas le droit de la déplacer. | الوثائق: ملكية المفتاح لا تحمل حقّ نقله. |
+| `d3.boss.r.p.r4.text` | le propriétaire du portefeuille | مالك المحفظة |
+| `d3.boss.r.p.r4.why` | Posséder le portefeuille, c’est ce qui en fait le propriétaire de la Clé. La documentation demande un autre titre. | ملكية المحفظة هي ما يجعله مالك المفتاح. والوثائق تطلب صفة أخرى. |
+| `d3.boss.r.prompt` | Que peut faire le propriétaire d’une Clé ? Touchez une pastille, puis sa case. | ماذا يجوز لمالك المفتاح أن يفعل؟ المس رقعة، ثم خانتها. |
+| `d3.bub.a` | Le portefeuille la détient. La Serrure l’a créée. Retenez les deux. | المحفظة تحوزه. والقفل صنعه. تذكّر الاثنين. |
+| `d3.bub.b` | Sa réponse : « Alors la salle pourrait déplacer un pass ? » Je porte. | ردّها: «إذن، القاعة تستطيع نقل بطاقة؟» أنا أحملها. |
+| `d3.can` | Vous savez maintenant expliquer une adhésion que l’on détient, et qui peut encore la modifier. | صرتَ تعرف كيف تشرح عضوية تحوزها، ومن يستطيع مع ذلك تغييرها. |
+| `d3.claim` | Une Clé dans le portefeuille d’un membre est à lui seul : personne d’autre ne peut y toucher. | المفتاح في محفظة العضو له وحده: لا أحد غيره يستطيع المساس به. |
+| `d3.held.frame` | Détenue, car {1} ; elle prend fin, car {2}. | المفتاح محوز، إذ {1}؛ وينتهي، إذ {2}. |
+| `d3.held.hint.0` | Case un : où la Clé apparaît. | الخانة الأولى: أين يظهر المفتاح. |
+| `d3.held.hint.1` | Case deux : ce que la documentation fixe sur chaque Clé une fois créée. | الخانة الثانية: ما تحدّده الوثائق لكلّ مفتاح حين يُصنع. |
+| `d3.held.hint.2` | Réponse : elle apparaît dans le portefeuille du propriétaire ; une expiration lui est fixée. | الجواب: يظهر في محفظة المالك؛ يُحدَّد له تاريخ انتهاء. |
+| `d3.held.kuro` | Détenue, datée. | محوز، مؤرَّخ. |
+| `d3.held.p.c1.text` | elle apparaît dans le portefeuille du propriétaire | يظهر في محفظة المالك |
+| `d3.held.p.c1.why` | La documentation : la Clé apparaîtra dans le portefeuille de son propriétaire. | الوثائق: سيظهر المفتاح في محفظة مالكه. |
+| `d3.held.p.c2.text` | une expiration lui est fixée | يُحدَّد له تاريخ انتهاء |
+| `d3.held.p.c2.why` | La documentation : une fois une Clé créée, une expiration lui est fixée sur la chaîne. | الوثائق: حين يُصنع المفتاح، يُحدَّد له تاريخ انتهاء على السلسلة. |
+| `d3.held.p.c3.text` | Patreon en garde une fiche | يحتفظ Patreon بسجلّ له |
+| `d3.held.p.c3.why` | Patreon garde les fiches de ses propres membres. Une Clé vient d’une Serrure. | Patreon يحتفظ بسجلّات أعضائه. أمّا المفتاح فيأتي من قفل. |
+| `d3.held.p.c4.text` | l’appli de gestion la liste | يدرجه تطبيق الإدارة |
+| `d3.held.p.c4.why` | La documentation : l’appli de gestion est un outil. Une liste dans une appli n’est pas là où est la Clé. | الوثائق: تطبيق الإدارة أداة. والقائمة في تطبيق ليست المكان الذي يقيم فيه المفتاح. |
+| `d3.held.prompt` | Détenue, et pourtant elle prend fin. Pourquoi ? Touchez une pastille, puis sa case. | محوز، ومع ذلك ينتهي. لماذا؟ المس رقعة، ثم خانتها. |
+| `d3.held.r.frame` | Une Clé cesse de compter {1}, et un renouvellement {2}. | يفقد المفتاح صلاحيته {1}، والتجديد {2}. |
+| `d3.held.r.p.r1.text` | une fois son expiration passée | حين يمضي تاريخ انتهائه |
+| `d3.held.r.p.r1.why` | La documentation : une fois expirée, une Clé n’est plus considérée comme valide. | الوثائق: حين تنتهي صلاحية المفتاح، لا يعود يُعدّ صالحاً. |
+| `d3.held.r.p.r2.text` | prolonge la même Clé | يمدّد المفتاح نفسه |
+| `d3.held.r.p.r2.why` | La documentation : au renouvellement, la date d’expiration de la Clé est prolongée. | الوثائق: حين يُجدَّد المفتاح، يُمدَّد تاريخ انتهائه. |
+| `d3.held.r.p.r3.text` | crée une seconde Clé | يصنع مفتاحاً ثانياً |
+| `d3.held.r.p.r3.why` | La documentation : aucune nouvelle Clé n’est créée lors des renouvellements. | الوثائق: لا تُصنع مفاتيح جديدة عند التجديد. |
+| `d3.held.r.p.r4.text` | le jour de son transfert | يوم يُنقل |
+| `d3.held.r.p.r4.why` | Un transfert peut retirer du temps à une Clé. C’est l’expiration qui y met fin. | النقل قد يقتطع وقتاً من المفتاح. لكنّ تاريخ الانتهاء هو ما ينهيه. |
+| `d3.held.r.prompt` | Quand une Clé cesse-t-elle de compter ? Touchez une pastille, puis sa case. | متى يفقد المفتاح صلاحيته؟ المس رقعة، ثم خانتها. |
+| `d3.lost.hint.0` | La Serrure a un rôle au-dessus de chaque Clé. | للقفل دور فوق كلّ مفتاح. |
+| `d3.lost.hint.1` | Qui a créé la Serrure le détient par défaut. | من أنشأ القفل يحوزه افتراضياً. |
+| `d3.lost.hint.2` | Réponse : un Gestionnaire de Serrure. | الجواب: مدير القفل. |
+| `d3.lost.kuro` | Pas personne. | ثمّة أحد. |
+| `d3.lost.p.a.after` | Un Gestionnaire de Serrure · peut transférer la Clé | مدير القفل · يستطيع نقل المفتاح |
+| `d3.lost.p.a.say` | À gauche : un Gestionnaire de Serrure | الأول: مدير القفل |
+| `d3.lost.p.a.text` | Un Gestionnaire de Serrure | مدير القفل |
+| `d3.lost.p.a.why` | La documentation : au-dessus du propriétaire et du Gestionnaire de Clé, un Gestionnaire de Serrure peut toujours transférer une Clé ailleurs. | الوثائق: مدير القفل يستطيع دائماً نقل المفتاح إلى عنوان آخر، وهو فوق المالك ومدير المفتاح. |
+| `d3.lost.p.b.after` | Quelqu’un le peut. | أحدهم يستطيع. |
+| `d3.lost.p.b.say` | À droite : personne du tout | الثاني: لا أحد إطلاقاً |
+| `d3.lost.p.b.text` | Personne du tout | لا أحد إطلاقاً |
+| `d3.lost.p.b.why` | La documentation nomme un rôle qui peut encore la déplacer vers une autre adresse. | الوثائق تسمّي دوراً واحداً يستطيع مع ذلك نقله إلى عنوان آخر. |
+| `d3.lost.prompt` | Un membre perd l’accès à son portefeuille. Pointez qui peut encore déplacer la Clé. | عضو يفقد الوصول إلى محفظته. أشِر إلى من يستطيع مع ذلك نقل المفتاح. |
+| `d3.lost.r.p.a.after` | Pas chez Patreon. | ليس على Patreon. |
+| `d3.lost.r.p.a.say` | À gauche : dans le portefeuille du membre | الأول: في محفظة العضو |
+| `d3.lost.r.p.a.text` | Dans le portefeuille du membre | في محفظة العضو |
+| `d3.lost.r.p.a.why` | La documentation développeurs de Patreon décrit une fiche de l’adhésion, du côté de Patreon. | وثائق المطوّرين لدى Patreon تصف سجلّاً للعضوية، في جهة Patreon. |
+| `d3.lost.r.p.b.after` | Une fiche Membre · gardée par Patreon | سجلّ عضو · يحفظه Patreon |
+| `d3.lost.r.p.b.say` | À droite : dans les fichiers de Patreon | الثاني: في سجلّات Patreon نفسها |
+| `d3.lost.r.p.b.text` | Dans les fichiers de Patreon | في سجلّات Patreon نفسها |
+| `d3.lost.r.p.b.why` | La documentation développeurs de Patreon : un Membre est la fiche de l’adhésion d’un utilisateur à une campagne. | وثائق المطوّرين لدى Patreon: «العضو» هو سجلّ عضوية مستخدم في حملة. |
+| `d3.lost.r.prompt` | Pointez où Patreon garde une adhésion. | أشِر إلى حيث يحفظ Patreon العضوية. |
+| `d3.powers.address` | La page d’un Gestionnaire de Serrure (une maquette) | صفحة مدير القفل (شاشة تجريبية) |
+| `d3.powers.hint.0` | Un pass prend fin sur une ligne. | البطاقة تنتهي في سطر واحد. |
+| `d3.powers.hint.1` | Cherchez le pouvoir qui touche cette ligne. | ابحث عن الصلاحية التي تمسّ ذلك السطر. |
+| `d3.powers.hint.2` | Réponse : Changer l’expiration d’une Clé. | الجواب: تغيير تاريخ انتهاء المفتاح. |
+| `d3.powers.kuro` | Toute Clé. | أيّ مفتاح. |
+| `d3.powers.p.add.after` | Partage le rôle. | يشارك الدور. |
+| `d3.powers.p.add.say` | Ligne trois : ajouter un Gestionnaire de Serrure | السطر الثالث: إضافة مدير قفل |
+| `d3.powers.p.add.text` | Ajouter un Gestionnaire de Serrure | إضافة مدير قفل |
+| `d3.powers.p.add.why` | La documentation : on peut ajouter des Gestionnaires de Serrure. Cela ne déplace aucune date en soi. | الوثائق: يمكن إضافة مديري قفل. وهذا وحده لا يحرّك أيّ تاريخ. |
+| `d3.powers.p.exp.after` | Expiration changée · toute Clé existante | تغيّر تاريخ الانتهاء · أيّ مفتاح موجود |
+| `d3.powers.p.exp.say` | Ligne quatre : changer l’expiration d’une Clé | السطر الرابع: تغيير تاريخ انتهاء المفتاح |
+| `d3.powers.p.exp.text` | Changer l’expiration d’une Clé | تغيير تاريخ انتهاء المفتاح |
+| `d3.powers.p.exp.why` | La documentation : un Gestionnaire de Serrure peut librement modifier la date de fin de toute Clé existante. | الوثائق: مدير القفل يستطيع بحرّية تعديل تاريخ نهاية أيّ مفتاح موجود. |
+| `d3.powers.p.list.after` | Exporte une liste. | يصدّر قائمة. |
+| `d3.powers.p.list.say` | Ligne un : télécharger la liste des membres | السطر الأول: تنزيل قائمة الأعضاء |
+| `d3.powers.p.list.text` | Télécharger la liste des membres | تنزيل قائمة الأعضاء |
+| `d3.powers.p.list.why` | La documentation : une liste des membres peut être exportée. Elle ne change aucune Clé. | الوثائق: يمكن تصدير قائمة الأعضاء. ولا تغيّر أيّ مفتاح. |
+| `d3.powers.p.refund.after` | L’argent rendu. | استرداد المال. |
+| `d3.powers.p.refund.say` | Ligne deux : rembourser une adhésion | السطر الثاني: ردّ ثمن عضوية |
+| `d3.powers.p.refund.text` | Rembourser une adhésion | ردّ ثمن عضوية |
+| `d3.powers.p.refund.why` | La documentation : une adhésion peut être remboursée depuis l’appli de gestion. Cela ne déplace aucune date. | الوثائق: يمكن ردّ ثمن العضوية عبر تطبيق الإدارة. ولا يحرّك ذلك أيّ تاريخ. |
+| `d3.powers.prompt` | La salle veut que chaque pass finisse une semaine plus tard. Pointez le pouvoir qui le fait. | القاعة تريد أن تنتهي كلّ بطاقة بعد أسبوع إضافي. أشِر إلى الصلاحية التي تفعل ذلك. |
+| `d3.powers.r.address` | La page d’un Gestionnaire de Serrure (une maquette) | صفحة مدير القفل (شاشة تجريبية) |
+| `d3.powers.r.p.exp.after` | Déplace une date. | يحرّك تاريخاً. |
+| `d3.powers.r.p.exp.say` | Ligne trois : changer l’expiration d’une Clé | السطر الثالث: تغيير تاريخ انتهاء المفتاح |
+| `d3.powers.r.p.exp.text` | Changer l’expiration d’une Clé | تغيير تاريخ انتهاء المفتاح |
+| `d3.powers.r.p.exp.why` | Cela change une Clé. Ce n’est pas une liste. | هذا يغيّر مفتاحاً واحداً. وليس قائمة. |
+| `d3.powers.r.p.list.after` | Une liste · exportée en fichier | قائمة · تُصدَّر ملفّاً |
+| `d3.powers.r.p.list.say` | Ligne un : télécharger la liste des membres | السطر الأول: تنزيل قائمة الأعضاء |
+| `d3.powers.r.p.list.text` | Télécharger la liste des membres | تنزيل قائمة الأعضاء |
+| `d3.powers.r.p.list.why` | La documentation : pour exporter une liste des membres, on télécharge un fichier depuis l’appli de gestion. | الوثائق: لتصدير قائمة الأعضاء، يُنزَّل ملفّ من تطبيق الإدارة. |
+| `d3.powers.r.p.refund.after` | L’argent rendu. | استرداد المال. |
+| `d3.powers.r.p.refund.say` | Ligne deux : rembourser une adhésion | السطر الثاني: ردّ ثمن عضوية |
+| `d3.powers.r.p.refund.text` | Rembourser une adhésion | ردّ ثمن عضوية |
+| `d3.powers.r.p.refund.why` | Un remboursement rend un paiement. Il ne liste personne. | ردّ الثمن يعيد دفعة. ولا يُدرج أحداً. |
+| `d3.powers.r.prompt` | La même page. Pointez le pouvoir qui remet au créateur une liste des membres. | الصفحة نفسها. أشِر إلى الصلاحية التي تسلّم المبدع قائمة بالأعضاء. |
+| `d3.slip` | Le prestataire résume : une Clé dans son portefeuille est au membre seul. Personne d’autre ne peut y toucher. Samia s’interroge. | يلخّص المورّد: المفتاح في محفظة العضو له وحده. لا أحد غيره يستطيع المساس به. تتساءل سامية. |
+| `d3.slipTag` | ENQUÊTE 12 · exemple inventé | التحقيق 12 · مثال متخيَّل |
+| `d3.stamp.prompt` | Le prestataire, encore : une Clé dans son portefeuille est au membre seul ; personne d’autre ne peut y toucher. Tamponnez : | قول المورّد مرّة أخرى: المفتاح في محفظة العضو له وحده؛ لا أحد غيره يستطيع المساس به. اختمه: |
+| `d3.stamp.reveal` | À moitié. La Clé apparaît dans le portefeuille. Un Gestionnaire de Serrure peut encore changer sa date ou la transférer. | نصف صحيح. المفتاح يظهر في المحفظة. لكنّ مدير القفل ما زال يستطيع تغيير تاريخ نهايته أو نقله. |
+| `d3.titles.hint.0` | Deux lignes portent un titre et une adresse. | سطران يحملان صفة وعنواناً. |
+| `d3.titles.hint.1` | Dans la documentation, détenir une Clé et la déplacer sont des droits distincts. | في الوثائق، حيازة المفتاح ونقله حقّان منفصلان. |
+| `d3.titles.hint.2` | Réponse : Gestionnaire de Clé. | الجواب: مدير المفتاح. |
+| `d3.titles.kuro` | Pas le propriétaire. | ليس المالك. |
+| `d3.titles.p.lock.after` | D’où elle vient. | من أين جاء. |
+| `d3.titles.p.lock.say` | Serrure, membres de la salle, ligne | القفل، أعضاء القاعة، سطر |
+| `d3.titles.p.lock.text` | Serrure : membres de la salle | القفل: أعضاء القاعة |
+| `d3.titles.p.lock.why` | Cela nomme la Serrure qui a créé la Clé. Ce n’est pas un titre sur la Clé. | هذا يسمّي القفل الذي صنع المفتاح. وليس صفة على المفتاح. |
+| `d3.titles.p.manager.after` | Gestionnaire de Clé · transférer, partager, annuler | مدير المفتاح · النقل، المشاركة، الإلغاء |
+| `d3.titles.p.manager.say` | Gestionnaire de Clé, une adresse, ligne | مدير المفتاح، عنوان، سطر |
+| `d3.titles.p.manager.text` | Gestionnaire de Clé 0x9a7…d03 | مدير المفتاح 0x9a7…d03 |
+| `d3.titles.p.manager.why` | La documentation : le Gestionnaire de Clé détient le droit de transférer, partager ou annuler cette Clé. | الوثائق: مدير المفتاح يحوز حقّ نقل هذا المفتاح أو مشاركته أو إلغائه. |
+| `d3.titles.p.owner.after` | Détient, sans pouvoir la déplacer. | يحوزه. ولا يستطيع نقله. |
+| `d3.titles.p.owner.say` | Propriétaire de la Clé, une autre adresse, ligne | مالك المفتاح، عنوان آخر، سطر |
+| `d3.titles.p.owner.text` | Propriétaire de la Clé 0x4e2…b18 | مالك المفتاح 0x4e2…b18 |
+| `d3.titles.p.owner.why` | La documentation : le propriétaire ne peut la transférer, la partager ou l’annuler que s’il est aussi son Gestionnaire de Clé. | الوثائق: لا يجوز لمالك المفتاح نقله أو مشاركته أو إلغاؤه، إلا إذا كان أيضاً مدير المفتاح. |
+| `d3.titles.p.until.after` | Seulement une date. | تاريخ فقط. |
+| `d3.titles.p.until.say` | Valide jusqu’au 31 janvier 2027, ligne | صالح حتى 31 يناير 2027، سطر |
+| `d3.titles.p.until.text` | Valide jusqu’au 31 janvier 2027 | صالح حتى 31 يناير 2027 |
+| `d3.titles.p.until.why` | Une date ne donne de droit à personne. | التاريخ لا يعطي أحداً أيّ حقّ. |
+| `d3.titles.prompt` | Une Clé, quatre lignes (une maquette). Pointez le titre qui détient le droit de la transférer ou de l’annuler. | مفتاح واحد، أربعة أسطر (شاشة تجريبية). أشِر إلى الصفة التي تحوز حقّ نقله أو إلغائه. |
+| `d3.titles.r.p.lock.after` | D’où elle vient. | من أين جاء. |
+| `d3.titles.r.p.lock.say` | Serrure, membres de la salle, ligne | القفل، أعضاء القاعة، سطر |
+| `d3.titles.r.p.lock.text` | Serrure : membres de la salle | القفل: أعضاء القاعة |
+| `d3.titles.r.p.lock.why` | La Serrure a créé la Clé. Ce n’est pas un portefeuille. | القفل صنع المفتاح. وليس محفظة. |
+| `d3.titles.r.p.manager.after` | Des droits, pas le portefeuille. | حقوق، لا المحفظة. |
+| `d3.titles.r.p.manager.say` | Gestionnaire de Clé, une adresse, ligne | مدير المفتاح، عنوان، سطر |
+| `d3.titles.r.p.manager.text` | Gestionnaire de Clé 0x9a7…d03 | مدير المفتاح 0x9a7…d03 |
+| `d3.titles.r.p.manager.why` | Le Gestionnaire de Clé détient les droits de transfert. La Clé se trouve ailleurs. | مدير المفتاح يحوز حقوق النقل. أمّا المفتاح فيقيم في مكان آخر. |
+| `d3.titles.r.p.owner.after` | Propriétaire de la Clé · la Clé apparaît dans ce portefeuille | مالك المفتاح · المفتاح يظهر في هذه المحفظة |
+| `d3.titles.r.p.owner.say` | Propriétaire de la Clé, une autre adresse, ligne | مالك المفتاح، عنوان آخر، سطر |
+| `d3.titles.r.p.owner.text` | Propriétaire de la Clé 0x4e2…b18 | مالك المفتاح 0x4e2…b18 |
+| `d3.titles.r.p.owner.why` | La documentation : la Clé apparaîtra dans le portefeuille du propriétaire de la Clé. | الوثائق: سيظهر المفتاح في محفظة مالك المفتاح. |
+| `d3.titles.r.prompt` | La même Clé. Pointez la ligne qui dit dans quel portefeuille elle apparaît. | المفتاح نفسه. أشِر إلى السطر الذي يقول في محفظة من يظهر. |
+| `d3.what.frame` | Unlock Protocol est {1} pour {2}. | Unlock Protocol هو {1} من أجل {2}. |
+| `d3.what.hint.0` | Case un : de quoi il est fait. | الخانة الأولى: ممّ يتكوّن. |
+| `d3.what.hint.1` | Case deux : ce que font ces contrats. | الخانة الثانية: ما تفعله تلك العقود. |
+| `d3.what.hint.2` | Réponse : une suite de contrats intelligents ; créer des adhésions sous forme de jetons. | الجواب: مجموعة من العقود الذكية؛ إنشاء العضويات على شكل رموز رقمية. |
+| `d3.what.kuro` | Des contrats. | عقود. |
+| `d3.what.p.c1.text` | une suite de contrats intelligents | مجموعة من العقود الذكية |
+| `d3.what.p.c1.why` | La documentation : une suite de contrats intelligents pouvant être mis à niveau. | الوثائق: مجموعة من العقود الذكية القابلة للترقية. |
+| `d3.what.p.c2.text` | créer des adhésions sous forme de jetons | إنشاء العضويات على شكل رموز رقمية |
+| `d3.what.p.c2.why` | La documentation : les contrats créent des adhésions sous forme de jetons, appelés Clés. | الوثائق: العقود تُنشئ العضويات على شكل رموز رقمية، تُسمّى مفاتيح. |
+| `d3.what.p.c3.text` | un site de créateurs | موقع للمبدعين |
+| `d3.what.p.c3.why` | Sa documentation l’appelle un protocole. Un site web, c’est quelque chose de bâti par-dessus. | وثائقه تسمّيه بروتوكولاً. أمّا الموقع فشيء يُبنى فوقه. |
+| `d3.what.p.c4.text` | une blockchain | سلسلة كتل |
+| `d3.what.p.c4.why` | La documentation : un contrat intelligent tourne sur une blockchain. Le protocole, ce sont les contrats, pas la chaîne. | الوثائق: العقد الذكي يعمل على سلسلة كتل. والبروتوكول هو العقود، لا السلسلة. |
+| `d3.what.p.c5.text` | garder des membres sur la liste d’une entreprise | إبقاء الأعضاء في قائمة شركة |
+| `d3.what.p.c5.why` | Cela décrit les fichiers d’une plateforme. Ici, l’adhésion est une Clé dans le portefeuille du membre. | هذا يصف سجلّات منصّة. أمّا هنا فالعضوية مفتاح في محفظة العضو. |
+| `d3.what.prompt` | Qu’est-ce qu’Unlock Protocol ? Touchez une pastille, puis sa case. | ما هو Unlock Protocol؟ المس رقعة، ثم خانتها. |
+| `d3.what.r.frame` | Une Serrure est {1} qui {2}. | القفل هو {1}، وهو {2}. |
+| `d3.what.r.p.r1.text` | un contrat intelligent | عقد ذكي |
+| `d3.what.r.p.r1.why` | La documentation : une Serrure est un contrat intelligent. | الوثائق: القفل عقد ذكي. |
+| `d3.what.r.p.r2.text` | crée des Clés | يصنع المفاتيح |
+| `d3.what.r.p.r2.why` | La documentation : une Serrure crée les jetons appelés Clés, et vérifie qui en détient un. | الوثائق: القفل يصنع الرموز الرقمية المسمّاة مفاتيح، ويتحقّق ممّن يحوز واحداً منها. |
+| `d3.what.r.p.r3.text` | le pass d’un membre | بطاقة العضو |
+| `d3.what.r.p.r3.why` | Le pass, c’est la Clé. La Serrure est ce qui la crée. | البطاقة هي المفتاح. والقفل هو ما يصنعه. |
+| `d3.what.r.p.r4.text` | se trouve dans un portefeuille | يقيم في محفظة |
+| `d3.what.r.p.r4.why` | La documentation : la Clé apparaît dans le portefeuille de son propriétaire. La Serrure est le contrat derrière elle. | الوثائق: المفتاح يظهر في محفظة مالكه. والقفل هو العقد الذي وراءه. |
+| `d3.what.r.prompt` | Qu’est-ce qu’une Serrure ? Touchez une pastille, puis sa case. | ما هو القفل؟ المس رقعة، ثم خانتها. |
+| `row` | L’un garde une fiche de chaque adhésion ; l’autre est un ensemble de contrats intelligents qui font d’une adhésion un jeton que le membre détient. | أحدهما يحفظ سجلّاً لكلّ عضوية؛ والآخر مجموعة من العقود الذكية تجعل العضوية رمزاً رقمياً يحوزه العضو. |
+| `sticker.back` | Ce que c’est : des contrats intelligents qui font d’une adhésion un jeton à échéance. Ce que vous détenez : une Clé, dans un portefeuille. Ce que vous cédez : un site fini ; le Gestionnaire de Serrure peut encore déplacer la date ou la Clé. L’idée fausse : un nouveau Patreon. Cité comme exemple, pas comme recommandation. Vérifié le 2026-11-23. | ما هو: عقود ذكية تجعل العضوية رمزاً رقمياً له تاريخ نهاية. ما تحوزه: مفتاح، في محفظة. ما تتخلّى عنه: موقع جاهز؛ ومدير القفل يستطيع مع ذلك تحريك التاريخ أو المفتاح. الفكرة الخاطئة: أنه Patreon جديد. مذكور كمثال، لا كتوصية. جرى التحقّق في 2026-11-23. |
+| `sticker.line` | Un pass dans un portefeuille vient toujours d’une Serrure. | البطاقة في المحفظة تأتي مع ذلك من قفل. |
+| `sticker.name` | Détenue ou enregistrée | محوزة أم مسجَّلة |
+| `tpl.help-lines` | Ce que dit l’aide | ما تقوله صفحات المساعدة |
+| `tpl.pass` | Pass | البطاقة |
+
+### Case 13, The misprint: Patreon → Fantom (now Sonic) (`hub/src/lanterne/enquetes/c13.ar.json`, 562 keys)
+
+| Key | Français | العربية |
+|---|---|---|
+| `d1.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d1.boss.hint.0` | Chaque ligne reprend les mots d’une page. Laquelle ? | كلّ سطر هو كلمات صفحة ما. أيّ صفحة؟ |
+| `d1.boss.hint.1` | La fondation écrit pour les développeurs. | المؤسّسة تكتب للمطوّرين. |
+| `d1.boss.hint.2` | Réponse : une plateforme où l’on bâtit des applis. | الجواب: منصّة تُبنى عليها التطبيقات. |
+| `d1.boss.kuro` | Pas une appli. | ليس تطبيقاً. |
+| `d1.boss.p.browser.after` | C’est Brave. | هذا Brave. |
+| `d1.boss.p.browser.say` | Un navigateur bâti sur le moteur de Chrome | متصفّح مبنيّ على محرّك Chrome |
+| `d1.boss.p.browser.text` | Un navigateur bâti sur le moteur de Chrome | متصفّح مبنيّ على محرّك Chrome |
+| `d1.boss.p.browser.why` | La page de Brave : un navigateur bâti sur le moteur qui tourne sous Chrome. Pas l’offre de la fondation. | صفحة Brave نفسها: متصفّح مبنيّ على المحرّك الذي تحت Chrome. ليس عرض المؤسّسة. |
+| `d1.boss.p.music.after` | C’est Audius. | هذا Audius. |
+| `d1.boss.p.music.say` | Une plateforme musicale pour auditeurs et artistes | منصّة موسيقية للمستمعين والفنّانين |
+| `d1.boss.p.music.text` | Une plateforme musicale pour auditeurs et artistes | منصّة موسيقية للمستمعين والفنّانين |
+| `d1.boss.p.music.why` | L’aide d’Audius : une plateforme musicale pour auditeurs et artistes. Absent de la page de la fondation. | صفحات المساعدة لدى Audius: منصّة موسيقية للمستمعين والفنّانين. غير موجود في صفحة المؤسّسة. |
+| `d1.boss.p.platform.after` | Une plateforme de contrats intelligents · une chaîne | منصّة عقود ذكية · سلسلة |
+| `d1.boss.p.platform.say` | Une plateforme où l’on bâtit des applis | منصّة تُبنى عليها التطبيقات |
+| `d1.boss.p.platform.text` | Une plateforme où l’on bâtit des applis | منصّة تُبنى عليها التطبيقات |
+| `d1.boss.p.platform.why` | Ses propres mots : une plateforme de contrats intelligents. Les applis se posent dessus. | بكلماتها هي: منصّة عقود ذكية. والتطبيقات تقوم فوقها. |
+| `d1.boss.p.tiers.after` | Aucun niveau là-bas. | لا مستويات هناك. |
+| `d1.boss.p.tiers.say` | Des niveaux qu’un fan peut rejoindre | مستويات يمكن للمعجب الانضمام إليها |
+| `d1.boss.p.tiers.text` | Des niveaux qu’un fan peut rejoindre | مستويات يمكن للمعجب الانضمام إليها |
+| `d1.boss.p.tiers.why` | Les niveaux figurent dans les pages pour développeurs de Patreon. La page de la fondation n’en a aucun. | المستويات موجودة في صفحات المطوّرين لدى Patreon. وصفحة المؤسّسة خالية منها. |
+| `d1.boss.prompt` | Samia objecte : « Les deux sont pour les créateurs, sûrement. » Pointez ce qu’offre la page de la fondation. | تعترض سامية: «كلاهما للمبدعين، بلا شكّ.» أشِر إلى ما تعرضه صفحة المؤسّسة نفسها. |
+| `d1.boss.r.p.fees.after` | Documentation de la chaîne. | في وثائق السلسلة. |
+| `d1.boss.r.p.fees.say` | Un jeton pour les frais | رمز رقمي للرسوم |
+| `d1.boss.r.p.fees.text` | Un jeton pour les frais | رمز رقمي للرسوم |
+| `d1.boss.r.p.fees.why` | Un jeton de frais figure dans la documentation de la chaîne, pas dans ces pages. | رمز الرسوم موجود في وثائق السلسلة، لا في هذه الصفحات. |
+| `d1.boss.r.p.members.after` | Une adhésion · entre mécène et créateur | عضوية · بين الداعم والمبدع |
+| `d1.boss.r.p.members.say` | Des membres, des niveaux et un créateur | أعضاء ومستويات ومبدع |
+| `d1.boss.r.p.members.text` | Des membres, des niveaux et un créateur | أعضاء ومستويات ومبدع |
+| `d1.boss.r.p.members.why` | Les pages pour développeurs de Patreon : membres, niveaux, et la relation entre un mécène et un créateur. | صفحات المطوّرين لدى Patreon: الأعضاء، والمستويات، والعلاقة بين الداعم والمبدع. |
+| `d1.boss.r.p.nodes.after` | Cela fait tourner une chaîne. | هذا يشغّل سلسلة. |
+| `d1.boss.r.p.nodes.say` | Validateurs et nœuds | مدقّقون وعُقد |
+| `d1.boss.r.p.nodes.text` | Validateurs et nœuds | مدقّقون وعُقد |
+| `d1.boss.r.p.nodes.why` | Validateurs et nœuds figurent sur les pages de la chaîne. Ils font tourner un réseau. | المدقّقون والعُقد موجودون في صفحات السلسلة. هم يُبقون الشبكة عاملة. |
+| `d1.boss.r.prompt` | Elle demande ce que décrivent les pages pour développeurs de Patreon. Pointez-le. | تسأل عمّا تصفه صفحات المطوّرين لدى Patreon. أشِر إليه. |
+| `d1.bub.a` | La maquette est de moi. Le bouton est sur leur propre page. | الشاشة التجريبية من صنعي. أمّا الزرّ فعلى صفحتهم نفسها. |
+| `d1.bub.b` | Elle a répondu : « Un jeton, pour un fan-club ? » Je le porte. | ردّت برسالة: «رمز رقمي، لنادي معجبين؟» أنا أحملها. |
+| `d1.can` | Vous savez maintenant distinguer une appli d’une chaîne sur le tableau, et trouver où mène l’ancien nom. | صرتَ تعرف كيف تميّز التطبيق من السلسلة في الجدول، وتجد إلى أين يقود الاسم القديم. |
+| `d1.claim` | Fantom est le Patreon du web3. | Fantom هو Patreon ويب 3. |
+| `d1.fee.hint.0` | Pensez à ce qu’une chaîne fait payer. | فكّر فيما تتقاضى السلسلة رسوماً عليه. |
+| `d1.fee.hint.1` | Sa documentation nomme quelque chose de propre à la chaîne. | وثائقها تذكر شيئاً خاصّاً بالسلسلة نفسها. |
+| `d1.fee.hint.2` | Réponse : le jeton propre à la chaîne. | الجواب: الرمز الرقمي الخاصّ بالسلسلة. |
+| `d1.fee.kuro` | Son jeton. | رمزها الرقمي. |
+| `d1.fee.p.card.after` | Absent de sa documentation. | ليست في وثائقها. |
+| `d1.fee.p.card.say` | Une carte bancaire | بطاقة مصرفية |
+| `d1.fee.p.card.text` | Une carte bancaire | بطاقة مصرفية |
+| `d1.fee.p.card.why` | La documentation de Sonic nomme son jeton natif pour les frais de transaction. Aucune carte n’est nommée. | وثائق Sonic تذكر رمزها الرقمي الأصلي لرسوم المعاملات. ولا تذكر أيّ بطاقة. |
+| `d1.fee.p.free.after` | Pas en règle générale. | ليس كقاعدة. |
+| `d1.fee.p.free.say` | Rien : c’est gratuit | لا شيء: إنها مجانية |
+| `d1.fee.p.free.text` | Rien : c’est gratuit | لا شيء: إنها مجانية |
+| `d1.fee.p.free.why` | Sa documentation nomme un jeton pour payer les frais. Son blog : seules des transactions sélectionnées échappent aux frais. | وثائقها تذكر رمزاً رقمياً لدفع الرسوم. ومدوّنتها: معاملات مختارة فقط لا تُدفع رسومها. |
+| `d1.fee.p.token.after` | Son jeton natif · un crypto-actif | رمزها الرقمي الأصلي · أصل مشفّر |
+| `d1.fee.p.token.say` | Le jeton propre à la chaîne | الرمز الرقمي الخاصّ بالسلسلة |
+| `d1.fee.p.token.text` | Le jeton propre à la chaîne | الرمز الرقمي الخاصّ بالسلسلة |
+| `d1.fee.p.token.why` | Documentation de Sonic : son jeton natif sert à payer les frais de transaction. Ce jeton est un crypto-actif. | وثائق Sonic: رمزها الرقمي الأصلي يُستخدم لدفع رسوم المعاملات. وهذا الرمز أصل مشفّر. |
+| `d1.fee.prompt` | Les frais sur Sonic. Pointez ce qui les paie, selon sa propre documentation. | الرسوم على Sonic. أشِر إلى ما تقول وثائقها نفسها إنه يدفعها. |
+| `d1.fee.r.p.creator.after` | Aucun créateur ici. | لا مبدعين هنا. |
+| `d1.fee.r.p.creator.say` | Choisir un créateur | اختر مبدعاً |
+| `d1.fee.r.p.creator.text` | Choisir un créateur | اختر مبدعاً |
+| `d1.fee.r.p.creator.why` | Le site d’une chaîne ne liste aucun créateur. Ils relèvent d’une appli d’adhésion. | موقع السلسلة لا يذكر أيّ مبدع. هؤلاء من شأن تطبيق عضويات. |
+| `d1.fee.r.p.tier.after` | Aucun niveau ici. | لا مستويات هنا. |
+| `d1.fee.r.p.tier.say` | Choisir un niveau | اختر مستوى |
+| `d1.fee.r.p.tier.text` | Choisir un niveau | اختر مستوى |
+| `d1.fee.r.p.tier.why` | Les niveaux figurent dans les pages pour développeurs de Patreon. Le site de Sonic n’en a aucun. | المستويات موجودة في صفحات المطوّرين لدى Patreon. وموقع Sonic خالٍ منها. |
+| `d1.fee.r.p.wallet.after` | Étape 01 sur son site | الخطوة 01 على موقعها |
+| `d1.fee.r.p.wallet.say` | Se procurer un portefeuille | احصل على محفظة |
+| `d1.fee.r.p.wallet.text` | Se procurer un portefeuille | احصل على محفظة |
+| `d1.fee.r.p.wallet.why` | Le site de Sonic : pour un utilisateur, la première étape est de se procurer un portefeuille. | موقع Sonic: الخطوة الأولى للمستخدم هي الحصول على محفظة. |
+| `d1.fee.r.prompt` | Le site de Sonic liste des étapes pour un nouvel utilisateur. Pointez la première. | موقع Sonic يعدّد خطوات للمستخدم الجديد. أشِر إلى الخطوة الأولى. |
+| `d1.name.hint.0` | Trois parties sont des boutons. Une est un avis. | ثلاثة أجزاء أزرار. وجزء واحد إشعار. |
+| `d1.name.hint.1` | Un bouton dit où il mène. | زرّ واحد يقول إلى أين يقود. |
+| `d1.name.hint.2` | Réponse : Visiter le nouveau site. | الجواب: زيارة الموقع الجديد. |
+| `d1.name.kuro` | Sonic. | Sonic. |
+| `d1.name.p.banner.after` | Un avis. Pas un bouton. | إشعار. ليس زرّاً. |
+| `d1.name.p.banner.say` | Bandeau : un jeton migre vers un nouveau jeton | شريط: رمز رقمي ينتقل إلى رمز رقمي جديد |
+| `d1.name.p.banner.text` | Un jeton migre vers un nouveau jeton | رمز رقمي ينتقل إلى رمز رقمي جديد |
+| `d1.name.p.banner.why` | Ce bandeau parle d’un jeton qui change. C’est du texte, pas un bouton. | هذا الشريط يتحدّث عن رمز رقمي يتغيّر. إنه نصّ، لا زرّ. |
+| `d1.name.p.eco.after` | Une liste d’applis. | قائمة تطبيقات. |
+| `d1.name.p.eco.say` | Explorer l’écosystème, bouton | استكشاف المنظومة، زرّ |
+| `d1.name.p.eco.text` | Explorer l’écosystème | استكشاف المنظومة |
+| `d1.name.p.eco.why` | Cela liste des applis bâties sur l’ancienne chaîne. Cela ne mène à aucun nouveau nom. | هذا يعدّد تطبيقات مبنيّة على السلسلة القديمة. ولا يقود إلى أيّ اسم جديد. |
+| `d1.name.p.new.after` | Ouvre le site de Sonic · le nouveau nom | يفتح موقع Sonic · الاسم الجديد |
+| `d1.name.p.new.say` | Visiter le nouveau site, bouton | زيارة الموقع الجديد، زرّ |
+| `d1.name.p.new.text` | Visiter le nouveau site | زيارة الموقع الجديد |
+| `d1.name.p.new.why` | Sur la page de la fondation, ce bouton ouvre le site de Sonic. La nouvelle chaîne s’appelle Sonic. | في صفحة المؤسّسة نفسها يفتح هذا الزرّ موقع Sonic. والسلسلة الجديدة اسمها Sonic. |
+| `d1.name.p.node.after` | Un guide pour opérateurs. | دليل للمشغّلين. |
+| `d1.name.p.node.say` | Installer un nœud, bouton | إعداد عقدة، زرّ |
+| `d1.name.p.node.text` | Installer un nœud | إعداد عقدة |
+| `d1.name.p.node.why` | Ce guide s’adresse à ceux qui font tourner le réseau. Il ne nomme rien de nouveau. | هذا الدليل لمن يشغّلون الشبكة. ولا يذكر شيئاً جديداً. |
+| `d1.name.prompt` | La page d’accueil de l’ancien nom, en maquette. Pointez le bouton qui mène au nouveau nom. | الصفحة الرئيسية للاسم القديم، في شاشة تجريبية. أشِر إلى الزرّ الذي يقود إلى الاسم الجديد. |
+| `d1.name.r.p.banner.after` | Au sujet d’un jeton · un crypto-actif | عن رمز رقمي · أصل مشفّر |
+| `d1.name.r.p.banner.say` | Bandeau : un jeton migre vers un nouveau jeton | شريط: رمز رقمي ينتقل إلى رمز رقمي جديد |
+| `d1.name.r.p.banner.text` | Un jeton migre vers un nouveau jeton | رمز رقمي ينتقل إلى رمز رقمي جديد |
+| `d1.name.r.p.banner.why` | Le bandeau de la fondation annonce que son jeton migre vers un nouveau. | شريط المؤسّسة يعلن أنّ رمزها الرقمي ينتقل إلى رمز جديد. |
+| `d1.name.r.p.docs.after` | Des pages pour développeurs. | صفحات للمطوّرين. |
+| `d1.name.r.p.docs.say` | Documentation, bouton | الوثائق، زرّ |
+| `d1.name.r.p.docs.text` | Documentation | الوثائق |
+| `d1.name.r.p.docs.why` | Cela ouvre la documentation pour développeurs. | هذا يفتح وثائق للمطوّرين. |
+| `d1.name.r.p.new.after` | Ouvre le site de Sonic. | يفتح موقع Sonic. |
+| `d1.name.r.p.new.say` | Visiter le nouveau site, bouton | زيارة الموقع الجديد، زرّ |
+| `d1.name.r.p.new.text` | Visiter le nouveau site | زيارة الموقع الجديد |
+| `d1.name.r.p.new.why` | Ce bouton mène à un site. Il ne dit rien d’un jeton. | هذا الزرّ يقود إلى موقع. ولا يقول شيئاً عن رمز رقمي. |
+| `d1.name.r.prompt` | La même page. Pointez la partie qui concerne une chose qu’une personne détiendrait. | الصفحة نفسها. أشِر إلى الجزء الذي يخصّ شيئاً قد يحوزه شخص. |
+| `d1.note.hint.0` | Deux notes disent ce que c’est. Une parle de sa fin. | ملاحظتان عمّا هو. وواحدة عن نهايته. |
+| `d1.note.hint.1` | Demandez à qui s’adresse la page de la fondation. | اسأل: لمن تتوجّه صفحة المؤسّسة؟ |
+| `d1.note.hint.2` | Réponse : une chaîne où l’on bâtit des applis. | الجواب: سلسلة تُبنى عليها التطبيقات. |
+| `d1.note.kuro` | Sous les applis. | تحت التطبيقات. |
+| `d1.note.p.n1.text` | Fantom est une appli où les fans rejoignent des créateurs. | Fantom تطبيق ينضمّ فيه المعجبون إلى المبدعين. |
+| `d1.note.p.n1.why` | Sa propre page offre une plateforme de contrats intelligents et des outils pour bâtisseurs. Aucune page de créateur. | صفحته نفسها تعرض منصّة عقود ذكية وأدوات للبُناة. ولا صفحة لأيّ مبدع فيها. |
+| `d1.note.p.n2.text` | Fantom est une chaîne où l’on bâtit des applis. | Fantom سلسلة تُبنى عليها التطبيقات. |
+| `d1.note.p.n2.why` | La page de la fondation : une plateforme de contrats intelligents, où des applis ont élu domicile. | صفحة المؤسّسة: منصّة عقود ذكية، تتّخذها تطبيقات موطناً لها. |
+| `d1.note.p.n3.text` | Fantom a fermé sans rien laisser derrière lui. | Fantom أُغلق ولم يترك شيئاً وراءه. |
+| `d1.note.p.n3.why` | Blog de Sonic, juin 2026 : l’ancienne chaîne reste active au moins jusqu’à fin 2026. | مدوّنة Sonic، يونيو 2026: السلسلة القديمة تبقى عاملة حتى نهاية 2026 على الأقلّ. |
+| `d1.note.prompt` | Trois notes accompagnaient le billet. Une seule est vraie. | ثلاث ملاحظات جاءت مع القصاصة. واحدة صحيحة. |
+| `d1.note.r.p.r1.text` | Sonic est une appli qu’on télécharge et qu’on ouvre. | Sonic تطبيق تنزّله وتفتحه. |
+| `d1.note.r.p.r1.why` | La documentation de Sonic parle d’une blockchain de couche 1. Des applis y sont déployées. | وثائق Sonic تسمّيها سلسلة كتل من الطبقة 1. والتطبيقات تُنشر عليها. |
+| `d1.note.r.p.r2.text` | Sonic est un jeton, rien de plus. | Sonic رمز رقمي لا غير. |
+| `d1.note.r.p.r2.why` | Documentation de Sonic : le jeton est le jeton natif de la chaîne. La chaîne, c’est le réseau. | وثائق Sonic: الرمز هو الرمز الرقمي الأصلي للسلسلة. والسلسلة هي الشبكة. |
+| `d1.note.r.p.r3.text` | Sonic est une chaîne ; des applis y sont déployées. | Sonic سلسلة؛ والتطبيقات تُنشر عليها. |
+| `d1.note.r.p.r3.why` | Documentation de Sonic : toute appli développée pour des chaînes compatibles peut être déployée sur Sonic. | وثائق Sonic: أيّ تطبيق طُوّر لسلاسل متوافقة يمكن نشره على Sonic. |
+| `d1.note.r.prompt` | Trois nouvelles notes, sur Sonic. Touchez la vraie. | ثلاث ملاحظات جديدة، عن Sonic. المس الصحيحة. |
+| `d1.row.hint.0` | Ne lisez que les noms de droite. | اقرأ أسماء الطرف الثاني فقط. |
+| `d1.row.hint.1` | Deux d’entre eux sont des choses qu’on ouvre et qu’on utilise. | اثنان منها أشياء يفتحها الشخص ويستخدمها. |
+| `d1.row.hint.2` | Réponse : Patreon → Fantom. | الجواب: Patreon → Fantom. |
+| `d1.row.kuro` | Une chaîne. | سلسلة. |
+| `d1.row.p.audius.after` | Une plateforme musicale. | منصّة موسيقية. |
+| `d1.row.p.audius.say` | Ligne deux : de Spotify à Audius | السطر الثاني: من Spotify إلى Audius |
+| `d1.row.p.audius.text` | Spotify → Audius | Spotify → Audius |
+| `d1.row.p.audius.why` | L’aide d’Audius parle d’une plateforme musicale pour auditeurs et artistes. Une appli, à droite. | صفحات المساعدة لدى Audius تسمّيه منصّة موسيقية للمستمعين والفنّانين. تطبيق في الطرف الثاني. |
+| `d1.row.p.brave.after` | Un navigateur. | متصفّح. |
+| `d1.row.p.brave.say` | Ligne un : de Chrome à Brave | السطر الأول: من Chrome إلى Brave |
+| `d1.row.p.brave.text` | Chrome → Brave | Chrome → Brave |
+| `d1.row.p.brave.why` | La page de Brave parle d’un navigateur, bâti sur le moteur qui tourne sous Chrome. Une appli, à droite. | صفحة Brave نفسها تسمّيه متصفّحاً، مبنيّاً على المحرّك الذي تحت Chrome. تطبيق في الطرف الثاني. |
+| `d1.row.p.fantom.after` | Une chaîne à droite · pas une appli | سلسلة في الطرف الثاني · ليست تطبيقاً |
+| `d1.row.p.fantom.say` | Ligne trois : de Patreon à Fantom | السطر الثالث: من Patreon إلى Fantom |
+| `d1.row.p.fantom.text` | Patreon → Fantom | Patreon → Fantom |
+| `d1.row.p.fantom.why` | La page de la fondation offre une plateforme de contrats intelligents où l’on bâtit des applis. C’est une chaîne. | صفحة المؤسّسة نفسها تعرض منصّة عقود ذكية تُبنى عليها التطبيقات. تلك سلسلة. |
+| `d1.row.p.reload.after` | Recharge le tableau. | يعيد تحميل الجدول. |
+| `d1.row.p.reload.cap` | Actualiser | تحديث |
+| `d1.row.p.reload.say` | Actualiser, bouton | تحديث، زرّ |
+| `d1.row.p.reload.why` | La flèche recharge le tableau. Ce n’est pas une ligne. | السهم يعيد تحميل الجدول. ليس سطراً. |
+| `d1.row.prompt` | Trois lignes du tableau. Pointez celle qui finit par une chaîne : là où l’on bâtit des applis, pas une appli. | ثلاثة أسطر من الجدول. أشِر إلى السطر الذي ينتهي بسلسلة: ما تُبنى عليه التطبيقات، لا تطبيق. |
+| `d1.row.r.p.audius.after` | Une plateforme musicale. | منصّة موسيقية. |
+| `d1.row.r.p.audius.say` | Audius | Audius |
+| `d1.row.r.p.audius.text` | Audius | Audius |
+| `d1.row.r.p.audius.why` | L’aide d’Audius : une plateforme musicale pour auditeurs et artistes. | صفحات المساعدة لدى Audius: منصّة موسيقية للمستمعين والفنّانين. |
+| `d1.row.r.p.brave.after` | Un navigateur. | متصفّح. |
+| `d1.row.r.p.brave.say` | Brave | Brave |
+| `d1.row.r.p.brave.text` | Brave | Brave |
+| `d1.row.r.p.brave.why` (reworded 2026-11-24) | La page de Brave : un navigateur, bâti sur le moteur qui tourne sous Chrome. | صفحة Brave نفسها: متصفّح، مبنيّ على المحرّك الذي تحت Chrome. |
+| `d1.row.r.p.sonic.after` | Une blockchain de couche 1 · ses propres mots | سلسلة كتل من الطبقة 1 · بكلماتها هي |
+| `d1.row.r.p.sonic.say` | Sonic | Sonic |
+| `d1.row.r.p.sonic.text` | Sonic | Sonic |
+| `d1.row.r.p.sonic.why` | Documentation de Sonic : Sonic est une blockchain de couche 1. Des applis y sont déployées. | وثائق Sonic: Sonic سلسلة كتل من الطبقة 1. والتطبيقات تُنشر عليها. |
+| `d1.row.r.prompt` | Trois noms du tableau. Pointez celui que ses propres pages appellent une blockchain. | ثلاثة أسماء من الجدول. أشِر إلى الاسم الذي تسمّيه صفحاته نفسها سلسلة كتل. |
+| `d1.slip` | Dernière flèche : Patreon → Fantom. Le prestataire appelle Fantom « le Patreon du web3 ». Samia se demande ce qu’est Fantom. | السهم الأخير: Patreon → Fantom. يسمّي المورّد Fantom «Patreon ويب 3». تتساءل سامية: ما هو Fantom؟ |
+| `d1.slipTag` | ENQUÊTE 13 · exemple inventé | التحقيق 13 · مثال متخيَّل |
+| `d1.stamp.prompt` | Le prestataire, encore : Fantom est le Patreon du web3. Tamponnez : | قول المورّد مرّة أخرى: Fantom هو Patreon ويب 3. اختمه: |
+| `d1.stamp.reveal` | Faux. Fantom est une chaîne où l’on bâtit des applis. Sa page ne montre ni créateurs, ni niveaux, ni membres. | غير صحيح. Fantom سلسلة تُبنى عليها التطبيقات. وصفحته نفسها لا تُظهر مبدعين ولا مستويات ولا أعضاء. |
+| `d1.two.hint.0` | Lisez les trois intitulés de chaque page. | اقرأ العناوين الثلاثة في كلّ صفحة. |
+| `d1.two.hint.1` | Une page s’adresse à ceux qui écrivent du logiciel. | صفحة تتوجّه إلى من يكتبون البرمجيات. |
+| `d1.two.hint.2` | Réponse : Créateur · Niveaux · Membres. | الجواب: المبدع · المستويات · الأعضاء. |
+| `d1.two.kuro` | Pour les fans. | للمعجبين. |
+| `d1.two.p.a.after` | Une créatrice et ses membres · une appli | مبدعة وأعضاؤها · تطبيق |
+| `d1.two.p.a.say` | À gauche : Créateur, Niveaux, Membres | الأول: المبدع، المستويات، الأعضاء |
+| `d1.two.p.a.text` | Créateur · Niveaux · Membres | المبدع · المستويات · الأعضاء |
+| `d1.two.p.a.why` | Les pages pour développeurs de Patreon décrivent créateurs, niveaux et membres : une adhésion entre un mécène et un créateur. | صفحات المطوّرين لدى Patreon تصف المبدعين والمستويات والأعضاء: عضوية بين داعم ومبدع. |
+| `d1.two.p.b.after` | Pour les bâtisseurs. | للبُناة. |
+| `d1.two.p.b.say` | À droite : Commencer à bâtir, Documentation, Installer un nœud | الثاني: بدء البناء، الوثائق، إعداد عقدة |
+| `d1.two.p.b.text` | Commencer à bâtir · Documentation · Installer un nœud | بدء البناء · الوثائق · إعداد عقدة |
+| `d1.two.p.b.why` | Son menu s’adresse aux bâtisseurs et aux opérateurs de nœuds. Aucun créateur à y trouver. | قائمتها للبُناة ولمشغّلي العُقد. ولا تُظهر أيّ مبدع للعثور عليه. |
+| `d1.two.prompt` | Deux pages, en maquettes, avec les mots de leurs auteurs. Pointez celle faite pour les fans. | صفحتان، في شاشتين تجريبيتين، بكلمات صانعيهما. أشِر إلى المصنوعة للمعجبين. |
+| `d1.two.r.p.a.after` | Pas ses mots. | ليست كلماتها. |
+| `d1.two.r.p.a.say` | À gauche : une plateforme pour créateurs | الأول: منصّة للمبدعين |
+| `d1.two.r.p.a.text` | Une plateforme pour créateurs | منصّة للمبدعين |
+| `d1.two.r.p.a.why` | La page de la fondation ne parle jamais de créateurs. Elle s’adresse aux développeurs. | صفحة المؤسّسة لا تتحدّث عن المبدعين أبداً. إنها تخاطب المطوّرين. |
+| `d1.two.r.p.b.after` | Ses propres mots · une chaîne | بكلماتها هي · سلسلة |
+| `d1.two.r.p.b.say` | À droite : une plateforme de contrats intelligents | الثاني: منصّة عقود ذكية |
+| `d1.two.r.p.b.text` | Une plateforme de contrats intelligents | منصّة عقود ذكية |
+| `d1.two.r.p.b.why` | La page de la fondation : une plateforme de contrats intelligents, offerte aux développeurs. | صفحة المؤسّسة: منصّة عقود ذكية، معروضة على المطوّرين. |
+| `d1.two.r.prompt` | Deux lignes. Pointez celle que la page de la fondation emploie pour sa plateforme. | سطران. أشِر إلى السطر الذي تستعمله صفحة المؤسّسة نفسها لمنصّتها. |
+| `d2.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d2.boss.hint.0` | Un nouveau nom ne corrige que le nom. | الاسم الجديد لا يُصلح إلا الاسم. |
+| `d2.boss.hint.1` | Demandez quelle sorte de chose se trouve de chaque côté. | اسأل: أيّ نوع من الأشياء في كلّ طرف؟ |
+| `d2.boss.hint.2` | Réponse : une chaîne à côté d’une appli. | الجواب: سلسلة بجانب تطبيق. |
+| `d2.boss.kuro` | Même erreur. | الخطأ نفسه. |
+| `d2.boss.p.app.after` | Une blockchain, dit sa documentation. | سلسلة كتل، كما تقول وثائقها. |
+| `d2.boss.p.app.say` | Sonic est désormais une appli | Sonic صار تطبيقاً الآن |
+| `d2.boss.p.app.text` | Sonic est désormais une appli | Sonic صار تطبيقاً الآن |
+| `d2.boss.p.app.why` | La documentation de Sonic parle d’une blockchain de couche 1. Des applis y sont déployées. | وثائق Sonic تسمّيها سلسلة كتل من الطبقة 1. والتطبيقات تُنشر عليها. |
+| `d2.boss.p.fixed.after` | Appli et chaîne, toujours. | تطبيق بجانب سلسلة، كما كان. |
+| `d2.boss.p.fixed.say` | Rien : la flèche est corrigée | لا شيء: السهم صُحّح |
+| `d2.boss.p.fixed.text` | Rien : la flèche est corrigée | لا شيء: السهم صُحّح |
+| `d2.boss.p.fixed.why` | Un nouveau nom ne corrige que le nom. Patreon reste une appli, Sonic une chaîne. | الاسم الجديد يُصلح الاسم فقط. Patreon ما زال تطبيقاً، وSonic سلسلة. |
+| `d2.boss.p.kind.after` | Toujours une chaîne · toujours une appli | ما زالت سلسلة · ما زال تطبيقاً |
+| `d2.boss.p.kind.say` | Une chaîne à côté d’une appli | سلسلة بجانب تطبيق |
+| `d2.boss.p.kind.text` | Une chaîne à côté d’une appli | سلسلة بجانب تطبيق |
+| `d2.boss.p.kind.why` | La documentation de Sonic parle d’une blockchain de couche 1. Le nouveau nom ne change rien à sa nature. | وثائق Sonic تسمّيها سلسلة كتل من الطبقة 1. والاسم الجديد لا يغيّر شيئاً في ماهيّتها. |
+| `d2.boss.p.off.after` | Encore active, juin 2026. | ما زالت عاملة، يونيو 2026. |
+| `d2.boss.p.off.say` | L’ancienne chaîne a été éteinte | السلسلة القديمة أُوقفت |
+| `d2.boss.p.off.text` | L’ancienne chaîne a été éteinte | السلسلة القديمة أُوقفت |
+| `d2.boss.p.off.why` | Blog de Sonic, juin 2026 : l’ancienne chaîne reste active au moins jusqu’à fin 2026. | مدوّنة Sonic، يونيو 2026: السلسلة القديمة تبقى عاملة حتى نهاية 2026 على الأقلّ. |
+| `d2.boss.prompt` | Samia objecte : « Donc j’écris Sonic par-dessus Fantom, et la flèche est juste ? » Pointez ce qui reste faux. | تعترض سامية: «إذن أكتب Sonic فوق Fantom، فيصير السهم صحيحاً؟» أشِر إلى ما يبقى خطأً. |
+| `d2.boss.r.p.app.after` | Toujours une chaîne. | ما زالت سلسلة. |
+| `d2.boss.r.p.app.say` | Elle est devenue une appli d’adhésion | صارت تطبيق عضويات |
+| `d2.boss.r.p.app.text` | Elle est devenue une appli d’adhésion | صارت تطبيق عضويات |
+| `d2.boss.r.p.app.why` | La documentation de Sonic parle d’une blockchain de couche 1, pas d’une appli. | وثائق Sonic تسمّيها سلسلة كتل من الطبقة 1، لا تطبيقاً. |
+| `d2.boss.r.p.free.after` | Elle en nomme toujours un. | ما زالت تذكر رمزاً. |
+| `d2.boss.r.p.free.say` | Sa documentation ne nomme plus de jeton de frais | وثائقها توقّفت عن ذكر رمز للرسوم |
+| `d2.boss.r.p.free.text` | Sa documentation ne nomme plus de jeton de frais | وثائقها توقّفت عن ذكر رمز للرسوم |
+| `d2.boss.r.p.free.why` | Documentation de Sonic : son jeton natif sert à payer les frais de transaction. | وثائق Sonic: رمزها الرقمي الأصلي يُستخدم لدفع رسوم المعاملات. |
+| `d2.boss.r.p.name.after` | Désormais Sonic · une nouvelle chaîne | الآن Sonic · سلسلة جديدة |
+| `d2.boss.r.p.name.say` | Le nom vers lequel son site vous renvoie | الاسم الذي يحيلك إليه موقعها |
+| `d2.boss.r.p.name.text` | Le nom vers lequel son site vous renvoie | الاسم الذي يحيلك إليه موقعها |
+| `d2.boss.r.p.name.why` | La page de la fondation renvoie à un nouveau site, et la nouvelle chaîne s’appelle Sonic. | صفحة المؤسّسة تحيل إلى موقع جديد، والسلسلة الجديدة اسمها Sonic. |
+| `d2.boss.r.prompt` | Elle demande ce qui a bien changé. Pointez-le. | تسأل عمّا تغيّر فعلاً. أشِر إليه. |
+| `d2.bub.a` | Ces adresses sont de moi, toutes inventées. Lisez-les depuis la droite. | هذه العناوين من صنعي، كلّها متخيَّلة. اقرأها من اليمين. |
+| `d2.bub.b` | Noté : le site renvoie ailleurs. La chose n’a pas changé de nature. | سُجّل: الموقع يحيل إلى مكان آخر. نوع الشيء لم يتغيّر. |
+| `d2.can` | Vous savez maintenant lire un avis jusqu’au bout, trouver qui l’a publié, et dater un projet par son blog. | صرتَ تعرف كيف تقرأ الإشعار حتى آخره، وتجد من نشره، وتؤرّخ مشروعاً من مدوّنته. |
+| `d2.card.hint.0` | Deux lignes ne font que nommer ou numéroter le réseau. | سطران يسمّيان الشبكة أو يرقّمانها فقط. |
+| `d2.card.hint.1` | Sur une chaîne, les frais se paient en quelque chose. | الرسوم على السلسلة تُدفع بشيء ما. |
+| `d2.card.hint.2` | Réponse : Symbole de la monnaie : un jeton. | الجواب: رمز العملة: رمز رقمي. |
+| `d2.card.kuro` | Le jeton. | الرمز الرقمي. |
+| `d2.card.p.id.after` | Un simple numéro. | رقم فقط. |
+| `d2.card.p.id.say` | Identifiant de chaîne : 146 | معرّف السلسلة: 146 |
+| `d2.card.p.id.text` | ID de chaîne : 146 | معرّف السلسلة: 146 |
+| `d2.card.p.id.why` | Un numéro tiré de la documentation de Sonic, parmi les détails qu’il faut à un portefeuille pour ajouter le réseau. | رقم من وثائق Sonic، ضمن التفاصيل التي تحتاجها المحفظة لإضافة الشبكة. |
+| `d2.card.p.name.after` | Un simple nom. | اسم فقط. |
+| `d2.card.p.name.say` | Nom du réseau : Sonic | اسم الشبكة: Sonic |
+| `d2.card.p.name.text` | Nom du réseau : Sonic | اسم الشبكة: Sonic |
+| `d2.card.p.name.why` | Un nom, personne ne le détient. Il dit à un portefeuille comment appeler le réseau. | الاسم لا يحوزه أحد. إنه يخبر المحفظة بما تسمّي به الشبكة. |
+| `d2.card.p.sym.after` | Le jeton natif de la chaîne · paie les frais | الرمز الرقمي الأصلي للسلسلة · يدفع الرسوم |
+| `d2.card.p.sym.say` | Symbole de la monnaie : un jeton | رمز العملة: رمز رقمي |
+| `d2.card.p.sym.text` | Symbole de la monnaie : un jeton | رمز العملة: رمز رقمي |
+| `d2.card.p.sym.why` | Documentation de Sonic : son jeton natif paie les frais de transaction. | وثائق Sonic: رمزها الرقمي الأصلي يدفع رسوم المعاملات. |
+| `d2.card.address` | Fiche réseau | بطاقة الشبكة |
+| `d2.card.prompt` | La fiche réseau de Sonic, disposée comme dans sa documentation. Pointez la ligne qui nomme un crypto-actif. | بطاقة شبكة Sonic، مرتّبة كما في وثائقها. أشِر إلى السطر الذي يذكر أصلاً مشفّراً. |
+| `d2.card.r.p.add.after` | Ses propres mots | بكلماتها هي |
+| `d2.card.r.p.add.say` | Pour ajouter Sonic à un portefeuille | لإضافة Sonic إلى محفظة |
+| `d2.card.r.p.add.text` | Pour ajouter Sonic à un portefeuille | لإضافة Sonic إلى محفظة |
+| `d2.card.r.p.add.why` | Documentation de Sonic : utilisez les informations réseau pour ajouter Sonic à votre portefeuille. | وثائق Sonic: استخدم معلومات الشبكة لإضافة Sonic إلى محفظتك. |
+| `d2.card.r.p.follow.after` | Aucun créateur ici. | لا مبدعين هنا. |
+| `d2.card.r.p.follow.say` | Pour suivre un créateur | لمتابعة مبدع |
+| `d2.card.r.p.follow.text` | Pour suivre un créateur | لمتابعة مبدع |
+| `d2.card.r.p.follow.why` | Les créateurs figurent dans les pages pour développeurs de Patreon, pas sur une fiche réseau. | المبدعون موجودون في صفحات المطوّرين لدى Patreon، لا على بطاقة شبكة. |
+| `d2.card.r.p.mail.after` | Aucun e-mail dessus. | لا بريد إلكتروني عليها. |
+| `d2.card.r.p.mail.say` | Pour s’inscrire avec un e-mail | للتسجيل ببريد إلكتروني |
+| `d2.card.r.p.mail.text` | Pour s’inscrire avec un e-mail | للتسجيل ببريد إلكتروني |
+| `d2.card.r.p.mail.why` | La fiche n’a aucun champ e-mail. Une chaîne ne tient pas de tel compte. | البطاقة لا تحمل أيّ خانة للبريد الإلكتروني. والسلسلة لا تحفظ حساباً كهذا. |
+| `d2.card.r.prompt` | La documentation de Sonic dit à quoi sert cette fiche. Pointez-le. | وثائق Sonic تقول ما الغرض من هذه البطاقة. أشِر إليه. |
+| `d2.claim` | Fantom s’appelle désormais Sonic, et l’ancienne chaîne est éteinte. | Fantom اسمه الآن Sonic، والسلسلة القديمة أُوقفت. |
+| `d2.dates.hint.0` | Lisez d’abord l’année, puis le mois. | اقرأ السنة أولاً، ثم الشهر. |
+| `d2.dates.hint.1` | Deux des trois datent d’avant 2026. | اثنان من الثلاثة من قبل 2026. |
+| `d2.dates.hint.2` | Réponse : 20 nov. 2026 · dernier article. | الجواب: 20 نوفمبر 2026 · آخر تدوينة. |
+| `d2.dates.kuro` | Le plus récent. | الأحدث. |
+| `d2.dates.p.d23.after` | Un programme, avant la chaîne. | برنامج. لا سلسلة بعد. |
+| `d2.dates.p.d23.say` | 4 décembre 2023 : la fondation annonce un programme Sonic pour les bâtisseurs | 4 ديسمبر 2023: المؤسّسة تعلن برنامج Sonic للبُناة |
+| `d2.dates.p.d23.text` | 4 déc. 2023 · la fondation annonce un programme Sonic pour les bâtisseurs | 4 ديسمبر 2023 · المؤسّسة تعلن برنامج Sonic للبُناة |
+| `d2.dates.p.d23.why` | Le blog de la fondation : un programme pour bâtisseurs, en amont d’une chaîne à venir. | مدوّنة المؤسّسة: برنامج للبُناة، قبل سلسلة لم تأتِ بعد. |
+| `d2.dates.p.d24.after` | Le lancement, en 2024. | الإطلاق، في 2024. |
+| `d2.dates.p.d24.say` | 18 décembre 2024 : lancement du réseau principal Sonic | 18 ديسمبر 2024: إطلاق شبكة Sonic الرئيسية |
+| `d2.dates.p.d24.text` | 18 déc. 2024 · lancement du réseau principal Sonic | 18 ديسمبر 2024 · إطلاق شبكة Sonic الرئيسية |
+| `d2.dates.p.d24.why` | Le blog de Sonic : le jour où la chaîne Sonic elle-même a démarré. | مدوّنة Sonic: اليوم الذي بدأت فيه سلسلة Sonic نفسها العمل. |
+| `d2.dates.p.d26.after` | Le plus récent des trois | الأحدث بين الثلاثة |
+| `d2.dates.p.d26.say` | 20 novembre 2026 : dernier article | 20 نوفمبر 2026: آخر تدوينة |
+| `d2.dates.p.d26.text` | 20 nov. 2026 · dernier article | 20 نوفمبر 2026 · آخر تدوينة |
+| `d2.dates.p.d26.why` | L’index du blog de Sonic : son dernier article est daté du 20 nov. 2026. | فهرس مدوّنة Sonic: آخر تدوينة فيها مؤرَّخة في 20 نوفمبر 2026. |
+| `d2.dates.prompt` | Trois lignes datées, tirées des blogs des projets eux-mêmes. Pointez la plus récente. | ثلاثة أسطر مؤرَّخة من مدوّنات المشاريع نفسها. أشِر إلى الأحدث. |
+| `d2.dates.r.p.d23.after` | Un programme, avant la chaîne. | برنامج. لا سلسلة بعد. |
+| `d2.dates.r.p.d23.say` | 4 décembre 2023 : la fondation annonce un programme Sonic pour les bâtisseurs | 4 ديسمبر 2023: المؤسّسة تعلن برنامج Sonic للبُناة |
+| `d2.dates.r.p.d23.text` | 4 déc. 2023 · la fondation annonce un programme Sonic pour les bâtisseurs | 4 ديسمبر 2023 · المؤسّسة تعلن برنامج Sonic للبُناة |
+| `d2.dates.r.p.d23.why` | Le blog de la fondation : un programme pour bâtisseurs, en amont d’un réseau principal encore à venir. | مدوّنة المؤسّسة: برنامج للبُناة، قبل شبكة رئيسية لم تأتِ بعد. |
+| `d2.dates.r.p.d24.after` | La chaîne démarre | السلسلة تبدأ العمل |
+| `d2.dates.r.p.d24.say` | 18 décembre 2024 : lancement du réseau principal Sonic | 18 ديسمبر 2024: إطلاق شبكة Sonic الرئيسية |
+| `d2.dates.r.p.d24.text` | 18 déc. 2024 · lancement du réseau principal Sonic | 18 ديسمبر 2024 · إطلاق شبكة Sonic الرئيسية |
+| `d2.dates.r.p.d24.why` | Blog de Sonic, 18 déc. 2024 : le lancement du réseau principal Sonic. | مدوّنة Sonic، 18 ديسمبر 2024: إطلاق شبكة Sonic الرئيسية. |
+| `d2.dates.r.p.d26.after` | Un article récent. | تدوينة حديثة. |
+| `d2.dates.r.p.d26.say` | 20 novembre 2026 : dernier article | 20 نوفمبر 2026: آخر تدوينة |
+| `d2.dates.r.p.d26.text` | 20 nov. 2026 · dernier article | 20 نوفمبر 2026 · آخر تدوينة |
+| `d2.dates.r.p.d26.why` | C’est l’article le plus récent, pas le lancement. | هذه أحدث تدوينة، لا الإطلاق. |
+| `d2.dates.r.prompt` | Les trois mêmes lignes. Pointez le jour où la nouvelle chaîne elle-même a démarré. | الأسطر الثلاثة نفسها. أشِر إلى اليوم الذي بدأت فيه السلسلة الجديدة نفسها العمل. |
+| `d2.diff.g.0.after` | Pareil dans les deux. | متطابق في الاثنين. |
+| `d2.diff.g.0.say` | morceau un | القطعة الأولى |
+| `d2.diff.g.0.why` | Pareil dans les deux. Un sosie garde le mot familier devant. | متطابق في الاثنين. الشبيه يُبقي الكلمة المألوفة في المقدّمة. |
+| `d2.diff.g.1.after` | Finit par swap-now.example · un autre site | ينتهي بـ swap-now.example · موقع آخر |
+| `d2.diff.g.1.say` | morceau deux | القطعة الثانية |
+| `d2.diff.g.1.why` | Un nom se lit depuis la droite, avant la barre oblique. Celui-ci finit par swap-now.example : un autre site. | يُقرأ الاسم من اليمين، قبل الشرطة المائلة. وهذا ينتهي بـ swap-now.example: موقع آخر. |
+| `d2.diff.g.2.after` | Juste un chemin. | مسار فقط. |
+| `d2.diff.g.2.say` | morceau trois | القطعة الثالثة |
+| `d2.diff.g.2.why` | Un chemin peut changer sur un même site. Il ne dit pas à qui est le site. | المسار قد يتغيّر في الموقع نفسه. ولا يقول لمن الموقع. |
+| `d2.diff.hint.0` | Un morceau changé ne veut pas toujours dire un autre site. | القطعة المتغيّرة لا تعني دائماً موقعاً آخر. |
+| `d2.diff.hint.1` | Lisez le morceau du milieu depuis son bout droit. | اقرأ القطعة الوسطى من طرفها الأيمن. |
+| `d2.diff.hint.2` | Réponse : le morceau du milieu. Il finit par swap-now.example. | الجواب: القطعة الوسطى. تنتهي بـ swap-now.example. |
+| `d2.diff.kuro` | Autre site. | موقع آخر. |
+| `d2.diff.prompt` | L’avis a une adresse inventée. Deux liens, coupés en trois. Pointez le morceau qui trahit le sosie. | للإشعار عنوان متخيَّل. رابطان، كلّ منهما في ثلاث قطع. أشِر إلى القطعة التي تفضح الشبيه. |
+| `d2.diff.r.g.0.after` | Pareil dans les deux. | متطابق في الاثنين. |
+| `d2.diff.r.g.0.say` | morceau un | القطعة الأولى |
+| `d2.diff.r.g.0.why` | Pareil dans les deux. | متطابق في الاثنين. |
+| `d2.diff.r.g.1.after` | chaln, pas chain · un autre site | chaln، لا chain · موقع آخر |
+| `d2.diff.r.g.1.say` | morceau deux | القطعة الثانية |
+| `d2.diff.r.g.1.why` | Une lettre diffère : un l à la place du i. C’est un autre nom, donc un autre site. | حرف واحد يختلف: l مكان i. ذلك اسم آخر، إذن موقع آخر. |
+| `d2.diff.r.g.2.after` | Juste un chemin. | مسار فقط. |
+| `d2.diff.r.g.2.say` | morceau trois | القطعة الثالثة |
+| `d2.diff.r.g.2.why` | Le chemin diffère, mais un chemin ne nomme qu’une page d’un site. | المسار يختلف، لكنّ المسار لا يسمّي إلا صفحة في موقع. |
+| `d2.diff.r.prompt` | Deux autres liens, coupés en trois. Pointez le morceau qui en fait un autre site. | رابطان آخران، كلّ منهما في ثلاث قطع. أشِر إلى القطعة التي تجعله موقعاً آخر. |
+| `d2.diff.r.why` | Une lettre diffère : un l à la place du i. C’est un autre nom, donc un autre site. | حرف واحد يختلف: l مكان i. ذلك اسم آخر، إذن موقع آخر. |
+| `d2.diff.why` | Un nom se lit depuis la droite, avant la barre oblique. Celui-ci finit par swap-now.example : un autre site. | يُقرأ الاسم من اليمين، قبل الشرطة المائلة. وهذا ينتهي بـ swap-now.example: موقع آخر. |
+| `d2.notice.hint.0` | Deux lignes sont des phrases. Lisez-les jusqu’au bout. | سطران جملتان. اقرأهما حتى النهاية. |
+| `d2.notice.hint.1` | Une phrase dit ce qu’il advient d’une chaîne. | جملة واحدة تقول ما يحدث لسلسلة. |
+| `d2.notice.hint.2` | Réponse : l’ancienne chaîne continuera d’être prise en charge. | الجواب: السلسلة القديمة سيستمرّ دعمها. |
+| `d2.notice.kuro` | Toujours là. | ما زالت هنا. |
+| `d2.notice.p.banner.after` | Au sujet du jeton. | عن الرمز الرقمي. |
+| `d2.notice.p.banner.say` | Ligne : un jeton migre vers un nouveau jeton | سطر: رمز رقمي ينتقل إلى رمز رقمي جديد |
+| `d2.notice.p.banner.text` | Un jeton migre vers un nouveau jeton | رمز رقمي ينتقل إلى رمز رقمي جديد |
+| `d2.notice.p.banner.why` | Cette ligne parle d’un jeton qui change. Elle ne dit rien de la chaîne. | هذا السطر عن رمز رقمي يتغيّر. ولا يقول شيئاً عن السلسلة. |
+| `d2.notice.p.close.after` | Ferme l’avis. | يغلق الإشعار. |
+| `d2.notice.p.close.cap` | Fermer | إغلاق |
+| `d2.notice.p.close.say` | Fermer, bouton | إغلاق، زرّ |
+| `d2.notice.p.close.why` | La croix ferme l’avis. Elle ne répond à rien. | علامة الإغلاق تغلق الإشعار. ولا تجيب عن شيء. |
+| `d2.notice.p.kept.after` | Toujours prise en charge · ses propres mots | ما زال الدعم قائماً · بكلماتها هي |
+| `d2.notice.p.kept.say` | Ligne : l’ancienne chaîne continuera d’être prise en charge pour les utilisateurs qui détiennent encore l’ancien jeton | سطر: السلسلة القديمة سيستمرّ دعمها للمستخدمين الذين ما زالوا يحوزون الرمز القديم |
+| `d2.notice.p.kept.text` | L’ancienne chaîne continuera d’être prise en charge pour les utilisateurs qui détiennent encore l’ancien jeton | السلسلة القديمة سيستمرّ دعمها للمستخدمين الذين ما زالوا يحوزون الرمز القديم |
+| `d2.notice.p.kept.why` | L’avis de la fondation, non daté : l’ancienne chaîne restera prise en charge pour qui garde l’ancien jeton. | إشعار المؤسّسة، غير مؤرَّخ: السلسلة القديمة سيستمرّ دعمها للمستخدمين الذين يواصلون حيازة الرمز القديم. |
+| `d2.notice.p.new.after` | Ouvre le site de Sonic. | يفتح موقع Sonic. |
+| `d2.notice.p.new.say` | Visiter le nouveau site, bouton | زيارة الموقع الجديد، زرّ |
+| `d2.notice.p.new.text` | Visiter le nouveau site | زيارة الموقع الجديد |
+| `d2.notice.p.new.why` | Ce bouton mène au nouveau site. Il ne dit pas ce qui reste. | هذا الزرّ يقود إلى الموقع الجديد. ولا يقول ما الذي يبقى. |
+| `d2.notice.prompt` | Le prestataire dit : éteinte. Pointez la ligne qui lui répond. | المورّد يقول: أُوقفت. أشِر إلى السطر الذي يردّ عليه. |
+| `d2.notice.r.p.banner.after` | Au sujet du jeton. | عن الرمز الرقمي. |
+| `d2.notice.r.p.banner.say` | Ligne : un jeton migre vers un nouveau jeton | سطر: رمز رقمي ينتقل إلى رمز رقمي جديد |
+| `d2.notice.r.p.banner.text` | Un jeton migre vers un nouveau jeton | رمز رقمي ينتقل إلى رمز رقمي جديد |
+| `d2.notice.r.p.banner.why` | Cette ligne annonce un changement de jeton. Elle n’ouvre rien. | هذا السطر يعلن تغيير رمز رقمي. ولا يفتح شيئاً. |
+| `d2.notice.r.p.kept.after` | Au sujet de l’ancienne chaîne. | عن السلسلة القديمة. |
+| `d2.notice.r.p.kept.say` | Ligne : l’ancienne chaîne continuera d’être prise en charge pour les utilisateurs qui détiennent encore l’ancien jeton | سطر: السلسلة القديمة سيستمرّ دعمها للمستخدمين الذين ما زالوا يحوزون الرمز القديم |
+| `d2.notice.r.p.kept.text` | L’ancienne chaîne continuera d’être prise en charge pour les utilisateurs qui détiennent encore l’ancien jeton | السلسلة القديمة سيستمرّ دعمها للمستخدمين الذين ما زالوا يحوزون الرمز القديم |
+| `d2.notice.r.p.kept.why` | Cette ligne parle de l’ancienne chaîne. Elle n’ouvre rien. | هذا السطر عن السلسلة القديمة. ولا يفتح شيئاً. |
+| `d2.notice.r.p.new.after` | Ouvre le site de Sonic · le nouveau nom | يفتح موقع Sonic · الاسم الجديد |
+| `d2.notice.r.p.new.say` | Visiter le nouveau site, bouton | زيارة الموقع الجديد، زرّ |
+| `d2.notice.r.p.new.text` | Visiter le nouveau site | زيارة الموقع الجديد |
+| `d2.notice.r.p.new.why` | Sur la page de la fondation, ce bouton ouvre le site de Sonic lui-même. | في صفحة المؤسّسة يفتح هذا الزرّ موقع Sonic نفسه. |
+| `d2.notice.r.prompt` | Le même avis. Pointez la partie qui mène au nouveau nom. | الإشعار نفسه. أشِر إلى الجزء الذي يقود إلى الاسم الجديد. |
+| `d2.ring.address` | Résultats de recherche : « avis ancien jeton » | نتائج البحث: «إشعار الرمز القديم» |
+| `d2.ring.hint.0` | Les titres ne prouvent rien. Ouvrez les adresses. | العناوين الظاهرة لا تثبت شيئاً. افتح عناوين الروابط. |
+| `d2.ring.hint.1` | Trouvez où finit chaque nom, juste avant la barre oblique. | جِد أين ينتهي كلّ اسم، قبل الشرطة المائلة مباشرة. |
+| `d2.ring.hint.2` | Réponse : résultat trois, foundation.old-chain.example/notice. | الجواب: النتيجة الثالثة، foundation.old-chain.example/notice. |
+| `d2.ring.kuro` | Son propre site. | موقعها الخاصّ. |
+| `d2.ring.p.ad.after` | Un autre site. | موقع آخر. |
+| `d2.ring.p.ad.mark` | Annonce | إعلان |
+| `d2.ring.p.ad.say` | Résultat un, marqué Annonce | النتيجة الأولى، موسومة «إعلان» |
+| `d2.ring.p.ad.text` | Déplacez vos anciens jetons · vite | انقل رموزك القديمة · بسرعة |
+| `d2.ring.p.ad.why` | Une publicité, sur un site à elle. Son adresse n’est pas celle de la fondation. | إعلان، على موقع خاصّ به. وعنوانه ليس عنوان المؤسّسة. |
+| `d2.ring.p.fake.after` | Finit par claims.example. | ينتهي بـ claims.example. |
+| `d2.ring.p.fake.say` | Résultat deux | النتيجة الثانية |
+| `d2.ring.p.fake.text` | Migration de jeton · officiel | انتقال الرمز الرقمي · رسمي |
+| `d2.ring.p.fake.why` | Lisez depuis la droite : le site est claims.example. « Officiel » n’est qu’un mot. | اقرأ من اليمين: الموقع هو claims.example. و«رسمي» مجرّد كلمة. |
+| `d2.ring.p.own.after` | foundation.old-chain.example/notice · son propre site | foundation.old-chain.example/notice · موقعها الخاصّ |
+| `d2.ring.p.own.say` | Résultat trois | النتيجة الثالثة |
+| `d2.ring.p.own.text` | Avis · la fondation | إشعار · المؤسّسة |
+| `d2.ring.p.own.why` | Le nom finit par old-chain.example, puis vient la barre oblique. C’est la page de la fondation elle-même. | الاسم ينتهي بـ old-chain.example، ثم الشرطة المائلة. هذه صفحة المؤسّسة نفسها. |
+| `d2.ring.prompt` | Trois résultats. Ouvrez chacun avec l’anneau. Pointez l’avis de la fondation elle-même. | ثلاث نتائج. افتح كلّاً منها بالحلقة. أشِر إلى إشعار المؤسّسة نفسها. |
+| `d2.ring.r.address` | Un message (inventé) | رسالة (متخيَّلة) |
+| `d2.ring.r.p.l1.after` | new-chain.example/ · son propre site | new-chain.example/ · موقعها الخاصّ |
+| `d2.ring.r.p.l1.say` | Lien un | الرابط الأول |
+| `d2.ring.r.p.l1.text` | Le nouveau site | الموقع الجديد |
+| `d2.ring.r.p.l1.why` | Le nom finit par new-chain.example, puis la barre oblique. Rien entre les deux. | الاسم ينتهي بـ new-chain.example، ثم الشرطة المائلة. لا شيء بينهما. |
+| `d2.ring.r.p.l2.after` | Finit par bonus.example. | ينتهي بـ bonus.example. |
+| `d2.ring.r.p.l2.say` | Lien deux | الرابط الثاني |
+| `d2.ring.r.p.l2.text` | Le nouveau site (rapide) | الموقع الجديد (سريع) |
+| `d2.ring.r.p.l2.why` | Lisez depuis la droite : le site est bonus.example, quoi qu’il y ait devant. | اقرأ من اليمين: الموقع هو bonus.example، أيّاً كان ما قبله. |
+| `d2.ring.r.p.l3.after` | Une lettre change. | حرف واحد مختلف. |
+| `d2.ring.r.p.l3.say` | Lien trois | الرابط الثالث |
+| `d2.ring.r.p.l3.text` | Le nouveau site (miroir) | الموقع الجديد (نسخة مرآة) |
+| `d2.ring.r.p.l3.why` | Un l se tient à la place du i. C’est un autre nom. | حرف l يقف مكان i. ذلك اسم آخر. |
+| `d2.ring.r.prompt` | Un message avec trois liens. Ouvrez chacun. Pointez celui du site de la nouvelle chaîne elle-même. | رسالة فيها ثلاثة روابط. افتح كلّاً منها. أشِر إلى الرابط الذي على موقع السلسلة الجديدة نفسها. |
+| `d2.slip` | Samia a vérifié. Le prestataire répond : Fantom s’appelle désormais Sonic, et l’ancienne chaîne est éteinte. | بحثت سامية في الأمر. يجيب المورّد: Fantom اسمه الآن Sonic، والسلسلة القديمة أُوقفت. |
+| `d2.slipTag` | ENQUÊTE 13 · exemple inventé | التحقيق 13 · مثال متخيَّل |
+| `d2.stamp.prompt` | Le prestataire, encore : Fantom s’appelle désormais Sonic, et l’ancienne chaîne est éteinte. Tamponnez : | قول المورّد مرّة أخرى: Fantom اسمه الآن Sonic، والسلسلة القديمة أُوقفت. اختمه: |
+| `d2.stamp.reveal` | À moitié. Le nom à chercher est Sonic. Blog de Sonic, juin 2026 : l’ancienne chaîne reste active jusqu’à fin 2026. | نصف صحيح. الاسم الذي يُبحث عنه هو Sonic. مدوّنة Sonic، يونيو 2026: السلسلة القديمة تبقى عاملة طوال 2026. |
+| `d3.bet.prompt` | Votre pari sur la phrase du prestataire ? Sans points. | ما رهانك على قول المورّد؟ بلا نقاط. |
+| `d3.boss.frame` | Vrai : on peut bâtir {1} sur une chaîne. La flèche devrait nommer {2}, pas {3}. | صحيح: يمكن بناء {1} على سلسلة. على السهم أن يسمّي {2}، لا {3}. |
+| `d3.boss.hint.0` | Elle a raison sur un point. Accordez-le d’abord. | هي محقّة في أمر واحد. سلِّم به أولاً. |
+| `d3.boss.hint.1` | Puis dites vers quoi une flèche devrait pointer. | ثم قُل إلى ماذا ينبغي أن يشير السهم. |
+| `d3.boss.hint.2` | Réponse : une appli d’adhésion · cette appli · sa chaîne. | الجواب: تطبيق عضويات · ذلك التطبيق · سلسلته. |
+| `d3.boss.kuro` | Nommez l’appli. | سمِّ التطبيق. |
+| `d3.boss.p.c1.text` | une appli d’adhésion | تطبيق عضويات |
+| `d3.boss.p.c1.why` | Documentation de Sonic : des applis y sont déployées. Unlock Protocol propose des contrats pour les adhésions. | وثائق Sonic: التطبيقات تُنشر عليها. وUnlock Protocol يقدّم عقوداً للعضويات. |
+| `d3.boss.p.c2.text` | cette appli | ذلك التطبيق |
+| `d3.boss.p.c2.why` | Une flèche partie d’une appli devrait pointer vers une appli. | السهم الخارج من تطبيق ينبغي أن يشير إلى تطبيق. |
+| `d3.boss.p.c3.text` | sa chaîne | سلسلته |
+| `d3.boss.p.c3.why` | La chaîne est ce sur quoi l’appli est bâtie. Ce n’est pas l’appli. | السلسلة هي ما يُبنى عليه التطبيق. وليست التطبيق. |
+| `d3.boss.p.c4.text` | une chaîne plus rapide | سلسلة أسرع |
+| `d3.boss.p.c4.why` | La vitesse ne fait pas d’une chaîne une appli. | السرعة لا تحوّل السلسلة إلى تطبيق. |
+| `d3.boss.p.c5.text` | le jeton | الرمز الرقمي |
+| `d3.boss.p.c5.why` | Sa documentation nomme un jeton pour les frais. Il ne remplace aucune appli d’adhésion. | وثائقها تذكر رمزاً رقمياً للرسوم. وهو لا يحلّ محلّ أيّ تطبيق عضويات. |
+| `d3.boss.p.c6.text` | Patreon | Patreon |
+| `d3.boss.p.c6.why` | Patreon est déjà le côté gauche. | Patreon هو الطرف الأول أصلاً. |
+| `d3.boss.prompt` | Samia objecte : « On pourrait y bâtir une appli d’adhésion. » Répondez-lui. | تعترض سامية: «يمكن بناء تطبيق عضويات عليها.» أجبها. |
+| `d3.boss.r.frame` | Unlock Protocol se présente comme {1} conçus pour {2}. | يصف Unlock Protocol نفسه بأنه {1} مصمَّمة من أجل {2}. |
+| `d3.boss.r.p.r1.text` | des contrats intelligents | عقود ذكية |
+| `d3.boss.r.p.r1.why` | La page d’Unlock Protocol : des contrats intelligents, conçus spécialement pour un seul usage. | صفحة Unlock Protocol: عقود ذكية، مصمَّمة خصّيصاً لغرض واحد. |
+| `d3.boss.r.p.r2.text` | les adhésions | العضويات |
+| `d3.boss.r.p.r2.why` | La page d’Unlock Protocol : conçu spécialement pour les adhésions et les abonnements. | صفحة Unlock Protocol: مصمَّم خصّيصاً للعضويات والاشتراكات. |
+| `d3.boss.r.p.r3.text` | une chaîne | سلسلة |
+| `d3.boss.r.p.r3.why` | Sa page parle d’un protocole de contrats intelligents, pas d’une chaîne. | صفحته تسمّيه بروتوكول عقود ذكية، لا سلسلة. |
+| `d3.boss.r.p.r4.text` | des pages de créateurs | صفحات المبدعين |
+| `d3.boss.r.p.r4.why` | Sa page offre des contrats aux bâtisseurs. Elle ne montre aucune page de créateur. | صفحته تعرض عقوداً على البُناة. ولا تُظهر أيّ صفحات للمبدعين. |
+| `d3.boss.r.p.r5.text` | une boutique d’applis | متجر تطبيقات |
+| `d3.boss.r.p.r5.why` | Sa page offre des contrats pour bâtir, pas une boutique d’applis. | صفحته تعرض عقوداً للبناء بها، لا متجراً للتطبيقات. |
+| `d3.boss.r.prompt` | Dites comment Unlock Protocol se présente sur sa propre page. Touchez une pastille, puis sa case. | قُل بماذا يصف Unlock Protocol نفسه في صفحته. المس رقعة، ثم خانتها. |
+| `d3.bub.a` | La boutique, la route : mes mots. La faute est la leur. | المتجر والطريق من كلماتي. أمّا الخطأ فخطؤهم. |
+| `d3.bub.b` | Encore un billet. Elle a barré la flèche elle-même. | قصاصة أخرى. شطبت السهم بنفسها. |
+| `d3.can` | Vous savez maintenant expliquer pourquoi une chaîne ne peut tenir la place d’une appli, et ce que sa documentation nomme pour les frais. | صرتَ تعرف كيف تشرح لماذا لا يمكن للسلسلة أن تقوم مقام التطبيق، وما تذكره وثائقها للرسوم. |
+| `d3.chain.frame` | Une chaîne est {1}, {2}. | السلسلة {1} {2}. |
+| `d3.chain.hint.0` | La première case est une chose, la seconde ce qu’on en fait. | الخانة الأولى شيء، والثانية ما يُفعل به. |
+| `d3.chain.hint.1` | Une chaîne tient des registres. Les applis viennent par-dessus. | السلسلة تحفظ السجلّات. والتطبيقات تأتي فوقها. |
+| `d3.chain.hint.2` | Réponse : un registre partagé · sur lequel on bâtit des applis. | الجواب: سجلّ مشترك · تُبنى عليه التطبيقات. |
+| `d3.chain.kuro` | Un registre. | سجلّ. |
+| `d3.chain.p.c1.text` | un registre partagé | سجلّ مشترك |
+| `d3.chain.p.c1.why` | Un guide : une base de données publique, mise à jour et partagée entre de nombreux ordinateurs. | دليل: قاعدة بيانات عامّة، تُحدَّث وتُتقاسَم بين حواسيب كثيرة. |
+| `d3.chain.p.c2.text` | sur lequel on bâtit des applis | تُبنى عليه التطبيقات |
+| `d3.chain.p.c2.why` | Documentation de Sonic : des applis sont déployées sur la chaîne. | وثائق Sonic: التطبيقات تُنشر على السلسلة. |
+| `d3.chain.p.c3.text` | une appli | تطبيق |
+| `d3.chain.p.c3.why` | Une appli, c’est ce qui est par-dessus. Une chaîne est en dessous. | التطبيق هو ما يقع في الأعلى. والسلسلة تحته. |
+| `d3.chain.p.c4.text` | que les fans ouvrent pour adhérer | يفتحه المعجبون للانضمام |
+| `d3.chain.p.c4.why` | Personne n’ouvre une chaîne. On ouvre une appli. | لا أحد يفتح سلسلة. الناس يفتحون تطبيقاً. |
+| `d3.chain.p.c5.text` | le serveur d’une seule entreprise | خادم شركة واحدة |
+| `d3.chain.p.c5.why` | Un guide : une blockchain est partagée entre de nombreux ordinateurs d’un réseau. | دليل: سلسلة الكتل تُتقاسَم بين حواسيب كثيرة في شبكة. |
+| `d3.chain.prompt` | Dites ce qu’est une chaîne. Touchez une pastille, puis sa case. | قُل ما هي السلسلة. المس رقعة، ثم خانتها. |
+| `d3.chain.r.frame` | Elle relie {1} sur la chaîne à {2} dont on se sert. | يضمّ {1} على السلسلة، و{2} بين أيدي الناس. |
+| `d3.chain.r.p.r1.text` | un contrat intelligent | عقداً ذكياً |
+| `d3.chain.r.p.r1.why` | Un guide pour développeurs : une telle appli associe un contrat intelligent et une interface. | دليل للمطوّرين: تطبيق كهذا يجمع عقداً ذكياً وواجهة. |
+| `d3.chain.r.p.r2.text` | un écran | شاشة |
+| `d3.chain.r.p.r2.why` | Un guide pour développeurs : l’interface est la partie dont on se sert. | دليل للمطوّرين: الواجهة هي الجزء الذي يستخدمه الناس. |
+| `d3.chain.r.p.r3.text` | un créateur | مبدعاً |
+| `d3.chain.r.p.r3.why` | Un créateur est une personne, pas une partie de l’appli. | المبدع شخص، لا جزء من التطبيق. |
+| `d3.chain.r.p.r4.text` | une deuxième chaîne | سلسلة ثانية |
+| `d3.chain.r.p.r4.why` | Une seule chaîne est sous l’appli. L’appli n’est pas faite de chaînes. | سلسلة واحدة تحت التطبيق. والتطبيق ليس مصنوعاً من سلاسل. |
+| `d3.chain.r.p.r5.text` | un mot de passe | كلمة مرور |
+| `d3.chain.r.p.r5.why` | Un mot de passe n’est pas l’une des deux parties que nomme le guide. | كلمة المرور ليست أحد الجزأين اللذين يذكرهما الدليل. |
+| `d3.chain.r.prompt` | Dites de quoi est faite une appli sur une chaîne. Touchez une pastille, puis sa case. | قُل ممّ يتكوّن التطبيق على سلسلة. المس رقعة، ثم خانتها. |
+| `d3.claim` | La flèche est juste : c’est sur une chaîne que vivrait un Patreon du web3. | السهم في محلّه: السلسلة هي حيث سيقيم Patreon ويب 3. |
+| `d3.hold.frame` | Sur Sonic, on paie {1} avec {2}, qui est {3}. | على Sonic، تُدفع {1} بواسطة {2}، وهو {3}. |
+| `d3.hold.hint.0` | Commencez par ce qui est payé. | ابدأ بما يُدفع. |
+| `d3.hold.hint.1` | Puis avec quoi on le paie, puis quelle sorte de chose c’est. | ثم بماذا يُدفع، ثم أيّ نوع من الأشياء هو. |
+| `d3.hold.hint.2` | Réponse : des frais de transaction · le jeton propre à la chaîne · un crypto-actif. | الجواب: رسوم المعاملة · الرمز الرقمي الخاصّ بالسلسلة · أصل مشفّر. |
+| `d3.hold.kuro` | Un crypto-actif. | أصل مشفّر. |
+| `d3.hold.p.c1.text` | des frais de transaction | رسوم المعاملة |
+| `d3.hold.p.c1.why` | Documentation de Sonic : le jeton natif sert à payer les frais de transaction. | وثائق Sonic: الرمز الرقمي الأصلي يُستخدم لدفع رسوم المعاملات. |
+| `d3.hold.p.c2.text` | le jeton propre à la chaîne | الرمز الرقمي الخاصّ بالسلسلة |
+| `d3.hold.p.c2.why` | La documentation de Sonic nomme son jeton natif pour les frais. | وثائق Sonic تذكر رمزها الرقمي الأصلي للرسوم. |
+| `d3.hold.p.c3.text` | un crypto-actif | أصل مشفّر |
+| `d3.hold.p.c3.why` | Ce jeton est un crypto-actif. La ligne sur la loi s’applique. | هذا الرمز أصل مشفّر. وسطر القانون ينطبق. |
+| `d3.hold.p.c4.text` | un niveau mensuel | مستوى شهري |
+| `d3.hold.p.c4.why` | Les niveaux figurent dans les pages pour développeurs de Patreon, pas dans la documentation de Sonic. | المستويات موجودة في صفحات المطوّرين لدى Patreon، لا في وثائق Sonic. |
+| `d3.hold.p.c5.text` | une carte bancaire | بطاقة مصرفية |
+| `d3.hold.p.c5.why` | La documentation de Sonic ne nomme aucune carte pour les frais. | وثائق Sonic لا تذكر أيّ بطاقة للرسوم. |
+| `d3.hold.p.c6.text` | une adhésion | عضوية |
+| `d3.hold.p.c6.why` | Une adhésion, c’est ce que décrivent les pages de Patreon. Le jeton est un crypto-actif. | العضوية هي ما تصفه صفحات Patreon. أمّا الرمز الرقمي فأصل مشفّر. |
+| `d3.hold.prompt` | Dites ce que la documentation de Sonic nomme pour les frais. Touchez une pastille, puis sa case. | قُل ما تذكره وثائق Sonic للرسوم. المس رقعة، ثم خانتها. |
+| `d3.hold.r.frame` | {1} tient le registre indiquant {2}. | {1} يحتفظ بسجلّ {2}. |
+| `d3.hold.r.p.r1.text` | Patreon | Patreon |
+| `d3.hold.r.p.r1.why` | Ses pages pour développeurs servent la fiche de chaque membre depuis le propre système de Patreon. | صفحات المطوّرين لديه تقدّم سجلّ كلّ عضو من نظام Patreon نفسه. |
+| `d3.hold.r.p.r2.text` | qui est membre | مَن هو عضو |
+| `d3.hold.r.p.r2.why` | Les pages pour développeurs de Patreon : le statut d’un membre, ses niveaux et l’état de ses paiements. | صفحات المطوّرين لدى Patreon: حالة العضو، ومستوياته، وحالة الدفع. |
+| `d3.hold.r.p.r3.text` | une chaîne | سلسلة |
+| `d3.hold.r.p.r3.why` | Les pages pour développeurs de Patreon ne mentionnent aucune chaîne. | صفحات المطوّرين لدى Patreon لا تذكر أيّ سلسلة. |
+| `d3.hold.r.p.r4.text` | le portefeuille du fan | محفظة المعجب |
+| `d3.hold.r.p.r4.why` | Les pages pour développeurs de Patreon ne mentionnent aucun portefeuille pour les membres. | صفحات المطوّرين لدى Patreon لا تذكر أيّ محفظة للأعضاء. |
+| `d3.hold.r.p.r5.text` | quelle chaîne est la plus rapide | أيّ سلسلة هي الأسرع |
+| `d3.hold.r.p.r5.why` | La vitesse des chaînes ne fait pas partie d’une fiche d’adhésion. | سرعة السلاسل ليست جزءاً من سجلّ العضوية. |
+| `d3.hold.r.prompt` | Dites qui tient le registre d’une adhésion sur Patreon. Touchez une pastille, puis sa case. | قُل من يحتفظ بسجلّ العضوية على Patreon. المس رقعة، ثم خانتها. |
+| `d3.layers.address` | Un croquis (inventé) | رسم تخطيطي (متخيَّل) |
+| `d3.layers.hint.0` | Une appli a un haut et un bas. | للتطبيق أعلى وأسفل. |
+| `d3.layers.hint.1` | La documentation de Sonic emploie le mot blockchain à son sujet. | وثائق Sonic تستعمل في وصفه عبارة سلسلة الكتل. |
+| `d3.layers.hint.2` | Réponse : le registre partagé, sous les deux. | الجواب: السجلّ المشترك تحت الاثنين. |
+| `d3.layers.kuro` | Dessous. | في الأسفل. |
+| `d3.layers.p.ledger.after` | La chaîne · Sonic est ici | السلسلة · هنا يقع Sonic |
+| `d3.layers.p.ledger.say` | Couche trois : le registre partagé, sous les deux | الطبقة الثالثة: السجلّ المشترك تحت الاثنين |
+| `d3.layers.p.ledger.text` | Le registre partagé, sous les deux | السجلّ المشترك تحت الاثنين |
+| `d3.layers.p.ledger.why` | Documentation de Sonic : une blockchain de couche 1. Un guide : une base de données publique partagée entre de nombreux ordinateurs. | وثائق Sonic: سلسلة كتل من الطبقة 1. ودليل: قاعدة بيانات عامّة تُتقاسَم بين حواسيب كثيرة. |
+| `d3.layers.p.rules.after` | Du code sur une chaîne. | شيفرة على سلسلة. |
+| `d3.layers.p.rules.say` | Couche deux : les règles de l’appli, un contrat intelligent | الطبقة الثانية: قواعد التطبيق، عقد ذكي |
+| `d3.layers.p.rules.text` | Les règles de l’appli : un contrat intelligent | قواعد التطبيق: عقد ذكي |
+| `d3.layers.p.rules.why` | Un guide pour développeurs : un contrat intelligent est du code qui vit sur une blockchain. Ce n’est pas la chaîne. | دليل للمطوّرين: العقد الذكي شيفرة تعيش على سلسلة كتل. وليس هو السلسلة. |
+| `d3.layers.p.screen.after` | Le haut d’une appli. | أعلى التطبيق. |
+| `d3.layers.p.screen.say` | Couche un : ce qu’on ouvre, un écran | الطبقة الأولى: ما يفتحه الشخص، شاشة |
+| `d3.layers.p.screen.text` | Ce qu’on ouvre : un écran | ما يفتحه الشخص: شاشة |
+| `d3.layers.p.screen.why` | Un guide pour développeurs : une appli sur une chaîne relie un contrat intelligent à un écran dont on se sert. | دليل للمطوّرين: التطبيق على سلسلة يربط عقداً ذكياً بشاشة يستخدمها الناس. |
+| `d3.layers.prompt` | Un croquis en trois couches. Pointez la couche où se trouve Sonic. | رسم تخطيطي من ثلاث طبقات. أشِر إلى الطبقة التي يقع فيها Sonic. |
+| `d3.layers.r.address` | Un croquis (inventé) | رسم تخطيطي (متخيَّل) |
+| `d3.layers.r.p.ledger.after` | Pas une chaîne. | ليس سلسلة. |
+| `d3.layers.r.p.ledger.say` | Couche trois : le registre partagé, sous les deux | الطبقة الثالثة: السجلّ المشترك تحت الاثنين |
+| `d3.layers.r.p.ledger.text` | Le registre partagé, sous les deux | السجلّ المشترك تحت الاثنين |
+| `d3.layers.r.p.ledger.why` | Sa page parle d’un protocole de contrats intelligents, pas d’une chaîne. | صفحته تسمّيه بروتوكول عقود ذكية، لا سلسلة. |
+| `d3.layers.r.p.rules.after` | Ses propres mots · des contrats pour les adhésions | بكلماته هو · عقود للعضويات |
+| `d3.layers.r.p.rules.say` | Couche deux : les règles de l’appli, un contrat intelligent | الطبقة الثانية: قواعد التطبيق، عقد ذكي |
+| `d3.layers.r.p.rules.text` | Les règles de l’appli : un contrat intelligent | قواعد التطبيق: عقد ذكي |
+| `d3.layers.r.p.rules.why` | La page d’Unlock Protocol : des contrats intelligents conçus spécialement pour les adhésions. | صفحة Unlock Protocol: عقود ذكية مصمَّمة خصّيصاً للعضويات. |
+| `d3.layers.r.p.screen.after` | Pas ses mots. | ليست كلماته. |
+| `d3.layers.r.p.screen.say` | Couche un : ce qu’on ouvre, un écran | الطبقة الأولى: ما يفتحه الشخص، شاشة |
+| `d3.layers.r.p.screen.text` | Ce qu’on ouvre : un écran | ما يفتحه الشخص: شاشة |
+| `d3.layers.r.p.screen.why` | Sa page offre des contrats aux bâtisseurs, pas un écran pour fans. | صفحته تعرض عقوداً على البُناة، لا شاشة للمعجبين. |
+| `d3.layers.r.prompt` | Le même croquis. Pointez la couche où la page d’Unlock Protocol se place elle-même. | الرسم نفسه. أشِر إلى الطبقة التي تضع فيها صفحة Unlock Protocol نفسها. |
+| `d3.pair.frame` | Patreon → Fantom associe {1} à {2}, sous {3}. | Patreon → Fantom يجمع بين {1} و{2}، تحت {3}. |
+| `d3.pair.hint.0` | Le côté gauche d’abord : qu’est-ce que Patreon ? | الطرف الأول أولاً: ما هو Patreon؟ |
+| `d3.pair.hint.1` | Puis le côté droit, puis le nom qui y est écrit. | ثم الطرف الثاني، ثم الاسم المكتوب هناك. |
+| `d3.pair.hint.2` | Réponse : une appli · une chaîne · un ancien nom. | الجواب: تطبيق · سلسلة · اسم قديم. |
+| `d3.pair.kuro` | Deux fautes. | خطآن. |
+| `d3.pair.p.c1.text` | une appli | تطبيق |
+| `d3.pair.p.c1.why` | Les pages pour développeurs de Patreon : créateurs, niveaux, membres. Une chose dont on se sert. | صفحات المطوّرين لدى Patreon: المبدعون، والمستويات، والأعضاء. شيء يستخدمه الناس. |
+| `d3.pair.p.c2.text` | une chaîne | سلسلة |
+| `d3.pair.p.c2.why` | La page de la fondation : une plateforme de contrats intelligents où l’on bâtit des applis. | صفحة المؤسّسة: منصّة عقود ذكية تُبنى عليها التطبيقات. |
+| `d3.pair.p.c3.text` | un ancien nom | اسم قديم |
+| `d3.pair.p.c3.why` | La page de la fondation renvoie désormais à un nouveau site : celui de Sonic. | صفحة المؤسّسة تحيل الآن إلى موقع جديد: موقع Sonic. |
+| `d3.pair.p.c4.text` | une appli rivale | تطبيق منافس |
+| `d3.pair.p.c4.why` | Le côté droit n’est pas une appli. C’est là l’erreur. | الطرف الثاني ليس تطبيقاً. هنا الخطأ. |
+| `d3.pair.p.c5.text` | un nouveau nom | اسم جديد |
+| `d3.pair.p.c5.why` | Fantom est le nom inscrit au tableau. Son propre site renvoie désormais à Sonic. | Fantom هو الاسم المكتوب في الجدول. وموقعه نفسه يحيل الآن إلى Sonic. |
+| `d3.pair.p.c6.text` | un navigateur | متصفّح |
+| `d3.pair.p.c6.why` | Aucun navigateur sur cette ligne. | لا متصفّح في هذا السطر. |
+| `d3.pair.prompt` | Dites ce qui ne va pas dans la flèche. Touchez une pastille, puis sa case. | قُل ما الخطأ في السهم. المس رقعة، ثم خانتها. |
+| `d3.pair.r.frame` | À la question « quelle boutique ? », la flèche répond {1}. Une route est {2} une boutique. | حين يُسأل «أيّ متجر؟»، يجيب السهم: {1}. الطريق {2} المتجر. |
+| `d3.pair.r.p.r1.text` | la route | الطريق |
+| `d3.pair.r.p.r1.why` | Une route, c’est ce sur quoi se tiennent les boutiques. Ce n’est pas une boutique. | الطريق هو ما تقوم عليه المتاجر. وليس متجراً. |
+| `d3.pair.r.p.r2.text` | ce qui est sous | ما يقع تحت |
+| `d3.pair.r.p.r2.why` | Une chaîne est sous les applis, comme le dit un guide : on bâtit des applis dessus. | السلسلة تقع تحت التطبيقات، كما يقول دليل: التطبيقات تُبنى عليها. |
+| `d3.pair.r.p.r3.text` | une autre boutique | متجر آخر |
+| `d3.pair.r.p.r3.why` | Ce serait du pareil au même : une appli pour une appli. | سيكون ذلك مثلاً بمثل: تطبيقاً بتطبيق. |
+| `d3.pair.r.p.r4.text` | une boutique moins chère | متجر أرخص |
+| `d3.pair.r.p.r4.why` | Toujours une boutique. L’erreur est de nature, pas de coût. | ما زال متجراً. الخطأ في النوع، لا في الكلفة. |
+| `d3.pair.r.p.r5.text` | pareille à | مثل |
+| `d3.pair.r.p.r5.why` | Une route et une boutique sont des choses de nature différente. | الطريق والمتجر شيئان من نوعين مختلفين. |
+| `d3.pair.r.prompt` | Finissez la comparaison. Touchez une pastille, puis sa case. | أكمِل المقارنة. المس رقعة، ثم خانتها. |
+| `d3.say.hint.0` | Deux phrases gardent la flèche. | سطران يُبقيان السهم. |
+| `d3.say.hint.1` | Demandez si un nom, quel qu’il soit, corrige la nature. | اسأل: هل يُصلح أيّ اسم النوع؟ |
+| `d3.say.hint.2` | Réponse : pas de flèche ici : une chaîne n’est pas une appli. | الجواب: لا سهم هنا: السلسلة ليست تطبيقاً. |
+| `d3.say.kuro` | Barrée. | مشطوب. |
+| `d3.say.p.n1.text` | Patreon → Sonic. Même flèche, nouveau nom. | Patreon → Sonic. السهم نفسه، اسم جديد. |
+| `d3.say.p.n1.why` | La documentation de Sonic parle d’une blockchain de couche 1. Toujours une appli à côté d’une chaîne. | وثائق Sonic تسمّيها سلسلة كتل من الطبقة 1. ما زال تطبيقاً بجانب سلسلة. |
+| `d3.say.p.n2.text` | Patreon → Fantom tient : l’ancienne chaîne est toujours prise en charge. | Patreon → Fantom صامد: السلسلة القديمة ما زالت مدعومة. |
+| `d3.say.p.n2.why` | Prise en charge ou non, c’est une chaîne. Une chaîne ne remplace pas une appli. | مدعومة أم لا، إنها سلسلة. والتطبيق لا تحلّ محلّه سلسلة. |
+| `d3.say.p.n3.text` | Pas de flèche ici : une chaîne n’est pas une appli. | لا سهم هنا: السلسلة ليست تطبيقاً. |
+| `d3.say.p.n3.why` | Les pages de Patreon décrivent des adhésions. Celles de la chaîne, une plateforme pour applis. | صفحات Patreon تصف عضويات. وصفحات السلسلة تصف منصّة للتطبيقات. |
+| `d3.say.prompt` | Samia rédige une correction pour le tableau. Une seule phrase est juste. | سامية تكتب مسوّدة تصحيح للجدول. سطر واحد صائب. |
+| `d3.say.r.p.r1.text` | On peut s’en servir avec un simple e-mail. | يمكن استخدامها ببريد إلكتروني فقط. |
+| `d3.say.r.p.r1.why` | Le site de Sonic : la première étape d’un utilisateur est de se procurer un portefeuille. | موقع Sonic: الخطوة الأولى للمستخدم هي الحصول على محفظة. |
+| `d3.say.r.p.r2.text` | Ses frais se paient par carte. | رسومها تُدفع بالبطاقة. |
+| `d3.say.r.p.r2.why` | Documentation de Sonic : son jeton natif sert à payer les frais de transaction. | وثائق Sonic: رمزها الرقمي الأصلي يُستخدم لدفع رسوم المعاملات. |
+| `d3.say.r.p.r3.text` | Sa documentation nomme son propre jeton pour les frais. | وثائقها تذكر رمزها الرقمي الخاصّ للرسوم. |
+| `d3.say.r.p.r3.why` | Documentation de Sonic : le jeton natif paie les frais de transaction. C’est un crypto-actif. | وثائق Sonic: الرمز الرقمي الأصلي يدفع رسوم المعاملات. وهو أصل مشفّر. |
+| `d3.say.r.prompt` | Trois notes sur l’usage de Sonic. Touchez la vraie. | ثلاث ملاحظات عن استخدام Sonic. المس الصحيحة. |
+| `d3.slip` | Dernier mot du prestataire : la flèche est juste, puisqu’un Patreon du web3 vivrait sur une chaîne. | الكلمة الأخيرة للمورّد: السهم في محلّه، لأنّ السلسلة هي حيث سيقيم Patreon ويب 3. |
+| `d3.slipTag` | ENQUÊTE 13 · exemple inventé | التحقيق 13 · مثال متخيَّل |
+| `d3.stamp.prompt` | Le prestataire, encore : la flèche est juste, c’est sur une chaîne que vivrait un Patreon du web3. Tamponnez : | قول المورّد مرّة أخرى: السهم في محلّه، السلسلة هي حيث سيقيم Patreon ويب 3. اختمه: |
+| `d3.stamp.reveal` | À moitié. On peut bâtir une appli sur une chaîne. La chaîne n’est pas pour autant l’appli. La flèche trompe. | نصف صحيح. يمكن بناء تطبيق على سلسلة. لكنّ السلسلة ليست التطبيق. السهم مضلِّل. |
+| `row` | La coquille : une appli associée à une chaîne, dont le site renvoie désormais à Sonic. Les applis se bâtissent sur les chaînes. | الخطأ المطبعي: تطبيق مقرون بسلسلة، يحيل موقعها الآن إلى Sonic. والتطبيقات تُبنى على السلاسل. |
+| `sticker.back` | Ce que c’est : Fantom, chaîne sous des applis ; son site renvoie à Sonic. Ce que vous détenez : le site de Sonic commence par un portefeuille ; sa documentation nomme un jeton natif de frais. Ce que vous cédez : rien ; Patreon est une appli. L’idée fausse : « une chaîne est une appli qu’on ouvre ». Cités comme exemples, pas comme recommandation. Vérifié le 2026-11-23. | ما هو: Fantom سلسلة تحت التطبيقات؛ وموقعها يحيل إلى Sonic. ما تحوزه: لدى Sonic، يبدأ الموقع المستخدم بمحفظة؛ وتذكر الوثائق رمزاً رقمياً أصلياً للرسوم. ما تتخلّى عنه: لا شيء؛ Patreon تطبيق. الفكرة الخاطئة: «السلسلة تطبيق تفتحه». مذكورة كأمثلة، لا كتوصية. جرى التحقّق في 2026-11-23. |
+| `sticker.line` | Une chaîne n’est pas une appli. | السلسلة ليست تطبيقاً. |
+| `sticker.name` | Distingue appli et chaîne | يميّز التطبيق من السلسلة |
+| `tpl.blog-list` | Blog | المدوّنة |
+| `tpl.chart-rows` | Le tableau | الجدول |
+| `tpl.layers` | Couches | الطبقات |
+| `tpl.notice` | Avis | إشعار |

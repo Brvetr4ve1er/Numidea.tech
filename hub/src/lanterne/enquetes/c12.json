@@ -1,0 +1,1447 @@
+{
+ "id": "c12",
+ "slug": "unlock",
+ "n": 12,
+ "verdict": "no",
+ "names": [
+  "Patreon",
+  "Unlock Protocol"
+ ],
+ "sticker": {
+  "checked": "2026-11-23",
+  "src": [
+   "what",
+   "glossary",
+   "roles",
+   "lock",
+   "patreon-api"
+  ],
+  "law": true
+ },
+ "sources": [
+  {
+   "id": "home",
+   "url": "https://unlock-protocol.com/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "what",
+   "url": "https://docs.unlock-protocol.com/getting-started/what-is-unlock/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "glossary",
+   "url": "https://docs.unlock-protocol.com/getting-started/glossary",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "no-front-end",
+   "url": "https://docs.unlock-protocol.com/getting-started/what-is-unlock/unlock-without-frontend",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "features",
+   "url": "https://docs.unlock-protocol.com/getting-started/what-is-unlock/features-list",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "lock",
+   "url": "https://docs.unlock-protocol.com/core-protocol/public-lock/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "minting",
+   "url": "https://docs.unlock-protocol.com/core-protocol/public-lock/minting-keys",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "renewals",
+   "url": "https://docs.unlock-protocol.com/core-protocol/public-lock/renewals",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "transfers",
+   "url": "https://docs.unlock-protocol.com/core-protocol/public-lock/transfers",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "roles",
+   "url": "https://docs.unlock-protocol.com/core-protocol/public-lock/access-control",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "dashboard",
+   "url": "https://docs.unlock-protocol.com/tools/dashboard",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "checkout",
+   "url": "https://docs.unlock-protocol.com/tools/checkout/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "accounts",
+   "url": "https://docs.unlock-protocol.com/tools/sign-in-with-ethereum/unlock-accounts",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "patreon-api",
+   "url": "https://docs.patreon.com/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "domain",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "rfc2606",
+   "url": "https://www.rfc-editor.org/rfc/rfc2606.txt",
+   "read": "2026-11-23"
+  }
+ ],
+ "depths": [
+  {
+   "id": "unlock.1",
+   "key": "unlock.d1",
+   "level": 1,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "what",
+      "glossary"
+     ]
+    },
+    {
+     "id": "words",
+     "tag": "labels",
+     "kind": "screen",
+     "template": "four-tiles",
+     "law": true,
+     "parts": [
+      {
+       "id": "dash",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "key",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "lock",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "paywall",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "key",
+     "src": [
+      "glossary"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "paywall",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "dash",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "key",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "lock",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "lock",
+      "src": [
+       "glossary"
+      ]
+     }
+    },
+    {
+     "id": "pass",
+     "tag": "read",
+     "kind": "screen",
+     "template": "pass",
+     "law": true,
+     "parts": [
+      {
+       "id": "title",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "owner",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "extend",
+       "caption": true,
+       "glyph": "reload",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "until",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "until",
+     "src": [
+      "renewals",
+      "glossary",
+      "roles"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "pass",
+      "law": true,
+      "parts": [
+       {
+        "id": "title",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "status",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "owner",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "status",
+      "src": [
+       "renewals",
+       "features"
+      ]
+     }
+    },
+    {
+     "id": "two",
+     "tag": "duo",
+     "kind": "duo",
+     "tries": 1,
+     "law": true,
+     "parts": [
+      {
+       "id": "a",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "b",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "a",
+     "src": [
+      "patreon-api",
+      "roles"
+     ],
+     "return": {
+      "kind": "duo",
+      "tries": 1,
+      "law": true,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "b",
+      "src": [
+       "patreon-api",
+       "roles"
+      ]
+     }
+    },
+    {
+     "id": "note",
+     "tag": "note",
+     "kind": "notes",
+     "law": true,
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n2",
+     "mix": true,
+     "src": [
+      "what",
+      "no-front-end",
+      "renewals"
+     ],
+     "return": {
+      "kind": "notes",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r2",
+      "mix": true,
+      "src": [
+       "transfers",
+       "renewals",
+       "lock"
+      ]
+     }
+    },
+    {
+     "id": "page",
+     "tag": "point",
+     "kind": "page",
+     "template": "help-lines",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "dur",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "get",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "pay",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "ask",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "get",
+     "src": [
+      "glossary",
+      "features",
+      "no-front-end",
+      "checkout"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "help-lines",
+      "address": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "dur",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "pay",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "get",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "dur",
+      "src": [
+       "features",
+       "glossary"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "four-tiles",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "contracts",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "dash",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "checkout",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "page",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "contracts",
+     "src": [
+      "what",
+      "no-front-end",
+      "checkout",
+      "dashboard"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "checkout",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "contracts",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "dash",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "contracts",
+      "src": [
+       "no-front-end",
+       "what",
+       "checkout"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "not",
+     "law": true,
+     "src": [
+      "what",
+      "no-front-end",
+      "glossary"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "two"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "page"
+    }
+   ]
+  },
+  {
+   "id": "unlock.2",
+   "key": "unlock.d2",
+   "level": 2,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "renewals",
+      "features"
+     ]
+    },
+    {
+     "id": "back",
+     "tag": "eye",
+     "kind": "screen",
+     "template": "pass",
+     "law": true,
+     "parts": [
+      {
+       "id": "extend",
+       "caption": true,
+       "glyph": "reload",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "status",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "transfer",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "cancel",
+       "caption": true,
+       "glyph": "cross",
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "extend",
+     "src": [
+      "renewals",
+      "transfers",
+      "roles"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "pass",
+      "law": true,
+      "parts": [
+       {
+        "id": "status",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "cancel",
+        "caption": true,
+        "glyph": "cross",
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "extend",
+        "caption": true,
+        "glyph": "reload",
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "transfer",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "extend",
+      "src": [
+       "renewals",
+       "transfers"
+      ]
+     }
+    },
+    {
+     "id": "same",
+     "tag": "duo",
+     "kind": "duo",
+     "tries": 1,
+     "law": true,
+     "parts": [
+      {
+       "id": "a",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "b",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "b",
+     "src": [
+      "renewals"
+     ],
+     "return": {
+      "kind": "duo",
+      "tries": 1,
+      "law": true,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "a",
+      "src": [
+       "renewals"
+      ]
+     }
+    },
+    {
+     "id": "ring",
+     "tag": "ring",
+     "kind": "page",
+     "template": "message",
+     "address": true,
+     "ring": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "l1",
+       "text": true,
+       "say": true,
+       "opens": "night-gym.example.pass-desk.example/join",
+       "after": true
+      },
+      {
+       "id": "own",
+       "text": true,
+       "say": true,
+       "opens": "night-gym.example/join",
+       "after": true
+      },
+      {
+       "id": "l3",
+       "text": true,
+       "say": true,
+       "opens": "night-gym-example.join-pass.example/join",
+       "after": true
+      }
+     ],
+     "answer": "own",
+     "src": [
+      "checkout",
+      "domain",
+      "rfc2606"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "message",
+      "address": true,
+      "ring": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "own",
+        "text": true,
+        "say": true,
+        "opens": "book-club.example/members",
+        "after": true
+       },
+       {
+        "id": "l2",
+        "text": true,
+        "say": true,
+        "opens": "book-club.members.example/book-club.example",
+        "after": true
+       },
+       {
+        "id": "l3",
+        "text": true,
+        "say": true,
+        "opens": "bookclub-example.renew.example/members",
+        "after": true
+       }
+      ],
+      "answer": "own",
+      "src": [
+       "checkout",
+       "domain",
+       "rfc2606"
+      ]
+     }
+    },
+    {
+     "id": "rows",
+     "tag": "rows",
+     "kind": "screen",
+     "template": "settings-rows",
+     "law": true,
+     "parts": [
+      {
+       "id": "dur",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "tr",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "qty",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "per",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "tr",
+     "src": [
+      "transfers",
+      "features",
+      "lock",
+      "minting"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "settings-rows",
+      "law": true,
+      "parts": [
+       {
+        "id": "tr",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "qty",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "dur",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "qty",
+      "src": [
+       "minting",
+       "features"
+      ]
+     }
+    },
+    {
+     "id": "card",
+     "tag": "line",
+     "kind": "page",
+     "template": "help-lines",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "none",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "rev",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "final",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "rev",
+     "src": [
+      "minting",
+      "accounts"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "help-lines",
+      "address": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "member",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "payer",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "nobody",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "payer",
+      "src": [
+       "minting"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "pass",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "key",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "auto",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "until",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "left",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "left",
+     "src": [
+      "renewals"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "pass",
+      "law": true,
+      "parts": [
+       {
+        "id": "ok",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "until",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "key",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "ok",
+      "src": [
+       "renewals"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "half",
+     "law": true,
+     "src": [
+      "renewals"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "ring"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "card"
+    }
+   ]
+  },
+  {
+   "id": "unlock.3",
+   "key": "unlock.d3",
+   "level": 3,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "roles",
+      "lock"
+     ]
+    },
+    {
+     "id": "what",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2"
+     ],
+     "mix": true,
+     "src": [
+      "what",
+      "glossary"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "glossary",
+       "lock"
+      ]
+     }
+    },
+    {
+     "id": "titles",
+     "tag": "read",
+     "kind": "screen",
+     "template": "pass",
+     "law": true,
+     "parts": [
+      {
+       "id": "manager",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "owner",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "lock",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "until",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "manager",
+     "src": [
+      "roles",
+      "glossary"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "pass",
+      "law": true,
+      "parts": [
+       {
+        "id": "manager",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "owner",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "lock",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "owner",
+      "src": [
+       "roles"
+      ]
+     }
+    },
+    {
+     "id": "powers",
+     "tag": "point",
+     "kind": "page",
+     "template": "help-lines",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "list",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "refund",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "add",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "exp",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "exp",
+     "src": [
+      "lock",
+      "dashboard",
+      "roles"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "help-lines",
+      "address": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "list",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "refund",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "exp",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "list",
+      "src": [
+       "dashboard",
+       "features"
+      ]
+     }
+    },
+    {
+     "id": "lost",
+     "tag": "duo",
+     "kind": "duo",
+     "tries": 1,
+     "law": true,
+     "parts": [
+      {
+       "id": "a",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "b",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "a",
+     "src": [
+      "transfers",
+      "lock",
+      "roles"
+     ],
+     "return": {
+      "kind": "duo",
+      "tries": 1,
+      "law": true,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "b",
+      "src": [
+       "patreon-api"
+      ]
+     }
+    },
+    {
+     "id": "held",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2"
+     ],
+     "mix": true,
+     "src": [
+      "roles",
+      "renewals",
+      "patreon-api",
+      "dashboard"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "renewals",
+       "transfers"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "build",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      },
+      {
+       "id": "c6",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2",
+      "c3"
+     ],
+     "mix": true,
+     "src": [
+      "roles",
+      "lock",
+      "transfers"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "roles"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "half",
+     "law": true,
+     "src": [
+      "roles",
+      "lock",
+      "transfers"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "powers"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "held"
+    }
+   ]
+  }
+ ]
+}

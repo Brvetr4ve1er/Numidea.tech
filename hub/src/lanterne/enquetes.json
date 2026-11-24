@@ -90,6 +90,20 @@
     0.12,
     0.535
    ]
+  },
+  {
+   "id": "satchel",
+   "at": [
+    0.19,
+    0.779
+   ]
+  },
+  {
+   "id": "drawers",
+   "at": [
+    0.397,
+    0.916
+   ]
   }
  ],
  "crew": [
@@ -175,64 +189,88 @@
    "id": "farcaster",
    "chapter": 1,
    "file": "c06",
-   "law": true,
-   "later": true
+   "open": true,
+   "verdict": "no",
+   "depths": 3,
+   "slip": "book",
+   "law": true
   },
   {
    "n": 7,
    "id": "key",
    "chapter": 2,
    "file": "c07",
-   "law": true,
-   "later": true
+   "open": true,
+   "verdict": "added",
+   "depths": 3,
+   "slip": "lantern",
+   "law": true
   },
   {
    "n": 8,
    "id": "metamask",
    "chapter": 2,
    "file": "c08",
-   "law": true,
-   "later": true
+   "open": true,
+   "verdict": "partly",
+   "depths": 3,
+   "slip": "satchel",
+   "law": true
   },
   {
    "n": 9,
    "id": "siwe",
    "chapter": 2,
    "file": "c09",
-   "law": true,
-   "later": true
+   "open": true,
+   "verdict": "added",
+   "depths": 3,
+   "slip": "book",
+   "law": true
   },
   {
    "n": 10,
    "id": "ens",
    "chapter": 2,
    "file": "c10",
-   "law": true,
-   "later": true
+   "open": true,
+   "verdict": "partly",
+   "depths": 3,
+   "slip": "book",
+   "law": true
   },
   {
    "n": 11,
    "id": "ipfs",
    "chapter": 2,
    "file": "c11",
-   "law": true,
-   "later": true
+   "open": true,
+   "verdict": "partly",
+   "depths": 3,
+   "slip": "drawers",
+   "law": true
   },
   {
    "n": 12,
    "id": "unlock",
    "chapter": 2,
    "file": "c12",
-   "law": true,
-   "later": true
+   "open": true,
+   "verdict": "no",
+   "depths": 3,
+   "slip": "book",
+   "law": true
   },
   {
    "n": 13,
    "id": "misprint",
    "chapter": 3,
    "file": "c13",
-   "law": true,
-   "later": true
+   "open": true,
+   "verdict": "no",
+   "depths": 3,
+   "slip": "kuro",
+   "law": true
   }
  ],
  "depths": [

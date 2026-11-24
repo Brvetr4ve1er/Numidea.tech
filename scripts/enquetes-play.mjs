@@ -6,7 +6,7 @@
  * never typed here. Each run holds: the end card's numbers equal the core's for the same path; the sticker lands on
  * row 1; a reload keeps progress; no horizontal overflow on any screen; controls 44 px or more, rings and answers 56;
  * dir="rtl" in Arabic; the law band on the steps marked for it; no console error; nothing requested once the page has
- * loaded; no audio context while the radio is off; after a first miss the reason is on screen without a scroll by hand.
+ * loaded but the opened case's two files and a font subset of the site's own its text needs; no audio context while the radio is off; after a first miss the reason is on screen without a scroll by hand.
  * No text under 14 px (the page's floor: BRAND.md, « The night cases »; SPEC asked for 16).
  * Depths 2 and 3, four runs (each depth perfect and with every first answer missed, two of them shown and carried
  * back): the same moves go to the core in Node and to the page, so the core says which step is up; the page must show
@@ -27,6 +27,8 @@ const assert = (ok, what) => { asserts++; if (!ok) errs.push(what); };
 const win = {}; new Function('window', readFileSync(join(ROOT, 'hub/enquetes.js'), 'utf8'))(win);
 const fillIn = (s, v) => String(s).replace(/\{(\w+)\}/g, (m, k) => (v && v[k] != null ? v[k] : m));
 const T0 = 12000;
+/* a font subset of the site's own, asked for once a string needs it: the one request after load besides a case's files */
+const FONT = /^\/(?:assets|hub)\/fonts\/[a-z0-9-]+\.woff2$/;
 
 const DATA0 = JSON.parse(/<script type="application\/json" id="enq-data">([\s\S]*?)<\/script>/.exec(readFileSync(join(ROOT, 'hub/lanterne/enquetes.html'), 'utf8'))[1]);
 const srv = await serve(undefined, { compress: true });
@@ -187,7 +189,7 @@ async function run(lang, w, pathName, path, opt = {}) {
     assert(!/review|révision|مراجعة/i.test(await p.locator('.enq-endcard').textContent()), `${where}: the end card promises no review`);
     await press('stick'); await screenOk(p, where, 'chart-waiting', tag);
     const later = D.season.filter((r) => !r.open).length;
-    assert(await p.locator('.enq-rows .enq-row2').count() === 13 && await p.locator('.enq-row2__soon').count() === later && (await p.locator('.enq-row2__soon').first().textContent()) === T('chart.notYet'), `${where}: thirteen rows, ${later} say « ${T('chart.notYet')} »`);
+    assert(await p.locator('.enq-rows .enq-row2').count() === 13 && await p.locator('.enq-row2__soon').count() === later && (!later || (await p.locator('.enq-row2__soon').first().textContent()) === T('chart.notYet')), `${where}: thirteen rows, ${later} say « ${T('chart.notYet')} »`);
     assert(await p.locator('.enq-row2:not(.enq-row2--mine) a, .enq-row2:not(.enq-row2--mine) button').count() === 0, `${where}: an unwritten row links nowhere`);
     await press('row-c01'); await screenOk(p, where, 'chart-landed', tag);
     assert(await p.locator('.enq-rows .enq-row2').first().locator('.enq-sticker[data-state="1"]').count() === 1, `${where}: the sticker lands on row 1`);
@@ -205,7 +207,7 @@ async function run(lang, w, pathName, path, opt = {}) {
     await p.locator('#enq [data-f="go"]').click({ timeout: T0 });
     assert((await p.locator('.enq-bar__xp').textContent()) === T('ui.xp', { n: E.xp }) && (await p.locator('.enq-bar__rank').textContent()) === T('rank.0'), `${where}: a reload keeps the XP and the title (the season's first title needs 600 XP)`);
     assert(log.console.length === 0, `${where}: console: ${log.console.slice(0, 3).join(' | ')}`);
-    const want1 = C1 ? ['/hub/lanterne/enq/c01.js', `/hub/lanterne/enq/c01.${lang}.js`] : [], late1 = [...new Set(log.late)];
+    const want1 = C1 ? ['/hub/lanterne/enq/c01.js', `/hub/lanterne/enq/c01.${lang}.js`] : [], late1 = [...new Set(log.late)].filter((u) => !FONT.test(u));
     assert(late1.every((u) => want1.includes(u)) && want1.every((u) => late1.includes(u)), `${where}: requested after load: ${late1.slice(0, 4).join(', ') || 'nothing'} (wanted ${want1.join(', ') || 'nothing'})`);
     assert((await p.evaluate(() => window.__ac)) === 0, `${where}: an audio context was made with the radio off`);
   } catch (e) { assert(false, `${where}: ${String(e.message || e).split('\n')[0]}`); }
@@ -314,8 +316,9 @@ async function runDeep(lang, w, depth, mode, id = 'c01', opt = {}) {
     if (mode === 'missed') assert(shown.length === 2 && s.plan.filter((x) => x.ret).length === 2, `${where}: two answers were shown and two came back (${shown.join(', ')})`);
     const said = log.console.filter((m) => !(opt.block && /net::ERR_FAILED/.test(m)));   // the blocked file's own line
     assert(said.length === 0, `${where}: console: ${said.slice(0, 3).join(' | ')}`);
-    /* after load, only the opened case's two files (case 1 too, once it has moved out of the page) */
-    const want = id === 'c01' && !moved1(D) ? [] : [`/hub/lanterne/enq/${id}.js`, `/hub/lanterne/enq/${id}.${lang}.js`], late = [...new Set(log.late)];
+    /* after load, only the opened case's two files (case 1 too, once it has moved out of the page), and any font subset
+       its text needs from the site's own fonts (c10's small capital ɴ is outside the base Latin subset, 2026-11-24) */
+    const want = id === 'c01' && !moved1(D) ? [] : [`/hub/lanterne/enq/${id}.js`, `/hub/lanterne/enq/${id}.${lang}.js`], late = [...new Set(log.late)].filter((u) => !FONT.test(u));
     assert(late.every((u) => want.includes(u)) && want.every((u) => late.includes(u)), `${where}: requested after load: ${late.join(', ') || 'nothing'} (wanted ${want.join(', ') || 'nothing'})`);
     assert((await p.evaluate(() => window.__ac)) === 0, `${where}: an audio context was made with the radio off`);
   } catch (e) { assert(false, `${where}: ${String(e.message || e).split('\n')[0]}`); }
@@ -331,19 +334,26 @@ jobs.push(() => runDeep('en', 1440, 2, 'perfect'));
 jobs.push(() => runDeep('ar', 390, 2, 'missed'));
 jobs.push(() => runDeep('ar', 1440, 3, 'perfect'));
 jobs.push(() => runDeep('fr', 390, 3, 'missed'));
-/* the season's open cases: depth 1 in French at 390, perfect; one depth with every first answer missed, English or Arabic
-   by turn; one case's file blocked once */
-const SEASON = ['c02', 'c03', 'c04', 'c05'];
+/* the season's open cases, every one the chart opens (c02 to c13 on 2026-11-24): depth 1 in French at 390, perfect; one
+   depth with every first answer missed, English or Arabic by turn; one case's file blocked once */
+const SEASON = DATA0.season.filter((r) => r.open && r.file !== 'c01').map((r) => r.file);
 const seasonJobs = [];
 SEASON.forEach((id, i) => {
   seasonJobs.push(() => runDeep('fr', 390, 1, 'perfect', id, { block: i === 1 }));
   if (process.env.ENQ_ONLY !== 'season1') seasonJobs.push(() => runDeep(i % 2 ? 'ar' : 'en', 390, 2 + (i % 2), 'missed', id));
 });
+/* ENQ_ONLY=batch2: the cases the release of 2026-11-24 opened (c06 to c13), with misses: depth 1 in French at 390, and
+   c07, c09 and c11 at depths 2 and 3 in Arabic at 390 and in English at 1440 (screenshots with ENQ_SHOTS) */
+if (process.env.ENQ_ONLY === 'batch2') {
+  seasonJobs.length = 0;
+  for (const id of ['c06', 'c07', 'c08', 'c09', 'c10', 'c11', 'c12', 'c13']) seasonJobs.push(() => runDeep('fr', 390, 1, 'missed', id));
+  for (const id of ['c07', 'c09', 'c11']) for (const d of [2, 3]) seasonJobs.push(() => runDeep('ar', 390, d, 'missed', id), () => runDeep('en', 1440, d, 'missed', id));
+}
 /* ENQ_ONLY=season or season1 (depth 1 only) plays the open cases alone, for a quick look while they are written */
-if (/^season/.test(process.env.ENQ_ONLY || '')) jobs.length = 0;
+if (/^season|^batch2$/.test(process.env.ENQ_ONLY || '')) jobs.length = 0;
 jobs.push(...seasonJobs);
 // scripts disabled: the plain text
-if (!/^season/.test(process.env.ENQ_ONLY || '')) jobs.push(async () => {
+if (!/^season|^batch2$/.test(process.env.ENQ_ONLY || '')) jobs.push(async () => {
   for (const lang of ['fr']) {
     const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false });
     try {
@@ -361,4 +371,4 @@ if (!/^season/.test(process.env.ENQ_ONLY || '')) jobs.push(async () => {
 const queue = jobs.slice(); await Promise.all([0, 1, 2, 3].map(async () => { while (queue.length) await queue.shift()(); }));
 await browser.close(); await srv.close();
 if (errs.length) { console.error(`✗ enquetes-play: ${errs.length} of ${asserts} checks failed\n  ` + errs.join('\n  ')); process.exit(1); }
-console.log(`✓ enquetes-play: ${asserts} checks in ${jobs.length} runs (case 1: depth 1, perfect and with misses × 390 and 1440 × fr, en, ar; depths 2 and 3, perfect and missed; reduced motion; the list view by keyboard; no script. The season: c02 to c05 from the chart, depth 1 in French at 390 perfect, one depth missed in English or Arabic, a blocked case file)`);
+console.log(`✓ enquetes-play: ${asserts} checks in ${jobs.length} runs (case 1: depth 1, perfect and with misses × 390 and 1440 × fr, en, ar; depths 2 and 3, perfect and missed; reduced motion; the list view by keyboard; no script. The season: ${SEASON[0]} to ${SEASON[SEASON.length - 1]} from the chart, depth 1 in French at 390 perfect, one depth missed in English or Arabic, a blocked case file)`);

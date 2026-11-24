@@ -7533,6 +7533,8 @@
         "verdict": "Checked on the chart: {v}. {n} of 3 written depths closed.",
         "yes": "yes",
         "partly": "partly",
+        "no": "no",
+        "added": "a line the team added",
         "verdictN": "Checked on the chart: {v}. {n} of {m} written depths closed.",
         "rowAria": "{pair}. Its depths.",
         "played": "closed",
@@ -7574,36 +7576,54 @@
         "book": {
           "btn": "THE CHART",
           "label": "The giant open book. Button: the chart.",
-          "line": "The open book holds the supplier's chart: ten arrows, as rows. A closed case sticks here. Corrections go beside the row. The misprints stay legible.",
+          "line": "The open book holds the supplier's chart: ten arrows, plus three rows added. A closed case sticks here. The misprints stay legible.",
           "name": "The open book",
-          "slip": "OPEN THE SLIP · 4 MIN"
+          "slip": "OPEN THE SLIP · 4 MIN",
+          "word": "Book"
         },
         "kuro": {
           "btn": "THE CARD",
           "label": "Kūro, the black cat, asleep on the counter. Button: the card.",
           "line": "Kūro sleeps on the counter and judges every answer. Tap him for the card: title, flames, tools. He explains nothing.",
-          "name": "Kūro"
+          "name": "Kūro",
+          "word": "Kūro"
         },
         "lantern": {
           "btn": "OPEN THE SLIP · 4 MIN",
           "label": "The lantern on the counter. Button: open the slip, four minutes.",
           "line": "The lantern holds tonight's slip. Tap it: four minutes, six answers. Three flames light on first tries. None goes out; Yasser tried.",
-          "name": "The lantern"
+          "name": "The lantern",
+          "word": "Lantern"
         },
         "awning": {
           "label": "The awning over the shelves. Tonight's slip is here. Button: open it.",
           "name": "The awning",
-          "line": "Tonight's slip is tucked under the awning, where Techno Pigeon waits. He brought it. He did not read it."
+          "line": "Tonight's slip is tucked under the awning, where Techno Pigeon waits. He brought it. He did not read it.",
+          "word": "Awning"
         },
         "shelves": {
           "label": "The shelves. Tonight's slip is here. Button: open it.",
           "name": "The shelves",
-          "line": "Tonight's slip sits between two books on the shelves. Nobody shelved it there. It waits."
+          "line": "Tonight's slip sits between two books on the shelves. Nobody shelved it there. It waits.",
+          "word": "Shelves"
         },
         "headphones": {
           "label": "Yasser's headphones. Tonight's slip is here. Button: open it.",
           "name": "Yasser's headphones",
-          "line": "Tonight's slip is folded into Yasser's headphones. He says he was not listening. The slip says nothing."
+          "line": "Tonight's slip is folded into Yasser's headphones. He says he was not listening. The slip says nothing.",
+          "word": "Headphones"
+        },
+        "satchel": {
+          "word": "Satchel",
+          "label": "Yasser's satchel. Tonight's slip is here. Button: open it.",
+          "name": "Yasser's satchel",
+          "line": "Tonight's slip sticks out of Yasser's satchel. He says he did not pack it. It is there anyway."
+        },
+        "drawers": {
+          "word": "Drawers",
+          "label": "The drawers under the counter. Tonight's slip is here. Button: open it.",
+          "name": "The drawers",
+          "line": "Tonight's slip is filed in the drawers under the counter. Nobody remembers filing it."
         }
       },
       "season": {
@@ -7657,7 +7677,7 @@
           "line": "Removed from the site is not removed from the network. Samia asks who decides.",
           "pair": "YouTube → Odysee"
         },
-        "premise": "Samia's supplier sent a chart of ten arrows. One is checked a night. She stays off the chain.",
+        "premise": "Samia's supplier sent a chart of ten arrows. The crew adds three rows: two missing questions and one correction. One is checked a night. She stays off the chain.",
         "presearch": {
           "line": "A search that asks other engines. Samia wonders who actually answers.",
           "pair": "Google → Presearch"
@@ -7734,7 +7754,7 @@
           "line": "A claim about \"web3\" waits. You point at the proof.",
           "open": "OPEN THE STALL",
           "kept": "A slip left open starts again at its first question. Closed depths and XP stay.",
-          "season": "Season one: Ten arrows",
+          "season": "Season one: ten arrows, thirteen rows",
           "start": "LIGHT THE LANTERN",
           "title": "NIGHT CASES"
         },
@@ -7790,7 +7810,7 @@
         "pos": "{i} of {n}",
         "posRet": "Return {i} of {n}",
         "posStamp": "Stamp",
-        "pvAria": "The evidence waits behind the bet.",
+        "pvAria": "Sealed until your bet",
         "quote": "\"{t}\"",
         "result": "You bet {bet}. You stamp {stamp}. Checked: {checked}.",
         "right": "Right.",
@@ -7798,6 +7818,7 @@
         "sealed": "Sealed",
         "skip": "Skip to the game",
         "slipH": "THE SLIP",
+        "slipKept": "Leave or reload before the stamp, and this slip starts again at its first question. XP earned stays.",
         "slot": "slot {n}",
         "slotEmpty": "Slot {n}, empty",
         "slotFull": "Slot {n}: {t}",
@@ -7842,7 +7863,10 @@
           "shelves": "Tonight's slip: on the shelves · 4 min",
           "headphones": "Tonight's slip: in Yasser's headphones · 4 min",
           "book": "Tonight's slip: in the open book · 4 min",
-          "lantern": "Tonight's slip: in the lantern · 4 min"
+          "lantern": "Tonight's slip: in the lantern · 4 min",
+          "satchel": "Tonight's slip: in Yasser's satchel · 4 min",
+          "drawers": "Tonight's slip: in the drawers · 4 min",
+          "kuro": "Tonight's slip: under Kūro · 4 min"
         },
         "stallIdle4": "Four rings on the painting. A tap only looks.",
         "goalNone2": "No new slip tonight. Replay a depth from the chart.",
@@ -7902,7 +7926,7 @@
             "0": "Bet. Six answers. Stamp. A miss costs nothing."
           },
           "greet": {
-            "0": "Stall's open. A slip is waiting. Four minutes."
+            "0": "Tap the slip: six questions, four minutes."
           },
           "noFlameLit": {
             "0": "No flame tonight. The case still closed."

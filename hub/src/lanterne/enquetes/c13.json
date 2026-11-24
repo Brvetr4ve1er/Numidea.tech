@@ -1,0 +1,1482 @@
+{
+ "id": "c13",
+ "slug": "misprint",
+ "n": 13,
+ "verdict": "no",
+ "names": [
+  "Chrome",
+  "Brave",
+  "Spotify",
+  "Audius",
+  "Patreon",
+  "Fantom",
+  "Sonic",
+  "Unlock Protocol"
+ ],
+ "sticker": {
+  "checked": "2026-11-23",
+  "src": [
+   "foundation-home",
+   "sonic-docs",
+   "sonic-home",
+   "sonic-mainnet-2024",
+   "patreon-api"
+  ],
+  "law": true
+ },
+ "sources": [
+  {
+   "id": "foundation-home",
+   "url": "https://fantom.foundation/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "foundation-blog-2023",
+   "url": "https://blog.fantom.foundation/fantom-foundation-launches-sonic-labs/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "sonic-home",
+   "url": "https://www.soniclabs.com/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "sonic-docs",
+   "url": "https://docs.soniclabs.com/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "sonic-overview",
+   "url": "https://docs.soniclabs.com/sonic/overview",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "sonic-wallets",
+   "url": "https://docs.soniclabs.com/sonic/wallets",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "sonic-faq",
+   "url": "https://docs.soniclabs.com/sonic/faq",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "sonic-mainnet-2024",
+   "url": "https://www.soniclabs.com/blog/sonic-mainnet-launch-evm-compatible-verifiable-10-000-tps-and-sub-second-finality/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "sonic-blog-2026-06",
+   "url": "https://www.soniclabs.com/blog/the-first-1/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "sonic-blog-2026-09",
+   "url": "https://www.soniclabs.com/blog/sponsored-by-design/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "sonic-blog",
+   "url": "https://www.soniclabs.com/blog/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "patreon-api",
+   "url": "https://docs.patreon.com/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "patreon-news",
+   "url": "https://news.patreon.com/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "unlock-home",
+   "url": "https://unlock-protocol.com/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "dapp-guide",
+   "url": "https://ethereum.org/developers/docs/dapps/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "chain-guide",
+   "url": "https://ethereum.org/developers/docs/intro-to-ethereum/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "brave-what",
+   "url": "https://brave.com/privacy-features/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "audius-what",
+   "url": "https://help.audius.co/product/costs-and-fees",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "url",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "domain",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "rfc2606",
+   "url": "https://www.rfc-editor.org/rfc/rfc2606.txt",
+   "read": "2026-11-23"
+  }
+ ],
+ "depths": [
+  {
+   "id": "misprint.1",
+   "key": "misprint.d1",
+   "level": 1,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "foundation-home",
+      "patreon-api"
+     ]
+    },
+    {
+     "id": "row",
+     "tag": "labels",
+     "kind": "screen",
+     "template": "chart-rows",
+     "law": true,
+     "parts": [
+      {
+       "id": "brave",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "audius",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "fantom",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "reload",
+       "caption": true,
+       "glyph": "reload",
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "fantom",
+     "src": [
+      "foundation-home",
+      "brave-what",
+      "audius-what"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "audius",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "sonic",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "brave",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "sonic",
+      "src": [
+       "sonic-docs",
+       "brave-what",
+       "audius-what"
+      ]
+     }
+    },
+    {
+     "id": "two",
+     "tag": "duo",
+     "kind": "duo",
+     "tries": 1,
+     "law": true,
+     "parts": [
+      {
+       "id": "a",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "b",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "a",
+     "src": [
+      "patreon-api",
+      "patreon-news",
+      "foundation-home"
+     ],
+     "return": {
+      "kind": "duo",
+      "tries": 1,
+      "law": true,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "b",
+      "src": [
+       "foundation-home"
+      ]
+     }
+    },
+    {
+     "id": "name",
+     "tag": "read",
+     "kind": "screen",
+     "template": "notice",
+     "law": true,
+     "parts": [
+      {
+       "id": "banner",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "new",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "node",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "eco",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "new",
+     "src": [
+      "foundation-home",
+      "sonic-home"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "notice",
+      "law": true,
+      "parts": [
+       {
+        "id": "new",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "docs",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "banner",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "banner",
+      "src": [
+       "foundation-home"
+      ]
+     }
+    },
+    {
+     "id": "note",
+     "tag": "note",
+     "kind": "notes",
+     "law": true,
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n2",
+     "mix": true,
+     "src": [
+      "foundation-home",
+      "sonic-blog-2026-06"
+     ],
+     "return": {
+      "kind": "notes",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r3",
+      "mix": true,
+      "src": [
+       "sonic-docs",
+       "sonic-faq"
+      ]
+     }
+    },
+    {
+     "id": "fee",
+     "tag": "point",
+     "kind": "screen",
+     "template": "four-tiles",
+     "law": true,
+     "parts": [
+      {
+       "id": "card",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "free",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "token",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "token",
+     "src": [
+      "sonic-docs",
+      "sonic-overview",
+      "sonic-blog-2026-09"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "wallet",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "creator",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "tier",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "wallet",
+      "src": [
+       "sonic-home",
+       "patreon-api"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "four-tiles",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "browser",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "music",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "tiers",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "platform",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "platform",
+     "src": [
+      "foundation-home",
+      "patreon-api",
+      "brave-what",
+      "audius-what"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "members",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "nodes",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "fees",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "members",
+      "src": [
+       "patreon-api",
+       "foundation-home",
+       "sonic-docs"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "not",
+     "law": true,
+     "src": [
+      "foundation-home",
+      "patreon-api"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "name"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "fee"
+    }
+   ]
+  },
+  {
+   "id": "misprint.2",
+   "key": "misprint.d2",
+   "level": 2,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "foundation-home",
+      "sonic-mainnet-2024",
+      "sonic-blog-2026-06"
+     ]
+    },
+    {
+     "id": "notice",
+     "tag": "read",
+     "kind": "screen",
+     "template": "notice",
+     "law": true,
+     "parts": [
+      {
+       "id": "banner",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "kept",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "new",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "close",
+       "caption": true,
+       "glyph": "cross",
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "kept",
+     "src": [
+      "foundation-home",
+      "sonic-blog-2026-06"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "notice",
+      "law": true,
+      "parts": [
+       {
+        "id": "banner",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "kept",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "new",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "new",
+      "src": [
+       "foundation-home",
+       "sonic-home"
+      ]
+     }
+    },
+    {
+     "id": "diff",
+     "tag": "compare",
+     "kind": "diff",
+     "law": true,
+     "a": [
+      "foundation.",
+      "old-chain.example",
+      "/notice"
+     ],
+     "b": [
+      "foundation.",
+      "old-chain.example.swap-now.example",
+      "/notice-2"
+     ],
+     "answer": 1,
+     "src": [
+      "url",
+      "domain",
+      "rfc2606"
+     ],
+     "return": {
+      "kind": "diff",
+      "law": true,
+      "a": [
+       "foundation.",
+       "old-chain.example",
+       "/notice"
+      ],
+      "b": [
+       "foundation.",
+       "old-chaln.example",
+       "/notice/en"
+      ],
+      "answer": 1,
+      "src": [
+       "url",
+       "domain",
+       "rfc2606"
+      ]
+     }
+    },
+    {
+     "id": "ring",
+     "tag": "ring",
+     "kind": "page",
+     "template": "results",
+     "address": true,
+     "ring": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "ad",
+       "text": true,
+       "say": true,
+       "mark": true,
+       "opens": "old-chain-upgrade.example/swap",
+       "after": true
+      },
+      {
+       "id": "fake",
+       "text": true,
+       "say": true,
+       "opens": "foundation.old-chain.example.claims.example/notice",
+       "after": true
+      },
+      {
+       "id": "own",
+       "text": true,
+       "say": true,
+       "opens": "foundation.old-chain.example/notice",
+       "after": true
+      }
+     ],
+     "answer": "own",
+     "src": [
+      "foundation-home",
+      "url",
+      "domain",
+      "rfc2606"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "message",
+      "address": true,
+      "ring": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "l1",
+        "text": true,
+        "say": true,
+        "opens": "new-chain.example/",
+        "after": true
+       },
+       {
+        "id": "l2",
+        "text": true,
+        "say": true,
+        "opens": "new-chain.example.bonus.example/",
+        "after": true
+       },
+       {
+        "id": "l3",
+        "text": true,
+        "say": true,
+        "opens": "new-chaln.example/",
+        "after": true
+       }
+      ],
+      "answer": "l1",
+      "src": [
+       "sonic-home",
+       "url",
+       "domain",
+       "rfc2606"
+      ]
+     }
+    },
+    {
+     "id": "dates",
+     "tag": "rows",
+     "kind": "screen",
+     "template": "blog-list",
+     "law": true,
+     "parts": [
+      {
+       "id": "d23",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "d24",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "d26",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "d26",
+     "src": [
+      "foundation-blog-2023",
+      "sonic-mainnet-2024",
+      "sonic-blog"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "blog-list",
+      "law": true,
+      "parts": [
+       {
+        "id": "d23",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "d24",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "d26",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "d24",
+      "src": [
+       "foundation-blog-2023",
+       "sonic-mainnet-2024",
+       "sonic-blog"
+      ]
+     }
+    },
+    {
+     "id": "card",
+     "tag": "rows",
+     "kind": "screen",
+     "template": "settings-rows",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "sym",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "name",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "id",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "sym",
+     "src": [
+      "sonic-docs",
+      "sonic-wallets",
+      "sonic-overview"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "mail",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "follow",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "add",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "add",
+      "src": [
+       "sonic-wallets",
+       "patreon-api"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "four-tiles",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "off",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "kind",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "app",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "fixed",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "kind",
+     "src": [
+      "sonic-docs",
+      "patreon-api",
+      "foundation-home",
+      "sonic-blog-2026-06"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "law": true,
+      "parts": [
+       {
+        "id": "name",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "app",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "free",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "name",
+      "src": [
+       "foundation-home",
+       "sonic-docs",
+       "sonic-mainnet-2024"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "half",
+     "law": true,
+     "src": [
+      "foundation-home",
+      "sonic-mainnet-2024",
+      "sonic-docs",
+      "sonic-blog-2026-06"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "ring"
+    },
+    {
+     "id": "b",
+     "who": "raven",
+     "after": "card"
+    }
+   ]
+  },
+  {
+   "id": "misprint.3",
+   "key": "misprint.d3",
+   "level": 3,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "sonic-faq",
+      "unlock-home",
+      "dapp-guide"
+     ]
+    },
+    {
+     "id": "layers",
+     "tag": "point",
+     "kind": "page",
+     "template": "layers",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "screen",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "rules",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "ledger",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "ledger",
+     "src": [
+      "dapp-guide",
+      "chain-guide",
+      "sonic-docs"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "layers",
+      "address": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "screen",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "rules",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "ledger",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "rules",
+      "src": [
+       "unlock-home",
+       "dapp-guide"
+      ]
+     }
+    },
+    {
+     "id": "chain",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2"
+     ],
+     "mix": true,
+     "src": [
+      "chain-guide",
+      "sonic-docs",
+      "sonic-faq"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       },
+       {
+        "id": "r5",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "dapp-guide"
+      ]
+     }
+    },
+    {
+     "id": "pair",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      },
+      {
+       "id": "c6",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2",
+      "c3"
+     ],
+     "mix": true,
+     "src": [
+      "patreon-api",
+      "foundation-home",
+      "sonic-mainnet-2024"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       },
+       {
+        "id": "r5",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "dapp-guide",
+       "chain-guide"
+      ]
+     }
+    },
+    {
+     "id": "say",
+     "tag": "note",
+     "kind": "notes",
+     "law": true,
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n3",
+     "mix": true,
+     "src": [
+      "sonic-docs",
+      "foundation-home",
+      "unlock-home",
+      "patreon-api"
+     ],
+     "return": {
+      "kind": "notes",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r3",
+      "mix": true,
+      "src": [
+       "sonic-docs",
+       "sonic-home",
+       "sonic-wallets"
+      ]
+     }
+    },
+    {
+     "id": "hold",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      },
+      {
+       "id": "c6",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2",
+      "c3"
+     ],
+     "mix": true,
+     "src": [
+      "sonic-docs",
+      "sonic-overview",
+      "sonic-wallets"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       },
+       {
+        "id": "r5",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "patreon-api"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "build",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      },
+      {
+       "id": "c6",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2",
+      "c3"
+     ],
+     "mix": true,
+     "src": [
+      "sonic-faq",
+      "unlock-home",
+      "dapp-guide"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       },
+       {
+        "id": "r5",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "unlock-home"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "half",
+     "law": true,
+     "src": [
+      "sonic-faq",
+      "unlock-home",
+      "dapp-guide",
+      "sonic-docs"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "pair"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "hold"
+    }
+   ]
+  }
+ ]
+}

@@ -88,7 +88,7 @@ export const SEASON_UI = ['ui.goalAt.awning', 'ui.goalAt.shelves', 'ui.goalAt.he
 export function enqKeys(E) {
   const K = [];
   const ui = ['title', 'desc', 'mast', 'shelf.k', 'shelf.t', 'shelf.go', 'ui.skip', 'ui.door.label', 'ui.door.title', 'ui.door.season', 'ui.door.line', 'ui.door.start', 'ui.door.open', 'ui.door.kept', 'ui.door.alt',
-    'ui.sound.off', 'ui.sound.on', 'ui.sound.aria', 'ui.leave.h', 'ui.leave.t', 'ui.leave.stay', 'ui.leave.go', 'ui.list.on', 'ui.list.off', 'ui.list.short', 'ui.stallAlt', 'ui.stallName', 'ui.stallIdle', 'ui.goal', 'ui.goalNone', 'ui.close', 'ui.toDoor', 'ui.toStall', 'ui.stop',
+    'ui.slipKept', 'ui.sound.off', 'ui.sound.on', 'ui.sound.aria', 'ui.leave.h', 'ui.leave.t', 'ui.leave.stay', 'ui.leave.go', 'ui.list.on', 'ui.list.off', 'ui.list.short', 'ui.stallAlt', 'ui.stallName', 'ui.stallIdle', 'ui.goal', 'ui.goalNone', 'ui.close', 'ui.toDoor', 'ui.toStall', 'ui.stop',
     'ui.crew.aria', 'ui.crew.h', 'ui.btn.slip', 'ui.btn.chart', 'ui.btn.card', 'ui.btn.replay', 'ui.fact.closed', 'ui.fact.flames', 'ui.fact.slip', 'ui.fact.noSlip', 'ui.fact.tools', 'ui.slipH', 'ui.pvAria',
     'ui.pos', 'ui.posRet', 'ui.posStamp', 'ui.flames', 'ui.betOpen', 'ui.betChip', 'ui.xp', 'ui.hint', 'ui.hint3', 'ui.eye', 'ui.continue', 'ui.closeCase', 'ui.notThis', 'ui.tryAgain', 'ui.right', 'ui.flame', 'ui.answer',
     'ui.wrongSlot', 'ui.slot', 'ui.slotFull', 'ui.slotEmpty', 'ui.placed', 'ui.gone', 'ui.xpGain', 'ui.xpRun', 'ui.xp0', 'ui.sealed', 'ui.says', 'ui.quote', 'ui.noReturn', 'ui.bossNoReturn', 'ui.thirdQueued',
@@ -112,6 +112,13 @@ export function enqKeys(E) {
   for (const o of opts) K.push([`${P}ui.opt.${o}`, '']);
   for (const t of new Set([...tpls, ...SHELL_TPL])) K.push([`${P}tpl.${t}`, '']);
   for (const r of E.rings) K.push([`${P}ring.${r.id}.label`, ''], [`${P}ring.${r.id}.name`, ''], [`${P}ring.${r.id}.line`, 'look'], [`${P}ring.${r.id}.btn`, '']);
+  /* a place tonight's slip can sit on draws a fourth ring there; every ring has a one-word label under it (2026-11-24) */
+  for (const p of E.places) K.push([`${P}ring.${p.id}.label`, ''], [`${P}ring.${p.id}.name`, ''], [`${P}ring.${p.id}.line`, 'look'], [`${P}ui.goalAt.${p.id}`, '']);
+  for (const r of [...E.rings, ...E.places]) K.push([`${P}ring.${r.id}.word`, 'word']);
+  for (const r of E.season) if (r.open && r.slip) K.push([`${P}ui.goalAt.${r.slip}`, '']);
+  /* the chart prints a closed row's verdict as chart.<verdict>: every verdict a row carries has its word in the three
+     dictionaries (2026-11-24: « no » and « added » had none, and the line printed an empty verdict) */
+  for (const r of E.season) if (r.verdict) K.push([`${P}chart.${r.verdict}`, '']);
   for (const s of E.season) { K.push([`${P}season.${s.id}.pair`, ''], [`${P}season.${s.id}.line`, '']); if (s.file === 'c01' && E.cases && E.cases.length) K.push([`${P}season.${s.id}.open`, '']); }
   for (let i = 1; i <= E.chapters; i++) K.push([`${P}season.ch.${i}.name`, ''], [`${P}season.ch.${i}.line`, '']);
   for (const d of E.depths) if (d.playable) K.push([`${P}depth.${d.n}.name`, ''], [`${P}depth.${d.n}.verbs`, '']);
@@ -125,7 +132,7 @@ export const ENQ_VOICES = [['kuro', 'hit', [0, 1, 2, 3, 4]], ['kuro', 'miss', [0
   ['pigeon', 'idle', [2]], ['pigeon', 'queued', [0]], ['raven', 'idle', [2]], ['ratman', 'idle', [0, 2]], ['ratman', 'hint', [0, 1, 2]], ['ratman', 'toolArrives', [0]]];
 /* left out of the page (tapes, the journal, the review round): never named while they are */
 export const LEFT_OUT = { fr: /magnétophones?|cassettes?|\bjournal\b|\brévisions?\b/i, en: /\brecorders?\b|\btapes?\b|\bjournal\b|\breviews?\b/i, ar: /آلة التسجيل|مسجّل|مسجِّل|كاسيت|شريط التسجيل|دفتر اليوميات|مراجعة/ };
-const LIMIT = { slip: 20, prompt: 20, why: 20, hint: 20, reveal: 20, bubble: 12, look: 25, after: 5, back: 60, kuro: 3 };
+const LIMIT = { slip: 20, prompt: 20, why: 20, hint: 20, reveal: 20, bubble: 12, look: 25, after: 5, back: 60, kuro: 3, word: 1 };
 const COUNT = { screen: [3, 5], page: [3, 4], notes: [3, 3], duo: [2, 2], build: [2, 6] };
 const VERDICTS = ['yes', 'partly', 'no', 'added'];
 const PLACES = ['awning', 'shelves', 'headphones', 'book', 'lantern', 'satchel', 'drawers', 'kuro'];
@@ -156,7 +163,8 @@ export function enquetes(h) {
     if (!/^c\d\d$/.test(r.file || '') || r.file !== `c${String(r.n).padStart(2, '0')}`) bad(`row ${r.n}: its file is c${String(r.n).padStart(2, '0')}`);
     if (r.open && (!VERDICTS.includes(r.verdict) || r.depths !== 3 || !PLACES.includes(r.slip))) bad(`row ${r.n}: an open row carries its verdict, its three written depths and where its slip sits`);
     if (r.open && r.later) bad(`row ${r.n}: open and later at once`);
-    if (r.open && r.slip !== 'book' && r.slip !== 'lantern' && !E.places.some((p) => p.id === r.slip)) bad(`row ${r.n}: its slip sits on ${r.slip}, which has no ring`);
+    /* a slip in the book or under Kūro adds no ring (that fixed ring's sheet opens it); the lantern is the slip's own ring */
+    if (r.open && !E.rings.some((x) => x.id === r.slip) && !E.places.some((p) => p.id === r.slip)) bad(`row ${r.n}: its slip sits on ${r.slip}, which has no ring`);
   }
 
   /* ---------------- the open cases ---------------- */
@@ -232,6 +240,9 @@ export function enquetes(h) {
       for (const s of [bet, stamp]) for (const x of s.src || []) if (!srcIds.has(x)) fail(`${cw} ${w}/${s.id}: src "${x}" is not in its sources`);
       for (const s of scored) {
         bodyOk(`${w}/${s.id}`, s, false);
+        /* the eye flower's button shows at depth 2, off the objection, on a step with a captioned part: a step tagged « eye »
+           (« tap the eye flower ») is one of those, or it names a button that is not there */
+        if (s.tag === 'eye' && (lv.level !== 2 || s.boss || !(s.parts || []).some((t) => t.caption))) fail(`${cw} ${w}/${s.id}: tagged « eye », but the eye flower's button shows only at depth 2, off the objection, on a step with a captioned part`);
         if (!s.return) fail(`${cw} ${w}/${s.id}: no return`); else { bodyOk(`${w}/${s.id} (return)`, s.return, true); if (s.return.kind !== s.kind) fail(`${cw} ${w}/${s.id}: its return is another kind (${s.return.kind}); a return is the same kind on a new surface`); }
       }
       /* depth 1 holds one item without labels and one note; depth 2 one page opened with the ring */

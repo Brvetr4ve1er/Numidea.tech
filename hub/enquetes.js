@@ -13,8 +13,10 @@
 
    Structure comes from the page's #enq-data block (hub/src/lanterne/
    enquetes.json), words from the page's dictionary (lant.enq.*).
-   Progress is one localStorage key; nothing is sent, and no request
-   is made after the page has loaded. Sound is eight short tones under
+   Progress is one localStorage key; nothing is sent, and after the page
+   has loaded the only requests are an opened case's two files and a
+   font subset its text may need (a small capital ɴ is outside the base
+   Latin one), all from the site itself. Sound is eight short tones under
    the radio's switch: no audio context exists before the radio plays.
    One move per tap, 300 ms at most, none under reduced motion or the
    Mouvement toggle. No streak, no clock, no lock: flames light and
@@ -322,7 +324,21 @@
   /* the open cases' files call NightCases.add({ id, data }) and NightCases.add({ id, lang, strings }); the page's view
      takes them (before it runs, they wait here) */
   var waiting = [];
-  G.NightCases = { core: { create: create }, add: function (o) { waiting.push(o); } };
+  /* in Arabic, a Latin run that holds a hyphen, a dot, a slash, an @, a colon or an ellipsis (an invented address, a
+     handle, a file, a shortened hex or content address, a date « 2026-11-22 », the law's « 25-10 ») is read right to left
+     in pieces: « 25-10 » shows as « 10-25 », « /download » loses its slash to the other side, and an address broken at
+     its hyphen shows the hyphen on the wrong side. split() marks each such run (with the Latin words around it, so that
+     « Sign-In with Ethereum » stays one piece); the view sets each in its own left-to-right <bdi>, which breaks only
+     after a dot, a slash or a space. scripts/enquetes-lint.mjs reads every Arabic string with it. */
+  var LW = 'A-Za-z0-9_À-ɏɐ-ʯᴀ-ᶿ', LTOK = '[@/.]?[' + LW + ']+(?:[-./@:…]+[' + LW + ']+)*/?';
+  var LRUN = new RegExp(LTOK + '(?: ' + LTOK + ')*', 'g'), LJOIN = /[-.\/@:…]/;
+  function split(text) {
+    text = String(text); var out = [], at = 0;
+    text.replace(LRUN, function (m, i) { if (!LJOIN.test(m)) return m; if (i > at) out.push({ t: text.slice(at, i) }); out.push({ t: m, iso: true }); at = i + m.length; return m; });
+    if (at < text.length) out.push({ t: text.slice(at) });
+    return out;
+  }
+  G.NightCases = { core: { create: create }, split: split, add: function (o) { waiting.push(o); } };
   if (typeof document === 'undefined') return;
 
   /* ======================= the view ======================= */
@@ -413,15 +429,26 @@
   }
 
   /* ---- small builders ---- */
-  /* in Arabic a chain of numbers with hyphens (« 25-10 », « 2026-11-22 ») is read right to left and shows as « 10-25 »,
-     and an address piece (« /download ») loses its slash to the other side: each one is set in its own <bdi> (same text) */
-  var PAIR = /\d+(?:-\d+)+|\/?[A-Za-z][A-Za-z0-9-]*(?:[.\/][A-Za-z0-9-]+)+|\/[A-Za-z][A-Za-z0-9-]*/g;
+  /* in Arabic each Latin run split() marks goes in its own <bdi dir="ltr"> (same text) that does not break (.enq-tok__s):
+     an address of more than 30 characters may wrap after a dot or a slash (a <wbr> there), and a space still breaks */
   function setText(n, text) {
     text = String(text);
-    if (root.getAttribute('dir') !== 'rtl' || text.search(PAIR) === -1) { n.textContent = text; return; }
-    var at = 0; text.replace(PAIR, function (m, i) { if (i > at) n.appendChild(d.createTextNode(text.slice(at, i))); var b = d.createElement('bdi'); b.textContent = m; n.appendChild(b); at = i + m.length; return m; });
-    if (at < text.length) n.appendChild(d.createTextNode(text.slice(at)));
+    var parts = root.getAttribute('dir') === 'rtl' ? split(text) : null;
+    if (!parts || !parts.some(function (p) { return p.iso; })) { n.textContent = text; return; }
+    n.textContent = '';
+    parts.forEach(function (p) {
+      if (!p.iso) { n.appendChild(d.createTextNode(p.t)); return; }
+      var b = d.createElement('bdi'); b.dir = 'ltr'; b.className = 'enq-tok';
+      p.t.split(/( +)/).forEach(function (w) {
+        if (!w) return;
+        if (w.charAt(0) === ' ') { b.appendChild(d.createTextNode(w)); return; }
+        (w.length > 30 ? w.match(/[.\/]*[^.\/]+[.\/]*|[.\/]+/g) || [w] : [w]).forEach(function (x, i, all) { var s = d.createElement('span'); s.className = 'enq-tok__s'; s.textContent = x; b.appendChild(s); if (i < all.length - 1) b.appendChild(d.createElement('wbr')); });
+      });
+      n.appendChild(b);
+    });
   }
+  /* a line set beside other nodes (a hint after Ratman's name, Kūro's word, the words around a slot) goes the same way */
+  function txt(text) { var f = d.createDocumentFragment(); setText(f, text); return f; }
   function el(tag, cls, text) { var n = d.createElement(tag); if (cls) n.className = cls; if (text != null && text !== '') setText(n, text); return n; }
   function add(p) { for (var i = 1; i < arguments.length; i++) if (arguments[i]) p.appendChild(arguments[i]); return p; }
   function btn(cls, label, fn, f) { var b = el('button', cls, label); b.type = 'button'; if (fn) b.addEventListener('click', fn); if (f) b.setAttribute('data-f', f); return b; }
@@ -445,11 +472,13 @@
   function once(n, cls) { if (n && motionOn()) n.classList.add(cls); }
 
   /* ---- the painting: one picture, the crop on a phone, the whole of it beside the game on a wide screen ---- */
-  var art = el('div', 'enq-art'), pic = img(DATA.painting.src, '', 'enq-art__img'), ringBox = el('div', 'enq-art__rings'), glow = el('span', 'enq-art__glow');
+  var art = el('div', 'enq-art'), pic = img(DATA.painting.src, '', 'enq-art__img'), ringBox = el('div', 'enq-art__rings'), glow = el('span', 'enq-art__glow'), plane = el('div', 'enq-art__plane');
   pic.srcset = '../' + DATA.painting.small + ' 800w, ../' + DATA.painting.src + ' 1600w'; pic.sizes = '(min-width:900px) 60vw, 100vw';
   pic.width = DATA.painting.size[0]; pic.height = DATA.painting.size[1];
   glow.setAttribute('aria-hidden', 'true');
-  add(art, pic, glow, ringBox);
+  /* the rings and the glow sit on a plane the size of the whole picture as it is drawn (on a wide screen it may be
+     taller than the picture's own shape, and the picture is then cut at its sides; the plane follows it) */
+  add(art, pic, add(plane, glow, ringBox));
   var screen = el('div', 'enq-screen');
   add(app, art, screen);
   var cw = DATA.painting.crop[1] - DATA.painting.crop[0], full = DATA.painting.size[0];
@@ -524,8 +553,10 @@
     if (S.screen !== 'stall' || wait) return;
     var rec = game.rec();
     ringList().forEach(function (r) {
-      var b = btn('enq-ring' + ((r.id === 'lantern' || r.place) && rec ? ' enq-ring--slip' : '') + (S.sheet === r.id ? ' is-on' : ''), '', function () { game.look(r.id); sfx('tap'); render('sheet'); }, 'ring-' + r.id);
+      var b = btn('enq-ring' + ((r.id === 'lantern' || r.place) && rec ? ' enq-ring--slip' : '') + (S.sheet === r.id ? ' is-on' : '') + (r.at[1] > 0.85 ? ' enq-ring--up' : '') + (r.at[0] < 0.2 ? ' enq-ring--s' : ''), '', function () { game.look(r.id); sfx('tap'); render('sheet'); }, 'ring-' + r.id);
       b.setAttribute('aria-label', T('ring.' + r.id + '.label')); place(b, r.at);
+      /* one word under each ring says what it is (its name holds the word); near the foot of the crop it sits above */
+      b.appendChild(el('span', 'enq-ring__w', T('ring.' + r.id + '.word')));
       ringBox.appendChild(b);
     });
   }
@@ -540,8 +571,8 @@
       box.className = 'enq-talk enq-talk--sheet';
       var hh = el('h3', 'enq-talk__name', T('ring.' + ring.id + '.name')); hh.tabIndex = -1; hh.setAttribute('data-f', 'sheet');
       var go1 = btn('enq-btn enq-btn--fill', T(ringBtn(ring, rec)), function () { RING_GO[ring.opens](); }, 'sheet-go');
-      /* a slip in the book adds no ring: the book's sheet opens it */
-      var go2 = ring.id === 'book' && rec && at === 'book' ? btn('enq-btn enq-btn--fill', T('ring.book.slip'), function () { openCase(); }, 'sheet-slip') : null;
+      /* a slip in the book or under Kūro adds no ring: that ring's sheet opens it */
+      var go2 = (ring.id === 'book' || ring.id === 'kuro') && rec && at === ring.id ? btn('enq-btn enq-btn--fill', T('ring.book.slip'), function () { openCase(); }, 'sheet-slip') : null;
       add(box, hh, el('p', 'enq-talk__t', T('ring.' + ring.id + '.line')), add(el('div', 'enq-row'), go2, go1, btn('enq-btn', T('ui.close'), function () { game.closeSheet(); render('ring-' + ring.id); })));
     } else {
       var who = S.talk ? S.talk.who : 'stall';
@@ -580,14 +611,17 @@
     var card = el('div', 'enq-slipcard');
     add(card, el('p', 'enq-slipcard__tag', T(c + '.slipTag')), heading('h2', 'enq-slipcard__t', T(c + '.slip')));
     add(w, card);
-    var pv = el('div', 'enq-pv'); pv.setAttribute('role', 'img'); pv.setAttribute('aria-label', T('ui.pvAria'));
-    game.targets(copyStep(lv, 1)).forEach(function () { pv.appendChild(el('span', 'enq-pv__b')); });
+    /* the evidence waits as a sealed slip, folded under the paw seal, with its caption in words */
+    var pv = el('figure', 'enq-pv'), seal = el('div', 'enq-pv__slip');
+    seal.setAttribute('aria-hidden', 'true');
+    add(seal, el('span', 'enq-pv__fold'), img(DATA.art.seal, '', 'enq-pv__seal'));
+    add(pv, el('figcaption', 'enq-pv__cap', T('ui.pvAria')), seal);
     add(w, pv, el('p', 'enq-ask', T(c + '.' + bet.id + '.prompt')));
     var row = el('div', 'enq-verdicts');
     bet.options.forEach(function (o) { row.appendChild(btn('enq-verdict', T('ui.opt.' + o), function () { game.placeBet(o); sfx('tap'); render('top'); }, 'opt-' + o)); });
-    return add(w, row, bet.law ? law('enq-law--band') : null);
+    /* what a reload keeps, said where a run starts (the door says it too): a slip is kept once stamped, its XP at once */
+    return add(w, row, bet.law ? law('enq-law--band') : null, el('p', 'enq-slip__kept', T('ui.slipKept')));
   }
-  function copyStep(lv, i) { var st = lv.steps[i]; return { kind: st.kind, parts: st.parts, b: st.b, answer: st.answer, k: '' }; }
 
   /* ---- E, F. a step and its feedback ---- */
   var TPL = { 'browser-bar': 'row', 'browser-bar-phone': 'row', 'four-tiles': 'grid', duo: 'grid' };
@@ -632,7 +666,7 @@
       });
       pcs.forEach(function (piece, pi) {
         var mm = /^\{(\d)\}$/.exec(piece);
-        if (!mm) { if (piece) sent.appendChild(d.createTextNode(piece)); return; }
+        if (!mm) { if (piece) sent.appendChild(txt(piece)); return; }
         var i = +mm[1] - 1, cid = S.slots[i] || '', chip = cid ? game.byId(st, cid) : null;
         var md = S.phase === 'hit' || (S.phase === 'bubble' && S.gain > 0) ? 'hit' : (S.phase === 'reveal' || S.phase === 'bubble' ? 'answer' : (cid ? 'open' : 'empty'));
         var sb = btn('enq-slot', chip ? T(chip.k + '.text') : T('ui.slot', { n: i + 1 }), function () { tap(function () { game.tapSlot(i); }, 'slot-' + i); }, 'slot-' + i);
@@ -657,7 +691,8 @@
     }
     /* a mock screen: every part a button, in its written order (notes are shuffled) */
     var tpl = st.template || st.kind, layout = TPL[tpl] || 'list', caps = game.captionsOn(st);
-    var title = st.addr || (st.address ? T(st.k + '.address') : raw(P + 'tpl.' + tpl) || raw(P + 'c.' + game.row(S.cid).id + '.tpl.' + tpl));
+    /* the mock's title: a step's own line (address), else the case's own title for its template, else the shell's */
+    var title = st.addr || (st.address ? T(st.k + '.address') : raw(P + 'c.' + game.row(S.cid).id + '.tpl.' + tpl) || raw(P + 'tpl.' + tpl));
     var frame = el('div', 'enq-mock enq-mock--' + layout + ' enq-mock--' + tpl);
     if (title) add(frame, st.addr ? add(el('p', 'enq-mock__title'), ltr(title)) : el('p', 'enq-mock__title', title));
     var body = el('div', 'enq-mock__body'), after = el('div', 'enq-after');
@@ -738,7 +773,7 @@
       addFeedback(box, f, st);
     }
     add(w, box);
-    if (game.live() && st.hint && S.hintN > 0 && S.hintN < 3) add(w, add(el('p', 'enq-hint'), el('b', 'enq-hint__who', T('ui.says', { who: name('ratman'), t: T('v.ratman.hint.' + (S.hintN - 1)) })), d.createTextNode(' ' + T(st.k + '.hint.' + (S.hintN - 1)))));
+    if (game.live() && st.hint && S.hintN > 0 && S.hintN < 3) add(w, add(el('p', 'enq-hint'), el('b', 'enq-hint__who', T('ui.says', { who: name('ratman'), t: T('v.ratman.hint.' + (S.hintN - 1)) })), txt(' ' + T(st.k + '.hint.' + (S.hintN - 1)))));
     if (game.lawShown()) add(w, law('enq-law--band'));
     var actions = el('div', 'enq-actions');
     if (game.live()) {
@@ -760,7 +795,7 @@
     var line = el('p', 'enq-fb__line');
     /* a pool line that already names him (« Kūro valide. ») is not given his name twice */
     var kw = f.kuro ? T(f.kuro) : '', kn = kw.indexOf(name('kuro')) === 0;
-    if (f.kuro) add(line, add(el('span', 'enq-kuro'), el('b', '', name('kuro')), d.createTextNode(kn ? kw.slice(name('kuro').length) : ' ' + kw)));
+    if (f.kuro) add(line, add(el('span', 'enq-kuro'), el('b', '', name('kuro')), txt(kn ? kw.slice(name('kuro').length) : ' ' + kw)));
     if (f.xp) add(line, el('span', 'enq-xp', T(f.xp, f.xpV)));
     if (line.firstChild) add(box, line);
     if (tx.extra) add(box, el('p', 'enq-fb__extra', tx.extra));
