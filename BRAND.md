@@ -1986,7 +1986,12 @@ back to the rig's tone (seeded skin mask, per-channel gain 0.76/0.59/0.55; the t
 project files, `characters/tools/`) on the workbench scene (`hub/img/studio/m/diorama{,.full}`,
 `assets/illus/workbench-night{,-560}`, whose Kūro was taken to canon black too) and on the Studio's
 "What I make" trio (`hub/img/studio/make/*`, the artist's Kūro too). Still off-model and not yet fixed:
-the bible's pixel row (`sil-*`) and the animated `yasser-lost` sticker, both lighter-skinned.
+the bible's pixel row (`sil-*`) and the animated `yasser-lost` sticker, both lighter-skinned. The traveller figure (wavy hair,
+indigo coat, yellow scarf) was pulled back to canon at the owner's word (2026-11-24): the Librairie's
+`cast/yasser-traveller` and the Fabrique's `atelier/yasser-traveller-sit` now carry the bible's seated
+`pose-laptop`, the Fabrique's `atelier/yasser-traveller{,-300}` the standing `actor-pointup-a`, at the
+files' own sizes (the file names are kept so no page changes). The MERCURY red-coat traveller of the
+posters is a separate film world and is not changed.
 
 ## The calculator: a receipt that adds up, and the console (2026-11-16)
 
