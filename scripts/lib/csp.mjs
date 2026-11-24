@@ -63,6 +63,12 @@ export const GOOGLE = {
   connect: ['https://*.google-analytics.com', 'https://*.analytics.google.com', 'https://*.googletagmanager.com'],
 };
 
+/* Vercel Web Analytics endpoints for connect-src. The analytics script is served
+   from /_vercel/insights/script.js which is covered by 'self'. */
+export const VERCEL_ANALYTICS = {
+  connect: ['https://*.vercel-insights.com'],
+};
+
 /* which policy a site file gets, by its path from the repository root */
 export const cspKind = (file) => (/^workspacehq\/embed\/[^/]+\.html$/.test(String(file).replace(/\\/g, '/')) ? 'embed' : 'page');
 
@@ -256,7 +262,7 @@ export function cspPolicy(html, kind = 'page') {
     ['style-src', "'self'", "'unsafe-inline'"],
     ['img-src', "'self'", 'data:', ...(embed ? ['blob:'] : GOOGLE.img)],
     ['font-src', "'self'", ...(embed ? ['data:'] : [])],
-    ['connect-src', "'self'", ...(embed ? [] : GOOGLE.connect), ...(supa ? [supa] : [])],
+    ['connect-src', "'self'", ...(embed ? [] : [...GOOGLE.connect, ...VERCEL_ANALYTICS.connect]), ...(supa ? [supa] : [])],
     ['media-src', "'self'"],
     ['frame-src', "'self'"],
     ['worker-src', "'none'"],

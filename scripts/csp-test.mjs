@@ -210,8 +210,8 @@ export function fixtureErrors() {
   expect(!directive(embed, 'connect-src').some((v) => /google/.test(v)), 'connect-src: no Google host on an embed');
 
   // the Supabase switch, read in a sandbox
-  const G = "https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com";
-  expect(directive(cspPolicy(SWITCH('')), 'connect-src').join(' ') === `'self' ${G}`, 'switch off: connect-src must be self and the Google tag hosts only');
+  const G = "https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.vercel-insights.com";
+  expect(directive(cspPolicy(SWITCH('')), 'connect-src').join(' ') === `'self' ${G}`, 'switch off: connect-src must be self, Google tag hosts, and Vercel Analytics');
   expect(directive(cspPolicy(SWITCH('https://abcd.supabase.co/')), 'connect-src').join(' ') === `'self' ${G} https://abcd.supabase.co`, 'switch on: connect-src must add the origin');
   expect(supabaseOrigin(SWITCH('https://abcd.supabase.co', 'var NUMIDEA_SUPABASE_URL')) === 'https://abcd.supabase.co', 'a top-level var is window.X in the browser too');
   expect(throws(() => cspPolicy(SWITCH('http://abcd.supabase.co'))), 'a non-https Supabase URL must stop the build');

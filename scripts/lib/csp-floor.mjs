@@ -38,6 +38,10 @@ const GOOGLE_SCRIPT = ['https://www.googletagmanager.com'];
 const GOOGLE_IMG = ['https://*.google-analytics.com', 'https://*.googletagmanager.com'];
 const GOOGLE_CONNECT = ['https://*.google-analytics.com', 'https://*.analytics.google.com', 'https://*.googletagmanager.com'];
 
+/* Vercel Web Analytics (added 2026-11-24). The script is served from
+   /_vercel/insights/script.js which is covered by 'self'. */
+const VERCEL_ANALYTICS_CONNECT = ['https://*.vercel-insights.com'];
+
 /* the most each directive may allow, by policy kind ('page' or 'embed') and
    whether the page may connect to its lead store (index.html, switch on) */
 const CEILING = {
@@ -46,7 +50,7 @@ const CEILING = {
   'style-src': () => ["'self'", "'unsafe-inline'"],
   'img-src': ({ kind }) => ["'self'", 'data:', ...(kind === 'embed' ? ['blob:'] : GOOGLE_IMG)],
   'font-src': ({ kind }) => ["'self'", ...(kind === 'embed' ? ['data:'] : [])],
-  'connect-src': ({ kind, connect }) => ["'self'", ...(kind === 'embed' ? [] : GOOGLE_CONNECT), ...(connect ? [ORIGIN] : [])],
+  'connect-src': ({ kind, connect }) => ["'self'", ...(kind === 'embed' ? [] : [...GOOGLE_CONNECT, ...VERCEL_ANALYTICS_CONNECT]), ...(connect ? [ORIGIN] : [])],
   'media-src': () => ["'self'"],
   'frame-src': () => ["'self'"],
   'worker-src': () => ["'none'"],

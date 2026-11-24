@@ -8,7 +8,7 @@
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-5lLObl3ZFgbB3BTEHnUdhdXzkuDZ9/8ra3NFXCYc9Yc=' 'sha256-jqvmeaJzhI0avE/Byblgel+6lAUwtfzShFKt7DLnhME='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-5lLObl3ZFgbB3BTEHnUdhdXzkuDZ9/8ra3NFXCYc9Yc=' 'sha256-jqvmeaJzhI0avE/Byblgel+6lAUwtfzShFKt7DLnhME=' 'sha256-rbTaSdDD+Sd+K8IZ66VS79bdI78bN8AwXXyN0/lD5fY='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.vercel-insights.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Website design and development in Algeria | Numidea Labs</title>
 <meta name="description" content="Website design and development in English, French and Arabic, from 90,000 DZD. See your homepage before you pay. A web studio in Bordj Bou Arréridj, Algeria.">
 <meta name="theme-color" content="#0A1420">
@@ -1342,6 +1342,11 @@
 <script src="../assets/i18n/en.js?v=202611241141" defer></script>
 <script src="../assets/app.js?v=202611241141" defer></script>
 <script src="../assets/carry.js?v=202611241141" defer></script>
+<!-- Vercel Web Analytics -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 <!-- FAQ structured data, written from the page's dictionary by
      scripts/build-lang.mjs; applyLang() writes it again on load. -->
 <script type="application/ld+json" id="ld-faq">

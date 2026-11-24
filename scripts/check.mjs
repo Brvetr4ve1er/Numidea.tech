@@ -166,7 +166,7 @@ for (const [f, base] of Object.entries(pages)) {
   const src = read(f).replace(/<!--[\s\S]*?-->/g, '');
   for (const m of src.matchAll(/(?:src|href)="([^"#][^"]*)"/g)) {
     const u = m[1].split('#')[0].split('?')[0];
-    if (/^(https?:|mailto:|data:|\/\/)/.test(u) || u === '') continue;
+    if (/^(https?:|mailto:|data:|\/\/|\/_vercel\/)/.test(u) || u === '') continue;
     // template bindings ({{ x }}) and app-internal schemes (model:rocket) in the
     // WorkspaceHQ console are resolved by its runtime, not by the server
     if (u.includes('{{') || /^[a-z][a-z0-9+.-]*:/i.test(u)) continue;
@@ -362,7 +362,7 @@ for (const f of PAGES) {
   const src = read(f).replace(/<!--[\s\S]*?-->/g, '');
   for (const m of src.matchAll(/(?:src|href)="([^"#][^"]*)"/g)) {
     const u = m[1].split('#')[0].split('?')[0];
-    if (!u || /^(https?:|mailto:|tel:|data:|\/\/)/.test(u) || u.includes('{{') || u.includes("'")) continue;
+    if (!u || /^(https?:|mailto:|tel:|data:|\/\/|\/_vercel\/)/.test(u) || u.includes('{{') || u.includes("'")) continue;
     const rel = normalize(join(dirname(f), u)).replace(/\\/g, '/').replace(/\/$/, '');
     if (rel === '.' || rel === '') continue;               // the site root is index.html
     const top = rel.split('/')[0];
