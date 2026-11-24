@@ -61,7 +61,7 @@ for(const w of [360]){
  combos.push(['hub','/hub/',w,{'numidea-lang':'ar'},`hub ${w}/ar`]);
 }
 // the brand books (hub/brand/) on a tablet and two phone widths, and the bible at 360 (2026-11-14, the mobile pass)
-for(const w of [768,390,360])for(const b of ['almaflow','traveler','numidea','exploration'])combos.push(['brand','/hub/brand/'+b+'/',w,{},`${b} ${w}`]);
+for(const w of [768,390,360])for(const b of ['almaflow','alliance','traveler','numidea','exploration'])combos.push(['brand','/hub/brand/'+b+'/',w,{},`${b} ${w}`]);
 combos.push(['bible','/hub/bible/',360,{},'bible 360']);
 // VBUGS_ONLY=<regexp>: only the rows whose "page label" match (VBUGS_ONLY='^(hub|bible) ' for the Studio and the bible)
 const ONLY=process.env.VBUGS_ONLY?new RegExp(process.env.VBUGS_ONLY):null;

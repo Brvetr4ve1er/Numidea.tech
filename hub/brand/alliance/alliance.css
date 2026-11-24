@@ -1,0 +1,79 @@
+/* ============================================================
+   Alliance Travel livre de marque (hub/brand/alliance/), linked after
+   ../style.css, whose plate chrome and tones it fills with the client's
+   palette: bleu de Prusse #002C51, menthe #9CE8B2, sable #EFE8DF, DM Sans
+   for the text and Sora for the display lines (the case's own faces,
+   hub/css/case-alliance.css). Nothing moves, nothing is fetched.
+
+   Contrast, measured on the painted pairs (WCAG AA, 4.5:1 text, 3:1 large):
+     dark #002C51: sable #EFE8DF 12.6, mist #C9D6E0 10.0, slate #A9BCCB
+       7.6, menthe #9CE8B2 10.4
+     light #EFE8DF: ink #0B1F33 14.9, #24384C 10.6, slate #4A5A6A 5.9,
+       green text #1D6640 5.9
+     menthe #9CE8B2: #002C51 10.4, #0B1F33 12.6, #24384C 8.9
+   Labels never go under 12px.
+   ============================================================ */
+
+.bk-at{--d-bg:#002C51;--d-fg:#EFE8DF;--d-sub:#C9D6E0;--d-mut:#A9BCCB;--d-line:#1F4A70;--d-acc:#9CE8B2;
+  --l-bg:#EFE8DF;--l-fg:#0B1F33;--l-sub:#24384C;--l-mut:#4A5A6A;--l-line:#B9AE9F;--l-acc:#1D6640;
+  --h-bg:#9CE8B2;--h-fg:#002C51;--h-sub:#0B1F33;--h-mut:#24384C;--h-line:#5FB27A;--h-acc:#002C51;
+  --p-disp:"Sora","DM Sans",system-ui,sans-serif;--p-wt:800}
+.bk-at .plate{font-family:"DM Sans",system-ui,sans-serif}
+.bk-at .cov-logo{width:min(100%,380px)}
+.bk-at .fig img{border-radius:10px}
+.bk-at .fig--bare img{border-radius:14px}
+
+/* the five chapters: a band between the plates */
+.at-chap{display:flex;align-items:baseline;gap:16px;margin-bottom:calc(-1 * clamp(18px,2.5vw,36px));padding-block:10px;border-bottom:3px solid var(--ink);font:900 clamp(24px,3.4vw,40px)/1 var(--f-disp);letter-spacing:-.01em;text-transform:uppercase;color:var(--ink)}
+.at-chap span{font:500 12px var(--f-mono);letter-spacing:.18em;color:var(--red-text)}
+
+/* 03 · the logo and its clear zone */
+.bk-at .at-logo-box{display:grid;gap:14px;align-content:center}
+.bk-at .at-zone{position:relative;display:grid;place-items:center;padding:clamp(26px,5vw,60px);background:#fff;border:2px dashed var(--line);border-radius:12px}
+.bk-at .at-zone::before{content:"";position:absolute;inset:clamp(14px,2.6vw,30px);border:1.5px solid #9CE8B2;border-radius:6px}
+.bk-at .at-zone img{position:relative;width:min(100%,420px)}
+
+/* 04 · the four versions */
+.bk-at .at-var{display:grid;gap:10px}
+.bk-at .at-var__box{position:relative;overflow:hidden;display:grid;place-items:center;min-height:clamp(120px,14vw,190px);padding:20px;border:1.5px solid var(--line);border-radius:12px}
+.bk-at .at-var__box img{position:relative;z-index:1;width:min(100%,240px)}
+.bk-at .at-var--sand .at-var__box{background:#EFE8DF}
+.bk-at .at-var--navy .at-var__box{background:#001B33}
+.bk-at .at-var--mint .at-var__box{background:#9CE8B2}
+.bk-at .at-var--photo .at-var__box{padding:0}
+.bk-at .at-var--photo .at-var__box > img.bg{position:absolute;inset:0;z-index:0;width:100%;height:100%;max-width:none;object-fit:cover}
+.bk-at .at-var--photo .at-var__box::after{content:"";position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 65% at 50% 50%,rgba(0,44,81,.82),rgba(0,44,81,.5))}
+.bk-at .at-var--photo .at-var__box > img.lg{width:min(70%,220px)}
+
+/* 05 · the misuses */
+.bk-at .at-nope{display:grid;gap:10px;align-content:start}
+.bk-at .at-nope li{position:relative;padding:12px 14px 12px 44px;border:1.5px solid var(--line);border-radius:10px;font-size:16.5px;line-height:1.45;color:var(--sub)}
+.bk-at .at-nope li::before{content:"×";position:absolute;inset-inline-start:14px;top:9px;font:800 22px/1 var(--p-disp);color:#B3261E}
+:root[dir="rtl"] .bk-at .at-nope li{padding:12px 44px 12px 14px}
+
+/* 06 · swatches and the charter's tints */
+.bk-at .sw{border-radius:12px}
+.bk-at .sw--l{color:#EFE8DF}
+.bk-at .sw--d{color:#002C51}
+.bk-at .at-scale{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));height:clamp(40px,5vw,64px);border:1.5px solid var(--line);border-radius:10px;overflow:hidden}
+.bk-at .at-scale i{background:var(--c)}
+
+/* 07 · the type specimens */
+.bk-at .at-spec{display:grid;gap:12px;align-content:start;padding:clamp(16px,2vw,28px);border:1.5px solid var(--line);border-radius:12px;background:#fff}
+.bk-at .at-spec .aa{font:700 clamp(54px,7vw,96px)/.95 "DM Sans",sans-serif;color:#002C51}
+.bk-at .at-spec__s{font:700 19px/1.3 "DM Sans",sans-serif;color:#002C51}
+.bk-at .at-spec__logo{width:min(100%,240px);margin-block:12px}
+.bk-at .at-ar{font-family:"IBM Plex Sans Arabic","DM Sans",sans-serif;font-weight:600;text-align:start}
+
+/* 08 · yes and no */
+.bk-at .at-do,.bk-at .at-dont{display:grid;gap:12px;align-content:start}
+.bk-at .at-do li,.bk-at .at-dont li{padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font:700 clamp(17px,1.6vw,21px)/1.3 var(--p-disp)}
+.bk-at .at-do li{border-inline-start:6px solid var(--acc)}
+.bk-at .at-dont li{color:var(--mut);text-decoration:line-through;text-decoration-thickness:1.5px;font-weight:600}
+
+/* 10 · photographs share one frame */
+.bk-at .at-ph{aspect-ratio:4/5;object-fit:cover}
+
+@media (max-width:720px){
+  .at-chap{flex-direction:column;gap:6px}
+}

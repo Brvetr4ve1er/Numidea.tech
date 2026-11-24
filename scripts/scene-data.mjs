@@ -118,6 +118,7 @@ export const PROJECTS = [
   {
     slug: 'alliance',
     studio: 'case-alliance',   // its case on the Studio (hub/#case-alliance): the sheet links to it (journey-12)
+    book: '../hub/brand/alliance/',   // the brand book made for it, on the Studio
     name: 'Alliance Travel',
     url: 'https://alliancetravel.app',
     status: 'live',
