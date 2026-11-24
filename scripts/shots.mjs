@@ -79,7 +79,7 @@ export const PROJECTS = {
   // Fleet 7 round 2: the home's destinations band, not a trip page (a black slab of 6 px text): the heading
   // is scrolled off and the first photographic cards fill the frame (#voyages, 230 px lower, the fixed nav and
   // the chat bubble out: bare 'all'). The hero is the WebGL globe that draws black headless; the card photos are the client's own.
-  alliancetravel:        { capture: 'https://alliancetravel34.netlify.app/#voyages', client: 'alliance', sheet: null, scroll: 230, align: ['a.trip-card', 301], bare: 'all', soft: 0.8 },
+  alliancetravel:        { capture: 'https://alliancetravel.app/#voyages', client: 'alliance', sheet: null, scroll: 230, align: ['a.trip-card', 301], bare: 'all', soft: 0.8 },
   // Fleet 7 round 4: the client's fixed nav hidden (bare 'all'): the nav's cut Arabic item and white strip were the one edge that differed
   nomara:                { capture: 'https://nomaravoyages.netlify.app',          client: 'nomara',     sheet: null, bare: 'all' },
   // the portfolio demo: its link on the home page carries data-client (check.mjs 5 pairs the slugs), but it has no
