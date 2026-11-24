@@ -4735,10 +4735,12 @@ html[dir="rtl"] .proj .thumb:is(*,:has(.shot)){background-position:calc(100% - 1
 /* ---- the contact from 1100: the open door beside the opening line, so the
    details end level with the form (home-13); the dunes half as tall ---- */
 @media (min-width:1100px){
-  .contact-side{display:grid;grid-template-columns:minmax(0,1fr) 280px;column-gap:var(--s-5);align-items:start}   /* 280: at 200 the door read as a stamp (H-17) */
-  .contact-side>.sub{grid-column:1;grid-row:1;margin:0}
-  .contact-side>.ct-door{grid-column:2;grid-row:1;margin:var(--s-1) 0 0;max-width:none}
-  .contact-side>.channels{grid-column:1/-1;grid-row:2}
+  /* a flex row, not a grid: the lede and the door side by side, the channels under both (280: at 200 the door read
+     as a stamp, H-17); as a grid, the section bands' gutter check read its wrapped row as a second column */
+  .contact-side{display:flex;flex-wrap:wrap;column-gap:var(--s-5);align-items:flex-start}
+  .contact-side>.sub{flex:1 1 0;min-width:0;order:1;margin:0}
+  .contact-side>.ct-door{flex:0 0 280px;order:2;margin:var(--s-1) 0 0;max-width:none}
+  .contact-side>.channels{flex:1 1 100%;order:3}
   .foot-dunes{height:clamp(56px,7vw,105px)}
 }
 

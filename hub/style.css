@@ -1777,8 +1777,11 @@ html:active-view-transition .st-sting,html:active-view-transition .st-sting *{an
   .st-bay:is(.st-bay--b,.st-bay--c) .st-bay__plate::before{display:none}
   .st-bay:is(.st-bay--b,.st-bay--c) :is(.st-bay__d,.st-bay__buy,.st-bay__more){display:none}
   .st-bay:is(.st-bay--b,.st-bay--c) .st-bay__t{font-size:24px}
+  .st-bay:is(.st-bay--b,.st-bay--c) .st-bay__plate{flex:1 1 0;min-width:0}   /* the text column shrinks to the card (280: « J'APPRENDS » and its button ran past it) */
+  .st-bay:is(.st-bay--b,.st-bay--c) .st-bay__go{max-width:100%}
   .st-bay:is(.st-bay--b,.st-bay--c) .st-bay__go{min-height:44px;padding:0 12px;font-size:12px}
   .st-bay:is(.st-bay--b,.st-bay--c) .st-bay__go:lang(ar){font-size:13px;letter-spacing:0}   /* the 13px Arabic floor */
+  @media (max-width:340px){.st-bay:is(.st-bay--b,.st-bay--c) .st-bay__t{font-size:20px}.st-bay:is(.st-bay--b,.st-bay--c) .st-bay__art{flex-basis:76px}.st-bay:is(.st-bay--b,.st-bay--c) .st-bay__plate{padding:10px 10px}}
 }
 /* a fold's cover screen: the cornice keeps the name and the coordinates, the plates tighten */
 @media (max-width:359px){
