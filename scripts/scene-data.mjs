@@ -366,8 +366,8 @@ export const PROJECTS = [
       { file: 'd1', path: '/', label: { fr: 'L’annuaire', en: 'The directory', ar: 'الدليل' } },
       { file: 'd2', path: '/entreprises/africaver-spa', label: { fr: 'Fiche entreprise, Jijel', en: 'Company page, Jijel', ar: 'صفحة مؤسسة، جيجل' } },
       { file: 'd3', path: '/entreprises/briks-eurl-kadri-et-fils', label: { fr: 'Fiche entreprise, Bordj Bou Arréridj', en: 'Company page, Bordj Bou Arréridj', ar: 'صفحة مؤسسة، برج بوعريريج' } },
-      // the directory in Arabic, beside /fr (the legal notice stays a deliverable line only)
-      { file: 'd4', path: '/ar', label: { fr: 'L’annuaire en arabe', en: 'The directory in Arabic', ar: 'الدليل بالعربية' } }, // AR review: p.annuaire.pg3 (2026-11-24, wave 3 review)
+      // the directory in Arabic, beside /fr at the host's root (root: true; the legal notice stays a deliverable line only)
+      { file: 'd4', path: '/ar', root: true, label: { fr: 'L’annuaire en arabe', en: 'The directory in Arabic', ar: 'الدليل بالعربية' } }, // AR review: p.annuaire.pg3 (2026-11-24, wave 3 review)
     ],
     phones: [
       { file: 'm1', label: { fr: 'L’annuaire', en: 'The directory', ar: 'الدليل' } },
