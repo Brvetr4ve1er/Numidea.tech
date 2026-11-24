@@ -115,8 +115,10 @@ html:not(.js) *:not(.pops>span),html:not(.js) *::before,html:not(.js) *::after{a
 .motion-btn .mo-off{display:none}
 .motion-btn[aria-pressed="true"] .mo-on{display:none}
 .motion-btn[aria-pressed="true"] .mo-off{display:inline}
-/* .nav prefix: stays dark-on-gold under .btn--ghost:hover, which comes later */
-.nav .motion-btn[aria-pressed="true"]{color:#3a2a00;background:linear-gradient(180deg,var(--gold-2),var(--gold));border-color:#8a6200}
+/* pressed, the switch is an outline in gold, never a second gold button beside
+   GET THE CODE (world-24): one primary in the bar. The .nav prefix keeps it
+   over .btn--ghost:hover, which comes later. */
+.nav .motion-btn[aria-pressed="true"]{color:var(--gold-2);background:transparent;border-color:var(--gold)}
 .motion-btn[aria-pressed="true"] .ic-play{display:inline}
 .motion-btn[aria-pressed="true"] .ic-pause{display:none}
 
@@ -174,8 +176,16 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .rule{height:2px;max-width:1320px;margin:0 auto;background:linear-gradient(90deg,transparent,var(--gold),var(--cyan),transparent);opacity:.7}
 
 /* ---------- 01 hero ---------- */
-.hero{max-width:1320px;margin:0 auto;min-height:100vh;padding:150px var(--pad) 80px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:center;gap:56px}
-.hero-copy{min-width:0}
+/* (world-07) The copy's own box steps aside (display:contents) so the console
+   still, which follows the heading in the source, can stand in the right-hand
+   column here and right under the heading on a phone. The copy takes rows 2
+   to 6; the two 1fr rows around it share the free height, so it stays centred
+   beside the still. */
+.hero{max-width:1320px;margin:0 auto;min-height:100vh;padding:150px var(--pad) 80px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);grid-template-rows:1fr repeat(5,auto) 1fr;column-gap:56px}
+.hero-copy{display:contents}
+.hero-copy>*{grid-column:1;min-width:0}
+.hero .bc{grid-row:2}.hero-kick{grid-row:3}.hero h1{grid-row:4}.hero-lede{grid-row:5}.hero-cta{grid-row:6}
+.hero-copy>.hero-bit{grid-column:2;grid-row:1/-1}
 .hero-kick{font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;color:var(--cyan);line-height:1.8;margin-bottom:30px}
 /* the coin prompt sits on its own line and never breaks (it does not blink:
    only the REC dot does) */
@@ -208,10 +218,17 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .term-line [data-copy]{flex:none;margin-left:auto}
 
 /* Bit, the scan card */
-.hero-bit{flex:0 1 340px;min-width:280px;margin:0 auto;position:relative;padding-top:120px;}
+/* Bit stands on the still's top edge, the scan card overlaps its lower corner */
+.hero-bit{align-self:center;justify-self:center;width:100%;max-width:560px;position:relative;padding-top:92px}
+.hero-shot{position:relative;z-index:1;margin:0}
+.hero-shot img{display:block;width:100%;height:auto}
+.hero-shot .screen-bar a{display:inline-flex;align-items:center;min-height:24px;white-space:nowrap;color:var(--gold-2)}
+.hero-shot .screen-bar a:hover{color:var(--text)}
+@media (max-width:479px){.hero-shot__path{display:none}}
+.hero-bit .scan-card{position:relative;z-index:2;width:min(320px,82%);margin:-64px 0 0 -24px}
 .bit-btn{display:block;padding:0;border:0;background:none;cursor:pointer;transition:transform .17s cubic-bezier(.34,1.56,.64,1)}
-.bit-btn--small{position:absolute;left:50%;top:6px;transform:translateX(-50%)}
-.bit-btn--small.hop{transform:translateX(-50%) translateY(-22px)}
+.bit-btn--small{position:absolute;z-index:2;right:32px;top:0}
+.bit-btn--small.hop{transform:translateY(-22px)}
 .bit-btn--big{position:relative;margin-bottom:-4px;max-width:100%}
 /* the big sprite is 288px wide: on a 320px screen it scales down instead of
    widening the card (and the page) past the viewport */
@@ -219,7 +236,7 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .bit-btn--big.hop{transform:translateY(-40px)}
 .bit svg{display:block;overflow:visible;shape-rendering:crispEdges;filter:drop-shadow(0 0 18px rgba(217,119,87,.35))}
 .pops{position:absolute;left:50%;pointer-events:none}
-.pops--hero{top:10px}
+.pops--hero{top:10px;left:auto;right:88px}
 .pops--big{bottom:230px}
 .pops span{position:absolute;left:0;font-family:var(--px);color:var(--gold);white-space:nowrap;animation:rise 1s ease-out forwards}
 .pops--hero span{font-size:var(--fs-px-min)}.pops--big span{font-size:var(--fs-px-min)}
@@ -240,7 +257,10 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
    with a one-line hint. The card is drawn in CSS, in the arcade faces. */
 .player{position:relative;aspect-ratio:16/9;background:#0d0d0f}
 .poster{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(14px,3vw,28px);padding:16px;margin:0;border:0;
-  background:radial-gradient(ellipse at center,rgba(90,78,168,.32),transparent 68%),linear-gradient(180deg,var(--panel),var(--ink));color:var(--text);cursor:pointer;font:inherit}
+  background:radial-gradient(ellipse at center,rgba(90,78,168,.32),transparent 68%),linear-gradient(180deg,rgba(26,22,48,.86),rgba(7,6,15,.94)),var(--still) center/cover,var(--ink);color:var(--text);cursor:pointer;font:inherit}
+/* the title cards and the coin screen wear the console still under a dark veil (world-07): not an empty frame */
+:root{--still:url(console-still-720.webp)}
+@media (min-width:900px){:root{--still:url(console-still.webp)}}
 .poster[hidden],html:not(.js) .poster{display:none}
 .poster-t{font-family:var(--px);font-size:clamp(14px,2.6vw,28px);letter-spacing:.06em;line-height:1.4;color:var(--gold);text-align:center}
 .poster-s{font-size:clamp(18px,2vw,24px);line-height:1.1;color:var(--muted);text-align:center}
@@ -292,11 +312,14 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 /* ---------- 05 demo ---------- */
 .demo-status{color:var(--faint);font-size:var(--fs-px-min)}
 .demo-status.live{color:var(--green)}
-.demo-stage{position:relative;height:clamp(560px,82vh,860px);background:#0d0d0f}
+/* world-08: on standby the stage is 16:10 with a 340px floor (index.html), and that floor
+   came back through the ratio as a 544px width, so the coin screen ran 194px past a 390px phone: max-width holds it */
+.demo-stage{position:relative;height:clamp(560px,82vh,860px);max-width:100%;background:#0d0d0f}
 .demo-stage iframe{display:block;width:100%;height:100%;border:0;background:#0d0d0f}
 .demo-coin{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px;padding:24px;text-align:center;
-  background:radial-gradient(ellipse at center,rgba(90,78,168,.25),transparent 65%)}
-.demo-big{font-size:clamp(70px,10vw,150px);line-height:.8}
+  background:radial-gradient(ellipse at center,rgba(90,78,168,.25),transparent 65%),linear-gradient(180deg,rgba(13,13,15,.86),rgba(13,13,15,.93)),var(--still) center/cover}
+/* 40px floor (world-08): at 70px "▶ INSERT COIN" ran past a 390px screen; it may wrap */
+.demo-big{font-size:clamp(40px,10vw,150px);line-height:.8;white-space:normal;max-width:100%}
 .demo-coin .px-label{color:var(--muted)}
 
 /* ---------- 06 Bit ---------- */
@@ -380,14 +403,25 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .rv{opacity:0;translate:0 46px;transition:opacity .9s var(--ease),translate .9s var(--ease),transform .5s var(--ease),box-shadow .3s,background .2s}
 .rv.in{opacity:1;translate:0 0}
 
-/* The section links give way before the motion switch loses its label: the
-   switch keeps its words at every width. */
+/* Below 1100px the section links leave the bar (the motion switch keeps its
+   words) and hang under it as one strip that slides sideways (walk-desk-07:
+   they were hidden, so a 768px screen had no way to the sections). */
 @media (max-width:1100px){
-  .nav-links{display:none}
+  .nav-links{position:absolute;top:100%;left:0;right:0;height:auto;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;overscroll-behavior-x:contain;
+    scrollbar-width:thin;scrollbar-color:var(--frame-hi) transparent;padding:0 max(var(--pad),env(safe-area-inset-left));
+    background:rgba(7,6,15,.92);border-bottom:2px solid var(--frame);line-height:40px}
+  .nav-links a{flex:none;display:inline-flex;align-items:center;min-height:40px}
+  html{scroll-padding-top:112px}
+  .hero{padding-top:190px}
 }
 @media (max-width:960px){
-  .hero{grid-template-columns:minmax(0,1fr);gap:40px}
-  .hero-bit{margin-inline:auto;width:min(100%,340px)}
+  /* one column, in source order: the still comes right under the heading */
+  .hero{grid-template-columns:minmax(0,1fr);grid-template-rows:none;align-content:center}
+  .hero .bc,.hero-kick,.hero h1,.hero-lede,.hero-cta,.hero-copy>.hero-bit{grid-row:auto;grid-column:1}
+  .hero-bit{justify-self:stretch;max-width:640px;margin-top:20px;padding-top:70px}
+  .bit-btn--small .bit svg{width:84px;height:auto}
+  .pops--hero{right:72px}
+  .hero-bit .scan-card{margin:-40px 0 0 12px;width:min(300px,calc(100% - 24px))}
 }
 
 /* ---------- small screens ---------- */
@@ -401,7 +435,7 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
   .term--hero{min-width:0}
   .term-bar{flex-wrap:wrap}
   .term-cmd{font-size:22px}
-  .hero{padding-top:130px}
+  .hero{padding-top:170px}
 }
 
 /* ---------- phones: the nav row, the title bars ---------- */
@@ -412,7 +446,7 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
   .nav{flex-wrap:wrap;row-gap:0;padding-block:6px}
   .nav-end>.btn--primary{display:none}
   .brand{margin-right:auto}
-  .hero{padding-top:110px}
+  .hero{padding-top:150px}
 }
 /* the right-hand title-bar text (the REC dot, the demo status, the sound hint)
    gives way: the left side names the screen */
@@ -455,10 +489,11 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 /* touch screens: the scanlines and the grid read as noise at 3x, and cost a full-viewport layer each on every frame (W6) */
 @media (pointer:coarse){.fx-scan,.fx-grid{display:none}}
 /* the narrowest screens (W3, W4): the boot button and the cards wrap instead of widening the page; the clone command shows whole */
-@media (max-width:339px){
+@media (max-width:479px){
   .btn--lg{white-space:normal}
   .demo-coin{padding:12px}
-  .hero-bit{min-width:0}
+}
+@media (max-width:339px){
   .scan-card{min-width:0;padding-inline:12px}
 }
 @media (max-width:479px){

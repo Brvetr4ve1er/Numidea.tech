@@ -59,6 +59,9 @@
 /* a one-word name (« PUBLICITAIRES », « ILLUSTRATION ») ran past a 280 px card: smaller there, and it may break (rev2) */
 @media (max-width:340px){.crt .cc__n{font-size:20px;hyphens:auto;overflow-wrap:anywhere}}
 .crt .cc__p{font-size:15.5px;line-height:1.5;color:var(--ink-2);text-wrap:pretty}
+/* B1-B3: the coded site's start price */
+.crt .cc__only{padding:6px 10px;border:1.5px dashed var(--teal);font:600 13px/1.45 var(--f-mono);color:var(--teal-text)}
+.crt .cc__only a{color:var(--red-text);white-space:nowrap}
 .crt .cc__gets{list-style:none;display:flex;flex-direction:column;gap:5px;padding:12px 16px 4px}
 .crt .cc__gets li{display:flex;gap:9px;font-size:var(--t-small);line-height:1.35}
 .crt .cc__gets li::before{content:"+";flex:none;font-family:var(--f-mono);font-weight:600;color:var(--red-text)}
@@ -71,7 +74,7 @@
   .crt .tt td + td{border-top:0;padding-top:0;padding-inline-start:0}
   .crt .tt tr:last-child td:first-child{border-bottom:0}
 }
-.crt .tt__go{color:inherit;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px}
+.crt .tt__go{display:inline-flex;align-items:center;min-height:44px;color:inherit;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px}
 .crt .cc__arw{display:inline-block}
 [dir="rtl"] .crt .cc__arw{transform:scaleX(-1)}
 @container (max-width:300px){.crt .stage .mlbl--opt{display:none}}
@@ -92,7 +95,7 @@
 .crt .cc__mk bdi{white-space:nowrap}
 .crt .cc__ref{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 5px;border:1px solid var(--muted);border-radius:99px;font:500 12px/1 var(--f-mono);text-decoration:none;color:var(--muted);vertical-align:1px}
 .crt .cc__ref:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
-.crt .cc__next a{color:var(--red-text);font-weight:600;text-underline-offset:3px}
+.crt .cc__next a{display:inline-flex;align-items:center;min-height:44px;color:var(--red-text);font-weight:600;text-underline-offset:3px}
 .crt .cc__foot{display:flex;flex-direction:column;gap:6px;padding:18px 16px 14px;align-self:start}
 .crt .cc__foot .st-btn{width:100%;padding:0 12px;font-size:12px;letter-spacing:.08em}
 .crt .cc__sec{align-self:flex-start;display:inline-flex;align-items:center;min-height:36px;font:500 12px/1.2 var(--f-mono);letter-spacing:.08em;text-underline-offset:3px}
@@ -120,7 +123,7 @@
 .crt .tag__stamp{position:absolute;z-index:3;pointer-events:none}
 .crt .tag__stamp{top:-11px;inset-inline-end:-12px;width:32px;height:32px;display:grid;place-items:center;background:var(--red);border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink);color:var(--cream);font:900 16px/1 var(--f-jp);transform:rotate(-8deg)}
 
-.crt .cc__pin{position:absolute;z-index:5;inset-inline-end:calc(14px + 75px - 1px);top:calc(100% - 56px + 13px - 44px);width:2px;height:44px;background:var(--ink);transform-origin:50% 100%;transform:rotate(-24deg);pointer-events:none}
+.crt .cc__pin{position:absolute;z-index:5;inset-inline-end:calc(14px + 75px - 1px);top:calc(100% - 56px + 13px - 26px);width:2px;height:26px;background:var(--ink);transform-origin:50% 100%;transform:rotate(-24deg);pointer-events:none}
 :dir(rtl) .crt .cc__pin{transform:rotate(24deg)}
 .crt .cc__pin::before{content:"";position:absolute;top:-6px;left:-4px;width:10px;height:10px;border-radius:50%;background:var(--cream);border:2.5px solid var(--ink)}
 .crt .tag--open .tag__in{background:var(--cream)}
@@ -387,7 +390,7 @@
 .crt .fm__th img.fm__logo{object-fit:contain;padding:12%;background:var(--cream)}
 .crt .fm__th img.crop-bordj{object-fit:contain;padding:14%;object-view-box:inset(16% 9% 18% 9%);background:var(--cream)}
 .crt .fm__th--lbl{background:var(--cream)}
-.crt .fm__th--lbl .lbl{width:160%;max-width:none}
+.crt .fm__th--lbl .lbl{width:100%;max-width:none}
 .crt .fm__from{font:600 13px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 :lang(ar) .crt .fm__from{font-family:var(--f-body);text-transform:none;letter-spacing:0}
 .crt .fm__save{margin-top:-6px;font:600 13px/1.3 var(--f-mono);color:var(--teal-text)}
@@ -398,10 +401,18 @@
 .crt .fm .st-btn{min-height:46px;font-size:12px}
 :lang(ar) .crt .fm__p span,:lang(ar) .crt .fm__stamp{letter-spacing:0}
 .crt .crt__foot{margin-top:34px;font-size:var(--t-body)}
-.crt .crt__foot a{font-weight:600;color:var(--red-text);text-underline-offset:3px}
-.crt .crt__src{margin-top:26px;padding-top:16px;border-top:1.5px dashed var(--line);font:400 12px/1.5 var(--f-mono);color:var(--muted)}
+.crt .crt__foot a{display:inline-flex;align-items:center;min-height:44px;font-weight:600;color:var(--red-text);text-underline-offset:3px}
+.crt .crt__src{margin-top:26px;padding-top:6px;border-top:1.5px dashed var(--line);font:400 12px/1.5 var(--f-mono);color:var(--muted)}
 .crt .crt__src ol{list-style:decimal;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,380px),1fr));gap:4px 28px;margin-top:10px;padding-inline-start:30px}
+.crt .crt__src li{scroll-margin-top:96px}
 .crt .crt__src li:target{background:var(--cream);outline:2px solid var(--red)}
+/* the folds' summaries */
+.crt :is(.cc__sum,.crt__srcsum){display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;font:600 12px/1.2 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;list-style:none}
+.crt :is(.cc__sum,.crt__srcsum)::-webkit-details-marker{display:none}
+.crt :is(.cc__sum,.crt__srcsum)::after{content:"+";font-size:17px;line-height:1}
+.crt [open]>:is(.cc__sum,.crt__srcsum)::after{content:"\2212"}
+:lang(ar) .crt :is(.cc__sum,.crt__srcsum){letter-spacing:0;text-transform:none;font-size:13px}
+.crt .crt__srcsum{width:fit-content;padding:0 4px;color:var(--ink-2)}
 /* a source that wraps keeps one box, so its whole width answers the pointer (an inline link's centre fell beside its two lines) */
 @media (max-width:699px){.crt .crt__src li>a{display:flex;align-items:center;min-height:44px}}
 

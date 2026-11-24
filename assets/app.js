@@ -1119,7 +1119,8 @@
         prefillWith('brief-' + brief[1], carried);
         var nameIn = document.getElementById('f-name');
         if (nameIn && carriedName && !nameIn.value.trim()) nameIn.value = carriedName.slice(0, 80);
-      } else if (carried) prefillWith('carried', (hello ? hello + '\n' : '') + carried);
+      } else if (carried && carriedKind === 'prev') prefillWith('prev', carried);   // the guide's Aperçu button: the request as the home's own buttons write it
+      else if (carried) prefillWith('carried', (hello ? hello + '\n' : '') + carried);
       if (carried && location.hash === '#contact') {
         var settled = null, landed = false;
         var land = function () {
@@ -1148,7 +1149,14 @@
     [].forEach.call(document.querySelectorAll('a[data-apercu]'), function (a) {
       a.addEventListener('click', function () {
         var tier = a.getAttribute('data-apercu') ? tierLine(a) : '';
-        if (!msgBox) { if (tier) prefillWith('tier', tier); return; }
+        /* from the price guide (no form): a tier's line, or the Aperçu's
+           request itself for the guide's own two Aperçu buttons, marked as
+           such so the home writes no greeting above its own (walk-phone-07) */
+        if (!msgBox) {
+          try { if (tier) sessionStorage.removeItem(HANDOFF + '-kind'); else sessionStorage.setItem(HANDOFF + '-kind', 'prev'); } catch (e) {}
+          prefillWith(tier ? 'tier' : 'prev', tier || t('prev.msg'));
+          return;
+        }
         prefillWith(tier ? 'tier' : 'prev', t('prev.msg') + tier);
         toForm();
       });
@@ -1784,8 +1792,14 @@
         var more = document.querySelector('.ptl-more'), w = more && more.closest('.ptl-w');
         if (!w) return;
         more.addEventListener('click', function () {
+          /* the button sits under the list: opening it pushed the button a
+             screen down from under the finger. The page scrolls by what it
+             moved, so it stays where it was tapped (the change is instant) */
+          var top = more.getBoundingClientRect().top;
           var on = w.classList.toggle('full');
           more.setAttribute('aria-expanded', on ? 'true' : 'false');
+          var d = more.getBoundingClientRect().top - top;
+          if (Math.abs(d) > 1) window.scrollBy({ top: d, left: 0, behavior: 'instant' });
         });
       })();
     } catch (e) { if (window.console && console.error) console.error(e); }
@@ -2494,6 +2508,17 @@
          from the blocks above, since a target may be a heading (#pricing-tiers). */
       var jump = own ? [] : [].slice.call(document.querySelectorAll('.t-jump a[href^="#"]'));
       var jsecs = jump.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+      /* the row stuck under the navbar is marked (.stuck): tarifs/style.css
+         gives it its full-width backing then, and none in the flow. Stuck,
+         its top sits on the navbar's foot, one pixel inside the observed
+         root's cut, so it is no longer whole there. */
+      var jrow = document.querySelector('#pricing>.t-jump');
+      if (jrow && 'IntersectionObserver' in window) {
+        var navH = (document.querySelector('.navbar') || { offsetHeight: 73 }).offsetHeight;
+        new IntersectionObserver(function (es) {
+          es.forEach(function (e) { jrow.classList.toggle('stuck', e.intersectionRatio < 1 && e.boundingClientRect.top <= navH + 1); });
+        }, { rootMargin: '-' + (navH + 1) + 'px 0px 0px 0px', threshold: [1] }).observe(jrow);
+      }
       var jtops = [], jcur = -1;
       /* A link may point into another link's section ("Méthode" lands on the
          Aperçu card, the path's one telling, inside Services): that link is

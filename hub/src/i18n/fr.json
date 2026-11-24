@@ -7,6 +7,7 @@
   },
   "nav": {
     "aria": "Sections du studio",
+    "accueil": "Accueil",
     "home": "Numidea Labs, le site",
     "services": "Services",
     "preview": "Aperçu",
@@ -14,7 +15,7 @@
     "work": "Travaux",
     "studio": "Studio",
     "faq": "FAQ",
-    "cta": "Demander un Aperçu",
+    "cta": "Aperçu gratuit",
     "lang": "Langue",
     "langFr": "Français",
     "langEn": "English",
@@ -37,8 +38,8 @@
     "h1a": "Votre idée.",
     "h1b": "Une seule main.",
     "h1c": "Votre logiciel.",
-    "sub": "Sites, applications, automatisations et identités, conçus et codés par les mêmes mains. Vous parlez au builder, pas à un commercial.",
-    "cta1": "Demander un Aperçu",
+    "sub": "Sites, applications, automatisations et identités, conçus et codés par les mêmes mains. L’Aperçu : votre page d’accueil, avant de payer.",
+    "cta1": "Demander mon Aperçu gratuit",
     "cta2": "Estimer mon projet",
     "aside": "yeux fatigués. grandes idées.",
     "mood": "/ HUMEUR DU JOUR",
@@ -103,7 +104,7 @@
   "services": {
     "kicker": "/ 02 · CE QU’ON FAIT · QUATRE FAMILLES",
     "title": "Ce qu’on rend réel.",
-    "lead": "Quatre familles de services, un seul interlocuteur, du premier appel à la maintenance. Personne ne vous passe à un autre.",
+    "lead": "Quatre familles de services. Une fois le travail payé en entier, il vous appartient : le code, les fichiers de design et le contenu.",
     "actor": "Yasser montre les services",
     "items": [
       {
@@ -183,7 +184,7 @@
     "terms": "@home:prev.terms",
     "seal": "GRATUIT",
     "aside": "zéro risque. zéro blabla.",
-    "cta": "Demander mon Aperçu",
+    "cta": "Demander mon Aperçu gratuit",
     "alt": "Yasser construit une maquette avant tout paiement, Kūro à côté"
   },
   "process": {
@@ -277,6 +278,8 @@
     "note": "@home:price.estFine",
     "running": "Domaine et hébergement en plus, facturés à l’année par l’hébergeur, à votre nom.",
     "cta": "Recevoir mon devis",
+    "waMsg": "Bonjour, je voudrais un devis pour ce projet, estimé sur la console du studio :\n{what}\n{lines}\nDélai : {pace}\nTotal estimé : {total} · {weeks}",
+    "mailSubj": "Demande de devis : {what}",
     "sources": "Le marché, sources à l’appui : le guide des prix →",
     "noJs": "Estimation de départ : un site vitrine de 3 pages. Le détail par formule est dans le guide des prix.",
     "kuro": [
@@ -395,10 +398,11 @@
         "k": "SEO",
         "t": "Être trouvé",
         "d": "Google est un bibliothécaire : il range en premier les sites clairs, rapides et utiles.",
-        "stat": "1<sup>re</sup>",
-        "statL": "page : là où se jouent presque tous les clics",
+        "stat": "3",
+        "statL": "réglages sur chaque site : une structure claire, la vitesse, le SEO de base",
         "aside": "chut, il range.",
         "you": "Votre site",
+        "ex": "exemple",
         "other": "Concurrent"
       }
     ]
@@ -436,7 +440,7 @@
         "Animation de 10 s",
         "Kūro et 3 compagnons"
       ],
-      "lang": "Acte 2 · 10 s · sans son, à lancer vous-même",
+      "lang": "Acte 2 · 10 s · sans son",
       "framesLabel": "Cinq affiches et deux planches du projet, à ouvrir en grand",
       "frames": [
         "Affiche GZANA, en rouge et noir : un enfant aux dreadlocks, une petite valise à la main, de dos face à une femme masquée en manteau rouge et colliers de perles, entourée de silhouettes aux yeux vides ; en marge, « No savior. No escape. Only choice. » et des lignes en latin et en japonais.",
@@ -447,8 +451,7 @@
         "Planche de référence du corbeau de MERCURY, sur papier ancien : debout de trois quarts, la tête en gros plan, et de profil.",
         "Planche de référence du rat de MERCURY, sur papier ancien : assis le nez levé, la tête en gros plan, et en marche de profil."
       ],
-      "video": "L’acte 2 de MERCURY en dix secondes : Yasser en voyageur rouge, entouré de Kūro, du corbeau, du pigeon techno et de Ratman, devant la lune.",
-      "fallback": "Votre navigateur ne lit pas la vidéo."
+      "video": "L’acte 2 de MERCURY en dix secondes : Yasser en voyageur rouge, entouré de Kūro, du corbeau, du pigeon techno et de Ratman, devant la lune."
     },
     "be": {
       "kicker": "DOSSIER 08 · LE RESTE DU TRAVAIL",
@@ -509,10 +512,7 @@
         }
       ]
     },
-    "whqCart": {
-      "kick": "EN JEU · MON BUILD PRÉFÉRÉ",
-      "sub": "une borne d’arcade pour votre code"
-    }
+    "whq": "une borne d’arcade pour votre code"
   },
   "lab": {
     "kicker": "/ LE LAB · HORS COMMANDE",
@@ -571,7 +571,8 @@
       "Planche de personnage de Yasser, deuxième tenue : de face en manteau crème et bandoulière, de profil, de dos, trois expressions et des détails de lunettes, de cheveux et de stylo.",
       "Sérigraphie bleu et jaune : un voyageur en blouson se tient dans les hautes herbes d’un plateau, face à un soleil cerclé de deux anneaux bleus, un pylône et des silos à l’horizon.",
       "Sérigraphie bleu et jaune : une silhouette aux ailes de papillon, debout devant une grande fenêtre octogonale dans une charpente métallique, un anneau bleu derrière elle."
-    ]
+    ],
+    "more": "Voir les 36 pièces"
   },
   "founder": {
     "kicker": "/ 09 · LE STUDIO · UNE SEULE MAIN",
@@ -674,12 +675,12 @@
   "contact": {
     "kicker": "/ 11 · ON EN PARLE · PAR ÉCRIT",
     "title": "La porte est ouverte. Écrivez.",
-    "lead": "Choisissez votre canal. Réponse le jour ouvré suivant, par celui qui code. Pas de standard, pas de ticket.",
-    "hours": "Dimanche–jeudi, 9h–18h · messages seulement, pas d’appels",
+    "lead": "Choisissez votre canal. Réponse le jour ouvré suivant. L’Aperçu, lui, est prêt cinq jours ouvrés après réception de votre contenu.",
+    "hours": "Dimanche–jeudi, 9h–18h · messages seulement : la visio de l’Aperçu se fixe par message",
     "waK": "WHATSAPP · +213 672 41 25 78",
     "wa": "WhatsApp",
     "previewK": "APERÇU · WHATSAPP",
-    "preview": "Demander un Aperçu",
+    "preview": "Demander mon Aperçu gratuit",
     "previewMsg": "@home:prev.msg",
     "mailK": "HAMISSEMOHAMEDYASSER@​GMAIL.COM",
     "mail": "Écrire un e-mail",
@@ -696,7 +697,7 @@
       "k": "01 · LE JOUR",
       "t": "Je veux un site",
       "d": "Un Aperçu gratuit avant de payer, les prix publiés, des travaux livrés, un contact direct.",
-      "go": "Demander un Aperçu",
+      "go": "Demander mon Aperçu gratuit",
       "preview": "L’Aperçu",
       "pricing": "Les prix",
       "work": "Les travaux",
@@ -817,7 +818,7 @@
   "footer": {
     "line": "Construit à Bordj Bou Arréridj, avec du café noir et du JavaScript.",
     "rights": "© 2026 NUMIDEA LABS",
-    "site": "Le site",
+    "site": "Accueil",
     "bible": "Bible · VOIDSPLUNKER.std",
     "nav": "Liens du pied de page"
   },
@@ -831,6 +832,8 @@
     "seen": "✓ VU",
     "unlocked": "LIVRABLES DÉBLOQUÉS",
     "open": "Ouvrir le site ↗",
+    "sheet": "Fiche projet →",
+    "unfold": "Ouvrir le dossier",
     "newTab": "(nouvel onglet)"
   },
   "money": {
@@ -1659,7 +1662,7 @@
     },
     "kicker": "/ LE MONDE · PROJETS PERSONNELS",
     "title": "Derrière la porte de nuit.",
-    "note": "Rien sur cette page n’a été commandé par un client. Ce sont les projets du fondateur : une bible de personnages, un court-métrage, des affiches, un journal. Le travail pour les clients est au Studio.",
+    "note": "Ici, les projets du fondateur. Les dossiers 06 et 07 sont personnels : une bible de personnages et un court-métrage. Le dossier 08 rassemble ses travaux de designer publiés sur Behance, dont des travaux pour des clients. Puis des affiches et un journal d’atelier. Les sites livrés et les prix sont au Studio.",
     "nav": {
       "aria": "Sections du monde",
       "codex": "Codex",
@@ -5575,7 +5578,7 @@
       "chaine": "La chaîne locale"
     },
     "kicker": "/ LA FABRIQUE · QUATRE SCÈNES",
-    "title": "Hors du plan de travail.",
+    "title": "Comment on fabrique : quatre scènes.",
     "lead": "Quatre scènes de notre façon de travailler : la marque, le design system, la campagne, le mouvement. Ouvrez chaque scène pour voir la décision, pourquoi elle compte, et ce que vous recevez à nos prix publiés.",
     "note": "Les images sont tirées de nos propres travaux ; les outils nommés sont ceux de l’atelier. Les personnages viennent du monde de l’atelier.",
     "open": "Ouvrir le détail",
@@ -6160,12 +6163,15 @@
       "situation": "La situation",
       "right": "Juste",
       "wrong": "Pas tout à fait",
+      "peek": "Pour voir",
       "idle": "Choisissez une réponse. Une erreur ne coûte rien : on peut réessayer.",
       "toEx": "Faire l’exercice de terrain",
       "keep": "Dans votre sac : {s}",
       "exK": "L’exercice de terrain",
+      "readK": "À lire",
       "badgeOpen": "Ouvert",
       "badgeDone": "Fait",
+      "redo": "Reprendre les lignes différentes",
       "exIdle": "L’exercice attend votre premier geste.",
       "noJs": "Sans JavaScript, l’exercice reste au repos ; le dossier et la note du journal se lisent quand même.",
       "readJournal": "Lire le journal",
@@ -6185,13 +6191,17 @@
       "zoom": "Voir l’affiche en grand",
       "close": "Fermer",
       "journalK": "La Lanterne · librairie inventée",
+      "journalSac": "Journal · Sac",
       "journalH": "Le journal de bord",
       "journalCount": {
         "one": "{n} / {N} note · chemin de traverse {m} / {M}",
         "other": "{n} / {N} notes · chemin de traverse {m} / {M}"
       },
+      "journalLeft": {
+        "one": "{n} quartier à écrire",
+        "other": "{n} quartiers à écrire"
+      },
       "journalIdle": "Faites un quartier jusqu’au bout, la situation puis l’exercice, pour inscrire la décision de l’équipe au journal.",
-      "journalEmpty": "Faites ce quartier pour l’inscrire au journal.",
       "print": "Imprimer mon journal",
       "sacK": "Le sac · inventaire",
       "sacH": "Le sac",
@@ -6200,11 +6210,17 @@
         "one": "{n} souvenir sur {N}",
         "other": "{n} souvenirs sur {N}"
       },
+      "sacLeft": {
+        "one": "{n} souvenir à gagner",
+        "other": "{n} souvenirs à gagner"
+      },
       "unknown": "Souvenir pas encore gagné",
       "side": "chemin de traverse",
       "footerBack": "Retour à la Librairie",
       "studio": "Le Studio",
       "rightNext": "Juste. Faites l’exercice de terrain pour l’inscrire au journal",
+      "rightUp": "Juste. Faites l’exercice ci-dessus pour l’inscrire au journal",
+      "rightDone": "Juste. C’est inscrit au journal.",
       "wa": "WhatsApp",
       "skipEx": "Je passe l’exercice",
       "skipNote": "exercice non fait",
@@ -6218,7 +6234,7 @@
       "ex": {
         "pick": {
           "t": "Lire chaque explication",
-          "brief": "Ouvrez chaque explication une fois. L’exercice est fait quand vous les avez toutes lues."
+          "brief": "Ouvrez les explications qui vous intéressent : chacune dit pourquoi. Le quartier se termine par sa situation, pas par cette lecture."
         },
         "calc": {
           "t": "Le calcul, avec vos chiffres",
@@ -6283,23 +6299,25 @@
       "navPassport": "Le passeport",
       "navComptoir": "Le comptoir",
       "navRonde": "La ronde",
-      "cta": "Réserver un appel",
+      "cta": "Commencer un cours",
       "heroK": "/ LA LIBRAIRIE · MONDE DE NUMIDEA",
       "heroT1": "La Librairie",
       "heroT2": "Lanterne.",
-      "lore": "La Lanterne est une librairie de nuit, dans le monde de Numidea. L’équipe de l’atelier y a construit la réservation du cours du soir ; la libraire a gardé leurs carnets de terrain, et ils sont devenus des atlas. Chaque atlas est un cours : on choisit un quartier, on tranche une situation, on fait l’exercice, et la décision s’inscrit au journal de bord. Les leçons sont gratuites ; les souvenirs se gagnent. Rien ne sort d’ici tant que vous n’appuyez pas.",
+      "lore": "Des cours gratuits : marque, argent, web3, vie nomade, jeu. La Lanterne est une librairie de nuit dans le monde de Numidea, et chaque atlas y est un cours : on choisit un quartier, on tranche une situation, on fait l’exercice, et la décision s’inscrit au journal. Rien ne sort d’ici tant que vous n’appuyez pas.",
       "fiction": "La Lanterne est une librairie inventée : elle n’existe que la nuit, sur ce site.",
-      "heroCta": "Choisir un atlas",
+      "heroCta": "Voir les cours gratuits",
       "heroAlt": "La Librairie Lanterne la nuit : sous l’auvent rayé rouge et crème, un grand livre ouvert sur le comptoir et une lanterne allumée ; Yasser lit un atlas assis devant l’étal, Kūro dort sur le comptoir, les tours de la ville sous un ciel étoilé.",
       "rayonsK": "/ LES RAYONS",
       "shelf1": "Pour vos projets",
-      "shelf2": "Gagner sa vie de loin",
+      "shelf2": "Argent et vie nomade",
       "shelf3": "Maître-cours",
       "count": {
         "one": "{n} / {N} quartier",
         "other": "{n} / {N} quartiers"
       },
       "open": "Ouvrir l’atlas",
+      "start": "Commencer ici",
+      "minutes": "≈ {n} min",
       "resume": "Reprendre : {q}",
       "moving": "Déménage ici bientôt",
       "with": "avec {g}",
@@ -6310,6 +6328,7 @@
       "passK": "/ LE PASSEPORT",
       "passH": "Le passeport de la Librairie",
       "passLead": "Les souvenirs gagnés dans chaque atlas, réunis ici. Ils restent dans ce navigateur.",
+      "passZero": "{N} souvenirs à gagner dans {A} atlas",
       "passRow": "{n} sur {N}",
       "passTotal": {
         "one": "{n} souvenir sur {N}",
@@ -7372,7 +7391,7 @@
         "check": "À vérifier d’abord",
         "free": "L’option gratuite",
         "risk": "Risque",
-        "alt": "L’autre voie, sans lien partenaire"
+        "alt": "L’autre voie"
       },
       "cat": {
         "pay": "Se faire payer, la banque",
@@ -7472,11 +7491,18 @@
         "insurer": "L’assureur que votre banque ou votre consulat indique pour le visa.",
         "duolingo": "gratuit, pour apprendre une langue"
       },
+      "route": {
+        "h": "La voie officielle, d’abord",
+        "dzK": "Résident en Algérie",
+        "outK": "Diaspora",
+        "out": "Wise sert la diaspora et le Golfe : envoyé vers l’Algérie, l’argent arrive en dinars. Le prix de l’envoi vers votre pays est à vérifier sur sa carte, plus bas.",
+        "to": "Le compte en devises de votre banque"
+      },
       "how": {
         "h": "Comment on choisit",
-        "t": "On ne met ici que des services dont on a lu les pages officielles, sauf mention contraire sur la carte (« Pages officielles non lues »). Chaque carte dit pour qui c’est, ce qu’il faut vérifier, et quand et où nous avons lu ses conditions. Elle donne d’abord l’option sans lien partenaire, gratuite quand il y en a une. Dans chaque rayon, l’ordre est alphabétique : il ne dépend jamais de ce qu’un lien rapporte."
+        "t": "On ne met ici que des services dont on a lu les pages officielles, sauf mention contraire sur la carte (« Pages officielles non lues »). Chaque carte dit pour qui c’est, ce qu’il faut vérifier, et le jour où nous l’avons vérifiée. Elle donne d’abord l’option sans lien partenaire, gratuite quand il y en a une. Dans chaque rayon, l’ordre est alphabétique : il ne dépend jamais de ce qu’un lien rapporte."
       },
-      "legal": "Ceci n’est pas un conseil financier. Les conditions changent : vérifiez-les chez le fournisseur. Chaque carte dit le jour et la page où nous les avons lues.",
+      "legal": "Ceci n’est pas un conseil financier. Les conditions changent : vérifiez-les chez le fournisseur. Chaque carte dit le jour où nous l’avons vérifiée.",
       "in": {
         "k": "La boîte à outils",
         "pay": "Les services pour se faire payer, avec leurs limites pays par pays →",
@@ -7491,13 +7517,12 @@
         "go": "Ouvrir la boîte à outils"
       },
       "official": "Site officiel :",
-      "read": "Conditions lues le",
-      "readAt": "sur",
+      "read": "Fiche vérifiée le",
       "on": {
         "d20261121": "21 nov. 2026"
       },
       "unreadK": "Pages officielles non lues : tout ce qui suit reste à vérifier.",
-      "unread": "Conditions non lues : le site n’a pas laissé lire ses pages.",
+      "unread": "Conditions pas encore vérifiées par nous : lisez-les sur {host} avant d’ouvrir un compte.",
       "noProg": "Pas de programme partenaire : ce lien reste un lien simple, il ne nous rapporte rien."
     },
     "enq": {

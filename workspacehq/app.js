@@ -59,13 +59,18 @@
      A player is a black rectangle until its stage boots, so each one wears a
      CSS title card (style.css .poster). Pressing it removes the card, puts
      focus in the frame and sends the stage the space key that starts it (the
-     same press the chapter buttons send). Without JS the card stays hidden. */
+     same press the chapter buttons send). Without JS the card stays hidden.
+     While the card is up the frame behind it is inert: its player controls
+     were tab stops nobody could see (walk-desk-02), so Tab goes from the
+     heading to PRESS PLAY. Pressing the card, or a chapter, lifts it. */
   $$('.player').forEach(function (p) {
     var card = $('.poster', p), f = $('iframe', p);
     if (!card || !f) return;
     card.hidden = false;
+    f.inert = true;
     card.addEventListener('click', function () {
       card.hidden = true;
+      f.inert = false;
       f.focus();
       try { var w = f.contentWindow; w.dispatchEvent(new w.KeyboardEvent('keydown', { key: ' ', code: 'Space', bubbles: true })); } catch (e) { /* not booted: the player's own button starts it */ }
     });
@@ -206,7 +211,7 @@
     b.setAttribute('aria-label', 'Jump to ' + c[1] + ', ' + fmt(c[2]));
     b.addEventListener('click', function () {
       $$('.chap', chapEl).forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
-      var wc = $('.poster', walk.parentNode); if (wc) wc.hidden = true;
+      var wc = $('.poster', walk.parentNode); if (wc) wc.hidden = true; walk.inert = false;
       // same-origin: seek the walkthrough's stage, then press play
       try {
         var w = walk.contentWindow; if (!w) return;

@@ -17,7 +17,7 @@ var I18N = {
   'meta.ogDesc': 'Studio web à Bordj Bou Arréridj. Pour une entreprise immatriculée, avant tout paiement, nous construisons la page d\'accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés — 4 par mois au maximum. Sites en français, anglais et arabe.',
   'meta.twDesc': 'Votre page d\'accueil, avec votre contenu, en 5 jours ouvrés. Gratuit et sans engagement, pour les entreprises immatriculées, 4 par mois au maximum.',
   'meta.ogAlt': 'Numidea Labs — «\u202fVotre site, avant de payer.\u202f» L\'Aperçu\u202f: votre page d\'accueil avant de payer, devant une gravure de l\'arc de Trajan à Timgad',
-  'nav.about': 'L’Aperçu', 'nav.services': 'Services', 'nav.work': 'Réalisations',
+  'nav.about': 'Aperçu gratuit', 'nav.services': 'Services', 'nav.work': 'Réalisations',
   'nav.team': 'Fondateur', 'nav.faq': 'FAQ', 'nav.contact': 'Contact',
   'hero.eyebrow': 'Studio web\u00a0· Bordj\u00a0Bou\u00a0Arréridj',
   'hero.title': 'Voyez votre page d’accueil <span class="swash">avant de payer.</span>',
@@ -42,8 +42,8 @@ var I18N = {
   'work.lead': 'Les sites de nos clients, à visiter vous-même.',
   'work.outcome': 'Côté visiteur',
   'work.demo': 'Aussi\u00a0: Glaive Store, une marque fictive conçue de A à Z comme démo de portfolio.',
-  'work.live': 'Voir le site <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span>', 'work.sheet': 'Voir le projet en détail',
-  'scene.cta': 'Voir chaque réalisation en détail <span aria-hidden="true">→</span>',
+  'work.sheet': 'Voir le projet en détail',
+  'scene.cta': 'Voir les réalisations en détail <span aria-hidden="true">→</span>',
   'founder.kicker': 'Le fondateur', 'founder.title': 'Qui construit <em>votre site.</em>',
   'founder.lead': 'Derrière Numidea, une seule main : un fondateur qui conçoit, code et livre lui-même. Des freelances le rejoignent quand un projet le demande.',
   'founder.role': 'Designer graphique & développeur web\u00a0· Fondateur', 'founder.years': '6 ans',
@@ -69,7 +69,7 @@ var I18N = {
   'founder.skillsNote': "Environ 20 % de temps de production en moins grâce à l’intégration d’outils IA. En cours d’apprentissage : motion design et montage vidéo.",
   'founder.certs': 'Certifications : Duolingo English Test\u00a0· Design numérique (Artiland.Studio)\u00a0· Motion design 3D',
   'pl.vista': 'Gravure\u00a0I — Paysage', 'pl.dunes': 'Gravure\u00a0II — Dunes', 'pl.arch': 'Gravure\u00a0III — L’arc de Trajan, Timgad',
-  'ui.top': 'Haut de page', 'tag.identity': 'Identité', 'tag.designSystems': 'Kits graphiques', 'tag.motion': 'Animation', 'tag.maps': 'Cartes', 'tag.scoring': 'Scoring', 'tag.strategy': 'Stratégie', 'tag.funnels': 'Tunnels de vente', 'tag.audits': 'Audits', 'tag.apis': 'API', 'mk.srcRange': '(Confirmé → Agence)', 'footer.legal': 'Mentions légales', 'footer.privacy': 'Confidentialité', 'work.voicesH': "Ce qu’en disent nos clients", 'mbar.aria': 'Contact rapide', 'mbar.cta': 'Mon Aperçu', 'form.note': 'Le bouton ouvre votre messagerie avec votre message déjà rédigé : il ne vous reste qu’à l’envoyer. Ce site ne conserve pas votre message.', 'ui.skip': 'Aller au contenu', 'ui.navPrimary': 'Navigation principale', 'ui.theme': 'Thème', 'ui.lang': 'Langue', 'footer.navAria': 'Pied de page', 'hero.plateRail': 'Réalisations à l\'écran', 'hero.platePause': 'Mettre la rotation en pause', 'work.livePill': 'En\u00a0ligne', 'proj4.alt': 'Capture du site Bordj Steel', 'proj2.alt': 'Capture du site Alliance Travel', 'proj3.alt': 'Capture du site AlmaFlowClim', 'proj6.alt': 'Capture du site Nomara Voyages', 'ui.menu': 'Menu', 'ui.close': 'Fermer', 'ui.sections': 'Sections', 'founder.linksAria': 'Profils du fondateur',
+  'ui.top': 'Haut de page', 'tag.identity': 'Identité', 'tag.designSystems': 'Kits graphiques', 'tag.motion': 'Animation', 'tag.maps': 'Cartes', 'tag.scoring': 'Scoring', 'tag.strategy': 'Stratégie', 'tag.funnels': 'Tunnels de vente', 'tag.audits': 'Audits', 'tag.apis': 'API', 'mk.srcRange': '(Confirmé → Agence)', 'footer.legal': 'Mentions légales', 'footer.privacy': 'Confidentialité', 'work.voicesH': "Ce qu’en disent nos clients", 'mbar.aria': 'Contact rapide', 'mbar.cta': 'Aperçu gratuit', 'form.note': 'Le bouton ouvre votre messagerie avec votre message déjà rédigé : il ne vous reste qu’à l’envoyer. Ce site ne conserve pas votre message.', 'ui.skip': 'Aller au contenu', 'ui.navPrimary': 'Navigation principale', 'ui.theme': 'Thème', 'ui.lang': 'Langue', 'footer.navAria': 'Pied de page', 'hero.plateRail': 'Réalisations à l\'écran', 'hero.platePause': 'Mettre la rotation en pause', 'work.livePill': 'En\u00a0ligne', 'proj4.alt': 'Capture du site Bordj Steel', 'proj2.alt': 'Capture du site Alliance Travel', 'proj3.alt': 'Capture du site AlmaFlowClim', 'proj6.alt': 'Capture du site Nomara Voyages', 'ui.menu': 'Menu', 'ui.close': 'Fermer', 'ui.sections': 'Sections', 'founder.linksAria': 'Profils du fondateur',
   'ui.resume': 'Reprendre la rotation',
   'team.h': 'Quand un projet le demande',
   'team.fFn': 'Des freelances, au cas par cas', 'team.fDo': 'Un spécialiste rejoint le projet pour une partie précise ; le fondateur reste votre seul interlocuteur et répond de la livraison.',
@@ -89,7 +89,7 @@ var I18N = {
   'contact.title': 'Parlons de <em>votre projet.</em>',
   'contact.sub': 'Deux lignes suffisent : votre activité, ce que le site doit faire, votre échéance. En français, anglais ou arabe.',
   'contact.chStudio': 'Studio', 'contact.chReply': 'Réponse',
-  'contact.vStudio': 'Bordj\u00a0Bou\u00a0Arréridj\u00a0· Algérie', 'contact.vReply': 'Le jour ouvré suivant\u00a0· dimanche–jeudi, 9h–\u206018h (UTC+1)\u00a0· <span class="nb">FR\u00a0· EN\u00a0· AR</span>',
+  'contact.vStudio': 'Bordj\u00a0Bou\u00a0Arréridj\u00a0· Algérie', 'contact.vReply': 'Le jour ouvré suivant, du dimanche au jeudi, 9h–\u206018h, heure d’Alger',
   'form.name': 'Nom', 'form.namePh': 'Votre nom',
   'form.email': 'Email', 'form.emailPh': 'vous@entreprise.com',
   'form.message': 'Message', 'form.messagePh': 'Qu\'est-ce qu\'on construit ?',
@@ -112,7 +112,7 @@ var I18N = {
   'footer.rights': '© 2026 Numidea Labs',
   'footer.tag': 'Enraciné en Numidie\u00a0· bâti sur des idées',
   /* ---- Services catalog + trust strip strings (EXTRA in app.js until the split; merged here) ---- */
-  'mk.h': 'Algérie, France, États-Unis : un projet, trois marchés',
+  'mk.h': 'Un projet, trois marchés',
   'mk.vizCap': "Échelle logarithmique : chaque grande graduation vaut dix fois la précédente. Entre les deux lignes en tirets, la fourchette de Numidea, prolongée sur les trois marchés ; une barre qui s’estompe n’a pas de plafond. Montants convertis au taux officiel, chiffres exacts dans le tableau ci-dessous.",
   'mk.k': 'k', 'mk.M': 'M', 'mk.k.n': 'k|k', 'mk.M.n': 'M|M',
   'prev.tl1': 'Vous décrivez le projet', 'prev.tl1p': 'Deux minutes, par écrit ou de vive voix. En français, anglais ou arabe.',
@@ -197,7 +197,7 @@ var I18N = {
   'price.estimate': 'Estimation', 'price.weeks': 'semaines', 'price.weeks.n': 'semaine|semaines',
   'price.estFine': "Fourchette indicative, pas un devis. Le prix ferme suit, une fois le périmètre cadré ensemble — et il ne bouge plus ensuite.",
   'price.estCta': 'Demander mon prix ferme <span aria-hidden="true">→</span>',
-  'price.moreSum': 'Comment on chiffre', 'price.moreHint': 'Le marché, les modèles de facturation, ce qui fait bouger un devis.',
+  'price.moreSum': 'Comment on chiffre',
   /* ---- the price guide (tarifs/, scripts/build-tarifs.mjs): its head, its own lines, the home's links to it ---- */
   'tarifs.title': 'Prix d\'un site web en Algérie (2026) — Numidea Labs',
   'tarifs.desc': 'Combien coûte un site web en Algérie en 2026 ? Nos formules dès 90 000 DA, un estimateur, et les tarifs courants en Algérie, en France et aux États-Unis.',
@@ -210,7 +210,7 @@ var I18N = {
   'tarifs.link': 'Voir le guide des prix 2026 <span aria-hidden="true">→</span>', 'tarifs.navLink': 'Guide des prix',
   'svc.lead': 'Cinq services principaux, et cinq autres juste en dessous. Un seul interlocuteur pour tous.',
   'prev.tag': 'Offre signature', 'prev.name': "L’Aperçu", 'prev.promise': 'Zéro risque : vous voyez avant de payer.',
-  'prev.more': 'Le détail des étapes', 'prev.terms': 'Gratuit et sans engagement\u00a0· réservé aux entreprises immatriculées\u00a0· 4 Aperçus par mois au maximum, tous clients confondus.', 'prev.cta': 'Demander mon Aperçu gratuit <span aria-hidden="true">→</span>', 'prev.wa': 'Écrire sur WhatsApp', 'prev.msg': 'Bonjour, je souhaite voir l\'Aperçu gratuit de mon futur site.\nEntreprise : \nTéléphone / WhatsApp : \nSite actuel (s\'il existe) : \nCe dont j\'ai besoin : ', 'prev.waText': 'Bonjour Numidea Labs, je souhaite l’Aperçu gratuit de mon futur site.\nEntreprise : \nActivité et ville : \nSite actuel (s’il existe) : ', 'form.source': 'Source', 'contact.waNote': 'messages seulement, pas d’appels\u00a0· gratuit via l’appli',
+  'prev.more': 'Le détail des étapes', 'prev.terms': 'Gratuit et sans engagement\u00a0· réservé aux entreprises immatriculées\u00a0· 4 Aperçus par mois au maximum, tous clients confondus.', 'prev.cta': 'Demander mon Aperçu gratuit <span aria-hidden="true">→</span>', 'prev.wa': 'Écrire sur WhatsApp', 'prev.msg': 'Bonjour, je souhaite voir l\'Aperçu gratuit de mon futur site.\nEntreprise : \nTéléphone / WhatsApp : \nSite actuel (s\'il existe) : \nCe dont j\'ai besoin : ', 'prev.waText': 'Bonjour Numidea Labs, je souhaite l’Aperçu gratuit de mon futur site.\nEntreprise : \nActivité et ville : \nSite actuel (s’il existe) : ', 'form.source': 'Source', 'contact.waNote': 'messages seulement\u202f: la visio de l’Aperçu se fixe par écrit\u00a0· appli gratuite',
   'f1.name': 'Sites & applications web',
   'f1.brief': 'Sites et applications web sur mesure — rapides, bien référencés, pensés pour convertir, du front-end au cloud. Pas de modèle acheté puis maquillé : on dessine votre site de zéro.',
   'f2.name': 'Identité & systèmes visuels',
@@ -231,7 +231,7 @@ var I18N = {
   'c4.name': 'Systèmes de connaissance',
   'c4.brief': 'Architecture de connaissance interne — Obsidian/PARA + Zettelkasten, documentation, bases prêtes à être interrogées par un assistant IA. Des structures qui s’entretiennent seules.',
   'c5.name': 'Outils & assistants IA sur mesure',
-  'c5.brief': 'Outils internes, générateurs et assistants sur mesure, propulsés par Claude : une tâche répétitive se lance en un clic.',
+  'c5.brief': 'Outils internes, générateurs et assistants sur mesure : une tâche répétitive se lance en un clic.',
 
   /* restored 2026-11-11 from the 3 Nov dictionary (owner's own copy, verbatim; the apostrophes and non-breaking spaces follow the page's typography) */
   'proj2.desc': 'Identité, site trilingue, prise de rendez-vous visa et calculateur de devis sur WhatsApp pour une agence de voyages de Bordj\u00a0Bou\u00a0Arréridj.',
@@ -243,11 +243,10 @@ var I18N = {
   'c1.promise': 'De la visite au paiement.', 'c2.promise': 'Des visuels qui arrêtent le regard.', 'c3.promise': 'Du signal dans le bruit.', 'c4.promise': 'Une entreprise qui se souvient.', 'c5.promise': 'Le logiciel qui construit votre logiciel.',
   'c1.fam': 'Sites & design', 'c2.fam': 'Sites & design', 'c3.fam': 'Données & automatisation', 'c4.fam': 'Conseil & IA', 'c5.fam': 'Conseil & IA',
   'scene.lead': 'Les pages, le mobile et le système visuel de nos projets, capturés sur les sites en\u00a0ligne.',
-  'contact.tzNote': 'Heure de Paris en hiver, 1\u00a0h de moins en été',
   /* the open door under the contact's details (W07, 2026-11-19): the Studio's contact picture, its board's word in HTML */
   'contact.sceneAlt': 'La porte de l’atelier ouverte la nuit\u202f: Yasser, dans l’encadrement, lève une pancarte\u202f; Kūro attend sur le seuil.', 'contact.sign': 'salut.',
   /* new 2026-11-11: the home leads to the Studio and the bible again (the bible is in English only) and to WorkspaceHQ */
-  'founder.studio': 'Le studio, en détail <span aria-hidden="true">→</span>',
+  'founder.studio': 'Le Studio, en détail <span aria-hidden="true">→</span>',
   'founder.bible': 'Le carnet du personnage, en anglais <span aria-hidden="true">→</span>',
   /* the night band (index.html #atelier) and the founder's drawn portrait; premise approved 2026-11-15 */
   'atelier.kicker': 'Bordj Bou Arréridj\u00a0· 36°04′N 4°46′E',
@@ -257,6 +256,18 @@ var I18N = {
   'atelier.alt': 'Yasser, à sa table d’atelier la nuit, tient une planche dessinée ; Kūro, le chat noir, est assis sur un plan à côté de lui, près d’un gobelet de café.',
   'founder.sceneAlt': 'Yasser à la fenêtre de l’atelier, la nuit, un café à la main ; Kūro sur le rebord.',
   'founder.sceneCap': 'Yasser, à l’atelier. Ce café n’est pas le premier.',
-  'seal.est': 'Estimé', 'seal.sent': 'Envoyé',   /* the red seal stamps (estimator result, sent form) */
+  'seal.est': 'Estimé', 'seal.sent': 'Prêt',   /* the red seal stamps (estimator result, sent form) */
   'footer.studio': 'Le Studio',
+  /* enh3 HOME, 2026-11-23: the bar's short estimate button, the Librairie and the world in the footer and the menu, the atelier's sub-line, the guide's own price answer, the work links by client, the footer's WorkspaceHQ label */
+  'price.estCtaShort': 'Prix ferme <span aria-hidden="true">→</span>',
+  'nav.librairie': 'La Librairie',
+  'nav.monde': 'Le monde',
+  'atelier.sub': 'Services, travaux et prix du Studio',
+  'tarifs.faq2a': 'Nos formules commencent à 90 000 DA pour un site vitrine, en dinars, en euros ou en dollars sur cette page. Le prix ferme est fixé une fois le périmètre clair\u202f: un forfait, sans frais cachés. Voir aussi <a href="../#apercu">l’Aperçu</a>.',
+  'proj4.live': 'Voir Bordj Steel <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span>',
+  'proj2.live': 'Voir Alliance Travel <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span>',
+  'proj3.live': 'Voir AlmaFlowClim <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span>',
+  'proj6.live': 'Voir Nomara Voyages <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span>',
+  'work.demoLive': 'Voir Glaive Store <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span>',
+  'footer.whq': 'WorkspaceHQ, notre outil (EN)',
 };

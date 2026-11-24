@@ -5,7 +5,7 @@
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-CZM3lg0qd5uRc4qh77duDFJBp6oyYN2Mgs4w9kNy1Rs=' 'sha256-hH1+2JbT++0v50sfF6JjvQA3iFE/NxtUhS8uLkVq5TI='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-CZM3lg0qd5uRc4qh77duDFJBp6oyYN2Mgs4w9kNy1Rs=' 'sha256-2CkEXJcOSwsaY7xsRE4T7Y46IiR3SwH4BxkSu/7ukug='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Cette page a pris la route — Numidea Labs</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0A1420">
@@ -73,7 +73,8 @@
      the numeral was still the one gradient-filled string left on the site,
      with the same contrast blind spot (axe skips color:transparent) as the
      headline it was swept out of. */
-  .e404 .mark{font-family:var(--font-head);font-weight:var(--head-weight);font-size:clamp(96px,22vw,260px);line-height:.9;letter-spacing:var(--head-tracking);
+  /* about 120px (it was up to 260): the two ways on stay in a laptop's first screen (home-24) */
+  .e404 .mark{font-family:var(--font-head);font-weight:var(--head-weight);font-size:clamp(80px,12vw,120px);line-height:.9;letter-spacing:var(--head-tracking);
     color:var(--ice)}
   /* em, not ch: 34ch measured 22.53em in Geist, and ch is a font metric — it
      changed when the webfont landed and widened <main> by 54px (CLS 0.0063). */
@@ -183,6 +184,11 @@
     html[data-scene].e404-lit .e404 .e404-kuro>[lang]{clip-path:inset(0);transition:clip-path var(--m-reveal) var(--m-ease-enter) var(--m-beat)}
   }
   @keyframes m-unroll{from{clip-path:inset(0 0 100% 0)}}
+  /* the site's two other parts, as text links under the buttons (journey-22): one label per language, as the buttons' */
+  .e404 .e404-more{display:flex;flex-wrap:wrap;justify-content:center;gap:0 var(--s-5);margin:var(--s-4) 0 0;font-size:var(--t-small)}
+  .e404 .e404-more a{display:inline-flex;align-items:center;min-height:44px;color:var(--teal-text);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+  .e404 .e404-more a>[lang]{display:none}
+  html[lang="fr"] .e404 .e404-more a>[lang="fr"],html[lang="en"] .e404 .e404-more a>[lang="en"],html[lang="ar"] .e404 .e404-more a>[lang="ar"]{display:inline}
 </style>
 <script>
 /* GitHub Pages serves this page for ANY missing URL, at any depth — relative
@@ -263,6 +269,8 @@
     var home = base + (fromPath ? lang + '/' : '');
     document.addEventListener('DOMContentLoaded', function () {
       document.querySelectorAll('a[href^="index.html"]').forEach(function (el) { el.setAttribute('href', home + el.getAttribute('href').slice(10)); });
+      // the links to the Studio's pages name the domain root: on a repository subpath they take it
+      document.querySelectorAll('a[href^="/hub/"]').forEach(function (el) { el.setAttribute('href', base + el.getAttribute('href').slice(1)); });
     });
   }
   // the numeral's face, unless it is the Geist the script above preloads for every theme
@@ -300,6 +308,11 @@
     <p class="ctas">
       <a class="btn btn-primary cta" href="index.html"><span lang="fr"><i class="arw back" aria-hidden="true"></i> Retour à l’accueil</span><span lang="en"><i class="arw back" aria-hidden="true"></i> Back to the home page</span><span lang="ar"><i class="arw back" aria-hidden="true"></i> العودة إلى الرئيسية</span></a>
       <a class="btn btn-ghost cta" href="index.html#apercu"><span lang="fr">Demander mon Aperçu gratuit <i class="arw" aria-hidden="true"></i></span><span lang="en">Request my free Preview <i class="arw" aria-hidden="true"></i></span><span lang="ar">اطلب معاينتك المجانية <i class="arw" aria-hidden="true"></i></span></a>
+    </p>
+    <!-- the site's two other parts, from the domain root (the head script prefixes a repository subpath) -->
+    <p class="e404-more">
+      <a href="/hub/lanterne/"><span lang="fr">La Librairie</span><span lang="en">The Bookshop</span><span lang="ar">المكتبة</span></a>
+      <a href="/hub/monde.html"><span lang="fr">Le monde</span><span lang="en">The world</span><span lang="ar">العالم</span></a>
     </p>
   </main>
 </div>

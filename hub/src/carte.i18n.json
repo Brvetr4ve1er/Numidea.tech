@@ -1,7 +1,7 @@
 {
   "fr": {
     "carte": {
-      "k": "/ 05 · LA CARTE · {n} SERVICES",
+      "k": "/ LA CARTE · {n} SERVICES",
       "h": "Ce qu’on dessine, et combien.",
       "lead": "Chaque service avec ce que vous recevez, le délai et le prix, en dinars, en euros et en dollars. Sous chaque prix, ce que le même travail coûte ailleurs, avec la source.",
       "tabs": "Familles de services",
@@ -28,6 +28,9 @@
         }
       },
       "est": "Chiffrer dans la console →",
+      "only": "Design seul · le site codé : dès {p}.",
+      "more": "Détails et formules",
+      "srcSum": "Sources · {n}",
       "wa": "Demander sur WhatsApp ↗",
       "work": "Voir le travail →",
       "kuro": "Voir la fiche de Kūro →",
@@ -201,7 +204,7 @@
             "Fichier Figma, prêt pour le développeur"
           ],
           "t": [
-            "Landing · 1 page",
+            "Maquette · landing",
             "Écran en plus"
           ],
           "cap": {
@@ -219,7 +222,7 @@
             "Prototype cliquable, mini guide de style"
           ],
           "t": [
-            "Site · 5 écrans",
+            "Maquette · site 5 écrans",
             "Écran en plus"
           ],
           "cap": {
@@ -237,7 +240,7 @@
             "Prototype cliquable, composants Figma"
           ],
           "t": [
-            "App · 10 écrans",
+            "Maquette · app 10 écrans",
             "Écran en plus"
           ],
           "cap": {
@@ -505,7 +508,7 @@
   },
   "en": {
     "carte": {
-      "k": "/ 05 · THE MENU · {n} SERVICES",
+      "k": "/ THE MENU · {n} SERVICES",
       "h": "What we design, and what it costs.",
       "lead": "Every service with what you get, how long it takes and what it costs, in dinars, euros and dollars. Under each price, what the same work costs elsewhere, with the source.",
       "tabs": "Service families",
@@ -532,6 +535,9 @@
         }
       },
       "est": "Price it in the console →",
+      "only": "Design only · the coded site: from {p}.",
+      "more": "Details and tiers",
+      "srcSum": "Sources · {n}",
       "wa": "Ask on WhatsApp ↗",
       "work": "See the work →",
       "kuro": "See Kūro’s sheet →",
@@ -705,7 +711,7 @@
             "A Figma file, ready for the developer"
           ],
           "t": [
-            "Landing · 1 page",
+            "Mock-up · landing",
             "Extra screen"
           ],
           "cap": {
@@ -723,7 +729,7 @@
             "Clickable prototype, short style guide"
           ],
           "t": [
-            "Site · 5 screens",
+            "Mock-up · 5-screen site",
             "Extra screen"
           ],
           "cap": {
@@ -741,7 +747,7 @@
             "Clickable prototype, Figma components"
           ],
           "t": [
-            "App · 10 screens",
+            "Mock-up · 10-screen app",
             "Extra screen"
           ],
           "cap": {
@@ -1009,7 +1015,7 @@
   },
   "ar": {
     "carte": {
-      "k": "/ 05 · القائمة · {n} خدمة",
+      "k": "/ القائمة · {n} خدمة",
       "h": "ما نصمّمه، وبكم.",
       "lead": "كل خدمة مع ما تستلمه، والمدة، والسعر بالدينار واليورو والدولار. وتحت كل سعر ما يكلّفه العمل نفسه في أماكن أخرى، مع المصدر.",
       "tabs": "عائلات الخدمات",
@@ -1036,6 +1042,9 @@
         }
       },
       "est": "احسب السعر في الحاسبة ←",
+      "only": "تصميم فقط · الموقع المبرمج: ابتداءً من {p}.",
+      "more": "التفاصيل والباقات",
+      "srcSum": "المصادر · {n}",
       "wa": "اطلب عبر واتساب ↗",
       "work": "شاهد العمل ←",
       "kuro": "شاهد بطاقة كورو ←",
@@ -1209,7 +1218,7 @@
             "ملف Figma جاهز للمطوّر"
           ],
           "t": [
-            "صفحة هبوط",
+            "نموذج تصميم · صفحة هبوط",
             "شاشة إضافية"
           ],
           "cap": {
@@ -1227,7 +1236,7 @@
             "نموذج تفاعلي ودليل أسلوب مختصر"
           ],
           "t": [
-            "موقع · 5 شاشات",
+            "نموذج تصميم · موقع 5 شاشات",
             "شاشة إضافية"
           ],
           "cap": {
@@ -1245,7 +1254,7 @@
             "نموذج تفاعلي ومكوّنات Figma"
           ],
           "t": [
-            "تطبيق · 10 شاشات",
+            "نموذج تصميم · تطبيق 10 شاشات",
             "شاشة إضافية"
           ],
           "cap": {

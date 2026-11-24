@@ -18,6 +18,7 @@
 /* the page title: the section heading's accent (h2.sec in styles.css), a
    size over it, as an h1, since it is the page's one */
 h1.sec{font-family:var(--font-display);font-weight:600;font-size:clamp(26px, 14px + 3.33vw, 62px);letter-spacing:-.025em;line-height:1.04;margin-bottom:var(--s-6);max-width:11.934em}
+h1.sec{text-wrap:balance}   /* no "2026." alone on the last line (home-20) */
 h1.sec em{font-family:inherit;font-style:normal;color:var(--crimson-text)}
 html[dir="ltr"] h1.sec{font-family:var(--font-head);font-weight:var(--head-weight);letter-spacing:var(--head-tracking)}
 html[dir="ltr"] h1.sec em{font-family:var(--font-head-em)}
@@ -65,7 +66,8 @@ html[dir="rtl"] h1.sec{letter-spacing:0}
    Geist, 9.09 in its fallback): the currency stands in one column, and it
    stays put when Geist arrives late (the Arabic page does not preload it; the
    re-set moved the currency, a layout shift of 0.007 on the first screen) */
-.t-ans .t-range b{display:inline-block;min-width:9.8em}
+.t-ans .t-range b{display:inline-block}
+.t-ans .t-range .cur{margin-inline-start:-.1em}   /* the unit right after the figure, a thin space apart (home-21: a 9.8em column left "DA" stranded at the edge) */
 html[dir="rtl"] .t-ans-n{letter-spacing:0;text-transform:none}
 .t-ans a:focus-visible .t-range{color:var(--crimson-text)}
 @media (hover:hover){.t-ans a:hover .t-range{color:var(--crimson-text)}}
@@ -366,4 +368,23 @@ html[dir="rtl"] .t-pl::after{text-align:start;
   .est-out :is(.eo-fine,.eo-sum,.esc){display:none}
   .est-out .eo-k{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
   .est-out .btn{min-height:44px;padding-block:var(--s-2);margin-top:var(--s-1)}
+}
+
+/* ---- enh3 (2026-11-23): the jump row from 720px, where its five chips fit.
+   No end fade (it drew a dark patch at the row's end in the hero: there is
+   nothing past it to hint at); stuck under the navbar (app.js sets .stuck)
+   its backing runs the page's full width, so no card shows beside it; in
+   the flow it has none (home-22) ---- */
+@media (min-width:720px) and (min-height:521px){
+  #pricing>.t-jump{-webkit-mask-image:none;mask-image:none;overflow:visible;
+    box-shadow:0 0 0 100vmax var(--nav-glass);clip-path:inset(0 -100vmax)}
+  #pricing>.t-jump a:last-child{margin-inline-end:0}
+  html.js #pricing>.t-jump:not(.stuck){background:none;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none}
+}
+/* ---- the day-rate callout and the conversion note side by side from 1100 (craft-22: 700px of nothing beside them) ---- */
+@media (min-width:1100px){
+  #pricing .market{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:calc(2 * var(--col-gap));align-items:start}
+  #pricing .market>*{grid-column:1/-1}
+  #pricing .market>.mk-day{grid-column:1;margin-bottom:0}
+  #pricing .market>.mk-note{grid-column:2;align-self:center;margin:var(--s-5) 0 0}
 }

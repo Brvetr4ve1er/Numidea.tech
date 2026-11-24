@@ -42,8 +42,11 @@ const url = (page) => BASE + page.replace(/index\.html$/, '');
 const xhtml = (l, href) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${href}"/>`;
 // pages: the published set; check.mjs passes PAGES plus legal/ to check the
 // legal page's entry before it is published
+// the published pages that are noindex, so not in the sitemap: 404.html, the old manual (a stub since 2026-11-21) and
+// the brand exploration, a louder gear kept for the record, not the identity (W-15, 2026-11-24)
+export const NOINDEX_PAGES = ['404.html', 'hub/manuel.html', 'hub/brand/exploration/index.html'];
 export function renderSitemap(pages = PAGES) {
-  const rows = pages.filter((p) => p !== '404.html' && p !== 'hub/manuel.html').map((p) => {   // the old manual is a noindex stub (2026-11-21)
+  const rows = pages.filter((p) => !NOINDEX_PAGES.includes(p)).map((p) => {
     const loc = url(p);
     if (STATIC[p]) {
       const v = versions(p);

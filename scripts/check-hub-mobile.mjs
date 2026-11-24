@@ -10,11 +10,15 @@
  *              handwritten line made it 315px wide at 280)
  *   tiles      on a phone no case tile is wider than its track, and the
  *              track's arrows move it to the next tile's edge, one tile
- *              each (they moved it by 0.8 of a width, to mid-tile)
+ *              each (they moved it by 0.8 of a width, to mid-tile); since
+ *              2026-11-24 (S-09) cases 2 to 5 fold under 600px, so the gate
+ *              holds the fold (each folded case shows a 44px « Ouvrir le
+ *              dossier »), then opens them all before it measures the tiles
  *   rig        the bubble Yasser speaks in lies inside the screen
  *   menu       under 1160px the Menu button opens a sheet that holds the six
  *              sections (and, since 2026-11-19, la fabrique as a seventh line,
- *              not counted), and closes with Escape
+ *              not counted; since 2026-11-24, S-12, « ← Accueil » to ../ as its
+ *              first line, not counted either), and closes with Escape
  *   viewer     on a phone the viewer holds the picture, previous and next
  *              under it (not over it), and a swipe moves one picture (run on
  *              the world's page, hub/monde.html, where the diary is)
@@ -44,6 +48,16 @@ for (const lang of ['fr', 'en', 'ar']) {
     await p.goto(`${srv.base}/hub/${lang === 'fr' ? '' : '?lang=' + lang}`, { waitUntil: 'load' });
     await p.waitForTimeout(600);
     await p.evaluate(async () => { document.documentElement.style.scrollBehavior = 'auto'; for (let y = 0; y < document.documentElement.scrollHeight; y += 600) { scrollTo(0, y); await new Promise((r) => setTimeout(r, 40)); } scrollTo(0, 0); });
+    const fold = await p.evaluate(() => {
+      const cs = [...document.querySelectorAll('#work .st-case')].slice(1), folded = cs.filter((c) => c.classList.contains('is-folded'));
+      const short = folded.filter((c) => { const b = c.querySelector('.st-case__unfold'); return !b || b.hidden || b.getBoundingClientRect().height < 44; }).map((c) => c.id);
+      folded.forEach((c) => c.querySelector('.st-case__unfold') && c.querySelector('.st-case__unfold').click());
+      return { n: cs.length, folded: folded.length, short, still: cs.filter((c) => c.classList.contains('is-folded')).length };
+    });
+    if (fold.folded !== fold.n) note(`${lang} ${w}: ${fold.folded} of the ${fold.n} later cases are folded under 600px (S-09 folds them all)`);
+    if (fold.short.length) note(`${lang} ${w}: a folded case has no 44px « Ouvrir le dossier »: ${fold.short.join(', ')}`);
+    if (fold.still) note(`${lang} ${w}: « Ouvrir le dossier » left ${fold.still} case(s) folded`);
+    await p.waitForTimeout(300);
     const m = await p.evaluate(() => {
       const wide = [];
       document.querySelectorAll('.st-case__track').forEach((t) => [...t.children].forEach((k) => { const r = k.getBoundingClientRect(); if (r.width > t.clientWidth - 8) wide.push(`${t.closest('.st-case').id} ${k.className.split(' ').slice(0, 2).join('.')} ${Math.round(r.width)}>${t.clientWidth}`); }));
@@ -99,7 +113,8 @@ for (const lang of ['fr', 'en', 'ar']) {
       // the menu
       await p.evaluate(() => scrollTo(0, 0));
       await p.locator('[data-menu-open]').tap(); await p.waitForTimeout(300);
-      const mn = await p.evaluate(() => ({ open: document.getElementById('menu').open, links: document.querySelectorAll('#menu .st-menu__nav a:not(.st-menu__world):not([href^="fabrique.html"])').length }));
+      const mn = await p.evaluate(() => ({ open: document.getElementById('menu').open, links: document.querySelectorAll('#menu .st-menu__nav a:not(.st-menu__world):not([href^="fabrique.html"]):not(.st-menu__home)').length, home: (() => { const a = document.querySelector('#menu .st-menu__nav a'); return !!a && a.classList.contains('st-menu__home') && a.getAttribute('href') === '../'; })() }));
+      if (!mn.home) note(`${lang} 390: the menu's first line is not « ← Accueil » to ../`);
       if (!mn.open || mn.links !== 6) note(`${lang} 390: the Menu button does not open the six sections (${JSON.stringify(mn)})`);
       await p.keyboard.press('Escape'); await p.waitForTimeout(200);
       if (await p.evaluate(() => document.getElementById('menu').open)) note(`${lang} 390: Escape does not close the menu`);

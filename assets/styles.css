@@ -762,7 +762,7 @@ html[dir="rtl"] .pm-item::after{transform:scaleX(-1)}
    the margin, so the box grows and the title's rhythm does not */
 .proj h3 a{display:inline-block;padding-block:var(--s-3);margin-block:calc(-1 * var(--s-3));text-decoration:none}
 @media (hover:hover){.proj h3 a:hover{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}}
-.proj .actions a[data-i18n="work.live"],.proj .body .gain{position:relative;z-index:5}
+.proj .actions a[data-client],.proj .body .gain{position:relative;z-index:5}
 /* the capture: 16:10 like the file, a hairline and the page's radius, nothing
    over it; four crop marks stand 4px outside it (the hero plate's idiom) */
 .proj .thumb{position:relative;display:block;aspect-ratio:16/10;overflow:visible;
@@ -1078,7 +1078,7 @@ html[dir="rtl"] :is(.footer nav a,.footer .meta){font-family:var(--font-ar-body)
 /* Desktop: the footer on the page's twelve columns, not a thin strip. The
    mark and the brand line in the first four, the links as a two-column mono
    list from the sixth, then a rule and the meta row: the copyright, the
-   legal slot, the switch and the way up. The two wrappers become
+   legal slot (the switch and the way up left it on 2026-11-23). The two wrappers become
    grid-transparent (display:contents) so their children can take columns
    of their own; the rule is the footer's ::after. No label over the links:
    the slot printed the nav's aria-label, and "PIED DE PAGE" ("تذييل الصفحة")
@@ -1195,7 +1195,6 @@ html[dir="rtl"] .cap h4{font-family:var(--font-ar-display)}
 /* .faq-item, .capabilities and .lang clip their overflow, so an outside ring
    would be cut away entirely: these controls draw it inside. */
 .capabilities>summary:focus-visible,.lang :is(a,button):focus-visible{outline-offset:-3px}
-.lang :is(a[aria-current],button[aria-pressed="true"]):focus-visible{outline-color:var(--on-teal)}
 /* a directional arrow inside translated copy (founder buttons) turns with the reading direction */
 html[dir="rtl"] .arr{display:inline-block;transform:scaleX(-1)}
 html[dir="rtl"] .faq-item summary{font-family:var(--font-ar-display)}
@@ -2985,7 +2984,7 @@ section.band::after,section.band+section.band::after{
   .est-out :is(.eo-range,.eo-time){flex:0 1 auto}
   .est-out .eo-range :is(b,.eo-dash){font-size:var(--t-body)}
   .est-out .eo-time{letter-spacing:.04em}
-  .est-out .btn{min-height:44px;margin:0;padding-block:var(--s-2)}
+  .est-out .btn{margin:0;padding-block:var(--s-2)}
   .est-out .eo-fine{font-size:var(--t-label);line-height:1.5}
 }
 
@@ -3135,7 +3134,7 @@ html[dir="rtl"] .capabilities>summary{font-family:var(--font-ar-body)}
 .esc-bar{background:var(--crimson)}
 .esc-cap::before{background:linear-gradient(var(--crimson) 0 14px,color-mix(in srgb,var(--crimson) 45%,transparent) 14px)}
 .price-guide{margin-top:0;border-bottom:1px solid var(--hairline)}
-.price-guide .btn{min-height:64px;padding-inline:0}
+.price-guide .btn{padding-inline:0}
 .price-est+.price-more{margin-top:0}
 
 /* ---- the founder, honestly, without a photo (C5) ---- */
@@ -3251,6 +3250,8 @@ html[dir="rtl"] .channels dt{font-family:var(--font-ar-body)}
 /* ---- the planche head: 01 | RÉALISATIONS ────────────┤ ---- */
 main:has(>#work){counter-reset:planche}
 main:has(>#work)>section:not(.hero,.proof){border-top:0;counter-increment:planche}
+/* the night band (#atelier) has no planche head: it keeps its rule but takes no number, so the six planches read 01 to 06 (it made contact "Pl. 7/6") */
+main:has(>#work)>#atelier.nsp{counter-increment:none}
 main:has(>#work)>section:not(.hero,.proof)>.kicker{gap:var(--s-3);margin-bottom:var(--s-5);color:var(--muted)}
 main:has(>#work)>section:not(.hero,.proof)>.kicker::before{content:counter(planche,decimal-leading-zero);width:auto;height:auto;background:none;
   padding-inline-end:var(--s-3);border-inline-end:1px solid var(--hairline-2);color:var(--crimson-text);letter-spacing:.08em;line-height:1.4;font-variant-numeric:tabular-nums}
@@ -3413,7 +3414,7 @@ html[dir="rtl"] #services .svc-grid>.svc-row h3::before{text-align:right}
    foot. On a phone the four marks share one row (a quarter of the 2x2 grid's
    height); the plate and the rows below show the same four captures, so the
    marks stay small. */
-.vista{margin-bottom:0;height:clamp(120px,12vw,172px)}
+.vista{margin-bottom:0;height:clamp(120px,10vw,144px)}   /* 144 at 1440 (was 172): the proof line ends above 900 on a 1440x900 screen (home-07) */
 @media (max-width:959px){
   main.wrap>section.proof{gap:var(--s-3);padding-block:var(--s-4)}
   .cl-row{display:flex;justify-content:space-between;align-items:center;width:100%;gap:var(--s-1)}
@@ -4057,6 +4058,8 @@ html.menu-open{overscroll-behavior:none}   /* (set with the menu, app.js: a :has
   html.js .navbar .lang>a:not([aria-current]){display:none}
   html.js .navbar .lang.open>a:not([aria-current]){display:flex;position:absolute;inset-inline-end:-1px;top:calc(100% + 6px + (var(--n,1) - 1) * 50px);width:46px;min-width:46px;z-index:5;
     background:var(--void);border:1px solid var(--hairline-2);border-radius:var(--r-pill);box-shadow:var(--shadow-lift)}
+  /* the second of the two drops one step further (50px): nothing set --n, so both sat on one box and only one language could be reached */
+  html.js .navbar .lang.open>a:not([aria-current])~a:not([aria-current]){--n:2}
 }
 /* the two other languages drop 6px into place (250) as the list opens */
 @media (max-width:720px) and (prefers-reduced-motion:no-preference){
@@ -4071,8 +4074,9 @@ html.menu-open{overscroll-behavior:none}   /* (set with the menu, app.js: a :has
   .m-contact .btn{min-height:44px;padding:var(--s-1) var(--s-3)}
   html{scroll-padding-bottom:calc(61px + 9px + env(safe-area-inset-bottom))}
   .m-contact.est .m-main,.m-contact.est .wa-link{display:none}
-  .m-contact.est .m-price{display:flex;flex-direction:column;justify-content:center;flex:1 1 auto;min-width:0;margin:0;gap:1px}
-  .m-contact.est .m-estgo{display:inline-flex;flex:0 0 auto;font-size:14px;padding-inline:var(--s-3)}
+  /* the figure keeps its width ("180 000–420 000 DA", the unit was cut at 390); the button, its short label, takes what is left (craft-03) */
+  .m-contact.est .m-price{display:flex;flex-direction:column;justify-content:center;flex:0 0 auto;margin:0;gap:1px}
+  .m-contact.est .m-estgo{display:inline-flex;flex:1 1 auto;min-width:0;justify-content:center;font-size:14px;padding-inline:var(--s-3);white-space:nowrap}
   /* the bar's two contents (the ways in; the estimate) swap in place: what
      arrives fades in over 250 (what leaves goes at once, as the two cannot
      share the row while one fades) */
@@ -4104,7 +4108,6 @@ html.menu-open{overscroll-behavior:none}   /* (set with the menu, app.js: a :has
   .hero .eyebrow{margin-bottom:var(--s-3)}
   .hero .lede{font-size:var(--t-body);margin-top:var(--s-3)}
   .hero-cta{margin-top:var(--s-4);gap:var(--s-1)}
-  .hero-cta .btn-teal{min-height:44px}
   .hero .hero-terms{margin-top:var(--s-2);font-size:var(--t-body);line-height:1.45;color:var(--body-strong)}
   .hero .dim-line{display:none}   /* the workshop's coordinates sat between the offer and the proof */
   .hero .plate-wrap{display:flex;flex-wrap:wrap;align-items:center;column-gap:var(--s-2);row-gap:0;margin-top:var(--s-3)}
@@ -4300,7 +4303,6 @@ html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
   .price-note{margin-bottom:var(--s-4);font-size:var(--t-small)}
   main:has(>#work) .price-est .hint{display:none}
   main:has(>#work) .capabilities>summary{min-height:56px;padding-block:var(--s-3)}
-  .price-guide .btn{min-height:56px}
   .t-range b{white-space:normal}   /* "450 000 – 1 200 000" wraps after the dash at 280 rather than leaving the card */
 }
 @media (min-width:721px) and (max-width:960px){
@@ -4359,8 +4361,6 @@ html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
   .field textarea{min-height:112px}
   .form .field{margin-bottom:var(--s-3)}
   .form-acts{flex-direction:column;gap:var(--s-2);margin-top:var(--s-3)}
-  .form .form-acts #form-wa-send{order:-1;background:var(--crimson);color:var(--on-crimson);border-color:var(--crimson)}
-  .form .form-acts button[type="submit"]{background:transparent;color:var(--ice);border-color:var(--hairline-2);box-shadow:none}
   .form .form-note{margin:var(--s-3) 0 0}
 }
 
@@ -4369,7 +4369,6 @@ html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
   .footer-top{margin-bottom:var(--s-3);gap:var(--s-3)}
   .footer nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 var(--s-4)}
   .footer nav a{min-height:44px}
-  .footer .meta .meta-end .lang{display:none}   /* the header's button and the menu hold the language */
   .foot-dunes{height:88px}
 }
 
@@ -4569,8 +4568,9 @@ html.m-swap *,html.m-swap *::before,html.m-swap *::after{transition:none!importa
   .preview .body{grid-template-rows:auto auto}
   /* the offer's words start level with the stub's first line (OFFRE SIGNATURE beside "Payé jusqu'ici") and the
      fine print ends level with its last: no band over the tag, no field under the terms (2026-11-19, E12) */
-  .preview .body>.prev-head{align-self:stretch;justify-content:flex-start}
-  .preview .body>.prev-head>.prev-terms{margin-top:auto;padding-top:var(--s-4)}
+  /* centred against the stub, the terms right under the promise: pinned to the foot, they left a 150px hole in the column (home-06) */
+  .preview .body>.prev-head{align-self:center;justify-content:flex-start}
+  .preview .body>.prev-head>.prev-terms{padding-top:var(--s-4)}
 }
 
 /* ---- the questions: Kūro's window (B10, the Studio's FAQ drawing) under
@@ -4672,4 +4672,109 @@ html.m-swap *,html.m-swap *::before,html.m-swap *::after{transition:none!importa
   html:active-view-transition-type(case)::view-transition-group(case-shot){animation-duration:var(--m-reveal);animation-timing-function:var(--m-ease-move)}
   html:active-view-transition-type(case)::view-transition-old(case-shot),
   html:active-view-transition-type(case)::view-transition-new(case-shot){height:100%;object-fit:cover}
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   enh3, the home's fix round (2026-11-23). Written last, so each rule
+   here wins over the earlier one it amends; the comment says which.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ---- the phone menu: the Librairie and the world under a rule (journey-01), set as the guide's link is ---- */
+.mobile-menu nav .menu-sep{display:block;height:1px;margin:var(--s-2) 0;background:var(--hairline-2)}
+.mobile-menu nav a.menu-far{font-family:var(--font-mono);font-weight:400;font-size:var(--t-small);letter-spacing:.04em;min-height:40px;color:var(--muted)}
+html[dir="rtl"] .mobile-menu nav a.menu-far{font-family:var(--font-ar-body);letter-spacing:0}
+
+/* ---- the night band: the link's own line under it, what is behind the door (home-12) ---- */
+.nsp-sub{margin:calc(-1 * var(--s-2)) 0 0;padding-inline:var(--s-1);font-size:var(--t-small);line-height:1.5;color:var(--nsp-mute)}
+
+/* ---- the work: each capture in a browser's bar (home-08). The bar is the
+   capture's top border, painted by its background (content-box, so the
+   16:10 picture keeps its size and the card grows by the bar); the crop
+   marks move up with it. ---- */
+.proj .thumb{--bar:22px;--dot:color-mix(in srgb,var(--muted) 60%,transparent);box-sizing:content-box;border-top:var(--bar) solid transparent}
+.proj .thumb,.proj .thumb:has(.shot){
+  background:
+    radial-gradient(circle,var(--dot) 0 3px,transparent 3.5px) 10px calc((var(--bar) - 8px) / 2)/8px 8px no-repeat border-box,
+    radial-gradient(circle,var(--dot) 0 3px,transparent 3.5px) 24px calc((var(--bar) - 8px) / 2)/8px 8px no-repeat border-box,
+    radial-gradient(circle,var(--dot) 0 3px,transparent 3.5px) 38px calc((var(--bar) - 8px) / 2)/8px 8px no-repeat border-box,
+    linear-gradient(var(--plum),var(--plum)) 0 0/100% var(--bar) no-repeat border-box,
+    var(--navy)}
+html[dir="rtl"] .proj .thumb:is(*,:has(.shot)){background-position:calc(100% - 10px) calc((var(--bar) - 8px) / 2),calc(100% - 24px) calc((var(--bar) - 8px) / 2),calc(100% - 38px) calc((var(--bar) - 8px) / 2),0 0,0 0}
+.proj .thumb::before{top:calc(-6px - var(--bar))}
+.proj .shot{border-radius:0 0 var(--r-md) var(--r-md)}
+.proj .thumb:not(.sk)::after{border-radius:0 0 var(--r-md) var(--r-md)}
+
+/* ---- the services from 1100: the drawing beside the title, not under it (home-05: 271px rows) ---- */
+@media (min-width:1100px){
+  #services .svc-grid>.svc-row{padding-block:var(--s-4)}
+  #services .svc-grid>.svc-row .svc-spot{grid-column:1/span 2;grid-row:1/span 3;margin:0}
+  #services .svc-grid>.svc-row h3{grid-column:3/span 3;grid-row:1/span 2}
+  #services .svc-grid>.svc-row .fam{grid-column:3/span 3;grid-row:3}
+  #services .svc-grid>.svc-row .promise{grid-column:6/-1;grid-row:1}
+  #services .svc-grid>.svc-row .brief{grid-column:6/-1;grid-row:2;max-width:40em}
+  #services .svc-grid>.svc-row .tags{grid-column:6/-1;grid-row:3;flex-direction:row;align-items:baseline;justify-content:flex-start;text-align:start;gap:0}
+  #services .svc-grid>.svc-row .tags .pill+.pill::before{content:"·";margin-inline:var(--s-2);color:var(--faint)}
+}
+
+/* ---- the phone's open plan: its first three inclusions under the range,
+   the rest behind "Ce qui est inclus +" (home-17). Where ::details-content
+   is not known the whole list stays folded, as before. ---- */
+@media (max-width:720px){
+  @supports selector(::details-content){
+    .tiers.tt .t-incl:not([open])::details-content{content-visibility:visible;display:block;block-size:auto}
+    .tiers.tt .t-incl:not([open]) .t-list>li:nth-child(n+4){display:none}
+    .tiers.tt .t-incl:not([open])>summary{margin-bottom:var(--s-2)}
+  }
+}
+
+/* ---- the contact from 1100: the open door beside the opening line, so the
+   details end level with the form (home-13); the dunes half as tall ---- */
+@media (min-width:1100px){
+  .contact-side{display:grid;grid-template-columns:minmax(0,1fr) 280px;column-gap:var(--s-5);align-items:start}   /* 280: at 200 the door read as a stamp (H-17) */
+  .contact-side>.sub{grid-column:1;grid-row:1;margin:0}
+  .contact-side>.ct-door{grid-column:2;grid-row:1;margin:var(--s-1) 0 0;max-width:none}
+  .contact-side>.channels{grid-column:1/-1;grid-row:2}
+  .foot-dunes{height:clamp(56px,7vw,105px)}
+}
+
+/* ---- the footer: the links on a fixed grid, and a column with the number,
+   the address and the town (home-19); the language switch and the "Haut de
+   page" link left it (the header, the menu and the round button hold them) ---- */
+.footer .foot-reach{display:grid;gap:var(--s-1);font-style:normal;font-size:var(--t-small);line-height:1.5;color:var(--muted)}
+.footer .foot-reach a{display:inline-flex;align-items:center;gap:var(--s-2);min-height:44px;color:var(--ice);text-decoration:none;overflow-wrap:anywhere}
+@media (hover:hover){.footer .foot-reach a:hover{color:var(--teal-text)}}
+.footer .foot-reach .foot-k{color:var(--muted)}
+.footer .foot-reach>span{display:inline-flex;align-items:center;min-height:44px}
+@media (max-width:960px){
+  .footer-top{flex-direction:column;align-items:stretch}
+  .footer .foot-reach{border-top:1px solid var(--hairline);padding-top:var(--s-3)}
+}
+@media (min-width:961px){
+  .footer nav{grid-column:5/span 5;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));justify-content:stretch;column-gap:var(--s-5);row-gap:0}
+  .footer .foot-reach{grid-column:10/-1;grid-row:1/span 2;align-content:start}
+  .footer .foot-reach>*{min-height:36px}
+}
+@media (min-width:1200px){
+  .footer nav{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+
+/* ---- the language offer on a phone: docked under the navbar, out of the
+   thumb's zone and clear of the bottom bar (craft-13, walk-phone-06) ---- */
+@media (max-width:720px){
+  .lang-offer,html.mbar-on .lang-offer{bottom:auto;top:calc(var(--nav-h) + env(safe-area-inset-top));transform:none}
+  /* a full-width band joined to the navbar's foot, opaque, so what it covers for its seven seconds reads as under a
+     notice, not under a stray pill (H-28) */
+  .lang-offer{inset-inline:0;justify-content:space-between;padding-inline:var(--gutter) max(4px,env(safe-area-inset-right));border-radius:0;border-width:0 0 1px;border-color:var(--hairline-2)}
+  @media (prefers-reduced-motion:no-preference){
+    @starting-style{.lang-offer{opacity:0;transform:translateY(-8px)}}
+    .lang-offer[hidden]{transform:translateY(-8px)}
+  }
+}
+
+/* ---- the Arabic headline on two lines from 1100 (home-26): at the Latin
+   size it took three, a word alone on the last, and the hero ran 100px
+   taller than the French one. The column is the same; the size is the
+   longer line's (from 1100, where the Latin size starts). ---- */
+@media (min-width:1100px){
+  html[dir="rtl"] .hero-h{font-size:clamp(48px,4.4vw,76px)}
 }

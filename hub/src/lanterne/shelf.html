@@ -44,7 +44,7 @@
     </div>
     <p class="sec__lead" data-i18n="lant.shelf.passLead"></p>
     {{lant.shelf.passport}}
-    <p class="sec__act js-only"><button type="button" class="btn" data-lt-print><span data-i18n="lant.shelf.passPrint"></span></button></p>
+    <p class="sec__act js-only" data-lt-pass-print hidden><button type="button" class="btn" data-lt-print><span data-i18n="lant.shelf.passPrint"></span></button></p>
   </section>
 </div>
 
@@ -108,6 +108,23 @@
 
 <section class="st-sec st-mny" id="comptoir" aria-labelledby="msvc-h">
   <div class="st-wrap">
+    <!-- the free things first (L-03, 2026-11-24), then the paid services: the toolbox (hub/lanterne/outils.html, 2026-11-22: the
+         apps the atlases name, each with its free option) and the night cases (hub/lanterne/enquetes.html, 2026-11-23: the
+         stall as a game), each with one of the cast -->
+    <div class="lt-free">
+      <div class="st-mny__kit lt-tools-in">
+        <img class="lt-tools-in__art" src="../img/lanterne/cast/ratman.webp" width="280" height="207" alt="" loading="lazy" decoding="async">
+        <p class="st-mny__kitk" data-i18n="lant.tools.shelf.k"></p>
+        <p class="st-mny__kitl" data-i18n="lant.tools.shelf.t"></p>
+        <a class="st-btn st-btn--ghost" href="outils.html" data-i18n="lant.tools.shelf.go"></a>
+      </div>
+      <div class="st-mny__kit lt-tools-in">
+        <img class="lt-tools-in__art" src="../img/lanterne/cast/raven.webp" width="276" height="245" alt="" loading="lazy" decoding="async">
+        <p class="st-mny__kitk" data-i18n="lant.enq.shelf.k"></p>
+        <p class="st-mny__kitl" data-i18n="lant.enq.shelf.t"></p>
+        <a class="st-btn st-btn--ghost" href="enquetes.html" data-i18n="lant.enq.shelf.go"></a>
+      </div>
+    </div>
     <div class="st-head">
       <div class="st-head__main">
         <p class="st-kick"><span class="st-seal" aria-hidden="true" lang="ja">話</span><span data-i18n="manual.svc.kicker"></span></p>
@@ -170,18 +187,6 @@
       <p class="st-mny__kitl"><span data-i18n="money.kit.line"></span> <b dir="ltr" data-money-price="kit">{{money.kit}}</b> <span class="st-mny__was"><span data-i18n="money.kit.was"></span> <s dir="ltr" data-money-price="kitWas">{{money.kitWas}}</s></span></p>
       <a class="st-btn st-btn--on" href="https://wa.me/213672412578" target="_blank" rel="noopener" data-money-wa="kit"><span data-i18n="money.kit.go"></span><span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a>
     </div>
-    <!-- the toolbox (hub/lanterne/outils.html, 2026-11-22): the apps the atlases name, each with its free option; its partner links are marked there -->
-    <div class="st-mny__kit lt-tools-in">
-      <p class="st-mny__kitk" data-i18n="lant.tools.shelf.k"></p>
-      <p class="st-mny__kitl" data-i18n="lant.tools.shelf.t"></p>
-      <a class="st-btn st-btn--ghost" href="outils.html" data-i18n="lant.tools.shelf.go"></a>
-    </div>
-    <!-- the night cases (hub/lanterne/enquetes.html, 2026-11-23): the stall as a game, one claim about « web3 » to check; on the toolbox's own classes -->
-    <div class="st-mny__kit lt-tools-in">
-      <p class="st-mny__kitk" data-i18n="lant.enq.shelf.k"></p>
-      <p class="st-mny__kitl" data-i18n="lant.enq.shelf.t"></p>
-      <a class="st-btn st-btn--ghost" href="enquetes.html" data-i18n="lant.enq.shelf.go"></a>
-    </div>
   </div>
 </section>
 
@@ -218,6 +223,9 @@
     <nav class="st-foot__links" data-i18n-aria="footer.nav">
       <a href="../../" data-i18n="footer.site"></a>
       <a href="../" data-i18n="manual.nav.studio"></a>
+      <a href="../monde.html" data-i18n="nav.world"></a>
+      <a href="../#pricing" data-i18n="nav.pricing"></a>
+      <a href="https://wa.me/213672412578" target="_blank" rel="noopener"><span data-i18n="lant.ui.wa"></span><span class="st-sr" data-i18n="case.newTab"></span></a>
       <a href="../fabrique.html" data-i18n="nav.fab"></a>
       <a href="../bible/" data-i18n="footer.bible"></a>
       <a href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener">Instagram <span class="st-sr" data-i18n="case.newTab"></span></a>

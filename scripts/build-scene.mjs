@@ -190,6 +190,11 @@ function sheet(p, i) {
   const { k, t, statusTxt, ext, visit, rows, deliv, main, mainAlt, pages, phones, sw, gv } = parts(p);
   // the founder's own work on the same client (`identity`): after the
   // deliverables and named as his, never among them (it is not the site's)
+  // the same client on the Studio: its case (hub/#case-<slug>) and, where
+  // there is one, the brand book made for it (journey-12); one row of links
+  // after the deliverables, the Studio's own way back is S-32
+  const studio = p.studio || p.book ? `
+          <p class="sh-studio">${p.studio ? `<a href="../hub/#${esc(p.studio)}"><span ${T('ui.studio')}>${esc(uiBare('studio'))}</span>${ARROW.e}</a>` : ''}${p.book ? `<a href="${esc(p.book)}"><span ${T('ui.book')}>${esc(uiBare('book'))}</span>${ARROW.e}</a>` : ''}</p>` : '';
   const ident = p.identity ? `
           <p class="sh-ident"><span ${T('ui.by')}>${esc(ui('by'))}</span> <a href="${esc(p.identity.href)}" target="_blank" rel="noopener"><span ${T(`${k}.identity`)}>${esc(putBare(`${k}.identity`, p.identity))}</span>${ARROW.ne}</a></p>` : '';
   // decision 17: a delivered site ends on the offer, with the home page's
@@ -262,7 +267,7 @@ function sheet(p, i) {
           <h3 class="sh-h" ${T('ui.deliverables')}>${esc(ui('deliverables'))}</h3>
           <ul class="deliv">
             ${deliv}
-          </ul>${ident}
+          </ul>${ident}${studio}
         </div>
         <figure class="sh-main">
           <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span dir="ltr">${esc(shownHost(p.url))}</span></div>

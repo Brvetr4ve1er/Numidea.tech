@@ -91,7 +91,12 @@
       if (head) {
         var tick = false;
         var upd = function () { tick = false; chip.classList.toggle('is-on', head.getBoundingClientRect().bottom < 0); };
-        window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(upd); } }, { passive: true });
+        // while the page moves the chip all but goes, so it never sits over the ends of the lines being read (W-11)
+        var idle = 0;
+        window.addEventListener('scroll', function () {
+          if (!tick) { tick = true; requestAnimationFrame(upd); }
+          chip.classList.add('is-moving'); clearTimeout(idle); idle = setTimeout(function () { chip.classList.remove('is-moving'); }, 700);
+        }, { passive: true });
         // the first read waits for a frame, so it is not a layout forced in the middle of loading
         tick = true; requestAnimationFrame(upd);
       } else chip.classList.add('is-on');

@@ -1,5 +1,5 @@
 {
-  "_note": "« La boîte à outils » (hub/lanterne/outils.html, 2026-11-22; scratchpad courses-biz/PLAN.md §6.6, addendum A1 and A2): one entry per app. The page is built from this file by scripts/lib/lanterne.mjs; the copy is in hub/src/i18n under lant.tools.* (keys). url is the app's plain official address: the page's links always carry it, so a reader without scripts, a crawler or a visitor in a hidden region never gets a partner link. ref is the owner's referral or affiliate URL, empty until the owner joins the programme (see the owner's to-do, scratchpad tools/LINKS-TODO.md): only then does hub/lanterne.js put it on the app's logo and button, with rel=\"sponsored noopener\", the « Publicité · lien partenaire » tag and the partner's host next to the button, after the France gate (p2) and the region check. kind: what may go in ref (affiliate: only the programme's own affiliate link, never a personal invite link; none: no programme, the link stays plain and the build refuses a ref). sub: the programme's sub-ID parameter (none is published in the research, so empty; when set, the click carries outils-<id>-<lang>, the page's facts, never the visitor's). hideTz: IANA time-zone names (a name ending in / is a prefix) where the partner link is not shown: the plain link and the line « Lien partenaire indisponible dans votre région » instead; for an app with a hideTz list, a visitor whose zone cannot be read (none, Etc/*, UTC) counts as hidden. The check reads only the device's time zone, so the page says « selon le fuseau horaire de votre appareil », never that it is certain. hideTzPartial: the list is known to be incomplete. forbid: patterns refused in ref (the personal invite links whose terms forbid public posting); the build fails on a match. risk: the warning every crypto card shows. free: the option(s) without a partner link, ids of the free list below (paid: true when that option costs money, so the card says « L'autre voie, sans lien partenaire » rather than « L'option gratuite »). checked: the day each programme's terms were read, at programme.terms (shown on the card); unread: true when the service's official pages could not be read (the card says so). p2: the France gate (PLAN.md §0 P2 and §2.3): until the owner reads law 2023-451 and sets cleared to true, no partner link is put on for a visitor reading in French or in a French time zone, whatever ref holds. Crypto apps (Binance, Bybit, RedotPay): the owner's decision of 2026-11-21, taken after being told twice that Algeria's law 25-10 (JO n°48 of 24 July 2025, art. 6 bis) bans promoting virtual assets (PLAN.md addendum A2, which overrides the « REJECTED » banner of crypto-programmes.md for this page); the regions each programme excludes are from crypto-programmes.md, the rest of the facts from programmes.md and rules.md (FETCHED; UNVERIFIED facts are written as « non vérifié »). On the page the crypto cards lead with the free lesson and end on a plain text link, never a button. Last checked: 2026-11-22 (terms read 2026-11-21).",
+  "_note": "« La boîte à outils » (hub/lanterne/outils.html, 2026-11-22; scratchpad courses-biz/PLAN.md §6.6, addendum A1 and A2): one entry per app. The page is built from this file by scripts/lib/lanterne.mjs; the copy is in hub/src/i18n under lant.tools.* (keys). url is the app's plain official address: the page's links always carry it, so a reader without scripts, a crawler or a visitor in a hidden region never gets a partner link. ref is the owner's referral or affiliate URL, empty until the owner joins the programme (see the owner's to-do, scratchpad tools/LINKS-TODO.md): only then does hub/lanterne.js put it on the app's logo and button, with rel=\"sponsored noopener\", the « Publicité · lien partenaire » tag and the partner's host next to the button, after the France gate (p2) and the region check. kind: what may go in ref (affiliate: only the programme's own affiliate link, never a personal invite link; none: no programme, the link stays plain and the build refuses a ref). sub: the programme's sub-ID parameter (none is published in the research, so empty; when set, the click carries outils-<id>-<lang>, the page's facts, never the visitor's). hideTz: IANA time-zone names (a name ending in / is a prefix) where the partner link is not shown: the plain link and the line « Lien partenaire indisponible dans votre région » instead; for an app with a hideTz list, a visitor whose zone cannot be read (none, Etc/*, UTC) counts as hidden. The check reads only the device's time zone, so the page says « selon le fuseau horaire de votre appareil », never that it is certain. hideTzPartial: the list is known to be incomplete. forbid: patterns refused in ref (the personal invite links whose terms forbid public posting); the build fails on a match. risk: the warning every crypto card shows. A category's glyph is the one kanji its shelf head shows (aria-hidden), one the site's Noto Sans JP subsets already hold (hub/fonts/studio.css). A free option's route (L-06, 2026-11-24): the option is said once, as a block on that shelf (its heading, the resident's line, the line for those living abroad), and its cards link to it. free: the option(s) without a partner link, ids of the free list below (paid: true when that option costs money, so the card says « L'autre voie, sans lien partenaire » rather than « L'option gratuite »). checked: the day each programme's terms were read, at programme.terms (the card shows the day, 2026-11-24, L-17; the page stays in the data); unread: true when the service's official pages could not be read (the card says so). p2: the France gate (PLAN.md §0 P2 and §2.3): until the owner reads law 2023-451 and sets cleared to true, no partner link is put on for a visitor reading in French or in a French time zone, whatever ref holds. Crypto apps (Binance, Bybit, RedotPay): the owner's decision of 2026-11-21, taken after being told twice that Algeria's law 25-10 (JO n°48 of 24 July 2025, art. 6 bis) bans promoting virtual assets (PLAN.md addendum A2, which overrides the « REJECTED » banner of crypto-programmes.md for this page); the regions each programme excludes are from crypto-programmes.md, the rest of the facts from programmes.md and rules.md (FETCHED; UNVERIFIED facts are written as « non vérifié »). On the page the crypto cards lead with the free lesson and end on a plain text link, never a button. Last checked: 2026-11-22 (terms read 2026-11-21).",
   "checked": "2026-11-21",
   "p2": {
     "cleared": false,
@@ -28,32 +28,39 @@
   "categories": [
     {
       "id": "pay",
+      "glyph": "札",
       "key": "lant.tools.cat.pay"
     },
     {
       "id": "crypto",
+      "glyph": "塊",
       "key": "lant.tools.cat.crypto",
       "note": "lant.tools.cat.cryptoNote"
     },
     {
       "id": "site",
+      "glyph": "網",
       "key": "lant.tools.cat.site",
       "note": "lant.tools.cat.siteNote"
     },
     {
       "id": "design",
+      "glyph": "見",
       "key": "lant.tools.cat.design"
     },
     {
       "id": "secu",
+      "glyph": "鍵",
       "key": "lant.tools.cat.secu"
     },
     {
       "id": "travel",
+      "glyph": "旅",
       "key": "lant.tools.cat.travel"
     },
     {
       "id": "learn",
+      "glyph": "知",
       "key": "lant.tools.cat.learn"
     }
   ],
@@ -655,7 +662,15 @@
       "id": "bank",
       "name": "",
       "key": "lant.tools.free.bank",
-      "paid": true
+      "paid": true,
+      "route": {
+        "cat": "pay",
+        "h": "lant.tools.route.h",
+        "dzK": "lant.tools.route.dzK",
+        "outK": "lant.tools.route.outK",
+        "out": "lant.tools.route.out",
+        "to": "lant.tools.route.to"
+      }
     },
     {
       "id": "web3",

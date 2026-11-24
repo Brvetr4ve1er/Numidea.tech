@@ -444,7 +444,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
         <img data-pf="b" src="bible/art/actor-win-b.webp" alt="" loading="lazy" decoding="async">
       </button>
     </div>
-    <p class="st-own"><span data-i18n="proof.own"></span> <a href="https://glaivestore.netlify.app" target="_blank" rel="noopener"><span data-i18n="proof.glaive"></span> <span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true"> ↗</span></a><a class="whq-cart" href="../workspacehq/"><span class="whq-bit" aria-hidden="true"><svg class="whq-bit__s" viewBox="0 0 12 9" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="3" y="0" width="6" height="1" fill="#d97757"/><rect x="2" y="1" width="1" height="1" fill="#d97757"/><rect x="3" y="1" width="1" height="1" fill="#f2a27e"/><rect x="4" y="1" width="6" height="1" fill="#d97757"/><rect x="1" y="2" width="1" height="1" fill="#d97757"/><rect x="2" y="2" width="1" height="1" fill="#f2a27e"/><rect x="3" y="2" width="8" height="1" fill="#d97757"/><rect x="1" y="3" width="10" height="1" fill="#d97757"/><rect x="1" y="4" width="10" height="1" fill="#d97757"/><rect x="0" y="5" width="12" height="1" fill="#d97757"/><rect x="1" y="6" width="10" height="1" fill="#d97757"/><rect x="1" y="7" width="10" height="1" fill="#a5543a"/><rect x="2" y="8" width="1" height="1" fill="#a5543a"/><rect x="4" y="8" width="1" height="1" fill="#a5543a"/><rect x="7" y="8" width="1" height="1" fill="#a5543a"/><rect x="9" y="8" width="1" height="1" fill="#a5543a"/><g class="whq-eyes"><rect x="3" y="3" width="1" height="1" fill="#1b1430"/><rect x="8" y="3" width="1" height="1" fill="#1b1430"/><rect x="3" y="4" width="1" height="1" fill="#1b1430"/><rect x="8" y="4" width="1" height="1" fill="#1b1430"/></g></svg></span><span class="whq-txt"><span class="whq-kick" data-i18n="proof.whqCart.kick"></span><b class="whq-name" dir="ltr">WORKSPACE<i>HQ</i> <em>v3</em></b><span class="whq-sub" data-i18n="proof.whqCart.sub"></span></span><span class="whq-start" aria-hidden="true">▶ PRESS START</span><span class="whq-xp" aria-hidden="true">+1 XP</span></a></p>
+    <p class="st-own"><span data-i18n="proof.own"></span> <a href="https://glaivestore.netlify.app" target="_blank" rel="noopener"><span data-i18n="proof.glaive"></span> <span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true"> ↗</span></a><a href="../workspacehq/"><span dir="ltr">WorkspaceHQ</span>,&#160;<span data-i18n="proof.whq"></span></a></p>
     <div class="st-cases">
 <!-- CASE:bordjsteel -->
 <!-- CASE:alliance -->
@@ -577,7 +577,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
             <button type="button" class="st-dr__d st-dr__d--r" data-pad="more" disabled data-i18n-aria="pricing.pad.more"><span aria-hidden="true">+</span></button>
             <button type="button" class="st-dr__d st-dr__d--d" data-pad="down" disabled data-i18n-aria="pricing.pad.down"><span aria-hidden="true">▼</span></button>
           </div>
-          <p class="st-dr__go"><span class="st-dr__alab" aria-hidden="true" data-i18n="pricing.cta"></span><a class="st-dr__a" href="#contact" data-i18n-aria="pricing.cta"><span aria-hidden="true">A</span></a></p>
+          <p class="st-dr__go"><span class="st-dr__alab" aria-hidden="true" data-i18n="pricing.cta"></span><a class="st-dr__a" href="#contact" data-est-send data-i18n-aria="pricing.cta"><span aria-hidden="true">A</span></a></p>
         </div>
       </div>
       <div class="st-est__out">
@@ -614,7 +614,9 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
         </div>
         <p class="st-est__note"><span data-i18n="pricing.note"></span> <span data-i18n="pricing.running"></span></p>
         <p class="st-est__nojs" data-i18n="pricing.noJs"></p>
-        <a class="st-btn st-btn--primary st-btn--block" href="#contact" data-i18n="pricing.cta"></a>
+        <!-- the message "Recevoir mon devis" sends (hub/app.js 6): its words, in the page's language, filled by the script -->
+        <span hidden data-i18n="pricing.waMsg"></span><span hidden data-i18n="pricing.mailSubj"></span>
+        <a class="st-btn st-btn--primary st-btn--block" href="#contact" data-est-send><span data-i18n="pricing.cta"></span><span class="st-sr" data-est-tab hidden> <span data-i18n="case.newTab"></span></span></a>
         <p class="st-est__src"><a href="../tarifs/#market" data-i18n="pricing.sources"></a></p>
       </div>
     </div>
@@ -689,6 +691,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
         <p class="st-label st-label--red">/ 03 · <span data-i18n="tech.items.2.k"></span></p>
         <h3 class="st-h3" data-i18n="tech.items.2.t"></h3>
         <p data-i18n="tech.items.2.d"></p>
+        <p class="st-rank__ex" aria-hidden="true" data-i18n="tech.items.2.ex"></p>
         <ol class="st-rank" aria-hidden="true"><li class="is-you"><span>01</span><b data-i18n="tech.items.2.you"></b><span>★</span></li><li><span>02</span><span data-i18n="tech.items.2.other"></span></li><li><span>03</span><span data-i18n="tech.items.2.other"></span></li></ol>
         <p class="st-tcard__foot"><b class="st-stat" dir="ltr" data-i18n-html="tech.items.2.stat"></b><span data-i18n="tech.items.2.statL"></span></p>
         <p class="st-aside st-aside--teal st-tcard__aside" data-i18n="tech.items.2.aside"></p>
@@ -842,9 +845,9 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
         <p class="st-lead st-lead--dark" data-i18n="contact.lead"></p>
         <p class="st-label st-label--dark" data-i18n="contact.hours"></p>
         <ul class="st-ctas">
-          <li><a class="st-cta st-cta--teal" href="https://wa.me/213672412578" target="_blank" rel="noopener"><span class="st-cta__k" data-i18n="contact.waK"></span><span class="st-cta__l"><span data-i18n="contact.wa"></span> <span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">↗</span></span></a></li>
+          <li><a class="st-cta st-cta--teal" href="https://wa.me/213672412578" target="_blank" rel="noopener" data-est-wa><span class="st-cta__k" data-i18n="contact.waK"></span><span class="st-cta__l"><span data-i18n="contact.wa"></span> <span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">↗</span></span></a></li>
           <li><a class="st-cta st-cta--red" href="{{waPreview}}" target="_blank" rel="noopener" data-wa-preview><span class="st-cta__k" data-i18n="contact.previewK"></span><span class="st-cta__l"><span data-i18n="contact.preview"></span> <span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">↗</span></span></a></li>
-          <li><a class="st-cta st-cta--line" href="mailto:hamissemohamedyasser@gmail.com"><span class="st-cta__k" dir="ltr" data-i18n="contact.mailK"></span><span class="st-cta__l"><span data-i18n="contact.mail"></span><span aria-hidden="true">↗</span></span></a></li>
+          <li><a class="st-cta st-cta--line" href="mailto:hamissemohamedyasser@gmail.com" data-est-mail><span class="st-cta__k" dir="ltr" data-i18n="contact.mailK"></span><span class="st-cta__l"><span data-i18n="contact.mail"></span><span aria-hidden="true">↗</span></span></a></li>
         </ul>
       </div>
       <!-- the door is open (2026-11-18): the workshop's door at night, Yasser in the doorway holding up a blank
@@ -897,18 +900,21 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
     <button type="button" class="st-menu__x" data-menu-close data-i18n-aria="nav.menuClose"><span aria-hidden="true">✕</span></button>
   </div>
   <nav class="st-menu__nav" data-i18n-aria="nav.menu">
+    <!-- (2026-11-23) the way home first; each link's mark is its section's seal, not a number (the sections' own
+         numbers and the world's 06 and 07 read twice); the Aperçu and WhatsApp stay in view at the sheet's foot -->
+    <a class="st-menu__home" href="../"><span class="st-menu__n" aria-hidden="true">←</span><span data-i18n="nav.accueil"></span></a>
     <p class="st-menu__g st-label" data-i18n="nav.groupSite"></p>
-    <a href="#services"><span class="st-menu__n" aria-hidden="true">01</span><span data-i18n="nav.services"></span></a>
-    <a href="#preview"><span class="st-menu__n" aria-hidden="true">02</span><span data-i18n="nav.preview"></span></a>
-    <a href="#work"><span class="st-menu__n" aria-hidden="true">03</span><span data-i18n="nav.work"></span></a>
-    <a href="#pricing"><span class="st-menu__n" aria-hidden="true">04</span><span data-i18n="nav.pricing"></span></a>
-    <a href="#studio"><span class="st-menu__n" aria-hidden="true">05</span><span data-i18n="nav.studio"></span></a>
-    <a href="#faq"><span class="st-menu__n" aria-hidden="true">06</span><span data-i18n="nav.faq"></span></a>
-    <a href="fabrique.html"><span class="st-menu__n" aria-hidden="true">07</span><span data-i18n="nav.fab"></span></a>
+    <a href="#services"><span class="st-menu__n" aria-hidden="true" lang="ja">技</span><span data-i18n="nav.services"></span></a>
+    <a href="#preview"><span class="st-menu__n" aria-hidden="true" lang="ja">見</span><span data-i18n="nav.preview"></span></a>
+    <a href="#work"><span class="st-menu__n" aria-hidden="true" lang="ja">証</span><span data-i18n="nav.work"></span></a>
+    <a href="#pricing"><span class="st-menu__n" aria-hidden="true" lang="ja">価</span><span data-i18n="nav.pricing"></span></a>
+    <a href="#studio"><span class="st-menu__n" aria-hidden="true" lang="ja">人</span><span data-i18n="nav.studio"></span></a>
+    <a href="#faq"><span class="st-menu__n" aria-hidden="true" lang="ja">問</span><span data-i18n="nav.faq"></span></a>
+    <a href="fabrique.html"><span class="st-menu__n" aria-hidden="true" lang="ja">道</span><span data-i18n="nav.fab"></span></a>
     <p class="st-menu__g st-menu__g--night st-label" data-i18n="nav.groupWorld"></p>
-    <a class="st-menu__world" href="monde.html"><span class="st-menu__n" aria-hidden="true">夜</span><span data-i18n="nav.world"></span></a>
-    <a class="st-menu__world" href="monde.html#voidsplunker"><span class="st-menu__n" aria-hidden="true">06</span><span dir="ltr">VOIDSPLUNKER.std</span></a>
-    <a class="st-menu__world" href="monde.html#mercury"><span class="st-menu__n" aria-hidden="true">07</span><span dir="ltr">MERCURY</span></a>
+    <a class="st-menu__world" href="monde.html"><span class="st-menu__n" aria-hidden="true" lang="ja">夜</span><span data-i18n="nav.world"></span></a>
+    <a class="st-menu__world" href="monde.html#voidsplunker"><span class="st-menu__n" aria-hidden="true" lang="ja">書</span><span dir="ltr">VOIDSPLUNKER.std</span></a>
+    <a class="st-menu__world" href="monde.html#mercury"><span class="st-menu__n" aria-hidden="true" lang="ja">速</span><span dir="ltr">MERCURY</span></a>
     <p class="st-menu__g st-menu__g--night st-label" data-i18n="nav.groupLearn"></p>
     <a class="st-menu__world" href="lanterne/"><span class="st-menu__n" aria-hidden="true" lang="ja">金</span><span data-i18n="nav.manual"></span></a>
   </nav>

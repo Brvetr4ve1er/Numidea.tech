@@ -94,11 +94,33 @@ function faqItem(html, key, indent) {
   const had = start - html.lastIndexOf('\n', start) - 1;
   return html.slice(start, end + '</details>'.length).split('\n').map((l, i) => indent + (i ? l.slice(had) : l)).join('\n');
 }
+/* The answers that read differently here: the home's price answer sends
+   the reader to "the Tarifs section" of the page they are already on
+   (walk-phone-07), so the guide's copy says the prices are on this page
+   (tarifs.faq2a); its link to the Aperçu still leads to the home's. */
+const OWN_ANSWER = { 'faq2.a': 'tarifs.faq2a' };
+function ownAnswer(item) {
+  for (const [home, own] of Object.entries(OWN_ANSWER)) item = item.replace(`data-i18n="${home}"`, `data-i18n="${own}"`);
+  return item;
+}
+/* the menu's "Tarifs", to the home page's #pricing (bakeLang moves ./ for each page) */
+const menuPricing = (s) => swap(s, /href="#pricing"( data-i18n="nav\.pricing")/g, 'href="./#pricing"$1', 1, 'the menu\'s Tarifs link');
 /* `s` with every match of `re` replaced, at least `min` of them */
 function swap(s, re, to, min, what) {
   const n = (s.match(re) || []).length;
   if (n < min) throw new Error(`index.html: ${what} found ${n} time(s) (want ${min} at least)`);
   return s.replace(re, to);
+}
+/* The guide's own answers are written for this page's folder (their
+   "l'Aperçu" is ../#apercu, which app.js sets as it is at run time), so the
+   baked text is the dictionary's, not moved a folder down by bakeLang (H-11). */
+function ownAnswerText(page, dict) {
+  for (const own of Object.values(OWN_ANSWER)) {
+    const re = new RegExp(`(data-i18n="${own.replace('.', '\\.')}">)[\\s\\S]*?(</p>)`);
+    if (!re.test(page)) throw new Error(`the answer ${own} is not on the page`);
+    page = page.replace(re, (_, a, b) => a + toMarkup(dict[own]) + b);
+  }
+  return page;
 }
 const ids = (html) => new Set([...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]));
 
@@ -166,7 +188,6 @@ const MARKET = `    <!-- ---------------- market comparison ----------------
     <div class="market" id="market">
       <span class="t-pl" aria-hidden="true"></span>
       <h2 class="sec font-swap-display" id="mk-h" data-i18n="mk.h">Algérie, France, États-Unis : un projet, trois marchés</h2>
-      <p class="sec-lead t-sub" data-i18n="price.moreHint">Le marché, les modèles de facturation, ce qui fait bouger un devis.</p>
       <p class="sec-lead" data-i18n="mk.p">Le même projet, chiffré sur trois marchés. Fourchettes courantes 2026, du freelance confirmé à l'agence — hors taxes.</p>
 
       <fieldset class="mk-cur est-field">
@@ -380,7 +401,7 @@ export function renderTemplate(lang, home = read('index.html'), dicts = loadDict
   const mail = (/href="mailto:([^"?]+)/.exec(home) || [])[1], wa = (/window\.NUMIDEA_WA = '(\d{12})'/.exec(home) || [])[1];
   if (!mail || !wa) throw new Error('index.html: no mailto: address or no 12-digit NUMIDEA_WA for the printed footer');
   const waText = `+${wa.slice(0, 3)} ${wa.slice(3, 6)} ${wa.slice(6, 8)} ${wa.slice(8, 10)} ${wa.slice(10)}`;
-  const faq = FAQ_ON_TARIFS.map((k) => faqItem(home, k, '        '));
+  const faq = FAQ_ON_TARIFS.map((k) => ownAnswer(faqItem(home, k, '        ')));
   // two columns, as the home's FAQ (styles.css .faq-col): the first half, the rest
   const half = Math.ceil(faq.length / 2);
   const faqCols = [faq.slice(0, half), faq.slice(half)].filter((c) => c.length)
@@ -457,8 +478,10 @@ export function renderTemplate(lang, home = read('index.html'), dicts = loadDict
 <!-- ================= NAV (the home page's: see index.html) ================= -->
 ${chrome(element(home, '<header class="navbar">', 'header'), { logo: 1, pricing: 1, lang: 1 })}
 
-<!-- mobile overlay menu (the home page's) -->
-${chrome(element(home, '<div class="mobile-menu"', 'div'), { pricing: 1, guide: 1, lang: 1 })}
+<!-- mobile overlay menu (the home page's); its "Tarifs" leads to the home's
+     prices (walk-phone-12: as this page's own link it did nothing in a menu
+     opened on this page) -->
+${chrome(menuPricing(element(home, '<div class="mobile-menu"', 'div')), { guide: 1, lang: 1 })}
 
 
 <span id="top"></span>
@@ -474,7 +497,7 @@ ${chrome(element(home, '<div class="mobile-menu"', 'div'), { pricing: 1, guide: 
 ${answers(tiers, lang, dicts)}
       <p class="sec-lead" data-i18n="tarifs.lead">${toMarkup(fr['tarifs.lead'])}</p>
       <p class="tarifs-next tarifs-top">
-        <a class="btn btn-primary" href="./#apercu" data-i18n="hero.cta1">${toMarkup(fr['hero.cta1'])}</a>
+        <a class="btn btn-primary" href="./#contact" data-apercu data-i18n="hero.cta1">${toMarkup(fr['hero.cta1'])}</a>
         ${element(home, '<a class="btn btn-teal wa-link"', 'a').split('\n').map((l, i) => (i ? '      ' + l : l)).join('\n')}
       </p>
     </div>
@@ -516,7 +539,7 @@ ${faqCols}
 
     <!-- the way on: the Aperçu and WhatsApp, as the hero offers them -->
     <p class="tarifs-next">
-      <a class="btn btn-primary" href="./#apercu" data-i18n="hero.cta1">${toMarkup(fr['hero.cta1'])}</a>
+      <a class="btn btn-primary" href="./#contact" data-apercu data-i18n="hero.cta1">${toMarkup(fr['hero.cta1'])}</a>
       ${element(home, '<a class="btn btn-teal wa-link"', 'a').split('\n').map((l, i) => (i ? '    ' + l : l)).join('\n')}
     </p>
 
@@ -531,7 +554,7 @@ ${faqCols}
 ${element(home, '<button type="button" class="to-top"', 'button')}
 
 <!-- ================= FOOTER (the home page's) ================= -->
-${chrome(element(home, '<footer class="footer wrap">', 'footer'), { logo: 1, pricing: 1, guide: 1, lang: 1 })}
+${chrome(element(home, '<footer class="footer wrap">', 'footer'), { logo: 1, pricing: 1, guide: 1 })}
 
 <!-- phones: the two ways to start, kept in reach past the first screen (the
      home page's bar; both lead to the home page's #contact and WhatsApp) -->
@@ -553,6 +576,7 @@ export function renderTarifs(lang, home = read('index.html'), dicts = loadDicts(
   const depth = TARIFS_PAGES[lang].split('/').length - 1;
   let page = bakeLang(renderTemplate(lang, home, dicts), lang, dicts[lang], { depth, path: TARIFS_PAGES[lang].replace(/index\.html$/, ''), ld: false, generated: null });
   page = homeLinks(page, home);
+  page = ownAnswerText(page, dicts[lang]);
   // the guide's own share card (scripts/build-og.mjs: the starting price, inside the card's centre square), not the home's
   const card = BASE + `assets/og-tarifs${lang === 'fr' ? '' : '-' + lang}.jpg`;
   page = page.replace(/(<meta property="og:image" content=")[^"]*(")/, `$1${card}$2`).replace(/(<meta name="twitter:image" content=")[^"]*(")/, `$1${card}$2`)

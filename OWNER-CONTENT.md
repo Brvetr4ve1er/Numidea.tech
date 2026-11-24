@@ -13,12 +13,12 @@ what the Studio page changed from your design).
 |---|---|---|---|
 | 1 | Legal notice + privacy details | **Missing (16 fields; 5 in three languages)**; "later" (owner, 2026-10-30): the pages stay unpublished, the slots stay empty | `scripts/legal-data.mjs` |
 | 2 | Client quotes, with consent | None yet | `scripts/voices-data.mjs` |
-| 3 | Founder photo | Still open: none yet (monogram "Y" shows, a 64 px mark since 2026-11-06) | `assets/founder.webp` |
+| 3 | Founder photo | Still open: none yet (checked 2026-11-24). No monogram or stand-in face shows: since 2026-11-08 the card's right column holds the engraved Arch of Trajan plate, which stays; the photo goes beside the name in the `.fd-photo` slot, commented out in `index.html` until the file exists | `assets/founder.webp` |
 | 4 | Team names and photos; the team-size claim | Answered 2026-10-30 and applied on 2026-11-03: one founder, with freelancers when a project calls for them (section 17). The page shows one team row, no initials and no photos | `index.html` #founder, `assets/i18n/*.js` (`team.*`) |
 | 5 | A studio email on its own domain | Personal Gmail in use; it stays for now (owner, 2026-10-30) | everywhere one address appears |
 | 6 | Clients' permission to appear in paid ads | Not asked yet | campaign kit (not in this repo) |
 | 7 | Nomara Voyages: client or not? | Unconfirmed | `index.html` work grid, client logo strip |
-| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03, 2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14, 2026-11-19 and 2026-11-21 (the recovery's new Studio, brand-book and home keys; the theme toggle's two labels; the Studio page and its five cases above all; on 2026-11-19 the two client courses, la fabrique and the alt texts of the owner's placed artworks, §38 to §41; on 2026-11-21 the courses' critique fixes and the web3 course's nine modules, 1,770 strings, §42) is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
+| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03, 2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14, 2026-11-19 and 2026-11-21 (the recovery's new Studio, brand-book and home keys; the theme toggle's two labels; the Studio page and its five cases above all; on 2026-11-19 the two client courses, la fabrique and the alt texts of the owner's placed artworks, §38 to §41; on 2026-11-21 the courses' critique fixes and the web3 course's nine modules, 1,770 strings, §42; on 2026-11-22 and 2026-11-23 the Librairie's volume 2, toolbox and night cases; on 2026-11-24 the audit fix pass, 95 strings) is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
 | 9 | Clients' own domains | None verifies | `scripts/verify-domains.mjs` |
 | 10 | Hub fan art | No fan art on the site since 2026-10-28 (still in git history). Not live: nothing has deployed since 2026-10-25, GitHub Actions being blocked on billing (RELEASE.md, "Outage and fallback") | git history of `hub/` |
 | 11 | Supabase lead store | Off on purpose | `index.html`, `scripts/legal-data.mjs` |
@@ -136,9 +136,9 @@ item 6 can cover it.
 
 ## 8. Arabic native review
 **Every Arabic string added or changed on 2026-10-31, 2026-11-03,
-2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14, 2026-11-15, 2026-11-19, 2026-11-21 and 2026-11-22 awaits native review** (the lists are at the end of this section,
+2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14, 2026-11-15, 2026-11-19, 2026-11-21, 2026-11-22, 2026-11-23 and 2026-11-24 awaits native review** (the lists are at the end of this section,
 "Written on 2026-10-31", "Written or changed on 2026-11-03", "Written or
-changed on 2026-11-06", "Written or changed on 2026-11-07", "Written or changed on 2026-11-08", "Written or changed on 2026-11-11", "Written or changed on 2026-11-14", "Written or changed on 2026-11-15", "Written or changed on 2026-11-19", "Also written on 2026-11-19", "Written or changed on 2026-11-21" and "Written or changed on 2026-11-22"); nothing Arabic written by the fix fleets has been
+changed on 2026-11-06", "Written or changed on 2026-11-07", "Written or changed on 2026-11-08", "Written or changed on 2026-11-11", "Written or changed on 2026-11-14", "Written or changed on 2026-11-15", "Written or changed on 2026-11-19", "Also written on 2026-11-19", "Written or changed on 2026-11-21", "Written or changed on 2026-11-22", "Written or changed on 2026-11-23" (with §47b) and "Written or changed on 2026-11-24"); nothing Arabic written by the fix fleets has been
 read by a native speaker.
 
 The Arabic copy was written for this site and needs a native speaker's pass.
@@ -793,6 +793,119 @@ letters close up under 24 px. The three verdict buttons (« صحيح », « نص
 stamp) and the sticker's label on the chart (« يجد SHIELDS ») are now set in the body face at weight 800; the door's
 button « أشعِل الفانوس » (18 px) was left in the display face. Say if the door's button should follow, or if the
 verdicts should go back.
+
+Written or changed on 2026-11-24, **the audit fix pass** (the home, the guide, the sheets, 404, the Studio, la carte,
+the world, la fabrique and the Librairie; BRAND.md "The audit fix pass (2026-11-24)"), all for a native reader; none
+read by a native speaker. Counted against the last commit from the dictionaries themselves, so the list is complete:
+90 Arabic strings (18 in `assets/i18n/ar.js`, 63 in `hub/src/i18n/ar.json` outside `lant.enq.*`, 7 in la carte, 3
+boot lines whose words did not change), plus 3 in `scripts/scene-data.mjs` and 2 in `404.html`. Keys removed, which need
+no review: `work.live`, `price.moreHint`, `contact.tzNote` (home); `proof.mc.fallback`, `proof.whqCart.kick`,
+`proof.whqCart.sub`, `lant.ui.journalEmpty`, `lant.tools.readAt` (Studio, Librairie). Points to read first: the label
+set, « معاينة مجانية » (short, nav and docks) beside « اطلب معاينتك المجانية » (long, the buttons that start it);
+`seal.sent` « جاهز » (the message is ready, not sent); `pricing.waMsg`, the WhatsApp quote the Studio's console writes,
+with its placeholders; the services bars, now translated (« البناء », « المحرّك », « العلامة », « الفكر »; the French page
+keeps THE BUILD etc.); `lant.ui.journalLeft` and `sacLeft`, written as « label: {n} » so that one form fits every number,
+to be replaced by real plural forms if the reviewer prefers; `lant.tools.route.*`, the bank and diaspora block (claims
+only from the Wise card); and `world.note`, which now says dossier 08 includes client work.
+
+In `assets/i18n/ar.js`:
+- `nav.about` (changed) « معاينة مجانية » (French: « Aperçu gratuit »)
+- `scene.cta` (changed) « اطّلع على الأعمال بالتفصيل ← » (French: « Voir les réalisations en détail → »)
+- `mbar.cta` (changed) « معاينة مجانية » (French: « Aperçu gratuit »)
+- `contact.vReply` (changed) « في يوم العمل التالي، من الأحد إلى الخميس، من 9 إلى 18 بتوقيت الجزائر » (French: « Le jour ouvré suivant, du dimanche au jeudi, 9h–18h, heure d’Alger »)
+- `mk.h` (changed) « مشروع واحد، ثلاثة أسواق » (French: « Un projet, trois marchés »)
+- `contact.waNote` (changed) « رسائل فقط: موعد مكالمة الفيديو للمعاينة يُحدَّد برسالة · مجاناً عبر التطبيق » (French: « messages seulement : la visio de l’Aperçu se fixe par écrit · appli gratuite »)
+- `seal.sent` (changed) « جاهز » (French: « Prêt »)
+- `price.estCtaShort` (new) « السعر النهائي ← » (French: « Prix ferme → »)
+- `nav.librairie` (new) « المكتبة » (French: « La Librairie »)
+- `nav.monde` (new) « العالم » (French: « Le monde »)
+- `atelier.sub` (new) « خدمات الاستوديو وأعماله وأسعاره » (French: « Services, travaux et prix du Studio »)
+- `tarifs.faq2a` (new) « تبدأ باقاتنا من 90 000 دج للموقع التعريفي، بالدينار أو اليورو أو الدولار في هذه الصفحة، ونحدّد سعراً ثابتاً بعد توضيح نطاق العمل — دون مفاجآت. انظر أيضاً <a>المعاينة</a>. » (French: « Nos formules commencent à 90 000 DA pour un site vitrine, en dinars, en euros ou en dollars sur cette page. Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Voir aussi <a>l’Aperçu</a>. »)
+- `proj4.live` (new) « زيارة موقع Bordj Steel ↗ » (French: « Voir Bordj Steel ↗ »)
+- `proj2.live` (new) « زيارة موقع Alliance Travel ↗ » (French: « Voir Alliance Travel ↗ »)
+- `proj3.live` (new) « زيارة موقع AlmaFlowClim ↗ » (French: « Voir AlmaFlowClim ↗ »)
+- `proj6.live` (new) « زيارة موقع Nomara Voyages ↗ » (French: « Voir Nomara Voyages ↗ »)
+- `work.demoLive` (new) « زيارة موقع Glaive Store ↗ » (French: « Voir Glaive Store ↗ »)
+- `footer.whq` (new) « أداتنا WorkspaceHQ بالإنجليزية » (French: « WorkspaceHQ, notre outil (EN) »)
+- `c5.brief` (changed, the fix round's last pass: the model's name taken out under the no-AI-names rule) « أدوات داخلية ومولّدات ومساعدات مخصّصة: مهمّة متكرّرة تنطلق بنقرة واحدة. » (French: « Outils internes, générateurs et assistants sur mesure : une tâche répétitive se lance en un clic. »)
+
+In `hub/src/i18n/ar.json`:
+- `nav.accueil` (new) « الرئيسية » (French: « Accueil »)
+- `nav.cta` (changed) « معاينة مجانية » (French: « Aperçu gratuit »)
+- `hero.sub` (changed) « مواقع وتطبيقات وأتمتة وهويات بصرية، تُصمَّم وتُبرمَج بنفس الأيدي. المعاينة: صفحتك الرئيسية قبل أن تدفع. » (French: « Sites, applications, automatisations et identités, conçus et codés par les mêmes mains. L’Aperçu : votre page d’accueil, avant de payer. »)
+- `hero.cta1` (changed) « اطلب معاينتك المجانية » (French: « Demander mon Aperçu gratuit »)
+- `services.lead` (changed) « أربع عائلات من الخدمات. بعد سداد ثمن العمل كاملًا يصبح ملكك: الكود وملفات التصميم والمحتوى. » (French: « Quatre familles de services. Une fois le travail payé en entier, il vous appartient : le code, les fichiers de design et le contenu. »)
+- `services.items.0.fam` (changed) « البناء » (French: « THE BUILD »)
+- `services.items.1.fam` (changed) « المحرّك » (French: « THE ENGINE »)
+- `services.items.2.fam` (changed) « العلامة » (French: « THE MARK »)
+- `services.items.3.fam` (changed) « الفكر » (French: « THE MIND »)
+- `preview.cta` (changed) « اطلب معاينتك المجانية » (French: « Demander mon Aperçu gratuit »)
+- `pricing.waMsg` (new) « مرحبًا، أودّ عرض سعر لهذا المشروع، قدّرته على حاسبة الاستوديو: / {what} / {lines} / المدة: {pace} / المجموع التقديري: {total} · {weeks} » (French: « Bonjour, je voudrais un devis pour ce projet, estimé sur la console du studio : / {what} / {lines} / Délai : {pace} / Total estimé : {total} · {weeks} »)
+- `pricing.mailSubj` (new) « طلب عرض سعر: {what} » (French: « Demande de devis : {what} »)
+- `tech.items.2.stat` (changed) « 3 » (French: « 3 »)
+- `tech.items.2.statL` (changed) « إعدادات في كل موقع: بنية واضحة، والسرعة، وتحسين أساسي لمحركات البحث » (French: « réglages sur chaque site : une structure claire, la vitesse, le SEO de base »)
+- `tech.items.2.ex` (new) « مثال » (French: « exemple »)
+- `proof.mc.lang` (changed) « الفصل 2 · 10 ثوانٍ · بلا صوت » (French: « Acte 2 · 10 s · sans son »)
+- `proof.whq` (new) « آلة أركيد لشيفرتك البرمجية » (French: « une borne d’arcade pour votre code »)
+- `lab.more` (new) « عرض القطع الـ36 كلّها » (French: « Voir les 36 pièces »)
+- `contact.lead` (changed) « اختر وسيلتك. الرد في يوم العمل التالي. أما المعاينة فتكون جاهزة بعد خمسة أيام عمل من استلام محتواك. » (French: « Choisissez votre canal. Réponse le jour ouvré suivant. L’Aperçu, lui, est prêt cinq jours ouvrés après réception de votre contenu. »)
+- `contact.hours` (changed) « من الأحد إلى الخميس، من 9 إلى 18 · رسائل فقط: موعد مكالمة الفيديو للمعاينة يُحدَّد برسالة » (French: « Dimanche–jeudi, 9h–18h · messages seulement : la visio de l’Aperçu se fixe par message »)
+- `contact.preview` (changed) « اطلب معاينتك المجانية » (French: « Demander mon Aperçu gratuit »)
+- `doors.a.go` (changed) « اطلب معاينتك المجانية » (French: « Demander mon Aperçu gratuit »)
+- `footer.site` (changed) « الرئيسية » (French: « Accueil »)
+- `case.sheet` (new) « بطاقة المشروع ← » (French: « Fiche projet → »)
+- `case.unfold` (new) « افتح الملف » (French: « Ouvrir le dossier »)
+- `world.note` (changed) « هنا مشاريع المؤسس. الملفان 06 و07 شخصيان: دفتر شخصيات وفيلم قصير. ويجمع الملف 08 أعماله في التصميم المنشورة على Behance، ومنها أعمال لعملاء. ثم ملصقات ويوميات الورشة. أما المواقع المسلَّمة والأسعار ففي الاستوديو. » (French: « Ici, les projets du fondateur. Les dossiers 06 et 07 sont personnels : une bible de personnages et un court-métrage. Le dossier 08 rassemble ses travaux de designer publiés sur Behance, dont des travaux pour des clients. Puis des affiches et un journal d’atelier. Les sites livrés et les prix sont au Studio. »)
+- `fab.title` (changed) « كيف نصنع: أربعة مشاهد. » (French: « Comment on fabrique : quatre scènes. »)
+- `lant.ui.peek` (new) « للاطلاع » (French: « Pour voir »)
+- `lant.ui.readK` (new) « للقراءة » (French: « À lire »)
+- `lant.ui.redo` (new) « عُد إلى السطور المرتّبة بشكل مختلف » (French: « Reprendre les lignes différentes »)
+- `lant.ui.journalSac` (new) « السجلّ · الحقيبة » (French: « Journal · Sac »)
+- `lant.ui.journalLeft.*` (new; the same words in all six plural forms, zero to other) « بانتظار التدوين: {n} » (French: « {n} quartier à écrire » / « {n} quartiers à écrire »)
+- `lant.ui.sacLeft.*` (new; the same words in all six plural forms) « تذكارات لم تُكسب بعد: {n} » (French: « {n} souvenir à gagner » / « {n} souvenirs à gagner »)
+- `lant.ui.rightUp` (new) « صحيح. أنجِز التمرين أعلاه ليُدوَّن في السجلّ » (French: « Juste. Faites l’exercice ci-dessus pour l’inscrire au journal »)
+- `lant.ui.rightDone` (new) « صحيح. دُوِّن في السجلّ. » (French: « Juste. C’est inscrit au journal. »)
+- `lant.ui.ex.pick.brief` (changed) « افتح الشروح التي تهمّك: كلّ واحد يقول لماذا. يكتمل الحيّ بموقفه، لا بهذه القراءة. » (French: « Ouvrez les explications qui vous intéressent : chacune dit pourquoi. Le quartier se termine par sa situation, pas par cette lecture. »)
+- `lant.shelf.cta` (changed) « ابدأ دورة » (French: « Commencer un cours »)
+- `lant.shelf.lore` (changed) « دورات مجانية: العلامة، المال، الويب 3، حياة الترحال، اللعب. الفانوس مكتبة ليلية في عالم نوميديا، وكلّ أطلس فيها دورة: تختار حيّاً، تحسم موقفاً، تُنجز التمرين، فيُدوَّن القرار في السجلّ. لا شيء يخرج من هنا قبل أن تضغط. » (French: « Des cours gratuits : marque, argent, web3, vie nomade, jeu. La Lanterne est une librairie de nuit dans le monde de Numidea, et chaque atlas y est un cours : on choisit un quartier, on tranche une situation, on fait l’exercice, et la décision s’inscrit au journal. Rien ne sort d’ici tant que vous n’appuyez pas. »)
+- `lant.shelf.heroCta` (changed) « تصفّح الدورات المجانية » (French: « Voir les cours gratuits »)
+- `lant.shelf.shelf2` (changed) « المال وحياة الترحال » (French: « Argent et vie nomade »)
+- `lant.shelf.start` (new) « ابدأ من هنا » (French: « Commencer ici »)
+- `lant.shelf.minutes` (new) « ≈ {n} د » (French: « ≈ {n} min »)
+- `lant.shelf.passZero` (new) « التذكارات المتاحة: {N} · الأطالس: {A} » (French: « {N} souvenirs à gagner dans {A} atlas »)
+- `lant.tools.f.alt` (changed) « الطريق الآخر » (French: « L’autre voie »)
+- `lant.tools.route.h` (new) « الطريق الرسمي أولاً » (French: « La voie officielle, d’abord »)
+- `lant.tools.route.dzK` (new) « مقيم في الجزائر » (French: « Résident en Algérie »)
+- `lant.tools.route.outK` (new) « الجالية في الخارج » (French: « Diaspora »)
+- `lant.tools.route.out` (new) « Wise يخدم الجالية في الخارج والخليج: المال المُرسَل إلى الجزائر يصل بالدينار. تحقّق من سعر التحويل إلى بلدك على بطاقته أدناه. » (French: « Wise sert la diaspora et le Golfe : envoyé vers l’Algérie, l’argent arrive en dinars. Le prix de l’envoi vers votre pays est à vérifier sur sa carte, plus bas. »)
+- `lant.tools.route.to` (new) « حساب بالعملة الصعبة في بنكك » (French: « Le compte en devises de votre banque »)
+- `lant.tools.how.t` (changed) « لا نضع هنا إلا خدمات قرأنا صفحاتها الرسمية، ما لم تذكر البطاقة خلاف ذلك («لم تُقرأ الصفحات الرسمية»). تقول كلّ بطاقة لمن هي، وما يجب التحقق منه، واليوم الذي راجعناها فيه. وتعرض أولاً الخيار الذي لا يمرّ برابط شريك، مجانياً حين يوجد. في كلّ رفّ، الترتيب أبجدي: لا يتوقّف أبداً على ما يعود به الرابط. » (French: « On ne met ici que des services dont on a lu les pages officielles, sauf mention contraire sur la carte (« Pages officielles non lues »). Chaque carte dit pour qui c’est, ce qu’il faut vérifier, et le jour où nous l’avons vérifiée. Elle donne d’abord l’option sans lien partenaire, gratuite quand il y en a une. Dans chaque rayon, l’ordre est alphabétique : il ne dépend jamais de ce qu’un lien rapporte. »)
+- `lant.tools.legal` (changed) « هذه ليست نصيحة مالية. الشروط تتغيّر: تحقّق منها لدى مقدّم الخدمة. تذكر كلّ بطاقة اليوم الذي راجعناها فيه. » (French: « Ceci n’est pas un conseil financier. Les conditions changent : vérifiez-les chez le fournisseur. Chaque carte dit le jour où nous l’avons vérifiée. »)
+- `lant.tools.read` (changed) « رُوجعت البطاقة في » (French: « Fiche vérifiée le »)
+- `lant.tools.unread` (changed) « لم نتحقّق من الشروط بعد: اقرأها على {host} قبل أن تفتح حساباً. » (French: « Conditions pas encore vérifiées par nous : lisez-les sur {host} avant d’ouvrir un compte. »)
+
+In `hub/src/carte.i18n.json`:
+- `carte.k` (changed) « / القائمة · {n} خدمة » (French: « / LA CARTE · {n} SERVICES »)
+- `carte.only` (new) « تصميم فقط · الموقع المبرمج: ابتداءً من {p}. » (French: « Design seul · le site codé : dès {p}. »)
+- `carte.more` (new) « التفاصيل والباقات » (French: « Détails et formules »)
+- `carte.srcSum` (new) « المصادر · {n} » (French: « Sources · {n} »)
+- `carte.items.landing.t.0` (changed) « نموذج تصميم · صفحة هبوط » (French: « Maquette · landing »)
+- `carte.items.ui.t.0` (changed) « نموذج تصميم · موقع 5 شاشات » (French: « Maquette · site 5 écrans »)
+- `carte.items.app.t.0` (changed) « نموذج تصميم · تطبيق 10 شاشات » (French: « Maquette · app 10 écrans »)
+
+In `hub/src/cases/traveler.i18n.json`:
+- the console's boot lines; only their dot leaders were shortened, the Arabic words are unchanged:
+- `boot.1` (changed) « > memory ..... 34 عالمًا » (French: « > memory ..... 34 réalités »)
+- `boot.2` (changed) « > companions . 4 متصلون » (French: « > companions . 4 en ligne »)
+- `boot.3` (changed) « > past.dat ... [تالف] » (French: « > past.dat ... [CORROMPU] »)
+
+In `scripts/scene-data.mjs` (the sheets, `/ar/scene/`):
+- `ui.lead` (changed, shorter) « اللوحات الثلاث الأولى مواقع سُلِّمت لعملاء، كما هي على الإنترنت اليوم؛ ثم عرض تجريبي ضمن الأعمال وأداتنا الخاصة. » (French: « Les trois premières planches sont des sites livrés à des clients, tels qu’ils sont en ligne ; puis une démo de portfolio et notre propre outil. »)
+- `ui.studio` (new) « الملف في الاستوديو ← » (French: « Dossier au Studio → »)
+- `ui.book` (new) « دليل الهوية ← » (French: « Livre de marque → », the AlmaFlow sheet's link to its brand book)
+
+In `404.html` (written in the page, three languages side by side):
+- the two new links under the buttons: « المكتبة » (French: « La Librairie ») and « العالم » (French: « Le monde »).
 
 ## 8b. The Google tag and consent (2026-11-14)
 The site loads the owner's Google Tag Manager container (GTM-PMF7RWVK) on every
@@ -2538,7 +2651,7 @@ and every wallet and exchange brand. The buyer path's new lines and the brief's
 questions name no project. It was checked on the built French page and, key by
 key, on the English and Arabic translations.
 
-**Magnific credits spent: 715.** Eleven generations (Nano Banana 2.1, 2k,
+**Image credits spent: 715.** Eleven generations (2k,
 65 credits each): the nine module headers, one rejected take of module 9 (four
 sieves where the lesson says five), and the two case cards in one picture. Cap
 900; balance 2,522 → 1,807. Every picture was retouched locally to remove
@@ -2689,11 +2802,11 @@ the points about the phone layout of the course bar, the stop pictures on phones
 the atlas layout; the points about the nine modules wait with volume 2; the points about the brand and web3 buyer
 path (for example, the brief's hand-off opening with two greetings) wait for the two atlases.
 
-**New art for the Librairie, made with Magnific** (folder « numidea labs / Site art 2026-11 Librairie Lanterne »):
+**New art for the Librairie, made on the studio's image account** (folder « numidea labs / Site art 2026-11 Librairie Lanterne »):
 thirteen act plates in your screenprint family (no lettering, no people or animals, so your cut-outs can stand on
 them) and the shelf's night key art, « lanterne-nuit » (Yasser reading by the stall, Kūro asleep on the counter, on
 model with the character bible). Each was checked at full size; on the key art, a stray white mark on Yasser's sleeve
-patch that read as a « 2 » was painted out. **Magnific credits spent: 985** (13 × 65 + 75, plus one retake of the
+patch that read as a « 2 » was painted out. **Image credits spent: 985** (13 × 65 + 75, plus one retake of the
 brand book's second plate); about 637 left on the account. The plates are cut, never enlarged.
 
 **La carte, corrected while checking the whole site.** On a phone the Studio page used to slide down to la carte as it
@@ -3950,3 +4063,23 @@ File: `hub/src/i18n/ar.json`, subtree `lant.enq.*` (794 keys). French is the sou
 | `c.brave.d3.tracker.r.p.r4.text` | met une enseigne en vitrine | يضع لافتة في واجهته |
 | `c.brave.d3.tracker.r.p.r4.why` | Une enseigne est une publicité qu’elle peut voir. Elle ne la suit pas. | اللافتة إعلان تراه. لا تتبعها. |
 | `c.brave.d3.tracker.r.prompt` | La même idée, façon rue. | الفكرة نفسها، في صورة شارع. |
+
+## 48. The audit fix pass (2026-11-24): what changed that is yours to know, and what waits on you
+
+The pass fixed what the whole-site audit found without needing you (BRAND.md, "The audit fix pass (2026-11-24)").
+Nothing below was decided for you; each item stays as it is until you answer.
+- **Applied with the recommended default, yours to change:** « Commencer ici » on the Librairie shelf sits on the
+  marque book (`hub/src/lanterne/shelf.json`, "start"; the plan's question Q-11). The label set for the free Aperçu
+  (short « Aperçu gratuit » in the nav and docks, long « Demander mon Aperçu gratuit » on the buttons) is on every page.
+- **Wording you approved, left alone:** the doors' premise (`doors.premise`) is unchanged; on the world page it now
+  sits under the new lead (`world.note`), which says dossier 08 includes client work.
+- **Waiting on you (the plan's owner questions):** the Numidea brand book's closing band waits for your sign-off or
+  unlinking of the draft book (Q-04); the Marvel-logo piece A01 is still on the Lab wall (Q-05; if it goes, the Lab's
+  balanced order is measured again); the founder photo (Q-02, item 3); Nomara Voyages (Q-01, item 7).
+- **Flagged, not changed:** `workspacehq/index.html` names the AI model behind WorkspaceHQ's features in its meta
+  description, hero, features, changelog, FAQ and footer. That describes the product's real features, but it conflicts
+  with the rule that the site names no AI model or tool; say whether to keep it as product description or reword it.
+- **Not done in this pass:** the Brand Enhancement exploration page (`hub/brand/exploration/`) is still indexed and in
+  the sitemap; taking it out needs three changes made together (its `noindex`, the sitemap filter in
+  `scripts/build-sitemap.mjs`, the noindex allow-list in `scripts/check.mjs`). The Studio's whole-page type restyle
+  (S-28) was not done: it would move the five cases off their client faces, which BRAND.md treats as part of each case.

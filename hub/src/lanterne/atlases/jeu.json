@@ -1,5 +1,5 @@
 {
-  "_note": "« Le jeu juste » (SPEC §4.7): eight levels as districts in three acts, every level asks after its reading (pick). Copy under lant.at.jeu.* or the course's existing keys. Case: the Lantern's own loyalty card, an invented example (L5). Keepsakes: the eight stickers (jeu.st.*). Reward: the sticker sheet (_sac). Its rules bind the whole Librairie's game layer.",
+  "_note": "« Le jeu juste » (SPEC §4.7): eight levels as districts in three acts, every level asks its situation first, then gives its reading (pick, « À lire »; the template order restored 2026-11-24, L-08; a level is done by its situation, L-07). Copy under lant.at.jeu.* or the course's existing keys. Case: the Lantern's own loyalty card, an invented example (L5). Keepsakes: the eight stickers (jeu.st.*). Reward: the sticker sheet (_sac). Its rules bind the whole Librairie's game layer.",
   "slug": "jeu",
   "key": "jeu",
   "store": "numidea-lanterne-jeu",
@@ -51,7 +51,6 @@
       "prop": "star",
       "right": 1,
       "ex": "pick",
-      "ask": "after",
       "keep": "img/studio/jeu/st-1.webp",
       "icon": "img/studio/jeu/lv-1.webp",
       "keys": {
@@ -72,7 +71,6 @@
       "prop": "ring",
       "right": 0,
       "ex": "pick",
-      "ask": "after",
       "keep": "img/studio/jeu/st-2.webp",
       "icon": "img/studio/jeu/lv-2.webp",
       "keys": {
@@ -93,7 +91,6 @@
       "prop": "recorder",
       "right": 1,
       "ex": "pick",
-      "ask": "after",
       "keep": "img/studio/jeu/st-3.webp",
       "icon": "img/studio/jeu/lv-3.webp",
       "keys": {
@@ -114,7 +111,6 @@
       "prop": "paper",
       "right": 1,
       "ex": "pick",
-      "ask": "after",
       "keep": "img/studio/jeu/st-4.webp",
       "icon": "img/studio/jeu/lv-4.webp",
       "keys": {
@@ -135,7 +131,6 @@
       "prop": "feather",
       "right": 1,
       "ex": "pick",
-      "ask": "after",
       "keep": "img/studio/jeu/st-5.webp",
       "icon": "img/studio/jeu/lv-5.webp",
       "keys": {
@@ -156,7 +151,6 @@
       "prop": "eyeflower",
       "right": 1,
       "ex": "pick",
-      "ask": "after",
       "keep": "img/studio/jeu/st-6.webp",
       "icon": "img/studio/jeu/lv-6.webp",
       "keys": {
@@ -177,7 +171,6 @@
       "prop": "cup",
       "right": 1,
       "ex": "pick",
-      "ask": "after",
       "keep": "img/studio/jeu/st-7.webp",
       "icon": "img/studio/jeu/lv-7.webp",
       "keys": {
@@ -198,7 +191,6 @@
       "prop": "star",
       "right": 1,
       "ex": "pick",
-      "ask": "after",
       "keep": "img/studio/jeu/st-8.webp",
       "icon": "img/studio/jeu/lv-8.webp",
       "keys": {

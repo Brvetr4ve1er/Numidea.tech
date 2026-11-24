@@ -147,8 +147,11 @@ const versioned = (u) => {
 };
 /* a link into a folder that switches language with ?lang= carries the
    page's language, before any #fragment */
+/* and a link to one of those pages by its file name (hub/monde.html, from
+   the home's footer and menu) the same */
+const SWITCHING_FILES = [...MULTILINGUAL].filter((p) => !/(^|\/)index\.html$/.test(p)).map((p) => p.replace(/[.]/g, '\\.'));
 const langed = (u, lang) => {
-  const m = new RegExp(`^((?:\\.\\./)*(?:${SWITCHING.join('|')})/)(\\?[^#]*)?(#.*)?$`).exec(u);
+  const m = new RegExp(`^((?:\\.\\./)*(?:(?:${SWITCHING.join('|')})/|${SWITCHING_FILES.join('|')}))(\\?[^#]*)?(#.*)?$`).exec(u);
   if (!m) return u;
   return m[1] + (m[2] ? m[2] + '&lang=' + lang : '?lang=' + lang) + (m[3] || '');
 };

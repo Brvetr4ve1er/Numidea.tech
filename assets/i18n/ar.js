@@ -20,7 +20,7 @@ var I18N = {
   'meta.ogDesc': 'استوديو ويب في برج بوعريريج. للشركات المسجّلة، وقبل أيّ دفع، نبني الصفحة الرئيسية لموقعك الجديد بمحتواك أنت خلال 5 أيام عمل — 4 في الشهر كحدّ أقصى. مواقع بالعربية والفرنسية والإنجليزية.',
   'meta.twDesc': 'صفحتك الرئيسية، بمحتواك أنت، خلال 5 أيام عمل. مجّاناً ودون التزام، للشركات المسجّلة، 4 في الشهر كحدّ أقصى.',
   'meta.ogAlt': 'Numidea Labs — «موقعك، قبل أن تدفع.» المعاينة: صفحتك الرئيسية قبل أن تدفع، فوق نقش لقوس تراجان في تيمقاد',
-  'nav.about': 'المعاينة', 'nav.services': 'الخدمات', 'nav.work': 'الأعمال',
+  'nav.about': 'معاينة مجانية', 'nav.services': 'الخدمات', 'nav.work': 'الأعمال',
   'nav.team': 'المؤسّس', 'nav.faq': 'الأسئلة', 'nav.contact': 'تواصل',
   'hero.eyebrow': 'استوديو ويب\u00a0· برج بوعريريج',
   'hero.title': 'شاهد صفحتك الرئيسية <span class="swash">قبل أن تدفع.</span>',
@@ -45,8 +45,8 @@ var I18N = {
   'work.lead': 'مواقع عملائنا، تصفّحها بنفسك.',
   'work.outcome': 'للزائر',
   'work.demo': 'وأيضاً: Glaive Store، علامة خيالية صمّمناها من الألف إلى الياء عرضاً تجريبياً لأعمالنا.',
-  'work.live': 'زيارة الموقع <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span>', 'work.sheet': 'تفاصيل المشروع',
-  'scene.cta': 'اطّلع على كل مشروع بالتفصيل <span aria-hidden="true">←</span>',
+  'work.sheet': 'تفاصيل المشروع',
+  'scene.cta': 'اطّلع على الأعمال بالتفصيل <span aria-hidden="true">←</span>',
   'founder.kicker': 'المؤسّس', 'founder.title': 'من يبني <em>موقعك.</em>',
   'founder.lead': 'خلف <bdi>Numidea Labs</bdi> يد واحدة: مؤسّس يصمّم ويبرمج ويسلّم بنفسه. وينضمّ إليه مستقلّون حين يتطلّب المشروع ذلك.',
   'founder.role': 'مصمّم غرافيك ومطوّر ويب\u00a0· المؤسّس', 'founder.years': '6 سنوات',
@@ -72,7 +72,7 @@ var I18N = {
   'founder.skillsNote': 'تقليص وقت الإنتاج بنحو 20٪ بفضل دمج أدوات الذكاء الاصطناعي. قيد التعلّم: التصميم الحركي والمونتاج.',
   'founder.certs': 'الشهادات: <bdi>Duolingo English Test</bdi>\u00a0· التصميم الرقمي (<bdi>Artiland.Studio</bdi>)\u00a0· التصميم الحركي ثلاثي الأبعاد',
   'pl.vista': 'نقش 1 — منظر طبيعي', 'pl.dunes': 'نقش 2 — كثبان', 'pl.arch': 'نقش 3 — قوس تراجان في تيمقاد',
-  'ui.top': 'إلى الأعلى', 'tag.identity': 'هوية بصرية', 'tag.designSystems': 'حزم تصميم', 'tag.motion': 'حركة', 'tag.maps': 'خرائط', 'tag.scoring': 'تقييم', 'tag.strategy': 'استراتيجية', 'tag.funnels': 'مسارات تسويقية', 'tag.audits': 'تدقيق', 'tag.apis': 'واجهات برمجية', 'mk.srcRange': '(من المستقل المتمرّس ← إلى الوكالة)', 'footer.legal': 'الإشعار القانوني', 'footer.privacy': 'الخصوصية', 'work.voicesH': 'ما يقوله عملاؤنا', 'mbar.aria': 'تواصل سريع', 'mbar.cta': 'معاينتي', 'form.note': 'يفتح الإرسال تطبيق البريد لديك والرسالة جاهزة. لا يحتفظ هذا الموقع برسالتك.', 'ui.skip': 'انتقل إلى المحتوى', 'ui.navPrimary': 'التنقّل الرئيسي', 'ui.theme': 'المظهر', 'ui.lang': 'اللغة', 'footer.navAria': 'تذييل الصفحة', 'hero.plateRail': 'الأعمال المعروضة', 'hero.platePause': 'إيقاف التدوير مؤقتاً', 'work.livePill': 'على\u00a0الإنترنت', 'proj4.alt': 'لقطة من موقع Bordj Steel', 'proj2.alt': 'لقطة من موقع Alliance Travel', 'proj3.alt': 'لقطة من موقع AlmaFlowClim', 'proj6.alt': 'لقطة من موقع Nomara Voyages', 'ui.menu': 'القائمة', 'ui.close': 'إغلاق', 'ui.sections': 'الأقسام', 'founder.linksAria': 'حسابات المؤسّس',
+  'ui.top': 'إلى الأعلى', 'tag.identity': 'هوية بصرية', 'tag.designSystems': 'حزم تصميم', 'tag.motion': 'حركة', 'tag.maps': 'خرائط', 'tag.scoring': 'تقييم', 'tag.strategy': 'استراتيجية', 'tag.funnels': 'مسارات تسويقية', 'tag.audits': 'تدقيق', 'tag.apis': 'واجهات برمجية', 'mk.srcRange': '(من المستقل المتمرّس ← إلى الوكالة)', 'footer.legal': 'الإشعار القانوني', 'footer.privacy': 'الخصوصية', 'work.voicesH': 'ما يقوله عملاؤنا', 'mbar.aria': 'تواصل سريع', 'mbar.cta': 'معاينة مجانية', 'form.note': 'يفتح الإرسال تطبيق البريد لديك والرسالة جاهزة. لا يحتفظ هذا الموقع برسالتك.', 'ui.skip': 'انتقل إلى المحتوى', 'ui.navPrimary': 'التنقّل الرئيسي', 'ui.theme': 'المظهر', 'ui.lang': 'اللغة', 'footer.navAria': 'تذييل الصفحة', 'hero.plateRail': 'الأعمال المعروضة', 'hero.platePause': 'إيقاف التدوير مؤقتاً', 'work.livePill': 'على\u00a0الإنترنت', 'proj4.alt': 'لقطة من موقع Bordj Steel', 'proj2.alt': 'لقطة من موقع Alliance Travel', 'proj3.alt': 'لقطة من موقع AlmaFlowClim', 'proj6.alt': 'لقطة من موقع Nomara Voyages', 'ui.menu': 'القائمة', 'ui.close': 'إغلاق', 'ui.sections': 'الأقسام', 'founder.linksAria': 'حسابات المؤسّس',
   'ui.resume': 'استئناف التناوب',
   'team.h': 'حين يتطلّب المشروع ذلك',
   'team.fFn': 'مستقلّون، حسب الحاجة', 'team.fDo': 'ينضمّ مختصّ إلى المشروع لجزء محدّد منه؛ ويبقى المؤسّس محاورك الوحيد والمسؤول عن التسليم.',
@@ -92,7 +92,7 @@ var I18N = {
   'contact.title': 'لنتحدّث عن <em>مشروعك.</em>',
   'contact.sub': 'يكفي سطران: نشاطك، وما يجب أن يقوم به الموقع، وموعدك. بالعربية أو الفرنسية أو الإنجليزية.',
   'contact.chStudio': 'الاستوديو', 'contact.chReply': 'الردّ',
-  'contact.vStudio': 'برج بوعريريج\u00a0· الجزائر', 'contact.vReply': 'في يوم العمل التالي\u00a0· من الأحد إلى الخميس، من 9 إلى 18 (<bdi>UTC+1</bdi>)\u00a0· بالفرنسية والإنجليزية والعربية',
+  'contact.vStudio': 'برج بوعريريج\u00a0· الجزائر', 'contact.vReply': 'في يوم العمل التالي، من الأحد إلى الخميس، من 9 إلى 18 بتوقيت الجزائر',
   'form.name': 'الاسم', 'form.namePh': 'اسمك',
   'form.email': 'البريد', 'form.emailPh': 'you@company.com',
   'form.message': 'الرسالة', 'form.messagePh': 'ماذا سنبني؟',
@@ -115,7 +115,7 @@ var I18N = {
   'footer.rights': '<bdi dir="ltr">© 2026 Numidea Labs</bdi>',
   'footer.tag': 'جذورها في نوميديا\u00a0· مبنيّة على الأفكار',
   /* ---- Services catalog + trust strip strings (EXTRA in app.js until the split; merged here) ---- */
-  'mk.h': 'الجزائر وفرنسا والولايات المتحدة: مشروع واحد، ثلاثة أسواق',
+  'mk.h': 'مشروع واحد، ثلاثة أسواق',
   'mk.vizCap': 'مقياس لوغاريتمي: كلّ تدريجة رئيسية تساوي عشرة أضعاف التي قبلها. بين الخطّين المتقطّعين يمتدّ نطاق أسعارنا عبر الأسواق الثلاثة، والشريط الذي يتلاشى لا حدّ أعلى له. المبالغ محوّلة بالسعر الرسمي، والأرقام الدقيقة في الجدول أدناه.',
   'mk.k': 'ألف', 'mk.M': 'مليون', 'mk.k.n': 'ألف|ألفان|آلاف|ألفاً|ألف', 'mk.M.n': 'مليون|مليونان|ملايين|مليوناً|مليون',
   'prev.tl1': 'تصف المشروع', 'prev.tl1p': 'دقيقتان، كتابةً أو مشافهة. بالفرنسية أو الإنجليزية أو العربية.',
@@ -200,7 +200,7 @@ var I18N = {
   'price.estimate': 'التقدير', 'price.weeks': 'أسابيع', 'price.weeks.n': 'أسبوع|أسبوعان|أسابيع|أسبوعاً|أسبوع',
   'price.estFine': 'تقدير استرشادي، لا عرض سعر رسمي. السعر النهائي نحدّده بعد أن نضبط معاً نطاق العمل — ولا يتغيّر بعدها.',
   'price.estCta': 'اطلب سعرك النهائي <span aria-hidden="true">←</span>',
-  'price.moreSum': 'كيف نسعّر', 'price.moreHint': 'السوق، نماذج الفوترة، وما يغيّر عرض السعر.',
+  'price.moreSum': 'كيف نسعّر',
   /* ---- the price guide (tarifs/, scripts/build-tarifs.mjs): its head, its own lines, the home's links to it ---- */
   'tarifs.title': 'سعر موقع ويب في الجزائر (2026) — Numidea Labs',
   'tarifs.desc': 'كم يكلّف موقع ويب في الجزائر في 2026؟ باقاتنا من 90 000 دج، وحاسبة تقدير، والأسعار الشائعة في الجزائر وفرنسا والولايات المتحدة.',
@@ -213,7 +213,7 @@ var I18N = {
   'tarifs.link': 'اطّلع على دليل الأسعار 2026 <span aria-hidden="true">←</span>', 'tarifs.navLink': 'دليل الأسعار',
   'svc.lead': 'خمس خدمات رئيسية، وخمس أخرى أدناه. ومحاور واحد لها كلها.',
   'prev.tag': 'عرض مميّز', 'prev.name': 'المعاينة', 'prev.promise': 'بلا مخاطرة: ترى النتيجة قبل أن تدفع.',
-  'prev.more': 'كل الخطوات بالتفصيل', 'prev.terms': 'مجّاناً ودون التزام\u00a0· للشركات المسجّلة فقط\u00a0· 4 معاينات في الشهر كحدّ أقصى لجميع العملاء.', 'prev.cta': 'اطلب معاينتك المجانية <span aria-hidden="true">←</span>', 'prev.wa': 'راسلنا عبر واتساب', 'prev.msg': 'مرحباً، أرغب في الاطّلاع على معاينة مجانية لموقعي الجديد.\nالشركة: \nالهاتف / واتساب: \nالموقع الحالي (إن وُجد): \nما أحتاجه: ', 'prev.waText': 'مرحباً Numidea Labs، أرغب في معاينة مجانية لموقعي الجديد.\nالشركة: \nالنشاط والمدينة: \nالموقع الحالي (إن وُجد): ', 'form.source': 'المصدر', 'contact.waNote': 'رسائل فقط، دون مكالمات\u00a0· مجاناً عبر التطبيق',
+  'prev.more': 'كل الخطوات بالتفصيل', 'prev.terms': 'مجّاناً ودون التزام\u00a0· للشركات المسجّلة فقط\u00a0· 4 معاينات في الشهر كحدّ أقصى لجميع العملاء.', 'prev.cta': 'اطلب معاينتك المجانية <span aria-hidden="true">←</span>', 'prev.wa': 'راسلنا عبر واتساب', 'prev.msg': 'مرحباً، أرغب في الاطّلاع على معاينة مجانية لموقعي الجديد.\nالشركة: \nالهاتف / واتساب: \nالموقع الحالي (إن وُجد): \nما أحتاجه: ', 'prev.waText': 'مرحباً Numidea Labs، أرغب في معاينة مجانية لموقعي الجديد.\nالشركة: \nالنشاط والمدينة: \nالموقع الحالي (إن وُجد): ', 'form.source': 'المصدر', 'contact.waNote': 'رسائل فقط: موعد مكالمة الفيديو للمعاينة يُحدَّد برسالة\u00a0· مجاناً عبر التطبيق',
   'f1.name': 'مواقع وتطبيقات ويب',
   'f1.brief': 'مواقع وتطبيقات ويب مخصّصة — سريعة، مع تحسين محرّكات البحث (<bdi>SEO</bdi>)، ومبنيّة لتحوّل الزوّار إلى عملاء، من الواجهة إلى السحابة. لا نعيد تلوين قالب جاهز: نصمّم موقعك من الصفر.',
   'f2.name': 'الهوية والأنظمة البصرية',
@@ -234,7 +234,7 @@ var I18N = {
   'c4.name': 'أنظمة المعرفة',
   'c4.brief': 'بنية معرفة داخلية — <bdi>Obsidian/PARA + Zettelkasten</bdi>، توثيق، قواعد جاهزة ليستعلم منها مساعد ذكاء اصطناعي. بنى تصون نفسها.',
   'c5.name': 'أدوات ومساعدات ذكاء اصطناعي مخصّصة',
-  'c5.brief': 'أدوات داخلية ومولّدات ومساعدات مخصّصة مدعومة بـ <bdi>Claude</bdi>: مهمّة متكرّرة تنطلق بنقرة واحدة.',
+  'c5.brief': 'أدوات داخلية ومولّدات ومساعدات مخصّصة: مهمّة متكرّرة تنطلق بنقرة واحدة.',
 
   /* restored 2026-11-11 from the 3 Nov dictionary (owner's own copy, verbatim) */
   'proj2.desc': 'هوية بصرية وموقع ثلاثي اللغة لوكالة سفر في برج بوعريريج، مع حاسبة عروض أسعار عبر واتساب وخدمة حجز مواعيد التأشيرة.',
@@ -247,7 +247,6 @@ var I18N = {
   'c1.fam': 'المواقع والتصميم', 'c2.fam': 'المواقع والتصميم', 'c3.fam': 'البيانات والأتمتة', 'c4.fam': 'الاستشارة والذكاء الاصطناعي', 'c5.fam': 'الاستشارة والذكاء الاصطناعي',
   'scene.lead': 'الصفحات وعرض الهاتف والنظام البصري لكل مشروع، ملتقطة من المواقع كما هي على الإنترنت.',
   /* AR review: contact.tzNote, founder.studio, founder.bible, footer.studio (new 2026-11-11) */
-  'contact.tzNote': 'بتوقيت باريس شتاءً، وبساعة أقلّ صيفاً',
   /* AR review: contact.sceneAlt, contact.sign (new 2026-11-19, the Studio's strings) */
   'contact.sceneAlt': 'باب الورشة مفتوح ليلاً: ياسر عند العتبة يرفع لافتة، وكورو ينتظر على الدرجة.', 'contact.sign': 'أهلًا.',
   'founder.studio': 'الاستوديو بالتفصيل <span aria-hidden="true">←</span>',
@@ -260,6 +259,18 @@ var I18N = {
   'atelier.alt': 'ياسر على طاولة الورشة ليلاً يرفع لوحة مرسومة، وكورو، القط الأسود، جالس على مخطط بجانبه قرب كوب قهوة.',
   'founder.sceneAlt': 'ياسر عند نافذة الورشة ليلاً وفي يده قهوة، وكورو على حافة النافذة.',
   'founder.sceneCap': 'ياسر في الورشة. وهذه القهوة ليست الأولى.',
-  'seal.est': 'تقدير', 'seal.sent': 'أُرسل',   /* the red seal stamps (estimator result, sent form) ; AR to review */
+  'seal.est': 'تقدير', 'seal.sent': 'جاهز',   /* the red seal stamps (estimator result, sent form) ; AR to review */
   'footer.studio': 'الاستوديو',
+  /* enh3 HOME, 2026-11-23, AR review (native reader): seal.sent, scene.cta, contact.waNote, contact.vReply, nav.about, mbar.cta, mk.h and the keys below: price.estCtaShort, nav.librairie, nav.monde, atelier.sub, tarifs.faq2a, proj4/2/3/6.live, work.demoLive, footer.whq */
+  'price.estCtaShort': 'السعر النهائي <span aria-hidden="true">←</span>',
+  'nav.librairie': 'المكتبة',
+  'nav.monde': 'العالم',
+  'atelier.sub': 'خدمات الاستوديو وأعماله وأسعاره',
+  'tarifs.faq2a': 'تبدأ باقاتنا من 90 000 دج للموقع التعريفي، بالدينار أو اليورو أو الدولار في هذه الصفحة، ونحدّد سعراً ثابتاً بعد توضيح نطاق العمل — دون مفاجآت. انظر أيضاً <a href="../#apercu">المعاينة</a>.',
+  'proj4.live': 'زيارة موقع <bdi>Bordj Steel</bdi> <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span>',
+  'proj2.live': 'زيارة موقع <bdi>Alliance Travel</bdi> <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span>',
+  'proj3.live': 'زيارة موقع <bdi>AlmaFlowClim</bdi> <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span>',
+  'proj6.live': 'زيارة موقع <bdi>Nomara Voyages</bdi> <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span>',
+  'work.demoLive': 'زيارة موقع <bdi>Glaive Store</bdi> <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span>',
+  'footer.whq': 'أداتنا WorkspaceHQ بالإنجليزية',
 };

@@ -9,9 +9,9 @@
     },
     "boot": [
       "> booting tr4veler.exe",
-      "> memory ........... 34 réalités",
-      "> companions ....... 4 en ligne",
-      "> past.dat ......... [CORROMPU]",
+      "> memory ..... 34 réalités",
+      "> companions . 4 en ligne",
+      "> past.dat ... [CORROMPU]",
       "> ready. 不動心"
     ],
     "file": {
@@ -141,9 +141,9 @@
     },
     "boot": [
       "> booting tr4veler.exe",
-      "> memory ........... 34 realities",
-      "> companions ....... 4 online",
-      "> past.dat ......... [CORRUPTED]",
+      "> memory ..... 34 realities",
+      "> companions . 4 online",
+      "> past.dat ... [CORRUPTED]",
       "> ready. 不動心"
     ],
     "file": {
@@ -273,9 +273,9 @@
     },
     "boot": [
       "> booting tr4veler.exe",
-      "> memory ........... 34 عالمًا",
-      "> companions ....... 4 متصلون",
-      "> past.dat ......... [تالف]",
+      "> memory ..... 34 عالمًا",
+      "> companions . 4 متصلون",
+      "> past.dat ... [تالف]",
       "> ready. 不動心"
     ],
     "file": {
