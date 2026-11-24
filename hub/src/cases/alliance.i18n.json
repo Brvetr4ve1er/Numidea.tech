@@ -103,7 +103,9 @@
       "reception": "Maquette : l’accueil de l’agence, le logo rétroéclairé sur un mur bleu",
       "stationery": "Maquette : la papeterie, cartes de visite, en-tête et enveloppes",
       "boarding": "Maquette : une carte d’embarquement Alger–Istanbul et une étiquette de bagage",
-      "valise": "Maquette : une valise bleue gaufrée du motif A, étiquette menthe"
+      "valise": "Maquette : une valise bleue gaufrée du motif A, étiquette menthe",
+      "sgrid": "Maquette : neuf publications Alliance en grille, Bali, Vietnam, Istanbul et Kuala Lumpur, un carrousel check-list menthe et sable, et un post signature bleu nuit",
+      "sstory": "Maquette : une story bleu nuit, « Où partez-vous cet été ? », avec quatre photos à choisir, Bali, Istanbul, Tunisie et Kuala Lumpur"
     },
     "scope": {
       "k": "LIVRÉ · ALLIANCE TRAVEL",
@@ -176,7 +178,9 @@
       "reception": "ACCUEIL · AGENCE",
       "stationery": "PAPETERIE",
       "boarding": "EMBARQUEMENT",
-      "valise": "VALISE · MOTIF A"
+      "valise": "VALISE · MOTIF A",
+      "sgrid": "RÉSEAUX · FIL INSTAGRAM",
+      "sstory": "STORY · SONDAGE"
     }
   },
   "en": {
@@ -283,7 +287,9 @@
       "reception": "Mockup: the agency’s front desk, the logo backlit on a blue wall",
       "stationery": "Mockup: the stationery, business cards, letterhead and envelopes",
       "boarding": "Mockup: an Algiers–Istanbul boarding pass and a luggage tag",
-      "valise": "Mockup: a blue suitcase embossed with the A pattern, a mint tag"
+      "valise": "Mockup: a blue suitcase embossed with the A pattern, a mint tag",
+      "sgrid": "Mockup: nine Alliance posts in a grid, Bali, Vietnam, Istanbul and Kuala Lumpur, a mint and sand checklist carousel, and a navy signature post",
+      "sstory": "Mockup: a navy story asking where you are going this summer, with four photos to pick from, Bali, Istanbul, Tunisia and Kuala Lumpur"
     },
     "scope": {
       "k": "DELIVERED · ALLIANCE TRAVEL",
@@ -356,7 +362,9 @@
       "reception": "FRONT DESK · AGENCY",
       "stationery": "STATIONERY",
       "boarding": "BOARDING",
-      "valise": "SUITCASE · A PATTERN"
+      "valise": "SUITCASE · A PATTERN",
+      "sgrid": "SOCIAL · INSTAGRAM FEED",
+      "sstory": "STORY · POLL"
     }
   },
   "ar": {
@@ -463,7 +471,9 @@
       "reception": "نموذج: استقبال الوكالة، والشعار مضاء على جدار أزرق",
       "stationery": "نموذج: القرطاسية، بطاقات العمل والورق الرسمي والأظرفة",
       "boarding": "نموذج: بطاقة صعود الجزائر–إسطنبول وبطاقة أمتعة",
-      "valise": "نموذج: حقيبة زرقاء منقوشة بحرف A وبطاقة بلون النعناع"
+      "valise": "نموذج: حقيبة زرقاء منقوشة بحرف A وبطاقة بلون النعناع",
+      "sgrid": "نموذج: تسعة منشورات لـ Alliance في شبكة، بالي وفيتنام وإسطنبول وكوالالمبور، ومنشور قائمة تحقق بالأخضر والرملي، ومنشور توقيع بالأزرق الداكن",
+      "sstory": "نموذج: قصة بالأزرق الداكن تسأل إلى أين تسافرون هذا الصيف، مع أربع صور للاختيار، بالي وإسطنبول وتونس وكوالالمبور"
     },
     "scope": {
       "k": "ما سُلِّم · ALLIANCE TRAVEL",
@@ -536,7 +546,9 @@
       "reception": "الاستقبال · الوكالة",
       "stationery": "القرطاسية",
       "boarding": "بطاقة الصعود",
-      "valise": "حقيبة · نقش A"
+      "valise": "حقيبة · نقش A",
+      "sgrid": "شبكات التواصل · إنستغرام",
+      "sstory": "قصة · استطلاع"
     }
   }
 }
