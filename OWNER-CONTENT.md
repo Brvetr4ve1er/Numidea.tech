@@ -2370,8 +2370,9 @@ No licence is chosen for these yet, like the rest of the art.
   Arabic (it falls to the right in both directions now)? The Studio
   founder's floor label is an ink label, not brass (brass is kept for
   places, and brass text on cream is too faint): say if you prefer brass.
-- `yasser-coffee.webp` and `yasser-facepalm.webp` in `assets/illus/` are no
-  longer shown by the home or the 404: keep them or have them deleted.
+- `yasser-coffee.webp` and `yasser-facepalm.webp` in `assets/illus/` were no
+  longer shown by the home or the 404: deleted on 2026-11-24 (characters C1);
+  git history keeps them.
 - E20 (the Bordj Steel references capture with its grey band) needs a new
   capture of the live site.
 

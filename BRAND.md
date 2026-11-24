@@ -1950,6 +1950,44 @@ Page changes are the cross-document page lift (500 ms); the JavaScript paper wip
 
 **The reel.** The rig, console and passage posters were re-taken from their clips at `posterAt` (rig 0, console 0, passage 2.5; `hub/src/reel.json`, read by `scripts/motion-add.mjs`); the console clip is cropped to its content; the opening was re-recorded from the fixed intro ("2,7 s · à chaque visite"). The passage clip still shows the old doors and the paper wipe until it is recorded again (an owner item).
 
+## The model sheet: one Yasser, one Kūro (2026-11-24)
+
+Every drawing of the two of them, whoever or whatever makes it, is held to
+this sheet. **The art style may change from one series to another (the rig's
+anime cel, the Librairie's posters, the pixel row, the stickers), as long as
+it changes consistently across a series and the traits below hold in every
+style** (owner, 2026-11-24). A drawing that misses a locked trait is off-model: it is redrawn,
+cropped so the trait does not read, or not published. Lighting may change
+(lamp-warm, night-cool); the traits may not. The side-by-side that started
+this sheet is in the project files (`characters/model-drift.jpg`).
+
+**Yasser** (the founder himself; always a drawing, never a photograph):
+- Skin: deep brown, the rig's tone (`hub/bible/art/rig-y-base.webp`). Never lightened.
+- Face: long, narrow chin, heavy-lidded eyes, round thin-rimmed glasses.
+- Hair: long black locs; worn loose or tied up (topknot, red hairsticks). Loose strands and tied-up locs are the same hair, not drift (owner, 2026-11-24).
+- Clothes: black turtleneck; the oversized cream coat with red sleeve patches
+  (the Numidea mark on the patch); black cargo trousers; cream sneakers.
+- Props he can hold: the coffee cup, a tablet, a board. Never a cigarette, never a logo of a third party.
+
+**Kūro** (the black cat):
+- Fur: jet black, flat, a cool ink black (no brown, no navy). Rim light may be warm or cool, the fur stays black.
+- Eyes: amber, round, heavy-lidded when unimpressed.
+- Red collar with a small tag. Pink inner ears.
+- Body: compact, short muzzle; deadpan rather than cute.
+
+**Reference set** (on-model, use these when briefing new art): `hub/bible/art/rig-y-base`,
+`actor-*`, `face-*`, `pose-*` for Yasser; `kuro-judge`, `kuro-stamp`, `kuro-loaf`, `rig-k-base` for Kūro.
+
+**Fixes made on 2026-11-24 (characters C1):** `kuro-sit`, `kuro-paw` (brown) and the Librairie's
+`cast/kuro` (navy) were recoloured to canon black by `scripts/kuro-canon.mjs` (run it again after
+`npm run hub:art`, which cuts the two sit/paw files brown from the masters). The two unused founder
+cut-outs (`assets/illus/yasser-coffee`, `yasser-facepalm`) were deleted. Yasser's skin was taken
+back to the rig's tone (seeded skin mask, per-channel gain 0.76/0.59/0.55; the tools are kept in the
+project files, `characters/tools/`) on the workbench scene (`hub/img/studio/m/diorama{,.full}`,
+`assets/illus/workbench-night{,-560}`, whose Kūro was taken to canon black too) and on the Studio's
+"What I make" trio (`hub/img/studio/make/*`, the artist's Kūro too). Still off-model and not yet fixed:
+the bible's pixel row (`sil-*`) and the animated `yasser-lost` sticker, both lighter-skinned.
+
 ## The calculator: a receipt that adds up, and the console (2026-11-16)
 
 **The rule.** A quote is a list of lines and its total is their exact sum. It is never rounded after it is summed: the owner found the old calculator "broken", and one cause was a total that its parts did not add up to. `ESTIMATE.quote()` in `assets/app.js` returns `lines` (`base`, `extra`, `opt`, `studio`, `rush`); every display of a quote (the home, the price guide, the Studio) prints those lines. Lines are in dinars, the currency the prices are set in; a converted total keeps its "≈". `scripts/check.mjs` 8c holds the rule on every type, size, option set and pace.
