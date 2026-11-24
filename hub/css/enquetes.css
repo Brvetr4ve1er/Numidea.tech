@@ -323,7 +323,8 @@ html.js:not([data-enq-off]) .enq-app[hidden]{display:block!important;min-height:
   .enq-app:not(.is-list) .enq-ring,.enq-app:not(.is-list) .enq-art__glow{inset-inline-start:var(--xw)}
   .enq-app:not(.is-list) .enq-art__glow{width:24%}
   .enq-app.is-list{max-width:640px}
-  html.js:not([data-enq-off]) .enq-app[hidden]{min-height:460px}
+  /* the empty stage keeps the drawn stage's height (the painting fills the screen under the mast) */
+  html.js:not([data-enq-off]) .enq-app[hidden]{min-height:max(460px,min(764px,calc(100vh - 106px),calc((min(100vw,1468px) - 526px) * .93 + 4px)))}
   .enq-screen{padding-block-start:0}
 }
 @media (prefers-reduced-motion:no-preference){
