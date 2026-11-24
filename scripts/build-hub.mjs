@@ -610,5 +610,5 @@ if (process.argv.includes('--check')) {
   process.exit(stale.length ? 1 : 0);
 }
 mkdirSync(join(HUB, 'lanterne', 'i18n'), { recursive: true });
-for (const [f, s] of OUT) writeFileSync(join(ROOT, f), s);
+for (const [f, s] of OUT) { mkdirSync(dirname(join(ROOT, f)), { recursive: true }); writeFileSync(join(ROOT, f), s); }
 console.log(`✓ hub/index.html (${(page.length / 1000).toFixed(1)} kB, ${casesIn} of ${CASES.length} cases), hub/manuel.html (${(manualPage.length / 1000).toFixed(1)} kB), hub/monde.html (${(mondePage.length / 1000).toFixed(1)} kB), hub/fabrique.html (${(fabPage.length / 1000).toFixed(1)} kB) the Librairie (${lantPages.map(([f, x]) => `${f.slice(13)} ${(x.length / 1000).toFixed(1)} kB`).join(', ')}) and hub/i18n.js (${Object.keys(DICT.fr).length} keys × 3)`);

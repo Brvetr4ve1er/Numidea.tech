@@ -32,7 +32,8 @@ html.js:not([data-enq-off]) .enq-app[hidden]{display:block!important;min-height:
 .enq-art__glow{position:absolute;inset-inline-start:var(--x);top:var(--y);width:44%;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(240,176,90,.5),rgba(240,176,90,0));mix-blend-mode:screen;opacity:0;pointer-events:none}
 .enq-art.is-lit .enq-art__glow{opacity:1}
 .enq-ring{position:absolute;inset-inline-start:var(--x);top:var(--y);width:56px;height:56px;margin:-28px;padding:0;border-radius:50%;border:3px solid var(--cream);background:rgba(243,236,225,.22);box-shadow:0 0 0 2px var(--ink)}
-.enq-ring--slip{border-color:var(--amber);background:rgba(240,176,90,.4)}
+/* tonight's slip: an amber halo held between two ink edges, a cream rim; it stays a ring on the lit lantern and the awning */
+.enq-ring--slip{border-color:var(--cream);background:rgba(243,236,225,.3);box-shadow:0 0 0 2px var(--ink),0 0 0 5px var(--amber),0 0 0 7px var(--ink)}
 .enq-ring.is-on{background:rgba(243,236,225,.55)}
 .enq-ring:focus-visible{outline-offset:4px}
 
@@ -74,6 +75,7 @@ html.js:not([data-enq-off]) .enq-app[hidden]{display:block!important;min-height:
 .enq-door__season{font:700 16px/1.3 var(--f-mono)}
 .enq-door__line{max-width:30ch}
 .enq-door .enq-go{width:100%}
+.enq-door__kept{max-width:38ch;font:400 14px/1.4 var(--f-mono)}
 .enq-door .enq-law{text-align:start}
 .enq-door__opts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .enq-opt{min-height:44px;font:700 14px/1.2 var(--f-mono)}
@@ -128,7 +130,8 @@ html.js:not([data-enq-off]) .enq-app[hidden]{display:block!important;min-height:
 .enq-mock__body{display:grid;gap:8px}
 .enq-mock--row .enq-mock__body{display:flex;flex-wrap:wrap;align-items:flex-start}
 .enq-mock--grid .enq-mock__body{grid-template-columns:repeat(2,minmax(0,1fr))}
-.enq-mock__pill{flex:1 1 90px;height:56px;border:2px solid var(--line);background:var(--cream)}
+/* the address field is drawn flat (no border, no fill a field would have): it is not one of the parts and does not look tappable */
+.enq-mock__pill{flex:1 1 90px;align-self:center;height:10px;border:0;background:var(--line);opacity:.45}
 .enq-partw{display:grid;gap:6px;min-width:0}
 .enq-mock--row .enq-partw{flex:0 1 auto}
 .enq-part{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;width:100%;min-width:56px;min-height:56px;padding:8px 12px;background:var(--white);color:var(--ink);border:2px solid var(--ink);box-shadow:var(--shadow-s);font:700 16px/1.3 var(--f-body);text-align:start}
@@ -154,7 +157,9 @@ html.js:not([data-enq-off]) .enq-app[hidden]{display:block!important;min-height:
 .enq-choose{min-height:56px}
 .enq-addr{display:flex;flex-wrap:wrap;gap:4px;font:700 16px/1.3 var(--f-mono)}
 .enq-addr__p{padding:8px;border:2px solid var(--line);background:var(--cream);overflow-wrap:anywhere}
-.enq-part--piece{width:auto;font:700 16px/1.3 var(--f-mono)}
+/* the second address's pieces: apart by more than their shadow (row and column), and a little tighter so they wrap less */
+.enq-addr--b{gap:10px 9px}
+.enq-part--piece{width:auto;padding:8px 9px;font:700 15px/1.3 var(--f-mono)}
 .enq-frame{font-size:18px;line-height:2.7}
 .enq-slotw{display:inline-flex;align-items:baseline;align-items:last baseline;max-width:100%;vertical-align:middle;line-height:1.3}
 .enq-slotw__x{flex:none}
@@ -163,6 +168,7 @@ html.js:not([data-enq-off]) .enq-app[hidden]{display:block!important;min-height:
 .enq-slot[data-mode=empty],.enq-slot[data-mode=hit],.enq-slot[data-mode=answer]{margin-inline-end:2px}
 .enq-chips{display:flex;flex-wrap:wrap;gap:6px 8px}
 .enq-chip{min-height:44px;padding:6px 12px;background:var(--white);color:var(--ink);border:2px solid var(--ink);box-shadow:var(--shadow-s);font:700 16px/1.3 var(--f-body);text-align:start}
+.enq-ev--long .enq-chip{padding-block:3px}
 .enq-chip[data-mode=sel]{background:var(--ink);color:var(--cream);box-shadow:3px 3px 0 var(--amber)}
 
 /* F. the prompt and the feedback */
@@ -226,6 +232,11 @@ html.js:not([data-enq-off]) .enq-app[hidden]{display:block!important;min-height:
 .enq-src{display:grid;gap:6px;margin:0;padding:0;list-style:none;font:400 14px/1.4 var(--f-mono)}
 .enq-src a{display:inline-flex;align-items:center;min-height:44px;color:inherit;overflow-wrap:anywhere}
 .enq-back .enq-ev__k{color:var(--amber)}
+.enq-rowsheet{display:grid;gap:8px;padding:12px;background:var(--navy-2);border:2px solid var(--on-navy-2)}
+.enq-rowsheet .enq-ev__k{color:var(--amber)}
+.enq-rowsheet .enq-btn{justify-self:stretch;text-align:start}
+.enq-wait{display:grid;gap:16px;align-content:start}
+.enq-card>.enq-row{justify-content:flex-start}
 
 .enq-chart>.enq-btn,.enq-card>.enq-btn{justify-self:start}
 

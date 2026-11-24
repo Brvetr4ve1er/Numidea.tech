@@ -1,0 +1,1435 @@
+{
+ "id": "c03",
+ "slug": "audius",
+ "n": 3,
+ "verdict": "partly",
+ "names": [
+  "Spotify",
+  "Audius"
+ ],
+ "sticker": {
+  "checked": "2026-11-23",
+  "src": [
+   "signup",
+   "costs",
+   "docs",
+   "walletfaq"
+  ],
+  "law": true
+ },
+ "sources": [
+  {
+   "id": "signup",
+   "url": "https://help.audius.co/product/sign-up-and-onboarding",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "name",
+   "url": "https://help.audius.co/product/updating-display-name-and-handle",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "verify",
+   "url": "https://help.audius.co/product/verification",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "costs",
+   "url": "https://help.audius.co/product/costs-and-fees",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "plans",
+   "url": "https://help.audius.co/faq/are-there-any-subscription-plans-or-fees-for-using-audius-music",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "copyright",
+   "url": "https://help.audius.co/product/what-are-the-audius-copyright-policies-and-processes",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "dm",
+   "url": "https://help.audius.co/product/direct-messaging",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "reset",
+   "url": "https://help.audius.co/product/resetting-password",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "delete",
+   "url": "https://help.audius.co/product/account-deletion",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "walletfaq",
+   "url": "https://help.audius.co/product/crypto-wallet-faq-for-audius-users",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "docs",
+   "url": "https://docs.audius.co/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "offline",
+   "url": "https://help.audius.co/product/offline-listening",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "spotify",
+   "url": "https://support.spotify.com/us/artists/article/getting-music-on-spotify/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "mdn-domain",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "mdn-url",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "rfc2606",
+   "url": "https://www.rfc-editor.org/rfc/rfc2606.txt",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "iana",
+   "url": "https://www.iana.org/help/example-domains",
+   "read": "2026-11-23"
+  }
+ ],
+ "depths": [
+  {
+   "id": "audius.1",
+   "key": "audius.d1",
+   "level": 1,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "signup",
+      "costs"
+     ]
+    },
+    {
+     "id": "handle",
+     "tag": "labels",
+     "kind": "screen",
+     "template": "profile",
+     "parts": [
+      {
+       "id": "menu",
+       "caption": true,
+       "glyph": "bars",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "name",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "handle",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "edit",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "handle",
+     "src": [
+      "signup",
+      "name"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "signup-form",
+      "parts": [
+       {
+        "id": "email",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "password",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "handle",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "display",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "handle",
+      "src": [
+       "signup",
+       "name",
+       "reset"
+      ]
+     }
+    },
+    {
+     "id": "pay",
+     "tag": "read",
+     "kind": "screen",
+     "template": "track-page",
+     "parts": [
+      {
+       "id": "play",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "collect",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "share",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "unlock",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "unlock",
+     "src": [
+      "costs",
+      "plans"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "album-page",
+      "parts": [
+       {
+        "id": "plan",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "unlock",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "play",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "unlock",
+      "src": [
+       "costs",
+       "plans"
+      ]
+     }
+    },
+    {
+     "id": "badge",
+     "tag": "point",
+     "kind": "page",
+     "template": "results",
+     "address": true,
+     "parts": [
+      {
+       "id": "crowd",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "typed",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "badge",
+       "text": true,
+       "say": true,
+       "mark": true,
+       "after": true
+      }
+     ],
+     "answer": "badge",
+     "src": [
+      "verify",
+      "signup"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "track-row",
+      "address": true,
+      "parts": [
+       {
+        "id": "cover",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "badge",
+        "text": true,
+        "say": true,
+        "mark": true,
+        "after": true
+       },
+       {
+        "id": "plays",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "badge",
+      "src": [
+       "verify"
+      ]
+     }
+    },
+    {
+     "id": "note",
+     "tag": "note",
+     "kind": "notes",
+     "law": true,
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n1",
+     "mix": true,
+     "src": [
+      "costs",
+      "plans",
+      "signup",
+      "copyright"
+     ],
+     "return": {
+      "kind": "notes",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r3",
+      "mix": true,
+      "src": [
+       "plans",
+       "signup"
+      ]
+     }
+    },
+    {
+     "id": "who",
+     "tag": "point",
+     "kind": "screen",
+     "template": "four-tiles",
+     "parts": [
+      {
+       "id": "artist",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "distributor",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "listener",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "label",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "distributor",
+     "src": [
+      "spotify",
+      "costs",
+      "copyright"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "parts": [
+       {
+        "id": "artists",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "signed",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "paying",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "artists",
+      "src": [
+       "costs",
+       "plans"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "settings-rows",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "email",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "password",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "handle",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "wallet",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "wallet",
+     "src": [
+      "signup",
+      "walletfaq"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "app-menu",
+      "law": true,
+      "parts": [
+       {
+        "id": "library",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "messages",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "wallet",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "settings",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "wallet",
+      "src": [
+       "walletfaq",
+       "signup",
+       "costs",
+       "dm",
+       "reset",
+       "offline"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "not",
+     "law": true,
+     "src": [
+      "signup",
+      "costs",
+      "walletfaq"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "badge"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "who"
+    }
+   ]
+  },
+  {
+   "id": "audius.2",
+   "key": "audius.d2",
+   "level": 2,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "src": [
+      "signup",
+      "name"
+     ]
+    },
+    {
+     "id": "typo",
+     "tag": "eye",
+     "kind": "screen",
+     "template": "signup-form",
+     "parts": [
+      {
+       "id": "field",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "cont",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "close",
+       "caption": true,
+       "glyph": "cross",
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "field",
+     "src": [
+      "signup",
+      "name"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "profile",
+      "parts": [
+       {
+        "id": "menu",
+        "caption": true,
+        "glyph": "bars",
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "handle",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "edit",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "edit",
+      "src": [
+       "name"
+      ]
+     }
+    },
+    {
+     "id": "rename",
+     "tag": "duo",
+     "kind": "duo",
+     "tries": 1,
+     "parts": [
+      {
+       "id": "a",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "b",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "b",
+     "src": [
+      "name"
+     ],
+     "return": {
+      "kind": "duo",
+      "tries": 1,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "a",
+      "src": [
+       "delete"
+      ]
+     }
+    },
+    {
+     "id": "back",
+     "tag": "rows",
+     "kind": "screen",
+     "template": "inbox",
+     "parts": [
+      {
+       "id": "news",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "fresh",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "urgent",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "saved",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "saved",
+     "src": [
+      "reset",
+      "walletfaq"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "settings-rows",
+      "lawWith": [
+       "wallet"
+      ],
+      "parts": [
+       {
+        "id": "inbox",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "pass",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "wallet",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "verify",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "pass",
+      "src": [
+       "reset",
+       "dm",
+       "walletfaq",
+       "verify"
+      ]
+     }
+    },
+    {
+     "id": "diff",
+     "tag": "compare",
+     "kind": "diff",
+     "a": [
+      "audius",
+      ".co",
+      "/signup"
+     ],
+     "b": [
+      "audius",
+      ".co-signup.example",
+      "/sign-up"
+     ],
+     "answer": 1,
+     "src": [
+      "signup",
+      "mdn-domain",
+      "mdn-url",
+      "rfc2606",
+      "iana"
+     ],
+     "return": {
+      "kind": "diff",
+      "a": [
+       "audius",
+       ".co",
+       "/check"
+      ],
+      "b": [
+       "audius",
+       ".co.check-badge.example",
+       "/check"
+      ],
+      "answer": 1,
+      "src": [
+       "verify",
+       "mdn-domain",
+       "mdn-url",
+       "rfc2606",
+       "iana"
+      ]
+     }
+    },
+    {
+     "id": "signup",
+     "tag": "ring",
+     "kind": "page",
+     "template": "results",
+     "address": true,
+     "ring": true,
+     "parts": [
+      {
+       "id": "ad",
+       "text": true,
+       "say": true,
+       "mark": true,
+       "opens": "audius-signup-free.example/signup",
+       "after": true
+      },
+      {
+       "id": "mirror",
+       "text": true,
+       "say": true,
+       "opens": "audius.co.signup.example/signup",
+       "after": true
+      },
+      {
+       "id": "maker",
+       "text": true,
+       "say": true,
+       "opens": "audius.co/signup",
+       "after": true
+      }
+     ],
+     "answer": "maker",
+     "src": [
+      "signup",
+      "mdn-domain",
+      "mdn-url",
+      "rfc2606",
+      "iana"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "message",
+      "address": true,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "c",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "b",
+      "src": [
+       "signup",
+       "walletfaq",
+       "mdn-domain",
+       "mdn-url",
+       "rfc2606",
+       "iana"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "settings-rows",
+     "boss": true,
+     "parts": [
+      {
+       "id": "delete",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "block",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "allow",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "pass",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "allow",
+     "src": [
+      "dm",
+      "reset"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "settings-rows",
+      "parts": [
+       {
+        "id": "followers",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "follow",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "verified",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "follow",
+      "src": [
+       "dm"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "half",
+     "src": [
+      "signup",
+      "name",
+      "reset"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "back"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "signup"
+    }
+   ]
+  },
+  {
+   "id": "audius.3",
+   "key": "audius.d3",
+   "level": 3,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "src": [
+      "costs",
+      "copyright"
+     ]
+    },
+    {
+     "id": "scan",
+     "tag": "point",
+     "kind": "page",
+     "template": "upload-page",
+     "address": true,
+     "parts": [
+      {
+       "id": "file",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "rights",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "scan",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "terms",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "scan",
+     "src": [
+      "copyright",
+      "costs"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "message",
+      "address": true,
+      "parts": [
+       {
+        "id": "thanks",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "match",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "handle",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "match",
+      "src": [
+       "copyright",
+       "name"
+      ]
+     }
+    },
+    {
+     "id": "route",
+     "tag": "build",
+     "kind": "build",
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c3"
+     ],
+     "mix": true,
+     "src": [
+      "spotify",
+      "costs",
+      "copyright"
+     ],
+     "return": {
+      "kind": "build",
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "costs",
+       "copyright",
+       "plans"
+      ]
+     }
+    },
+    {
+     "id": "layer",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2"
+     ],
+     "mix": true,
+     "src": [
+      "docs",
+      "walletfaq"
+     ],
+     "return": {
+      "kind": "build",
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "docs"
+      ]
+     }
+    },
+    {
+     "id": "keys",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c3"
+     ],
+     "mix": true,
+     "src": [
+      "walletfaq"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "walletfaq"
+      ]
+     }
+    },
+    {
+     "id": "say",
+     "tag": "line",
+     "kind": "notes",
+     "law": true,
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n3",
+     "mix": true,
+     "src": [
+      "costs",
+      "copyright",
+      "signup"
+     ],
+     "return": {
+      "kind": "notes",
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r2",
+      "mix": true,
+      "src": [
+       "copyright"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "build",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      },
+      {
+       "id": "c6",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c3",
+      "c5"
+     ],
+     "mix": true,
+     "src": [
+      "docs",
+      "spotify",
+      "costs",
+      "copyright",
+      "signup",
+      "walletfaq"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       },
+       {
+        "id": "r5",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "mix": true,
+      "src": [
+       "docs",
+       "spotify",
+       "costs",
+       "signup",
+       "walletfaq"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "half",
+     "src": [
+      "costs",
+      "copyright"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "layer"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "say"
+    }
+   ]
+  }
+ ]
+}

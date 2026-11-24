@@ -1,0 +1,1482 @@
+{
+ "id": "c05",
+ "slug": "odysee",
+ "n": 5,
+ "verdict": "partly",
+ "names": [
+  "YouTube",
+  "Odysee",
+  "LBRY"
+ ],
+ "sticker": {
+  "checked": "2026-11-23",
+  "src": [
+   "what",
+   "overview",
+   "signup",
+   "guide"
+  ],
+  "law": true
+ },
+ "sources": [
+  {
+   "id": "hub",
+   "url": "https://help.odysee.tv/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "what",
+   "url": "https://help.odysee.tv/category-basics/whatisodysee/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "overview",
+   "url": "https://help.odysee.tv/category-blockchain/overview/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "signup",
+   "url": "https://help.odysee.tv/category-basics/category-accountcreation/accountcreation/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "verify",
+   "url": "https://help.odysee.tv/category-basics/category-accountcreation/verification/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "guide",
+   "url": "https://help.odysee.tv/communityguidelines/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "copyright",
+   "url": "https://help.odysee.tv/copyright/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "firstchannel",
+   "url": "https://help.odysee.tv/category-channels/firstchannel/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "morechannels",
+   "url": "https://help.odysee.tv/category-channels/creatingchannels/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "follow",
+   "url": "https://help.odysee.tv/category-interaction/following/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "repost",
+   "url": "https://help.odysee.tv/category-interaction/reposting/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "comment",
+   "url": "https://help.odysee.tv/category-interaction/commenting/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "edit",
+   "url": "https://help.odysee.tv/category-uploading/editing/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "delete",
+   "url": "https://help.odysee.tv/category-uploading/deleting/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "upform",
+   "url": "https://help.odysee.tv/category-uploading/category-fileuploads/settings/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "upfile",
+   "url": "https://help.odysee.tv/category-uploading/category-fileuploads/fileselection/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "naming",
+   "url": "https://help.odysee.tv/category-blockchain/category-staking/naming/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "walletloc",
+   "url": "https://help.odysee.tv/category-monetization/location/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "monet",
+   "url": "https://help.odysee.tv/category-monetization/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "search",
+   "url": "https://help.odysee.tv/category-contentdiscovery/search/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "yt-rules",
+   "url": "https://support.google.com/youtube/answer/2802032?hl=en",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "yt-upload",
+   "url": "https://support.google.com/youtube/answer/57407?hl=en",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "mdn-domain",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "mdn-url",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "rfc2606",
+   "url": "https://www.rfc-editor.org/rfc/rfc2606.txt",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "iana",
+   "url": "https://www.iana.org/help/example-domains",
+   "read": "2026-11-23"
+  }
+ ],
+ "depths": [
+  {
+   "id": "odysee.1",
+   "key": "odysee.d1",
+   "level": 1,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "src": [
+      "guide",
+      "copyright"
+     ]
+    },
+    {
+     "id": "report",
+     "tag": "labels",
+     "kind": "screen",
+     "template": "video-page",
+     "parts": [
+      {
+       "id": "follow",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "repost",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "comment",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "menu",
+       "caption": true,
+       "glyph": "bars",
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "menu",
+     "src": [
+      "copyright",
+      "follow",
+      "repost",
+      "comment"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "video-page-phone",
+      "parts": [
+       {
+        "id": "follow",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "menu",
+        "caption": true,
+        "glyph": "bars",
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "repost",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "menu",
+      "src": [
+       "copyright",
+       "follow",
+       "repost"
+      ]
+     }
+    },
+    {
+     "id": "channel",
+     "tag": "read",
+     "kind": "screen",
+     "template": "video-page",
+     "parts": [
+      {
+       "id": "site",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "title",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "chan",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "repost",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "chan",
+     "src": [
+      "guide",
+      "repost"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "comment-row",
+      "parts": [
+       {
+        "id": "uploader",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "text",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "writer",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "writer",
+      "src": [
+       "guide"
+      ]
+     }
+    },
+    {
+     "id": "confirm",
+     "tag": "point",
+     "kind": "page",
+     "template": "message",
+     "address": true,
+     "lawWith": [
+      "wallet"
+     ],
+     "parts": [
+      {
+       "id": "wallet",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "link",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "id",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "link",
+     "src": [
+      "signup",
+      "verify"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "message",
+      "address": true,
+      "lawWith": [
+       "b"
+      ],
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "c",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "a",
+      "src": [
+       "signup",
+       "verify"
+      ]
+     }
+    },
+    {
+     "id": "note",
+     "tag": "note",
+     "kind": "notes",
+     "law": true,
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n1",
+     "mix": true,
+     "src": [
+      "what",
+      "signup",
+      "guide",
+      "overview"
+     ],
+     "return": {
+      "kind": "notes",
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r2",
+      "mix": true,
+      "src": [
+       "overview",
+       "signup",
+       "what",
+       "upfile"
+      ]
+     }
+    },
+    {
+     "id": "tip",
+     "tag": "read",
+     "kind": "screen",
+     "template": "comment-box",
+     "law": true,
+     "parts": [
+      {
+       "id": "tip",
+       "caption": true,
+       "glyph": "wallet",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "emoji",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "sticker",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "send",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "tip",
+     "src": [
+      "comment",
+      "firstchannel"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "settings-rows",
+      "law": true,
+      "parts": [
+       {
+        "id": "title",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "tags",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "price",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "vis",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "price",
+      "src": [
+       "upform"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "help-page",
+     "boss": true,
+     "parts": [
+      {
+       "id": "care",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "lurk",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "resp",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "remove",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "remove",
+     "src": [
+      "guide",
+      "overview"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "video-page",
+      "parts": [
+       {
+        "id": "follow",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "tip",
+        "caption": true,
+        "glyph": "wallet",
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "menu",
+        "caption": true,
+        "glyph": "bars",
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "repost",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "menu",
+      "src": [
+       "copyright",
+       "follow",
+       "repost",
+       "comment"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "not",
+     "src": [
+      "guide",
+      "copyright",
+      "overview"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "confirm"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "tip"
+    }
+   ]
+  },
+  {
+   "id": "odysee.2",
+   "key": "odysee.d2",
+   "level": 2,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "overview",
+      "signup"
+     ]
+    },
+    {
+     "id": "channel",
+     "tag": "eye",
+     "kind": "screen",
+     "template": "settings-rows",
+     "lawWith": [
+      "wallet"
+     ],
+     "parts": [
+      {
+       "id": "channels",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "settings",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "wallet",
+       "caption": true,
+       "glyph": "wallet",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "signup",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "channels",
+     "src": [
+      "firstchannel",
+      "morechannels"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "message",
+      "lawWith": [
+       "wallet"
+      ],
+      "parts": [
+       {
+        "id": "verify",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "wallet",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "create",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "create",
+      "src": [
+       "firstchannel",
+       "verify"
+      ]
+     }
+    },
+    {
+     "id": "swap",
+     "tag": "duo",
+     "kind": "duo",
+     "tries": 1,
+     "parts": [
+      {
+       "id": "a",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "b",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "a",
+     "src": [
+      "edit",
+      "delete"
+     ],
+     "return": {
+      "kind": "duo",
+      "tries": 1,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "b",
+      "src": [
+       "edit"
+      ]
+     }
+    },
+    {
+     "id": "fee",
+     "tag": "rows",
+     "kind": "page",
+     "template": "message",
+     "address": true,
+     "law": true,
+     "parts": [
+      {
+       "id": "vis",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "price",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "fee",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "chan",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "fee",
+     "src": [
+      "overview",
+      "upform"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "message",
+      "address": true,
+      "law": true,
+      "parts": [
+       {
+        "id": "tags",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "fee",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "lic",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "fee",
+      "src": [
+       "overview",
+       "upform"
+      ]
+     }
+    },
+    {
+     "id": "diff",
+     "tag": "compare",
+     "kind": "diff",
+     "a": [
+      "odysee",
+      ".com",
+      "/squats:7b"
+     ],
+     "b": [
+      "odysee",
+      ".com-watch.example",
+      "/squats:a"
+     ],
+     "answer": 1,
+     "src": [
+      "naming",
+      "hub",
+      "mdn-domain",
+      "mdn-url",
+      "rfc2606",
+      "iana"
+     ],
+     "return": {
+      "kind": "diff",
+      "a": [
+       "help",
+       ".odysee.tv",
+       "/copyright"
+      ],
+      "b": [
+       "help",
+       ".odysee.tv.forms.example",
+       "/copyright-form"
+      ],
+      "answer": 1,
+      "src": [
+       "copyright",
+       "hub",
+       "mdn-domain",
+       "mdn-url",
+       "rfc2606",
+       "iana"
+      ]
+     }
+    },
+    {
+     "id": "signup",
+     "tag": "ring",
+     "kind": "page",
+     "template": "results",
+     "address": true,
+     "ring": true,
+     "parts": [
+      {
+       "id": "ad",
+       "text": true,
+       "say": true,
+       "mark": true,
+       "opens": "odysee-join-free.example/signup",
+       "after": true
+      },
+      {
+       "id": "maker",
+       "text": true,
+       "say": true,
+       "opens": "odysee.com",
+       "after": true
+      },
+      {
+       "id": "mirror",
+       "text": true,
+       "say": true,
+       "opens": "odysee.com.signup.example/join",
+       "after": true
+      }
+     ],
+     "answer": "maker",
+     "src": [
+      "signup",
+      "hub",
+      "mdn-domain",
+      "mdn-url",
+      "rfc2606",
+      "iana"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "message",
+      "address": true,
+      "ring": true,
+      "parts": [
+       {
+        "id": "m1",
+        "text": true,
+        "say": true,
+        "opens": "odysee.com/@samiagym:3",
+        "after": true
+       },
+       {
+        "id": "m2",
+        "text": true,
+        "say": true,
+        "opens": "odysee.com.channel-claim.example/@samiagym",
+        "after": true
+       },
+       {
+        "id": "m3",
+        "text": true,
+        "say": true,
+        "opens": "odysee-channels.example/@samiagym:3",
+        "after": true
+       }
+      ],
+      "answer": "m1",
+      "src": [
+       "naming",
+       "hub",
+       "mdn-domain",
+       "mdn-url",
+       "rfc2606",
+       "iana"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "top-bar",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "menu",
+       "caption": true,
+       "glyph": "bars",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "search",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "upload",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "bal",
+       "caption": true,
+       "glyph": "wallet",
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "bal",
+     "src": [
+      "walletloc",
+      "monet",
+      "upfile",
+      "follow",
+      "search"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "top-bar-phone",
+      "law": true,
+      "parts": [
+       {
+        "id": "bal",
+        "caption": true,
+        "glyph": "wallet",
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "search",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "menu",
+        "caption": true,
+        "glyph": "bars",
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "bal",
+      "src": [
+       "walletloc",
+       "monet",
+       "follow",
+       "search"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "true",
+     "law": true,
+     "src": [
+      "overview",
+      "signup"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "fee"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "signup"
+    }
+   ]
+  },
+  {
+   "id": "odysee.3",
+   "key": "odysee.d3",
+   "level": 3,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "src": [
+      "overview",
+      "guide"
+     ]
+    },
+    {
+     "id": "where",
+     "tag": "point",
+     "kind": "page",
+     "template": "path",
+     "address": true,
+     "parts": [
+      {
+       "id": "phone",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "site",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "net",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "net",
+     "src": [
+      "overview"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "path",
+      "address": true,
+      "parts": [
+       {
+        "id": "net",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "up",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "own",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "net",
+      "src": [
+       "overview",
+       "what"
+      ]
+     }
+    },
+    {
+     "id": "two",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2"
+     ],
+     "mix": true,
+     "src": [
+      "overview"
+     ],
+     "return": {
+      "kind": "build",
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "overview"
+      ]
+     }
+    },
+    {
+     "id": "remove",
+     "tag": "build",
+     "kind": "build",
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2"
+     ],
+     "mix": true,
+     "src": [
+      "overview",
+      "guide"
+     ],
+     "return": {
+      "kind": "build",
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "overview"
+      ]
+     }
+    },
+    {
+     "id": "fee",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2"
+     ],
+     "mix": true,
+     "src": [
+      "overview",
+      "verify"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "signup",
+       "overview"
+      ]
+     }
+    },
+    {
+     "id": "say",
+     "tag": "note",
+     "kind": "notes",
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n1",
+     "mix": true,
+     "src": [
+      "overview",
+      "guide"
+     ],
+     "return": {
+      "kind": "notes",
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r2",
+      "mix": true,
+      "src": [
+       "overview",
+       "guide"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "build",
+     "boss": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c2",
+      "c4"
+     ],
+     "mix": true,
+     "src": [
+      "yt-rules",
+      "yt-upload",
+      "guide",
+      "copyright",
+      "overview"
+     ],
+     "return": {
+      "kind": "build",
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       },
+       {
+        "id": "r5",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "mix": true,
+      "src": [
+       "yt-rules",
+       "guide",
+       "overview",
+       "signup"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "half",
+     "src": [
+      "overview",
+      "guide"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "remove"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "say"
+    }
+   ]
+  }
+ ]
+}

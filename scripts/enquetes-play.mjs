@@ -28,13 +28,17 @@ const win = {}; new Function('window', readFileSync(join(ROOT, 'hub/enquetes.js'
 const fillIn = (s, v) => String(s).replace(/\{(\w+)\}/g, (m, k) => (v && v[k] != null ? v[k] : m));
 const T0 = 12000;
 
+const DATA0 = JSON.parse(/<script type="application\/json" id="enq-data">([\s\S]*?)<\/script>/.exec(readFileSync(join(ROOT, 'hub/lanterne/enquetes.html'), 'utf8'))[1]);
 const srv = await serve(undefined, { compress: true });
 const browser = await launch();
 const URL0 = (lang) => `${srv.base}/hub/lanterne/enquetes.html${lang === 'fr' ? '' : '?lang=' + lang}`;
 
 /* the same path through the core alone: what the end card must print */
+/* case 1 once it has moved out of the page (hub/lanterne/enq/c01*.js, the season plan's section 3) */
+const moved1 = (D) => !(D.cases && D.cases.length);
 function expected(D, path) {
   const g = win.NightCases.core.create(D, { random: () => 0.5 }), s = g.state;
+  if (moved1(D)) g.register('c01', enqFile('c01.js').data);
   g.start(); g.openSlip(); g.placeBet(g.level(1).steps[0].options[1]);
   let guard = 0;
   while (s.screen === 'case' && guard++ < 30) {
@@ -79,10 +83,12 @@ async function screenOk(p, where, name, tag) {
       const q = b.getBoundingClientRect(), min = b.matches('.enq-ring,.enq-part,.enq-verdict,.enq-choose,.enq-go,.enq-next') ? 56 : 44;
       if (q.height < min - 0.5 || q.width < Math.min(min, 44) - 0.5 || (b.matches('.enq-ring') && q.width < 55.5)) small.push(`${b.className.split(' ')[0]} ${Math.round(q.width)}×${Math.round(q.height)} (${min})`);
     }
+    const rawKey = (app.innerText.match(/\blant\.enq\.[a-z0-9.]+|\{[a-z]+\}/i) || [''])[0];
     const tiny = [...app.querySelectorAll('*')].filter((n) => vis(n) && [...n.childNodes].some((c) => c.nodeType === 3 && c.textContent.trim()) && parseFloat(getComputedStyle(n).fontSize) < 14).map((n) => n.className);
-    return { sw: document.documentElement.scrollWidth, iw: innerWidth, small, tiny, screen: app.getAttribute('data-screen'), anim: document.getAnimations ? document.getAnimations().filter((a) => a.playState === 'running').length : 0 };
+    return { rawKey, sw: document.documentElement.scrollWidth, iw: innerWidth, small, tiny, screen: app.getAttribute('data-screen'), anim: document.getAnimations ? document.getAnimations().filter((a) => a.playState === 'running').length : 0 };
   });
   assert(r.sw <= r.iw, `${where} ${name}: the page is ${r.sw}px wide on a ${r.iw}px screen`);
+  assert(!r.rawKey, `${where} ${name}: a raw key on screen (${r.rawKey})`);
   assert(r.small.length === 0, `${where} ${name}: targets too small: ${r.small.slice(0, 4).join(', ')}`);
   assert(r.tiny.length === 0, `${where} ${name}: text under 14 px: ${r.tiny.slice(0, 3).join(', ')}`);
   if (SHOTS && tag) await p.locator('#enq').screenshot({ path: join(SHOTS, `${tag}-${name}.png`), timeout: T0 }).catch(() => {});
@@ -116,26 +122,28 @@ async function run(lang, w, pathName, path, opt = {}) {
     assert(await p.locator('[data-enq-clair]').isHidden() && await p.locator('#enq').isVisible(), `${where}: the game shows, the plain text is put away`);
     await screenOk(p, where, 'door', tag);
     assert((await p.locator('#enq .enq-law').first().textContent()) === law, `${where}: the standing sentence is on the door, word for word`);
+    assert(await p.locator('#enq .enq-door__kept').count() === 0, `${where}: a first visit's door has nothing to say about an open case`);
     if (opt.keys) { await press('list'); assert(await p.locator('#enq.is-list').count() === 1 && await p.locator('.enq-art').isHidden(), `${where}: the list view drops the painting`); }
     await press('go'); await screenOk(p, where, 'stall', tag);
     if (!opt.keys) {
-      assert(await p.locator('.enq-ring').count() === D.rings.length && D.rings.length <= 4, `${where}: the painting's rings`);
+      assert(await p.locator('.enq-ring').count() === D.rings.length + 1 && await p.locator('[data-f="ring-awning"]').count() === 1, `${where}: the painting's rings, tonight's slip on the awning the fourth`);
       await press('ring-book'); await screenOk(p, where, 'sheet', tag); assert((await p.locator('.enq-talk__t').textContent()) === T('ring.book.line'), `${where}: a ring only looks`);
       await press('crew-yasser'); await screenOk(p, where, 'crew', tag);
     } else assert(await p.locator('.enq-rings-list button').count() === D.rings.length, `${where}: the rings are buttons in the list view`);
     await press('goal'); await screenOk(p, where, 'slip', tag);
-    const c = D.cases[0], bet = c.steps[0].options[1];
+    const C1 = moved1(D) ? enqFile('c01.js').data : null, c = C1 ? C1.depths[0] : D.cases[0], bet = c.steps[0].options[1];
+    const S1 = C1 ? Object.fromEntries(Object.entries(enqFile(`c01.${lang}.js`).strings).map(([k, v]) => [`lant.enq.c.brave.${k}`, v])) : {};
     await press('opt-' + bet);
     let guard = 0;
     while (guard++ < 30) {
       const pos = await p.locator('.enq-bar__pos').textContent({ timeout: T0 }).catch(() => null);
       if (pos == null) break;
-      const st = await p.evaluate((dd) => {   // which step is on screen: read from the prompt, through the dictionary
-        const l = document.documentElement.lang, fr = JSON.parse(document.getElementById('hub-fr').textContent), Lx = Object.assign({}, fr, (window.HUB_I18N && window.HUB_I18N[l]) || {});
-        const pr = document.querySelector('#enq .enq-prompt').textContent, c0 = dd.cases[0];
+      const st = await p.evaluate(([c0, S1]) => {   // which step is on screen: read from the prompt, through the dictionary and case 1's own strings
+        const l = document.documentElement.lang, fr = JSON.parse(document.getElementById('hub-fr').textContent), Lx = Object.assign({}, fr, (window.HUB_I18N && window.HUB_I18N[l]) || {}, S1);
+        const pr = document.querySelector('#enq .enq-prompt').textContent;
         for (const s of c0.steps) { const k = 'lant.enq.c.' + c0.key + '.' + s.id; if (Lx[k + '.prompt'] === pr) return { s, ret: false }; if (s.return && Lx[k + '.r.prompt'] === pr) return { s: Object.assign({}, s.return, { id: s.id }), ret: true }; }
         return null;
-      }, D);
+      }, [c, S1]);
       if (!st) { assert(false, `${where}: a prompt no step owns`); break; }
       const s = st.s, name = s.id + (st.ret ? '-return' : '');
       const band = () => p.locator('#enq .enq-law--band').count();
@@ -178,12 +186,13 @@ async function run(lang, w, pathName, path, opt = {}) {
     assert(await p.locator('.enq-endcard .enq-flame.is-lit').count() === E.flames, `${where}: ${E.flames} flames lit`);
     assert(!/review|révision|مراجعة/i.test(await p.locator('.enq-endcard').textContent()), `${where}: the end card promises no review`);
     await press('stick'); await screenOk(p, where, 'chart-waiting', tag);
-    assert(await p.locator('.enq-rows .enq-row2').count() === 13 && await p.locator('.enq-row2__soon').count() === 12, `${where}: thirteen rows, twelve not written yet`);
+    const later = D.season.filter((r) => !r.open).length;
+    assert(await p.locator('.enq-rows .enq-row2').count() === 13 && await p.locator('.enq-row2__soon').count() === later && (await p.locator('.enq-row2__soon').first().textContent()) === T('chart.notYet'), `${where}: thirteen rows, ${later} say « ${T('chart.notYet')} »`);
     assert(await p.locator('.enq-row2:not(.enq-row2--mine) a, .enq-row2:not(.enq-row2--mine) button').count() === 0, `${where}: an unwritten row links nowhere`);
-    await press('row'); await screenOk(p, where, 'chart-landed', tag);
+    await press('row-c01'); await screenOk(p, where, 'chart-landed', tag);
     assert(await p.locator('.enq-rows .enq-row2').first().locator('.enq-sticker[data-state="1"]').count() === 1, `${where}: the sticker lands on row 1`);
-    await press('sback'); await screenOk(p, where, 'sticker-back', tag);
-    assert((await p.locator('.enq-back .enq-law').textContent()) === law && await p.locator('.enq-back .enq-src a').count() === D.sticker.src.length, `${where}: the sticker's back carries its sources and the law line`);
+    await press('sback-c01'); await screenOk(p, where, 'sticker-back', tag);
+    assert((await p.locator('.enq-back .enq-law').textContent()) === law && await p.locator('.enq-back .enq-src a').count() === D.season[0].src.length, `${where}: the sticker's back carries its sources and the law line`);
     await press('back'); await screenOk(p, where, 'stall-lit', tag);
     assert(await p.locator('.enq-art.is-lit').count() === 1, `${where}: the lantern is lit after a closed case`);
     if (!opt.keys) { await press('ring-kuro'); await press('sheet-go'); await screenOk(p, where, 'card', tag); assert(await p.locator('.enq-ladder__r').count() === 3, `${where}: the card lists the three written depths`); }
@@ -192,10 +201,12 @@ async function run(lang, w, pathName, path, opt = {}) {
     await p.reload({ waitUntil: 'load', timeout: 20000 }); await p.waitForSelector('html[data-enq-ready]', { timeout: T0 });
     await p.waitForLoadState('networkidle', { timeout: T0 }).catch(() => {}); log.loaded = true;
     assert((await p.locator('#enq [data-f="go"]').textContent()) === T('ui.door.open'), `${where}: after a reload the door says « ${T('ui.door.open')} »`);
+    assert((await p.locator('#enq .enq-door__kept').textContent()) === T('ui.door.kept'), `${where}: after a reload the door says an open case starts again from its slip`);
     await p.locator('#enq [data-f="go"]').click({ timeout: T0 });
-    assert((await p.locator('.enq-bar__xp').textContent()) === T('ui.xp', { n: E.xp }) && (await p.locator('.enq-bar__rank').textContent()) === T('rank.' + (E.xp >= 60 ? 1 : 0)), `${where}: a reload keeps the XP and the title`);
+    assert((await p.locator('.enq-bar__xp').textContent()) === T('ui.xp', { n: E.xp }) && (await p.locator('.enq-bar__rank').textContent()) === T('rank.0'), `${where}: a reload keeps the XP and the title (the season's first title needs 600 XP)`);
     assert(log.console.length === 0, `${where}: console: ${log.console.slice(0, 3).join(' | ')}`);
-    assert(log.late.length === 0, `${where}: requested after load: ${[...new Set(log.late)].slice(0, 4).join(', ')}`);
+    const want1 = C1 ? ['/hub/lanterne/enq/c01.js', `/hub/lanterne/enq/c01.${lang}.js`] : [], late1 = [...new Set(log.late)];
+    assert(late1.every((u) => want1.includes(u)) && want1.every((u) => late1.includes(u)), `${where}: requested after load: ${late1.slice(0, 4).join(', ') || 'nothing'} (wanted ${want1.join(', ') || 'nothing'})`);
     assert((await p.evaluate(() => window.__ac)) === 0, `${where}: an audio context was made with the radio off`);
   } catch (e) { assert(false, `${where}: ${String(e.message || e).split('\n')[0]}`); }
   await ctx.close();
@@ -221,23 +232,36 @@ function movesFor(g, st, how) {
 const CORE = { pick: 'pick', choose: 'choose', chip: 'tapChip', slot: 'tapSlot' };
 const DATA_F = { pick: (x) => 'p-' + x, choose: () => 'choose', chip: (x) => 'chip-' + x, slot: (x) => 'slot-' + x };
 
-async function runDeep(lang, w, depth, mode) {
-  const where = `${lang} ${w} depth ${depth} ${mode}`, tag = `${lang}-${w}-d${depth}-${mode}`;
+/* a case's own files, read here as the page reads them (one NightCases.add() call each) */
+const enqFile = (f) => { let o = null; new Function('NightCases', readFileSync(join(ROOT, 'hub/lanterne/enq', f), 'utf8'))({ add: (x) => { o = x; } }); return o; };
+async function runDeep(lang, w, depth, mode, id = 'c01', opt = {}) {
+  const where = `${id} ${lang} ${w} depth ${depth} ${mode}`, tag = `${id}-${lang}-${w}-d${depth}-${mode}`;
   const ctx = await browser.newContext({ viewport: { width: w, height: w < 500 ? 844 : 900 } });
   try {
     const { p, log } = await open(ctx, lang);
     const D = await p.evaluate(() => JSON.parse(document.getElementById('enq-data').textContent)), L = await dict(p);
     const T = (k, v) => fillIn(L['lant.enq.' + k], v);
     const press = (f) => p.locator(`#enq [data-f="${f}"]`).first().click({ timeout: T0 });
-    const g = win.NightCases.core.create(D, { random: () => 0.5 }), s = g.state;
+    const g = win.NightCases.core.create(D, { random: () => 0.5 }), s = g.state, row = D.season.find((r) => r.file === id);
+    if (id !== 'c01' || moved1(D)) { g.register(id, enqFile(`${id}.js`).data); const S = enqFile(`${id}.${lang}.js`).strings; for (const k in S) L[`lant.enq.c.${row.id}.${k}`] = S[k]; }
     const text = (q) => p.locator(q).first().textContent({ timeout: T0 });
     const band = () => p.locator('#enq .enq-law--band').count();
     // two first meetings are shown and carried back (a step with two wrong parts to tap); the rest are missed once
-    const scored = g.level(depth).steps.filter((x) => x.kind !== 'bet' && x.kind !== 'stamp');
+    const scored = g.level(depth, id).steps.filter((x) => x.kind !== 'bet' && x.kind !== 'stamp');
     const shown = mode === 'missed' ? scored.filter((x) => !x.boss && x.kind !== 'build' && (x.kind === 'diff' ? x.b.length : x.parts.length) >= 3).slice(0, 2).map((x) => x.id) : [];
-    await press('go'); await press('ring-kuro'); await press('sheet-go'); await screenOk(p, where, 'card', tag);
-    await press('play-' + depth); await screenOk(p, where, 'slip', tag);
-    g.start(); g.openSlip(depth);
+    /* an open row played from the chart: the book, its row, one button a written depth */
+    await press('go'); await press('ring-book'); await press('sheet-go'); await screenOk(p, where, 'chart', tag);
+    assert(await p.locator('.enq-row2:not(.enq-row2--mine) button').count() === 0, `${where}: a row that is not open is inert`);
+    if (opt.block) {   // the case's file does not come: « Try again », then it comes
+      await p.route(`**/enq/${id}.js*`, (r) => r.abort());
+      await press('row-' + id); await press(`play-${id}-${depth}`);
+      await p.waitForSelector('#enq [data-f="retry"]', { timeout: T0 });
+      assert((await text('#enq .enq-h')) === T('ui.loadFail'), `${where}: a case file that fails says so, with « ${T('ui.retry')} »`);
+      await screenOk(p, where, 'blocked', tag);
+      await p.unroute(`**/enq/${id}.js*`); await press('retry');
+    } else { await press('row-' + id); await screenOk(p, where, 'chart-sheet', tag); await press(`play-${id}-${depth}`); }
+    await p.waitForSelector('#enq[data-screen="slip"]', { timeout: T0 }); await screenOk(p, where, 'slip', tag);
+    g.start(); g.openSlip(id, depth);
     assert((await text('.enq-slipcard__t')) === T('c.' + g.level(depth).key + '.slip'), `${where}: the slip of depth ${depth}`);
     const bet = g.level(depth).steps[0].options[1];
     await press('opt-' + bet); g.placeBet(bet);
@@ -288,8 +312,11 @@ async function runDeep(lang, w, depth, mode) {
     assert((await text('.enq-endcard__xp')) === T('ui.end.xpFirst', { n: E.xp }) && (await text('.enq-bar__xp')) === T('ui.xp', { n: E.xp }), `${where}: ${E.xp} XP on the card and in the bar`);
     assert(await p.locator('.enq-endcard .enq-flame.is-lit').count() === E.flames, `${where}: ${E.flames} flames lit`);
     if (mode === 'missed') assert(shown.length === 2 && s.plan.filter((x) => x.ret).length === 2, `${where}: two answers were shown and two came back (${shown.join(', ')})`);
-    assert(log.console.length === 0, `${where}: console: ${log.console.slice(0, 3).join(' | ')}`);
-    assert(log.late.length === 0, `${where}: requested after load: ${[...new Set(log.late)].slice(0, 4).join(', ')}`);
+    const said = log.console.filter((m) => !(opt.block && /net::ERR_FAILED/.test(m)));   // the blocked file's own line
+    assert(said.length === 0, `${where}: console: ${said.slice(0, 3).join(' | ')}`);
+    /* after load, only the opened case's two files (case 1 too, once it has moved out of the page) */
+    const want = id === 'c01' && !moved1(D) ? [] : [`/hub/lanterne/enq/${id}.js`, `/hub/lanterne/enq/${id}.${lang}.js`], late = [...new Set(log.late)];
+    assert(late.every((u) => want.includes(u)) && want.every((u) => late.includes(u)), `${where}: requested after load: ${late.join(', ') || 'nothing'} (wanted ${want.join(', ') || 'nothing'})`);
     assert((await p.evaluate(() => window.__ac)) === 0, `${where}: an audio context was made with the radio off`);
   } catch (e) { assert(false, `${where}: ${String(e.message || e).split('\n')[0]}`); }
   await ctx.close();
@@ -304,15 +331,27 @@ jobs.push(() => runDeep('en', 1440, 2, 'perfect'));
 jobs.push(() => runDeep('ar', 390, 2, 'missed'));
 jobs.push(() => runDeep('ar', 1440, 3, 'perfect'));
 jobs.push(() => runDeep('fr', 390, 3, 'missed'));
+/* the season's open cases: depth 1 in French at 390, perfect; one depth with every first answer missed, English or Arabic
+   by turn; one case's file blocked once */
+const SEASON = ['c02', 'c03', 'c04', 'c05'];
+const seasonJobs = [];
+SEASON.forEach((id, i) => {
+  seasonJobs.push(() => runDeep('fr', 390, 1, 'perfect', id, { block: i === 1 }));
+  if (process.env.ENQ_ONLY !== 'season1') seasonJobs.push(() => runDeep(i % 2 ? 'ar' : 'en', 390, 2 + (i % 2), 'missed', id));
+});
+/* ENQ_ONLY=season or season1 (depth 1 only) plays the open cases alone, for a quick look while they are written */
+if (/^season/.test(process.env.ENQ_ONLY || '')) jobs.length = 0;
+jobs.push(...seasonJobs);
 // scripts disabled: the plain text
-jobs.push(async () => {
+if (!/^season/.test(process.env.ENQ_ONLY || '')) jobs.push(async () => {
   for (const lang of ['fr']) {
     const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false });
     try {
       const p = await ctx.newPage();
       await p.goto(URL0(lang), { waitUntil: 'load', timeout: 20000 });
       const r = await p.evaluate(() => ({ app: document.getElementById('enq').hidden, clair: !!document.querySelector('[data-enq-clair]').offsetHeight, laws: document.querySelectorAll('[data-enq-clair] .enq-law').length, cases: document.querySelectorAll('.enq-clair__case').length, src: document.querySelectorAll('.enq-clair .enq-src a').length, sw: document.documentElement.scrollWidth, iw: innerWidth, h1: document.querySelectorAll('h1').length }));
-      assert(r.app && r.clair && r.cases === 3 && r.laws === 2 && r.src >= 3 && r.h1 === 1 && r.sw <= r.iw, `no script: « Le dossier, en clair » shows three depths, its sources and the law line (${JSON.stringify(r)})`);
+      const nOpen = DATA0.season.filter((x) => x.open).length;
+      assert(r.app && r.clair && r.cases === 3 * nOpen && r.laws === 1 + nOpen && r.src >= 3 * nOpen && r.h1 === 1 && r.sw <= r.iw, `no script: « Le dossier, en clair » shows each open case's three depths, its sources and the law line (${JSON.stringify(r)})`);
       if (SHOTS) await p.screenshot({ path: join(SHOTS, 'fr-390-noscript.png'), fullPage: true });
     } catch (e) { assert(false, `no script: ${String(e.message || e).split('\n')[0]}`); }
     await ctx.close();
@@ -322,4 +361,4 @@ jobs.push(async () => {
 const queue = jobs.slice(); await Promise.all([0, 1, 2, 3].map(async () => { while (queue.length) await queue.shift()(); }));
 await browser.close(); await srv.close();
 if (errs.length) { console.error(`✗ enquetes-play: ${errs.length} of ${asserts} checks failed\n  ` + errs.join('\n  ')); process.exit(1); }
-console.log(`✓ enquetes-play: ${asserts} checks in ${jobs.length} runs (depth 1, perfect and with misses × 390 and 1440 × fr, en, ar; depths 2 and 3, perfect and missed; reduced motion; the list view by keyboard; no script)`);
+console.log(`✓ enquetes-play: ${asserts} checks in ${jobs.length} runs (case 1: depth 1, perfect and with misses × 390 and 1440 × fr, en, ar; depths 2 and 3, perfect and missed; reduced motion; the list view by keyboard; no script. The season: c02 to c05 from the chart, depth 1 in French at 390 perfect, one depth missed in English or Arabic, a blocked case file)`);

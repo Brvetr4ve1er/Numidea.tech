@@ -1,0 +1,1476 @@
+{
+ "id": "c02",
+ "slug": "presearch",
+ "n": 2,
+ "verdict": "partly",
+ "names": [
+  "Google",
+  "Presearch",
+  "Chrome",
+  "Brave"
+ ],
+ "sticker": {
+  "checked": "2026-11-23",
+  "src": [
+   "ps-what",
+   "ps-nodes",
+   "ps-readme",
+   "ps-tracked",
+   "ps-rvs",
+   "ps-authentic",
+   "ps-tokens-for"
+  ],
+  "law": true
+ },
+ "sources": [
+  {
+   "id": "ps-readme",
+   "url": "https://docs.presearch.io/presearch-project/readme.md",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ps-what",
+   "url": "https://docs.presearch.io/presearch-engine/what-is-presearch-engine.md",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ps-tracked",
+   "url": "https://docs.presearch.io/presearch-engine/faq/am-i-tracked-when-i-use-presearch.md",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ps-nodes",
+   "url": "https://docs.presearch.io/nodes/overview.md",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ps-kw",
+   "url": "https://docs.presearch.io/keyword-staking/keyword-staking.md",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ps-rvs",
+   "url": "https://docs.presearch.io/presearch-engine/faq/what-is-rewards-verification.md",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ps-claim",
+   "url": "https://docs.presearch.io/search-staking-and-usage-rewards/what-are-usage-rewards/how-to-claim-search-rewards.md",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ps-usage",
+   "url": "https://docs.presearch.io/search-staking-and-usage-rewards/what-are-usage-rewards.md",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ps-authentic",
+   "url": "https://docs.presearch.io/presearch-engine/faq/what-is-authentic-search.md",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ps-tokens-for",
+   "url": "https://docs.presearch.io/presearch-project/presearch-project-faq/what-can-i-use-my-tokens-for.md",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ps-default",
+   "url": "https://docs.presearch.io/presearch-engine/faq/how-to-set-presearch-as-the-default-search-engine.md",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ps-android",
+   "url": "https://docs.presearch.io/presearch-engine/faq/how-to-set-presearch-as-your-default-search-engine-on-the-chrome-app-in-android.md",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ps-providers",
+   "url": "https://docs.presearch.io/presearch-engine/faq/how-to-add-new-search-providers-to-your-presearch-dashboard.md",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "ps-web3login",
+   "url": "https://docs.presearch.io/presearch-web-3.0/presearch-web3-login.md",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "mdn-browsing",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Browsing_the_web",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "mdn-domain",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "mdn-url",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "rfc2606",
+   "url": "https://www.rfc-editor.org/rfc/rfc2606.txt",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "iana-example",
+   "url": "https://www.iana.org/help/example-domains",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "loi",
+   "internal": true,
+   "read": "2026-11-23"
+  }
+ ],
+ "depths": [
+  {
+   "id": "presearch.1",
+   "key": "presearch.d1",
+   "level": 1,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "ps-readme",
+      "ps-rvs"
+     ]
+    },
+    {
+     "id": "box",
+     "tag": "labels",
+     "kind": "screen",
+     "template": "search-start",
+     "parts": [
+      {
+       "id": "tabs",
+       "caption": true,
+       "glyph": "tabs",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "reload",
+       "caption": true,
+       "glyph": "reload",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "box",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "star",
+       "caption": true,
+       "glyph": "star",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "menu",
+       "caption": true,
+       "glyph": "bars",
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "box",
+     "src": [
+      "mdn-browsing",
+      "ps-readme"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "parts": [
+       {
+        "id": "google",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "presearch",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "bar",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "chrome",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "chrome",
+      "src": [
+       "mdn-browsing",
+       "ps-readme"
+      ]
+     }
+    },
+    {
+     "id": "paid",
+     "tag": "read",
+     "kind": "page",
+     "template": "results",
+     "address": true,
+     "lawWith": [
+      "ad"
+     ],
+     "parts": [
+      {
+       "id": "infobox",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "ad",
+       "text": true,
+       "say": true,
+       "mark": true,
+       "after": true
+      },
+      {
+       "id": "link",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "ad",
+     "src": [
+      "ps-kw",
+      "ps-tracked",
+      "ps-what"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "results",
+      "address": true,
+      "parts": [
+       {
+        "id": "ad",
+        "text": true,
+        "say": true,
+        "mark": true,
+        "after": true
+       },
+       {
+        "id": "first",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "second",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "first",
+      "src": [
+       "ps-kw",
+       "ps-tracked"
+      ]
+     }
+    },
+    {
+     "id": "kept",
+     "tag": "read",
+     "kind": "screen",
+     "template": "privacy-lines",
+     "parts": [
+      {
+       "id": "terms",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "cookies",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "gps",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "ip",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "ip",
+     "src": [
+      "ps-tracked"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "privacy-lines",
+      "parts": [
+       {
+        "id": "email",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "terms",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "cookies",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "email",
+      "src": [
+       "ps-tracked"
+      ]
+     }
+    },
+    {
+     "id": "path",
+     "tag": "point",
+     "kind": "page",
+     "template": "path",
+     "address": true,
+     "parts": [
+      {
+       "id": "her",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "node",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "sources",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "page",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "sources",
+     "src": [
+      "ps-what",
+      "ps-nodes"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "path",
+      "address": true,
+      "parts": [
+       {
+        "id": "page",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "sources",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "node",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "node",
+      "src": [
+       "ps-what",
+       "ps-nodes"
+      ]
+     }
+    },
+    {
+     "id": "note",
+     "tag": "note",
+     "kind": "notes",
+     "law": true,
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n2",
+     "mix": true,
+     "src": [
+      "ps-readme",
+      "ps-rvs",
+      "ps-tracked",
+      "ps-what"
+     ],
+     "return": {
+      "kind": "notes",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r3",
+      "mix": true,
+      "src": [
+       "ps-readme",
+       "ps-rvs",
+       "ps-claim",
+       "ps-tracked",
+       "loi"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "checklist",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "account",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "wallet",
+       "caption": true,
+       "glyph": "wallet",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "tokens",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "browser",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "browser",
+     "src": [
+      "ps-readme",
+      "ps-rvs",
+      "ps-web3login",
+      "loi"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "sign-in",
+      "law": true,
+      "parts": [
+       {
+        "id": "email",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "web3",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "create",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "web3",
+      "src": [
+       "ps-web3login",
+       "ps-rvs",
+       "loi"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "not",
+     "law": true,
+     "src": [
+      "ps-readme",
+      "ps-rvs",
+      "ps-web3login",
+      "loi"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "kept"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "note"
+    }
+   ]
+  },
+  {
+   "id": "presearch.2",
+   "key": "presearch.d2",
+   "level": 2,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "src": [
+      "ps-default"
+     ]
+    },
+    {
+     "id": "start",
+     "tag": "eye",
+     "kind": "screen",
+     "template": "browser-bar-phone",
+     "parts": [
+      {
+       "id": "tabs",
+       "caption": true,
+       "glyph": "tabs",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "star",
+       "caption": true,
+       "glyph": "star",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "menu",
+       "caption": true,
+       "glyph": "bars",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "reload",
+       "caption": true,
+       "glyph": "reload",
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "menu",
+     "src": [
+      "ps-android",
+      "ps-default"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "settings-rows",
+      "parts": [
+       {
+        "id": "defbrowser",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "engine",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "downloads",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "engine",
+      "src": [
+       "ps-default",
+       "mdn-browsing"
+      ]
+     }
+    },
+    {
+     "id": "form",
+     "tag": "duo",
+     "kind": "duo",
+     "tries": 1,
+     "parts": [
+      {
+       "id": "a",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "b",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "b",
+     "src": [
+      "ps-default"
+     ],
+     "return": {
+      "kind": "duo",
+      "tries": 1,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "a",
+      "src": [
+       "ps-default"
+      ]
+     }
+    },
+    {
+     "id": "token",
+     "tag": "rows",
+     "kind": "screen",
+     "template": "account-pages",
+     "law": true,
+     "parts": [
+      {
+       "id": "providers",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "extensions",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "rewards",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "apps",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "rewards",
+     "src": [
+      "ps-usage",
+      "ps-tokens-for",
+      "ps-providers",
+      "ps-default",
+      "ps-android",
+      "loi"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "account-pages",
+      "law": true,
+      "parts": [
+       {
+        "id": "staking",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "profile",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "providers",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "staking",
+      "src": [
+       "ps-kw",
+       "ps-tracked",
+       "ps-providers",
+       "loi"
+      ]
+     }
+    },
+    {
+     "id": "diff",
+     "tag": "compare",
+     "kind": "diff",
+     "a": [
+      "presearch",
+      ".com",
+      "/search"
+     ],
+     "b": [
+      "presearch",
+      ".com.search-login.example",
+      "/sign-in"
+     ],
+     "answer": 1,
+     "src": [
+      "mdn-domain",
+      "mdn-url",
+      "ps-default",
+      "rfc2606",
+      "iana-example"
+     ],
+     "return": {
+      "kind": "diff",
+      "a": [
+       "account",
+       ".presearch.com",
+       "/extensions"
+      ],
+      "b": [
+       "account",
+       "-presearch.example",
+       "/extensions"
+      ],
+      "answer": 1,
+      "src": [
+       "mdn-domain",
+       "mdn-url",
+       "ps-default",
+       "rfc2606",
+       "iana-example"
+      ]
+     }
+    },
+    {
+     "id": "extension",
+     "tag": "ring",
+     "kind": "page",
+     "template": "results",
+     "address": true,
+     "ring": true,
+     "parts": [
+      {
+       "id": "ad",
+       "text": true,
+       "say": true,
+       "mark": true,
+       "opens": "presearch-extension.example/install",
+       "after": true
+      },
+      {
+       "id": "mirror",
+       "text": true,
+       "say": true,
+       "opens": "presearch.com.addons.example/extensions",
+       "after": true
+      },
+      {
+       "id": "maker",
+       "text": true,
+       "say": true,
+       "opens": "account.presearch.com/extensions",
+       "after": true
+      }
+     ],
+     "answer": "maker",
+     "src": [
+      "ps-default",
+      "mdn-domain",
+      "mdn-url",
+      "rfc2606",
+      "iana-example"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "message",
+      "address": true,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "c",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "a",
+      "src": [
+       "ps-default",
+       "mdn-domain",
+       "mdn-url",
+       "rfc2606",
+       "iana-example"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "settings-rows",
+     "boss": true,
+     "parts": [
+      {
+       "id": "extensions",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "downloads",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "defbrowser",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "engine",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "engine",
+     "src": [
+      "ps-android",
+      "ps-default"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "settings-rows",
+      "parts": [
+       {
+        "id": "add",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "extensions",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "defbrowser",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "add",
+      "src": [
+       "ps-default"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "not",
+     "src": [
+      "ps-default",
+      "ps-android"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "ratman",
+     "after": "token"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "extension"
+    }
+   ]
+  },
+  {
+   "id": "presearch.3",
+   "key": "presearch.d3",
+   "level": 3,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "src": [
+      "ps-what"
+     ]
+    },
+    {
+     "id": "strip",
+     "tag": "point",
+     "kind": "page",
+     "template": "path",
+     "address": true,
+     "parts": [
+      {
+       "id": "server",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "gateway",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "node",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "sources",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "gateway",
+     "src": [
+      "ps-nodes"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "path",
+      "address": true,
+      "parts": [
+       {
+        "id": "gateway",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "node",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "page",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "node",
+      "src": [
+       "ps-nodes"
+      ]
+     }
+    },
+    {
+     "id": "meta",
+     "tag": "build",
+     "kind": "build",
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c3"
+     ],
+     "mix": true,
+     "src": [
+      "ps-what",
+      "ps-nodes",
+      "ps-tracked",
+      "ps-rvs"
+     ],
+     "return": {
+      "kind": "build",
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "ps-what",
+       "ps-tracked"
+      ]
+     }
+    },
+    {
+     "id": "node",
+     "tag": "build",
+     "kind": "build",
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c3"
+     ],
+     "mix": true,
+     "src": [
+      "ps-nodes",
+      "ps-what"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r3"
+      ],
+      "mix": true,
+      "src": [
+       "ps-nodes",
+       "loi"
+      ]
+     }
+    },
+    {
+     "id": "rewards",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c2",
+      "c3"
+     ],
+     "mix": true,
+     "src": [
+      "ps-rvs",
+      "ps-readme",
+      "ps-kw",
+      "loi"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r3"
+      ],
+      "mix": true,
+      "src": [
+       "ps-rvs",
+       "ps-claim",
+       "ps-authentic",
+       "loi"
+      ]
+     }
+    },
+    {
+     "id": "say",
+     "tag": "line",
+     "kind": "notes",
+     "law": true,
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n3",
+     "mix": true,
+     "src": [
+      "ps-tracked",
+      "ps-rvs",
+      "ps-what",
+      "ps-nodes",
+      "loi"
+     ],
+     "return": {
+      "kind": "notes",
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r2",
+      "mix": true,
+      "src": [
+       "ps-nodes",
+       "ps-what",
+       "ps-kw"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "build",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      },
+      {
+       "id": "c6",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c3",
+      "c5"
+     ],
+     "mix": true,
+     "src": [
+      "ps-what",
+      "ps-nodes",
+      "ps-rvs",
+      "ps-tokens-for",
+      "mdn-browsing",
+      "loi"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       },
+       {
+        "id": "r5",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "mix": true,
+      "src": [
+       "ps-what",
+       "ps-nodes",
+       "ps-rvs",
+       "mdn-browsing",
+       "loi"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "half",
+     "src": [
+      "ps-what",
+      "ps-nodes"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "node"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "say"
+    }
+   ]
+  }
+ ]
+}

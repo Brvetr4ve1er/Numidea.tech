@@ -1,0 +1,1474 @@
+{
+ "id": "c04",
+ "slug": "status",
+ "n": 4,
+ "verdict": "partly",
+ "names": [
+  "WhatsApp",
+  "Status",
+  "Signal"
+ ],
+ "sticker": {
+  "checked": "2026-11-23",
+  "src": [
+   "home",
+   "what",
+   "firstrun",
+   "lose",
+   "find"
+  ],
+  "law": true
+ },
+ "sources": [
+  {
+   "id": "home",
+   "url": "https://status.app/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "what",
+   "url": "https://status.app/help/getting-started/what-is-status",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "firstrun",
+   "url": "https://status.app/help/getting-started/run-the-status-app-for-the-first-time",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "quick",
+   "url": "https://status.app/help/getting-started/how-to-use-status-your-quick-start-guide",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "find",
+   "url": "https://status.app/help/getting-started/find-people-on-status",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "add",
+   "url": "https://status.app/help/messaging/add-a-contact-in-status",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "share",
+   "url": "https://status.app/help/profile/share-your-status-profile",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "labels",
+   "url": "https://status.app/help/profile/understand-status-profile-labels",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "backup",
+   "url": "https://status.app/help/profile/back-up-and-secure-your-recovery-phrase",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "lose",
+   "url": "https://status.app/help/profile/if-you-lose-your-status-password-or-recovery-phrase",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "keys",
+   "url": "https://status.app/help/profile/understand-your-status-keys-and-recovery-phrase",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "keysfaq",
+   "url": "https://status.app/help/profile/faq-status-keys-and-recovery-phrase",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "password",
+   "url": "https://status.app/help/profile/about-changing-your-status-password",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "newdevice",
+   "url": "https://status.app/help/profile/sign-in-to-your-status-profile-on-a-new-device",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "msgfaq",
+   "url": "https://status.app/help/messaging/messages-faq",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "messages",
+   "url": "https://status.app/help/messaging/about-status-messages",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "scams",
+   "url": "https://status.app/help/wallet/understand-common-scams",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "wa-home",
+   "url": "https://www.whatsapp.com/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "wa-security",
+   "url": "https://www.whatsapp.com/security",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "signal",
+   "url": "https://signal.org/",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "mdn-domain",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "mdn-url",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "rfc2606",
+   "url": "https://www.rfc-editor.org/rfc/rfc2606.txt",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "iana",
+   "url": "https://www.iana.org/help/example-domains",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "edit",
+   "url": "https://status.app/help/profile/view-and-edit-your-status-profile",
+   "read": "2026-11-23"
+  },
+  {
+   "id": "respond",
+   "url": "https://status.app/help/profile/respond-to-a-contact-request",
+   "read": "2026-11-23"
+  }
+ ],
+ "depths": [
+  {
+   "id": "status.1",
+   "key": "status.d1",
+   "level": 1,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "firstrun",
+      "what",
+      "home"
+     ]
+    },
+    {
+     "id": "ask",
+     "tag": "labels",
+     "kind": "screen",
+     "template": "four-tiles",
+     "parts": [
+      {
+       "id": "phone",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "email",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "card",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "password",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "password",
+     "src": [
+      "home",
+      "firstrun",
+      "what"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "create-password",
+      "parts": [
+       {
+        "id": "pw",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "box",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "later",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "box",
+      "src": [
+       "firstrun"
+      ]
+     }
+    },
+    {
+     "id": "tab",
+     "tag": "read",
+     "kind": "screen",
+     "template": "tab-bar",
+     "law": true,
+     "parts": [
+      {
+       "id": "wallet",
+       "caption": true,
+       "glyph": "wallet",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "messages",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "communities",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "wallet",
+     "src": [
+      "quick",
+      "what",
+      "firstrun"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "profile",
+      "law": true,
+      "parts": [
+       {
+        "id": "chatkey",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "address",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "name",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "address",
+      "src": [
+       "keys",
+       "add"
+      ]
+     }
+    },
+    {
+     "id": "find",
+     "tag": "point",
+     "kind": "page",
+     "template": "add-contact",
+     "address": true,
+     "parts": [
+      {
+       "id": "name",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "phone",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "link",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "link",
+     "src": [
+      "find",
+      "add",
+      "home"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "member-list",
+      "address": true,
+      "parts": [
+       {
+        "id": "member",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "search",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "book",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "member",
+      "src": [
+       "find",
+       "add",
+       "home"
+      ]
+     }
+    },
+    {
+     "id": "note",
+     "tag": "note",
+     "kind": "notes",
+     "law": true,
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n1",
+     "mix": true,
+     "src": [
+      "home",
+      "what",
+      "firstrun",
+      "msgfaq"
+     ],
+     "return": {
+      "kind": "notes",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r2",
+      "mix": true,
+      "src": [
+       "home",
+       "what",
+       "firstrun",
+       "add"
+      ]
+     }
+    },
+    {
+     "id": "words",
+     "tag": "read",
+     "kind": "screen",
+     "template": "backup-screen",
+     "parts": [
+      {
+       "id": "shot",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "paper",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "notes",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "friend",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "paper",
+     "src": [
+      "backup"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "backup-screen",
+      "parts": [
+       {
+        "id": "app",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "server",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "paper",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "paper",
+      "src": [
+       "backup",
+       "keysfaq"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "four-tiles",
+     "boss": true,
+     "parts": [
+      {
+       "id": "password",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "words",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "keys",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "name",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "keys",
+     "src": [
+      "firstrun",
+      "keys",
+      "keysfaq",
+      "backup"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "four-tiles",
+      "parts": [
+       {
+        "id": "device",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "server",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "chain",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "device",
+      "src": [
+       "keysfaq",
+       "keys",
+       "what"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "not",
+     "law": true,
+     "src": [
+      "firstrun",
+      "what",
+      "home"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "find"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "words"
+    }
+   ]
+  },
+  {
+   "id": "status.2",
+   "key": "status.d2",
+   "level": 2,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "src": [
+      "firstrun",
+      "lose"
+     ]
+    },
+    {
+     "id": "where",
+     "tag": "eye",
+     "kind": "screen",
+     "template": "settings-rows",
+     "parts": [
+      {
+       "id": "edit",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "notif",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "privacy",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "close",
+       "caption": true,
+       "glyph": "cross",
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "privacy",
+     "src": [
+      "backup",
+      "edit",
+      "respond"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "backup-screen",
+      "parts": [
+       {
+        "id": "two",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "shot",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "all",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "two",
+      "src": [
+       "backup"
+      ]
+     }
+    },
+    {
+     "id": "lost",
+     "tag": "duo",
+     "kind": "duo",
+     "tries": 1,
+     "parts": [
+      {
+       "id": "a",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "b",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "a",
+     "src": [
+      "lose",
+      "newdevice",
+      "password"
+     ],
+     "return": {
+      "kind": "duo",
+      "tries": 1,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "b",
+      "src": [
+       "lose"
+      ]
+     }
+    },
+    {
+     "id": "verify",
+     "tag": "rows",
+     "kind": "screen",
+     "template": "profile",
+     "parts": [
+      {
+       "id": "pic",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "name",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "trust",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "ask",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "ask",
+     "src": [
+      "labels",
+      "quick",
+      "firstrun"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "profile",
+      "parts": [
+       {
+        "id": "untrusted",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "contact",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "public",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "untrusted",
+      "src": [
+       "labels"
+      ]
+     }
+    },
+    {
+     "id": "diff",
+     "tag": "compare",
+     "kind": "diff",
+     "a": [
+      "status",
+      ".app",
+      "/help"
+     ],
+     "b": [
+      "status",
+      ".app.help-desk.example",
+      "/support"
+     ],
+     "answer": 1,
+     "src": [
+      "scams",
+      "mdn-domain",
+      "mdn-url",
+      "rfc2606",
+      "iana"
+     ],
+     "return": {
+      "kind": "diff",
+      "a": [
+       "status",
+       ".app",
+       "/help"
+      ],
+      "b": [
+       "status",
+       ".app-login.example",
+       "/help-centre"
+      ],
+      "answer": 1,
+      "src": [
+       "scams",
+       "mdn-domain",
+       "mdn-url",
+       "rfc2606",
+       "iana"
+      ]
+     }
+    },
+    {
+     "id": "ring",
+     "tag": "ring",
+     "kind": "page",
+     "template": "results",
+     "address": true,
+     "ring": true,
+     "parts": [
+      {
+       "id": "ad",
+       "text": true,
+       "say": true,
+       "mark": true,
+       "opens": "get-status-app.example/download",
+       "after": true
+      },
+      {
+       "id": "mirror",
+       "text": true,
+       "say": true,
+       "opens": "status.app.downloads.example/app",
+       "after": true
+      },
+      {
+       "id": "maker",
+       "text": true,
+       "say": true,
+       "opens": "status.app",
+       "after": true
+      }
+     ],
+     "answer": "maker",
+     "src": [
+      "scams",
+      "mdn-domain",
+      "mdn-url",
+      "rfc2606",
+      "iana"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "message",
+      "address": true,
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "c",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "c",
+      "src": [
+       "scams",
+       "mdn-domain",
+       "mdn-url",
+       "rfc2606",
+       "iana"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "message",
+     "boss": true,
+     "parts": [
+      {
+       "id": "send",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "link",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "proof",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "block",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "block",
+     "src": [
+      "scams",
+      "backup",
+      "keysfaq"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "sign-in",
+      "parts": [
+       {
+        "id": "pw",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "words",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "code",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "pw",
+      "src": [
+       "password",
+       "home",
+       "newdevice"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "half",
+     "src": [
+      "lose",
+      "firstrun",
+      "backup"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "verify"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "ring"
+    }
+   ]
+  },
+  {
+   "id": "status.3",
+   "key": "status.d3",
+   "level": 3,
+   "crypto": true,
+   "checked": "2026-11-23",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "law": true,
+     "src": [
+      "wa-home",
+      "messages",
+      "firstrun",
+      "what"
+     ]
+    },
+    {
+     "id": "key",
+     "tag": "point",
+     "kind": "page",
+     "template": "share-profile",
+     "address": true,
+     "parts": [
+      {
+       "id": "name",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "link",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "pw",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "words",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "link",
+     "src": [
+      "share",
+      "keys",
+      "keysfaq",
+      "find",
+      "backup"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "three-rows",
+      "address": true,
+      "parts": [
+       {
+        "id": "pw",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "chat",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "words",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "chat",
+      "src": [
+       "keys",
+       "keysfaq",
+       "firstrun"
+      ]
+     }
+    },
+    {
+     "id": "id",
+     "tag": "build",
+     "kind": "build",
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c3"
+     ],
+     "mix": true,
+     "src": [
+      "wa-security",
+      "firstrun",
+      "find"
+     ],
+     "return": {
+      "kind": "build",
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "keys",
+       "keysfaq",
+       "home"
+      ]
+     }
+    },
+    {
+     "id": "reset",
+     "tag": "build",
+     "kind": "build",
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c3"
+     ],
+     "mix": true,
+     "src": [
+      "firstrun",
+      "lose",
+      "home",
+      "keysfaq"
+     ],
+     "return": {
+      "kind": "build",
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "password"
+      ]
+     }
+    },
+    {
+     "id": "signal",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      },
+      {
+       "id": "c6",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c3",
+      "c5"
+     ],
+     "mix": true,
+     "src": [
+      "signal",
+      "wa-home",
+      "messages"
+     ],
+     "return": {
+      "kind": "build",
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "wa-home"
+      ]
+     }
+    },
+    {
+     "id": "say",
+     "tag": "line",
+     "kind": "notes",
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n3",
+     "mix": true,
+     "src": [
+      "msgfaq",
+      "messages",
+      "wa-home",
+      "firstrun",
+      "home"
+     ],
+     "return": {
+      "kind": "notes",
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r2",
+      "mix": true,
+      "src": [
+       "what",
+       "msgfaq",
+       "messages"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "build",
+     "law": true,
+     "boss": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      },
+      {
+       "id": "c6",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c3",
+      "c5"
+     ],
+     "mix": true,
+     "src": [
+      "wa-home",
+      "wa-security",
+      "messages",
+      "firstrun",
+      "home",
+      "lose",
+      "what"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "mix": true,
+      "src": [
+       "wa-home",
+       "wa-security",
+       "messages",
+       "firstrun",
+       "what"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "half",
+     "law": true,
+     "src": [
+      "wa-home",
+      "messages",
+      "firstrun",
+      "lose",
+      "what"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "reset"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "say"
+    }
+   ]
+  }
+ ]
+}

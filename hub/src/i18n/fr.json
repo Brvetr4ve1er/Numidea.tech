@@ -7501,1029 +7501,7 @@
       "noProg": "Pas de programme partenaire : ce lien reste un lien simple, il ne nous rapporte rien."
     },
     "enq": {
-      "c": {
-        "brave": {
-          "d1": {
-            "advert": {
-              "address": "Nouvel onglet",
-              "hint": {
-                "0": "Lisez la petite étiquette dans un coin.",
-                "1": "Un mot veut dire que quelqu’un a payé.",
-                "2": "Réponse : l’image sponsorisée."
-              },
-              "kuro": "Sponsorisé.",
-              "p": {
-                "image": {
-                  "after": "Image sponsorisée · une publicité placée par le navigateur",
-                  "say": "Image de fond, étiquetée image sponsorisée",
-                  "text": "Image sponsorisée",
-                  "why": "Brave compte les images du nouvel onglet parmi ses formats publicitaires. L’étiquette dans le coin permet de le savoir."
-                },
-                "shortcuts": {
-                  "after": "Ses propres raccourcis.",
-                  "say": "Sites fréquents, quatre raccourcis",
-                  "text": "Sites fréquents",
-                  "why": "Ce sont des raccourcis vers des sites déjà ouverts dans ce navigateur. Ils ne vantent rien."
-                },
-                "suggested": {
-                  "after": "Le site s’ouvre. Aucune mention.",
-                  "say": "Site suggéré, raccourci",
-                  "text": "Site suggéré",
-                  "why": "Un raccourci sans la mention « sponsorisé ». C’est cette mention qui signale une publicité."
-                }
-              },
-              "prompt": "Un nouvel onglet, sans site ouvert. Une partie est une publicité. Pointez-la.",
-              "r": {
-                "p": {
-                  "article": {
-                    "after": "Les mots de la page.",
-                    "say": "Article, texte",
-                    "text": "Texte de l’article",
-                    "why": "C’est le texte de la page elle-même. Personne n’a payé pour le placer ici."
-                  },
-                  "gap": {
-                    "after": "Bloqué. Reste vide.",
-                    "say": "Espace vide, là où la page voulait une publicité",
-                    "text": "Espace publicitaire bloqué",
-                    "why": "Une publicité tierce, bloquée. Les publicités du navigateur ne remplacent pas celles des pages."
-                  },
-                  "notif": {
-                    "after": "Publicité · affichée par le navigateur",
-                    "say": "Notification, étiquetée publicité du navigateur",
-                    "text": "Publicité du navigateur · notification",
-                    "why": "Les notifications sont l’un des formats publicitaires de Brave, pour qui a choisi de les voir."
-                  }
-                },
-                "prompt": "Une page d’actualités, maintenant. Pointez la publicité qui vient du navigateur lui-même."
-              }
-            },
-            "bet": {
-              "prompt": "Votre pari sur la phrase du prestataire ? Sans points."
-            },
-            "boss": {
-              "hint": {
-                "0": "Quatre lignes. Deux sont désactivées.",
-                "1": "Une ligne porte un nom de récompense, en anglais.",
-                "2": "Réponse : Rewards. Désactivé tant qu’elle ne l’active pas."
-              },
-              "kuro": "Éteint. Sauf demande.",
-              "p": {
-                "engine": {
-                  "after": "Choisit qui répond aux recherches.",
-                  "say": "Moteur de recherche, Google, ligne",
-                  "text": "Moteur de recherche : Google",
-                  "why": "Cette ligne choisit qui répond aux recherches. Elle ne rapporte rien."
-                },
-                "rewards": {
-                  "after": "Rewards : désactivé · rien de gagné tant qu’il n’est pas activé",
-                  "say": "Rewards, désactivé, ligne",
-                  "text": "Rewards : désactivé",
-                  "why": "Rien n’est gagné sans activer Rewards. Il paie en jeton, pour des publicités qu’elle choisit de voir."
-                },
-                "shields": {
-                  "after": "Déjà actifs. Ne paient rien.",
-                  "say": "Shields, actifs par défaut, ligne",
-                  "text": "Shields : actifs (par défaut)",
-                  "why": "Les Shields sont actifs par défaut. Personne n’a à les choisir, et ils ne paient rien."
-                },
-                "wallet": {
-                  "after": "Des clés. Aucun paiement.",
-                  "say": "Wallet, désactivé, ligne",
-                  "text": "Wallet : désactivé",
-                  "why": "Un portefeuille garde des clés. L’activer ne paie personne pour naviguer."
-                }
-              },
-              "prompt": "On a dit à Samia que naviguer la paie. Pointez ce qu’il faut d’abord activer.",
-              "r": {
-                "p": {
-                  "rewards": {
-                    "after": "Rewards : désactivé · rien de gagné tant qu’il n’est pas activé",
-                    "say": "Rewards, bouton",
-                    "text": "Rewards",
-                    "why": "Rien n’est gagné sans activer Rewards, et seulement pour des publicités qu’elle choisit de voir."
-                  },
-                  "shield": {
-                    "after": "Shields actifs. Ne paient rien.",
-                    "say": "Shields, bouton",
-                    "text": "Shields",
-                    "why": "Les Shields bloquent. Ils ne paient rien, et le blocage est déjà actif."
-                  },
-                  "wallet": {
-                    "after": "Le panneau Wallet s’ouvre. Désactivé.",
-                    "cap": "Wallet",
-                    "say": "Wallet, bouton",
-                    "why": "Un portefeuille garde des clés. Il ne paie personne pour naviguer."
-                  }
-                },
-                "prompt": "La même objection, sur la barre de l’ordinateur. Pointez ce qu’il faudrait activer."
-              }
-            },
-            "bub": {
-              "a": "Quatorze sur une page. Le chiffre, je l’ai inventé. L’idée, non.",
-              "b": "Elle a répondu. J’ai vu le mot « paie ». Souligné."
-            },
-            "can": "Vous savez maintenant trouver Shields, le décompte des blocages et la publicité sur un écran de navigateur.",
-            "claim": "Un nouveau navigateur met sa salle de sport « sur le web3 ».",
-            "count": {
-              "hint": {
-                "0": "Cherchez un nombre.",
-                "1": "Une règle dit quoi. Un décompte dit combien.",
-                "2": "Réponse : « 14 traceurs et pubs bloqués »."
-              },
-              "kuro": "Décompte.",
-              "p": {
-                "cookies": {
-                  "after": "Une règle. Pas de nombre.",
-                  "say": "Cookies intersites, bloqués, réglage",
-                  "text": "Cookies intersites : bloqués",
-                  "why": "C’est une règle, pas un décompte : elle dit ce qui est bloqué, pas combien."
-                },
-                "count": {
-                  "after": "14 · cette page seulement",
-                  "say": "14 traceurs et publicités bloqués",
-                  "text": "14 traceurs et pubs bloqués",
-                  "why": "Le décompte de cette page. Un traceur : du code d’un autre site, qui la suit de site en site."
-                },
-                "report": {
-                  "after": "Signalement envoyé. Rien de compté.",
-                  "say": "Signaler un site cassé, bouton",
-                  "text": "Signaler un site cassé",
-                  "why": "Cela envoie à Brave un signalement sur une page qui ne marche plus. Cela ne compte rien."
-                },
-                "switch": {
-                  "after": "Les Shields se baissent ici.",
-                  "say": "Shields actifs pour ce site, interrupteur, activé",
-                  "text": "Shields ACTIFS pour ce site",
-                  "why": "Cet interrupteur active ou coupe le blocage pour ce seul site. Il ne compte rien."
-                }
-              },
-              "prompt": "Le panneau Shields est ouvert. Pointez la ligne qui compte ce qui a été arrêté sur cette page.",
-              "r": {
-                "p": {
-                  "count": {
-                    "after": "9 · cette page seulement",
-                    "say": "9 traceurs et publicités bloqués",
-                    "text": "9 traceurs et pubs bloqués",
-                    "why": "Le décompte change avec la page : neuf refusés ici."
-                  },
-                  "report": {
-                    "after": "Signalement envoyé. Rien de compté.",
-                    "say": "Signaler un site cassé, bouton",
-                    "text": "Signaler un site cassé",
-                    "why": "Cela signale une page qui ne marche plus. Ce n’est pas un décompte."
-                  },
-                  "switch": {
-                    "after": "Les Shields se baissent ici.",
-                    "say": "Shields actifs pour ce site, interrupteur, activé",
-                    "text": "Shields ACTIFS pour ce site",
-                    "why": "C’est l’interrupteur qui active ou coupe, pour ce site."
-                  }
-                },
-                "prompt": "Un autre site, le même panneau dans un nouvel ordre. Pointez le décompte."
-              }
-            },
-            "engine": {
-              "hint": {
-                "0": "Deux de ces tuiles ne font qu’afficher des pages.",
-                "1": "Une seule répond à la question qu’elle a tapée.",
-                "2": "Réponse : Google. C’est un moteur de recherche qui trouve."
-              },
-              "kuro": "Recherche.",
-              "p": {
-                "bar": {
-                  "after": "Transmet ses mots.",
-                  "say": "Barre d’adresse, tuile",
-                  "text": "Barre d’adresse",
-                  "why": "La barre ne fait que transmettre ses mots. C’est un moteur de recherche qui trouve."
-                },
-                "brave": {
-                  "after": "Un navigateur. Affiche des pages.",
-                  "say": "Navigateur Brave, tuile",
-                  "text": "Navigateur Brave",
-                  "why": "Brave est un navigateur : il affiche des pages. Ce n’est pas le service qui les trouve."
-                },
-                "chrome": {
-                  "after": "Un navigateur. Affiche des pages.",
-                  "say": "Chrome, tuile",
-                  "text": "Chrome",
-                  "why": "Chrome est un navigateur : il affiche des pages. Google le fabrique, d’où la confusion entre les deux."
-                },
-                "google": {
-                  "after": "Moteur de recherche · marche dans tout navigateur",
-                  "say": "Google, tuile",
-                  "text": "Google",
-                  "why": "Google est un moteur de recherche : un service qui trouve des pages. Elle y accède depuis n’importe quel navigateur."
-                }
-              },
-              "prompt": "Elle tape une question et reçoit une liste de pages. Pointez ce qui les a trouvées.",
-              "r": {
-                "p": {
-                  "defbrowser": {
-                    "after": "Nomme le navigateur.",
-                    "say": "Navigateur par défaut, Chrome, ligne",
-                    "text": "Navigateur par défaut : Chrome",
-                    "why": "Cette ligne nomme le navigateur : le programme qui affiche les pages."
-                  },
-                  "engine": {
-                    "after": "Moteur de recherche · son choix",
-                    "say": "Moteur de recherche, Google, ligne",
-                    "text": "Moteur de recherche : Google",
-                    "why": "Cette ligne nomme le service qui répond à ce qu’elle tape dans la barre d’adresse."
-                  },
-                  "network": {
-                    "after": "Nomme la connexion.",
-                    "say": "Réseau, connexion de la maison, ligne",
-                    "text": "Réseau : connexion de la maison",
-                    "why": "Cette ligne nomme la connexion, pas un service qui trouve des pages."
-                  }
-                },
-                "prompt": "Une liste de réglages, cette fois. Pointez la ligne qui nomme un moteur de recherche."
-              }
-            },
-            "note": {
-              "hint": {
-                "0": "Deux notes promettent trop, ou trop peu.",
-                "1": "Une note correspond à ce que les Shields vous ont montré.",
-                "2": "Réponse : il bloquait déjà."
-              },
-              "kuro": "Déjà actif.",
-              "p": {
-                "n1": {
-                  "text": "Brave bloquait déjà avant qu’elle touche à quoi que ce soit.",
-                  "why": "Shields actifs par défaut sur chaque site, dit la page de Brave. Le panneau l’affichait déjà."
-                },
-                "n2": {
-                  "text": "Brave ne marche que si l’on détient un jeton (un crypto-actif).",
-                  "why": "La page Shields de Brave dit : aucun réglage à faire, téléchargez et naviguez. Elle ne demande aucun jeton."
-                },
-                "n3": {
-                  "text": "Avec Brave, les sites ne voient pas votre visite.",
-                  "why": "Les Shields empêchent les traceurs extérieurs de la suivre. Le site qu’elle ouvre reçoit toujours sa demande."
-                }
-              },
-              "prompt": "Trois notes sont arrivées avec le billet. Une seule est vraie.",
-              "r": {
-                "p": {
-                  "r1": {
-                    "text": "Brave est un moteur de recherche.",
-                    "why": "Brave est un navigateur. Son éditeur gère aussi un moteur de recherche, qui est une chose à part."
-                  },
-                  "r2": {
-                    "text": "Les Shields sont actifs par défaut, sur chaque site.",
-                    "why": "La page de Brave dit que les Shields sont actifs par défaut sur chaque site visité."
-                  },
-                  "r3": {
-                    "text": "Rewards est activé dès le premier lancement.",
-                    "why": "C’est la personne qui doit activer Rewards, depuis son propre bouton."
-                  }
-                },
-                "prompt": "Trois nouvelles notes. Touchez la vraie."
-              }
-            },
-            "shield": {
-              "hint": {
-                "0": "C’est le bouton le plus proche de l’adresse.",
-                "1": "Un bouton porte un nom de bouclier, en anglais.",
-                "2": "Réponse : Shields. Il ouvre ce qui a été bloqué."
-              },
-              "kuro": "Shields.",
-              "p": {
-                "bookmark": {
-                  "after": "Page enregistrée. Rien de bloqué.",
-                  "cap": "Favori",
-                  "say": "Ajouter cette page aux favoris, bouton",
-                  "why": "Cela garde l’adresse de cette page pour plus tard. Cela ne bloque rien et ne compte rien."
-                },
-                "menu": {
-                  "after": "Menu ouvert. Aucune liste ici.",
-                  "cap": "Menu",
-                  "say": "Menu, bouton",
-                  "why": "Cela ouvre le menu et les réglages du navigateur. La liste des blocages n’y est pas."
-                },
-                "rewards": {
-                  "after": "Le panneau Rewards s’ouvre. Désactivé.",
-                  "say": "Rewards, bouton",
-                  "text": "Rewards",
-                  "why": "Cela ouvre un programme publicitaire facultatif. Il ne fait rien tant que personne ne l’active."
-                },
-                "shield": {
-                  "after": "Shields actifs · 14 bloqués",
-                  "say": "Shields, bouton",
-                  "text": "Shields",
-                  "why": "Le bouton Shields ouvre la liste de ce que Brave a bloqué ici. Dans Brave, il porte son logo."
-                },
-                "wallet": {
-                  "after": "Le panneau Wallet s’ouvre. Désactivé.",
-                  "cap": "Wallet",
-                  "say": "Wallet, bouton",
-                  "why": "Cela ouvre un portefeuille crypto intégré, désactivé tant qu’on ne l’active pas. Ce n’est pas le bloqueur."
-                }
-              },
-              "prompt": "Cinq boutons à droite de l’adresse. Pointez celui qui montre ce que Brave a bloqué sur cette page.",
-              "r": {
-                "p": {
-                  "reload": {
-                    "after": "Page rechargée. Rien de listé.",
-                    "cap": "Recharger",
-                    "say": "Recharger cette page, bouton",
-                    "why": "Cela charge la page à nouveau. Cela ne montre rien du blocage."
-                  },
-                  "shield": {
-                    "after": "Shields actifs · 9 bloqués",
-                    "say": "Shields, bouton",
-                    "text": "Shields",
-                    "why": "Le bouton Shields, à côté de l’adresse, ouvre ce qui a été bloqué, sur téléphone aussi."
-                  },
-                  "tabs": {
-                    "after": "Trois onglets listés.",
-                    "cap": "Onglets",
-                    "say": "Onglets, 3 ouverts, bouton",
-                    "text": "3",
-                    "why": "Ce nombre compte les onglets ouverts, pas les traceurs."
-                  }
-                },
-                "prompt": "Le même navigateur sur un téléphone. Pointez l’endroit où elle voit ce qui a été bloqué."
-              }
-            },
-            "slip": "Selon son prestataire, Brave, un nouveau navigateur, mettrait sa salle de sport « sur le web3 ». Samia s’interroge.",
-            "slipTag": "ENQUÊTE 01 · exemple inventé",
-            "stamp": {
-              "prompt": "Le prestataire, encore : un nouveau navigateur met sa salle de sport « sur le web3 ». Tamponnez :",
-              "reveal": "Argument de vente. Un navigateur n’affiche que des sites. Le « web3 », programme à jetons et portefeuille, y est facultatif, éteint."
-            }
-          },
-          "d2": {
-            "bet": {
-              "prompt": "Votre pari sur la phrase de l’entraîneur ? Sans points."
-            },
-            "boss": {
-              "hint": {
-                "0": "Demandez-vous qui demande, et pourquoi.",
-                "1": "Elle ne connaît pas ce site.",
-                "2": "Réponse : fermer l’onglet. Les Shields restent actifs."
-              },
-              "kuro": "Fermé.",
-              "p": {
-                "close": {
-                  "after": "Onglet fermé · Shields intacts",
-                  "cap": "Fermer l’onglet",
-                  "say": "Fermer l’onglet, bouton",
-                  "why": "Brave dit de vérifier qu’un site est de confiance avant de baisser les Shields. Elle n’a jamais utilisé celui-ci."
-                },
-                "cont": {
-                  "after": "Même page. Demande encore.",
-                  "say": "Continuer quand même, bouton sur la page",
-                  "text": "Continuer quand même",
-                  "why": "Ce bouton appartient à la page qui demande. C’est justement d’elle qu’il faut douter."
-                },
-                "reload": {
-                  "after": "Page rechargée. Elle redemande.",
-                  "cap": "Recharger",
-                  "say": "Recharger cette page, bouton",
-                  "why": "Recharger répète la même demande. La page redemande."
-                },
-                "switch": {
-                  "after": "Shields baissés pour un inconnu.",
-                  "say": "Shields actifs pour ce site, interrupteur, activé",
-                  "text": "Shields ACTIFS pour ce site",
-                  "why": "Baisser les Shields retire des protections sur un site dont personne ne répond."
-                }
-              },
-              "prompt": "Samia objecte : un site inconnu, vidéo vide, affiche « baissez les Shields pour regarder ». Pointez son geste.",
-              "r": {
-                "p": {
-                  "close": {
-                    "after": "Onglet fermé. Cadre jamais vu.",
-                    "cap": "Fermer l’onglet",
-                    "say": "Fermer l’onglet, bouton",
-                    "why": "Fermer laisse le cadre vide. Elle connaît ce site : c’est le sien."
-                  },
-                  "helper": {
-                    "after": "Rien à installer.",
-                    "say": "Installer l’assistant, bouton sur la page",
-                    "text": "Installer l’assistant",
-                    "why": "Rien n’est à installer. La commande est déjà dans le navigateur."
-                  },
-                  "switch": {
-                    "after": "Shields BAISSÉS pour ce site",
-                    "say": "Shields actifs pour ce site, interrupteur, activé",
-                    "text": "Shields ACTIFS pour ce site",
-                    "why": "Elle fait confiance à son propre site : baisser les Shields ici, et seulement ici, règle le problème."
-                  }
-                },
-                "prompt": "Maintenant la page de réservation de sa salle, qu’elle gère, affiche un cadre vide. Pointez son geste."
-              }
-            },
-            "bub": {
-              "a": "Les adresses, ensuite. L’anneau ouvre ce qui est marqué.",
-              "b": "Elle a récrit. Une page lui a dit de baisser les Shields."
-            },
-            "can": "Vous savez maintenant réparer, pour un site, une page cassée par le blocage, et choisir l’adresse de l’éditeur parmi les sosies.",
-            "claim": "Le nouveau navigateur a cassé sa page de réservation.",
-            "diff": {
-              "g": {
-                "0": {
-                  "after": "Même mot dans les deux.",
-                  "say": "b r a v e",
-                  "why": "Les deux adresses commencent par le même mot. Le début ne prouve rien."
-                },
-                "1": {
-                  "after": "Finit par get-browser.example · un autre propriétaire",
-                  "say": "point com point get-browser point example",
-                  "why": "Lisez le nom avant la première barre oblique, depuis la droite : get-browser.example, pas brave.com."
-                },
-                "2": {
-                  "after": "Juste un nom de page.",
-                  "say": "barre oblique get-brave",
-                  "why": "Un autre nom de page n’est pas un autre propriétaire."
-                }
-              },
-              "hint": {
-                "0": "Comparez morceau par morceau.",
-                "1": "Deux morceaux diffèrent. Un seul nomme le propriétaire.",
-                "2": "Réponse : le morceau du milieu. Le nom finit ailleurs."
-              },
-              "kuro": "Sosie.",
-              "prompt": "Deux adresses, coupées en trois. Pointez le morceau qui fait de la seconde celle de quelqu’un d’autre.",
-              "r": {
-                "g": {
-                  "0": {
-                    "after": "Même mot dans les deux.",
-                    "say": "b r a v e",
-                    "why": "Le même mot ouvre les deux."
-                  },
-                  "1": {
-                    "after": "brave-download.example · un autre propriétaire",
-                    "say": "tiret download point example",
-                    "why": "Avec le tiret, le nom avant la barre oblique est brave-download.example : un autre propriétaire."
-                  },
-                  "2": {
-                    "after": "Juste un nom de page.",
-                    "say": "barre oblique free",
-                    "why": "Le nom de page a changé aussi. Cela ne change pas le propriétaire."
-                  }
-                },
-                "prompt": "Deux autres. Pointez le morceau qui trahit la seconde.",
-                "why": "Avec le tiret, le nom avant la barre oblique est brave-download.example : un autre propriétaire."
-              },
-              "why": "Lisez le nom avant la première barre oblique, depuis la droite : get-browser.example, pas brave.com."
-            },
-            "download": {
-              "address": "Résultats de recherche : « télécharger brave »",
-              "hint": {
-                "0": "Touchez chaque résultat pour voir son adresse.",
-                "1": "Lisez le nom avant la première barre oblique, depuis la droite.",
-                "2": "Réponse : brave.com/download."
-              },
-              "kuro": "Avant la barre.",
-              "p": {
-                "ad": {
-                  "after": "Le site de quelqu’un d’autre.",
-                  "mark": "Annonce",
-                  "say": "Annonce. Navigateur Brave, Téléchargement. Adresse : brave-free-download.example",
-                  "text": "Navigateur Brave · Téléchargement",
-                  "why": "La première place a été achetée. Avant la première barre oblique, le nom est brave-free-download.example, un sosie inventé."
-                },
-                "maker": {
-                  "after": "brave.com/download · celle de l’éditeur",
-                  "say": "Télécharger le navigateur Brave, Brave. Adresse : brave.com/download",
-                  "text": "Télécharger le navigateur Brave | Brave",
-                  "why": "Avant la première barre oblique, le nom est brave.com, celui de l’éditeur ; /download est une page à l’intérieur."
-                },
-                "mirror": {
-                  "after": "Le site de quelqu’un d’autre.",
-                  "say": "Télécharger le navigateur Brave, Officiel. Adresse : brave.com.get-browser.example/download",
-                  "text": "Télécharger le navigateur Brave · Officiel",
-                  "why": "Cela commence par brave.com, mais avant la première barre oblique le nom finit par get-browser.example."
-                }
-              },
-              "prompt": "Trois résultats proposent le téléchargement. Touchez chacun pour voir son adresse. Puis choisissez celui de l’éditeur.",
-              "r": {
-                "address": "Un message d’un numéro inconnu",
-                "p": {
-                  "a": {
-                    "after": "brave.com/download · celle de l’éditeur",
-                    "say": "Lien, brave.com barre oblique download",
-                    "why": "Le nom avant la première barre oblique est brave.com."
-                  },
-                  "b": {
-                    "after": "Ouvre brave-update.example.",
-                    "say": "Lien, brave-update.example barre oblique brave.com",
-                    "why": "Ici brave.com vient après la barre oblique : ce n’est qu’un dossier sur le site de quelqu’un d’autre."
-                  },
-                  "c": {
-                    "after": "Ouvre safe-install.example.",
-                    "say": "Lien, brave.com point safe-install point example",
-                    "why": "Il n’y a pas de barre oblique, donc lisez depuis la droite : le nom finit par safe-install.example."
-                  }
-                },
-                "prompt": "Un message propose trois liens. Pointez celui qui mène au site de l’éditeur lui-même."
-              }
-            },
-            "fix": {
-              "hint": {
-                "0": "L’un des quatre est un interrupteur.",
-                "1": "Le blocage l’a cassé ; moins de blocage peut le réparer.",
-                "2": "Réponse : l’interrupteur Shields, pour ce site."
-              },
-              "kuro": "Un site.",
-              "p": {
-                "count": {
-                  "after": "Un décompte. Rien ne change.",
-                  "say": "14 traceurs et publicités bloqués",
-                  "text": "14 traceurs et pubs bloqués",
-                  "why": "C’est un décompte. Le lire ne change rien sur la page."
-                },
-                "reload": {
-                  "after": "Page rechargée. Cadre toujours vide.",
-                  "cap": "Recharger",
-                  "say": "Recharger cette page, bouton",
-                  "why": "Recharger redemande la même page sous le même blocage. Le cadre reste vide."
-                },
-                "report": {
-                  "after": "Signalement envoyé. Cadre toujours vide.",
-                  "say": "Signaler un site cassé, bouton",
-                  "text": "Signaler un site cassé",
-                  "why": "Cela prévient les développeurs de Brave. Utile plus tard, peut-être ; ce soir, cela ne répare rien."
-                },
-                "switch": {
-                  "after": "Shields BAISSÉS pour ce site · le cadre de réservation se charge",
-                  "say": "Shields actifs pour ce site, interrupteur, activé",
-                  "text": "Shields ACTIFS pour ce site",
-                  "why": "L’interrupteur baisse les Shields pour ce site seulement. Brave dit : vérifiez d’abord que vous faites confiance au site."
-                }
-              },
-              "prompt": "Son propre cadre de réservation est vide. Pointez la seule commande qui peut le ramener.",
-              "r": {
-                "p": {
-                  "desktop": {
-                    "after": "Affichage large. Cadre toujours vide.",
-                    "say": "Version ordinateur, case à cocher",
-                    "text": "Version ordinateur",
-                    "why": "Cela demande l’affichage large. Les mêmes choses restent bloquées."
-                  },
-                  "reload": {
-                    "after": "Page rechargée. Cadre toujours vide.",
-                    "cap": "Recharger",
-                    "say": "Recharger cette page, bouton",
-                    "why": "Recharger répète la même demande sous le même blocage."
-                  },
-                  "switch": {
-                    "after": "Shields BAISSÉS pour ce site",
-                    "say": "Shields, interrupteur, activé",
-                    "text": "Shields",
-                    "why": "Baisser les Shields pour ce site laisse la partie bloquée se charger."
-                  }
-                },
-                "prompt": "Sur son téléphone, le même cadre est vide. Pointez la commande qui peut le ramener."
-              }
-            },
-            "scope": {
-              "hint": {
-                "0": "Souvenez-vous : l’interrupteur nommait un lieu.",
-                "1": "« Pour ce site » : c’est toute la règle.",
-                "2": "Réponse : les Shields restent actifs sur le site d’actualités."
-              },
-              "kuro": "Par site.",
-              "p": {
-                "a": {
-                  "after": "Cela n’arrive pas.",
-                  "say": "Site d’actualités, Shields baissés",
-                  "text": "Site d’actualités : Shields BAISSÉS",
-                  "why": "L’interrupteur vaut pour un site. Il ne la suit pas à l’adresse suivante."
-                },
-                "b": {
-                  "after": "Shields ACTIFS · 21 bloqués",
-                  "say": "Site d’actualités, Shields actifs",
-                  "text": "Site d’actualités : Shields ACTIFS",
-                  "why": "Baisser les Shields vaut pour le seul site qu’elle regardait. Tous les autres les gardent actifs."
-                }
-              },
-              "prompt": "Elle a baissé les Shields sur son site de réservation. Elle ouvre ensuite un site d’actualités. Pointez ce qu’elle trouve.",
-              "r": {
-                "p": {
-                  "a": {
-                    "after": "Shields ACTIFS · par défaut",
-                    "say": "Shields déjà actifs",
-                    "text": "Shields déjà ACTIFS",
-                    "why": "Les Shields sont actifs par défaut sur chaque site qu’elle visite."
-                  },
-                  "b": {
-                    "after": "Cela n’arrive pas.",
-                    "say": "Shields baissés jusqu’au réglage",
-                    "text": "Shields BAISSÉS jusqu’au réglage",
-                    "why": "Rien n’est à régler. Le blocage ne l’attend pas."
-                  }
-                },
-                "prompt": "Un site qu’elle n’a jamais ouvert, et elle n’a touché à rien. Pointez ce qu’elle trouve."
-              }
-            },
-            "slip": "Sa page de réservation affiche un cadre vide dans Brave. Son entraîneur accuse le nouveau navigateur. Samia s’interroge.",
-            "slipTag": "ENQUÊTE 01 · profondeur 2 · exemple inventé",
-            "stamp": {
-              "prompt": "L’entraîneur, encore : le nouveau navigateur a cassé sa page de réservation. Tamponnez :",
-              "reveal": "À moitié. Le blocage a arrêté une partie de la page. Un interrupteur, pour ce seul site, la ramène."
-            },
-            "token": {
-              "hint": {
-                "0": "Trois lignes parlent de la navigation elle-même.",
-                "1": "Une ligne parle d’être payé.",
-                "2": "Réponse : Rewards. Il paie en jeton."
-              },
-              "kuro": "Jeton.",
-              "p": {
-                "engine": {
-                  "after": "Des réponses. Rien de détenu.",
-                  "say": "Moteur de recherche, ligne",
-                  "text": "Moteur de recherche",
-                  "why": "Cela choisit qui répond à ses recherches. Choisir ne coûte rien et ne détient rien."
-                },
-                "rewards": {
-                  "after": "Rewards · paie en jeton · désactivé",
-                  "say": "Rewards, ligne",
-                  "text": "Rewards",
-                  "why": "Rewards paie en jeton. La ligne du dessous dit ce que la loi 25-10 interdit en Algérie."
-                },
-                "shields": {
-                  "after": "Bloque. Ne détient rien.",
-                  "say": "Shields, ligne",
-                  "text": "Shields",
-                  "why": "Les Shields bloquent les traceurs. Aucun jeton n’entre dans le blocage."
-                },
-                "sync": {
-                  "after": "Copie les favoris. Aucun jeton.",
-                  "say": "Sync, ligne",
-                  "text": "Sync",
-                  "why": "Sync copie favoris et historique entre ses propres appareils, de façon chiffrée. Aucun jeton."
-                }
-              },
-              "prompt": "Quatre lignes de réglages. Pointez celle qui voudrait dire détenir un jeton (un crypto-actif).",
-              "r": {
-                "p": {
-                  "engine": {
-                    "after": "Des réponses. Rien de détenu.",
-                    "say": "Moteur de recherche, ligne",
-                    "text": "Moteur de recherche",
-                    "why": "Un moteur de recherche répond à des questions. Il ne détient aucun actif."
-                  },
-                  "shields": {
-                    "after": "Bloque. Ne détient rien.",
-                    "say": "Shields, ligne",
-                    "text": "Shields",
-                    "why": "Les Shields bloquent. Ils ne détiennent rien."
-                  },
-                  "wallet": {
-                    "after": "Wallet · désactivé",
-                    "say": "Wallet, ligne",
-                    "text": "Wallet",
-                    "why": "Le portefeuille intégré sert aux crypto-actifs, et reste désactivé tant qu’on ne l’active pas."
-                  }
-                },
-                "prompt": "Trois autres lignes. Pointez celle qui détiendrait des crypto-actifs."
-              }
-            }
-          },
-          "d3": {
-            "bet": {
-              "prompt": "Votre pari sur l’idée de l’adhérente ? Sans points."
-            },
-            "boss": {
-              "frame": "{1}, mais il {2}, et {3} reste éteint.",
-              "hint": {
-                "0": "Même, différent, facultatif : dans cet ordre.",
-                "1": "Vous avez construit chaque partie ce soir.",
-                "2": "Réponse : le même moteur ; bloque les traceurs par défaut ; le programme à jetons."
-              },
-              "kuro": "Même. Différent. Facultatif.",
-              "p": {
-                "c1": {
-                  "text": "Le même moteur",
-                  "why": "Les deux reposent sur Chromium. Sur ce point, le prestataire a raison."
-                },
-                "c2": {
-                  "text": "Un autre moteur",
-                  "why": "Le moteur est la partie commune : Chromium."
-                },
-                "c3": {
-                  "text": "bloque les traceurs par défaut",
-                  "why": "C’est la différence qui compte : les Shields sont actifs dès la première page."
-                },
-                "c4": {
-                  "text": "ne bloque rien avant réglage",
-                  "why": "Aucun réglage n’est demandé. Le blocage démarre tout seul."
-                },
-                "c5": {
-                  "text": "le programme à jetons",
-                  "why": "Rewards attend qu’on l’active. L’échange n’en dépend pas."
-                },
-                "c6": {
-                  "text": "Shields",
-                  "why": "Les Shields sont actifs par défaut. C’est ce qu’elle obtient sans rien choisir."
-                }
-              },
-              "prompt": "Samia demande : « Chrome avec une pièce vissée dessus ? » Construisez la réponse pour elle.",
-              "r": {
-                "frame": "Pareil : {1}. Différent : {2}. Facultatif : {3}.",
-                "p": {
-                  "r1": {
-                    "text": "le moteur",
-                    "why": "Chromium se trouve sous les deux navigateurs."
-                  },
-                  "r2": {
-                    "text": "les réglages par défaut",
-                    "why": "Ce qui est bloqué dès le premier lancement fait la différence."
-                  },
-                  "r3": {
-                    "text": "Rewards",
-                    "why": "Rewards est la partie qu’elle peut laisser éteinte."
-                  },
-                  "r4": {
-                    "text": "les sites web",
-                    "why": "Les sites web ne changent pas avec le navigateur."
-                  },
-                  "r5": {
-                    "text": "Shields",
-                    "why": "Les Shields sont actifs par défaut. Ce n’est pas la partie facultative."
-                  }
-                },
-                "prompt": "Encore une fois, en trois mots. Touchez une pastille, puis sa case."
-              }
-            },
-            "bub": {
-              "a": "Ok. Le même moteur dessous. La page de l’éditeur le dit.",
-              "b": "J’ai porté aussi la phrase du prestataire. Elle cliquetait."
-            },
-            "can": "Vous savez maintenant dire en une phrase ce qu’est un traceur intersites, et pourquoi cet échange est un navigateur pour un navigateur.",
-            "claim": "Les publicités la suivent parce que les sites qu’elle ouvre se parlent entre eux.",
-            "embed": {
-              "hint": {
-                "0": "Trois parties appartiennent à ce site.",
-                "1": "Une partie a été faite ailleurs.",
-                "2": "Réponse : le bouton J’aime venu d’un autre site."
-              },
-              "kuro": "Code extérieur.",
-              "p": {
-                "article": {
-                  "after": "Du texte. Reste ici.",
-                  "say": "Article, texte",
-                  "text": "Texte de l’article",
-                  "why": "Les mots de la page elle-même. Ils restent sur ce site."
-                },
-                "like": {
-                  "after": "Venu d’un autre site · il peut la retrouver",
-                  "say": "Bouton J’aime, venu d’un autre site",
-                  "text": "Bouton J’aime venu d’un autre site",
-                  "why": "Une partie intégrée depuis un autre site peut poser son propre cookie, et la retrouver ailleurs."
-                },
-                "login": {
-                  "after": "Se souvient d’elle ici seulement.",
-                  "say": "Zone de connexion, celle du site",
-                  "text": "La zone de connexion du site",
-                  "why": "La zone du site se souvient d’elle ici. Rien ne passe à un autre site."
-                },
-                "photo": {
-                  "after": "Une image. Reste ici.",
-                  "say": "Photo, celle du site",
-                  "text": "La photo du site",
-                  "why": "Une image que le site sert lui-même. Elle ne pose rien pour un autre site."
-                }
-              },
-              "prompt": "Une page d’actualités. Pointez la partie qui peut la reconnaître aussi sur le site suivant.",
-              "r": {
-                "p": {
-                  "basket": {
-                    "after": "Se souvient d’elle ici seulement.",
-                    "say": "Panier, celui de la boutique",
-                    "text": "Le panier de la boutique",
-                    "why": "Le panier se souvient d’elle dans cette boutique. Rien ne passe à un autre site."
-                  },
-                  "prices": {
-                    "after": "Du texte. Reste ici.",
-                    "say": "Liste des prix, texte",
-                    "text": "Liste des prix",
-                    "why": "Les mots de la boutique elle-même. Ils ne suivent personne."
-                  },
-                  "video": {
-                    "after": "Venu d’un autre site · il peut la retrouver",
-                    "say": "Lecteur vidéo, venu d’un autre site",
-                    "text": "Lecteur vidéo venu d’un autre site",
-                    "why": "Intégré depuis un autre site, il peut poser son propre cookie et la reconnaître ailleurs."
-                  }
-                },
-                "prompt": "Une page de boutique, maintenant. Pointez la partie qui peut la suivre sur d’autres sites."
-              }
-            },
-            "rewards": {
-              "frame": "Rewards, c’est {1}. Sans lui, le navigateur {2}.",
-              "hint": {
-                "0": "La case un dit ce qu’est Rewards.",
-                "1": "La case deux dit ce qui marche sans lui.",
-                "2": "Réponse : un programme publicitaire facultatif ; il bloque quand même."
-              },
-              "kuro": "Facultatif.",
-              "p": {
-                "c1": {
-                  "text": "la partie qui bloque les traceurs",
-                  "why": "Ce sont les Shields qui bloquent. Rewards est une fonction à part."
-                },
-                "c2": {
-                  "text": "un programme publicitaire facultatif, éteint tant qu’on ne l’active pas",
-                  "why": "Rewards paie un jeton pour des publicités qu’une personne choisit de voir, une fois qu’elle l’a activé."
-                },
-                "c4": {
-                  "text": "bloque quand même les traceurs",
-                  "why": "Les Shields sont actifs par défaut, que Rewards soit activé un jour ou non."
-                },
-                "c5": {
-                  "text": "cesse de marcher",
-                  "why": "Les Shields marchent sans réglage à faire, dit la page de Brave. Rewards s’active à part."
-                },
-                "c6": {
-                  "text": "montre plus de publicités dans les pages",
-                  "why": "Les publicités de Rewards ne remplacent pas celles des pages, et les publicités tierces restent bloquées."
-                }
-              },
-              "prompt": "Touchez une pastille, puis sa case.",
-              "r": {
-                "frame": "Rewards paie avec {1}, et demande d’abord {2}.",
-                "p": {
-                  "r1": {
-                    "text": "un jeton",
-                    "why": "La page de Brave nomme un jeton, un crypto-actif, comme ce que paie Rewards."
-                  },
-                  "r2": {
-                    "text": "des dinars",
-                    "why": "La page de Brave nomme un jeton, pas une monnaie nationale."
-                  },
-                  "r3": {
-                    "text": "un compte de versement, pas proposé partout",
-                    "why": "Pour gagner, il faut un compte de versement connecté, et leur prise en charge varie selon la région."
-                  },
-                  "r4": {
-                    "text": "rien du tout",
-                    "why": "Il faut activer Rewards et connecter un compte de versement avant de gagner quoi que ce soit."
-                  }
-                },
-                "prompt": "De quoi Rewards aurait-il besoin ? Touchez une pastille, puis sa case."
-              }
-            },
-            "say": {
-              "hint": {
-                "0": "Deux phrases promettent plus qu’un navigateur ne peut.",
-                "1": "La bonne phrase est la plus simple.",
-                "2": "Réponse : il bloque les traceurs par défaut."
-              },
-              "kuro": "Simple.",
-              "p": {
-                "n1": {
-                  "text": "Il vous rend anonyme.",
-                  "why": "Bloquer les traceurs n’est pas l’anonymat : chaque site qu’elle ouvre reçoit toujours sa demande."
-                },
-                "n2": {
-                  "text": "Il vous paie, donc c’est de l’argent gratuit.",
-                  "why": "Rewards est facultatif, paie un jeton pour des publicités choisies, et demande un compte de versement."
-                },
-                "n3": {
-                  "text": "Il bloque les traceurs par défaut, sans rien à régler.",
-                  "why": "C’est ce qu’affirme la page Shields de Brave. C’est la part « navigateur pour navigateur » de la flèche."
-                }
-              },
-              "prompt": "Samia doit répondre à son adhérente. Touchez la phrase qui serait juste.",
-              "r": {
-                "p": {
-                  "r1": {
-                    "text": "Alors le navigateur est défectueux.",
-                    "why": "Le blocage peut casser une partie d’une page. C’est un effet secondaire, pas un défaut."
-                  },
-                  "r2": {
-                    "text": "Baissez les Shields là, si vous faites confiance au site.",
-                    "why": "On peut baisser les Shields pour un seul site ; Brave dit de vérifier d’abord qu’il est de confiance."
-                  },
-                  "r3": {
-                    "text": "Activez Rewards pour réparer ça.",
-                    "why": "Rewards est un programme publicitaire. Il ne répare aucune page."
-                  }
-                },
-                "prompt": "Une page se casse. Touchez la phrase qui serait juste."
-              }
-            },
-            "shares": {
-              "frame": "Brave repose sur {1}, comme Chrome, et change {2}.",
-              "hint": {
-                "0": "Une pastille se trouve sous les deux navigateurs.",
-                "1": "L’autre est un réglage d’usine.",
-                "2": "Réponse : le moteur Chromium ; ce qui est bloqué par défaut."
-              },
-              "kuro": "Par défaut.",
-              "p": {
-                "c1": {
-                  "text": "le moteur Chromium",
-                  "why": "Brave repose sur Chromium, le projet à code ouvert qui fait aussi tourner Chrome."
-                },
-                "c2": {
-                  "text": "son compte Google",
-                  "why": "Un compte relève du service d’une entreprise, pas du moteur sur lequel reposent les deux navigateurs."
-                },
-                "c3": {
-                  "text": "ce qui est bloqué par défaut",
-                  "why": "Brave bloque traceurs et cookies intersites dès le premier lancement, sans rien à régler."
-                },
-                "c4": {
-                  "text": "les sites web eux-mêmes",
-                  "why": "Les sites restent où ils sont. Un navigateur ne fait que les afficher."
-                },
-                "c5": {
-                  "text": "un jeton (un crypto-actif)",
-                  "why": "Le jeton relève du programme facultatif Rewards. Aucun navigateur ne repose dessus."
-                }
-              },
-              "prompt": "Qu’est-ce qui reste, qu’est-ce qui change ? Touchez une pastille, puis sa case.",
-              "r": {
-                "frame": "Chrome et Brave reposent sur {1} ; Brave, ensuite, {2}.",
-                "p": {
-                  "r1": {
-                    "text": "le même projet à code ouvert",
-                    "why": "Chromium est à code ouvert, et les deux navigateurs reposent dessus."
-                  },
-                  "r2": {
-                    "text": "la même entreprise",
-                    "why": "Deux éditeurs différents. Ils partagent du code, pas un propriétaire."
-                  },
-                  "r3": {
-                    "text": "en modifie et en retire des parties",
-                    "why": "Brave dit apporter des changements et des retraits à chaque version de Chromium."
-                  },
-                  "r4": {
-                    "text": "n’y touche pas",
-                    "why": "Intact, il ne bloquerait rien de plus que l’original."
-                  }
-                },
-                "prompt": "Dites-le autrement. Touchez une pastille, puis sa case."
-              }
-            },
-            "slip": "Une adhérente demande à Samia pourquoi des pubs d’entraîneurs la suivent de site en site. Son idée : ils se parlent.",
-            "slipTag": "ENQUÊTE 01 · profondeur 3 · exemple inventé",
-            "stamp": {
-              "prompt": "L’idée de l’adhérente, encore : les sites qu’elle ouvre se parlent entre eux. Tamponnez :",
-              "reveal": "À moitié. Les sites ne se parlent pas. Le même code extérieur est dans les deux, et se souvient d’elle."
-            },
-            "tracker": {
-              "frame": "Un traceur intersites, c’est {1} qui {2}.",
-              "hint": {
-                "0": "La case un est un qui. La case deux est un quoi.",
-                "1": "« Intersites » veut dire plus d’un site.",
-                "2": "Réponse : le code d’un autre site, qui la reconnaît d’un site à l’autre."
-              },
-              "kuro": "Intersites.",
-              "p": {
-                "c1": {
-                  "text": "le site qu’elle a ouvert",
-                  "why": "Le site choisi est celui qu’elle a demandé. Un traceur intersites vient d’ailleurs."
-                },
-                "c2": {
-                  "text": "le code d’un autre site dans la page",
-                  "why": "Une page peut intégrer des parties venues d’autres sites. Ces parties peuvent poser leurs propres cookies."
-                },
-                "c4": {
-                  "text": "la reconnaît sur de nombreux sites",
-                  "why": "Le même code extérieur, intégré à de nombreux sites, peut réunir ses relevés en un seul historique."
-                },
-                "c5": {
-                  "text": "la garde connectée ici",
-                  "why": "C’est un site qui se souvient de sa propre visiteuse. Rien ne passe à un autre site."
-                },
-                "c6": {
-                  "text": "lui montre une publicité",
-                  "why": "Une publicité, c’est ce qu’elle voit. Le traceur, c’est ce qui se souvient d’elle."
-                }
-              },
-              "prompt": "Touchez une pastille, puis sa case.",
-              "r": {
-                "frame": "Un traceur, c’est une boutique qui {1}, pas une boutique qui {2}.",
-                "p": {
-                  "r1": {
-                    "text": "la suit dans toutes les rues",
-                    "why": "La suivre de lieu en lieu, c’est la partie intersites."
-                  },
-                  "r2": {
-                    "text": "se souvient d’elle tant qu’elle est à l’intérieur",
-                    "why": "Une boutique qui connaît sa propre cliente ne suit personne."
-                  },
-                  "r3": {
-                    "text": "lui demande son nom à la porte",
-                    "why": "Il n’a besoin d’aucun nom. Il reconnaît le navigateur."
-                  },
-                  "r4": {
-                    "text": "met une enseigne en vitrine",
-                    "why": "Une enseigne est une publicité qu’elle peut voir. Elle ne la suit pas."
-                  }
-                },
-                "prompt": "La même idée, façon rue."
-              }
-            }
-          }
-        }
-      },
+      "c": {},
       "card": {
         "and": ", ",
         "aria": "Profondeur {n}, {name}. Jouer.",
@@ -8539,7 +7517,11 @@
         "tools": "Outils : {list}.",
         "top": "Le plus haut titre de cette page.",
         "xp": "{n} XP",
-        "xpAria": "Expérience sur cette page"
+        "xpAria": "Expérience sur cette page",
+        "nextS": "Titre suivant, {t} : {xp} XP et {c} enquêtes closes à la profondeur {d}.",
+        "cannot": "Les enquêtes ouvertes ce soir ne suffisent pas encore pour l’atteindre.",
+        "closedIn": "Close dans {n} des {m} enquêtes ouvertes",
+        "flamesN": "Flammes allumées en tout : {n} sur {m}"
       },
       "chart": {
         "back": "Le dos du sticker",
@@ -8549,8 +7531,13 @@
         "readOn": "Lu le {date}",
         "srcK": "Sources",
         "stickerAria": "Sticker : {name}, {state}",
-        "verdict": "Vérifié sur le tableau : {v}. {n} des 3 profondeurs écrites sont closes.",
-        "yes": "oui"
+        "verdict": "Vérifié sur le tableau : {v}. Profondeurs closes : {n} sur 3.",
+        "yes": "oui",
+        "partly": "en partie",
+        "verdictN": "Vérifié sur le tableau : {v}. Profondeurs closes : {n} sur {m}.",
+        "rowAria": "{pair}. Ses profondeurs.",
+        "played": "close",
+        "depths": "Écrites : profondeurs 1 à {n}. Chacune est ouverte."
       },
       "clair": {
         "checkedK": "Vérifié",
@@ -8581,14 +7568,16 @@
         "0": "Équipe de nuit",
         "1": "Commis",
         "2": "Libraire",
-        "3": "Allume-lanterne"
+        "3": "Allume-lanterne",
+        "4": "Garde de la lanterne"
       },
       "ring": {
         "book": {
           "btn": "LE TABLEAU",
           "label": "Le grand livre ouvert. Bouton : le tableau.",
           "line": "Le livre ouvert garde le tableau du prestataire : dix flèches en lignes. Une enquête close s’y colle. Corrections à côté. Les coquilles restent lisibles.",
-          "name": "Le livre ouvert"
+          "name": "Le livre ouvert",
+          "slip": "OUVRIR LE BILLET · 4 MIN"
         },
         "kuro": {
           "btn": "LE LIVRET",
@@ -8601,6 +7590,21 @@
           "label": "La lanterne sur le comptoir. Bouton : ouvrir le billet, quatre minutes.",
           "line": "La lanterne garde le billet de ce soir. Touchez-la : quatre minutes, six réponses. Trois flammes s’allument au premier essai. Aucune ne s’éteint ; Yasser a essayé.",
           "name": "La lanterne"
+        },
+        "awning": {
+          "label": "L’auvent au-dessus des étagères. Le billet de ce soir est ici. Bouton : l’ouvrir.",
+          "name": "L’auvent",
+          "line": "Le billet de ce soir est glissé sous l’auvent, où attend Techno Pigeon. Il l’a apporté. Il ne l’a pas lu."
+        },
+        "shelves": {
+          "label": "Les étagères. Le billet de ce soir est ici. Bouton : l’ouvrir.",
+          "name": "Les étagères",
+          "line": "Le billet de ce soir est coincé entre deux livres, sur les étagères. Personne ne l’y a rangé. Il attend."
+        },
+        "headphones": {
+          "label": "Le casque de Yasser. Le billet de ce soir est ici. Bouton : l’ouvrir.",
+          "name": "Le casque de Yasser",
+          "line": "Le billet de ce soir est plié dans le casque de Yasser. Il dit qu’il n’écoutait pas. Le billet ne dit rien."
         }
       },
       "season": {
@@ -8609,8 +7613,7 @@
           "pair": "Spotify → Audius"
         },
         "brave": {
-          "line": "Un navigateur pour un navigateur. La seule flèche que le tableau a juste.",
-          "open": "Un navigateur pour un navigateur.",
+          "line": "Un navigateur pour un navigateur. Samia se demande ce qui change.",
           "pair": "Chrome → Brave"
         },
         "ch": {
@@ -8679,9 +7682,6 @@
         "t": "Une affirmation sur le « web3 » attend. Vous pointez la preuve."
       },
       "sticker": {
-        "back": "Ce que c’est : Brave, un navigateur bâti sur Chromium, le code ouvert sous Chrome, qui bloque les traceurs par défaut. Ce que vous détenez : rien. Ce que vous cédez : certaines pages se cassent tant que les Shields ne sont pas baissés pour ce site. L’idée fausse : qu’il vous paie pour naviguer. Cité comme exemple, pas comme recommandation. Vérifié le 2026-11-22.",
-        "line": "Shields, trouvés. Ils n’ont jamais été cachés.",
-        "name": "Trouve Shields",
         "state": {
           "1": "contour à l’encre",
           "2": "couleur en aplat",
@@ -8717,7 +7717,8 @@
           "card": "LE LIVRET",
           "chart": "LE TABLEAU",
           "replay": "LE LIVRET · REJOUER UNE PROFONDEUR",
-          "slip": "LE BILLET DE CE SOIR"
+          "slip": "LE BILLET DE CE SOIR",
+          "replay2": "LE TABLEAU · REJOUER UNE PROFONDEUR"
         },
         "choose": "CELUI-CI",
         "close": "Fermer",
@@ -8733,6 +7734,7 @@
           "label": "NUMIDEA LABS GAMES présente",
           "line": "Une affirmation sur le « web3 » attend. Vous pointez la preuve.",
           "open": "OUVRIR L’ÉTAL",
+          "kept": "Un billet laissé ouvert reprend à la première question. Les profondeurs closes et les XP restent.",
           "season": "Saison un : Dix flèches",
           "start": "ALLUMER LA LANTERNE",
           "title": "LES ENQUÊTES DE NUIT"
@@ -8753,7 +7755,10 @@
           "flames": "Flammes allumées en tout : {n} sur 9.",
           "noSlip": "Pas de nouveau billet ce soir.",
           "slip": "Le billet de ce soir : profondeur {n}.",
-          "tools": "Outils en main : {n}."
+          "tools": "Outils en main : {n}.",
+          "closedN": "Closes dans ce navigateur : {n} des {m} profondeurs écrites.",
+          "flamesN": "Flammes allumées en tout : {n} sur {m}.",
+          "slipAt": "Le billet de ce soir : enquête {c}, profondeur {n}."
         },
         "flame": "Une flamme s’allume.",
         "flames": "{n} flammes allumées sur 3",
@@ -8832,7 +7837,19 @@
         "xp": "XP {n}",
         "xp0": "0 XP",
         "xpGain": "+{n} XP",
-        "xpRun": "{n} sur 60 pour cette partie"
+        "xpRun": "{n} sur 60 pour cette partie",
+        "goalAt": {
+          "awning": "Le billet de ce soir : sous l’auvent · 4 min",
+          "shelves": "Le billet de ce soir : sur les étagères · 4 min",
+          "headphones": "Le billet de ce soir : dans le casque de Yasser · 4 min",
+          "book": "Le billet de ce soir : dans le livre ouvert · 4 min",
+          "lantern": "Le billet de ce soir : dans la lanterne · 4 min"
+        },
+        "stallIdle4": "Quatre cercles sur la peinture. Toucher, c’est seulement regarder.",
+        "goalNone2": "Pas de nouveau billet ce soir. Rejouez une profondeur depuis le tableau.",
+        "load": "L’enquête sort du livre.",
+        "loadFail": "Cette enquête ne s’est pas ouverte. La connexion a peut-être coupé.",
+        "retry": "Réessayer"
       },
       "v": {
         "kuro": {

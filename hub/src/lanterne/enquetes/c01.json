@@ -1,0 +1,1424 @@
+{
+ "id": "c01",
+ "slug": "brave",
+ "n": 1,
+ "verdict": "yes",
+ "names": [
+  "Chrome",
+  "Brave",
+  "Google",
+  "Chromium",
+  "Shields",
+  "Rewards",
+  "Wallet",
+  "Sync"
+ ],
+ "sticker": {
+  "checked": "2026-11-22",
+  "src": [
+   "brave-shields",
+   "brave-privacy",
+   "brave-rewards"
+  ],
+  "law": true
+ },
+ "sources": [
+  {
+   "id": "brave-shields",
+   "url": "https://brave.com/shields/",
+   "read": "2026-11-22"
+  },
+  {
+   "id": "brave-rewards",
+   "url": "https://brave.com/brave-rewards/",
+   "read": "2026-11-22"
+  },
+  {
+   "id": "brave-wallet",
+   "url": "https://brave.com/wallet/",
+   "read": "2026-11-22"
+  },
+  {
+   "id": "brave-search",
+   "url": "https://brave.com/search/",
+   "read": "2026-11-22"
+  },
+  {
+   "id": "brave-privacy",
+   "url": "https://brave.com/privacy-features/",
+   "read": "2026-11-22"
+  },
+  {
+   "id": "brave-download",
+   "url": "https://brave.com/download/",
+   "read": "2026-11-22"
+  },
+  {
+   "id": "mdn-browsing",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Browsing_the_web",
+   "read": "2026-11-22"
+  },
+  {
+   "id": "mdn-cookies",
+   "url": "https://developer.mozilla.org/en-US/docs/Web/Privacy/Guides/Third-party_cookies",
+   "read": "2026-11-22"
+  },
+  {
+   "id": "mdn-web",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works",
+   "read": "2026-11-22"
+  },
+  {
+   "id": "mdn-domain",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name",
+   "read": "2026-11-22"
+  },
+  {
+   "id": "mdn-url",
+   "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL",
+   "read": "2026-11-22"
+  },
+  {
+   "id": "rfc2606",
+   "url": "https://www.rfc-editor.org/rfc/rfc2606.txt",
+   "read": "2026-11-22"
+  },
+  {
+   "id": "iana-example",
+   "url": "https://www.iana.org/help/example-domains",
+   "read": "2026-11-22"
+  },
+  {
+   "id": "carte",
+   "internal": true,
+   "read": "2026-11-22"
+  },
+  {
+   "id": "loi",
+   "internal": true,
+   "read": "2026-11-22"
+  }
+ ],
+ "depths": [
+  {
+   "id": "brave.1",
+   "key": "brave.d1",
+   "level": 1,
+   "crypto": true,
+   "checked": "2026-11-22",
+   "help": "captions",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "sales"
+     ],
+     "src": [
+      "carte"
+     ]
+    },
+    {
+     "id": "shield",
+     "tag": "labels",
+     "kind": "screen",
+     "template": "browser-bar",
+     "lawWith": [
+      "rewards",
+      "wallet"
+     ],
+     "parts": [
+      {
+       "id": "shield",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "rewards",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "wallet",
+       "caption": true,
+       "glyph": "wallet",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "bookmark",
+       "caption": true,
+       "glyph": "star",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "menu",
+       "caption": true,
+       "glyph": "bars",
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "shield",
+     "src": [
+      "brave-shields",
+      "brave-rewards",
+      "brave-wallet"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "browser-bar-phone",
+      "parts": [
+       {
+        "id": "tabs",
+        "text": true,
+        "caption": true,
+        "glyph": "tabs",
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "reload",
+        "caption": true,
+        "glyph": "reload",
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "shield",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "shield",
+      "src": [
+       "brave-shields"
+      ]
+     }
+    },
+    {
+     "id": "engine",
+     "tag": "read",
+     "kind": "screen",
+     "template": "four-tiles",
+     "parts": [
+      {
+       "id": "chrome",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "brave",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "bar",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "google",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "google",
+     "src": [
+      "mdn-browsing"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "settings-rows",
+      "parts": [
+       {
+        "id": "engine",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "defbrowser",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "network",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "engine",
+      "src": [
+       "mdn-browsing"
+      ]
+     }
+    },
+    {
+     "id": "count",
+     "tag": "read",
+     "kind": "screen",
+     "template": "shields-panel",
+     "parts": [
+      {
+       "id": "report",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "count",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "switch",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "cookies",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "count",
+     "src": [
+      "brave-shields",
+      "mdn-cookies"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "shields-panel",
+      "parts": [
+       {
+        "id": "switch",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "report",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "count",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "count",
+      "src": [
+       "brave-shields"
+      ]
+     }
+    },
+    {
+     "id": "note",
+     "tag": "note",
+     "kind": "notes",
+     "law": true,
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n1",
+     "mix": true,
+     "src": [
+      "brave-shields",
+      "mdn-web"
+     ],
+     "return": {
+      "kind": "notes",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r2",
+      "mix": true,
+      "src": [
+       "brave-shields",
+       "brave-search",
+       "brave-rewards"
+      ]
+     }
+    },
+    {
+     "id": "advert",
+     "tag": "read",
+     "kind": "page",
+     "template": "new-tab",
+     "address": true,
+     "parts": [
+      {
+       "id": "image",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "suggested",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "shortcuts",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "image",
+     "src": [
+      "brave-rewards"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "web-page",
+      "addr": "news.example",
+      "law": true,
+      "parts": [
+       {
+        "id": "article",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "gap",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "notif",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "notif",
+      "src": [
+       "brave-rewards",
+       "brave-shields",
+       "rfc2606",
+       "iana-example"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "settings-rows",
+     "law": true,
+     "parts": [
+      {
+       "id": "shields",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "rewards",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "wallet",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "engine",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "rewards",
+     "src": [
+      "brave-rewards",
+      "brave-shields",
+      "brave-wallet"
+     ],
+     "boss": true,
+     "return": {
+      "kind": "screen",
+      "template": "browser-bar",
+      "law": true,
+      "parts": [
+       {
+        "id": "shield",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "wallet",
+        "caption": true,
+        "glyph": "wallet",
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "rewards",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "rewards",
+      "src": [
+       "brave-rewards",
+       "brave-shields",
+       "brave-wallet"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "sales"
+     ],
+     "checked": "sales",
+     "src": [
+      "mdn-browsing",
+      "brave-rewards",
+      "brave-wallet",
+      "carte"
+     ],
+     "law": true
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "count"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "advert"
+    }
+   ],
+   "tool": "ring"
+  },
+  {
+   "id": "brave.2",
+   "key": "brave.d2",
+   "level": 2,
+   "crypto": true,
+   "checked": "2026-11-22",
+   "help": "eye",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "src": [
+      "brave-shields"
+     ]
+    },
+    {
+     "id": "fix",
+     "tag": "eye",
+     "kind": "screen",
+     "template": "shields-panel",
+     "parts": [
+      {
+       "id": "count",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "reload",
+       "caption": true,
+       "glyph": "reload",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "switch",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "report",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "switch",
+     "src": [
+      "brave-shields"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "shields-panel-phone",
+      "parts": [
+       {
+        "id": "switch",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "desktop",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "reload",
+        "caption": true,
+        "glyph": "reload",
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "switch",
+      "src": [
+       "brave-shields"
+      ]
+     }
+    },
+    {
+     "id": "scope",
+     "tag": "duo",
+     "kind": "duo",
+     "parts": [
+      {
+       "id": "a",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "b",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "b",
+     "tries": 1,
+     "src": [
+      "brave-shields"
+     ],
+     "return": {
+      "kind": "duo",
+      "parts": [
+       {
+        "id": "a",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "b",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "a",
+      "tries": 1,
+      "src": [
+       "brave-shields"
+      ]
+     }
+    },
+    {
+     "id": "token",
+     "tag": "rows",
+     "kind": "screen",
+     "template": "settings-rows",
+     "law": true,
+     "parts": [
+      {
+       "id": "shields",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "engine",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "sync",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "rewards",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "rewards",
+     "src": [
+      "brave-rewards",
+      "brave-privacy",
+      "loi"
+     ],
+     "return": {
+      "kind": "screen",
+      "template": "settings-rows",
+      "law": true,
+      "parts": [
+       {
+        "id": "wallet",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "shields",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "engine",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "wallet",
+      "src": [
+       "brave-wallet",
+       "loi"
+      ]
+     }
+    },
+    {
+     "id": "diff",
+     "tag": "compare",
+     "kind": "diff",
+     "a": [
+      "brave",
+      ".com",
+      "/download"
+     ],
+     "b": [
+      "brave",
+      ".com.get-browser.example",
+      "/get-brave"
+     ],
+     "answer": 1,
+     "src": [
+      "mdn-domain",
+      "mdn-url",
+      "rfc2606",
+      "iana-example"
+     ],
+     "return": {
+      "kind": "diff",
+      "a": [
+       "brave",
+       ".com",
+       "/download"
+      ],
+      "b": [
+       "brave",
+       "-download.example",
+       "/free"
+      ],
+      "answer": 1,
+      "src": [
+       "mdn-domain",
+       "mdn-url",
+       "rfc2606",
+       "iana-example"
+      ]
+     }
+    },
+    {
+     "id": "download",
+     "tag": "ring",
+     "kind": "page",
+     "template": "results",
+     "address": true,
+     "parts": [
+      {
+       "id": "ad",
+       "text": true,
+       "say": true,
+       "mark": true,
+       "opens": "brave-free-download.example",
+       "after": true
+      },
+      {
+       "id": "maker",
+       "text": true,
+       "say": true,
+       "opens": "brave.com/download",
+       "after": true
+      },
+      {
+       "id": "mirror",
+       "text": true,
+       "say": true,
+       "opens": "brave.com.get-browser.example/download",
+       "after": true
+      }
+     ],
+     "answer": "maker",
+     "ring": true,
+     "src": [
+      "brave-download",
+      "mdn-domain",
+      "mdn-url",
+      "rfc2606",
+      "iana-example"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "message",
+      "address": true,
+      "parts": [
+       {
+        "id": "b",
+        "lit": "brave-update.example/brave.com",
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "c",
+        "lit": "brave.com.safe-install.example",
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "a",
+        "lit": "brave.com/download",
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "a",
+      "src": [
+       "brave-download",
+       "mdn-domain",
+       "mdn-url",
+       "rfc2606",
+       "iana-example"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "screen",
+     "template": "web-page-with-bar",
+     "addr": "video-free.example",
+     "parts": [
+      {
+       "id": "close",
+       "caption": true,
+       "glyph": "cross",
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "switch",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "cont",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "reload",
+       "caption": true,
+       "glyph": "reload",
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "close",
+     "src": [
+      "brave-shields",
+      "rfc2606",
+      "iana-example"
+     ],
+     "boss": true,
+     "return": {
+      "kind": "screen",
+      "template": "web-page-with-bar",
+      "parts": [
+       {
+        "id": "switch",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "close",
+        "caption": true,
+        "glyph": "cross",
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "helper",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "switch",
+      "src": [
+       "brave-shields"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "half",
+     "src": [
+      "brave-shields"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "ratman",
+     "after": "token"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "download"
+    }
+   ]
+  },
+  {
+   "id": "brave.3",
+   "key": "brave.d3",
+   "level": 3,
+   "crypto": true,
+   "checked": "2026-11-22",
+   "help": "none",
+   "steps": [
+    {
+     "id": "bet",
+     "kind": "bet",
+     "tag": "bet",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "src": [
+      "mdn-cookies"
+     ]
+    },
+    {
+     "id": "embed",
+     "tag": "point",
+     "kind": "page",
+     "template": "web-page",
+     "addr": "news.example",
+     "parts": [
+      {
+       "id": "article",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "login",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "like",
+       "text": true,
+       "say": true,
+       "after": true
+      },
+      {
+       "id": "photo",
+       "text": true,
+       "say": true,
+       "after": true
+      }
+     ],
+     "answer": "like",
+     "src": [
+      "mdn-cookies",
+      "rfc2606",
+      "iana-example"
+     ],
+     "return": {
+      "kind": "page",
+      "template": "web-page",
+      "addr": "shop.example",
+      "parts": [
+       {
+        "id": "video",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "basket",
+        "text": true,
+        "say": true,
+        "after": true
+       },
+       {
+        "id": "prices",
+        "text": true,
+        "say": true,
+        "after": true
+       }
+      ],
+      "answer": "video",
+      "src": [
+       "mdn-cookies",
+       "rfc2606",
+       "iana-example"
+      ]
+     }
+    },
+    {
+     "id": "tracker",
+     "tag": "build",
+     "kind": "build",
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      },
+      {
+       "id": "c6",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c2",
+      "c4"
+     ],
+     "mix": true,
+     "src": [
+      "mdn-cookies",
+      "brave-shields"
+     ],
+     "return": {
+      "kind": "build",
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2"
+      ],
+      "mix": true,
+      "src": [
+       "mdn-cookies"
+      ]
+     }
+    },
+    {
+     "id": "shares",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c3"
+     ],
+     "mix": true,
+     "src": [
+      "brave-privacy",
+      "brave-shields",
+      "brave-rewards"
+     ],
+     "return": {
+      "kind": "build",
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r3"
+      ],
+      "mix": true,
+      "src": [
+       "brave-privacy"
+      ]
+     }
+    },
+    {
+     "id": "rewards",
+     "tag": "build",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      },
+      {
+       "id": "c6",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c2",
+      "c4"
+     ],
+     "mix": true,
+     "src": [
+      "brave-rewards",
+      "brave-shields",
+      "loi"
+     ],
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r3"
+      ],
+      "mix": true,
+      "src": [
+       "brave-rewards",
+       "loi"
+      ]
+     }
+    },
+    {
+     "id": "say",
+     "tag": "line",
+     "kind": "notes",
+     "law": true,
+     "parts": [
+      {
+       "id": "n1",
+       "text": true
+      },
+      {
+       "id": "n2",
+       "text": true
+      },
+      {
+       "id": "n3",
+       "text": true
+      }
+     ],
+     "answer": "n3",
+     "mix": true,
+     "src": [
+      "brave-shields",
+      "brave-rewards",
+      "mdn-web"
+     ],
+     "return": {
+      "kind": "notes",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       }
+      ],
+      "answer": "r2",
+      "mix": true,
+      "src": [
+       "brave-shields",
+       "brave-rewards"
+      ]
+     }
+    },
+    {
+     "id": "boss",
+     "tag": "boss",
+     "kind": "build",
+     "law": true,
+     "parts": [
+      {
+       "id": "c1",
+       "text": true
+      },
+      {
+       "id": "c2",
+       "text": true
+      },
+      {
+       "id": "c3",
+       "text": true
+      },
+      {
+       "id": "c4",
+       "text": true
+      },
+      {
+       "id": "c5",
+       "text": true
+      },
+      {
+       "id": "c6",
+       "text": true
+      }
+     ],
+     "answer": [
+      "c1",
+      "c3",
+      "c5"
+     ],
+     "mix": true,
+     "src": [
+      "brave-privacy",
+      "brave-shields",
+      "brave-rewards"
+     ],
+     "boss": true,
+     "return": {
+      "kind": "build",
+      "law": true,
+      "parts": [
+       {
+        "id": "r1",
+        "text": true
+       },
+       {
+        "id": "r2",
+        "text": true
+       },
+       {
+        "id": "r3",
+        "text": true
+       },
+       {
+        "id": "r4",
+        "text": true
+       },
+       {
+        "id": "r5",
+        "text": true
+       }
+      ],
+      "answer": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "mix": true,
+      "src": [
+       "brave-privacy",
+       "brave-shields",
+       "brave-rewards"
+      ]
+     }
+    },
+    {
+     "id": "stamp",
+     "kind": "stamp",
+     "tag": "stamp",
+     "options": [
+      "true",
+      "half",
+      "not"
+     ],
+     "checked": "half",
+     "src": [
+      "mdn-cookies"
+     ]
+    }
+   ],
+   "bubbles": [
+    {
+     "id": "a",
+     "who": "yasser",
+     "after": "shares"
+    },
+    {
+     "id": "b",
+     "who": "pigeon",
+     "after": "say"
+    }
+   ]
+  }
+ ]
+}

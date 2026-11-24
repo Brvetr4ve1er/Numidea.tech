@@ -24,37 +24,64 @@
   'use strict';
 
   /* ======================= the core ======================= */
+  /* D is the page's shell (#enq-data): the chart's rows, the titles, and case 1 while its depths live there. Every other
+     open case brings its depths when it is opened (register). Progress is kept per case, by the chart row's file id. */
   function create(D, opt) {
     opt = opt || {};
     var rnd = opt.random || Math.random;
-    var N = D.cases.length;
-    var zeros = function (v) { var a = []; for (var i = 0; i < N; i++) a.push(v); return a; };
+    var ROWS = D.season.filter(function (r) { return r.open; }), C = {};
+    var XP = D.xp, FL = D.flamesAt, TI = D.titles;
     var s = { screen: 'door', back: false, talk: null, sheet: '', crew: '', list: false,
-      xpBy: zeros(0), flBy: zeros(0), closed: zeros(false), stuck: 0, toStick: 0, ring: false,
+      by: {}, st: {}, ts: {}, ti: 0, lc: null, ring: false, cid: '', other: {},
       depth: 1, bet: '', stamp: '', plan: [], si: 0, phase: 'ask', tries: 0, off: [], picked: '', hintN: 0,
       hints: 0, first: 0, end: 0, xpRun: 0, queue: [], lost: [], eye: false, open: '', sel: '', slots: [],
       order: [], ki: 0, gain: 0, kuro: '', flameNow: false, queuedNow: false, wrongSlot: false, last: null,
       prev: 0, moved: 0, badSlot: -1 };
-    var XP = D.xp, FL = D.flamesAt;
+    function blank(n) { var o = { x: [], f: [], k: [] }; for (var i = 0; i < n; i++) { o.x.push(0); o.f.push(0); o.k.push(false); } return o; }
+    ROWS.forEach(function (r) { s.by[r.file] = blank(r.depths); s.st[r.file] = 0; s.ts[r.file] = 0; });
+    function register(id, data) { if (row(id) && data && data.depths && data.depths.length === row(id).depths) C[id] = data; }
+    if (D.cases && D.cases.length) register('c01', { id: 'c01', slug: 'brave', depths: D.cases });
+    function row(id) { return ROWS.filter(function (r) { return r.file === id; })[0] || null; }
 
-    /* ---- progress: what a reload keeps ---- */
-    function progress() { return { v: 1, xpBy: s.xpBy.slice(), flBy: s.flBy.slice(), closed: s.closed.slice(), stuck: s.stuck, toStick: s.toStick, back: s.back, list: s.list, ring: s.ring }; }
+    /* ---- progress: what a reload keeps. v1 was case 1 alone (three arrays); it becomes c01's, and the title it had
+       earned under the prototype's numbers is kept, since an earned title is never taken back ---- */
+    function progress() {
+      var by = {}, k; for (k in s.other) by[k] = s.other[k];
+      for (k in s.by) by[k] = { x: s.by[k].x.slice(), f: s.by[k].f.slice(), k: s.by[k].k.slice() };
+      return { v: 2, by: by, st: copy(s.st, {}), ts: copy(s.ts, {}), ti: s.ti, lc: s.lc, back: s.back, list: s.list, ring: s.ring };
+    }
     function save() { if (opt.save) opt.save(progress()); }
+    var num = function (max) { return function (x) { return typeof x === 'number' && x >= 0 && x <= max && x === Math.floor(x); }; };
     (function restore(p) {
-      if (!p || p.v !== 1) return;
-      var arr = function (a, ok) { return Array.isArray(a) && a.length === N && a.every(ok); };
-      var num = function (max) { return function (x) { return typeof x === 'number' && x >= 0 && x <= max && x === Math.floor(x); }; };
-      if (arr(p.xpBy, num(XP.max))) s.xpBy = p.xpBy.slice();
-      if (arr(p.flBy, num(FL.length))) s.flBy = p.flBy.slice();
-      if (arr(p.closed, function (x) { return typeof x === 'boolean'; })) s.closed = p.closed.slice();
-      var count = s.closed.filter(Boolean).length;
-      if (num(count)(p.stuck)) s.stuck = p.stuck;
-      if (num(count)(p.toStick) && p.toStick > s.stuck) s.toStick = p.toStick;
+      if (!p || typeof p !== 'object') return;
+      var arr = function (a, n, ok) { return Array.isArray(a) && a.length === n && a.every(ok); };
+      var isB = function (x) { return typeof x === 'boolean'; };
+      if (p.v === 1) {
+        var old = { x: p.xpBy, f: p.flBy, k: p.closed }, ok = arr(old.x, 3, num(XP.max)) && arr(old.f, 3, num(FL.length)) && arr(old.k, 3, isB);
+        if (!ok || !s.by.c01) return;
+        var oxp = old.x.reduce(function (a, b) { return a + b; }, 0), oti = 0;
+        (D.oldTitles || []).forEach(function (t, i) { var all = oxp >= t.xp; for (var j = 0; j < t.closed; j++) if (!old.k[j]) all = false; if (all && i === oti + 1) oti = i; });
+        p = { v: 2, by: { c01: old }, st: { c01: p.stuck }, ts: { c01: p.toStick }, ti: oti, back: p.back, list: p.list, ring: p.ring };
+      }
+      if (p.v !== 2 || !p.by || typeof p.by !== 'object') return;
+      for (var id in p.by) {
+        var e = p.by[id]; if (!/^c\d\d$/.test(id) || !e || typeof e !== 'object') continue;
+        var n = s.by[id] ? s.by[id].k.length : (Array.isArray(e.k) ? e.k.length : 0);
+        if (!(n > 0 && n <= 5) || !arr(e.x, n, num(XP.max)) || !arr(e.f, n, num(FL.length)) || !arr(e.k, n, isB)) continue;
+        if (!s.by[id]) { s.other[id] = e; continue; }
+        s.by[id] = { x: e.x.slice(), f: e.f.slice(), k: e.k.slice() };
+        var count = e.k.filter(Boolean).length, st = (p.st || {})[id], ts = (p.ts || {})[id];
+        if (num(count)(st)) s.st[id] = st;
+        if (num(count)(ts) && ts > s.st[id]) s.ts[id] = ts;
+      }
+      if (num(TI.length - 1)(p.ti)) s.ti = p.ti;
+      if (Array.isArray(p.lc) && s.by[p.lc[0]] && num(5)(p.lc[1]) && isB(p.lc[2])) s.lc = p.lc.slice();
       s.back = !!p.back; s.list = !!p.list; s.ring = !!p.ring;
     })(opt.saved);
 
     /* ---- reading the data ---- */
-    function level(d) { return D.cases[Math.max(1, Math.min(N, d)) - 1]; }
+    function has(id) { return !!C[id]; }
+    function level(d, id) { var c = C[id || s.cid]; return c ? c.depths[Math.max(1, Math.min(c.depths.length, d)) - 1] : null; }
     function scoredIds(d) { return level(d).steps.filter(function (x) { return x.kind !== 'bet' && x.kind !== 'stamp'; }).map(function (x) { return x.id; }); }
     function copy(a, b) { var o = {}, k; for (k in a) o[k] = a[k]; for (k in b) o[k] = b[k]; return o; }
     function stepAt(plan, si, d) {
@@ -66,7 +93,7 @@
       if (!it.ret) return copy(base, { ret: false, scored: scored, maxTries: base.tries || 2, k: k, hint: scored });
       return copy(base.return, { id: base.id, ret: true, scored: true, boss: false, maxTries: 1, hint: false, lawWith: null, ring: false, tag: 'back', k: k + '.r' });
     }
-    function cur() { return stepAt(s.plan, s.si, s.depth); }
+    function cur() { return s.cid && C[s.cid] ? stepAt(s.plan, s.si, s.depth) : null; }
     function targets(st) {
       if (!st) return [];
       if (st.kind === 'diff') return st.b.map(function (t, i) { return { id: 'g' + i, lit: t, right: i === st.answer, k: st.k + '.g.' + i, say: true, after: true }; });
@@ -87,18 +114,32 @@
     function live() { return s.screen === 'case' && (s.phase === 'ask' || s.phase === 'miss'); }
 
     /* ---- counts ---- */
-    function closedCount() { return s.closed.filter(Boolean).length; }
-    function recDepth() { for (var i = 0; i < N; i++) if (!s.closed[i]) return i + 1; return 0; }
-    function totalXp() { return s.xpBy.reduce(function (a, b) { return a + b; }, 0); }
-    function totalFlames() { return s.flBy.reduce(function (a, b) { return a + b; }, 0); }
-    /* a title turns on XP and on the depths closed in order: depth 3 alone turns nothing */
-    function titleIndex() {
-      var xp = totalXp(), ti = 0;
-      for (var i = 1; i < D.titles.length; i++) { var ok = xp >= D.titles[i].xp; for (var j = 0; j < D.titles[i].closed; j++) if (!s.closed[j]) ok = false; if (ok) ti = i; else break; }
-      return ti;
+    function each(fn) { ROWS.forEach(function (r) { fn(s.by[r.file], r); }); }
+    function sum(f) { var n = 0; each(function (e) { e[f].forEach(function (v) { n += +v; }); }); return n; }
+    function closedCount() { return sum('k'); }
+    function closedIn(id) { return s.by[id] ? s.by[id].k.filter(Boolean).length : 0; }
+    function depthsTotal() { var n = 0; each(function (e) { n += e.k.length; }); return n; }
+    function totalXp() { return sum('x'); }
+    function totalFlames() { return sum('f'); }
+    function pending(id) { return !!s.by[id] && s.ts[id] > s.st[id]; }
+    /* tonight's slip (the season plan, section 5), open cases only, in the chart's order: nothing closed, case 1 at depth
+       1; just after a case's first depth 1, the earliest other case with a deeper depth open; else the next case not
+       played, at depth 1; else the earliest depth not closed; else none */
+    function rec() {
+      var i, r, k, first = function (k, from) { for (var j = from; j < k.length; j++) if (!k[j]) return j + 1; return 0; };
+      if (!closedCount()) return ROWS.length ? { c: ROWS[0].file, d: 1 } : null;
+      if (s.lc && s.lc[1] === 1 && s.lc[2]) for (i = 0; i < ROWS.length; i++) { r = ROWS[i]; k = s.by[r.file].k; if (r.file !== s.lc[0] && k[0] && first(k, 1)) return { c: r.file, d: first(k, 1) }; }
+      for (i = 0; i < ROWS.length; i++) if (!closedIn(ROWS[i].file)) return { c: ROWS[i].file, d: 1 };
+      for (i = 0; i < ROWS.length; i++) { k = first(s.by[ROWS[i].file].k, 0); if (k) return { c: ROWS[i].file, d: k }; }
+      return null;
     }
-    /* the eye flower from the start; the ring once depth 1 is closed */
-    function tools() { return s.closed[0] ? ['eye', 'ring'] : ['eye']; }
+    /* a title turns on XP and on a number of cases closed at its depth; once turned it stays */
+    function keptAt(d) { var n = 0; each(function (e) { if (e.k[d - 1]) n++; }); return n; }
+    function titleIndex() { var xp = totalXp(), ti = 0; for (var i = 1; i < TI.length; i++) if (xp >= TI[i].xp && keptAt(TI[i].at) >= TI[i].cases) ti = i; return Math.max(ti, s.ti); }
+    /* can what is open reach that title at all? */
+    function reach(i) { var t = TI[i], n = 0; if (!t) return false; each(function (e) { if (e.k.length >= t.at) n++; }); return depthsTotal() * XP.max >= t.xp && n >= t.cases; }
+    /* the eye flower from the start; the ring once a first depth is closed */
+    function tools() { var r = false; each(function (e) { if (e.k[0]) r = true; }); return r ? ['eye', 'ring'] : ['eye']; }
 
     /* ---- moving between screens ---- */
     function start() { var first = !s.back; set({ screen: 'stall', sheet: '', crew: '', talk: first ? { who: 'yasser', k: 'v.yasser.greet.0' } : null, back: true }); if (first) save(); }
@@ -115,13 +156,17 @@
       set({ crew: who, sheet: '', talk: { who: who, k: 'v.' + who + '.' + line, v: { tools: tools().length } } });
     }
     function setList(on) { s.list = !!on; save(); }
-    function openSlip(d) {
-      var dep = d || recDepth();
-      if (!dep) { toCard(); return; }
-      var plan = scoredIds(dep).map(function (id) { return { id: id, ret: false }; });
+    /* a case opens on its slip once its depths are in (the page adds them); no case and no slip left: the chart */
+    function openSlip(id, d) {
+      if (!id) { var r = rec(); if (!r) { toChart(); return true; } id = r.c; d = r.d; }
+      if (!C[id]) return false;
+      var dep = Math.max(1, Math.min(C[id].depths.length, d || 1));
+      s.cid = id;
+      var plan = scoredIds(dep).map(function (x) { return { id: x, ret: false }; });
       set({ screen: 'slip', sheet: '', crew: '', talk: null, depth: dep, bet: '', stamp: '', plan: plan, si: 0,
-        hints: 0, first: 0, end: 0, xpRun: 0, queue: [], lost: [], eye: false, ki: 0, prev: s.xpBy[dep - 1] });
+        hints: 0, first: 0, end: 0, xpRun: 0, queue: [], lost: [], eye: false, ki: 0, prev: s.by[id].x[dep - 1] });
       set(fresh(plan, 0, dep));
+      return true;
     }
     function placeBet(o) { if (s.screen !== 'slip' || level(s.depth).steps[0].options.indexOf(o) === -1) return; set({ bet: o, screen: 'case' }); }
     function tapEye() { s.eye = true; }
@@ -153,9 +198,9 @@
     }
     function hit(st, id) {
       var firstTry = !st.ret && s.tries === 0, gain = firstTry ? XP.first : XP.retry;
-      var first = s.first + (firstTry ? 1 : 0), xpRun = s.xpRun + gain;
-      var xpBy = s.xpBy.slice(); xpBy[s.depth - 1] = Math.max(xpBy[s.depth - 1], xpRun);
-      set({ phase: 'hit', picked: id, gain: gain, moved: Math.max(0, xpRun - Math.max(s.prev, s.xpRun)), first: first, end: s.end + 1, xpRun: xpRun, xpBy: xpBy, open: '', sel: '',
+      var first = s.first + (firstTry ? 1 : 0), xpRun = s.xpRun + gain, e = s.by[s.cid];
+      e.x[s.depth - 1] = Math.max(e.x[s.depth - 1], xpRun);
+      set({ phase: 'hit', picked: id, gain: gain, moved: Math.max(0, xpRun - Math.max(s.prev, s.xpRun)), first: first, end: s.end + 1, xpRun: xpRun, open: '', sel: '',
         flameNow: flamesFor(first) > flamesFor(s.first), kuro: firstTry ? st.k + '.kuro' : 'v.kuro.hit.' + (s.ki % 5), ki: s.ki + (firstTry ? 0 : 1) });
       save();
     }
@@ -218,16 +263,16 @@
       set({ stamp: o, phase: 'stamped' });
     }
     function finish() {
-      var i = s.depth - 1, closed = s.closed.slice(), again = closed[i]; closed[i] = true;
-      var flBy = s.flBy.slice(), fl = flamesFor(s.first); flBy[i] = Math.max(flBy[i], fl);
-      var xpBy = s.xpBy.slice(); xpBy[i] = Math.max(xpBy[i], s.xpRun);
-      var count = closed.filter(Boolean).length;
-      set({ screen: 'end', closed: closed, flBy: flBy, xpBy: xpBy, toStick: count > s.stuck ? count : s.toStick,
-        last: { depth: s.depth, first: s.first, end: s.end, flames: fl, hints: s.hints, xp: s.xpRun, lost: s.lost.length, prev: s.prev, again: again, tool: !again && level(s.depth).tool ? level(s.depth).tool : '' } });
+      var e = s.by[s.cid], i = s.depth - 1, again = e.k[i], had = tools().length, fl = flamesFor(s.first);
+      e.k[i] = true; e.f[i] = Math.max(e.f[i], fl); e.x[i] = Math.max(e.x[i], s.xpRun);
+      var n = closedIn(s.cid);
+      if (n > s.st[s.cid]) s.ts[s.cid] = n;
+      s.lc = [s.cid, s.depth, !again]; s.ti = titleIndex();
+      set({ screen: 'end', last: { cid: s.cid, depth: s.depth, first: s.first, end: s.end, flames: fl, hints: s.hints, xp: s.xpRun, lost: s.lost.length, prev: s.prev, again: again, tool: tools().length > had ? 'ring' : '' } });
       save();
     }
-    function stick() { if (s.toStick > s.stuck) { set({ stuck: s.toStick, toStick: 0 }); save(); return true; } return false; }
-    function nextDepth() { var d = (s.last ? s.last.depth : s.depth) + 1; if (d <= N) openSlip(d); }
+    function stick(id) { id = id || (s.last && s.last.cid) || s.cid; if (pending(id)) { s.st[id] = s.ts[id]; s.ts[id] = 0; save(); return true; } return false; }
+    function nextDepth() { var L = s.last; if (L && L.depth < C[L.cid].depths.length) openSlip(L.cid, L.depth + 1); }
 
     /* ---- what the answer box says, as keys: the view only words it ---- */
     function feedback() {
@@ -254,7 +299,9 @@
     }
     function lawShown() {
       var st = cur(); if (!st) return false;
-      return !!(st.law || (st.lawWith && s.picked && st.lawWith.indexOf(s.picked) !== -1 && (s.phase === 'miss' || s.phase === 'reveal')));
+      /* lawWith: with the reason of a marked part, whether that reason comes with a miss, a hit or the shown answer */
+      var w = st.lawWith || [], r = rightOf(st), why = ['miss', 'hit', 'reveal'].indexOf(s.phase) !== -1;
+      return !!(st.law || (why && w.indexOf(s.picked) !== -1) || (s.phase === 'reveal' && r && w.indexOf(r.id) !== -1));
     }
     function captionsOn(st) { return !!st && !st.boss && (s.depth === 1 || (s.depth === 2 && s.eye)); }
     function position() {
@@ -265,14 +312,17 @@
       return { k: 'ui.pos', v: { i: s.si + 1, n: n } };
     }
 
-    return { state: s, data: D, progress: progress, level: level, scoredIds: scoredIds, cur: cur, targets: targets, byId: byId, rightOf: rightOf, flamesFor: flamesFor, live: live,
-      closedCount: closedCount, recDepth: recDepth, totalXp: totalXp, totalFlames: totalFlames, titleIndex: titleIndex, tools: tools,
+    return { state: s, data: D, rows: ROWS, row: row, register: register, has: has, progress: progress, level: level, scoredIds: scoredIds, cur: cur, targets: targets, byId: byId, rightOf: rightOf, flamesFor: flamesFor, live: live,
+      closedCount: closedCount, closedIn: closedIn, depthsTotal: depthsTotal, rec: rec, pending: pending, keptAt: keptAt, reach: reach, totalXp: totalXp, totalFlames: totalFlames, titleIndex: titleIndex, tools: tools,
       start: start, toDoor: toDoor, toStall: toStall, toChart: toChart, toCard: toCard, look: look, closeSheet: closeSheet, tapCrew: tapCrew, setList: setList,
       openSlip: openSlip, placeBet: placeBet, tapEye: tapEye, askHint: askHint, pick: pick, choose: choose, tapChip: tapChip, tapSlot: tapSlot, next: next, pickStamp: pickStamp,
       stick: stick, nextDepth: nextDepth, bubbleFor: bubbleFor, feedback: feedback, lawShown: lawShown, captionsOn: captionsOn, position: position };
   }
 
-  G.NightCases = { core: { create: create } };
+  /* the open cases' files call NightCases.add({ id, data }) and NightCases.add({ id, lang, strings }); the page's view
+     takes them (before it runs, they wait here) */
+  var waiting = [];
+  G.NightCases = { core: { create: create }, add: function (o) { waiting.push(o); } };
   if (typeof document === 'undefined') return;
 
   /* ======================= the view ======================= */
@@ -285,7 +335,9 @@
   if (!app || !DATA) { root.setAttribute('data-enq-off', ''); return; }
   try { FR = JSON.parse($('#hub-fr').textContent); } catch (e) {}
   var lang = 'fr', P = 'lant.enq.';
-  var raw = function (k) { var L = G.HUB_I18N && G.HUB_I18N[lang]; return L && L[k] != null ? L[k] : (FR[k] != null ? FR[k] : ''); };
+  /* the open cases' strings, by language and full key (lant.enq.c.<slug>.…), as their files bring them */
+  var CS = {}, GOT = {};
+  var raw = function (k) { var L = G.HUB_I18N && G.HUB_I18N[lang], c = CS[lang] || {}, f = CS.fr || {}; return L && L[k] != null ? L[k] : (c[k] != null ? c[k] : (FR[k] != null ? FR[k] : (f[k] != null ? f[k] : ''))); };
   var fill = function (str, v) { return v ? String(str).replace(/\{(\w+)\}/g, function (m, k) { return v[k] != null ? v[k] : m; }) : str; };
   var T = function (k, v) { return fill(raw(P + k), v); };
   var name = function (who) { return who === 'stall' ? T('ui.stallName') : raw('lant.cast.' + who); };
@@ -295,6 +347,45 @@
   try { saved = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
   var game = create(DATA, { saved: saved, save: function (p) { try { localStorage.setItem(KEY, JSON.stringify(p)); } catch (e) {} } });
   var S = game.state;
+  /* a case's files, once in: its depths go to the rules, its strings to CS */
+  function take(o) {
+    var r = o && game.row(o.id); if (!r) return;
+    if (o.data) game.register(o.id, o.data);
+    if (o.lang && o.strings) { var L = CS[o.lang] = CS[o.lang] || {}, pre = P + 'c.' + r.id + '.'; for (var k in o.strings) L[pre + k] = o.strings[k]; GOT[o.id + '.' + o.lang] = true; }
+  }
+  waiting.forEach(take); waiting = []; G.NightCases.add = take;
+  /* case 1 lives in the page until it moves to its own files */
+  var legacy = function (id) { return id === 'c01' && !!(DATA.cases && DATA.cases.length); };
+  var ready = function (id) { return game.has(id) && (legacy(id) || !!GOT[id + '.' + lang]); };
+  var me = $('script[src*="enquetes.js"]'), VER = ((me && /\?v=[^&#]*/.exec(me.getAttribute('src'))) || [''])[0];
+  /* the two files of a case, added as script elements (no fetch); one that fails is taken out, so « Try again » asks again */
+  function fetchCase(id, cb) {
+    var want = [];
+    if (!game.has(id)) want.push(id);
+    if (!legacy(id) && !GOT[id + '.' + lang]) want.push(id + '.' + lang);
+    var left = want.length, ok = true;
+    if (!left) { cb(ready(id)); return; }
+    want.forEach(function (f) {
+      var x = d.createElement('script'); x.src = 'enq/' + f + '.js' + VER; x.async = false;
+      x.onload = x.onerror = function (e) { if (e.type === 'error') { ok = false; if (x.parentNode) x.parentNode.removeChild(x); } if (!--left) cb(ok && ready(id)); };
+      d.head.appendChild(x);
+    });
+  }
+  /* open a case at a depth (none named: tonight's slip), once its files are in */
+  var wait = null;
+  function openCase(id, dep) {
+    if (!id) { var r = game.rec(); if (!r) { act(game.openSlip); return; } id = r.c; dep = r.d; }
+    if (ready(id)) { act(function () { game.openSlip(id, dep); }); return; }
+    wait = { id: id, d: dep, fail: false }; render('top');
+    fetchCase(id, function (ok) { if (!wait || wait.id !== id) return; if (ok) act(function () { game.openSlip(id, dep); }); else { wait.fail = true; render('retry'); } });
+  }
+  function waitScreen() {
+    var w = el('section', 'enq-wait');
+    add(w, bar('stall', []), heading('h2', 'enq-h', T(wait.fail ? 'ui.loadFail' : 'ui.load')));
+    if (wait.fail) add(w, add(el('div', 'enq-row'), btn('enq-btn enq-btn--fill', T('ui.retry'), function () { openCase(wait.id, wait.d); }, 'retry'), btn('enq-btn', T('ui.toStall'), function () { act(game.toStall, 'goal'); })));
+    return w;
+  }
+  var stickerK = function (id) { return legacy(id) ? 'sticker' : 'c.' + game.row(id).id + '.sticker'; };
 
   /* ---- sound: eight tones, and no audio context before the radio plays ---- */
   var radioOn = false, ac = null;
@@ -408,6 +499,8 @@
     var w = el('section', 'enq-door');
     add(w, el('p', 'enq-door__label', T('ui.door.label')), heading('h1', 'enq-door__h', T('ui.door.title')), el('p', 'enq-door__season', T('ui.door.season')), el('p', 'enq-door__line', T('ui.door.line')));
     add(w, btn('enq-go', T(S.back ? 'ui.door.open' : 'ui.door.start'), function () { game.start(); sfx('tap'); if (S.talk) sfx('yasser'); render('goal'); }, 'go'));
+    /* a reload keeps closed depths, XP and a waiting sticker, not the place inside an open case: the door says so */
+    if (S.back) add(w, el('p', 'enq-door__kept', T('ui.door.kept')));
     add(w, law());
     var o = el('div', 'enq-door__opts');
     var snd = soundBtn('enq-opt', false);
@@ -418,40 +511,51 @@
   }
 
   /* ---- B, C. the stall, its rings and its look sheet ---- */
-  var RING_GO = { slip: function () { game.openSlip(0); }, card: game.toCard, chart: game.toChart };
+  /* three fixed rings; tonight's slip on the awning, the shelves or the headphones draws a fourth there */
+  var RING_GO = { slip: function () { openCase(); }, card: function () { act(game.toCard); }, chart: function () { act(game.toChart); } };
+  function slipAt() { var r = game.rec(), w = r && game.row(r.c); return w ? w.slip : ''; }
+  function ringList() {
+    var p = slipAt(), pl = DATA.places.filter(function (x) { return x.id === p; })[0];
+    return pl ? DATA.rings.concat([{ id: pl.id, at: pl.at, opens: 'slip', place: true }]) : DATA.rings;
+  }
+  function ringBtn(r, rec) { return r.opens === 'slip' ? (rec ? 'ring.lantern.btn' : 'ui.btn.replay2') : 'ring.' + r.id + '.btn'; }
   function rings() {
     ringBox.textContent = '';
-    if (S.screen !== 'stall') return;
-    DATA.rings.forEach(function (r) {
-      var b = btn('enq-ring' + (r.id === 'lantern' && game.recDepth() ? ' enq-ring--slip' : '') + (S.sheet === r.id ? ' is-on' : ''), '', function () { game.look(r.id); sfx('tap'); render('sheet'); }, 'ring-' + r.id);
+    if (S.screen !== 'stall' || wait) return;
+    var rec = game.rec();
+    ringList().forEach(function (r) {
+      var b = btn('enq-ring' + ((r.id === 'lantern' || r.place) && rec ? ' enq-ring--slip' : '') + (S.sheet === r.id ? ' is-on' : ''), '', function () { game.look(r.id); sfx('tap'); render('sheet'); }, 'ring-' + r.id);
       b.setAttribute('aria-label', T('ring.' + r.id + '.label')); place(b, r.at);
       ringBox.appendChild(b);
     });
   }
   function stall() {
-    var w = el('section', 'enq-stall'), rec = game.recDepth();
+    var w = el('section', 'enq-stall'), rec = game.rec(), list = ringList(), at = slipAt();
     add(w, bar('door', [el('span', 'enq-bar__rank', T('rank.' + game.titleIndex()))]));
     var h = heading('h2', 'sr', T('ui.stallName'));
-    add(w, h, btn('enq-goal', T(rec ? 'ui.goal' : 'ui.goalNone'), function () { game.openSlip(0); sfx('tap'); render('top'); }, 'goal'));
+    add(w, h, btn('enq-goal', T(rec ? 'ui.goalAt.' + at : 'ui.goalNone2'), function () { openCase(); }, 'goal'));
     var box = el('div', 'enq-talk');
-    var ring = DATA.rings.filter(function (r) { return r.id === S.sheet; })[0];
+    var ring = list.filter(function (r) { return r.id === S.sheet; })[0];
     if (ring) {
       box.className = 'enq-talk enq-talk--sheet';
       var hh = el('h3', 'enq-talk__name', T('ring.' + ring.id + '.name')); hh.tabIndex = -1; hh.setAttribute('data-f', 'sheet');
-      var go = btn('enq-btn enq-btn--fill', T(ring.opens === 'slip' && !rec ? 'ui.btn.replay' : 'ring.' + ring.id + '.btn'), function () { RING_GO[ring.opens](); sfx('tap'); render('top'); }, 'sheet-go');
-      add(box, hh, el('p', 'enq-talk__t', T('ring.' + ring.id + '.line')), add(el('div', 'enq-row'), go, btn('enq-btn', T('ui.close'), function () { game.closeSheet(); render('ring-' + ring.id); })));
+      var go1 = btn('enq-btn enq-btn--fill', T(ringBtn(ring, rec)), function () { RING_GO[ring.opens](); }, 'sheet-go');
+      /* a slip in the book adds no ring: the book's sheet opens it */
+      var go2 = ring.id === 'book' && rec && at === 'book' ? btn('enq-btn enq-btn--fill', T('ring.book.slip'), function () { openCase(); }, 'sheet-slip') : null;
+      add(box, hh, el('p', 'enq-talk__t', T('ring.' + ring.id + '.line')), add(el('div', 'enq-row'), go2, go1, btn('enq-btn', T('ui.close'), function () { game.closeSheet(); render('ring-' + ring.id); })));
     } else {
       var who = S.talk ? S.talk.who : 'stall';
       var tx = el('div', 'enq-talk__body');
-      add(tx, el('p', 'enq-talk__name', name(who)), el('p', 'enq-talk__t', S.talk ? T(S.talk.k, S.talk.v) : T('ui.stallIdle')));
+      add(tx, el('p', 'enq-talk__name', name(who)), el('p', 'enq-talk__t', S.talk ? T(S.talk.k, S.talk.v) : T(list.length > 3 ? 'ui.stallIdle4' : 'ui.stallIdle')));
       once(tx, 'enq-in');
       add(box, who === 'stall' ? null : face(who, 'enq-face--lg'), tx);
       var c = DATA.crew.filter(function (x) { return x.id === S.crew; })[0];
       if (c) {
-        var fact = c.fact === 'closed' ? T('ui.fact.closed', { n: game.closedCount() }) : c.fact === 'flames' ? T('ui.fact.flames', { n: game.totalFlames() })
-          : c.fact === 'slip' ? (rec ? T('ui.fact.slip', { n: rec }) : T('ui.fact.noSlip')) : T('ui.fact.tools', { n: game.tools().length });
-        var label = c.btn === 'slip' ? (rec ? 'ui.btn.slip' : 'ui.btn.card') : 'ui.btn.' + c.btn;
-        add(tx, el('p', 'enq-talk__fact', fact), btn('enq-btn enq-btn--fill', T(label), function () { (c.btn === 'slip' ? RING_GO.slip : RING_GO[c.btn])(); sfx('tap'); render('top'); }, 'crew-go'));
+        var m = game.depthsTotal();
+        var fact = c.fact === 'closed' ? T('ui.fact.closedN', { n: game.closedCount(), m: m }) : c.fact === 'flames' ? T('ui.fact.flamesN', { n: game.totalFlames(), m: m * DATA.flamesAt.length })
+          : c.fact === 'slip' ? (rec ? T('ui.fact.slipAt', { c: game.row(rec.c).n, n: rec.d }) : T('ui.fact.noSlip')) : T('ui.fact.tools', { n: game.tools().length });
+        var to = c.btn === 'slip' && !rec ? 'chart' : c.btn;
+        add(tx, el('p', 'enq-talk__fact', fact), btn('enq-btn enq-btn--fill', T(to === 'slip' ? 'ui.btn.slip' : 'ui.btn.' + to), function () { RING_GO[to](); }, 'crew-go'));
       }
     }
     var strip = el('div', 'enq-crew'); strip.setAttribute('role', 'group'); strip.setAttribute('aria-label', T('ui.crew.h'));
@@ -465,7 +569,7 @@
     add(w, strip, box);
     /* the list view has no painting: its three rings are three buttons here */
     var nav = el('div', 'enq-rings-list');
-    DATA.rings.forEach(function (r) { nav.appendChild(btn('enq-btn', T(r.opens === 'slip' && !rec ? 'ui.btn.replay' : 'ring.' + r.id + '.btn'), function () { RING_GO[r.opens](); sfx('tap'); render('top'); })); });
+    DATA.rings.forEach(function (r) { nav.appendChild(btn('enq-btn', T(ringBtn(r, rec)), function () { RING_GO[r.opens](); })); });
     return add(w, nav);
   }
 
@@ -481,7 +585,7 @@
     add(w, pv, el('p', 'enq-ask', T(c + '.' + bet.id + '.prompt')));
     var row = el('div', 'enq-verdicts');
     bet.options.forEach(function (o) { row.appendChild(btn('enq-verdict', T('ui.opt.' + o), function () { game.placeBet(o); sfx('tap'); render('top'); }, 'opt-' + o)); });
-    return add(w, row);
+    return add(w, row, bet.law ? law('enq-law--band') : null);
   }
   function copyStep(lv, i) { var st = lv.steps[i]; return { kind: st.kind, parts: st.parts, b: st.b, answer: st.answer, k: '' }; }
 
@@ -514,6 +618,8 @@
       return add(ev, el('p', 'enq-ev__k', T('ui.addrA')), a, el('p', 'enq-ev__k', T('ui.addrB')), b, notes);
     }
     if (st.kind === 'build') {
+      /* three slots and their chips: set tighter, so the last chip stays in the phone's decide zone (SPEC section 3) */
+      if (st.answer.length > 2) ev.classList.add('enq-ev--long');
       var sent = el('p', 'enq-frame');
       /* a slot keeps what is written against it: the mark that follows (« {2}. ») and a letter joined before (« و{3} ») */
       var pcs = T(st.k + '.frame').split(/(\{\d\})/), glue = {};
@@ -551,7 +657,7 @@
     }
     /* a mock screen: every part a button, in its written order (notes are shuffled) */
     var tpl = st.template || st.kind, layout = TPL[tpl] || 'list', caps = game.captionsOn(st);
-    var title = st.addr || (st.address ? T(st.k + '.address') : raw(P + 'tpl.' + tpl));
+    var title = st.addr || (st.address ? T(st.k + '.address') : raw(P + 'tpl.' + tpl) || raw(P + 'c.' + game.row(S.cid).id + '.tpl.' + tpl));
     var frame = el('div', 'enq-mock enq-mock--' + layout + ' enq-mock--' + tpl);
     if (title) add(frame, st.addr ? add(el('p', 'enq-mock__title'), ltr(title)) : el('p', 'enq-mock__title', title));
     var body = el('div', 'enq-mock__body'), after = el('div', 'enq-after');
@@ -678,7 +784,7 @@
 
   /* ---- G. the end card ---- */
   function endCard() {
-    var w = el('section', 'enq-end'), L = S.last, lv = game.level(L.depth), first = !L.again && !L.prev;
+    var w = el('section', 'enq-end'), L = S.last, lv = game.level(L.depth, L.cid), first = !L.again && !L.prev, sk = stickerK(L.cid), nd = game.row(L.cid).depths;
     add(w, bar('stall', []));
     var card = el('div', 'enq-endcard');
     add(card, heading('h2', 'enq-endcard__h', T('ui.end.closed')), el('p', 'enq-endcard__l', T('ui.end.score', { first: L.first, end: L.end })), el('p', 'enq-endcard__l', T('ui.end.flames', { flames: L.flames, hints: L.hints })));
@@ -690,46 +796,60 @@
       add(card, tl);
     }
     if (!L.flames) add(card, el('p', 'enq-endcard__q', T('ui.says', { who: name('yasser'), t: T('v.yasser.noFlameLit.0') })));
-    add(card, el('p', 'enq-endcard__st', T('sticker.name') + ' · ' + T('sticker.state.' + Math.max(1, S.toStick || S.stuck))));
+    add(card, el('p', 'enq-endcard__st', T(sk + '.name') + ' · ' + T('sticker.state.' + Math.max(1, S.ts[L.cid] || S.st[L.cid]))));
     var row = el('div', 'enq-col');
-    add(row, btn('enq-btn enq-btn--fill', T(S.toStick > S.stuck ? 'ui.end.stick' : 'ui.btn.chart'), function () { game.toChart(); sfx('tap'); render('top'); }, 'stick'));
-    if (L.depth < DATA.cases.length) add(row, btn('enq-btn', T('ui.end.next', { n: L.depth + 1, name: T('depth.' + (L.depth + 1) + '.name') }), function () { game.nextDepth(); sfx('tap'); render('top'); }, 'deeper'));
+    add(row, btn('enq-btn enq-btn--fill', T(game.pending(L.cid) ? 'ui.end.stick' : 'ui.btn.chart'), function () { act(game.toChart); }, 'stick'));
+    if (L.depth < nd) add(row, btn('enq-btn', T('ui.end.next', { n: L.depth + 1, name: T('depth.' + (L.depth + 1) + '.name') }), function () { act(game.nextDepth); }, 'deeper'));
     add(row, btn('enq-btn', T('ui.stop'), function () { game.toStall(); render('goal'); }, 'stop'));
     return add(w, add(card, row));
   }
 
-  /* ---- H. the chart: thirteen rows as text, one of them written ---- */
-  var backOpen = false;
+  /* ---- H. the chart: thirteen rows as text; an open row is a button, its sheet one button a written depth ---- */
+  var backOpen = '', rowOpen = '';
   function chart() {
-    var w = el('section', 'enq-chart'), count = game.closedCount(), pending = S.toStick > S.stuck;
+    var w = el('section', 'enq-chart'), any = game.rows.some(function (r) { return game.pending(r.file); });
     add(w, bar('stall', []), heading('h2', 'enq-h', T('chart.h')), el('p', 'enq-chart__premise', T('season.premise')), law());
-    if (pending) add(w, el('p', 'enq-chart__cta', T('ui.says', { who: name('kuro'), t: T('v.kuro.sticker.0') })));
+    if (any) add(w, el('p', 'enq-chart__cta', T('ui.says', { who: name('kuro'), t: T('v.kuro.sticker.0') })));
     var list = el('ol', 'enq-rows'), chap = 0;
     DATA.season.forEach(function (c) {
       if (c.chapter !== chap) { chap = c.chapter; var hd = el('li', 'enq-rows__ch'); add(hd, el('h3', 'enq-rows__chn', T('season.ch.' + chap + '.name')), el('p', 'enq-rows__chl', T('season.ch.' + chap + '.line'))); list.appendChild(hd); }
-      var li = el('li', 'enq-row2' + (c.playable ? ' enq-row2--mine' : '')), mine = !!c.playable, closed = mine && count > 0;
-      var inner = mine && pending ? btn('enq-row2__in enq-row2__btn', '', function () { if (game.stick()) { sfx('end'); render('landed'); say(T('sticker.name') + ', ' + T('sticker.state.' + S.stuck) + '. ' + T('sticker.line')); } }, 'row') : el('div', 'enq-row2__in');
+      var mine = !!game.row(c.file), id = c.file, n = mine ? game.closedIn(id) : 0, pend = mine && game.pending(id), stuck = mine ? S.st[id] : 0, sk = mine ? stickerK(id) : '';
+      var li = el('li', 'enq-row2' + (mine ? ' enq-row2--mine' : ''));
+      var inner = mine ? btn('enq-row2__in enq-row2__btn', '', function () {
+        if (pend) { if (game.stick(id)) { rowOpen = ''; sfx('end'); render('landed-' + id); say(T(sk + '.name') + ', ' + T('sticker.state.' + S.st[id]) + '. ' + T(sk + '.line')); } return; }
+        rowOpen = rowOpen === id ? '' : id; sfx('tap'); render('row-' + id);
+      }, 'row-' + id) : el('div', 'enq-row2__in');
+      if (mine && !pend) { inner.setAttribute('aria-expanded', String(rowOpen === id)); inner.setAttribute('aria-label', T('chart.rowAria', { pair: T('season.' + c.id + '.pair') })); }
       add(inner, el('span', 'enq-row2__n', (c.n < 10 ? '0' : '') + c.n), el('span', 'enq-row2__pair', T('season.' + c.id + '.pair')));
-      add(inner, el('span', 'enq-row2__line', T('season.' + c.id + (mine && !closed ? '.open' : '.line'))));
+      add(inner, el('span', 'enq-row2__line', T(!mine ? 'season.' + c.id + '.line' : legacy(id) ? 'season.' + c.id + (n ? '.line' : '.open') : 'c.' + c.id + '.row')));
       if (!mine) add(inner, el('span', 'enq-row2__soon', T('chart.notYet')));
-      if (closed) add(inner, el('span', 'enq-row2__v', T('chart.verdict', { v: T('chart.' + c.verdict), n: count })));
-      if (mine && pending) add(inner, el('span', 'enq-row2__cta', T('chart.cta', { state: T('sticker.state.' + S.toStick) })));
-      if (mine && S.stuck > 0) {
-        var stk = el('span', 'enq-sticker', T('sticker.name')); stk.setAttribute('data-state', String(S.stuck)); stk.setAttribute('role', 'img');
-        stk.setAttribute('aria-label', T('chart.stickerAria', { name: T('sticker.name'), state: T('sticker.state.' + S.stuck) }));
-        if (!pending) once(stk, 'enq-pop');
+      if (n) add(inner, el('span', 'enq-row2__v', T('chart.verdictN', { v: T('chart.' + c.verdict), n: n, m: c.depths })));
+      if (pend) add(inner, el('span', 'enq-row2__cta', T('chart.cta', { state: T('sticker.state.' + S.ts[id]) })));
+      if (stuck > 0) {
+        var stk = el('span', 'enq-sticker', T(sk + '.name')); stk.setAttribute('data-state', String(stuck)); stk.setAttribute('role', 'img');
+        stk.setAttribute('aria-label', T('chart.stickerAria', { name: T(sk + '.name'), state: T('sticker.state.' + stuck) }));
+        if (!pend) once(stk, 'enq-pop');
         add(inner, stk);
       }
       add(li, inner);
-      if (mine && S.stuck > 0 && !pending) {
-        var landed = el('p', 'enq-row2__landed', T('sticker.line')); landed.tabIndex = -1; landed.setAttribute('data-f', 'landed');
-        var bb = btn('enq-btn', T('chart.back'), function () { backOpen = !backOpen; render('sback'); }, 'sback'); bb.setAttribute('aria-expanded', String(backOpen));
+      if (mine && rowOpen === id && !pend) {
+        var sh = el('div', 'enq-rowsheet');
+        add(sh, el('p', 'enq-ev__k', T('chart.depths', { n: c.depths })));
+        for (var i = 1; i <= c.depths; i++) (function (dp) {
+          var done = S.by[id].k[dp - 1];
+          add(sh, btn('enq-btn' + (done ? '' : ' enq-btn--fill'), T('ui.end.next', { n: dp, name: T('depth.' + dp + '.name') }) + (done ? ' · ' + T('chart.played') : ''), function () { openCase(id, dp); }, 'play-' + id + '-' + dp));
+        })(i);
+        add(li, sh);
+      }
+      if (stuck > 0 && !pend) {
+        var landed = el('p', 'enq-row2__landed', T(sk + '.line')); landed.tabIndex = -1; landed.setAttribute('data-f', 'landed-' + id);
+        var bb = btn('enq-btn', T('chart.back'), function () { backOpen = backOpen === id ? '' : id; render('sback-' + id); }, 'sback-' + id); bb.setAttribute('aria-expanded', String(backOpen === id));
         add(li, landed, bb);
-        if (backOpen) {
+        if (backOpen === id) {
           var bk = el('div', 'enq-back');
-          add(bk, el('p', '', T('sticker.back')));
+          add(bk, el('p', '', T(sk + '.back')));
           var ul = el('ul', 'enq-src');
-          DATA.sources.filter(function (x) { return DATA.sticker.src.indexOf(x.id) !== -1; }).forEach(function (x) {
+          (c.src || []).forEach(function (x) {
             var a = el('a', ''); a.href = x.url; a.target = '_blank'; a.rel = 'noopener'; a.appendChild(ltr(x.at)); a.appendChild(el('span', 'sr', raw('case.newTab')));
             add(ul, add(el('li', ''), a, d.createTextNode(' '), el('span', 'enq-src__d', T('chart.readOn', { date: x.read }))));
           });
@@ -742,32 +862,32 @@
     return add(w, list, btn('enq-btn', T('ui.toStall'), function () { act(game.toStall, 'goal'); }, 'back2'));
   }
 
-  /* ---- I. the card ---- */
+  /* ---- I. the card: the title, the season's numbers for the next one, the five depths kept across the open cases ---- */
   function cardScreen() {
-    var w = el('section', 'enq-card'), ti = game.titleIndex(), xp = game.totalXp(), max = DATA.xp.max * DATA.cases.length, tl = game.tools();
+    var w = el('section', 'enq-card'), ti = game.titleIndex(), xp = game.totalXp(), tl = game.tools(), nx = DATA.titles[ti + 1], open = game.rows.length;
     add(w, bar('stall', []));
     var top = el('div', 'enq-pcard');
     var spr = el('span', 'enq-sprite'); spr.setAttribute('aria-hidden', 'true'); spr.style.setProperty('--cx', String(DATA.art.cells[ti] % 8)); spr.style.setProperty('--cy', String(Math.floor(DATA.art.cells[ti] / 8)));
     var info = el('div', 'enq-pcard__info');
     add(info, heading('h2', 'sr', T('card.h')), el('p', 'enq-pcard__k', T('card.titleK')), el('p', 'enq-pcard__title', T('rank.' + ti)));
     var meter = el('div', 'enq-meter'); meter.setAttribute('role', 'img'); meter.setAttribute('aria-label', T('card.xpAria') + ': ' + T('card.xp', { n: xp }));
-    var fillBar = el('span', 'enq-meter__f'); fillBar.style.setProperty('--p', Math.min(100, Math.round((xp / max) * 100)) + '%');
+    var fillBar = el('span', 'enq-meter__f'); fillBar.style.setProperty('--p', (nx ? Math.min(100, Math.round((xp / nx.xp) * 100)) : 100) + '%');
     add(info, add(meter, fillBar), el('p', 'enq-pcard__xp', T('card.xp', { n: xp })));
-    add(info, el('p', 'enq-pcard__l', ti < DATA.titles.length - 1 ? T('card.next', { t: T('rank.' + (ti + 1)), xp: DATA.titles[ti + 1].xp, d: DATA.titles[ti + 1].closed }) : T('card.top')));
-    add(info, el('p', 'enq-pcard__l', T('card.flames', { n: game.totalFlames() })), el('p', 'enq-pcard__l', T('card.tools', { list: tl.map(function (x) { return T('tool.' + x); }).join(T('card.and')) })));
+    add(info, el('p', 'enq-pcard__l', nx ? T('card.nextS', { t: T('rank.' + (ti + 1)), xp: nx.xp, c: nx.cases, d: nx.at }) : T('card.top')));
+    if (nx && !game.reach(ti + 1)) add(info, el('p', 'enq-pcard__l', T('card.cannot')));
+    add(info, el('p', 'enq-pcard__l', T('card.flamesN', { n: game.totalFlames(), m: game.depthsTotal() * DATA.flamesAt.length })), el('p', 'enq-pcard__l', T('card.tools', { list: tl.map(function (x) { return T('tool.' + x); }).join(T('card.and')) })));
     var kit = el('span', 'enq-pcard__kit'); kit.setAttribute('aria-hidden', 'true'); tl.forEach(function (x) { kit.appendChild(img(DATA.art.tools[x], '')); });
     add(w, add(top, spr, add(info, kit)));
     var list = el('ol', 'enq-ladder');
-    DATA.depths.filter(function (x) { return x.playable; }).forEach(function (x, i) {
+    DATA.depths.filter(function (x) { return x.playable; }).forEach(function (x) {
       var li = el('li', 'enq-ladder__r'), nm = T('depth.' + x.n + '.name'), tx = el('div', 'enq-ladder__t');
       add(tx, el('h3', 'enq-ladder__n', T('card.depth', { n: x.n, name: nm })), el('p', 'enq-ladder__v', T('depth.' + x.n + '.verbs')));
       if (raw(P + 'depth.' + x.n + '.tool')) add(tx, el('p', 'enq-ladder__tool', T('depth.' + x.n + '.tool')));
-      add(tx, el('p', 'enq-ladder__s', S.closed[i] ? T('card.closed', { n: S.xpBy[i] }) : T('card.open')));
-      var b = btn('enq-btn' + (S.closed[i] ? '' : ' enq-btn--fill'), T(S.closed[i] ? 'card.replay' : 'card.play'), function () { game.openSlip(x.n); sfx('tap'); render('top'); }, 'play-' + x.n);
-      b.setAttribute('aria-label', T('card.aria', { n: x.n, name: nm }));
-      list.appendChild(add(li, img(x.icon, '', 'enq-ladder__i'), tx, b));
+      add(tx, el('p', 'enq-ladder__s', T('card.closedIn', { n: game.keptAt(x.n), m: open })));
+      list.appendChild(add(li, img(x.icon, '', 'enq-ladder__i'), tx));
     });
-    return add(w, list, btn('enq-btn', T('ui.toStall'), function () { act(game.toStall, 'goal'); }, 'back2'));
+    var rec = game.rec();
+    return add(w, list, add(el('div', 'enq-row'), btn('enq-btn enq-btn--fill', T(rec ? 'ui.btn.slip' : 'ui.btn.chart'), function () { rec ? openCase() : act(game.toChart); }, 'card-go'), btn('enq-btn', T('ui.toStall'), function () { act(game.toStall, 'goal'); }, 'back2')));
   }
 
   /* ---- drawing ---- */
@@ -780,7 +900,7 @@
     pic.alt = S.screen === 'door' ? T('ui.door.alt') : (S.screen === 'stall' ? T('ui.stallAlt') : '');
     rings();
     screen.textContent = '';
-    screen.appendChild(SCREENS[S.screen]());
+    screen.appendChild(wait ? waitScreen() : SCREENS[S.screen]());
     if (!focus) return;
     var near = function (q) { var x = $(q, app); if (x && x.scrollIntoView) x.scrollIntoView({ block: 'nearest', behavior: 'auto' }); };
     /* after a first miss the keyboard goes back to the question, so the next Tab is an answer; the page moves only as far
@@ -795,7 +915,7 @@
     if (focus === 'sheet' || focus.indexOf('crew-') === 0) near('.enq-talk');
     if (focus === 'top' && n.scrollIntoView && n !== app) { var r = app.getBoundingClientRect(); if (r.top < 0 || r.top > G.innerHeight * 0.5) app.scrollIntoView({ block: 'start', behavior: 'auto' }); }
   }
-  function act(fn, focus) { fn(); sfx('tap'); render(focus || 'top'); }
+  function act(fn, focus) { wait = null; fn(); sfx('tap'); render(focus || 'top'); }
 
   function boot() {
     lang = G.NUMIDEA_LANG || root.getAttribute('lang') || 'fr';
@@ -808,6 +928,13 @@
     Object.keys(A.faces).forEach(function (k) { warm.push(A.faces[k]); }); Object.keys(A.tools).forEach(function (k) { warm.push(A.tools[k]); });
     DATA.depths.forEach(function (x) { if (x.playable) warm.push(x.icon); });
     boot.kept = warm.map(function (u) { return img(u, ''); });
+    /* the language changes in place: the open case's strings in that language are added first */
+    d.addEventListener('numidea:lang', function (e) {
+      var l = (e.detail && e.detail.lang) || lang; if (l !== 'fr' && !(G.HUB_I18N && G.HUB_I18N[l])) return;
+      lang = l; var id = S.cid;
+      if (id && game.has(id) && !ready(id)) fetchCase(id, function () { render(keep()); });
+      render(keep());
+    });
     d.addEventListener('numidea:radio', function (e) {
       var on = !!(e.detail && e.detail.on); if (on === radioOn) return;
       radioOn = on; render(keep());
