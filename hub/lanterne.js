@@ -685,6 +685,13 @@
     DATA.books.forEach(function (b) {
       var S = b.live ? progress(b) : null, got = S ? b.ids.filter(function (id) { return isDone(S, id); }) : [];
       total += b.ids.length; earned += got.length;
+      /* the tree of knowledge: the leaves won, the twigs that hold one, the branch's ink up to its share */
+      got.forEach(function (id) { var lf = $('[data-lt-tree="' + id + '"]'); if (lf) lf.setAttribute('data-earned', 'true'); });
+      var tb = $('[data-lt-tree-b="' + b.slug + '"]');
+      if (tb) {
+        tb.style.setProperty('--p', String(got.length / b.ids.length));
+        b.acts.forEach(function (a, k) { var tw = $('[data-lt-twig="' + b.slug + '-' + k + '"]', tb); if (tw && a.districts.some(function (id) { return got.indexOf(id) > -1; })) tw.setAttribute('data-earned', 'true'); });
+      }
       var card = $('[data-lt-book="' + b.slug + '"]');
       if (card && b.live) {
         var cnt = $('[data-lt-count]', card); if (cnt) cnt.textContent = tp('lant.shelf.count', b.ids.length, { n: got.length, N: b.ids.length });
@@ -715,6 +722,22 @@
         var nm = t(b.d[id].keep); f.title = nm; f.appendChild(el('span', 'sr', nm));
       });
     });
+    /* the tree shows once scripts run; a leaf named under the pointer, in the caption */
+    var fig = $('[data-lt-tree-fig]');
+    if (fig) {
+      fig.hidden = false;
+      var cap = $('[data-lt-tree-cap]', fig), hint = cap.innerHTML;
+      var say = function (lf) {
+        if (!lf) { cap.innerHTML = hint; fig.removeAttribute('data-focus'); return; }
+        var bk = DATA.books.filter(function (x) { return x.slug === lf.getAttribute('data-lt-tree-book'); })[0], id = lf.getAttribute('data-lt-tree');
+        var q = bk && bk.d[id] ? t(bk.d[id].name) : '', bn = $('[data-lt-tree-b="' + bk.slug + '"] .tr__name', fig);
+        cap.textContent = t(lf.getAttribute('data-earned') ? 'lant.shelf.treeGot' : 'lant.shelf.treeTodo', { q: q, b: bn ? bn.textContent : '' });
+        fig.setAttribute('data-focus', bk.slug);
+      };
+      fig.addEventListener('pointerover', function (e) { say(e.target.closest && e.target.closest('[data-lt-tree]')); });
+      fig.addEventListener('pointerleave', function () { say(null); });
+      fig.addEventListener('click', function (e) { var lf = e.target.closest && e.target.closest('[data-lt-tree]'); if (lf) location.href = lf.getAttribute('data-href'); });
+    }
     var tot = $('[data-lt-pass-total]'); if (tot) tot.textContent = earned ? tp('lant.shelf.passTotal', earned, { n: earned, N: total }) : t('lant.shelf.passZero', { N: total, A: tot.getAttribute('data-lt-books') });
     /* nothing won: one line; the rows and the print come with the first keepsake */
     $$('[data-lt-pass-list],[data-lt-pass-print]').forEach(function (n) { n.hidden = !earned; });

@@ -663,3 +663,39 @@ html.motion-off{scroll-behavior:auto}
 .lt-tools-in{display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px 18px}
 .lt-tools-in__art{grid-row:1/span 3;width:96px;height:auto;align-self:center}
 .lt-tools-in .st-btn{justify-self:start}
+
+/* ---- the tree of knowledge (aesthetics megathread, 2026-11-24): the passport as a talent tree, drawn in the shop's
+   one language (2px ink, paper, a hard shadow); a branch in its atlas's spine colour up to its share of leaves won, a
+   leaf won filled and ringed in amber. The pointer names a leaf in the caption and dims the other branches. Nothing
+   loops; the lit ink draws once when the shelf paints, and under reduced motion it is in place at once. ---- */
+.tree__scroll:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.tree{margin:0 0 28px;padding:clamp(12px,2vw,24px) clamp(8px,2vw,24px) 16px;background:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow)}
+.tree__svg{display:block;width:100%;height:auto;max-height:640px;overflow:visible}
+.tr__trunk{fill:var(--ink-2);stroke:var(--ink);stroke-width:2}
+.tr__root{fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round}
+.tr__branch{fill:none;stroke:var(--line);stroke-width:5;stroke-linecap:round}
+.tr__lit{fill:none;stroke:var(--spine);stroke-width:5;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--p,0))}
+.tr__twig{fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round}
+.tr__twig[data-earned]{stroke:var(--spine)}
+.tr__leaf{cursor:pointer}.tr__hit{fill:transparent}
+.tr__leaf .tr__dot{fill:var(--cream);stroke:var(--ink);stroke-width:2;transform-box:fill-box;transform-origin:center}
+.tr__leaf[data-earned] .tr__dot{fill:var(--spine);stroke:var(--ink);stroke-width:2.5;filter:drop-shadow(0 0 3px var(--amber))}
+.tr__name{font-family:var(--f-mono);font-size:15px;font-weight:700;letter-spacing:.04em;fill:var(--ink);paint-order:stroke;stroke:var(--cream);stroke-width:5px;stroke-linejoin:round}
+:lang(ar) .tr__name{font-family:var(--f-ar,inherit);letter-spacing:0;font-size:17px}
+.tree__cap{display:block;min-height:1.6em;margin-top:8px;text-align:center}
+.tree[data-focus] .tr__book{opacity:.35}
+.tree[data-focus="marque"] [data-lt-tree-b="marque"],.tree[data-focus="web3"] [data-lt-tree-b="web3"],.tree[data-focus="web3-modules"] [data-lt-tree-b="web3-modules"],
+.tree[data-focus="cours-du-soir"] [data-lt-tree-b="cours-du-soir"],.tree[data-focus="argent"] [data-lt-tree-b="argent"],.tree[data-focus="route"] [data-lt-tree-b="route"],
+.tree[data-focus="jeu"] [data-lt-tree-b="jeu"]{opacity:1}
+@media (hover:hover){.tr__leaf:hover .tr__dot{transform:scale(1.5)}}
+@media (prefers-reduced-motion:no-preference){
+  .tr__book{transition:opacity var(--m-quick) linear}
+  .tr__leaf .tr__dot{transition:transform var(--m-quick) var(--m-ease-enter,ease-out)}
+  .tree:not([hidden]) .tr__lit{animation:tr-grow var(--m-draw,1000ms) var(--m-ease-enter,ease-out) both}
+}
+@keyframes tr-grow{from{stroke-dashoffset:1}}
+
+.tr__ground{fill:none;stroke:var(--ink);stroke-width:2;stroke-dasharray:2 6;stroke-linecap:round}
+.tr__branch,.tr__lit{stroke-width:7}
+@media (max-width:760px){.tree__scroll{overflow-x:auto;overscroll-behavior-x:contain}.tree__svg{width:760px;max-width:none}}
+.tr__name{direction:ltr}

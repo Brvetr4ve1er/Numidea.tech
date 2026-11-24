@@ -6334,6 +6334,9 @@
       "passK": "/ THE PASSPORT",
       "passH": "The Bookshop passport",
       "passLead": "The keepsakes earned in every atlas, together. They stay in this browser.",
+      "treeHint": "The tree of knowledge: every leaf is a quarter, and it lights up when you finish its exercise.",
+      "treeGot": "{q} · {b} · keepsake earned",
+      "treeTodo": "{q} · {b} · still to earn",
       "passZero": "{N} keepsakes to win across {A} atlases",
       "passRow": "{n} of {N}",
       "passTotal": {

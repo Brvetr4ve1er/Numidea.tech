@@ -598,6 +598,49 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
     /* with nothing earned the passport is one line (L-02); the rows come once a keepsake is won, an atlas at 0 as one row */
     const passport = `<ul class="pass" data-lt-pass-list hidden>${books.map(passRow).join('')}
     </ul>`;
+    /* the tree of knowledge (aesthetics megathread, 2026-11-24): the passport drawn as a talent tree. Each atlas a
+       branch off one trunk, each act a twig, each district a leaf; lanterne.js lights the leaves already won (the same
+       progress the passport reads) and the branch's ink up to its share. A drawing beside the list, never instead of it:
+       the passport rows stay the text version, so the svg is aria-hidden and a leaf is a pointer-only way in
+       (data-href, lanterne.js), not a link: 81 dots under 24 px would be 81 small tap targets. Positions are computed here, once, in a 1000 x 640 box. */
+    const TW = 1000, TH = 660, SX = 500, SY = 400;
+    const f1 = (n) => Math.round(n * 10) / 10;
+    const qpt = (a, c, b, t) => [(1 - t) ** 2 * a[0] + 2 * (1 - t) * t * c[0] + t * t * b[0], (1 - t) ** 2 * a[1] + 2 * (1 - t) * t * c[1] + t * t * b[1]];
+    const treeBook = (b, i) => {
+      const A = ATLAS[b.slug], acts = A ? A.acts.map((a) => a.districts) : [b.ids];
+      const nb = books.length, c = (nb - 1) / 2, th = (-80 + 160 * (i / (nb - 1))) * Math.PI / 180;
+      /* the outer branches leave the trunk lower, as a tree's do */
+      const o = [SX, SY + 120 * (Math.abs(i - c) / c)];
+      const tip = [SX + 440 * Math.sin(th), SY - 360 * Math.cos(th) + 40 * (Math.abs(i - c) / c)];
+      const ctl = [o[0] + 150 * Math.sin(th * .5), o[1] - 230 * Math.cos(th * .5)];
+      const branch = `M${f1(o[0])} ${f1(o[1])}Q${f1(ctl[0])} ${f1(ctl[1])} ${f1(tip[0])} ${f1(tip[1])}`;
+      const qpt2 = (t) => qpt(o, ctl, tip, t);
+      let twigs = '', leaves = '';
+      acts.forEach((ds, k) => {
+        const t = .34 + .58 * ((k + .5) / acts.length), base = qpt2(t);
+        const side = k % 2 ? 1 : -1, ta = th + side * .5, step = acts.length > 4 ? 15 : 19;
+        const end = [base[0] + Math.sin(ta) * step * (ds.length + .4), base[1] - Math.cos(ta) * step * (ds.length + .4)];
+        twigs += `<path class="tr__twig" data-lt-twig="${b.slug}-${k}" d="M${f1(base[0])} ${f1(base[1])}L${f1(end[0])} ${f1(end[1])}"/>`;
+        ds.forEach((id, j) => {
+          const x = base[0] + Math.sin(ta) * step * (j + 1), y = base[1] - Math.cos(ta) * step * (j + 1);
+          leaves += `<g class="tr__leaf" data-href="${A ? `${b.slug}.html#${id}` : `${b.slug}.html`}" data-lt-tree="${id}" data-lt-tree-book="${b.slug}"><circle class="tr__hit" cx="${f1(x)}" cy="${f1(y)}" r="10"/><circle class="tr__dot" cx="${f1(x)}" cy="${f1(y)}" r="${acts.length > 4 ? 5.5 : 7}"/></g>`;
+        });
+      });
+      const right = Math.sin(th) >= 0, lx = tip[0] + (right ? 10 : -10), ly = tip[1] - 10;
+      return `<g class="tr__book" data-lt-tree-b="${b.slug}" style="--spine:${b.accent}">
+        <path class="tr__branch" d="${branch}"/><path class="tr__lit" d="${branch}" pathLength="1" data-lt-tree-lit/>${twigs}${leaves}
+        <text class="tr__name" x="${f1(lx)}" y="${f1(ly)}" text-anchor="${right ? 'start' : 'end'}" data-i18n="${b.title}"></text></g>`;
+    };
+    const roots = [-60, -32, -12, 12, 32, 60].map((d) => `<path class="tr__root" d="M${SX} ${TH - 40}q${d * .6} 14 ${d * 2} 26"/>`).join('');
+    const tree = `<div class="tree js-only" data-lt-tree-fig hidden>
+      <div class="tree__scroll" tabindex="0" role="img" data-i18n-aria="lant.shelf.treeHint">
+      <svg class="tree__svg" viewBox="0 0 ${TW} ${TH}" dir="ltr" aria-hidden="true" focusable="false">
+        <path class="tr__ground" d="M${SX - 330} ${TH - 40}Q${SX} ${TH - 64} ${SX + 330} ${TH - 40}"/>
+        ${books.map(treeBook).join('')}
+        <path class="tr__trunk" d="M${SX - 30} ${TH - 40}C${SX - 14} ${TH - 110} ${SX - 16} ${SY + 90} ${SX - 6} ${SY}L${SX + 6} ${SY}C${SX + 16} ${SY + 90} ${SX + 14} ${TH - 110} ${SX + 30} ${TH - 40}Z"/>${roots}
+      </svg></div>
+      <p class="tree__cap hud" data-lt-tree-cap aria-hidden="true"><span data-i18n="${need('lant.shelf.treeHint', 'the shelf')}"></span></p>
+    </div>`;
     const pt = (n) => fr(need('lant.shelf.passZero', 'the shelf')).replace('{N}', n).replace('{A}', books.length);
     const k1 = ART.keys['lanterne-nuit'];
     holes['lant.shelf.mast'] = `<header class="mast lt-wrap">
@@ -618,7 +661,7 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
     const first = books.find((b) => b.start && ATLAS[b.slug]);
     holes['lant.shelf.heroStart'] = first ? `<a class="hero__start" href="${first.slug}.html" data-i18n="${need('lant.shelf.heroStart', 'the shelf')}"></a>` : '';
     holes['lant.shelf.rayons'] = rayons;
-    holes['lant.shelf.passport'] = passport;
+    holes['lant.shelf.passport'] = tree + passport;
     holes['lant.shelf.passTotal'] = `<p class="hud" data-lt-pass-total="${total}" data-lt-books="${books.length}">${esc(pt(total))}</p>`;
     holes['lant.radio'] = radioJson;
     const client = { books: books.map((b) => { const A = ATLAS[b.slug]; const ids = A ? A.acts.flatMap((a) => a.districts) : b.ids;
