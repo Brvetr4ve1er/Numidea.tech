@@ -26,6 +26,7 @@
     box-shadow:3px 3px 0 var(--red);font:500 12px/1 var(--f-mono,var(--mono));letter-spacing:.14em;text-transform:uppercase;cursor:pointer;-webkit-tap-highlight-color:transparent;
     opacity:0;transform:translateY(12px);visibility:hidden}
   .pi-chip.is-on{opacity:1;transform:none;visibility:visible}
+  .pi-chip.is-on.is-moving{opacity:.12;pointer-events:none}
   /* the number holds three characters ("04b"), so the chip, pinned by its
      end, keeps one width as the reader moves from plate to plate */
   .pi-chip .pi-n{font-weight:500;padding:3px 7px;background:var(--cream);color:var(--ink);letter-spacing:.04em;min-width:calc(3ch + .12em + 14px);text-align:center}
@@ -166,6 +167,41 @@
     @starting-style{.fold-btn[aria-expanded="true"]+.fold-body{opacity:0;transform:translateY(-6px)}}
   }
 }
+/* ---------- shorter on a phone (world-17, 2026-11-24) ----------
+   Under 560 px a feed's 3 x 3 (or 3 x 4) thumbnails are one row that slides
+   sideways, as the stories are: three rows of thumbnails were a screen of
+   squares before the next part. Each thumbnail is still scaled from its
+   cell's width (book.js fit()), so it reads the same at 40vw. The books'
+   landscape posts and the Numidea cast slide the same way. */
+@media (max-width:560px){
+  html.pv .pv-set--grid.pv-on{display:flex;gap:8px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:2px;scrollbar-width:thin;padding:0 0 10px}
+  html.pv .pv-set--grid.pv-on>.pv-cell{flex:0 0 min(40vw,180px);scroll-snap-align:start}
+  .bk-nu .nlands,.bk-nu .cast,.bk-af .lands,.g-swipe{display:flex;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:thin;padding-bottom:10px;align-items:flex-start}
+  .bk-nu .nlands>*,.bk-af .lands>*{flex:0 0 min(86%,360px);min-width:0;scroll-snap-align:start}
+  .bk-nu .cast>*{flex:0 0 min(40vw,170px);min-width:0;scroll-snap-align:start}
+  /* a set of tall photographs (AlmaFlow's three frames) */
+  .g-swipe>*{flex:0 0 min(62%,240px);min-width:0;scroll-snap-align:start}
+}
+
+/* ---------- the chip on a phone: its number only (world-20, craft-16) ----------
+   The word "Plates" made the chip a 130 px pill over the text column; on a
+   phone it is the number in its square (the chip's name stays its accessible
+   name, book.js), 48 px, and the page ends 64 px lower so the last line
+   clears it. */
+@media (max-width:640px){
+  .pi-chip{gap:0;padding:0 7px;justify-content:center}
+  .pi-chip .pi-k{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+}
 @media print{.pi-chip,.pi-dlg,.pv-dlg,.pv-open,.pv-hint{display:none!important}}
 .fold-body{display:grid;gap:14px;min-width:0}
 .fold-body>*{min-width:0}
+
+/* ---------- the way onward (world-16, 2026-11-24) ----------
+   The last thing in a book before its footer: the same kind of book for the
+   reader's brand, through the Studio's free Preview. Ink on paper with the
+   seal's red rule, as the plates' bars; one button. */
+.bk-next{display:grid;gap:10px;justify-items:start;margin-block:clamp(40px,6vw,80px) clamp(24px,4vw,48px);padding-block:clamp(22px,3vw,34px);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)}
+.bk-next .kick{margin:0}
+.bk-next__t{margin:0;font:900 clamp(26px,4.2vw,48px)/1 var(--f-disp,sans-serif);letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance;max-width:18em}
+.bk-next__p{margin:0;max-width:44em;font-size:17px;line-height:1.5}
+.bk-next .btn{margin-top:8px}

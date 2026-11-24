@@ -77,9 +77,9 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
     { id: 'identite', g: 'marque', n: 'A2', tiers: [T(idt2), T(idt5), T(idtDs, { lead: 1 })], lt: W(idtDs.w, idtDs.src), cta: 'est', est: ['identite', 2], leadPick: 'ds', proof: 'brand/almaflow/', mock: 'identite' },
     { id: 'charte', g: 'marque', n: 'A3', tiers: [T(DS, { lead: 1 })], also: [D('icons.set12')], lt: W(DS.w, DS.src), cta: 'wa', proof: '#case-alliance', mock: 'charte' },
     { id: 'mascotte', g: 'marque', n: 'A4', tiers: [T(D('illu.spot')), T(D('illu.mascotte'), { lead: 1 })], lt: W(DESIGN.illu.weeks, 'design:illu.weeks'), cta: 'wa', proof: 'bible/', proofK: 'carte.kuro', mock: 'mascotte' },
-    { id: 'landing', g: 'web', n: 'B1', tiers: [T(D('ui.landing'), { lead: 1 }), T(D('ui.ecranWeb'), { plus: 1 })], rule: 1, lt: W(DESIGN.ui.weeksLanding, 'design:ui.weeksLanding'), cta: 'wa', proof: '#case-alliance', mock: 'landing' },
-    { id: 'ui', g: 'web', n: 'B2', tiers: [T(D('ui.site5'), { lead: 1 }), T(D('ui.ecranWeb'), { plus: 1 })], rule: 1, lt: W(DESIGN.ui.weeksSite, 'design:ui.weeksSite'), cta: 'wa', proof: '#case-bordjsteel', mock: 'site5' },
-    { id: 'app', g: 'web', n: 'B3', tiers: [T(D('ui.app10'), { lead: 1 }), T(D('ui.ecranApp'), { plus: 1 })], rule: 1, lt: W(DESIGN.ui.weeksApp, 'design:ui.weeksApp'), cta: 'wa', mock: 'app' },
+    { id: 'landing', g: 'web', n: 'B1', only: 1, tiers: [T(D('ui.landing'), { lead: 1 }), T(D('ui.ecranWeb'), { plus: 1 })], rule: 1, lt: W(DESIGN.ui.weeksLanding, 'design:ui.weeksLanding'), cta: 'wa', proof: '#case-alliance', mock: 'landing' },
+    { id: 'ui', g: 'web', n: 'B2', only: 1, tiers: [T(D('ui.site5'), { lead: 1 }), T(D('ui.ecranWeb'), { plus: 1 })], rule: 1, lt: W(DESIGN.ui.weeksSite, 'design:ui.weeksSite'), cta: 'wa', proof: '#case-bordjsteel', mock: 'site5' },
+    { id: 'app', g: 'web', n: 'B3', only: 1, tiers: [T(D('ui.app10'), { lead: 1 }), T(D('ui.ecranApp'), { plus: 1 })], rule: 1, lt: W(DESIGN.ui.weeksApp, 'design:ui.weeksApp'), cta: 'wa', mock: 'app' },
     { id: 'construire', g: 'web', build: true },
     { id: 'social', g: 'reseaux', n: 'C1', tiers: [T(D('social.kit')), T(D('social.anime'), { lead: 1 }), T(D('social.mois'), { month: 1 })], lt: W(DESIGN.social.weeks, 'design:social.weeks'), cta: 'wa', proof: '#case-bordjsteel', mock: 'social' },
     { id: 'ads', g: 'reseaux', n: 'C2', tiers: [T(D('ads.set'), { lead: 1 }), T(D('ads.concept'), { plus: 1 })], lt: Dd(DESIGN.ads.days, 'design:ads.days'), cta: 'wa', proof: '#case-alliance', mock: 'ads' },
@@ -138,8 +138,10 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
   const plainWa = (s) => s.replace(/[\u2066-\u2069]/g, '');
   const tierFig = (l, x) => { const f = F(l); return (x.plus ? '+ ' : '') + f.da(x) + (x.month ? ' ' + take(l, 'carte.month') : '') + (x.per ? ' ' + take(l, 'carte.perSlide') : ''); };
   const leadOf = (c) => c.tiers.find((x) => x.lead) || c.tiers[0];
-  const tagKeys = (k, tier, lt, nameKey) => {
-    set(`${k}.tag.l`, (l) => '★ ' + (nameKey ? get(l, nameKey) : '').split(' · ')[0]);
+  // (the tag prints the tier's first word; the design-only cards print the whole tier name, « Maquette · landing »:
+  // 2026-11-23, a buyer read « dès 45 000 DA » under « Landing » as the price of a coded page)
+  const tagKeys = (k, tier, lt, nameKey, full) => {
+    set(`${k}.tag.l`, (l) => '★ ' + (nameKey ? (full ? get(l, nameKey).replace(' · ', '\u00a0· ') : get(l, nameKey).split(' · ')[0]) : ''));
     set(`${k}.tag.f`, (l) => F(l).grp(tier.lo));
     if (tier.lo !== tier.hi || tier.month) set(`${k}.tag.u`, (l) => tier.lo !== tier.hi ? F(l).fill(take(l, 'carte.upTo'), { p: F(l).grp(tier.hi) }) : take(l, 'carte.month'));
     set(`${k}.tag.c`, (l) => F(l).conv(tier.lo));
@@ -148,7 +150,7 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
   for (const c of services) {
     const k = `carte.items.${c.id}`, lead = leadOf(c), li = c.tiers.indexOf(lead);
     c.tiers.forEach((x, i) => set(`${k}.t.${i}.fig`, (l) => tierFig(l, x)));
-    tagKeys(k, lead, c.lt, `${k}.t.${li}`);
+    tagKeys(k, lead, c.lt, `${k}.t.${li}`, c.only);
     const [mv, ms] = MARKET_SVC[c.id] || (fail(`carte: no market line for ${c.id}`), [[0, 0, 'EUR'], 'HEYS']);
     c.mkv = mv; c.mks = ms;
     set(`${k}.mk`, (l) => F(l).fill(take(l, 'carte.elsewhere'), { w: F(l).fill(get(l, `${k}.mk`), { v: F(l).iso(F(l).pair(mv[0], mv[1], mv[2])) }) }));
@@ -164,6 +166,9 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
   set('carte.build.tag.l', (l) => get(l, 'carte.build.tagL').split(' · ')[0]);
   tmpl.add('carte.build.tagL');
   set('carte.k', (l) => F(l).fill(get(l, 'carte.k'), { n: services.length }));
+  // the design-only cards' first line: what the coded site starts at, the console's own Vitrine package
+  const ONLY = fig(PM.vitrine.base[0], PM.vitrine.base[1], 'base:vitrine');
+  set('carte.only', (l) => F(l).fill(get(l, 'carte.only'), { p: F(l).iso(F(l).da(fig(ONLY.lo, ONLY.lo))) }));
   set('carte.src.fx', (l) => F(l).fill(get(l, 'carte.src.fx'), { e: F(l).pair(FX.EUR, FX.EUR, 'DZD'), u: F(l).pair(FX.USD, FX.USD, 'DZD') }));
   set('carte.mock.sldH', (l) => F(l).fill(get(l, 'carte.mock.sldH'), { p: F(l).iso(F(l).da(fig(PM.vitrine.base[0], PM.vitrine.base[0]))) }));
   // the motion card's opening, its size as the file has it
@@ -204,11 +209,11 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
   <circle cx="160" cy="66" r="20" fill="none" stroke="#F3ECE1" stroke-width="2"/>
   <path d="M160 50c-7 7-7 25 0 32c7-7 7-25 0-32z" fill="#F3ECE1"/>
   <text lang="fr" x="160" y="106" text-anchor="middle" font-family="Archivo" font-weight="900" font-size="9.6" fill="#F3ECE1">VOTRE MARQUE</text>
-  <text x="160" y="121" text-anchor="middle" font-family="IBM Plex Sans Arabic" font-weight="700" font-size="10" fill="#F3ECE1">علامتك</text>
+  <text class="lbl__ar" x="160" y="121" text-anchor="middle" font-weight="700" font-size="10" fill="#F3ECE1">علامتك</text>
   <line x1="128" y1="130" x2="192" y2="130" stroke="#F3ECE1" stroke-width="1"/>
   <text lang="fr" x="160" y="143" text-anchor="middle" font-family="Geist" font-weight="700" font-size="7" fill="#F3ECE1">Huile d’olive</text>
   <text lang="fr" x="160" y="152" text-anchor="middle" font-family="Geist" font-weight="700" font-size="7" fill="#F3ECE1">vierge extra</text>
-  <text x="160" y="164" text-anchor="middle" font-family="IBM Plex Sans Arabic" font-weight="600" font-size="7.4" fill="#F3ECE1">زيت زيتون بكر ممتاز</text>
+  <text class="lbl__ar" x="160" y="164" text-anchor="middle" font-weight="600" font-size="7.4" fill="#F3ECE1">زيت زيتون بكر ممتاز</text>
   <text x="160" y="177" text-anchor="middle" font-family="Archivo" font-weight="900" font-size="9" fill="#F3ECE1">75 cl</text>
   <g lang="fr" font-family="Geist" font-size="5.9" fill="#211E1B">
     <text x="33" y="42" font-weight="700" font-size="6.4">INGRÉDIENTS</text>
@@ -219,7 +224,7 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
     <text x="33" y="121">Conserver à l’abri</text><text x="33" y="128.5">de la lumière.</text>
     <text x="33" y="140" font-weight="700">Fabriqué en Algérie</text>
   </g>
-  <g lang="ar" font-family="IBM Plex Sans Arabic" font-size="6.2" fill="#211E1B" text-anchor="end">
+  <g lang="ar" class="lbl__ar" font-size="6.2" fill="#211E1B" text-anchor="end">
     <text x="287" y="42" font-weight="700" font-size="6.8">المكوّنات</text>
     <text x="287" y="52">زيتون 100 %،</text><text x="287" y="60">عصرة أولى على البارد.</text>
     <text x="287" y="73">الحجم الصافي: 75 سل</text>
@@ -360,6 +365,10 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
         <span class="tag__eye"></span>
         <span class="tag__stamp">印</span>
       </div>`;
+  /* on a phone (under 700 px) a card is its picture, its tag, its name and what you get; the tiers, the lines under
+     them and the market line fold into « Détails et formules » (2026-11-23: a card was 1 000 px, more than a screen).
+     Open in the markup (no script: every line reads), hub/app.js 14b closes it under 700 px; its summary shows only there */
+  const more = (inner, pk) => `<details class="cc__more" open><summary class="cc__sum"><span data-i18n="carte.more"></span></summary>${pk ? `<p class="cc__p cc__p--more" data-i18n="${pk}"></p>` : ''}${inner}</details>`;
   const cap = (kind, who, link = '') => `<div class="cc__cap"><span class="cc__capk" data-i18n="${kind}"></span><b class="cc__capw" data-i18n="${who}"></b>${link}</div>`;
   const rowsOf = (k, tiers, c = {}) => tiers.map((x, i) => `<tr${x.lead ? ' class="is-lead"' : ''}><td>${x.lead ? '<span aria-hidden="true">★ </span>' : ''}${x.lead && c.leadPick ? `<a class="tt__go" href="#pricing" data-est-go="${c.est[0]}" data-est-size="${c.est[1]}" data-est-pick="${c.leadPick}"><span data-i18n="${k}.t.${i}"></span></a>` : `<span data-i18n="${k}.t.${i}"></span>`}${x.lead ? ' <span class="st-sr" data-i18n="carte.leadSr"></span>' : ''}</td><td><bdi ${hook(x)} data-i18n="${k}.t.${i}.fig"></bdi></td></tr>`).join('');
   const card = (c, i) => {
@@ -386,7 +395,7 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
       ${cap('carte.build.capK', 'carte.build.capW')}
       <div class="cc__head"><h5 class="cc__n" id="cc-build-h" data-i18n="carte.build.name"></h5><p class="cc__p" data-i18n="carte.build.pr"></p></div>
       <ul class="cc__gets"></ul>
-      <div class="cc__tiers"><table class="tt"><caption class="st-sr" data-i18n="carte.tiersCap"></caption><tbody>${BUILD.tiers.map((x, j) => `<tr${x.lead ? ' class="is-lead"' : ''}><td data-i18n="carte.build.t.${j}"></td><td><bdi ${hook(x)} data-i18n="carte.build.t.${j}.fig"></bdi></td></tr>`).join('')}</tbody></table></div>
+      ${more(`<div class="cc__tiers"><table class="tt"><caption class="st-sr" data-i18n="carte.tiersCap"></caption><tbody>${BUILD.tiers.map((x, j) => `<tr${x.lead ? ' class="is-lead"' : ''}><td data-i18n="carte.build.t.${j}"></td><td><bdi ${hook(x)} data-i18n="carte.build.t.${j}.fig"></bdi></td></tr>`).join('')}</tbody></table></div>`, 'carte.build.pr')}
       <div class="cc__foot"><a class="st-btn st-btn--primary" href="#pricing" data-est-go="vitrine" data-est-size="5" data-i18n="carte.est"></a></div>
     </article>`;
     const k = `carte.items.${c.id}`, lead = leadOf(c);
@@ -414,9 +423,9 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
         ${tag(k, lead)}
       </div>
       ${cap(`${k}.cap.k`, `${k}.cap.w`, sec)}
-      <div class="cc__head"><h5 class="cc__n" id="cc-${c.id}-h" data-i18n="${k}.name"></h5><p class="cc__p" data-i18n="${k}.pr"></p></div>
+      <div class="cc__head"><h5 class="cc__n" id="cc-${c.id}-h" data-i18n="${k}.name"></h5>${c.only ? `<p class="cc__only"><span ${hook(ONLY)} data-i18n="carte.only"></span> <a href="#pricing" data-est-go="vitrine" data-est-size="5" data-i18n="carte.est"></a></p>` : ''}<p class="cc__p" data-i18n="${k}.pr"></p></div>
       <ul class="cc__gets">${c.tiers && DICT.fr[`${k}.gets.0`] != null ? [0, 1, 2].filter((j) => DICT.fr[`${k}.gets.${j}`] != null).map((j) => `<li data-i18n="${k}.gets.${j}"></li>`).join('') : ''}</ul>
-      <div class="cc__tiers"><table class="tt"><caption class="st-sr" data-i18n="carte.tiersCap"></caption><tbody>${rowsOf(k, c.tiers, c)}</tbody></table>${lines}</div>
+      ${more(`<div class="cc__tiers"><table class="tt"><caption class="st-sr" data-i18n="carte.tiersCap"></caption><tbody>${rowsOf(k, c.tiers, c)}</tbody></table>${lines}</div>`, `${k}.pr`)}
       <div class="cc__foot">${primary}</div>
     </article>`;
   };
@@ -424,6 +433,8 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
   const srcOrder = [];
   for (const g of GROUPS) for (const c of services.filter((x) => x.g === g)) { if (!srcOrder.includes(c.mks)) srcOrder.push(c.mks); c.srcN = srcOrder.indexOf(c.mks) + 1; }
   for (const c of services) set(`carte.items.${c.id}.refA`, (l) => F(l).fill(take(l, 'carte.ref'), { n: c.srcN }));
+  // the sources fold under « Sources · 11 » (2026-11-23: a phone screen of small links in the middle of the sales page)
+  set('carte.srcSum', (l) => F(l).fill(get(l, 'carte.srcSum'), { n: srcOrder.length }));
   const panels = GROUPS.map((g) => {
     const cs = CARDS.filter((c) => c.g === g);
     return `<section class="crt__panel" id="carte-${g}" role="tabpanel" aria-labelledby="tab-${g}" data-g="${g}">
@@ -466,7 +477,7 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
         ${FORMULES.map(formule).join('\n')}
       </div>
       <p class="crt__foot"><span data-i18n="carte.foot"></span> <a href="#contact" data-i18n="carte.footA"></a></p>
-      <div class="crt__src"><p><span data-i18n="carte.src.h"></span> <span data-i18n="carte.src.fx"></span></p><ol>${srcOrder.map((s, i) => `<li id="carte-src-${i + 1}"><a data-ref href="${SRC[s][1]}" target="_blank" rel="noopener" lang="${SRC[s][2]}" dir="ltr">${esc(SRC[s][0])} ↗<span class="st-sr" data-i18n="case.newTab"></span></a></li>`).join('')}</ol></div>
+      <details class="crt__src" id="carte-sources"><summary class="crt__srcsum"><span data-i18n="carte.srcSum"></span></summary><p><span data-i18n="carte.src.h"></span> <span data-i18n="carte.src.fx"></span></p><ol>${srcOrder.map((s, i) => `<li id="carte-src-${i + 1}"><a data-ref href="${SRC[s][1]}" target="_blank" rel="noopener" lang="${SRC[s][2]}" dir="ltr">${esc(SRC[s][0])} ↗<span class="st-sr" data-i18n="case.newTab"></span></a></li>`).join('')}</ol></details>
     </section>`;
   // the templates' own keys leave the dictionaries once every line is written
   for (const k of tmpl) for (const l of LANGS) delete DICT[l][k];

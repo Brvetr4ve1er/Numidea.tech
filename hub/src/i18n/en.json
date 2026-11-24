@@ -7,6 +7,7 @@
   },
   "nav": {
     "aria": "Studio sections",
+    "accueil": "Home",
     "home": "Numidea Labs, the site",
     "services": "Services",
     "preview": "Preview",
@@ -14,7 +15,7 @@
     "work": "Work",
     "studio": "Studio",
     "faq": "FAQ",
-    "cta": "Request a Preview",
+    "cta": "Free Preview",
     "lang": "Language",
     "langFr": "Français",
     "langEn": "English",
@@ -37,8 +38,8 @@
     "h1a": "Your idea.",
     "h1b": "One pair of hands.",
     "h1c": "Your product.",
-    "sub": "Sites, apps, automations and identities, designed and coded by the same hands. You talk to the builder, not a salesperson.",
-    "cta1": "Request a Preview",
+    "sub": "Sites, apps, automations and identities, designed and coded by the same hands. The Preview: your homepage, before you pay.",
+    "cta1": "Request my free Preview",
     "cta2": "Estimate my project",
     "aside": "tired eyes. big ideas.",
     "mood": "/ TODAY’S MOOD",
@@ -103,7 +104,7 @@
   "services": {
     "kicker": "/ 02 · WHAT WE DO · FOUR FAMILIES",
     "title": "What we make real.",
-    "lead": "Four service families, one contact, from the first call to maintenance. Nobody hands you on to someone else.",
+    "lead": "Four service families. Once the work is paid for in full, it is yours: the code, the design files and the content.",
     "actor": "Yasser points at the services",
     "items": [
       {
@@ -183,7 +184,7 @@
     "terms": "@home:prev.terms",
     "seal": "FREE",
     "aside": "zero risk. zero fluff.",
-    "cta": "Request my Preview",
+    "cta": "Request my free Preview",
     "alt": "Yasser builds a model before any payment, Kūro beside him"
   },
   "process": {
@@ -277,6 +278,8 @@
     "note": "@home:price.estFine",
     "running": "Domain and hosting on top, billed yearly by the host, in your name.",
     "cta": "Get my quote",
+    "waMsg": "Hello, I would like a quote for this project, estimated on the studio console:\n{what}\n{lines}\nTimeline: {pace}\nEstimated total: {total} · {weeks}",
+    "mailSubj": "Quote request: {what}",
     "sources": "The market, with sources: the price guide →",
     "noJs": "Starting estimate: a 3-page showcase site. The full grid is in the price guide.",
     "kuro": [
@@ -395,10 +398,11 @@
         "k": "SEO",
         "t": "Get found",
         "d": "Google is a librarian: it shelves clear, fast, useful sites first.",
-        "stat": "1st",
-        "statL": "page: where almost every click happens",
+        "stat": "3",
+        "statL": "settings on every site: a clear structure, speed, basic SEO",
         "aside": "shh, he’s shelving.",
         "you": "Your site",
+        "ex": "example",
         "other": "Competitor"
       }
     ]
@@ -436,7 +440,7 @@
         "10 s animation",
         "Kūro and 3 companions"
       ],
-      "lang": "Act 2 · 10 s · silent, press play yourself",
+      "lang": "Act 2 · 10 s · silent",
       "framesLabel": "Five posters and two sheets from the project, to open full size",
       "frames": [
         "GZANA poster, in red and black: a child with dreadlocks, a small suitcase in hand, seen from behind facing a masked woman in a red cloak and pearl necklaces, surrounded by hollow-eyed figures; in the margins, “No savior. No escape. Only choice.” and lines in Latin and Japanese.",
@@ -447,8 +451,7 @@
         "MERCURY's raven, reference sheet on old paper: standing in three-quarter view, a close-up of the head, and in profile.",
         "MERCURY's rat, reference sheet on old paper: sitting with its nose raised, a close-up of the head, and walking in profile."
       ],
-      "video": "Act 2 of MERCURY in ten seconds: Yasser in the red traveller’s outfit, with Kūro, the raven, the techno pigeon and Ratman, in front of the moon.",
-      "fallback": "Your browser cannot play this video."
+      "video": "Act 2 of MERCURY in ten seconds: Yasser in the red traveller’s outfit, with Kūro, the raven, the techno pigeon and Ratman, in front of the moon."
     },
     "be": {
       "kicker": "FILE 08 · THE REST OF THE WORK",
@@ -509,10 +512,7 @@
         }
       ]
     },
-    "whqCart": {
-      "kick": "NOW PLAYING · MY FAVOURITE BUILD",
-      "sub": "an arcade cabinet for your codebase"
-    }
+    "whq": "an arcade cabinet for your codebase"
   },
   "lab": {
     "kicker": "/ THE LAB · UNCOMMISSIONED",
@@ -571,7 +571,8 @@
       "Yasser character sheet, second outfit: front view in a cream coat with a shoulder strap, profile, back, three expressions and details of the glasses, hair and pen.",
       "Blue and yellow screenprint: a traveller in a varsity jacket stands in the tall grass of a plateau, facing a sun ringed by two blue halos, a pylon and silos on the horizon.",
       "Blue and yellow screenprint: a figure with butterfly wings stands before a large octagonal window in a steel frame, a blue ring behind it."
-    ]
+    ],
+    "more": "See all 36 pieces"
   },
   "founder": {
     "kicker": "/ 09 · THE STUDIO · ONE PAIR OF HANDS",
@@ -674,12 +675,12 @@
   "contact": {
     "kicker": "/ 11 · LET’S TALK · IN WRITING",
     "title": "The door is open. Write.",
-    "lead": "Pick your channel. A reply the next working day, from the one who codes. No switchboard, no ticket.",
-    "hours": "Sunday–Thursday, 9am–6pm · messages only, no calls",
+    "lead": "Pick your channel. A reply the next working day. The Preview itself is ready five working days after your content arrives.",
+    "hours": "Sunday–Thursday, 9am–6pm · messages only: the Preview video call is set by message",
     "waK": "WHATSAPP · +213 672 41 25 78",
     "wa": "WhatsApp",
     "previewK": "PREVIEW · WHATSAPP",
-    "preview": "Request a Preview",
+    "preview": "Request my free Preview",
     "previewMsg": "@home:prev.msg",
     "mailK": "HAMISSEMOHAMEDYASSER@​GMAIL.COM",
     "mail": "Send an email",
@@ -696,7 +697,7 @@
       "k": "01 · THE DAY",
       "t": "I want a website",
       "d": "A free Preview before you pay, published prices, delivered work, a direct line.",
-      "go": "Ask for a Preview",
+      "go": "Request my free Preview",
       "preview": "The Preview",
       "pricing": "Prices",
       "work": "The work",
@@ -817,7 +818,7 @@
   "footer": {
     "line": "Built in Bordj Bou Arréridj, with black coffee and JavaScript.",
     "rights": "© 2026 NUMIDEA LABS",
-    "site": "The site",
+    "site": "Home",
     "bible": "Bible · VOIDSPLUNKER.std",
     "nav": "Footer links"
   },
@@ -831,6 +832,8 @@
     "seen": "✓ SEEN",
     "unlocked": "DELIVERABLES UNLOCKED",
     "open": "Open the site ↗",
+    "sheet": "Project sheet →",
+    "unfold": "Open the case",
     "newTab": "(new tab)"
   },
   "money": {
@@ -1659,7 +1662,7 @@
     },
     "kicker": "/ THE WORLD · PERSONAL PROJECTS",
     "title": "Behind the night door.",
-    "note": "Nothing on this page was commissioned by a client. These are the founder’s own projects: a character bible, a short film, posters, a diary. The client work is on the Studio.",
+    "note": "Here, the founder’s own projects. Dossiers 06 and 07 are personal: a character bible and a short film. Dossier 08 gathers the design work published on Behance, client work included. Then posters and a workshop diary. Delivered sites and prices are on the Studio.",
     "nav": {
       "aria": "Sections of the world",
       "codex": "Codex",
@@ -5575,7 +5578,7 @@
       "chaine": "The local chain"
     },
     "kicker": "/ THE MAKING · FOUR SCENES",
-    "title": "Outside the artboard.",
+    "title": "How we make it: four scenes.",
     "lead": "Four scenes from the way we work: the brand, the design system, the campaign, the motion. Open each breakdown to see the decision, why it matters, and what you get at our published prices.",
     "note": "The pictures come from our own work; the tools named are the workshop’s. The characters come from the workshop’s world.",
     "open": "Open the breakdown",
@@ -6160,12 +6163,15 @@
       "situation": "The situation",
       "right": "Right",
       "wrong": "Not quite",
+      "peek": "Just looking",
       "idle": "Choose a response to see what happens. A wrong answer costs nothing: try again.",
       "toEx": "Try the field exercise",
       "keep": "In your kit: {s}",
       "exK": "Field exercise",
+      "readK": "To read",
       "badgeOpen": "Open",
       "badgeDone": "Done",
+      "redo": "Back to the lines sorted differently",
       "exIdle": "The exercise waits for your first move.",
       "noJs": "Without JavaScript the exercise stays at rest; the brief and the journal note still read.",
       "readJournal": "Read the case journal",
@@ -6185,13 +6191,17 @@
       "zoom": "See the poster full size",
       "close": "Close",
       "journalK": "Lantern Bookshop · an invented bookshop",
+      "journalSac": "Journal · Kit",
       "journalH": "Case journal",
       "journalCount": {
         "one": "{n}/{N} case note · side route {m}/{M}",
         "other": "{n}/{N} case notes · side route {m}/{M}"
       },
+      "journalLeft": {
+        "one": "{n} district still to write",
+        "other": "{n} districts still to write"
+      },
       "journalIdle": "Solve a district all the way, the situation then the exercise, to add the crew’s decision to Lantern’s record.",
-      "journalEmpty": "Visit this district and clear it to record it here.",
       "print": "Print my journal",
       "sacK": "Field kit",
       "sacH": "Inventory",
@@ -6200,11 +6210,17 @@
         "one": "{n} keepsake of {N}",
         "other": "{n} keepsakes of {N}"
       },
+      "sacLeft": {
+        "one": "{n} keepsake to win",
+        "other": "{n} keepsakes to win"
+      },
       "unknown": "Keepsake not earned yet",
       "side": "side route",
       "footerBack": "Back to the Bookshop",
       "studio": "The Studio",
       "rightNext": "Right. Do the field exercise to add it to the journal",
+      "rightUp": "Right. Do the exercise above to add it to the journal",
+      "rightDone": "Right. It is in the journal.",
       "wa": "WhatsApp",
       "skipEx": "I’ll skip the exercise",
       "skipNote": "exercise not done",
@@ -6218,7 +6234,7 @@
       "ex": {
         "pick": {
           "t": "Read each explanation",
-          "brief": "Open each explanation once. The exercise is done when you have read them all."
+          "brief": "Open the explanations you want: each one says why. The district is finished by its situation, not by this reading."
         },
         "calc": {
           "t": "The sum, with your own numbers",
@@ -6283,23 +6299,25 @@
       "navPassport": "The passport",
       "navComptoir": "The counter",
       "navRonde": "The night round",
-      "cta": "Book a call",
+      "cta": "Start a course",
       "heroK": "/ THE BOOKSHOP · THE WORLD OF NUMIDEA",
       "heroT1": "The Lantern",
       "heroT2": "Bookshop.",
-      "lore": "The Lantern is a night bookshop in the world of Numidea. The workshop crew built the booking for its night class here; the bookseller kept their field notebooks, and they became atlases. Each atlas is a course: you pick a district, settle a situation, do the exercise, and the decision goes into the case journal. The lessons are free; the keepsakes are earned. Nothing leaves here until you press.",
+      "lore": "Free courses: brand, money, web3, nomad life, games. The Lantern is a night bookshop in the world of Numidea, and each atlas there is a course: you pick a district, settle a situation, do the exercise, and the decision goes into the journal. Nothing leaves here until you press.",
       "fiction": "The Lantern is an invented bookshop: it exists only at night, on this site.",
-      "heroCta": "Pick an atlas",
+      "heroCta": "See the free courses",
       "heroAlt": "The Lantern Bookshop at night: under the red-and-cream striped awning, a giant open book on the counter and a lit lantern; Yasser sits reading an atlas by the stall, Kūro sleeps on the counter, the town’s towers under a starry sky.",
       "rayonsK": "/ THE SHELVES",
       "shelf1": "For your projects",
-      "shelf2": "Earning from far away",
+      "shelf2": "Money and nomad life",
       "shelf3": "Master course",
       "count": {
         "one": "{n} / {N} district",
         "other": "{n} / {N} districts"
       },
       "open": "Open the atlas",
+      "start": "Start here",
+      "minutes": "≈ {n} min",
       "resume": "Resume: {q}",
       "moving": "Moving in soon",
       "with": "with {g}",
@@ -6310,6 +6328,7 @@
       "passK": "/ THE PASSPORT",
       "passH": "The Bookshop passport",
       "passLead": "The keepsakes earned in every atlas, together. They stay in this browser.",
+      "passZero": "{N} keepsakes to win across {A} atlases",
       "passRow": "{n} of {N}",
       "passTotal": {
         "one": "{n} keepsake of {N}",
@@ -7371,7 +7390,7 @@
         "check": "Check first",
         "free": "The free option",
         "risk": "Risk",
-        "alt": "The other route, no partner link"
+        "alt": "The other route"
       },
       "cat": {
         "pay": "Getting paid, banking",
@@ -7471,11 +7490,18 @@
         "insurer": "The insurer your bank or consulate lists for the visa.",
         "duolingo": "free, to learn a language"
       },
+      "route": {
+        "h": "The official route first",
+        "dzK": "Living in Algeria",
+        "outK": "Diaspora",
+        "out": "Wise serves the diaspora and the Gulf: sent to Algeria, the money arrives in dinars. Check the price of a transfer to your country on its card below.",
+        "to": "A foreign-currency account at your bank"
+      },
       "how": {
         "h": "How we choose",
-        "t": "We only list services whose official pages we have read, unless the card says otherwise (“Official pages not read”). Each card says who it is for, what to check, and when and where we read its terms. It gives the option without a partner link first, free when there is one. On each shelf the order is alphabetical: it never depends on what a link earns."
+        "t": "We only list services whose official pages we have read, unless the card says otherwise (“Official pages not read”). Each card says who it is for, what to check, and the day we checked it. It gives the option without a partner link first, free when there is one. On each shelf the order is alphabetical: it never depends on what a link earns."
       },
-      "legal": "This is not financial advice. Terms change: check them with the provider. Each card gives the day and the page where we read them.",
+      "legal": "This is not financial advice. Terms change: check them with the provider. Each card gives the day we checked it.",
       "in": {
         "k": "The toolbox",
         "pay": "The services for getting paid, with their limits country by country →",
@@ -7490,13 +7516,12 @@
         "go": "Open the toolbox"
       },
       "official": "Official site:",
-      "read": "Terms read on",
-      "readAt": "at",
+      "read": "Card checked on",
       "on": {
         "d20261121": "21 Nov 2026"
       },
       "unreadK": "Official pages not read: everything below is still to be checked.",
-      "unread": "Terms not read: the site would not let us read its pages.",
+      "unread": "Terms not yet checked by us: read them on {host} before you open an account.",
       "noProg": "No partner programme: this link stays a plain link and earns us nothing."
     },
     "enq": {

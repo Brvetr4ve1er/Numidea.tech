@@ -83,6 +83,23 @@
       <!-- the glitch's two coloured copies are drawn by an aria-hidden layer, so
            the heading's accessible name stays "Your codebase, now playable." -->
       <h1>Your codebase,<br>now <span class="glitch">playable.<span class="glitch-fx" data-text="playable." aria-hidden="true"></span></span></h1>
+      <!-- the product before the players (world-07): a still of the booted console, framed as a screen, with Bit on its
+           top edge and the scan card over its corner. It sits after the heading in the source so a phone shows it on
+           the first screen; from 961px the hero's grid puts it in the right-hand column (style.css, the hero) -->
+      <div class="hero-bit" data-reveal="2">
+        <button type="button" class="bit-btn bit-btn--small" data-feed aria-label="Pet Bit (feeds him XP)"><span class="bit" data-bit="7"></span></button>
+        <div class="pops pops--hero" aria-live="polite"></div>
+        <figure class="screen hero-shot">
+          <figcaption class="screen-bar"><span><span class="t-red">■</span> <span class="t-gold">■</span> <span class="t-green">■</span><span class="hero-shot__path">&nbsp;&nbsp; ~/code</span></span><a href="#demo">TRY IT LIVE ↓</a></figcaption>
+          <img src="console-still-720.webp" srcset="console-still-720.webp 720w, console-still.webp 1440w" sizes="(min-width:961px) min(46vw, 560px), calc(100vw - 40px)" width="1440" height="900" alt="The WorkspaceHQ v3 console on sample repos: the Today view, with one next action on top (put Project C under version control), the trend of uncommitted files and a failed secret sweep to run again." decoding="async">
+        </figure>
+        <div class="scan-card">
+          <div class="scan-row"><span class="dot-live" aria-hidden="true"></span>hq scan → ~/code</div>
+          <div class="scan-row scan-row--between"><span class="t-text">12 repos · 3 need you</span><span class="t-green">✓ 2.1s</span></div>
+          <div class="scan-row scan-row--between scan-row--base"><span class="px-label">HEALTH</span><span class="scan-num">86</span></div>
+          <div class="pbar pbar--gold pbar--12" role="img" aria-label="Health 86 out of 100"><i class="w-86"></i></div>
+        </div>
+      </div>
       <p class="hero-lede">WorkspaceHQ v3 scans every repo on your machine, turns git hygiene into quests, and puts one clear next move on top. A Claude-powered desktop console (Electron), with a pixel sidekick who notices when you do good work.</p>
       <div class="hero-cta">
         <div class="term term--hero">
@@ -97,17 +114,6 @@
           </div>
         </div>
         <a class="btn btn--outline btn--lg" href="#reel">▶ WATCH THE REEL</a>
-      </div>
-    </div>
-
-    <div class="hero-bit" data-reveal="2">
-      <button type="button" class="bit-btn bit-btn--small" data-feed aria-label="Pet Bit (feeds him XP)"><span class="bit" data-bit="7"></span></button>
-      <div class="pops pops--hero" aria-live="polite"></div>
-      <div class="scan-card">
-        <div class="scan-row"><span class="dot-live" aria-hidden="true"></span>hq scan → ~/code</div>
-        <div class="scan-row scan-row--between"><span class="t-text">12 repos · 3 need you</span><span class="t-green">✓ 2.1s</span></div>
-        <div class="scan-row scan-row--between scan-row--base"><span class="px-label">HEALTH</span><span class="scan-num">86</span></div>
-        <div class="pbar pbar--gold pbar--12" role="img" aria-label="Health 86 out of 100"><i class="w-86"></i></div>
       </div>
     </div>
   </section>
@@ -337,7 +343,7 @@
   <p class="sr-only" role="status" id="copyStatus"></p>
 </main>
 
-<aside class="studio-strip" aria-label="Numidea Labs">WorkspaceHQ is a Numidea Labs project. Want a site built with the same care? <a href="../#apercu">GET YOUR FREE APERÇU</a></aside>
+<aside class="studio-strip" aria-label="Numidea Labs">WorkspaceHQ is a Numidea Labs project. Want a site built with the same care? <a href="../en/#apercu">GET YOUR FREE PREVIEW</a></aside>
 
 <footer class="foot">
   <span>WORKSPACEHQ · v3.0 · OCTOBER 2026</span>

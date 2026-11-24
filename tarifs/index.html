@@ -148,7 +148,7 @@
       <nav class="nav-links" aria-label="Navigation principale" data-i18n-aria="ui.navPrimary">
         <a href="../#work" data-i18n="nav.work">Réalisations</a>
         <a href="../#services" data-i18n="nav.services">Services</a>
-        <a href="../#apercu" data-i18n="nav.about">L’Aperçu</a>
+        <a href="../#apercu" data-i18n="nav.about">Aperçu gratuit</a>
         <a href="../tarifs/" data-i18n="nav.pricing" aria-current="page">Tarifs</a>
         <a href="../#founder" data-i18n="nav.team">Fondateur</a>
         <a href="../#faq" data-i18n="nav.faq">FAQ</a>
@@ -177,7 +177,7 @@
              the script ran, and hiding it moved the whole bar (a layout
              shift of 0.01 at 1280). js-only, since a bar this full needs
              the script's measure. -->
-        <a class="nav-cta js-only" href="../#contact" data-apercu data-i18n="mbar.cta" hidden>Mon Aperçu</a>
+        <a class="nav-cta js-only" href="../#contact" data-apercu data-i18n="mbar.cta" hidden>Aperçu gratuit</a>
         <!-- the menu's open and close marks are drawn (24-grid, stroke 1.5),
              not typed: the system's ☰ and × came in whatever face the
              platform had for them, at a different weight on every phone -->
@@ -187,7 +187,9 @@
   </div>
 </header>
 
-<!-- mobile overlay menu (the home page's) -->
+<!-- mobile overlay menu (the home page's); its "Tarifs" leads to the home's
+     prices (walk-phone-12: as this page's own link it did nothing in a menu
+     opened on this page) -->
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" data-i18n-aria="ui.menu">
   <!-- one row at the top, where a thumb that opened the menu is: the
        language, the theme, the close button. (They were under the eight links,
@@ -210,18 +212,22 @@
   <nav aria-label="Sections" data-i18n-aria="ui.sections">
   <a href="../#work" data-i18n="nav.work">Réalisations</a>
   <a href="../#services" data-i18n="nav.services">Services</a>
-  <a href="../#apercu" data-i18n="nav.about">L’Aperçu</a>
-  <a href="../tarifs/" data-i18n="nav.pricing" aria-current="page">Tarifs</a>
+  <a href="../#apercu" data-i18n="nav.about">Aperçu gratuit</a>
+  <a href="../#pricing" data-i18n="nav.pricing">Tarifs</a>
   <a href="../#founder" data-i18n="nav.team">Fondateur</a>
   <a href="../#faq" data-i18n="nav.faq">FAQ</a>
   <a href="../#contact" data-i18n="nav.contact">Contact</a>
+  <!-- the other two parts of the site, under a rule (journey-01): the home had no way to them but the footer's Studio link -->
+  <span class="menu-sep" aria-hidden="true"></span>
+  <a class="menu-far" href="../hub/lanterne/?lang=fr" data-i18n="nav.librairie">La Librairie</a>
+  <a class="menu-far" href="../hub/monde.html?lang=fr" data-i18n="nav.monde">Le monde</a>
   </nav>
   <!-- the two ways to start, pinned at the foot of the menu (styles.css
        .menu-acts): eight section links and no action left the visitor who
        opened the menu to act with nothing to press. The same two links as
        the phone bar (.m-contact), which is hidden while the menu is open. -->
   <div class="menu-acts">
-    <a class="btn btn-primary" href="../#contact" data-apercu data-i18n="mbar.cta">Mon Aperçu</a>
+    <a class="btn btn-primary" href="../#contact" data-apercu data-i18n="mbar.cta">Aperçu gratuit</a>
     <a class="btn wa-link btn-teal" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%20%E2%80%94%20j'aimerais%20parler%20d'un%20projet." target="_blank" rel="noopener">
       <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
       <span data-i18n="footer.wa">WhatsApp</span>
@@ -250,7 +256,7 @@
       </div>
       <p class="sec-lead" data-i18n="tarifs.lead">Nos trois formules et la maintenance, en dinars, en euros ou en dollars ; l’estimateur pour ce que les formules ne chiffrent pas ; puis les tarifs courants en Algérie, en France et aux États-Unis, sources à l’appui.</p>
       <p class="tarifs-next tarifs-top">
-        <a class="btn btn-primary" href="../#apercu" data-i18n="hero.cta1">Demander mon Aperçu gratuit <span aria-hidden="true">→</span></a>
+        <a class="btn btn-primary" href="../#contact" data-apercu data-i18n="hero.cta1">Demander mon Aperçu gratuit <span aria-hidden="true">→</span></a>
         <a class="btn btn-teal wa-link" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l%E2%80%99Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s%E2%80%99il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
                   <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
                   <span data-i18n="hero.cta2">Écrire sur WhatsApp</span>
@@ -471,8 +477,7 @@
          Numidea column from PRICE_MODEL. -->
     <div class="market" id="market">
       <span class="t-pl" aria-hidden="true"></span>
-      <h2 class="sec font-swap-display" id="mk-h" data-i18n="mk.h">Algérie, France, États-Unis : un projet, trois marchés</h2>
-      <p class="sec-lead t-sub" data-i18n="price.moreHint">Le marché, les modèles de facturation, ce qui fait bouger un devis.</p>
+      <h2 class="sec font-swap-display" id="mk-h" data-i18n="mk.h">Un projet, trois marchés</h2>
       <p class="sec-lead" data-i18n="mk.p">Le même projet, chiffré sur trois marchés. Fourchettes courantes 2026, du freelance confirmé à l’agence — hors taxes.</p>
 
       <fieldset class="mk-cur est-field">
@@ -594,7 +599,7 @@
       <div class="faq-col">
         <details class="faq-item reveal">
           <summary><span class="q" data-i18n="faq2.q">C’est combien ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-          <div class="faq-a"><p data-i18n="faq2.a">Nos fourchettes de prix sont publiées dans la section Tarifs : nos formules commencent à 90 000 DA pour un site vitrine (en euros et en dollars dans la même section). Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Voir aussi <a href="../#apercu">l’Aperçu</a>.</p></div>
+          <div class="faq-a"><p data-i18n="tarifs.faq2a">Nos formules commencent à 90 000 DA pour un site vitrine, en dinars, en euros ou en dollars sur cette page. Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Voir aussi <a href="../#apercu">l’Aperçu</a>.</p></div>
         </details>
 
         <details class="faq-item reveal">
@@ -617,7 +622,7 @@
 
     <!-- the way on: the Aperçu and WhatsApp, as the hero offers them -->
     <p class="tarifs-next">
-      <a class="btn btn-primary" href="../#apercu" data-i18n="hero.cta1">Demander mon Aperçu gratuit <span aria-hidden="true">→</span></a>
+      <a class="btn btn-primary" href="../#contact" data-apercu data-i18n="hero.cta1">Demander mon Aperçu gratuit <span aria-hidden="true">→</span></a>
       <a class="btn btn-teal wa-link" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l%E2%80%99Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s%E2%80%99il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
                 <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
                 <span data-i18n="hero.cta2">Écrire sur WhatsApp</span>
@@ -641,14 +646,22 @@
     <nav aria-label="Pied de page" data-i18n-aria="footer.navAria">
       <a href="../#work" data-i18n="nav.work">Réalisations</a>
       <a href="../#services" data-i18n="nav.services">Services</a>
-      <a href="../#apercu" data-i18n="nav.about">L’Aperçu</a>
+      <a href="../#apercu" data-i18n="nav.about">Aperçu gratuit</a>
       <a href="../tarifs/" data-i18n="nav.pricing" aria-current="page">Tarifs</a>
       <a href="../#founder" data-i18n="nav.team">Fondateur</a>
       <a href="../#faq" data-i18n="nav.faq">FAQ</a>
       <a href="../#contact" data-i18n="nav.contact">Contact</a>
       <a href="../hub/?lang=fr" data-i18n="footer.studio">Le Studio</a>
-      <a href="../workspacehq/">WorkspaceHQ</a>
+      <a href="../hub/lanterne/?lang=fr" data-i18n="nav.librairie">La Librairie</a>
+      <a href="../hub/monde.html?lang=fr" data-i18n="nav.monde">Le monde</a>
+      <a href="../workspacehq/" data-i18n="footer.whq">WorkspaceHQ, notre outil (EN)</a>
     </nav>
+    <!-- how to reach the studio, as #contact gives it (home-19): the number, the address, the town -->
+    <address class="foot-reach">
+      <a class="wa-link" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%20%E2%80%94%20j'aimerais%20parler%20d'un%20projet." target="_blank" rel="noopener"><span class="foot-k" data-i18n="footer.wa">WhatsApp</span> <bdi dir="ltr">+213 672 41 25 78</bdi></a>
+      <a href="mailto:hamissemohamedyasser@gmail.com">hamissemohamedyasser@<wbr>gmail.com</a>
+      <span data-i18n="tb.place">Bordj Bou Arréridj, Algérie</span>
+    </address>
   </div>
   <div class="meta">
     <span data-i18n="footer.rights">© 2026 Numidea Labs</span>
@@ -656,21 +669,13 @@
     <span class="dim-line foot-coord" aria-hidden="true"><i></i><b dir="ltr">36°04'N · 4°46'E</b><i></i></span>
     <!-- legal notice + privacy links, written by scripts/build-legal.mjs once legal/ is published -->
     <span class="meta-legal"><!-- LEGAL:footer --><!-- /LEGAL:footer --></span>
-    <span class="meta-end">
-      <span class="lang" role="group" aria-label="Langue" data-i18n-aria="ui.lang">
-        <a href="../tarifs/" hreflang="fr" lang="fr" aria-label="Français (FR)" aria-current="page">FR</a>
-        <a href="../en/tarifs/" hreflang="en" lang="en" aria-label="English (EN)">EN</a>
-        <a href="../ar/tarifs/" hreflang="ar" aria-label="العربية (ع)"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></a>
-      </span>
-      <a class="meta-top" href="#top"><span data-i18n="ui.top">Haut de page</span> <span aria-hidden="true">↑</span></a>
-    </span>
   </div>
 </footer>
 
 <!-- phones: the two ways to start, kept in reach past the first screen (the
      home page's bar; both lead to the home page's #contact and WhatsApp) -->
 <nav class="m-contact" aria-label="Contact rapide" data-i18n-aria="mbar.aria">
-  <a class="btn btn-primary m-main" href="../#contact" data-apercu data-i18n="mbar.cta">Mon Aperçu</a>
+  <a class="btn btn-primary m-main" href="../#contact" data-apercu data-i18n="mbar.cta">Aperçu gratuit</a>
   <a class="btn wa-link btn-teal" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%20%E2%80%94%20j'aimerais%20parler%20d'un%20projet." target="_blank" rel="noopener">
     <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
     <span data-i18n="footer.wa">WhatsApp</span>
@@ -680,7 +685,7 @@
        #est-cta): the estimate is in view whichever option the thumb is on,
        and nothing else is stuck to the top of the screen -->
   <p class="m-price" aria-hidden="true"><b class="mp-n"></b><span class="mp-w"></span></p>
-  <a class="btn btn-primary m-estgo" href="../#contact" data-i18n="price.estCta" tabindex="-1">Demander mon prix ferme <span aria-hidden="true">→</span></a>
+  <a class="btn btn-primary m-estgo" href="../#contact" data-i18n="price.estCtaShort" tabindex="-1">Prix ferme <span aria-hidden="true">→</span></a>
 </nav>
 
 <!-- this page's dictionary (one language), then the script that reads it;

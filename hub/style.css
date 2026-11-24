@@ -174,6 +174,8 @@ button{font:inherit;color:inherit}
 :root:not([data-ui]) #services,:root:not([data-ui]) #pricing,:root:not([data-ui]) #studio{contain-intrinsic-size:auto 2800px}
 :root:not([data-ui]) #work{contain-intrinsic-size:auto 4600px}
 :root:not([data-ui]) #brand,:root:not([data-ui]) #tech,:root:not([data-ui]) #contact{contain-intrinsic-size:auto 950px}
+/* the doors too: just under the first screen, they are not laid out at the load (2026-11-23) */
+:root:not([data-ui]) main>.st-doors{content-visibility:auto;contain-intrinsic-size:auto 1500px}
 .st-process,.st-founder{border-top:0}
 
 /* ---------------- shared pieces ---------------- */
@@ -187,13 +189,16 @@ button{font:inherit;color:inherit}
 .st-head__main{flex:1 1 560px;min-width:0;display:flex;flex-direction:column;gap:14px}
 .st-head--stack{flex-direction:column;align-items:stretch;gap:14px}
 .st-kick{display:flex;align-items:center;gap:14px;font-family:var(--f-mono);font-size:var(--t-mono);letter-spacing:.18em;color:var(--red-text)}
+/* the mono eyebrows break in balanced lines, never leaving « · FR·EN·AR » or « ÉCRIT » alone on the last one (2026-11-23) */
+.st-kick > span:last-child,.st-hero__kicker,.st-case__hud{text-wrap:balance}
 .st-kick--cream{color:var(--cream)}
 .st-kick--dark{color:var(--on-dark-2)}
 .st-seal{width:46px;height:46px;flex:none;display:grid;place-items:center;border:2px solid var(--ink);border-radius:50%;font-family:var(--f-jp);font-weight:900;font-size:22px;letter-spacing:0;color:var(--red)}
 .st-seal--red{background:var(--red);border-color:var(--cream);color:var(--cream)}
 .st-seal--fill{background:var(--red);border-color:var(--red);color:var(--cream)}
-.st-h2{overflow-wrap:break-word;font-family:var(--f-disp);font-weight:900;font-size:var(--t-h2);line-height:.94;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance}
-.st-h2--mega{font-size:var(--t-mega);line-height:.88;letter-spacing:-.015em}
+.st-h2{overflow-wrap:break-word;font-family:var(--f-disp);font-weight:900;font-size:var(--t-h2);line-height:1;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance}
+/* (1, not under: at .88 an accented capital touched the line above, « OUVERTE. » read « QUVERTE. », 2026-11-23) */
+.st-h2--mega{font-size:var(--t-mega);line-height:1;letter-spacing:-.015em}
 .st-h2--narrow{max-width:16em}
 .st-h3{font-family:var(--f-disp);font-weight:900;font-size:var(--t-h3);line-height:1;text-transform:uppercase}
 .st-h3l{font-family:var(--f-disp);font-weight:900;font-size:var(--t-h3l);line-height:.95;text-transform:uppercase}
@@ -227,6 +232,8 @@ button{font:inherit;color:inherit}
 /* ---------------- nav ---------------- */
 .st-nav{position:sticky;top:0;z-index:50;background:rgba(216,203,184,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:2px solid var(--ink)}
 section[id],.st-case,[id^="case-"]{scroll-margin-top:80px}
+/* a section of the Studio lands with its heading under the bar, not its top padding (2026-11-23: the nav, the sheet and a deep link) */
+:root:not([data-ui]) main>.st-sec[id]{scroll-margin-top:calc(96px - var(--sec-y))}
 .st-nav__in{display:flex;align-items:center;gap:20px;padding-block:12px}
 /* the wordmark is set in Archivo, in every language (the display face swaps to
    Reem Kufi under Arabic; a name does not): NUMIDEA ink, LABS red */
@@ -318,6 +325,15 @@ html[lang="ar"] .st-hero__mark,html[lang="ar"] .st-lab__mark{font-family:"Aref R
 .st-hero__floor{position:absolute;left:4%;right:0;bottom:0;height:6%;z-index:3;background:var(--paper);border-top:2px solid var(--ink);pointer-events:none}
 .st-hero__stamp{position:absolute;inset-inline-end:6%;bottom:4%;z-index:4;width:74px;height:74px;display:grid;place-items:center;background:var(--red);border:3px solid var(--ink);transform:rotate(-8deg);font-family:var(--f-jp);font-weight:900;font-size:26px;line-height:1;color:var(--cream)}
 @media (max-width:560px){.st-hero__stage{height:clamp(420px,110vw,520px)}}
+/* the « humeur du jour » card leaves the portrait alone on a phone (2026-11-23) */
+@media (max-width:719px){.st-mood{display:none}}
+/* a laptop's first screen holds the whole promise (2026-11-23): from 1024 px the title is sized by the screen's height
+   as well as its width, and the stage is no taller than the screen under the bar, so the copy centred beside it ends
+   (lead and both buttons) above the fold at 1280x720 up to 1920x1080 */
+@media (min-width:1024px){
+  :root{--t-hero:min(clamp(46px,7.2vw,112px),calc((100svh - 74px) * .11))}
+  .st-hero__stage{height:min(clamp(520px,60vw,760px),calc(100svh - 90px - clamp(28px,4vw,56px)))}
+}
 
 /* ---------------- 02 wedge ---------------- */
 .st-board{position:relative;display:flex;flex-direction:column;gap:36px;padding:clamp(20px,3vw,40px);background:var(--floor);border:2px solid var(--ink)}
@@ -416,7 +432,7 @@ html[lang="ar"] .st-hero__mark,html[lang="ar"] .st-lab__mark{font-family:"Aref R
 .st-preview__row{display:flex;flex-wrap:wrap;align-items:center;gap:32px 56px}
 .st-preview__copy{flex:1 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px}
 .st-preview__lead{font-size:var(--t-lead);line-height:1.6;max-width:32em}
-.st-preview .st-h2--mega{font-size:clamp(40px,6.4vw,100px);line-height:.9}
+.st-preview .st-h2--mega{font-size:clamp(40px,6.4vw,100px);line-height:1}
 :lang(ar) .st-preview .st-h2--mega{line-height:1.15}
 .st-preview .st-aside{font-size:24px;align-self:center}
 .st-preview__art{flex:1 1 360px;min-width:0;position:relative;display:flex;justify-content:center}
@@ -458,10 +474,22 @@ html[lang="ar"] .st-hero__mark,html[lang="ar"] .st-lab__mark{font-family:"Aref R
 .st-proc li > div{display:flex;flex-direction:column;gap:10px;transition:opacity var(--m-reveal) var(--m-ease-enter)}
 .st-proc p{font-size:var(--t-body);line-height:1.6;max-width:28em}
 @media (min-width:1024px){
-  .st-proc-card{position:sticky;top:96px}
   .st-proc-card__frame{aspect-ratio:4/3}
   /* the step that is not current is dimmed, its number is not: small red text at .72 was 3.1:1 */
   html.js .st-proc li:not(.is-active) > div{opacity:.72}
+  /* the five steps in one row beside the card (2026-11-23: one under the other they took 1 700 px for five short
+     steps); the card shows the step under the pointer (hub/app.js 5) */
+  .st-process__row{display:grid;grid-template-columns:minmax(240px,300px) minmax(0,1fr);gap:clamp(28px,3vw,48px);align-items:start}
+  .st-proc-card{max-width:none}
+  .st-proc{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0 clamp(14px,1.6vw,24px)}
+  .st-proc li{flex-direction:column;gap:10px;padding:18px 0 0}
+  .st-proc__n{padding-top:0}
+  .st-proc .st-h3l{font-size:clamp(16px,1.5vw,22px);line-height:1.05;overflow-wrap:break-word}
+  :lang(ar) .st-proc .st-h3l{line-height:1.35}
+  .st-proc p{font-size:15.5px;line-height:1.55}
+  /* the smaller card's caption: the step count on one line, the step's word on the next, full width (S-18) */
+  .st-proc-card__now{flex-direction:column;align-items:flex-start;gap:4px}
+  .st-proc-card__now .st-label{white-space:nowrap;letter-spacing:.1em}
 }
 
 /* ---------------- 06 pricing ---------------- */
@@ -714,6 +742,10 @@ html.js .st-est__nojs{display:none}
 .st-reel--fab .st-reel__tile--tall{grid-column:auto;grid-row:auto}
 .st-reel--fab .st-reel__tile--tall .st-reel__b{max-height:none}
 .st-reel--fab .st-reel__tile--tall .st-reel__b video{flex:none;height:auto;aspect-ratio:16 / 9;object-position:50% 30%}
+/* (world-06, 2026-11-24) the reel is the scenes grid's last item, out of scene 04's card: one row across both columns,
+   its clips four to a row from 1100 px (two across inside the old half-width card) */
+.st-scenes__grid > .st-reel--fab{grid-column:1 / -1}
+@media (min-width:1100px){.st-scenes__grid > .st-reel--fab{grid-template-columns:repeat(4,minmax(0,1fr))}}
 /* ---------------- money: "L'argent, sans jargon" (hub/app.js 6 and 13) ----------------
    The night desk as a scene panel, four price cards, the bundle on a red
    strip, then the lessons on a night plate (the navy of the night panels):
@@ -800,6 +832,10 @@ html.js .st-est__nojs{display:none}
 .st-pick__bs{display:flex;flex-wrap:wrap;gap:10px 12px;padding:0 3px 3px 0}
 html:not(.js) .st-pick__bs,html:not(.js) .st-ls__q{display:none}
 .st-pick__b{min-height:44px;padding:8px 14px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:var(--f-body);font-weight:600;font-size:var(--t-small);line-height:1.2;cursor:pointer;transition:transform var(--m-press) var(--m-ease-enter),box-shadow var(--m-press) var(--m-ease-enter),background-color var(--m-hover) var(--m-ease-enter),color var(--m-hover) var(--m-ease-enter)}
+@media (hover:hover){
+  .st-pick__b:not([aria-pressed="true"]):hover{background:var(--cream);box-shadow:4px 4px 0 var(--red)}
+  .st-ls__a:not(.is-right):not(.is-wrong):not(:disabled):hover{background:var(--paper);box-shadow:4px 4px 0 var(--red)}
+}
 .st-pick__b[aria-pressed="true"]{background:var(--ink);color:var(--cream);box-shadow:0 0 0 var(--ink);transform:translate(3px,3px)}
 .st-pick__ps{min-height:5.4em}
 .st-pick__p{padding:14px 16px;border-inline-start:4px solid var(--teal);background:rgba(35,102,96,.08);font-size:var(--t-card);line-height:1.55;max-width:74ch}
@@ -925,6 +961,9 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 .st-parts b{font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);letter-spacing:.02em}
 .st-parts span{font-size:14px;line-height:1.3}
 .st-rank{display:flex;flex-direction:column;gap:5px;margin:4px 0}
+/* the ranking is a drawing of a results page, said so (2026-11-23): no position is promised */
+.st-rank__ex{align-self:flex-start;margin:4px 0 -2px;padding:1px 8px;border:1.5px dashed var(--line);font:600 var(--t-label)/1.5 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+:lang(ar) .st-rank__ex{letter-spacing:0;text-transform:none}
 .st-rank li{display:flex;align-items:center;gap:10px;padding:6px 10px;border:2px solid var(--line);color:var(--ink-2);font-size:14px}
 .st-rank li span:first-child{font-family:var(--f-mono);font-size:var(--t-label)}
 .st-rank li.is-you{padding:8px 10px;background:var(--teal);border-color:var(--ink);color:var(--cream);font-size:var(--t-small)}
@@ -981,6 +1020,20 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 .st-c2{grid-column:span 2}
 .st-c3{grid-column:span 3}
 .st-r2{grid-row:span 2}
+/* one counter per case (2026-11-23): the slide counter in the foot ("2 / 26"); the header's « livrables débloqués
+   n/9 » and its pips are not drawn (the tiles keep their ✓ VU badges) */
+/* a client case's way to its project sheet on the home's /scene/ (2026-11-23) */
+.st-case__sheet{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;font:600 var(--t-label)/1.2 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:inherit;text-decoration:underline;text-underline-offset:3px}
+:lang(ar) .st-case__sheet{letter-spacing:0;text-transform:none}
+.st-case .st-case__bar .st-case__progress:not(.ct-progress),.st-case .st-case__bar .ct-pips,.st-case .st-case__bar .ct-count{display:none}
+/* a case folded on a phone (hub/app.js 9b): its bar and the button that opens it */
+.st-case__unfold{flex:1 1 100%;order:20;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;padding:0 14px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);font:600 12px/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.st-case__unfold span:last-child{font-size:18px}
+:lang(ar) .st-case__unfold{letter-spacing:0;text-transform:none;font-size:13px}
+.st-case.is-folded > :not(.st-case__bar),.st-case.is-folded .st-case__nav{display:none}
+.st-case.is-folded{contain-intrinsic-size:auto 160px}
+/* the site tile's small « Ouvrir ↗ » is a picture's alias of the case's 44 px « Ouvrir le site »: it takes no press of its own (2026-11-23) */
+.st-case [class$="-site__open"][aria-hidden="true"]{pointer-events:none}
 .st-case__foot{display:flex;align-items:center;gap:16px;padding:0 16px 14px;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.14em;color:var(--c-muted)}
 .st-case__bar-p{flex:1;height:3px;background:var(--c-line);position:relative;overflow:hidden}
 .st-case__bar-p i{position:absolute;inset:0;background:var(--c-accent);transform-origin:left center;transform:scaleX(var(--p,0))}
@@ -1026,6 +1079,13 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 .st-proj--film .st-proj__body{grid-template-columns:minmax(0,320px) minmax(0,1fr);align-items:center;justify-content:center}
 .st-proj__reel{min-width:0;border:2px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--ink);box-shadow:5px 5px 0 var(--red)}
 .st-proj__reel video{display:block;width:100%;height:auto;aspect-ratio:540/946;background:var(--ink)}
+/* (world-23) MERCURY's film is the reel's press-to-play tile: inside the film's frame it draws no second frame; the play
+   mark is a large centred triangle on a dark disc, both gone while it plays */
+.st-proj__reel .st-reel__b{border:0;box-shadow:none;background:var(--ink)}
+@media (hover:hover){.st-proj__reel .st-reel__b:hover{transform:none;box-shadow:none}}
+.st-proj__play::before{content:"";position:absolute;z-index:1;top:50%;left:50%;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;background:rgba(33,30,27,.72);box-shadow:0 0 0 2px var(--cream);transition:opacity var(--m-hover) var(--m-ease-enter)}
+.st-proj__play::after{z-index:2;top:calc(50% - 16px);left:calc(50% - 9px);inset-inline-end:auto;border-width:16px 0 16px 27px}
+.st-proj__play.is-on::before{opacity:0}
 .st-proj__lang--note{align-self:flex-start;text-wrap:balance}
 .st-proj__strip{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:clamp(8px,1.2vw,16px);padding:0 clamp(16px,2.4vw,32px) clamp(16px,2.4vw,32px);margin:0;list-style:none}
 .st-proj__frame{position:relative;margin:0;overflow:hidden;aspect-ratio:480/840;border:2px solid var(--ink);border-radius:6px;background:var(--floor)}
@@ -1103,6 +1163,7 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 .st-be__kuro{position:absolute;inset-block-end:-26px;inset-inline-end:clamp(16px,3vw,40px);width:clamp(76px,7vw,92px);height:auto;transform:rotate(5deg);pointer-events:none;
   filter:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(0 4px 6px rgba(33,30,27,.3))}
 [dir="rtl"] .st-be__kuro{transform:rotate(-5deg) scaleX(-1)}
+.st-be__kuro{aspect-ratio:240/358;object-fit:contain}   /* the file's own ratio, whatever box it is given (2026-11-23) */
 @media (max-width:899px){.st-be__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:640px){.st-be__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
@@ -1114,43 +1175,11 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 :lang(ar) .st-wedge__a{letter-spacing:0;line-height:1.2}
 [dir="rtl"] .st-wedge__b{transform:rotate(3deg);transform-origin:right center}
 
-/* WorkspaceHQ, the founder's favourite build, as a game cartridge ticket in
-   the "Aussi, faits maison" line (the cartridge Bit lived on in the page of
-   28 Oct). Ink ground, the Studio's perforation, the arcade face for the name
-   only (the font WorkspaceHQ already hosts: one file, no second download;
-   hub/fonts/lazy-whq.css, fetched as the ticket nears).
-   Still at rest; the hop, the blink, "PRESS START" and "+1 XP" play on hover
-   and focus, a few hundred milliseconds each and then stop; on a screen with
-   no hover (a tap goes straight to the link) once, when the ticket is first
-   on screen (hub/app.js 3). */
+/* « Aussi, faits maison » (2026-11-23: the WorkspaceHQ cartridge ticket became a plain link beside Glaive) */
 .st-own{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px}
-.st-own a.whq-cart{--g:#FFD23F;position:relative;display:flex;align-items:center;gap:14px;max-width:440px;min-height:44px;margin-top:6px;padding:16px 14px 22px;padding-inline-end:74px;color:var(--cream);font-weight:400;text-decoration:none;background:var(--ink);
-  border:2px solid var(--ink);box-shadow:5px 5px 0 var(--red);transition:transform var(--m-hover) var(--m-ease-enter),box-shadow var(--m-hover) var(--m-ease-enter)}
-.whq-cart::before{content:"";position:absolute;inset-inline:12px;top:5px;height:3px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 10px)}
-.whq-bit{flex:none;width:54px;height:44px;display:grid;place-items:end center;background:#0C0A1E;border:2px solid #050409;padding:4px 0 3px}
-.whq-bit svg{width:36px;height:27px;display:block;filter:drop-shadow(0 0 6px rgba(217,119,87,.45))}
-.whq-eyes{transform-box:fill-box;transform-origin:center}
-.whq-txt{display:grid;gap:5px;min-width:0}
-.whq-kick{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.12em;line-height:1.4;color:var(--on-dark-2)}
-:lang(ar) .whq-kick{letter-spacing:0}
-.whq-name{font-family:"Press Start 2P",monospace;font-weight:400;font-size:13px;letter-spacing:1px;line-height:1.3;color:var(--cream);white-space:nowrap}
-.whq-name i{font-style:normal;color:var(--g);text-shadow:0 0 8px rgba(255,210,63,.5)}
-.whq-name em{font-style:normal;font-size:12px;color:#F2A27E}
-.whq-sub{font-size:var(--t-small);line-height:1.35;color:var(--on-dark-2)}
-.whq-start{position:absolute;inset-inline-end:12px;bottom:6px;font-family:"Press Start 2P",monospace;font-size:8px;letter-spacing:1px;color:var(--g);opacity:0}
-.whq-xp{position:absolute;inset-inline-start:34px;top:2px;font-family:"Press Start 2P",monospace;font-size:8px;color:var(--g);opacity:0;pointer-events:none}
-@media (hover:hover){.st-own a.whq-cart:hover{transform:translate(-2px,-3px);box-shadow:7px 8px 0 var(--red)}}
-.st-own a.whq-cart:focus-visible{transform:translate(-2px,-3px);box-shadow:7px 8px 0 var(--red)}
-.st-own a.whq-cart:focus-visible{outline:3px solid var(--g);outline-offset:3px}
-.whq-cart:hover .whq-bit svg,.whq-cart:focus-visible .whq-bit svg,.whq-cart.is-play .whq-bit svg{animation:whq-hop var(--m-reveal) steps(3) 2}   /* (steps cut each half: three of 83 ms) */
-.whq-cart:hover .whq-eyes,.whq-cart:focus-visible .whq-eyes,.whq-cart.is-play .whq-eyes{animation:whq-blink var(--m-draw) steps(1) 1 var(--m-enter)}
-.whq-cart:hover .whq-start,.whq-cart:focus-visible .whq-start,.whq-cart.is-play .whq-start{animation:whq-press var(--m-draw) steps(1) 3}
-.whq-cart:hover .whq-xp,.whq-cart:focus-visible .whq-xp,.whq-cart.is-play .whq-xp{animation:whq-xp var(--m-draw) var(--m-ease-enter) 1 forwards}
-@keyframes whq-hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-@keyframes whq-blink{0%,100%{transform:scaleY(1)}16.667%,33.333%{transform:scaleY(.1)}}
-@keyframes whq-press{0%{opacity:1}50%{opacity:0}}
-@keyframes whq-xp{0%{opacity:0;transform:translateY(4px)}25%{opacity:1}100%{opacity:0;transform:translateY(-22px)}}
-@media (max-width:420px){.st-own a.whq-cart{padding-inline-end:14px;padding-bottom:26px;box-shadow:4px 4px 0 var(--red)}.whq-name{font-size:12px}}
+/* each link is one run of words that wraps as a sentence (S-21: an inline-flex link laid « WorkspaceHQ, » and its
+   description out as two boxes side by side); 10 + 24 + 10 keeps the 44 px target */
+.st-own a{display:block;padding-block:10px;line-height:24px}
 
 /* the viewer */
 .st-lb{max-width:min(92vw,760px);max-height:88vh;max-height:88dvh;padding:0;border:2px solid var(--ink);background:var(--ink);overflow:visible}
@@ -1202,6 +1231,16 @@ figure.st-tile{margin:0}
 .st-tile--link b{font-family:var(--f-disp);font-weight:900;font-size:22px;line-height:1.05;text-transform:uppercase}
 .st-tile--link span{font-size:var(--t-small);line-height:1.45}
 @media (max-width:560px){.st-lab__grid{column-count:2}.st-tile figcaption{letter-spacing:.04em}.st-tile--link{padding:18px 12px}.st-tile--link b{font-size:18px;overflow-wrap:anywhere}}
+/* (world-04, 2026-11-24) the first twelve pieces, then « Voir les 36 pièces »: a ghost button in cream on the ink wall,
+   its mark turning + to −; four columns from 1200 px keep the closed wall short */
+.st-lab__more{margin-top:4px}
+.st-lab__more-s{display:inline-flex;align-items:center;gap:14px;min-height:48px;padding:0 20px;border:2px solid var(--cream);color:var(--cream);font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;list-style:none}
+.st-lab__more-s::-webkit-details-marker{display:none}
+.st-lab__more-s::after{content:"+";font-size:20px;line-height:1}
+.st-lab__more[open] > .st-lab__more-s::after{content:"−"}
+.st-lab__more[open] > .st-lab__more-s{margin-bottom:8px}
+@media (hover:hover){.st-lab__more-s:hover{background:var(--cream);color:var(--ink)}}
+@media (min-width:1200px){.st-lab__grid{column-count:4}}
 
 /* the studio diary, a sub-row of the lab: the night desk as its head, eight titled prints */
 .st-diary{margin-top:clamp(28px,4vw,56px);padding-bottom:clamp(8px,2vw,20px)}
@@ -1309,6 +1348,7 @@ figure.st-tile{margin:0}
 [dir="rtl"] .st-founder__handle{transform-origin:right center}
 .st-founder__eyebrow{margin-top:-10px;font-size:var(--t-label);letter-spacing:.16em}
 :lang(ar) .st-founder__eyebrow{letter-spacing:0}
+html[lang="ar"] .st-founder__motto{display:none}
 .st-founder__motto{font-family:"Permanent Marker","Comic Sans MS",cursive;font-size:var(--t-hand);color:var(--ink);transform:rotate(-1.5deg)}
 .st-founder__linkrow{position:relative;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 20px}
 
@@ -1335,11 +1375,12 @@ figure.st-tile{margin:0}
 @media (max-width:899px){.st-make__grid{grid-template-columns:1fr;max-width:520px}}
 
 /* ---------------- 12 faq ---------------- */
-.st-wrap--faq{max-width:1000px}
+/* the answers keep their measure but start on the page's own left edge, as every other section does (2026-11-23) */
+.st-wrap--faq > .st-faq__head,.st-wrap--faq > .st-qa{max-width:1000px}
 /* Kūro's window beside the answers, from 1100 (below it, the phone figure by the heading) */
 .st-faq__win{display:none}
 @media (min-width:1100px){
-  .st-wrap--faq{max-width:1200px;display:grid;grid-template-columns:minmax(0,1fr) clamp(220px,22vw,300px);column-gap:clamp(28px,3vw,48px)}
+  .st-wrap--faq{display:grid;grid-template-columns:minmax(0,880px) clamp(220px,22vw,300px);justify-content:start;column-gap:clamp(28px,3vw,48px)}
   .st-wrap--faq > .st-faq__head,.st-wrap--faq > .st-qa{grid-column:1}
   .st-faq__head{padding-inline-end:0}
   .st-actor--faq{display:none}
@@ -1488,6 +1529,8 @@ figure.st-tile{margin:0}
    block's own values (no end keyframe, so nothing is pinned after). */
 .st-rv:not(.is-in){opacity:0;translate:0 12px}
 .st-rv.is-in{animation:m-reveal var(--m-reveal) var(--m-ease-enter) var(--d,0ms) backwards}
+/* a block reached by the keyboard is there at once, whatever its entrance has reached (2026-11-23) */
+.st-rv:focus-within{opacity:1;translate:none;animation:none}
 /* revealed while the last page is still being lifted off: it waits for the lift, so the old page's motion and the new page's never run at once */
 html:active-view-transition-type(page) .st-rv.is-in{animation-play-state:paused}
 /* (2026-11-18) the section's seal stamps as its block arrives (hub/app.js 4: a seal below the screen only);
@@ -1654,10 +1697,13 @@ html:active-view-transition .st-sting,html:active-view-transition .st-sting *{an
   .st-street.st-rv:not(.is-in) .st-bay__plate > *{opacity:0}
   .st-street.st-rv.is-in .st-street__cornice{animation:st-drop var(--m-enter) var(--m-ease-enter) var(--d,0ms) backwards}
   .st-street.st-rv.is-in .st-bay__art img{animation:st-shutter var(--m-beat) var(--m-ease-move) calc(var(--d,0ms) + var(--m-quick) + var(--i) * var(--m-step)) backwards}
-  .st-street.st-rv.is-in .st-bay__plate::before{animation:st-draw var(--m-reveal) var(--m-ease-enter) calc(var(--d,0ms) + var(--m-beat)) backwards}
+  .st-street.st-rv.is-in .st-bay__plate::before{animation:st-draw var(--m-reveal) var(--m-ease-enter) calc(var(--d,0ms) + var(--m-quick)) backwards}
   .st-street.st-rv:not(.is-in) .st-street__row::after{transform:scaleX(0)}
   .st-street.st-rv.is-in .st-street__row::after{animation:st-draw var(--m-reveal) var(--m-ease-enter) calc(var(--d,0ms) + var(--m-beat)) backwards}
-  .st-street.st-rv.is-in .st-bay__plate > *{animation:m-reveal var(--m-reveal) var(--m-ease-enter) calc(var(--d,0ms) + var(--m-beat) + var(--m-quick) + var(--i) * var(--m-step)) backwards}
+  .st-street.st-rv.is-in .st-bay__plate > *{animation:m-reveal var(--m-reveal) var(--m-ease-enter) calc(var(--d,0ms) + var(--m-quick) + var(--i) * var(--m-step)) backwards}
+  .st-street.st-rv:focus-within :is(.st-street__cornice,.st-bay__plate > *){opacity:1;animation:none}
+  .st-street.st-rv:focus-within .st-bay__art img{clip-path:none;animation:none}
+  .st-street.st-rv:focus-within .st-bay__plate::before,.st-street.st-rv:focus-within .st-street__row::after{transform:none;animation:none}
 }
 @keyframes st-drop{from{opacity:0;transform:translateY(-8px)}}
 @keyframes st-shutter{from{clip-path:inset(100% 0 0 0)}}
@@ -1703,6 +1749,27 @@ html:active-view-transition .st-sting,html:active-view-transition .st-sting *{an
   .st-bay--a .st-bay__art img{scale:1.6;transform-origin:50% 52%}
   .st-bay--c{border-inline-start:0}
   .st-street{box-shadow:var(--shadow)}
+  /* the doors on a phone take about one screen and a half (S-07, 2026-11-24): the shop's painting is at most 26 % of
+     the screen's height, cut by cover, and its plate tightens; the head's premise is set a size down */
+  .st-doors{padding-block:36px}
+  .st-doors__t{font-size:31px}
+  .st-doors .st-head{margin-bottom:12px;row-gap:14px}
+  .st-doors__premise{font-size:15px;line-height:1.5}
+  .st-bay--a .st-bay__art{max-height:26svh}
+  .st-bay--a .st-bay__plate{gap:8px;padding:14px 16px 8px}
+  /* its line (an Aperçu, the prices, the work, a direct contact) is what its button and its four links already say */
+  .st-bay--a .st-bay__d{display:none}
+  .st-bay--a .st-bay__more{gap:0 14px;padding-top:0}
+  /* the second and third doors are the slimmer ones on a phone (2026-11-23, the world's since 2026-11-24): a row, the
+     painting as a thumbnail, its name and the way in; their descriptions and small links are their own pages' */
+  .st-bay:is(.st-bay--b,.st-bay--c){flex-direction:row;align-items:stretch}
+  .st-bay:is(.st-bay--b,.st-bay--c) .st-bay__art{flex:0 0 clamp(88px,26vw,112px);aspect-ratio:auto;min-height:120px}
+  .st-bay:is(.st-bay--b,.st-bay--c) .st-bay__plate{justify-content:center;gap:6px;padding:12px 14px;border-inline-start:2px solid var(--ink)}
+  .st-bay:is(.st-bay--b,.st-bay--c) .st-bay__plate::before{display:none}
+  .st-bay:is(.st-bay--b,.st-bay--c) :is(.st-bay__d,.st-bay__buy,.st-bay__more){display:none}
+  .st-bay:is(.st-bay--b,.st-bay--c) .st-bay__t{font-size:24px}
+  .st-bay:is(.st-bay--b,.st-bay--c) .st-bay__go{min-height:44px;padding:0 12px;font-size:12px}
+  .st-bay:is(.st-bay--b,.st-bay--c) .st-bay__go:lang(ar){font-size:13px;letter-spacing:0}   /* the 13px Arabic floor */
 }
 /* a fold's cover screen: the cornice keeps the name and the coordinates, the plates tighten */
 @media (max-width:359px){
@@ -1817,7 +1884,17 @@ main:focus{outline:none}
 .st-menu__top{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;padding:10px var(--gx);padding-top:max(10px,env(safe-area-inset-top));border-bottom:2px solid var(--ink)}
 .st-menu__x{width:44px;height:44px;padding:0;border:2px solid var(--ink);background:transparent;font-size:18px;line-height:1;cursor:pointer}
 .st-menu__x:active{background:var(--ink);color:var(--cream)}
-.st-menu__nav{flex:1 0 auto;display:flex;flex-direction:column;padding-inline:var(--gx)}
+/* the links scroll inside the sheet and its foot (the language, the Aperçu, WhatsApp) stays in view (2026-11-23) */
+.st-menu[open]{overflow:hidden}
+.st-menu__nav{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;padding-inline:var(--gx)}
+.st-menu__foot{border-top:2px solid var(--ink)}
+/* the sheet's list says when more of it is below (or above) the fold: a shade at the cut edge that the paper covers
+   once the list is scrolled to its end (X-02, 2026-11-24; background-attachment local over scroll) */
+.st-menu__nav{background:linear-gradient(var(--paper) 40%,transparent) top / 100% 36px no-repeat local,linear-gradient(transparent,var(--paper) 60%) bottom / 100% 36px no-repeat local,
+  radial-gradient(farthest-side at 50% 0,rgba(15,30,48,.28),transparent) top / 100% 16px no-repeat scroll,radial-gradient(farthest-side at 50% 100%,rgba(15,30,48,.34),transparent) bottom / 100% 18px no-repeat scroll}
+.st-menu__nav a.st-menu__home{min-height:56px;font-size:clamp(22px,6vw,30px)}
+[dir="rtl"] .st-menu__home .st-menu__n{display:inline-block;transform:scaleX(-1)}
+.st-menu__n[lang="ja"]{font-family:var(--f-jp);font-size:16px;font-weight:900;letter-spacing:0}
 .st-menu__nav a{display:flex;align-items:baseline;gap:16px;min-height:64px;padding:12px 0;border-bottom:2px solid var(--ink);font-family:var(--f-disp);font-weight:900;font-size:clamp(30px,9vw,48px);line-height:1.05;text-transform:uppercase;text-decoration:none;color:var(--ink)}
 .st-menu__nav a:active{color:var(--red-text)}
 .st-menu__n{flex:none;min-width:2ch;font-family:var(--f-mono);font-size:var(--t-label);font-weight:600;letter-spacing:.1em;color:var(--red-text)}
@@ -1849,16 +1926,22 @@ main:focus{outline:none}
   .st-dock__wa:active{background:var(--ink)}
   .st-dock__wa svg{width:26px;height:26px}
   .st-foot{padding-bottom:calc(36px + 68px + env(safe-area-inset-bottom))}
+  /* a control reached with Tab scrolls clear of the dock, and in the console clear of its live total too (FOCUS-hub-390) */
+  html{scroll-padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  .st-est :is(.st-tbtn,.st-obtn,input){scroll-margin-bottom:60px}
 }
+/* the carte's « Voir le travail » reached with Tab stops below the sticky bar (FOCUS-hub-1440) */
+.crt .cc__sec{scroll-margin-top:96px}
 @media (prefers-reduced-motion:reduce){.st-dock,.st-dock.is-on{transition:none}}
 
 /* ---- phones: the page's rhythm ---- */
 @media (max-width:599px){
-  :root{--sec-y:44px;--t-hero:clamp(30px,8.6vw,40px);--t-h2:clamp(30px,8.4vw,36px);--t-mega:clamp(38px,11vw,48px);--t-h3l:clamp(26px,7.4vw,32px);--t-body:16.5px;--t-lead:16.5px}
-  .st-head{margin-bottom:24px;gap:14px 24px}
-  .st-process .st-head,.st-pricing .st-head,.st-tech .st-head{margin-bottom:24px}
+  /* S-09 (2026-11-24): the sections' padding 30 px a side (44 before), the heads 20 px over their content */
+  :root{--sec-y:30px;--t-hero:clamp(30px,8.6vw,40px);--t-h2:clamp(29px,7.8vw,36px);--t-mega:clamp(38px,11vw,48px);--t-h3l:clamp(26px,7.4vw,32px);--t-body:16px;--t-lead:16px}
+  .st-head{margin-bottom:20px;gap:12px 24px}
+  .st-process .st-head,.st-pricing .st-head,.st-tech .st-head{margin-bottom:20px}
   .st-kick{gap:12px;letter-spacing:.14em}
-  .st-seal{width:40px;height:40px;font-size:19px}
+  .st-seal{width:36px;height:36px;font-size:18px}
   .st-btn{letter-spacing:.1em;padding:0 16px}
   .st-label{letter-spacing:.1em}
   /* the labels that carry a fact (a duration, a delay, the hours) read at 13px, not as fine print */
@@ -2011,6 +2094,45 @@ main:focus{outline:none}
   .st-est__live-w{flex:none;max-width:7em;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.04em;line-height:1.25;text-align:end;color:var(--on-dark-2)}
 }
 
+/* la carte, two additions kept in this sheet for hub/css/carte.css's size ceiling (html raises them over its rules):
+   the label's Arabic in the system face outside the Arabic page (four font files for a thumbnail), and a phone's
+   folds (carte.mjs more(), app.js 14b), its cards no longer sharing rows, so one opened leaves no gap (2026-11-23) */
+html .crt .lbl__ar{font-family:system-ui,sans-serif}
+html[lang="ar"] .crt .lbl__ar{font-family:"IBM Plex Sans Arabic",sans-serif}
+html .crt .cc__sum,html .crt .cc__p--more{display:none}
+@media (max-width:699px){
+  html .crt .crt__grid{grid-template-rows:none;align-items:start}
+  html .crt .cc{display:flex;flex-direction:column;grid-row:auto}
+  html .crt .cc__foot{align-self:stretch;padding-block:12px}
+  html .crt .cc:not(.cc--blanche) .cc__head .cc__p{display:none}
+  html .crt .cc__p--more{display:block;padding:10px 16px 0}
+  html .crt .cc__sum{display:flex;margin:8px 16px 0;padding:0 12px;background:var(--cream);border:1.5px solid var(--ink)}
+}
+/* la carte on a phone, S-06 (2026-11-24; here for carte.css's size ceiling, html raising it over its rules): a closed card fits 600 px on a phone. The mockup is cut 8:5 (its stage keeps its sizes in
+   container units), the bar, the list and the foot tighten, the price tag is its narrow size and hangs 20 px higher, and the client's
+   « Voir le travail » keeps to one line beside the tag */
+@media (max-width:699px){
+  html .crt .cc__bar{padding-block:5px}
+  html .crt .stage{aspect-ratio:8/5}
+  html .crt .tag{width:136px}
+  html .crt .tag__f{font-size:24px}
+  html .crt .tag__in{padding-top:22px}
+  html .crt .cc{--tag-room:136px}
+  html .crt .tag{top:calc(100% - 76px)}
+  html .crt .cc__pin{top:calc(100% - 76px + 13px - 26px)}
+  html .crt .cc__cap{min-height:calc(var(--tag-drop,92px) - 26px);padding-top:8px}
+  html .crt .cc__cap .cc__sec{white-space:nowrap;letter-spacing:.02em}
+  html .crt .cc__head{padding-top:6px}
+  html .crt .cc__gets{gap:3px;padding:6px 16px 2px}
+  html .crt .cc__gets li{font-size:15px;line-height:1.28}
+  html .crt .cc__foot .st-btn{min-height:48px}
+  /* the two formulas side by side in a row that scrolls, as the cards do; the heading stays put above them */
+  html .crt .crt__form{grid-template-columns:none;grid-template-rows:auto auto;grid-auto-flow:column;grid-auto-columns:min(86%,340px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(-1 * var(--gx));padding-inline:var(--gx);padding-bottom:10px;scroll-padding-inline:var(--gx)}
+  html .crt .crt__formh{grid-row:1;grid-column:1 / span 2;position:sticky;inset-inline-start:0;max-width:calc(100vw - 2 * var(--gx))}
+  html .crt .fm{grid-row:2;scroll-snap-align:start}
+}
+/* too narrow for a caption beside the tag (carte.css, 330 px): it goes under the raised tag */
+@media (max-width:330px){html .crt .cc__cap{min-height:0;padding-top:calc(var(--tag-drop,92px) - 22px);padding-inline-end:16px}}
 /* ---- phones, the rest of the page ---- */
 @media (max-width:599px){
   /* the estimator */
@@ -2030,6 +2152,10 @@ main:focus{outline:none}
   .st-obtn{gap:8px}
   .st-dr__row{align-items:stretch}
   .st-obtn--care{flex:1 1 100%}
+  /* one total on a phone (2026-11-23): the bar at the screen's foot carries it, so the screen's own figure goes;
+     a control reached with Tab stops above the bar by its scroll margin (the dock's block), not by a hole of padding
+     under the options (S-17, 2026-11-24) */
+  .st-dr__fig{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);white-space:nowrap;border:0}   /* (still read out by the screen's live region) */
   .st-dr__a{width:68px;height:68px;font-size:26px}
   .st-est__out{flex-basis:100%;gap:14px;padding:16px 14px calc(16px + var(--z))}
   .st-est__kuro{min-height:0;gap:8px;align-items:center}
@@ -2041,7 +2167,6 @@ main:focus{outline:none}
 
   /* the proof */
   .st-own{margin:-8px 0 20px}
-  .st-own a.whq-cart{max-width:none;width:100%}
   .st-proj{box-shadow:5px 5px 0 var(--ink);contain-intrinsic-size:auto 640px}
   .st-proj__bar{padding:10px 12px;gap:8px 12px}
   .st-proj__body{padding:14px;gap:16px}
@@ -2107,6 +2232,30 @@ main:focus{outline:none}
   .st-make__fig{aspect-ratio:3/2}
   .st-make__card{gap:8px}
   .st-make__links a{min-height:44px}
+  /* the founder on a phone (2026-11-23): the plate, then the facts (name, role, the bio, the two cards, the links).
+     The night desk, the three modes, the coffee break and the two polaroids are not drawn here (their pictures are
+     lazy, so a phone does not fetch them), and « Ce que je fais » is its three roles and their links */
+  .st-make__grid{display:flex;flex-direction:column;gap:14px;overflow:visible;margin-inline:0;padding:0}
+  .st-make__grid + .st-rowbar,.st-make__fig,.st-make__line{display:none}
+  .st-founder__art,.st-polas,.st-founder__quote,.st-founder__motto,.st-make__aside{display:none}
+  .st-make__card{flex-direction:row;flex-wrap:wrap;align-items:center;gap:0 14px;padding-top:8px;border-top:1.5px dashed var(--line)}
+  .st-make__role{margin-top:0;font-size:20px}
+  /* S-09 (2026-11-24): the price section's console sticker repeats the console right under it; on a phone it is not drawn
+     (lazy, so not fetched) */
+  .st-pricing__card{display:none}
+  /* a folded case is its name and the way in; its kind tag comes back when it opens */
+  .st-case.is-folded .st-case__tag{display:none}
+  .st-lead{line-height:1.5}
+  .st-make__links{margin-top:0;gap:0 14px}
+  /* the plate's tall cut loses its blank paper above and below (4:5, the figures whole) */
+  .st-plate__l img{aspect-ratio:4/5;object-fit:cover;object-position:50% 40%}
+  /* S-08 (2026-11-24): the plate is a catalogued card, not a screen: the drawing on a little over half the width
+     (the figures whole), its label beside it, so the heading and the facts come up a screen sooner */
+  .st-plate{display:grid;grid-template-columns:minmax(0,56%) minmax(0,1fr);margin-bottom:20px}
+  .st-plate__cap{flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:10px;padding:14px 12px;border-top:0;border-inline-start:2px solid var(--ink)}
+  .st-plate__cap .st-seal{width:40px;height:40px;font-size:20px}
+  .st-plate__cap .st-label{letter-spacing:.1em;line-height:1.5}
+  .st-founder__poster .st-h2{font-size:30px}
 
   /* the answers and the card */
   .st-qa button{min-height:60px;gap:12px;padding:10px 0;font-size:17px}
@@ -2154,10 +2303,7 @@ main:focus{outline:none}
 @media (max-width:359px){
   :root{--t-hero:27px}
   .st-mood__k{display:none}
-  .whq-name{white-space:normal;overflow-wrap:anywhere}
-  .whq-txt,.whq-kick,.whq-sub,.st-est__line,.st-parts li,.st-h3l,.st-h3,.st-kick{min-width:0;overflow-wrap:anywhere}
-  .st-own a.whq-cart{gap:10px;padding-inline-end:10px}
-  .whq-bit{width:44px}
+  .st-est__line,.st-parts li,.st-h3l,.st-h3,.st-kick{min-width:0;overflow-wrap:anywhere}
   .st-wm--foot .st-wm__t{font-size:17px}
   .st-foot__in>.st-wm{min-width:0}
   .st-wm--foot .st-wm__kana{font-size:11px}
@@ -2579,7 +2725,7 @@ html.is-playing{scroll-behavior:auto}
 @media (min-width:900px){.st-crs__scene img{aspect-ratio:21 / 9}}
 .st-crs .st-mny__note{margin:0 0 10px}
 .st-crs__also{margin:14px 0 22px;font-size:var(--t-small);line-height:1.5}
-.st-crs__also a,.st-bay__buy a,.st-svc__prep a,.st-ls__more a,.st-crs__see a,.st-spec__card a,.st-fiche__est .st-fiche__go{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;color:var(--red-text);font-weight:700;text-underline-offset:3px}
+.st-crs__also a,.st-bay__buy a,.st-svc__prep a,.st-svc__see a,.st-ls__more a,.st-crs__see a,.st-spec__card a,.st-fiche__est .st-fiche__go{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;color:var(--red-text);font-weight:700;text-underline-offset:3px}
 .st-bay__buy{margin:0;font-size:var(--t-small);line-height:1.45}
 .st-svc__prep{margin:6px 0 0;font-size:var(--t-small)}
 .st-ls__more{margin:0;font-size:var(--t-small);line-height:1.5;max-width:74ch}
@@ -2837,6 +2983,8 @@ html:not(.js) .st-fiche__raw,html:not(.js) [data-brief-copy],html:not(.js) [data
 .st-scene__who{position:absolute;z-index:1;inset-block-end:calc(var(--g) + 1px);block-size:auto;pointer-events:none}
 .st-scene__who--y{inset-inline-end:3%;inline-size:40%}
 .st-scene__who--k{inset-inline-end:4%;inline-size:30%}
+/* (world-21) the three copies of THE MARK, told apart by their language: a small boxed code before the number */
+.st-scene__lng{display:inline-block;margin-inline-end:6px;padding:1px 6px;border:1.5px solid currentColor;font-weight:500;letter-spacing:.08em;line-height:1.3}
 .st-scene__who--r{inset-inline-start:4%;inline-size:30%}
 .st-scene__who--p{inset-inline-end:-6%;inline-size:30%}
 @media (prefers-reduced-motion:no-preference){
@@ -2904,7 +3052,7 @@ html:not(.js) .st-scale{display:none}
 /* each copy in its own language's faces, whatever the page's language */
 .st-svc--spec:lang(ar){--f-disp:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;--f-body:"IBM Plex Sans Arabic","Geist",sans-serif;--f-mono:"IBM Plex Sans Arabic","Geist Mono",sans-serif;font-family:var(--f-body)}
 .st-svc--spec:not(:lang(ar)){--f-disp:"Archivo","Arial Black",sans-serif;--f-body:"Geist",system-ui,sans-serif;--f-mono:"Geist Mono",ui-monospace,monospace;font-family:var(--f-body)}
-.st-svc--spec:lang(ar) .st-svc__bar{letter-spacing:0}
+.st-svc--spec:lang(ar) .st-svc__bar{letter-spacing:0;font-size:13px}   /* the Arabic family name (S-24) keeps the 13px Arabic floor */
 /* scene 03: one master, four windows; left and width are physical on purpose (a picture is not mirrored in RTL) */
 .st-scene__plate:has(.st-crop__m){padding-block-end:calc(var(--g) + 24cqw)}
 @container (min-width:480px){
@@ -3029,13 +3177,16 @@ html:not(.js) .st-tlab .st-pick__p[hidden]{display:block}
   .st-scenes__grid{grid-template-columns:minmax(0,1fr);max-inline-size:600px;margin-inline:auto}
   .st-fabend__list{grid-template-columns:minmax(0,1fr)}
 }
-@media (max-width:759px){
+/* the three tracks one under the other up to 1023 px (2026-11-23: at 768 three columns left each text 180 px wide
+   beside its figure), at most 640 px wide and centred on a tablet */
+@media (max-width:1023px){
   .st-tracks{grid-template-columns:minmax(0,1fr)}
   .st-track::after{display:none}
   .st-track > .st-svc__bar{order:-2}
   .st-track__who{position:static;order:-1;align-self:flex-end;inline-size:min(34%,150px);margin:12px 16px -2px;border-bottom:2px solid rgb(33 30 27 / .35)}
   .st-track__body{padding:16px 18px 20px;min-block-size:0}
 }
+@media (min-width:760px) and (max-width:1023px){.st-tracks{max-inline-size:640px;margin-inline:auto}}
 @media (max-width:599px){
   .st-path{grid-template-columns:minmax(0,1fr)}
   .st-scene > :not(.st-svc__bar){margin-inline:12px}
@@ -4354,3 +4505,5 @@ html.js .st-trap.is-live[data-tab="0"] [data-p="0"],html.js .st-trap.is-live[dat
 
 /* le monde: the MERCURY line to « Le cours du soir » keeps one box (a wrapped inline link left its centre outside its lines) and is a 44 px target */
 .st-proj__lant a{display:inline-flex;align-items:center;min-height:44px}
+/* MERCURY's way into the Librairie over the « Voir aussi » chips on a phone, not squeezed beside them (2026-11-23) */
+@media (max-width:559px){.st-proj__lant,.st-proj__see{flex:1 1 100%;grid-column:1 / -1}}

@@ -1,5 +1,5 @@
 {
-  "_note": "« Le web3, sans fumée. » vol. 2 · Les neuf modules (SPEC §4.4; web3x/SPEC.md): 33 districts in 9 acts, one act per module, its header the act's plate (house art, shown alone: no cut-out on it, no parallax; a guide and a companion stand on the paper beside it, a distinct pair per district, never Yasser or Kūro, whom every header paints). A district is a stop: the explanation is the rule, the lab the field exercise (hub/web3x.js, loaded lazily, reports numidea:exercise at the lab's end state), the misconception card closes it, the question follows it (ask: after). Keepsake per act: the module's seal in the carnet (seal glyphs web3x X10). The journal's note is the misconception and its answer, each labelled (noteLabels: « Idée reçue », « En fait »), and the case strip's second line is Samia's question (caseHand: lore), so a misconception never reads as a fact; per act, the bridge to the buyer path and the two questions for the vendor (numidea-brief-web3c, ask1…ask9). No app.js: the chips are lanterne.js's. Case: Samia, an invented example (vol. 1's). money.note1/note2 under the hero and under each module's head (web3x X7).",
+  "_note": "« Le web3, sans fumée. » vol. 2 · Les neuf modules (SPEC §4.4; web3x/SPEC.md): 33 districts in 9 acts, one act per module, its header the act's plate (house art, shown alone: no cut-out on it, no parallax; a guide and a companion stand on the paper beside it, a distinct pair per district, never Yasser or Kūro, whom every header paints). A district is a stop: the explanation is the rule, the lab the field exercise (hub/web3x.js, loaded lazily, reports numidea:exercise at the lab's end state), the misconception card closes it, the question follows it (ask: after). Keepsake per act: the module's seal in the carnet (seal glyphs web3x X10). The journal's note is the misconception and its answer, each labelled (noteLabels: « Idée reçue », « En fait »), and the case strip's second line is Samia's question (caseHand: lore), so a misconception never reads as a fact; per act, the bridge to the buyer path and the two questions for the vendor (numidea-brief-web3c, ask1…ask9). No app.js: the chips are lanterne.js's. Case: Samia, an invented example (vol. 1's). money.note1/note2 under the hero and under each module's head (web3x X7). ruleLead (2026-11-24, L-05): a rule of 126 to 178 words reads in the body weight, its first sentence bold (two keys derived by the build).",
   "slug": "web3-modules",
   "key": "w3m",
   "store": "numidea-lanterne-web3-modules",
@@ -9,6 +9,7 @@
     "script": "web3x.js"
   },
   "carnet": true,
+  "ruleLead": true,
   "accent": "#236660",
   "mast": [
     [

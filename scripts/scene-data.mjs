@@ -37,6 +37,7 @@
 export const PROJECTS = [
   {
     slug: 'bordjsteel',
+    studio: 'case-bordjsteel',   // its case on the Studio (hub/#case-bordjsteel): the sheet links to it (journey-12)
     name: 'Bordj Steel',
     url: 'https://bordjsteelb2b.netlify.app',
     status: 'live',
@@ -116,6 +117,7 @@ export const PROJECTS = [
   },
   {
     slug: 'alliance',
+    studio: 'case-alliance',   // its case on the Studio (hub/#case-alliance): the sheet links to it (journey-12)
     name: 'Alliance Travel',
     url: 'https://alliancetravel34.netlify.app',
     status: 'live',
@@ -189,6 +191,8 @@ export const PROJECTS = [
   },
   {
     slug: 'almaflow',
+    studio: 'case-almaflow',   // its case on the Studio (hub/#case-almaflow): the sheet links to it (journey-12)
+    book: '../hub/brand/almaflow/',   // the brand book made for it, on the Studio
     name: 'AlmaFlowClim',
     url: 'https://almaflowclim.netlify.app',
     status: 'live',
@@ -416,11 +420,12 @@ export const PROJECTS = [
    build-scene.mjs and drawn instead. */
 export const UI = {
   fr: {
-    dir: 'ltr', title: 'Nos réalisations web, projet par projet — Numidea Labs',
+    dir: 'ltr', studio: 'Dossier au Studio →', book: 'Livre de marque →',
+    title: 'Nos réalisations web, projet par projet — Numidea Labs',
     desc: "Sites livrés en Algérie et en France, captures à l'appui\u202f: pages, version mobile, système visuel et lien vers le site en ligne.",
     crumb: 'Réalisations', crumbNav: "Fil d’Ariane", langs: 'Langue', kicker: 'En détail',
     h1: 'Nos réalisations, <em>livrable par livrable.</em>',
-    lead: "Les trois premières planches montrent des sites livrés à des clients, tels qu’ils sont en\u00a0ligne aujourd’hui\u202f: ce que le site leur apporte, les pages, le mobile, le système visuel. Suivent une démo de portfolio et notre propre outil. Les captures viennent des sites eux\u2011mêmes.",
+    lead: "Les trois premières planches sont des sites livrés à des clients, tels qu’ils sont en\u00a0ligne\u202f; puis une démo de portfolio et notre propre outil.",
     group: 'Hors commande client\u202f: une démo et notre outil',
     act: 'Demander mon Aperçu gratuit →', by: 'Par le fondateur', full: 'Voir la planche complète',
     index: 'Sommaire des réalisations', sheet: 'Planche', visit: 'Voir le site', open: 'Ouvrir',
@@ -436,11 +441,12 @@ export const UI = {
     captured: 'Captures du site en\u00a0ligne', back: '← Retour à Numidea Labs', contact: 'Un projet à poser sur la table\u202f?', contactCta: 'Demander mon Aperçu gratuit →',
   },
   en: {
-    dir: 'ltr', title: 'Our web projects, one by one — Numidea Labs',
+    dir: 'ltr', studio: 'The Studio’s case file →', book: 'Brand book →',
+    title: 'Our web projects, one by one — Numidea Labs',
     desc: 'Sites delivered in Algeria and France, screenshots included: pages, mobile version, visual system and a link to the live site.',
     crumb: 'Work', crumbNav: 'Breadcrumb', langs: 'Language', kicker: 'In detail',
     h1: 'Our work, <em>piece by piece.</em>',
-    lead: 'The first three sheets show sites delivered to clients, as they are live today: what the site gives them, the pages, the mobile version, the visual system. Then come a portfolio demo and our own tool. Every screenshot is taken from the sites themselves.',
+    lead: 'The first three sheets are sites delivered to clients, as they are live today; then a portfolio demo and our own tool.',
     group: 'Not client work: a demo and our own tool',
     act: 'Request my free Preview →', by: 'By the founder', full: 'See the full sheet',
     index: 'Work index', sheet: 'Sheet', visit: 'Visit the site', open: 'Open',
@@ -456,11 +462,12 @@ export const UI = {
     captured: 'Captured from the live site', back: '← Back to Numidea Labs', contact: 'Have a project in mind?', contactCta: 'Request my free Preview →',
   },
   ar: {
-    dir: 'rtl', title: 'أعمالنا على الويب، مشروعاً بمشروع — Numidea Labs',
+    dir: 'rtl', studio: 'الملف في الاستوديو ←', book: 'دليل الهوية ←', // AR review: ui.studio, ui.book (2026-11-23)
+    title: 'أعمالنا على الويب، مشروعاً بمشروع — Numidea Labs',
     desc: 'مواقع سُلِّمت في الجزائر وفرنسا، مع لقطات شاشة: الصفحات، ونسخة الهاتف، والنظام البصري، ورابط الموقع على الإنترنت.',
     crumb: 'الأعمال', crumbNav: 'مسار التنقّل', langs: 'اللغة', kicker: 'بالتفصيل',
     h1: 'الأعمال، <em>بنداً ببند.</em>',
-    lead: 'اللوحات الثلاث الأولى تعرض مواقع سُلِّمت لعملاء، كما هي على\u00a0الإنترنت اليوم: ما يقدّمه الموقع لهم، والصفحات، والهاتف، والنظام البصري. يليها عرض تجريبي ضمن الأعمال وأداتنا الخاصة. اللقطات مأخوذة من المواقع نفسها.',
+    lead: 'اللوحات الثلاث الأولى مواقع سُلِّمت لعملاء، كما هي على\u00a0الإنترنت اليوم؛ ثم عرض تجريبي ضمن الأعمال وأداتنا الخاصة.', // AR review: ui.lead (2026-11-23)
     group: 'خارج طلبات العملاء: عرض تجريبي وأداتنا الخاصة',
     act: 'اطلب معاينتك المجانية ←', by: 'من عمل المؤسّس', full: 'عرض اللوحة كاملة', // AR review: ui.full
     index: 'فهرس الأعمال', sheet: 'لوحة', visit: 'زيارة الموقع', open: 'فتح',

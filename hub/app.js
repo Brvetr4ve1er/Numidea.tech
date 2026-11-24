@@ -566,9 +566,6 @@
     if (!reduce) once(el, .3, function () { show(M(3) + Q(hb)); });
   });
 
-  // the WorkspaceHQ ticket plays its game animation (a second or three) on hover; with no hover it plays once, when it is first on screen
-  var cart = $('.whq-cart');
-  if (cart && !reduce && !finePointer) once(cart, .8, function () { cart.classList.add('is-play'); });
 
   /* ---------------- 4 · reveals, the wedge, the speed bar ----------------
      A [data-reveal] block below the first screen starts 12px low and
@@ -734,10 +731,13 @@
       var line = window.innerHeight * 0.55, last = -1, any = false;
       steps.forEach(function (s, j) { if (inView[j]) any = true; });
       if (!any || swipes()) return;
+      if (steps[0].getBoundingClientRect().top === steps[steps.length - 1].getBoundingClientRect().top) return;   // one row: the pointer picks
       steps.forEach(function (s, j) { if (s.getBoundingClientRect().top <= line) last = j; });
       set(Math.max(0, last));
     }, { rootMargin: '0px 0px -45% 0px' });
     steps.forEach(function (s) { pio.observe(s); });
+    // from 1024 px the steps are one row (style.css): they are on screen together, so the one under the pointer is shown
+    steps.forEach(function (s, j) { s.addEventListener('pointerenter', function () { if (!swipes() && s.getBoundingClientRect().top === steps[0].getBoundingClientRect().top) set(j); }); });
   })();
 
   /* ---------------- 6 · the console (the estimator) ----------------
@@ -917,6 +917,43 @@
         r.style.setProperty('--a', pos(toDz(k, v[0]))); r.style.setProperty('--b', pos(toDz(k, v[1])));
       });
     };
+    /* The quote leaves with the visitor (2026-11-23): "Recevoir mon devis" and the console's A key open WhatsApp
+       with the receipt as it stands (the type and size, one line per receipt row, the pace, the total and the
+       weeks, in the page's language); without scripts they go to #contact. Once the visitor has changed
+       something, the contact card's WhatsApp and e-mail links carry the same text (before that they stay plain:
+       a starting estimate nobody chose is not put in their mouth). */
+    var WA = 'https://wa.me/213672412578';
+    var sends = $$('[data-est-send]'), waC = $('[data-est-wa]'), mailC = $('[data-est-mail]');
+    var mailTo = mailC ? mailC.getAttribute('href').split('?')[0] : '';
+    var touched = false;
+    // (its words are not in #hub-fr: the French ones are read from the page, where the build baked them)
+    var tk = function (k) { var v = t(k), n; if (v) return v; n = $('[data-i18n="' + k + '"]'); return n ? n.textContent.trim() : ''; };
+    var fill = function (s, o) { return s.replace(/\{(\w+)\}/g, function (x, k) { return o[k] != null ? o[k] : x; }); };
+    var carry = function (q, m) {
+      var cur = t('pricing.cur'), sep = lang === 'fr' ? ' : ' : ': ';
+      var span = function (lo, hi) { return (lo === hi ? amt(lo) : amt(lo) + dash() + amt(hi)) + ' ' + cur; };
+      var rows = q.lines.map(function (ln) { return '• ' + lineLabel(ln, m) + sep + (ln.incl ? t('pricing.included') : span(ln.lo, ln.hi)); });
+      if (st.care && !m.fam) rows.push('• ' + tk('pricing.careL') + sep + range(P.retainer[0], P.retainer[1], 'DZD') + ' ' + tk('pricing.monthly'));
+      var o = {
+        what: t('pricing.types.' + st.type) + ' · ' + counted(m.u, st.n),
+        lines: rows.join('\n'),
+        pace: tk(st.rush ? 'pricing.paceRush' : 'pricing.paceStd'),
+        total: range(q.lo, q.hi, 'DZD') + ' (' + range(q.lo, q.hi, 'EUR') + ' · ' + range(q.lo, q.hi, 'USD') + ')',
+        weeks: (q.wLo === q.wHi ? q.wHi : q.wLo + '–' + q.wHi) + ' ' + wkN(q.wHi)
+      };
+      // the display strings' word joiners and soft hyphens stay on the page: a mail client can draw them as boxes (S-01)
+      var bare = function (x) { return x.replace(/[\u2060\u00ad]/g, ''); };
+      var msg = bare(fill(tk('pricing.waMsg'), o)), wa = WA + '?text=' + encodeURIComponent(msg);
+      sends.forEach(function (a) {
+        a.href = wa; a.target = '_blank'; a.rel = 'noopener';
+        var tab = $('[data-est-tab]', a); if (tab) tab.hidden = false;
+        // the console's A key is named by its label: it says the new tab as the block button does
+        else if (a.hasAttribute('data-i18n-aria')) a.setAttribute('aria-label', tk('pricing.cta') + ' ' + tk('case.newTab'));
+      });
+      if (!touched) return;
+      if (waC) waC.href = wa;
+      if (mailC) mailC.href = mailTo + '?subject=' + encodeURIComponent(bare(fill(tk('pricing.mailSubj'), o))) + '&body=' + encodeURIComponent(msg);
+    };
     /* animate: false paints at once (the first paint, a language switch);
        'figures' only tweens the total (the size slider while it is being
        dragged); true also prints the receipt and stamps the seal */
@@ -941,6 +978,8 @@
       if (noteEl) noteEl.hidden = !!m.fam;
       careBox.hidden = !st.care || !!m.fam; careV.textContent = range(P.retainer[0], P.retainer[1], 'DZD');
       receipt(q, m, animate === true);
+      if (animate) touched = true;
+      carry(q, m);
       market(q);
       var nt = q.hi < 200000 ? 0 : q.hi < 600000 ? 1 : 2;
       if (nt !== tier) { tier = nt; kImgs.forEach(function (im) { im.classList.toggle('is-active', Number(im.getAttribute('data-tier')) === tier); }); }
@@ -1030,7 +1069,7 @@
         render(true);
       });
     });
-    care.addEventListener('click', function () { st.care = !st.care; care.setAttribute('aria-pressed', String(st.care)); render(false); });
+    care.addEventListener('click', function () { st.care = !st.care; touched = true; care.setAttribute('aria-pressed', String(st.care)); render(false); });
     setType('vitrine'); render(false);
     // a type, an option (or the kit) and a size, set on the console as a card asks ([data-est-go]) or as another page carried it
     var goEst = function (k, pick, wantN, said) {
@@ -1040,6 +1079,7 @@
       setType(k);
       if (pick === 'kit') { st.n = m.kit.at; size.value = st.n; }
       if (wantN >= m.min && wantN <= m.max) { st.n = wantN; size.value = st.n; }   // [data-est-size]: the size a card stands for
+      touched = true;
       render(said);
     };
     $$('[data-est-go]').forEach(function (a) {
@@ -1072,8 +1112,10 @@
   var qas = $$('.st-qa button[aria-controls]');
   // an answer opened by a press rises into place (is-rise, style.css: 333 ms); its height is a cut
   var openQa = function (btn, on, rise) { var a = document.getElementById(btn.getAttribute('aria-controls')); btn.setAttribute('aria-expanded', String(on)); a.hidden = !on; if (on && rise) a.classList.add('is-rise'); };
+  // the first answer stands open from 600px; on a phone the six questions are a list to pick from (S-09, 2026-11-24)
+  var qaPhone = matchMedia('(max-width:599px)').matches;
   qas.forEach(function (b, i) {
-    openQa(b, i === 0);
+    openQa(b, i === 0 && !qaPhone);
     b.addEventListener('click', function () {
       var was = b.getAttribute('aria-expanded') === 'true';
       qas.forEach(function (x) { openQa(x, false); });
@@ -1457,28 +1499,87 @@
      A case below the fold skips its layout (content-visibility) and counts
      for a guessed height until it is near the screen, so a jump to
      #voidsplunker (the bible's back link) or any #id after the cases first
-     lands short or long. On arrival (not on an in-page click: the smooth
-     scroll of those is left alone) three corrections, 167, 667 and 1333 ms after the
-     jump (a quarter, one and two beats), put the target at its
-     scroll-margin; none runs once the visitor has scrolled, pressed a key
-     or touched the page. With the sting playing they run under its paper. */
+     lands short or long. On arrival three corrections, 167, 667 and 1333 ms
+     after the jump (a quarter, one and two beats), put the target at its
+     scroll-margin, and once the sting is over one more puts it there in a
+     single jump (the sections it uncovers lay out under the paper, so the
+     reader sees one move, not a drift). An in-page link (the bar, the sheet,
+     every href="#…" on the page: 2026-11-23) does the same after its smooth
+     scroll: when the scroll ends (or 1.2 s, whichever is first) the target is
+     measured again and, if it is more than 24 px off, the page jumps the rest;
+     once more after that, then it stops. None runs once the visitor has
+     scrolled, pressed a key or touched the page. */
   (function () {
     var touched = false;
     ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(function (ev) { addEventListener(ev, function () { touched = true; }, { passive: true }); });
+    var byId = function (id) { try { return id && document.getElementById(decodeURIComponent(id)); } catch (e) { return null; } };
+    var off = function (el) { return el.getBoundingClientRect().top - (parseFloat(getComputedStyle(el).scrollMarginTop) || 0); };
+    var fix = function (el) { if (touched) return false; var d = off(el); if (Math.abs(d) <= 24) return false; scrollBy({ top: d, behavior: 'instant' }); return true; };
     var settle = function () {
-      var id = location.hash.slice(1), el;
-      try { el = id && document.getElementById(decodeURIComponent(id)); } catch (e) { el = null; }
+      var el = byId(location.hash.slice(1));
       if (!el) return;
       touched = false;
-      [M(2), M(8), M(16)].forEach(function (ms) {
-        setTimeout(function () {
-          if (touched) return;
-          var d = el.getBoundingClientRect().top - (parseFloat(getComputedStyle(el).scrollMarginTop) || 0);
-          if (Math.abs(d) > 24) scrollBy({ top: d, behavior: 'instant' });
-        }, ms);
-      });
+      [M(2), M(8), M(16)].forEach(function (ms) { setTimeout(function () { fix(el); }, ms); });
+      afterSting(function () { requestAnimationFrame(function () { fix(el); }); });
     };
     addEventListener('load', settle);
+    var chase = function (el) {
+      var tries = 0, timer = 0;
+      var check = function () {
+        clearTimeout(timer); removeEventListener('scrollend', check);
+        if (touched || tries >= 2) return;
+        tries++;
+        if (fix(el)) wait();
+      };
+      var wait = function () { addEventListener('scrollend', check); timer = setTimeout(check, 1200); };
+      wait();
+    };
+    document.addEventListener('click', function (e) {
+      if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      var el = a && a.getAttribute('href').length > 1 && byId(a.getAttribute('href').slice(1));
+      if (!el) return;
+      touched = false;   // (the press itself was a pointerdown or a key)
+      requestAnimationFrame(function () { chase(el); });
+    });
+  })();
+
+  /* ---------------- 9b · the cases fold on a phone ----------------
+     Under 600 px the first case of #work is open and the other four are rows (their bar: the logo, the name, the
+     tag) with a 44 px « Ouvrir le dossier » that opens the case for the visit (2026-11-23: five open cases were five
+     phone screens of slides). A case's track, its badges and its count start when it is opened (they wait for it to
+     come on screen, section 8). A link to a case (#case-traveler from the doors, « Voir le travail » on a card) or an
+     address that names one opens it first. Without scripts every case is open. */
+  (function () {
+    var cases = $$('#work .st-case').slice(1);
+    if (!cases.length) return;
+    var mq = matchMedia('(max-width:599px)'), opened = {};
+    var setOne = function (cs, fold) {
+      cs.classList.toggle('is-folded', fold);
+      var b = $('.st-case__unfold', cs);
+      if (b) { b.hidden = !fold; b.setAttribute('aria-expanded', String(!fold)); }
+    };
+    cases.forEach(function (cs) {
+      var bar = $('.st-case__bar', cs), track = $('[data-track]', cs);
+      if (!bar) return;
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'st-case__unfold'; b.hidden = true;
+      if (track && track.id) b.setAttribute('aria-controls', track.id);
+      b.innerHTML = '<span data-i18n="case.unfold"></span><span aria-hidden="true">+</span>';
+      b.firstChild.textContent = t('case.unfold');
+      b.addEventListener('click', function () { opened[cs.id] = 1; setOne(cs, false); if (track) track.focus({ preventScroll: true }); });
+      bar.appendChild(b);
+    });
+    var paint = function () { cases.forEach(function (cs) { setOne(cs, mq.matches && !opened[cs.id]); }); };
+    paint(); mq.addEventListener('change', paint);
+    var openFor = function (id) {
+      var el = null; try { el = id && document.getElementById(id); } catch (e) {}
+      var cs = el && el.closest && el.closest('.st-case');
+      if (cs && cases.indexOf(cs) > -1) { opened[cs.id] = 1; setOne(cs, false); }
+    };
+    openFor(decodeURIComponent(location.hash.slice(1)));
+    addEventListener('hashchange', function () { openFor(decodeURIComponent(location.hash.slice(1))); });
+    document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href^="#case-"]'); if (a) openFor(a.getAttribute('href').slice(1)); }, true);
   })();
 
   /* ---------------- 10 · the sheet and the dock ----------------
@@ -2799,28 +2900,31 @@
       c.classList.remove('is-pre'); c.classList.add('is-play', 'is-done');
       setTimeout(function () { c.classList.remove('is-play'); }, M(24));
     };
+    /* a family's cards print together, when its row comes on screen (2026-11-23: one card at a time left the card
+       peeking at the phone track's edge transparent, and nothing said the row swipes) */
     var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { play(e.target); io.unobserve(e.target); } });
-    }, { threshold: 0.25 }) : null;
-    var arm = function (panel, cut) {
+      es.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); $$('.cc.is-pre', e.target).forEach(play); } });
+    }, { threshold: 0.15 }) : null;
+    // quiet: the page's load, la carte far below; nothing is measured then (a box read inside the skipped services
+    // section laid all of it out in the load's first task, 400 ms on a mid phone)
+    var arm = function (panel, cut, quiet) {
       var g = panel.getAttribute('data-g');
       if (seen[g]) return;
       seen[g] = 1;
       panel.classList.toggle('is-cut', !!cut);
-      $$('.cc', panel).forEach(function (c) {
-        if (reduce) { c.classList.add('is-done'); return; }
-        if (cut) { play(c); return; }   // a tab chosen: its cards rise and print now
-        if (inView(c)) { c.classList.add('is-done'); return; }   // on screen already: shown as it is, never hidden
-        c.classList.add('is-pre');
-        if (io) io.observe(c); else play(c);
-      });
+      var cards = $$('.cc', panel), grid = $('.crt__grid', panel) || panel;
+      if (reduce) { cards.forEach(function (c) { c.classList.add('is-done'); }); return; }
+      if (cut) { cards.forEach(play); return; }   // a tab chosen: its cards rise and print now
+      if (!quiet && inView(grid)) { cards.forEach(function (c) { c.classList.add('is-done'); }); return; }   // on screen already: shown as it is, never hidden
+      cards.forEach(function (c) { c.classList.add('is-pre'); });
+      if (io) io.observe(grid); else cards.forEach(play);
     };
-    var select = function (g, focus, cut) {
+    var select = function (g, focus, cut, quiet) {
       tabs.forEach(function (b) {
         var on = b.getAttribute('data-g') === g;
         b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1;
         // the strip scrolls sideways to its tab, the page never moves (scrollIntoView scrolled a phone's page down to la carte on load)
-        if (on) {
+        if (on && !quiet) {
           if (focus) b.focus();
           var sc = b.parentNode, br = b.getBoundingClientRect(), pr = sc.getBoundingClientRect();
           if (sc.scrollWidth > sc.clientWidth && (br.left < pr.left || br.right > pr.right)) sc.scrollBy({ left: br.left < pr.left ? br.left - pr.left : br.right - pr.right, behavior: reduce ? 'auto' : 'smooth' });
@@ -2831,7 +2935,7 @@
         p.hidden = p.getAttribute('data-g') !== g;
         if (p.hidden) $$('.cc.is-play', p).forEach(function (c) { c.classList.remove('is-play'); });
       });
-      arm($('#carte-' + g, root), cut);
+      arm($('#carte-' + g, root), cut, quiet);
     };
     var pick = function (g) { select(g, false, true); try { history.replaceState(null, '', '#carte-' + g); } catch (e) {} };
     tabs.forEach(function (b, i) {
@@ -2851,10 +2955,20 @@
       return p ? p.getAttribute('data-g') : null;
     };
     var fromHash = function () { return familyOf(decodeURIComponent(location.hash.slice(1))); };
+    // « Détails et formules »: closed on a phone, open (its summary not drawn) from 700 px (scripts/lib/carte.mjs more())
+    var phone = matchMedia('(max-width:699px)');
+    var fold = function () { $$('.cc__more', root).forEach(function (d) { d.open = !phone.matches; }); };
+    fold(); phone.addEventListener('change', fold);
     var g0 = fromHash();
-    select(g0 || 'marque', false, false);
+    select(g0 || 'marque', false, false, !g0);
     if (g0) { var tgt = document.getElementById(decodeURIComponent(location.hash.slice(1))); if (tgt) tgt.scrollIntoView({ block: 'start' }); }
     addEventListener('hashchange', function () { var g = fromHash(); if (g) select(g, false, true); });
+    // a source number (« 3 » on a market line) or a link to a source opens the folded list first (2026-11-23)
+    var srcBox = $('.crt__src', root);
+    var openSrc = function (id) { if (srcBox && /^carte-src-\d+$|^carte-sources$/.test(id || '')) srcBox.open = true; };
+    openSrc(decodeURIComponent(location.hash.slice(1)));
+    addEventListener('hashchange', function () { openSrc(decodeURIComponent(location.hash.slice(1))); });
+    root.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href^="#carte-src-"]'); if (a) openSrc(a.getAttribute('href').slice(1)); }, true);
     // a link to a family or a card (the four family cards, A1's next step): open it, then go there
     document.addEventListener('click', function (e) {
       var a = e.target.closest && e.target.closest('a[href^="#carte-"], a[data-goto]');
@@ -2871,7 +2985,7 @@
     root.addEventListener('focusin', function (e) {
       var c = e.target.closest && e.target.closest('.cc'), grid = c && c.parentNode;
       if (!c || !grid.classList.contains('crt__grid')) return;
-      if (c.classList.contains('is-pre')) { if (io) io.unobserve(c); play(c); }
+      if (c.classList.contains('is-pre')) play(c);
       if (grid.scrollWidth <= grid.clientWidth) return;
       var cr = c.getBoundingClientRect(), gr = grid.getBoundingClientRect();
       if (cr.left < gr.left - 1 || cr.right > gr.right + 1) grid.scrollBy({ left: root.matches(':dir(rtl)') ? cr.right - gr.right : cr.left - gr.left, behavior: reduce ? 'auto' : 'smooth' });
@@ -2978,7 +3092,6 @@
     };
     var targets = $$('.st-case').map(function (el) { return [el, el.id.replace(/^case-/, '')]; });
     $$('.st-proj').forEach(function (el) { targets.push([el, '']); });
-    var own = $('.st-own'); if (own) targets.push([own, 'whq']);
     var con = $('.st-est'); if (con) targets.push([con, 'console']);
     var jeu = $('.st-ls--jeu'); if (jeu) targets.push([jeu, 'whq']);   // the course's HUD face, the arcade one
     $$('[data-spec-faces]').forEach(function (el) { targets.push([el, el.getAttribute('data-spec-faces')]); });   // the brand course's specimens

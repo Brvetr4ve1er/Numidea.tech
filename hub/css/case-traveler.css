@@ -137,6 +137,7 @@
 .case-traveler .ct-lore__head{display:flex;flex-direction:column;gap:10px;min-height:0}
 .case-traveler .ct-lore__h{font-family:var(--c-font-disp);font-weight:900;font-size:clamp(32px,4.6vw,68px);line-height:.88;text-transform:uppercase;letter-spacing:-.005em;text-wrap:balance;text-shadow:2px 0 var(--ct-orange-r),-2px 0 var(--ct-aber)}
 .case-traveler .ct-lore__s{font-size:13.5px;line-height:1.5;color:var(--ct-term)}
+:root[dir="rtl"] .case-traveler .ct-lore__s{padding:8px 10px;background:var(--c-dark);border:1px solid var(--ct-edge)}
 .case-traveler .ct-term{padding:8px 12px;background:var(--ct-box);border:1px solid var(--ct-edge);font-family:var(--ct-mono);font-size:var(--t-label);line-height:1.6}
 .case-traveler .ct-term__l{color:var(--ct-term);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:1.6em}
 .case-traveler .ct-term__l--bad{color:var(--ct-glow)}

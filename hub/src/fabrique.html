@@ -94,21 +94,21 @@
                from services.items.2.* in its own dictionary (holes svc.<lang>.*), so the three cannot drift from the Studio's card -->
           <div class="st-scene__cards">
             <article class="st-svc st-svc--spec" lang="fr" dir="ltr">
-              <p class="st-svc__bar"><span dir="ltr">/ 03 · {{svc.fr.fam}}</span><span class="st-svc__kanji" aria-hidden="true">印</span></p>
+              <p class="st-svc__bar"><span dir="ltr"><b class="st-scene__lng" lang="en">FR</b> / 03 · {{svc.fr.fam}}</span><span class="st-svc__kanji" aria-hidden="true">印</span></p>
               <div class="st-svc__body">
                 <h3 class="st-h3">{{svc.fr.name}}</h3>
                 <ul class="st-plus"><li>{{svc.fr.ga}}</li><li>{{svc.fr.gb}}</li><li>{{svc.fr.gc}}</li></ul>
               </div>
             </article>
             <article class="st-svc st-svc--spec" lang="en" dir="ltr">
-              <p class="st-svc__bar"><span dir="ltr">/ 03 · {{svc.en.fam}}</span><span class="st-svc__kanji" aria-hidden="true">印</span></p>
+              <p class="st-svc__bar"><span dir="ltr"><b class="st-scene__lng" lang="en">EN</b> / 03 · {{svc.en.fam}}</span><span class="st-svc__kanji" aria-hidden="true">印</span></p>
               <div class="st-svc__body">
                 <h3 class="st-h3">{{svc.en.name}}</h3>
                 <ul class="st-plus"><li>{{svc.en.ga}}</li><li>{{svc.en.gb}}</li><li>{{svc.en.gc}}</li></ul>
               </div>
             </article>
             <article class="st-svc st-svc--spec" lang="ar" dir="rtl">
-              <p class="st-svc__bar"><span dir="ltr">/ 03 · {{svc.ar.fam}}</span><span class="st-svc__kanji" aria-hidden="true">印</span></p>
+              <p class="st-svc__bar"><span dir="ltr"><b class="st-scene__lng" lang="en">AR</b> / 03 · {{svc.ar.fam}}</span><span class="st-svc__kanji" aria-hidden="true">印</span></p>
               <div class="st-svc__body">
                 <h3 class="st-h3">{{svc.ar.name}}</h3>
                 <ul class="st-plus"><li>{{svc.ar.ga}}</li><li>{{svc.ar.gb}}</li><li>{{svc.ar.gc}}</li></ul>
@@ -210,22 +210,25 @@
         <p class="st-actions"><a class="st-btn st-btn--primary" href="./#pricing" data-est-carry="motion" data-i18n="fab.s.3.go"></a></p>
         <p class="st-scene__learn"><a href="./#reel" data-i18n="fab.s.3.reel"></a></p>
       </details>
-      <!-- The reel (moved here from the Studio on 2026-11-21, when la carte took its place): one tile per clip of
-           hub/src/reel.json, written by the build. A clip is a poster until the pointer rests on it or it is pressed;
-           then it plays, and stops when the pointer leaves (hub/app.js 14). Nothing plays on its own, no clip has the
-           loop attribute, and no file is fetched before that first play (preload="none"). -->
-      <div class="st-reel st-reel--fab" id="bobine">
-        <div class="st-reel__head">
-          <p class="st-label" data-i18n="motion.reel.kicker"></p>
-          <h3 class="st-reel__title" data-i18n="motion.reel.title"></h3>
-          <p class="st-reel__lead" data-i18n="motion.reel.lead"></p>
-          <p class="st-reel__go"><a class="st-btn st-btn--primary" href="./#pricing" data-est-carry="motion" data-i18n="motion.reel.price"></a></p>
-        </div>
-        <ul class="st-reel__grid" data-i18n-aria="motion.reel.aria">
-{{reel}}
-        </ul>
-      </div>
     </article>
+    <!-- The reel (moved here from the Studio on 2026-11-21, when la carte took its place): one tile per clip of
+         hub/src/reel.json, written by the build. A clip is a poster until the pointer rests on it or it is pressed;
+         then it plays, and stops when the pointer leaves (hub/app.js 14). Nothing plays on its own, no clip has the
+         loop attribute, and no file is fetched before that first play (preload="none").
+         (world-06, 2026-11-24) It is scene 04's reel still, but no longer inside scene 04's card: in the card it
+         stretched the second row and left the column beside it empty for ~600 px. It is the grid's last item, one
+         full-width row under the four scenes (hub/style.css spans it across both columns). -->
+    <div class="st-reel st-reel--fab" id="bobine">
+      <div class="st-reel__head">
+        <p class="st-label" data-i18n="motion.reel.kicker"></p>
+        <h3 class="st-reel__title" data-i18n="motion.reel.title"></h3>
+        <p class="st-reel__lead" data-i18n="motion.reel.lead"></p>
+        <p class="st-reel__go"><a class="st-btn st-btn--primary" href="./#pricing" data-est-carry="motion" data-i18n="motion.reel.price"></a></p>
+      </div>
+      <ul class="st-reel__grid" data-i18n-aria="motion.reel.aria">
+{{reel}}
+      </ul>
+    </div>
   </div></div>
 </section>
 
@@ -241,7 +244,7 @@
       </div>
       <p class="st-lead" data-i18n="fab.course.lead"></p>
     </div>
-    <nav class="st-tracks__nav" data-i18n-aria="fab.course.navAria"><a href="{{lant.to.marque}}" data-i18n="fab.course.brand.k"></a><a href="#chantier" data-i18n="fab.course.stack.k"></a><a href="#chaine" data-i18n="fab.course.web3.k"></a><a href="#projet" data-i18n="fab.course.capstone.nav"></a></nav>
+    <nav class="st-tracks__nav" data-i18n-aria="fab.course.navAria"><a href="{{lant.to.marque}}"><span data-i18n="fab.course.brand.k"></span><span>&nbsp;·&nbsp;</span><span data-i18n="nav.manual"></span><span aria-hidden="true">&nbsp;↗</span></a><a href="#chantier" data-i18n="fab.course.stack.k"></a><a href="#chaine" data-i18n="fab.course.web3.k"></a><a href="#projet" data-i18n="fab.course.capstone.nav"></a></nav>
     <div class="st-tracks">
       <article class="st-track">
         <p class="st-svc__bar"><span data-i18n="fab.course.brand.k"></span><span class="st-svc__kanji" aria-hidden="true" lang="ja">印</span></p>
@@ -942,6 +945,8 @@
     <button type="button" class="st-menu__x" data-menu-close data-i18n-aria="nav.menuClose"><span aria-hidden="true">✕</span></button>
   </div>
   <nav class="st-menu__nav" data-i18n-aria="nav.menu">
+    <!-- the way home first, as on the Studio's sheet (journey-06, 2026-11-24) -->
+    <a class="st-menu__home" href="../"><span class="st-menu__n" aria-hidden="true">←</span><span data-i18n="nav.accueil"></span></a>
     <p class="st-menu__g st-label" data-i18n="fab.nav.fab"></p>
     <a href="#scenes"><span class="st-menu__n" aria-hidden="true" lang="ja">技</span><span data-i18n="fab.nav.scenes"></span></a>
     <a href="#apprendre"><span class="st-menu__n" aria-hidden="true" lang="ja">書</span><span data-i18n="fab.nav.course"></span></a>

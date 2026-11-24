@@ -53,7 +53,7 @@
      in a 1px border), 1px rule: 73px, the home page's bar */
   --hud-h:73px;   /* header height; the crumb wraps below 320px (see the media query) */
   /* the home page's steps and timings, which its one button is drawn with */
-  --t-ui:14px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px; --s-7:48px;
+  --t-ui:16px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px; --s-7:48px;   /* --t-ui 16, as the home's (it was 14: craft-27, one button size) */
   /* the older names, now the tempo's: 250 answering, 333 arriving */
   --ease-out:var(--m-ease-enter); --t-hover:var(--m-hover) var(--m-ease-enter); --t-enter:var(--m-enter) var(--m-ease-enter);
 }
@@ -164,13 +164,13 @@ main{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
 main:focus{outline:none}
 
 /* ---- intro ---- */
-.intro{padding:clamp(56px,9vw,120px) 0 clamp(40px,6vw,72px)}
+.intro{padding:clamp(32px,3.4vw,48px) 0 clamp(32px,3vw,40px)}   /* the first capture on the first screen at 1440x900 (home-11: it began at y 830, the top padding was 120) */
 .kicker{font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
-.intro h1{font:700 clamp(34px,5.4vw,68px)/1.05 var(--display);letter-spacing:.01em;max-width:14em;text-wrap:balance}
+.intro h1{font:700 clamp(34px,4.4vw,56px)/1.05 var(--display);letter-spacing:.01em;max-width:14em;text-wrap:balance}
 .intro h1 em{font-style:normal;color:var(--gold)}
 html[dir="rtl"] .intro h1{font-family:var(--ar);font-weight:700;line-height:1.25}
-.lead{margin-top:24px;max-width:40em;font-size:clamp(17px,1.6vw,19px);color:var(--muted);text-wrap:pretty}
-.index{margin-top:clamp(32px,4vw,48px)}
+.lead{margin-top:16px;max-width:40em;font-size:clamp(17px,1.6vw,19px);color:var(--muted);text-wrap:pretty}
+.index{margin-top:clamp(24px,2.4vw,32px)}
 .index ol{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px}
 .index a{display:flex;align-items:center;gap:12px;min-height:52px;padding:10px 16px;border:1px solid var(--line-2);
   border-radius:var(--r);text-decoration:none;background:var(--paper-2);transition:border-color var(--t-hover),background-color var(--t-hover)}
@@ -294,6 +294,11 @@ html[dir="rtl"] .sh-done{font-family:var(--ar);letter-spacing:0;text-transform:n
 .sh-ident{margin-top:1rem;padding-top:.75rem;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
 /* its link is a 44px target (it was 17px tall), the row's line unchanged */
 .sh-ident a{display:inline-flex;align-items:center;gap:6px;padding-block:14px;margin-block:-14px}
+/* the same client on the Studio: its case and, for AlmaFlow, its brand book (journey-12) */
+.sh-studio{display:flex;flex-wrap:wrap;gap:0 var(--s-5);margin-top:1rem;padding-top:.75rem;border-top:1px solid var(--line);font-size:14px}
+.sh-studio a{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:var(--gold);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+@media (hover:hover){.sh-studio a:hover{color:var(--ink)}}
+.sh-ident+.sh-studio{margin-top:.25rem;padding-top:0;border-top:0}
 
 .system{display:grid;gap:24px;padding:clamp(16px,2vw,24px);border:1px solid var(--line-2);border-radius:var(--r);background:var(--paper)}
 .system h4{font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
@@ -331,8 +336,9 @@ html[dir="rtl"] .sh-done{font-family:var(--ar);letter-spacing:0;text-transform:n
 .gv-n{grid-row:span 2;font:500 12px/25px var(--mono);letter-spacing:.08em;color:var(--gold)}
 .gv-list p{font-size:15px;line-height:25px;color:var(--ink)}
 .gv-list code{justify-self:start;max-width:100%;padding:2px 10px;border:1px solid var(--line-2);border-radius:999px;font:400 12px/1.6 var(--mono);color:var(--muted);overflow-wrap:anywhere}
-/* the note stays in view beside the taller list */
-@media (min-width:1000px){.gv-ctx{position:sticky;top:calc(var(--hud-h) + 16px)}}
+/* the note stays where it is, at the head of the list: held in view
+   (sticky), it slid down its column over the phones under it, its text
+   showing between them (home-10, 2026-11-23) */
 html[dir="rtl"] .gv-ctx b{font-family:var(--ar);font-size:13px;font-weight:600;letter-spacing:0;text-transform:none}
 html[dir="rtl"] .gv-n{letter-spacing:0}
 
@@ -523,7 +529,7 @@ html.viewing{overflow:hidden}
   .sheet:not(.sh-card) .sh-sum{order:1}
   .sh-mob{order:2;margin-top:var(--s-5)}
   .sheet:not(.sh-card) .sh-main{order:3;margin-top:var(--s-5)}
-  .sh-spec>:is(.tblock,.sh-h,.deliv,.sh-ident){order:4}
+  .sh-spec>:is(.tblock,.sh-h,.deliv,.sh-ident,.sh-studio){order:4}
   .sh-pgs{order:5}
   .gv{order:6}
   .sh-sys{order:7}

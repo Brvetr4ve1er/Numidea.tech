@@ -10,7 +10,10 @@
      with the codex, the personal dossiers 06 to 08, the Lab, the workshop
      diary, and a way back to the Studio. Same sheet (style.css) and script
      (app.js) as the Studio; the viewer (#lightbox) is here too, for the
-     posters and the diary. Nothing on this page is a client's. -->
+     posters and the diary. 06 and 07 are personal; 08 gathers the
+     founder's Behance galleries, client work included (world.note says so
+     as the page's lead, 2026-11-24). The page sells nothing: its bar's
+     button is the way back to the Studio, not the Aperçu (journey-27). -->
 <header class="st-nav">
   <div class="st-wrap st-nav__in">
     <a class="st-wm" href="../" data-i18n-aria="nav.home" dir="ltr"><span class="st-wm__t"><span>NUMIDEA</span> <span class="st-wm__l">LABS</span></span><span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
@@ -21,21 +24,22 @@
       <a href="#behance" data-i18n="world.nav.design"></a>
       <a href="#lab" data-i18n="world.nav.lab"></a>
       <a href="#diary" data-i18n="world.nav.diary"></a>
-      <a class="st-nav__world" href="./" data-i18n="manual.nav.studio"></a>
     </nav>
     <div class="st-lang" role="group" data-i18n-aria="nav.lang">
       <button type="button" data-lang="fr" aria-pressed="true" lang="fr" data-i18n-title="nav.langFr">FR</button>
       <button type="button" data-lang="en" aria-pressed="false" lang="en" data-i18n-title="nav.langEn">EN</button>
       <button type="button" data-lang="ar" aria-pressed="false" aria-label="العربية (ع)">{{ayn}}</button>
     </div>
-    <a class="st-nav__cta" href="./#contact" data-i18n="nav.cta"></a>
+    <a class="st-nav__cta" href="./" data-i18n="manual.nav.studio"></a>
     <button type="button" class="st-nav__menu" data-menu-open aria-haspopup="dialog" aria-controls="menu" aria-expanded="false" data-i18n-aria="nav.menu"><span aria-hidden="true"><i></i><i></i><i></i></span></button>
   </div>
 </header>
 
 <main id="main" tabindex="-1">
 
-<!-- the head: the label and the lines under it say in plain words what the page holds; the heading is the world's -->
+<!-- the head: the label and the lead say in plain words what the page holds (world.note, the scope: which dossiers
+     are personal and which hold client work, world-01/03); the premise, the world's own line, sits small under it;
+     the heading is the world's -->
 <section class="st-sec st-mondehead" id="top" aria-labelledby="monde-h">
   <div class="st-wrap">
     <div class="st-head">
@@ -44,8 +48,8 @@
         <h1 class="st-h2" id="monde-h" data-i18n="world.title"></h1>
       </div>
       <div class="st-mondehead__lead">
-        <p class="st-lead" data-i18n="doors.premise"></p>
-        <p class="st-mondehead__note" data-i18n="world.note"></p>
+        <p class="st-lead" data-i18n="world.note"></p>
+        <p class="st-mondehead__note" data-i18n="doors.premise"></p>
       </div>
     </div>
   </div>
@@ -132,7 +136,7 @@
               <a href="#mercury" data-i18n="start.codex.e.mercury.go"></a>
             </details>
             <details class="st-codex__e">
-              <summary><span class="st-codex__n" aria-hidden="true">11</span><bdi class="st-codex__name" dir="ltr">VOIDSPLUNKER.std</bdi><span class="st-codex__t" data-i18n="start.codex.e.void.t"></span></summary>
+              <summary><span class="st-codex__n" aria-hidden="true">11</span><bdi class="st-codex__name" dir="ltr">VOIDSPLUNKER.<wbr>std</bdi><span class="st-codex__t" data-i18n="start.codex.e.void.t"></span></summary>
               <p data-i18n="start.codex.e.void.d"></p>
               <a href="bible/" data-i18n="start.codex.e.void.go"></a>
             </details>
@@ -142,7 +146,7 @@
         <ul class="st-start__go">
           <li><a href="./#case-traveler" dir="ltr">tr4veler.exe</a></li>
           <li><a href="#mercury" dir="ltr">MERCURY</a></li>
-          <li><a href="#voidsplunker" dir="ltr">VOIDSPLUNKER.std</a></li>
+          <li><a href="#voidsplunker" dir="ltr">VOIDSPLUNKER.<wbr>std</a></li>
           <li><a href="bible/" data-i18n="start.bible"></a></li>
         </ul>
       </aside>
@@ -209,14 +213,19 @@
           <span class="st-case__tag st-proj__tag" data-i18n="proof.mc.tag"></span>
         </div>
         <div class="st-proj__body">
+          <!-- (world-23, 2026-11-24) the film is the reel's tile: a poster with a play mark, no native bar; a press plays
+               it, a second press stops it (hub/app.js 14, [data-reel]: nothing plays unasked, no loop, no sound). Its
+               words are the button's; the captions stay with the file for a reader who saves it -->
           <div class="st-proj__reel">
-            <video controls muted playsinline preload="none" width="540" height="946" poster="img/mercury/mercury-act2-poster.webp" data-i18n-aria="proof.mc.video">
-              <source src="img/mercury/mercury-act2.mp4" type="video/mp4">
-              <track kind="captions" src="img/mercury/act2.fr.vtt" srclang="fr" label="Français">
-              <track kind="captions" src="img/mercury/act2.en.vtt" srclang="en" label="English">
-              <track kind="captions" src="img/mercury/act2.ar.vtt" srclang="ar" label="العربية">
-              <span data-i18n="proof.mc.fallback"></span>
-            </video>
+            <button type="button" class="st-reel__b st-proj__play" data-reel aria-pressed="false">
+              <video muted playsinline preload="none" width="540" height="946" poster="img/mercury/mercury-act2-poster.webp" aria-hidden="true" tabindex="-1">
+                <source src="img/mercury/mercury-act2.mp4" type="video/mp4">
+                <track kind="captions" src="img/mercury/act2.fr.vtt" srclang="fr" label="Français">
+                <track kind="captions" src="img/mercury/act2.en.vtt" srclang="en" label="English">
+                <track kind="captions" src="img/mercury/act2.ar.vtt" srclang="ar" label="العربية">
+              </video>
+              <span class="st-sr"><span data-i18n="motion.reel.play"></span> <span data-i18n="proof.mc.video"></span></span>
+            </button>
           </div>
           <div class="st-proj__copy">
             <p class="st-h3l st-proj__sub" data-i18n="proof.mc.sub"></p>
@@ -373,41 +382,51 @@
     <ul class="st-lab__grid" data-row>
       <li><figure class="st-tile"><img src="img/studio/lab/p01.webp" data-i18n-alt="lab.pieces.0" loading="lazy" decoding="async"><figcaption>P01</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/p02.webp" data-i18n-alt="lab.pieces.1" loading="lazy" decoding="async"><figcaption>P02</figcaption></figure></li>
-      <li><figure class="st-tile"><img src="img/studio/lab/y-trav3.webp" data-i18n-alt="lab.pieces.2" loading="lazy" decoding="async"><figcaption>Y01</figcaption></figure></li>
-      <li><figure class="st-tile"><img src="img/studio/lab/p03.webp" data-i18n-alt="lab.pieces.3" loading="lazy" decoding="async"><figcaption>P03</figcaption></figure></li>
-      <li><figure class="st-tile"><img src="img/studio/lab/p04.webp" data-i18n-alt="lab.pieces.4" loading="lazy" decoding="async"><figcaption>P04</figcaption></figure></li>
       <li><a class="st-lab__a" href="img/studio/lab/p23.full.webp" data-zoom="img/studio/lab/p23.full.webp" data-set="lab" data-w="1000" data-h="1250"><figure class="st-tile"><img src="img/studio/lab/p23.webp" width="560" height="700" data-i18n-alt="lab.pieces.34" alt="" loading="lazy" decoding="async"><figcaption>P23</figcaption></figure></a></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p03.webp" data-i18n-alt="lab.pieces.3" loading="lazy" decoding="async"><figcaption>P03</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/y-trav3.webp" data-i18n-alt="lab.pieces.2" loading="lazy" decoding="async"><figcaption>Y01</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/p05.webp" data-i18n-alt="lab.pieces.5" loading="lazy" decoding="async"><figcaption>P05</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/y-trav3b.webp" data-i18n-alt="lab.pieces.6" loading="lazy" decoding="async"><figcaption>Y02</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/p06.webp" data-i18n-alt="lab.pieces.7" loading="lazy" decoding="async"><figcaption>P06</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p04.webp" data-i18n-alt="lab.pieces.4" loading="lazy" decoding="async"><figcaption>P04</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/p07.webp" data-i18n-alt="lab.pieces.8" loading="lazy" decoding="async"><figcaption>P07</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/p09.webp" data-i18n-alt="lab.pieces.9" loading="lazy" decoding="async"><figcaption>P09</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/y-revs.webp" data-i18n-alt="lab.pieces.10" loading="lazy" decoding="async"><figcaption>Y03</figcaption></figure></li>
+    </ul>
+    <!-- (world-04, 2026-11-24) the first twelve stay on the wall; the other twenty-four open under one line, so the
+         closed Lab is a third of its old 8,564 px on a desktop. Each piece and its viewer set ("lab") are unchanged.
+         (world-22) The order in both lists is set so the columns end close together at four and at three columns
+         (a few pieces moved by a place or two): measure again before adding, removing or moving a piece -->
+
+    <details class="st-lab__more">
+    <summary class="st-lab__more-s" data-i18n="lab.more"></summary>
+    <ul class="st-lab__grid" data-row>
       <li><figure class="st-tile"><img src="img/studio/lab/p10.webp" data-i18n-alt="lab.pieces.11" loading="lazy" decoding="async"><figcaption>P10</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/p11.webp" data-i18n-alt="lab.pieces.12" loading="lazy" decoding="async"><figcaption>P11</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/p12.webp" data-i18n-alt="lab.pieces.13" loading="lazy" decoding="async"><figcaption>P12</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/p13.webp" data-i18n-alt="lab.pieces.15" loading="lazy" decoding="async"><figcaption>P13</figcaption></figure></li>
-      <li><figure class="st-tile"><img src="img/studio/lab/p14.webp" data-i18n-alt="lab.pieces.16" loading="lazy" decoding="async"><figcaption>P14</figcaption></figure></li>
-      <li><figure class="st-tile"><img src="img/studio/lab/p15.webp" data-i18n-alt="lab.pieces.17" loading="lazy" decoding="async"><figcaption>P15</figcaption></figure></li>
-      <li><figure class="st-tile"><img src="img/studio/m/am4.webp" data-i18n-alt="lab.pieces.18" loading="lazy" decoding="async"><figcaption>Y05</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/p16.webp" data-i18n-alt="lab.pieces.19" loading="lazy" decoding="async"><figcaption>P16</figcaption></figure></li>
-      <li><figure class="st-tile"><img src="img/studio/lab/p18.webp" data-i18n-alt="lab.pieces.20" loading="lazy" decoding="async"><figcaption>P18</figcaption></figure></li>
-      <li><figure class="st-tile"><img src="img/studio/lab/p19.webp" data-i18n-alt="lab.pieces.21" loading="lazy" decoding="async"><figcaption>P19</figcaption></figure></li>
-      <li><figure class="st-tile"><img src="img/studio/lab/p20.webp" data-i18n-alt="lab.pieces.22" loading="lazy" decoding="async"><figcaption>P20</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/c01.webp" data-i18n-alt="lab.pieces.23" loading="lazy" decoding="async"><figcaption>A01</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p15.webp" data-i18n-alt="lab.pieces.17" loading="lazy" decoding="async"><figcaption>P15</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p19.webp" data-i18n-alt="lab.pieces.21" loading="lazy" decoding="async"><figcaption>P19</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p18.webp" data-i18n-alt="lab.pieces.20" loading="lazy" decoding="async"><figcaption>P18</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p20.webp" data-i18n-alt="lab.pieces.22" loading="lazy" decoding="async"><figcaption>P20</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/c02.webp" data-i18n-alt="lab.pieces.24" loading="lazy" decoding="async"><figcaption>A02</figcaption></figure></li>
-      <li><figure class="st-tile"><img src="img/studio/lab/y-empty.webp" data-i18n-alt="lab.pieces.14" loading="lazy" decoding="async"><figcaption>Y04</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/c03.webp" data-i18n-alt="lab.pieces.25" loading="lazy" decoding="async"><figcaption>A03</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p14.webp" data-i18n-alt="lab.pieces.16" loading="lazy" decoding="async"><figcaption>P14</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/m/am4.webp" data-i18n-alt="lab.pieces.18" loading="lazy" decoding="async"><figcaption>Y05</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/c04.webp" data-i18n-alt="lab.pieces.26" loading="lazy" decoding="async"><figcaption>A04</figcaption></figure></li>
-      <li><figure class="st-tile"><img src="img/studio/lab/c05.webp" data-i18n-alt="lab.pieces.27" loading="lazy" decoding="async"><figcaption>A05</figcaption></figure></li>
-      <li><figure class="st-tile"><img src="img/studio/lab/c06.webp" data-i18n-alt="lab.pieces.28" loading="lazy" decoding="async"><figcaption>A06</figcaption></figure></li>
-      <li><figure class="st-tile"><img src="img/studio/lab/c07.webp" data-i18n-alt="lab.pieces.29" loading="lazy" decoding="async"><figcaption>A07</figcaption></figure></li>
       <li><a class="st-lab__a" href="img/studio/lab/c08.full.webp" data-zoom="img/studio/lab/c08.full.webp" data-set="lab" data-w="1100" data-h="1467"><figure class="st-tile"><img src="img/studio/lab/c08.webp" width="560" height="747" data-i18n-alt="lab.pieces.32" alt="" loading="lazy" decoding="async"><figcaption>A08</figcaption></figure></a></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/c05.webp" data-i18n-alt="lab.pieces.27" loading="lazy" decoding="async"><figcaption>A05</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/c07.webp" data-i18n-alt="lab.pieces.29" loading="lazy" decoding="async"><figcaption>A07</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/c06.webp" data-i18n-alt="lab.pieces.28" loading="lazy" decoding="async"><figcaption>A06</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/y-empty.webp" data-i18n-alt="lab.pieces.14" loading="lazy" decoding="async"><figcaption>Y04</figcaption></figure></li>
       <li><a class="st-lab__a" href="img/studio/lab/y-model2.full.webp" data-zoom="img/studio/lab/y-model2.full.webp" data-set="lab" data-w="1100" data-h="1467"><figure class="st-tile"><img src="img/studio/lab/y-model2.webp" width="560" height="747" data-i18n-alt="lab.pieces.33" alt="" loading="lazy" decoding="async"><figcaption>Y06</figcaption></figure></a></li>
       <li><a class="st-lab__a" href="img/studio/lab/p21.full.webp" data-zoom="img/studio/lab/p21.full.webp" data-set="lab" data-w="1000" data-h="1333"><figure class="st-tile"><img src="img/studio/lab/p21.webp" width="560" height="747" data-i18n-alt="lab.pieces.30" alt="" loading="lazy" decoding="async"><figcaption>P21</figcaption></figure></a></li>
       <li><a class="st-lab__a" href="img/studio/lab/p22.full.webp" data-zoom="img/studio/lab/p22.full.webp" data-set="lab" data-w="1100" data-h="1467"><figure class="st-tile"><img src="img/studio/lab/p22.webp" width="560" height="747" data-i18n-alt="lab.pieces.31" alt="" loading="lazy" decoding="async"><figcaption>P22</figcaption></figure></a></li>
       <li><a class="st-lab__a" href="img/studio/lab/p24.full.webp" data-zoom="img/studio/lab/p24.full.webp" data-set="lab" data-w="1000" data-h="1500"><figure class="st-tile"><img src="img/studio/lab/p24.webp" width="560" height="840" data-i18n-alt="lab.pieces.35" alt="" loading="lazy" decoding="async"><figcaption>P24</figcaption></figure></a></li>
     </ul>
+    </details>
 
     <!-- The Studio diary, back as a titled set (28 Oct): the night desk as the strip's head, then
          the eight prints in story order. Each opens in the one viewer (#lightbox, hub/app.js 8)
@@ -491,6 +510,8 @@
     <button type="button" class="st-menu__x" data-menu-close data-i18n-aria="nav.menuClose"><span aria-hidden="true">✕</span></button>
   </div>
   <nav class="st-menu__nav" data-i18n-aria="nav.menu">
+    <!-- the way home first, as on the Studio's sheet (journey-06, 2026-11-24) -->
+    <a class="st-menu__home" href="../"><span class="st-menu__n" aria-hidden="true">←</span><span data-i18n="nav.accueil"></span></a>
     <p class="st-menu__g st-label" data-i18n="nav.world"></p>
     <a href="#world"><span class="st-menu__n" aria-hidden="true" lang="ja">夜</span><span data-i18n="world.nav.codex"></span></a>
     <a href="#voidsplunker"><span class="st-menu__n" aria-hidden="true">06</span><span data-i18n="world.nav.bible"></span></a>

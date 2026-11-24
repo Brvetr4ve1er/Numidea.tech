@@ -1,5 +1,5 @@
 {
-  "_note": "« Gagner sa vie de loin » (SPEC §4.5): the money set, five districts in two acts. Structure and art slots only; copy is under lant.at.argent.* or names the course's existing keys (keys map). right = the right answer's index as the course authored it (data-ls-a=\"ok\"). Case: Selma, an invented example (L5). Keepsakes: the stops' own tab drawings. Leads: pay stands the standing pigeon (hub/img/studio/atelier/pigeon-stand.webp, by path), bank the flying one (SPEC §4.5, §5.1). Props: the owner's cut-out objects (the tab drawings are square opaque pictures and stay keepsakes). No set reward (L10).",
+  "_note": "« Gagner sa vie de loin » (SPEC §4.5): the money set, five districts in two acts. Structure and art slots only; copy is under lant.at.argent.* or names the course's existing keys (keys map). right = the right answer's index as the course authored it (data-ls-a=\"ok\"). Case: Selma, an invented example (L5). Keepsakes: the stops' own tab drawings. Leads: pay stands the standing pigeon (hub/img/studio/atelier/pigeon-stand.webp, by path), bank the flying one (SPEC §4.5, §5.1). Props: the owner's cut-out objects (the tab drawings are square opaque pictures and stay keepsakes). No set reward (L10). Template order (2026-11-24, L-08): every district asks its situation first, then its exercise or reading.",
   "slug": "argent",
   "key": "argent",
   "store": "numidea-lanterne-argent",
@@ -41,7 +41,6 @@
       "prop": "paper",
       "right": 1,
       "ex": "pick",
-      "ask": "after",
       "keep": "img/studio/money/ls-pay.webp",
       "keys": {
         "sub": "money.ls.items.0.t",
@@ -64,7 +63,6 @@
       "prop": "ring",
       "right": 0,
       "ex": "pick",
-      "ask": "after",
       "keep": "img/studio/money/ls-bank.webp",
       "keys": {
         "sub": "money.ls.items.1.t",

@@ -910,7 +910,9 @@ async function hits(p) {
   const r = await p.evaluate(async () => {
     const out = [];
     // (a control inside a closed <details> is not shown either, though it keeps a box: only its <summary> is there to press)
-    const els = [...document.querySelectorAll('a[href],button')].filter((e) => e.offsetParent !== null && !e.closest('dialog') && !(e.closest('details:not([open])') && !e.closest('summary')));
+    // (nor a picture's alias that takes no press on purpose: aria-hidden, out of the tab order and pointer-events:none,
+    // like a case tile's small « Ouvrir ↗ », whose control is the case's 44 px « Ouvrir le site », 2026-11-24, S-20)
+    const els = [...document.querySelectorAll('a[href],button')].filter((e) => e.offsetParent !== null && !e.closest('dialog') && !(e.closest('details:not([open])') && !e.closest('summary')) && !(e.matches('[aria-hidden="true"][tabindex="-1"]') && getComputedStyle(e).pointerEvents === 'none'));
     for (const e of els) {
       // a control inside a track is reached as the keyboard reaches it: by focus, which brings its tile whole to the track's snap point
       if (e.closest('[data-track]')) e.focus({ preventScroll: true });

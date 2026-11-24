@@ -17,7 +17,7 @@ var I18N = {
   'meta.ogDesc': 'Web studio in Bordj Bou Arréridj. For a registered business, before any payment, we build your new site\'s homepage with your own content in 5 working days — at most 4 a month. Websites in English, French and Arabic.',
   'meta.twDesc': 'Your homepage, with your own content, in 5 working days. Free, no obligation, for registered businesses, at most 4 a month.',
   'meta.ogAlt': 'Numidea Labs — “Your site, before you pay.” The Preview: your homepage before you pay, over an engraving of the Arch of Trajan at Timgad',
-  'nav.about': 'The Preview', 'nav.services': 'Services', 'nav.work': 'Work',
+  'nav.about': 'Free Preview', 'nav.services': 'Services', 'nav.work': 'Work',
   'nav.team': 'Founder', 'nav.faq': 'FAQ', 'nav.contact': 'Contact',
   'hero.eyebrow': 'Web studio\u00a0· Bordj\u00a0Bou\u00a0Arréridj',
   'hero.title': 'See your homepage <span class="swash">before you pay.</span>',
@@ -42,8 +42,8 @@ var I18N = {
   'work.lead': 'Our clients’ sites, to open yourself.',
   'work.outcome': 'For the visitor',
   'work.demo': 'Also: Glaive Store, a made-up brand designed from scratch as a portfolio demo.',
-  'work.live': 'Visit the site <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span>', 'work.sheet': 'See the project in detail',
-  'scene.cta': 'See each project in detail <span aria-hidden="true">→</span>',
+  'work.sheet': 'See the project in detail',
+  'scene.cta': 'See the projects in detail <span aria-hidden="true">→</span>',
   'founder.kicker': 'The founder', 'founder.title': 'Who builds <em>your site.</em>',
   'founder.lead': 'Behind Numidea, one pair of hands: a founder who designs, codes and delivers himself. Freelancers join him when a project calls for it.',
   'founder.role': 'Graphic designer & web developer\u00a0· Founder', 'founder.years': '6 yrs',
@@ -89,7 +89,7 @@ var I18N = {
   'contact.title': 'Let’s talk about <em>your project.</em>',
   'contact.sub': 'Two lines are enough: your business, what the site must do, your deadline. In English, French or Arabic.',
   'contact.chStudio': 'Studio', 'contact.chReply': 'Reply',
-  'contact.vStudio': 'Bordj\u00a0Bou\u00a0Arréridj\u00a0· Algeria', 'contact.vReply': 'The next working day\u00a0· Sunday–Thursday, 9am–\u20606pm (UTC+1)\u00a0· <span class="nb">FR\u00a0· EN\u00a0· AR</span>',
+  'contact.vStudio': 'Bordj\u00a0Bou\u00a0Arréridj\u00a0· Algeria', 'contact.vReply': 'The next working day, Sunday to Thursday, 9am–\u20606pm, Algiers time',
   'form.name': 'Name', 'form.namePh': 'Your name',
   'form.email': 'Email', 'form.emailPh': 'you@company.com',
   'form.message': 'Message', 'form.messagePh': 'What are we building?',
@@ -112,7 +112,7 @@ var I18N = {
   'footer.rights': '© 2026 Numidea Labs',
   'footer.tag': 'Rooted in Numidia\u00a0· built on ideas',
   /* ---- Services catalog + trust strip strings (EXTRA in app.js until the split; merged here) ---- */
-  'mk.h': 'Algeria, France, United States: one project, three markets',
+  'mk.h': 'One project, three markets',
   'mk.vizCap': "Logarithmic scale: each major gridline is ten times the one before. Between the two dashed lines, Numidea’s range, carried across the three markets; a bar that fades out has no upper limit. Amounts converted at the official rate; exact figures in the table below.",
   'mk.k': 'k', 'mk.M': 'M', 'mk.k.n': 'k|k', 'mk.M.n': 'M|M',
   'prev.tl1': 'You describe the project', 'prev.tl1p': 'Two minutes, in writing or out loud. In French, English or Arabic.',
@@ -197,7 +197,7 @@ var I18N = {
   'price.estimate': 'Estimate', 'price.weeks': 'weeks', 'price.weeks.n': 'week|weeks',
   'price.estFine': 'An indicative range, not a quote. The firm price follows once we have scoped it together — and it does not move after that.',
   'price.estCta': 'Request my firm price <span aria-hidden="true">→</span>',
-  'price.moreSum': 'How we price', 'price.moreHint': 'The market, billing models, what moves a quote.',
+  'price.moreSum': 'How we price',
   /* ---- the price guide (tarifs/, scripts/build-tarifs.mjs): its head, its own lines, the home's links to it ---- */
   'tarifs.title': 'The price of a website in Algeria (2026) — Numidea Labs',
   'tarifs.desc': 'How much does a website cost in Algeria in 2026? Our packages from 90,000 DZD, an estimator, and typical rates in Algeria, France and the United States.',
@@ -210,7 +210,7 @@ var I18N = {
   'tarifs.link': 'See the 2026 price guide <span aria-hidden="true">→</span>', 'tarifs.navLink': 'Price guide',
   'svc.lead': 'Five core services, and five more just below. One contact for all of them.',
   'prev.tag': 'Signature offer', 'prev.name': 'The Preview', 'prev.promise': 'Zero risk: you see it before you pay.',
-  'prev.more': 'Every step, in detail', 'prev.terms': 'Free, no obligation\u00a0· registered businesses only\u00a0· at most 4 Previews a month, across all clients.', 'prev.cta': 'Request my free Preview <span aria-hidden="true">→</span>', 'prev.wa': 'Chat on WhatsApp', 'prev.msg': 'Hello, I would like to see a free Preview of my new website.\nCompany: \nPhone / WhatsApp: \nCurrent site (if any): \nWhat I need: ', 'prev.waText': 'Hello Numidea Labs, I would like a free Preview of my new website.\nCompany: \nBusiness and city: \nCurrent site (if any): ', 'form.source': 'Source', 'contact.waNote': 'messages only, no calls\u00a0· free in the app',
+  'prev.more': 'Every step, in detail', 'prev.terms': 'Free, no obligation\u00a0· registered businesses only\u00a0· at most 4 Previews a month, across all clients.', 'prev.cta': 'Request my free Preview <span aria-hidden="true">→</span>', 'prev.wa': 'Chat on WhatsApp', 'prev.msg': 'Hello, I would like to see a free Preview of my new website.\nCompany: \nPhone / WhatsApp: \nCurrent site (if any): \nWhat I need: ', 'prev.waText': 'Hello Numidea Labs, I would like a free Preview of my new website.\nCompany: \nBusiness and city: \nCurrent site (if any): ', 'form.source': 'Source', 'contact.waNote': 'messages only: the Preview video call is set by message\u00a0· free in the app',
   'f1.name': 'Sites & web applications',
   'f1.brief': 'Custom websites and web apps — fast, optimised for search engines and built to turn visitors into enquiries. No ready-made templates: we design your site from scratch.',
   'f2.name': 'Branding & visual systems',
@@ -231,7 +231,7 @@ var I18N = {
   'c4.name': 'Knowledge systems',
   'c4.brief': 'Internal knowledge architecture — Obsidian/PARA + Zettelkasten, documentation, bases ready for an AI assistant to query. Self-maintaining structures.',
   'c5.name': 'Custom AI tools & assistants',
-  'c5.brief': 'Internal tools, generators and custom assistants, powered by Claude: a repetitive task runs in one click.',
+  'c5.brief': 'Internal tools, generators and custom assistants: a repetitive task runs in one click.',
 
   /* restored 2026-11-11 from the 3 Nov dictionary (owner's own copy, verbatim) */
   'proj2.desc': 'Brand identity and a trilingual website for a travel agency in Bordj\u00a0Bou\u00a0Arréridj, with a WhatsApp quote calculator and a visa-appointment service.',
@@ -243,10 +243,9 @@ var I18N = {
   'c1.promise': 'From browse to paid.', 'c2.promise': 'Scroll-stopping, on brand.', 'c3.promise': 'Signal out of noise.', 'c4.promise': 'A company that remembers.', 'c5.promise': 'Software that builds your software.',
   'c1.fam': 'Sites & design', 'c2.fam': 'Sites & design', 'c3.fam': 'Data & automation', 'c4.fam': 'Advisory & AI', 'c5.fam': 'Advisory & AI',
   'scene.lead': 'Each sheet shows a project’s key pages, its mobile version and its visual system — every screenshot taken from the live site.',
-  'contact.tzNote': 'Paris time in winter, 1\u00a0h behind in summer',
   'contact.sceneAlt': 'The workshop door open at night: Yasser, in the doorway, holds up a sign; Kūro waits on the step.', 'contact.sign': 'hi.',
   /* new 2026-11-11: the home leads to the Studio and the bible again and to WorkspaceHQ */
-  'founder.studio': 'The studio, in detail <span aria-hidden="true">→</span>',
+  'founder.studio': 'The Studio, in detail <span aria-hidden="true">→</span>',
   'founder.bible': 'The character bible <span aria-hidden="true">→</span>',
   /* the night band (index.html #atelier) and the founder's drawn portrait; premise approved 2026-11-15 */
   'atelier.kicker': 'Bordj Bou Arréridj\u00a0· 36°04′N 4°46′E',
@@ -256,6 +255,18 @@ var I18N = {
   'atelier.alt': 'Yasser at his workshop table at night, holding up a drawn panel; Kūro, the black cat, sits on a blueprint beside him, next to a coffee cup.',
   'founder.sceneAlt': 'Yasser at the workshop window at night, coffee in hand; Kūro on the sill.',
   'founder.sceneCap': 'Yasser, at the workshop. This coffee is not the first.',
-  'seal.est': 'Estimated', 'seal.sent': 'Sent',   /* the red seal stamps (estimator result, sent form) */
+  'seal.est': 'Estimated', 'seal.sent': 'Ready',   /* the red seal stamps (estimator result, sent form) */
   'footer.studio': 'The Studio',
+  /* enh3 HOME, 2026-11-23: the bar's short estimate button, the Bookshop and the world in the footer and the menu, the workshop's sub-line, the guide's own price answer, the work links by client, the footer's WorkspaceHQ label */
+  'price.estCtaShort': 'Firm price <span aria-hidden="true">→</span>',
+  'nav.librairie': 'The Bookshop',
+  'nav.monde': 'The world',
+  'atelier.sub': 'The Studio’s services, work and prices',
+  'tarifs.faq2a': 'Our packages start at 90,000 DZD for a showcase site, in dinars, euros or dollars on this page, and every project gets one fixed price once the scope is clear — no surprise fees. See also <a href="../#apercu">the Preview</a>.',
+  'proj4.live': 'Visit Bordj Steel <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span>',
+  'proj2.live': 'Visit Alliance Travel <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span>',
+  'proj3.live': 'Visit AlmaFlowClim <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span>',
+  'proj6.live': 'Visit Nomara Voyages <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span>',
+  'work.demoLive': 'Visit Glaive Store <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span>',
+  'footer.whq': 'WorkspaceHQ, our tool',
 };

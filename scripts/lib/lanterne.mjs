@@ -54,6 +54,17 @@ export function lanterne(ctx) {
   const { HUB, SRC, DICT, LANGS, fail, notes, esc, pageSrc, headEnd, swap, RADIO, RUNTIME_OLD } = ctx;
   const LS = join(SRC, 'lanterne');
   const json = (f) => { try { return JSON.parse(readFileSync(f, 'utf8')); } catch (e) { fail(`${f.slice(f.indexOf('hub/'))}: ${e.message}`); return null; } };
+  /* strings awaiting the dictionaries (hub/src/lanterne/pending-i18n.json, 2026-11-24): used only while a key is missing */
+  if (existsSync(join(LS, 'pending-i18n.json'))) {
+    const miss = [];
+    for (const r of (json(join(LS, 'pending-i18n.json')) || {}).keys || []) for (const l of LANGS) {
+      const v = r[l], forms = v && typeof v === 'object' ? Object.entries(v).map(([c, x]) => [`${r.key}.${c}`, x]) : [[r.key, v]];
+      for (const [k, x] of forms) if (DICT[l][k] == null && x != null) { DICT[l][k] = x; if (l === 'fr') miss.push(k); }
+      /* French and English take their .other for the Arabic-only plural forms, as build-hub.mjs does for the dictionaries */
+      for (const c of ['zero', 'two', 'few', 'many']) if (v && typeof v === 'object' && DICT[l][`${r.key}.${c}`] == null) DICT[l][`${r.key}.${c}`] = DICT[l][`${r.key}.other`];
+    }
+    if (miss.length) notes.push(`the Librairie: ${miss.length} strings from hub/src/lanterne/pending-i18n.json, not yet in hub/src/i18n (${miss.slice(0, 4).join(', ')}${miss.length > 4 ? ', …' : ''})`);
+  }
   const ART = json(join(LS, 'art.json')), SHELF = json(join(LS, 'shelf.json'));
   if (!ART || !SHELF) return null;
   const books = SHELF.shelves.flatMap((s) => s.books);
@@ -161,11 +172,36 @@ export function lanterne(ctx) {
       <a href="?lang=fr" hreflang="fr" lang="fr" data-lt-lang="fr" aria-current="true">FR</a><a href="?lang=en" hreflang="en" lang="en" data-lt-lang="en" aria-current="false">EN</a><a href="?lang=ar" hreflang="ar" lang="ar" data-lt-lang="ar" aria-current="false" aria-label="العربية (ع)">${AYN}</a>
     </div>`;
   const ext = ` target="_blank" rel="noopener"`;
-  const menu = (links) => `<button type="button" class="menu-btn js-only" data-lt-menu-open aria-haspopup="dialog"><span class="menu-btn__bars" aria-hidden="true"></span><span class="menu-btn__t" data-i18n="nav.menu"></span></button>
+  const motionBtn = (cls) => `<button type="button" class="motion js-only${cls}" data-lt-motion aria-pressed="true" data-i18n-title="lant.ui.motionHint"><span class="motion__dot" aria-hidden="true"></span><span data-i18n="lant.ui.motion"></span></button>`;
+  const menu = (links, motion) => `<button type="button" class="menu-btn js-only" data-lt-menu-open aria-haspopup="dialog"><span class="menu-btn__bars" aria-hidden="true"></span><span class="menu-btn__t" data-i18n="nav.menu"></span></button>
   <dialog class="menu" data-lt-menu aria-labelledby="lt-menu-h">
-    <div class="menu__top"><p class="menu__h" id="lt-menu-h" data-i18n="nav.menu"></p><button type="button" class="btn" data-lt-menu-close><span data-i18n="nav.menuClose"></span></button></div>
+    <div class="menu__top"><p class="menu__h" id="lt-menu-h" data-i18n="nav.menu"></p><button type="button" class="btn" data-lt-menu-close><span data-i18n="nav.menuClose"></span></button></div>${motion ? `
+    ${motionBtn(' menu__motion')}` : ''}
     <ul class="menu__list">${links.map(([href, key]) => `<li><a href="${href}"${href.startsWith('https:') ? ext : ''}><span data-i18n="${key}"></span>${href.startsWith('https:') ? '<span class="sr" data-i18n="case.newTab"></span>' : ''}</a></li>`).join('')}</ul>
   </dialog>`;
+  /* the Studio's wordmark (hub/src/page.html), to the site's root as its name says (« Numidea Labs, le site ») */
+  const WM = `<a class="st-wm mast__word" href="../../" data-i18n-aria="nav.home" dir="ltr"><span class="st-wm__t"><span>NUMIDEA</span> <span class="st-wm__l">LABS</span></span><span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>`;
+  /* an atlas's and the toolbox's foot: the shelf's colophon (hub/src/lanterne/shelf.html) without its skyline; the way
+     home, the Librairie, the Studio, the world, the prices and WhatsApp (L-16) */
+  const footLinks = (shelf) => `<nav class="st-foot__links" data-i18n-aria="footer.nav">
+      <a href="../../" data-i18n="footer.site"></a>${shelf ? '' : `
+      <a href="./" data-i18n="lant.ui.library"></a>`}
+      <a href="../" data-i18n="manual.nav.studio"></a>
+      <a href="../monde.html" data-i18n="nav.world"></a>
+      <a href="../#pricing" data-i18n="nav.pricing"></a>
+      <a href="${WA}"${ext}><span data-i18n="lant.ui.wa"></span><span class="st-sr" data-i18n="case.newTab"></span></a>
+    </nav>`;
+  const stFoot = (before) => `<footer class="st-foot lt-sfoot">
+  <div class="st-wrap">${before || ''}
+  <div class="st-foot__in">
+    <span class="st-label st-foot__ok" aria-hidden="true">奥付</span>
+    <a class="st-wm st-wm--foot" href="../../" data-i18n-aria="nav.home" dir="ltr"><span class="st-wm__t"><span>NUMIDEA</span> <span class="st-wm__l">LABS</span></span><span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
+    <p class="st-foot__line"><span data-i18n="footer.line"></span></p>
+    ${footLinks(false)}
+    <span class="st-seal st-seal--fill st-foot__seal" aria-hidden="true">印</span>
+    <p class="st-label st-foot__rights" data-i18n="footer.rights"></p>
+  </div></div>
+</footer>`;
   const radioJson = JSON.stringify(RADIO.map((tr) => ({ id: tr.id, src: '../' + tr.src, dur: tr.dur }))).replace(/</g, '\\u003c');
   const dataBlock = (o) => `<script type="application/json" id="lant-data">${JSON.stringify(o).replace(/</g, '\\u003c')}</script>`;
 
@@ -218,11 +254,18 @@ export function lanterne(ctx) {
               <legend><span class="k" data-i18n="lant.ui.situation"></span><span class="sit__q" data-i18n="${dk(A, id, 'q')}"></span></legend>
               <ul class="sit__list">${answers(id)}</ul>
               <p class="sit__fb" id="${id}-fb" role="status" data-i18n="lant.ui.idle"></p>
-              <p class="sit__next" hidden><a href="#${id}-ex" data-i18n="lant.ui.rightNext"></a></p>
+              <p class="sit__next" hidden><a href="#${id}-ex" data-i18n="lant.ui.rightNext"></a><span class="sit__ok" data-i18n="lant.ui.rightDone"></span></p>
             </fieldset>`;
+    /* a long rule (the nine modules: 126 to 178 words) reads in the body weight, its first sentence bold (L-05): hub/lanterne.js
+       sets the first sentence apart in the page's language (two derived keys would have put 100 kB more in hub/i18n.js) */
+    const ruleT = (id) => `<p class="rule__t${A.ruleLead ? ' rule__t--long' : ''}" data-i18n="${dk(A, id, 'rule')}"></p>`;
     const district = (id, i) => {
       const d = A.districts[id], act = actOf(id), pl = ART.plates[plateOf(A, id)], after = d.ask === 'after', wide = !!pl.wide;
       const hasCut = !!(d.lead || d.companion || d.prop);
+      /* the act's plate again (the district before it in the same act shows the same picture): a strip, not a second full plate (L-20) */
+      const prevId = ids[i - 1], strip = !!prevId && actOf(prevId) === act && plateOf(A, prevId) === plateOf(A, id);
+      /* « read each explanation » is a reading, not the quarter's exercise: the district is done by its situation (L-07) */
+      const read = d.ex === 'pick';
       const board = part(id);
       /* a wide plate (a module header, house art: SPEC §3.3, §4.4) is shown alone in its frame, without parallax; the
          district's guide and companion stand beside it, on the paper, never on it */
@@ -242,10 +285,10 @@ export function lanterne(ctx) {
       const toolsLine = d.tools && TOOLS ? `<p class="more more--tools"><span class="k" data-i18n="lant.tools.in.k"></span> <a href="outils.html#${d.tools.at}" data-i18n="${need(d.tools.k, `${P} ${id}`)}"></a></p>` : '';
       return `
       <section class="district" id="${id}" data-act="${act.id}"${A.course ? ` data-ls-panel="${id}"` : ''} aria-labelledby="${id}-h"${d.accent ? ` style="--accent:${d.accent}"` : ''}>
-        <div class="stage${wide ? ' stage--wide' : ''}">
+        <div class="stage${wide ? ' stage--wide' : ''}${strip ? ' stage--strip' : ''}">
           <div class="dio-wrap">
             <p class="dio__cap" aria-hidden="true"><span class="dio__name" data-i18n="${dk(A, id, 'name')}"></span><span class="dio__guide" data-i18n="${castName(d.guide)}"></span><strong data-i18n="${dk(A, id, 'sub')}"></strong></p>
-            <figure class="dio${wide ? ' dio--wide' : ''}${hasCut ? '' : ' dio--alone'}" dir="ltr" role="img" data-i18n-aria="${dk(A, id, 'alt')}" style="--pw:${pl.w}px;--pr:${pl.w}/${pl.h}">
+            <figure class="dio${wide ? ' dio--wide' : ''}${hasCut ? '' : ' dio--alone'}${strip ? ' dio--strip' : ''}" dir="ltr" role="img" data-i18n-aria="${dk(A, id, 'alt')}" style="--pw:${pl.w}px;--pr:${pl.w}/${pl.h}">
               ${frame}
             </figure>
             <button type="button" class="dio__zoom js-only" data-lt-zoom="${up(pl.src)}"><span data-i18n="lant.ui.zoom"></span></button>
@@ -255,18 +298,18 @@ export function lanterne(ctx) {
             <h3 class="dossier__h" id="${id}-h" tabindex="-1" data-i18n="${dk(A, id, 'name')}"></h3>
             <p class="dossier__sub"><span data-i18n="${dk(A, id, 'sub')}"></span> · <span data-lt-with="${d.guide}">${esc(fr('lant.ui.with').replace('{g}', fr(castName(d.guide))))}</span></p>
             <p class="dossier__lore" data-i18n="${dk(A, id, 'lore')}"></p>
-            <div class="rule"><p class="k" data-i18n="lant.ui.rule"></p><p class="rule__t" data-i18n="${dk(A, id, 'rule')}"></p></div>
+            <div class="rule"><p class="k" data-i18n="lant.ui.rule"></p>${ruleT(id)}</div>
             ${more}${toolsLine}
             ${after ? '' : sit(id)}
             <p class="keep" hidden>${ksImg(A, id, 48)}<span data-lt-keep></span></p>
-            ${after ? `<div class="dossier__ex"><p class="k" data-i18n="lant.ui.exK"></p><p class="dossier__ext" data-i18n="${dk(A, id, 'ex.t')}"></p><p class="dossier__exb" data-i18n="${dk(A, id, 'ex.brief')}"></p></div>` : ''}
-            <a class="to-ex" href="#${id}-ex" data-i18n="${after ? 'lant.ui.toRead' : 'lant.ui.toEx'}"></a>
+            ${after ? `<div class="dossier__ex"><p class="k" data-i18n="${read ? 'lant.ui.readK' : 'lant.ui.exK'}"></p><p class="dossier__ext" data-i18n="${dk(A, id, 'ex.t')}"></p><p class="dossier__exb" data-i18n="${dk(A, id, 'ex.brief')}"></p></div>` : ''}
+            <a class="to-ex" href="#${id}-ex" data-i18n="${after ? 'lant.ui.toRead' : read ? dk(A, id, 'ex.t') : 'lant.ui.toEx'}"></a>
           </div>
         </div>
         <section class="terrain" id="${id}-ex" aria-labelledby="${id}-ex-h ${id}-h">
           <div class="terrain__head">
-            <div><p class="k" data-i18n="lant.ui.exK"></p><h3 class="terrain__h" id="${id}-ex-h" data-i18n="${dk(A, id, 'ex.t')}"></h3></div>
-            <span class="badge js-only" data-lt-badge data-i18n="lant.ui.badgeOpen"></span>
+            <div><p class="k" data-i18n="${read ? 'lant.ui.readK' : 'lant.ui.exK'}"></p><h3 class="terrain__h" id="${id}-ex-h" data-i18n="${dk(A, id, 'ex.t')}"></h3></div>
+            ${read ? '' : `<p class="badge-wrap js-only"><span class="badge" data-lt-badge data-i18n="lant.ui.badgeOpen"></span>${d.ex === 'bins' ? '<span class="badge__score" data-lt-score hidden></span><button type="button" class="lnk lnk--btn badge__redo" data-lt-redo hidden><span data-i18n="lant.ui.redo"></span></button>' : ''}</p>`}
           </div>
           <p class="terrain__brief" data-i18n="${dk(A, id, 'ex.brief')}"></p>
           <div class="board" data-lt-ex="${esc(d.ex)}" data-lt-id="${id}">${board || '<p class="board__nojs" data-i18n="lant.ui.noJs"></p>'}</div>
@@ -274,19 +317,23 @@ export function lanterne(ctx) {
           ${after ? sit(id) : ''}
           <div class="terrain__act">
             <a href="#journal" class="lnk lnk--t" data-i18n="lant.ui.readJournal"></a>
-            ${KIT.includes(d.ex) ? '' : '<button type="button" class="lnk lnk--btn js-only" data-lt-skip hidden><span data-i18n="lant.ui.skipEx"></span></button>'}
+            ${KIT.includes(d.ex) || read ? '' : '<button type="button" class="lnk lnk--btn js-only" data-lt-skip hidden><span data-i18n="lant.ui.skipEx"></span></button>'}
             <button type="button" class="btn btn--amber js-only" data-lt-next>${esc(ids[i + 1] ? fr('lant.ui.next').replace('{q}', fr(dk(A, ids[i + 1], 'name'))) : fr('lant.ui.first'))}</button>
           </div>
         </section>
         <p class="note-nojs"><b data-i18n="${dk(A, id, 'scene')}"></b> · <span data-i18n="${dk(A, id, 'decision')}"></span></p>
       </section>`;
     };
+    /* a stop's short name and its sentence title, in the rail and the picker (L-09: « Niveau 3 » said nothing); the nine
+       modules' names are already sentences */
+    const titled = !A.carnet;
+    const optT = (id) => fr(dk(A, id, 'name')) + (titled ? ' · ' + fr(dk(A, id, 'sub')) : '');
     const list = A.acts.map((a) => `
         <p class="list__act${a.side ? ' list__act--side' : ''}" id="act-${a.id}" data-i18n="${ak(A, `act.${a.id}`)}"></p>
         <ul class="list__ul" aria-labelledby="act-${a.id}">${a.districts.map((id) => `
-          <li><a class="list__btn" href="#${id}" data-lt-go="${id}"${A.course ? ` data-ls-tab="${id}"` : ''}><span class="list__mk" aria-hidden="true"></span>${A.districts[id].icon ? `<img class="list__ic" src="${up(A.districts[id].icon)}" alt="" width="260" height="260" loading="lazy" decoding="async">` : ''}<span class="list__n" data-i18n="${dk(A, id, 'name')}"></span><span class="sr list__st"></span></a></li>`).join('')}
+          <li><a class="list__btn" href="#${id}" data-lt-go="${id}"${A.course ? ` data-ls-tab="${id}"` : ''}><span class="list__mk" aria-hidden="true"></span>${A.districts[id].icon ? `<img class="list__ic" src="${up(A.districts[id].icon)}" alt="" width="260" height="260" loading="lazy" decoding="async">` : ''}<span class="list__w"><span class="list__n" data-i18n="${dk(A, id, 'name')}"></span>${titled ? `<span class="list__s" data-i18n="${dk(A, id, 'sub')}"></span>` : ''}</span><span class="sr list__st"></span></a></li>`).join('')}
         </ul>`).join('');
-    const select = `<label class="jump js-only"><span class="sr" data-i18n="lant.ui.go"></span><select data-lt-jump>${A.acts.map((a) => `<optgroup data-i18n-label="${ak(A, `act.${a.id}`)}" label="${esc(fr(ak(A, `act.${a.id}`)))}">${a.districts.map((id) => `<option value="${id}" data-i18n="${dk(A, id, 'name')}"></option>`).join('')}</optgroup>`).join('')}</select></label>`;
+    const select = `<label class="jump js-only"><span class="sr" data-i18n="lant.ui.go"></span><select data-lt-jump>${A.acts.map((a) => `<optgroup data-i18n-label="${ak(A, `act.${a.id}`)}" label="${esc(fr(ak(A, `act.${a.id}`)))}">${a.districts.map((id) => `<option value="${id}" data-lt-opt>${esc(optT(id))}</option>`).join('')}</optgroup>`).join('')}</select></label>`;
     const actStrip = `<div class="acts js-only" role="group" data-i18n-aria="lant.ui.acts">${A.acts.map((a) => `<button type="button" class="chip" data-lt-act-go="${a.id}" data-i18n="${ak(A, `actShort.${a.id}`)}"></button>`).join('')}</div>`;
     /* a note's two lines may carry a label (web3 vol. 2: « Idée reçue » before the misconception, « En fait » before the
        answer, so a misconception never reads as a fact) */
@@ -296,10 +343,11 @@ export function lanterne(ctx) {
     const fold = !!A.carnet;
     const journal = A.acts.map((a) => `${fold ? `
       <details class="notes__mod" data-lt-jmod="${a.id}" open><summary>` : ''}
-      <h3 class="notes__act" data-i18n="${ak(A, `act.${a.id}`)}"></h3>${fold ? '</summary>' : ''}
-      <ol class="notes">${a.districts.map((id) => `
-        <li class="note" data-lt-note="${id}"><a class="note__go" href="#${id}" data-lt-go="${id}" data-i18n="${dk(A, id, 'scene')}"></a>${NL.hand ? `<p class="note__hand"><b class="note__l" data-i18n="${need(NL.hand, P)}"></b> <span data-i18n="${dk(A, id, 'handoff')}"></span></p>` : `<p class="note__hand" data-i18n="${dk(A, id, 'handoff')}"></p>`}${NL.dec ? `<p class="note__decw"><b class="note__l" data-i18n="${need(NL.dec, P)}"></b> <span class="note__dec" data-i18n="${dk(A, id, 'decision')}"></span></p>` : `<p class="note__dec" data-i18n="${dk(A, id, 'decision')}"></p>`}<p class="note__empty js-only" data-i18n="lant.ui.journalEmpty"></p></li>`).join('')}
-      </ol>${part(`_jact-${a.id}`)}${fold ? '\n      </details>' : ''}`).join('') + part('_journal');
+      <h3 class="notes__act"${fold ? '' : ` data-lt-jgrp="${a.id}"`} data-i18n="${ak(A, `act.${a.id}`)}"></h3>${fold ? '</summary>' : ''}
+      <ol class="notes"${fold ? '' : ` data-lt-jgrp="${a.id}"`}>${a.districts.map((id) => `
+        <li class="note" data-lt-note="${id}"><a class="note__go" href="#${id}" data-lt-go="${id}" data-i18n="${dk(A, id, 'scene')}"></a>${NL.hand ? `<p class="note__hand"><b class="note__l" data-i18n="${need(NL.hand, P)}"></b> <span data-i18n="${dk(A, id, 'handoff')}"></span></p>` : `<p class="note__hand" data-i18n="${dk(A, id, 'handoff')}"></p>`}${NL.dec ? `<p class="note__decw"><b class="note__l" data-i18n="${need(NL.dec, P)}"></b> <span class="note__dec" data-i18n="${dk(A, id, 'decision')}"></span></p>` : `<p class="note__dec" data-i18n="${dk(A, id, 'decision')}"></p>`}</li>`).join('')}
+      </ol>${part(`_jact-${a.id}`)}${fold ? '\n      </details>' : ''}`).join('') + `
+      <p class="notes__left js-only" data-lt-journal-left></p>` + part('_journal');
     const sac = A.carnet
       /* the carnet (web3 vol. 2, web3x §7): one seal per act, inked once each of its districts is done; the act's
          stamps counted under it */
@@ -310,8 +358,9 @@ export function lanterne(ctx) {
         <li class="ks ks--seal" data-lt-seal="${a.id}"><span class="ks__frame"><span class="ks__seal" lang="ja" aria-hidden="true">${a.seal}</span><span class="ks__q" aria-hidden="true">?</span></span><span class="ks__d"><span data-i18n="web3c.chap.mod"></span> ${n + 1}</span><strong class="ks__n" data-i18n="${ak(A, `actShort.${a.id}`)}"></strong><span class="ks__c" data-lt-seal-n dir="ltr">0 / ${a.districts.length}</span><span class="sr ks__un" data-i18n="lant.ui.unknown"></span></li>`).join('')}
       </ul>
       <p class="carnet__left" data-lt-carnet-left></p>`
+      /* L-12: the keepsakes won, and one line per act for the slots still empty */
       : A.acts.map((a) => `
-      <h3 class="notes__act" data-i18n="${ak(A, `act.${a.id}`)}"></h3>
+      <div class="sac__head"><h3 class="notes__act" data-i18n="${ak(A, `act.${a.id}`)}"></h3><p class="sac__left js-only" data-lt-sac-left="${a.id}"></p></div>
       <ul class="sac">${a.districts.map((id) => `
         <li class="ks" data-lt-ks="${id}"><span class="ks__frame">${ksImg(A, id, 72)}<span class="ks__q" aria-hidden="true">?</span></span><span class="ks__d" data-i18n="${dk(A, id, 'name')}"></span><strong class="ks__n" data-i18n="${dk(A, id, 'keep')}"></strong><span class="sr ks__un" data-i18n="lant.ui.unknown"></span></li>`).join('')}
       </ul>`).join('');
@@ -339,7 +388,7 @@ export function lanterne(ctx) {
       acts: A.acts.map((a) => ({ id: a.id, side: !!a.side, districts: a.districts, ...(a.seal ? { seal: a.seal } : {}) })),
       k: { conclusion: ak(A, 'conclusion'), act: Object.fromEntries(A.acts.map((a) => [a.id, ak(A, `act.${a.id}`)])), actShort: Object.fromEntries(A.acts.map((a) => [a.id, ak(A, `actShort.${a.id}`)])) },
       districts: Object.fromEntries(ids.map((id) => { const d = A.districts[id]; return [id, { right: d.right, ex: d.ex, guide: d.guide, lead: d.lead || null, companion: d.companion || null, prop: d.prop || null, ks: ksOf(A, id) ? up(ksSmall(ksOf(A, id)) || ksOf(A, id)) : null, ...(sealOf(A, id) ? { seal: sealOf(A, id) } : {}),
-        k: { name: dk(A, id, 'name'), keep: dk(A, id, 'keep'), scene: dk(A, id, 'scene'), handoff: dk(A, id, A.caseHand || 'handoff'), alt: dk(A, id, 'alt'), f: dk(A, id, 'f'), fs: [0, 1, 2].map((j) => fK(A, id, j)), ex: `lant.at.${A.key}.d.${id}.ex` }, ...(d.done ? { done: d.done } : {}) }]; })),
+        ...(d.ex === 'pick' ? { read: true } : {}), k: { name: dk(A, id, 'name'), ...(titled ? { sub: dk(A, id, 'sub') } : {}), keep: dk(A, id, 'keep'), scene: dk(A, id, 'scene'), handoff: dk(A, id, A.caseHand || 'handoff'), alt: dk(A, id, 'alt'), f: dk(A, id, 'f'), fs: [0, 1, 2].map((j) => fK(A, id, j)), ex: `lant.at.${A.key}.d.${id}.ex` }, ...(d.done ? { done: d.done } : {}) }]; })),
       cut: { kuro: up(ART.cut.kuro.src) },
     };
     const page = P;
@@ -348,7 +397,7 @@ export function lanterne(ctx) {
 <body class="lt lt-atlas" data-lt-atlas="${P}">
 <a class="skip" href="#quartiers" data-i18n="lant.ui.skip"></a>
 <header class="mast lt-wrap">
-  <a class="mast__word" href="../" dir="ltr" data-i18n-aria="nav.home">Numidea Labs</a>
+  ${WM}
   <a class="mast__back" href="./" data-i18n="lant.ui.library"></a>
   <p class="mast__title"><span data-i18n="${ak(A, 'title1')}"></span> <span data-i18n="${ak(A, 'title2')}"></span></p>
   <nav class="mast__nav" data-i18n-aria="lant.ui.menuLabel">
@@ -356,9 +405,9 @@ export function lanterne(ctx) {
     <a href="#sac" data-i18n="lant.ui.sac"></a>${(A.mast || []).map(([href, k]) => `
     <a href="${href}" data-i18n="${need(k, P)}"></a>`).join('')}
   </nav>
-  <button type="button" class="motion js-only" data-lt-motion aria-pressed="true" data-i18n-title="lant.ui.motionHint"><span class="motion__dot" aria-hidden="true"></span><span data-i18n="lant.ui.motion"></span></button>
+  ${motionBtn(' mast__motion')}
   ${langSwitch()}
-  ${menu([['./', 'lant.ui.library'], ['#journal', 'lant.ui.journal'], ['#sac', 'lant.ui.sac'], ...(A.mast || []), ['./#comptoir', 'lant.shelf.cta'], ...(TOOLS ? [['outils.html', 'lant.tools.mast']] : []), ...enqMenu, [WA, 'lant.ui.wa'], ['../', 'lant.ui.studio'], ['../fabrique.html', 'nav.fab'], ['../monde.html', 'nav.world']])}
+  ${menu([['./', 'lant.ui.library'], ['#journal', 'lant.ui.journal'], ['#sac', 'lant.ui.sac'], ...(A.mast || []), ['./#comptoir', 'lant.shelf.navComptoir'], ...(TOOLS ? [['outils.html', 'lant.tools.mast']] : []), ...enqMenu, [WA, 'lant.ui.wa'], ['../', 'lant.ui.studio'], ['../fabrique.html', 'nav.fab'], ['../monde.html', 'nav.world']], true)}
 </header>
 <main id="main" class="lt-wrap${A.course || A.brief ? ' st-crs' : ''}"${A.course ? ` data-lt-course="${A.course}"` : ''}${A.brief ? ` data-lt-brief="${A.brief}"` : ''}>
   <section class="hero" id="hero" aria-labelledby="hero-h">
@@ -386,17 +435,8 @@ export function lanterne(ctx) {
       <span class="mini__pos" data-lt-mini-pos dir="ltr">1 / ${ids.length}</span>
       <button type="button" class="mini__b" data-lt-step="1"><span class="sr" data-i18n="lant.ui.nextShort"></span><span aria-hidden="true" class="mini__arrow"></span></button>
       ${select}
-      <a href="#journal" class="mini__l" data-i18n="lant.ui.journal"></a>
-      <a href="#sac" class="mini__l" data-i18n="lant.ui.sac"></a>
-    </div>
-    <div class="case js-only" data-lt-case>
-      ${caseArt}
-      <div class="case__txt">
-        <p class="k k--red"><span data-i18n="${ak(A, 'caseLabel')}"></span> · <span data-lt-case-act></span></p>
-        <h3 class="case__h" data-lt-case-scene>${esc(fr(dk(A, ids[0], 'scene')))}</h3>
-        <p class="case__hand" data-lt-case-hand></p>
-      </div>
-      <button type="button" class="btn btn--amber" data-lt-resume>${esc(fr('lant.ui.next').replace('{q}', fr(dk(A, ids[1] || ids[0], 'name'))))}</button>
+      <a href="#journal" class="mini__l" data-i18n="lant.ui.journalSac"></a>
+      <a href="./" class="mini__l mini__back"><span class="mini__bt" data-i18n="lant.ui.library"></span></a>
     </div>
     <div class="layout">
       <nav class="list" data-i18n-aria="lant.ui.listLabel">
@@ -408,6 +448,17 @@ export function lanterne(ctx) {
       <div class="acthead" id="act-${a.id}-head" data-lt-acthead="${a.id}">${h}</div>` : ''}${a.districts.map((id, j) => district(id, at0 + j)).join('')}${f ? `
       <div class="actfoot" data-lt-actfoot="${a.id}">${f}</div>` : ''}`; }).join('')}
       </div>
+    </div>
+    <!-- the case so far, after the districts (L-25: « Quartier suivant » came before the list in the Tab order), and only
+         once a district is done (L-11: hub/lanterne.js shows it) -->
+    <div class="case js-only" data-lt-case hidden>
+      ${caseArt}
+      <div class="case__txt">
+        <p class="k k--red"><span data-i18n="${ak(A, 'caseLabel')}"></span> · <span data-lt-case-act></span></p>
+        <h3 class="case__h" data-lt-case-scene>${esc(fr(dk(A, ids[0], 'scene')))}</h3>
+        <p class="case__hand" data-lt-case-hand></p>
+      </div>
+      <button type="button" class="btn btn--amber" data-lt-resume>${esc(fr('lant.ui.next').replace('{q}', fr(dk(A, ids[1] || ids[0], 'name'))))}</button>
     </div>
     <p class="sr" aria-live="polite" data-lt-live></p>
   </section>
@@ -434,7 +485,8 @@ export function lanterne(ctx) {
   ${part('_sources')}
   ${part('_end')}
 </main>
-<footer class="foot lt-foot lt-wrap">
+${stFoot(`
+  <div class="lt-foot">
   <a href="./" class="mast__back" data-i18n="lant.ui.footerBack"></a>
   <div class="lt-rchip" data-radio-chip role="group" data-i18n-aria="radio.chip">
     <span class="lt-rchip__k" data-i18n="radio.chip"></span>
@@ -442,9 +494,7 @@ export function lanterne(ctx) {
     <span class="lt-rchip__t" data-radio-title>{{radioFirst}}</span>
     <button type="button" class="st-rchip__b" data-radio-next data-i18n-aria="radio.next" disabled><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4l11 8-11 8zM17 4h3v16h-3z"/></svg></button>
   </div>
-  <a href="../" data-i18n="lant.ui.studio"></a>
-  <span data-i18n="footer.line"></span>
-</footer>
+  </div>`)}
 <dialog class="zoom" data-lt-zoom-dialog><form method="dialog"><button type="submit" class="btn"><span data-i18n="lant.ui.close"></span></button></form><img alt="" src="${up(ART.plates[plateOf(A, ids[0])].src)}" loading="lazy" data-lt-zoom-img></dialog>
 <script type="application/json" id="hub-radio">${radioJson}</script>
 ${dataBlock(client)}
@@ -477,9 +527,26 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
       return `<div class="book__vols book__vols--two">
               <p class="book__path" data-i18n="${need('lant.shelf.web3Path', 'the shelf')}"></p>
               <a class="book__vol" href="${b.slug}.html" data-lt-path="0"><b data-i18n="web3c.path.k.0"></b><span data-i18n="lant.shelf.vol1"></span></a>
-              <a class="book__vol" href="${v2.slug}.html" data-lt-path="1" data-lt-vol="${v2.slug}"><b data-i18n="web3c.path.k.1"></b><span data-i18n="lant.shelf.vol2"></span><span class="book__vn" data-lt-count="${n2}">${esc((fr(`lant.shelf.count.${new Intl.PluralRules('fr').select(n2)}`) || fr('lant.shelf.count.other')).replace('{n}', 0).replace('{N}', n2))}</span></a>
+              <a class="book__vol" href="${v2.slug}.html" data-lt-path="1" data-lt-vol="${v2.slug}"><b data-i18n="web3c.path.k.1"></b><span data-i18n="lant.shelf.vol2"></span><span class="book__vn"><span data-lt-count="${n2}">${esc((fr(`lant.shelf.count.${new Intl.PluralRules('fr').select(n2)}`) || fr('lant.shelf.count.other')).replace('{n}', 0).replace('{N}', n2))}</span> · ${minT(v2.slug)}</span></a>
             </div>`;
     };
+    /* a book's reading time, derived from its atlas's French text (its districts' lines and answers, its exercises' markup
+       and the lines they name): about 200 words a minute, to the nearest 5 minutes (L-04); never typed */
+    const minutes = (slug) => {
+      const A = ATLAS[slug]; if (!A) return 0;
+      const ids = A.acts.flatMap((a) => a.districts);
+      const txt = [];
+      for (const id of ids) {
+        for (const f of DISTRICT_KEYS) txt.push(fr(dk(A, id, f)));
+        for (let j = 0; j < 3; j++) txt.push(fr(ansK(A, id, 'a', j)), fr(fK(A, id, j)));
+        const f = join(LS, 'ex', slug, `${id}.html`);
+        if (existsSync(f)) { const h = readFileSync(f, 'utf8').replace(/<!--[\s\S]*?-->/g, ' '); txt.push(h.replace(/<[^>]*>/g, ' ')); for (const m of h.matchAll(/\sdata-i18n(?:-html)?="([^"]+)"/g)) txt.push(String(fr(m[1]) || '').replace(/<[^>]*>/g, ' ')); }
+      }
+      const w = txt.join(' ').split(/\s+/).filter((x) => /\p{L}/u.test(x)).length;
+      return Math.max(5, Math.round(w / 200 / 5) * 5);
+    };
+    need('lant.shelf.minutes', 'the shelf'); need('lant.shelf.start', 'the shelf');
+    const minT = (slug) => { const n = minutes(slug); return `<span class="book__min" data-lt-tpl="lant.shelf.minutes" data-lt-n="${n}">${esc(fr('lant.shelf.minutes').replace('{n}', n))}</span>`; };
     const book = (b) => {
       const A = ATLAS[b.slug], ids = A ? A.acts.flatMap((a) => a.districts) : b.ids;
       let coverHtml;
@@ -494,11 +561,12 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
       return `
         <li class="book" data-lt-book="${b.slug}" style="--spine:${b.accent}">
           ${A ? `<a class="book__link" href="${b.slug}.html" tabindex="-1" aria-hidden="true">${coverHtml}</a>` : coverHtml}
-          <div class="book__body">
+          <div class="book__body">${b.start && A ? `
+            <a class="book__start" href="${b.slug}.html" data-i18n="lant.shelf.start"></a>` : ''}
             <p class="book__kind" data-i18n="lant.book.${b.slug}.kind"></p>
             <h3 class="book__t" data-i18n="${b.title}"></h3>
             <p class="book__line" data-i18n="lant.book.${b.slug}.line"></p>
-            ${A ? `<p class="book__meta"><span data-lt-with="${b.guide}">${esc(fr('lant.shelf.with').replace('{g}', fr(`lant.cast.${b.guide}`)))}</span> · <span data-lt-count="${n}">${esc((fr(`lant.shelf.count.${new Intl.PluralRules('fr').select(n)}`) || fr('lant.shelf.count.other')).replace('{n}', 0).replace('{N}', n))}</span></p>
+            ${A ? `<p class="book__meta"><span data-lt-with="${b.guide}">${esc(fr('lant.shelf.with').replace('{g}', fr(`lant.cast.${b.guide}`)))}</span> · <span data-lt-count="${n}">${esc((fr(`lant.shelf.count.${new Intl.PluralRules('fr').select(n)}`) || fr('lant.shelf.count.other')).replace('{n}', 0).replace('{N}', n))}</span> · ${minT(b.slug)}</p>
             <span class="bar" aria-hidden="true"><span class="bar__fill" data-lt-bar></span></span>` : ''}
             ${b.vol2 ? vols(b) : ''}
             <p class="book__keeps js-only" data-lt-keeps hidden><span class="sr" data-i18n="lant.shelf.kept"></span></p>
@@ -521,34 +589,34 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
     const passRow = (b) => {
       const A = ATLAS[b.slug], ids = A ? A.acts.flatMap((a) => a.districts) : b.ids;
       return `
-      <li class="pass__row" data-lt-pass="${b.slug}">
-        <div class="pass__head"><h3 data-i18n="${b.title}"></h3><p class="hud" data-lt-pass-n="${ids.length}">${esc(fr('lant.shelf.passRow').replace('{n}', 0).replace('{N}', ids.length))}</p></div>
+      <li class="pass__row" data-lt-pass="${b.slug}" data-empty style="--spine:${b.accent}">
+        <div class="pass__head"><h3 data-i18n="${b.title}"></h3><p class="hud" data-lt-pass-n="${ids.length}">${esc(fr('lant.shelf.passRow').replace('{n}', 0).replace('{N}', ids.length))}</p><span class="bar pass__bar" aria-hidden="true"><span class="bar__fill" data-lt-bar></span></span></div>
         <ul class="pass__grid${ids.length > 16 ? ' pass__grid--many' : ''}">${ids.map((id) => `<li class="pass__ks" data-lt-pass-ks="${id}"><span class="ks__q" aria-hidden="true">?</span><span class="sr" data-i18n="lant.ui.unknown"></span></li>`).join('')}</ul>
         ${A ? `<p class="pass__act js-only"><a class="lnk" href="${b.slug}.html"><span data-i18n="lant.shelf.open"></span></a> <button type="button" class="lnk lnk--btn" data-lt-clear="${b.slug}"><span data-i18n="lant.shelf.clear"></span></button></p>` : ''}
       </li>`;
     };
-    const passport = `<ul class="pass">${books.map(passRow).join('')}
+    /* with nothing earned the passport is one line (L-02); the rows come once a keepsake is won, an atlas at 0 as one row */
+    const passport = `<ul class="pass" data-lt-pass-list hidden>${books.map(passRow).join('')}
     </ul>`;
-    const pt = (n) => (fr(`lant.shelf.passTotal.${new Intl.PluralRules('fr').select(n)}`) || fr('lant.shelf.passTotal.other')).replace('{n}', 0).replace('{N}', n);
+    const pt = (n) => fr(need('lant.shelf.passZero', 'the shelf')).replace('{N}', n).replace('{A}', books.length);
     const k1 = ART.keys['lanterne-nuit'];
     holes['lant.shelf.mast'] = `<header class="mast lt-wrap">
-  <a class="mast__word" href="../" dir="ltr" data-i18n-aria="nav.home">Numidea Labs</a>
+  ${WM}
   <p class="mast__title mast__title--shop" data-i18n="lant.shelf.name"></p>
   <nav class="mast__nav" data-i18n-aria="lant.shelf.menuLabel">
     <a href="#rayons" data-i18n="lant.shelf.navAtlases"></a>
-    <a href="#passeport" data-i18n="lant.shelf.navPassport"></a>
-    <a href="#radio" data-i18n="radio.title"></a>
-    <a href="#comptoir" data-i18n="lant.shelf.navComptoir"></a>
-    <a href="#ronde" data-i18n="lant.shelf.navRonde"></a>
+    <a class="mast__more" href="#passeport" data-i18n="lant.shelf.navPassport"></a>
+    ${TOOLS ? '<a href="outils.html" data-i18n="lant.tools.mast"></a>' : ''}${ENQ ? '<a href="enquetes.html" data-i18n="lant.enq.mast"></a>' : ''}
+    <a class="mast__more" href="#comptoir" data-i18n="lant.shelf.navComptoir"></a>
   </nav>
   ${langSwitch()}
-  <a class="btn btn--amber mast__cta" href="#comptoir" data-i18n="lant.shelf.cta"></a>
+  <a class="btn btn--amber mast__cta" href="#rayons" data-i18n="lant.shelf.cta"></a>
   ${menu([['#rayons', 'lant.shelf.navAtlases'], ['#passeport', 'lant.shelf.navPassport'], ['#radio', 'radio.title'], ['#comptoir', 'lant.shelf.navComptoir'], ...(TOOLS ? [['outils.html', 'lant.tools.mast']] : []), ...enqMenu, ['#ronde', 'lant.shelf.navRonde'], [WA, 'lant.ui.wa'], ['../', 'lant.ui.studio'], ['../fabrique.html', 'nav.fab'], ['../monde.html', 'nav.world']])}
 </header>`;
     holes['lant.shelf.hero'] = `<div class="hero__art hero__art--key" dir="ltr" role="img" data-i18n-aria="lant.shelf.heroAlt"><img class="hero__back" src="${up(k1.src)}" srcset="${up(k1.small.src)} ${k1.small.w}w, ${up(k1.src)} ${k1.w}w" sizes="(max-width:1010px) 94vw, 58vw" width="${k1.w}" height="${k1.h}" alt="" fetchpriority="high" decoding="async"></div>`;
     holes['lant.shelf.rayons'] = rayons;
     holes['lant.shelf.passport'] = passport;
-    holes['lant.shelf.passTotal'] = `<p class="hud" data-lt-pass-total="${total}">${esc(pt(total))}</p>`;
+    holes['lant.shelf.passTotal'] = `<p class="hud" data-lt-pass-total="${total}" data-lt-books="${books.length}">${esc(pt(total))}</p>`;
     holes['lant.radio'] = radioJson;
     const client = { books: books.map((b) => { const A = ATLAS[b.slug]; const ids = A ? A.acts.flatMap((a) => a.districts) : b.ids;
       return { slug: b.slug, key: b.key, live: !!A, store: b.store, migrate: b.migrate || null, ids, ...(b.in ? { in: b.in } : {}),
@@ -601,7 +669,7 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
       for (const f of [].concat(a.free || [])) if (!FREE[f]) fail(`${w}: free option "${f}" is not in the free list`);
     }
     for (const f of TOOLS.free || []) { need(f.key, `${at} free ${f.id}`); if (f.url) { const u = httpsUrl(f.url); if (!u) fail(`${at} free ${f.id}: url is not https`); else appHosts.add(u.host); } if (f.to && !ATLAS[f.to]) fail(`${at} free ${f.id}: atlas "${f.to}" is not published`); }
-    for (const c of cats) { need(c.key, at); if (c.note) need(c.note, at); }
+    for (const c of cats) { need(c.key, at); if (c.note) need(c.note, at); if (c.glyph && !/^\S$/u.test(c.glyph)) fail(`${at} ${c.id}: glyph "${c.glyph}" is not one character`); }
     const P2 = TOOLS.p2; if (!P2 || typeof P2.cleared !== 'boolean' || !Array.isArray(P2.lang) || !Array.isArray(P2.tz)) fail(`${at}: p2 is the France gate { cleared, lang, tz } (PLAN.md §0 P2)`);
     const ext = (u) => ` href="${esc(u)}" target="_blank" rel="noopener" data-app`;
     const host = (u) => new URL(u).host.replace(/^www\./, '');
@@ -609,11 +677,21 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
     const freeLine = (id) => { const f = FREE[id];
       if (f.to) return `<p class="tl-free"><a class="btn tl-free__go tl-free__go--in" href="${f.to}.html"><span data-i18n="${f.key}"></span> <span class="tl-free__n" data-i18n="${need(books.find((b) => b.slug === f.to).title, at)}"></span></a></p>`;
       if (f.url) return `<p class="tl-free"><a class="btn tl-free__go"${ext(f.url)}><bdi>${esc(f.name)}</bdi><span class="sr" data-i18n="case.newTab"></span><span aria-hidden="true"> ↗</span></a> <span class="tl-free__t" data-i18n="${f.key}"></span></p>`;
+      /* the working route said once, on its shelf (L-06): the cards point to it */
+      if (f.route) return `<p class="tl-free"><a class="tl-free__to" href="#tl-route-${f.id}" data-i18n="${need(f.route.to, at)}"></a></p>`;
       return `<p class="tl-free tl-free--t" data-i18n="${f.key}"></p>`; };
-    const termsAt = (u) => { const x = new URL(u), p = x.pathname.replace(/\/$/, ''); return x.host.replace(/^www\./, '') + (p.length > 30 ? p.slice(0, 28).replace(/[/-][^/-]*$/, '') + '/…' : p); };
-    const read = (a) => a.unread ? `<p class="tl-read tl-read--no" data-i18n="lant.tools.unread"></p>`
+    const routes = (c) => (TOOLS.free || []).filter((f) => f.route && f.route.cat === c.id).map((f) => `
+      <div class="tl-route" id="tl-route-${f.id}" tabindex="-1">
+        <h3 class="tl-route__h" data-i18n="${need(f.route.h, at)}"></h3>
+        <dl class="tl-route__dl">
+          <div><dt data-i18n="${need(f.route.dzK, at)}"></dt><dd data-i18n="${f.key}"></dd></div>
+          <div><dt data-i18n="${need(f.route.outK, at)}"></dt><dd data-i18n-html="${need(f.route.out, at)}"></dd></div>
+        </dl>
+      </div>`).join('');
+    const read = (a) => a.unread ? `<p class="tl-read tl-read--no" data-lt-tpl="lant.tools.unread" data-lt-host="${esc(host(a.url))}">${esc(fr('lant.tools.unread').replace('{host}', host(a.url)))}</p>`
       : a.kind === 'none' ? `<p class="tl-read" data-i18n="lant.tools.noProg"></p>`
-      : `<p class="tl-read"><span data-i18n="lant.tools.read"></span> <span data-i18n="lant.tools.on.d${a.checked.replace(/-/g, '')}"></span> <span data-i18n="lant.tools.readAt"></span> <a${ext(a.programme.terms)}><bdi dir="ltr">${esc(termsAt(a.programme.terms))}</bdi><span class="sr" data-i18n="case.newTab"></span></a></p>`;
+      /* the day the card was checked, in the visitor's terms (L-17: the partner programme's page is our bookkeeping) */
+      : `<p class="tl-read"><span data-i18n="lant.tools.read"></span> <span data-i18n="lant.tools.on.d${a.checked.replace(/-/g, '')}"></span></p>`;
     const card = (a, n) => { const quiet = a.category === 'crypto', fr0 = [].concat(a.free || []), paid = fr0.some((id) => FREE[id].paid); return `
         <li class="tl-card${quiet ? ' tl-card--quiet' : ''}" id="tl-app-${a.id}" data-tl-app="${a.id}">
           <a class="tl-logo"${ext(a.url)} data-tl-go tabindex="-1" aria-hidden="true" style="--len:${Math.max(4, a.name.length)}"><span class="tl-logo__i" dir="ltr">/ ${String(n + 1).padStart(2, '0')}</span><span class="tl-logo__n" dir="ltr">${esc(a.name)}</span><span class="tl-logo__tag" data-tl-tag hidden data-i18n="lant.tools.tag"></span></a>
@@ -642,7 +720,7 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
     const byName = (x, y) => x.name.localeCompare(y.name, 'en', { sensitivity: 'base' });
     const shelves = cats.map((c) => { const apps = TOOLS.apps.filter((a) => a.category === c.id).sort(byName); return apps.length ? `
     <section class="tl-cat" id="tl-${c.id}" aria-labelledby="tl-${c.id}-h">
-      <div class="tl-cat__head"><h2 class="tl-cat__h" id="tl-${c.id}-h" data-i18n="${c.key}"></h2>${c.note ? `<p class="tl-cat__note" data-i18n="${c.note}"></p>` : ''}</div>
+      <div class="tl-cat__head"><h2 class="tl-cat__h" id="tl-${c.id}-h">${c.glyph ? `<span class="tl-cat__g" lang="ja" aria-hidden="true">${esc(c.glyph)}</span>` : ''}<span data-i18n="${c.key}"></span></h2>${c.note ? `<p class="tl-cat__note" data-i18n="${c.note}"></p>` : ''}</div>${routes(c)}
       <ul class="tl-grid">${apps.map(card).join('')}
       </ul>
     </section>` : ''; }).join('');
@@ -654,7 +732,7 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
 <body class="lt lt-tools" data-lt-tools>
 <a class="skip" href="#tl-rayons" data-i18n="lant.tools.nav.cats"></a>
 <header class="mast lt-wrap">
-  <a class="mast__word" href="../" dir="ltr" data-i18n-aria="nav.home">Numidea Labs</a>
+  ${WM}
   <a class="mast__back" href="./" data-i18n="lant.ui.library"></a>
   <p class="mast__title" data-i18n="lant.tools.mast"></p>
   <nav class="mast__nav" data-i18n-aria="lant.tools.nav.menu">
@@ -662,13 +740,16 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
     <a href="#tl-how" data-i18n="lant.tools.nav.how"></a>
   </nav>
   ${langSwitch()}
-  ${menu([['./', 'lant.ui.library'], ['#tl-disc', 'lant.tools.nav.disc'], ...cats.map((c) => ['#tl-' + c.id, c.key]), ['#tl-how', 'lant.tools.nav.how'], ['./#comptoir', 'lant.shelf.cta'], [WA, 'lant.ui.wa'], ['../', 'lant.ui.studio']])}
+  ${menu([['./', 'lant.ui.library'], ['#tl-disc', 'lant.tools.nav.disc'], ...cats.map((c) => ['#tl-' + c.id, c.key]), ['#tl-how', 'lant.tools.nav.how'], ['./#comptoir', 'lant.shelf.navComptoir'], [WA, 'lant.ui.wa'], ['../', 'lant.ui.studio']])}
 </header>
 <main id="main" class="lt-wrap tl">
   <section class="tl-hero" aria-labelledby="tl-h">
+    <div class="tl-hero__copy">
     <p class="k k--amber" data-i18n="lant.tools.kicker"></p>
     <h1 class="tl-hero__h" id="tl-h"><span data-i18n="lant.tools.h1a"></span> <em data-i18n="lant.tools.h1b"></em></h1>
     <p class="tl-hero__lead" data-i18n="lant.tools.lead"></p>
+    </div>
+    <img class="tl-hero__art" src="${up(ART.cut.pigeonStand.src)}" width="${ART.cut.pigeonStand.w}" height="${ART.cut.pigeonStand.h}" alt="" fetchpriority="high" decoding="async">
   </section>
   <!-- the disclosure, at the top and always visible (law 18-05 art. 30, the EU brief, the FTC: PLAN.md §2.3). It leads with
        the state of the page: no partner link (true without scripts, and until one is on for this visitor), then the rule
@@ -689,18 +770,14 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
     <p class="tl-legal" data-i18n="lant.tools.legal"></p>
   </section>
 </main>
-<footer class="foot lt-foot lt-wrap">
-  <a href="./" class="mast__back" data-i18n="lant.ui.footerBack"></a>
-  <a href="../" data-i18n="lant.ui.studio"></a>
-  <span data-i18n="footer.line"></span>
-</footer>
+${stFoot('')}
 ${dataBlock(data)}
 ${scripts(['../lanterne.js', '../../assets/carry.js'])}
 </body>
 </html>
 `;
     out.push({ file: 'hub/lanterne/outils.html', name: 'lanterne/outils.html', page, html });
-    runtime[page] = new Set();
+    runtime[page] = new Set(TOOLS.apps.some((a) => a.unread) ? ['lant.tools.unread'] : []);   // a template hub/lanterne.js fills ({host})
   }
 
   let ENQG = null;
@@ -708,7 +785,7 @@ ${scripts(['../lanterne.js', '../../assets/carry.js'])}
      the page, its checks and the strings its engine writes; its sources' hosts join the toolbox's (a source there is a
      plain link to the page that was read, marked data-app like an app's official address) */
   if (ENQ) {
-    ENQG = enquetes({ LS, HUB, DICT, LANGS, fail, notes, esc, json, need, headFor, swap, menu, langSwitch, scripts, radioJson, WA, TOOLS });
+    ENQG = enquetes({ LS, HUB, DICT, LANGS, fail, notes, esc, json, need, headFor, swap, menu, langSwitch, scripts, radioJson, WA, TOOLS, WM, stFoot });   // WM, stFoot: the Librairie's mark and foot, for E-05
     if (ENQG) { out.push(ENQG.out); runtime[ENQG.out.page] = ENQG.runtime; for (const hst of ENQG.hosts) appHosts.add(hst); }
   }
 

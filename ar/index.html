@@ -221,7 +221,7 @@
       <nav class="nav-links" aria-label="التنقّل الرئيسي" data-i18n-aria="ui.navPrimary">
         <a href="#work" data-i18n="nav.work">الأعمال</a>
         <a href="#services" data-i18n="nav.services">الخدمات</a>
-        <a href="#apercu" data-i18n="nav.about">المعاينة</a>
+        <a href="#apercu" data-i18n="nav.about">معاينة مجانية</a>
         <a href="#pricing" data-i18n="nav.pricing">الأسعار</a>
         <a href="#founder" data-i18n="nav.team">المؤسّس</a>
         <a href="#faq" data-i18n="nav.faq">الأسئلة</a>
@@ -250,7 +250,7 @@
              the script ran, and hiding it moved the whole bar (a layout
              shift of 0.01 at 1280). js-only, since a bar this full needs
              the script's measure. -->
-        <a class="nav-cta js-only" href="#contact" data-apercu data-i18n="mbar.cta" hidden>معاينتي</a>
+        <a class="nav-cta js-only" href="#contact" data-apercu data-i18n="mbar.cta" hidden>معاينة مجانية</a>
         <!-- the menu's open and close marks are drawn (24-grid, stroke 1.5),
              not typed: the system's ☰ and × came in whatever face the
              platform had for them, at a different weight on every phone -->
@@ -283,19 +283,23 @@
   <nav aria-label="الأقسام" data-i18n-aria="ui.sections">
   <a href="#work" data-i18n="nav.work">الأعمال</a>
   <a href="#services" data-i18n="nav.services">الخدمات</a>
-  <a href="#apercu" data-i18n="nav.about">المعاينة</a>
+  <a href="#apercu" data-i18n="nav.about">معاينة مجانية</a>
   <a href="#pricing" data-i18n="nav.pricing">الأسعار</a>
   <a href="tarifs/" data-i18n="tarifs.navLink">دليل الأسعار</a>
   <a href="#founder" data-i18n="nav.team">المؤسّس</a>
   <a href="#faq" data-i18n="nav.faq">الأسئلة</a>
   <a href="#contact" data-i18n="nav.contact">تواصل</a>
+  <!-- the other two parts of the site, under a rule (journey-01): the home had no way to them but the footer's Studio link -->
+  <span class="menu-sep" aria-hidden="true"></span>
+  <a class="menu-far" href="../hub/lanterne/?lang=ar" data-i18n="nav.librairie">المكتبة</a>
+  <a class="menu-far" href="../hub/monde.html?lang=ar" data-i18n="nav.monde">العالم</a>
   </nav>
   <!-- the two ways to start, pinned at the foot of the menu (styles.css
        .menu-acts): eight section links and no action left the visitor who
        opened the menu to act with nothing to press. The same two links as
        the phone bar (.m-contact), which is hidden while the menu is open. -->
   <div class="menu-acts">
-    <a class="btn btn-primary" href="#contact" data-apercu data-i18n="mbar.cta">معاينتي</a>
+    <a class="btn btn-primary" href="#contact" data-apercu data-i18n="mbar.cta">معاينة مجانية</a>
     <a class="btn wa-link btn-teal" href="https://wa.me/213672412578?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20Numidea%20Labs%20%E2%80%94%20%D8%A3%D9%88%D8%AF%D9%91%20%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%B9%D9%86%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9." target="_blank" rel="noopener">
       <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
       <span data-i18n="footer.wa">واتساب</span>
@@ -474,7 +478,7 @@
           <span class="gain-k" data-i18n="work.outcome">للزائر</span>
           <a class="gain" href="../scene/?lang=ar#gv-bordjsteel"><span data-i18n="proj4.gain">يجد المشتري خط الإنتاج المناسب وخصائصه التقنية دون أن يتصل.</span><span class="sr-only" data-i18n="work.gainMore"> — التفاصيل في لوحة المشروع</span></a>
           <div class="actions">
-            <a data-client="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">زيارة الموقع <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span></a>
+            <a data-client="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener" data-i18n="proj4.live">زيارة موقع <bdi>Bordj Steel</bdi> <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span></a>
           </div>
         </div>
       </article>
@@ -488,7 +492,7 @@
           <span class="gain-k" data-i18n="work.outcome">للزائر</span>
           <a class="gain" href="../scene/?lang=ar#gv-alliance"><span data-i18n="proj2.gain">يقدّر المسافر سعر رحلته ويرسل عبر واتساب طلب حجز كاملاً.</span><span class="sr-only" data-i18n="work.gainMore"> — التفاصيل في لوحة المشروع</span></a>
           <div class="actions">
-            <a data-client="alliance" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">زيارة الموقع <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span></a>
+            <a data-client="alliance" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener" data-i18n="proj2.live">زيارة موقع <bdi>Alliance Travel</bdi> <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span></a>
           </div>
         </div>
       </article>
@@ -502,7 +506,7 @@
           <span class="gain-k" data-i18n="work.outcome">للزائر</span>
           <a class="gain" href="../scene/?lang=ar#gv-almaflow"><span data-i18n="proj3.gain">عند العطل، يتصل العميل بلمسة واحدة من صفحة التخصّص المعني.</span><span class="sr-only" data-i18n="work.gainMore"> — التفاصيل في لوحة المشروع</span></a>
           <div class="actions">
-            <a data-client="almaflow" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">زيارة الموقع <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span></a>
+            <a data-client="almaflow" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener" data-i18n="proj3.live">زيارة موقع <bdi>AlmaFlowClim</bdi> <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span></a>
           </div>
         </div>
       </article>
@@ -518,7 +522,7 @@
           <span class="gain-k" data-i18n="work.outcome">للزائر</span>
           <p class="gain" data-i18n="proj6.gain">يقارن المعتمر باقات العمرة حسب السعر والمسافة عن الحرم، ثم يراسل الوكالة عبر واتساب.</p>
           <div class="actions">
-            <a class="stretch" data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">زيارة الموقع <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span></a>
+            <a class="stretch" data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener" data-i18n="proj6.live">زيارة موقع <bdi>Nomara Voyages</bdi> <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span></a>
           </div>
         </div>
       </article>
@@ -531,9 +535,9 @@
          brand the studio made up to show its work, not a client's order. -->
     <div class="work-foot reveal">
       <p class="work-demo"><span data-i18n="work.demo">وأيضاً: Glaive Store، علامة خيالية صمّمناها من الألف إلى الياء عرضاً تجريبياً لأعمالنا.</span>
-        <span class="work-links"><a data-client="glaive" href="https://glaivestore.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">زيارة الموقع <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span></a>
+        <span class="work-links"><a data-client="glaive" href="https://glaivestore.netlify.app" target="_blank" rel="noopener" data-i18n="work.demoLive">زيارة موقع <bdi>Glaive Store</bdi> <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span></a>
         <a href="../scene/?lang=ar#glaive" data-i18n="work.sheet">تفاصيل المشروع</a></span></p>
-      <a class="scene-link" href="../scene/?lang=ar"><span class="sb-go" data-i18n="scene.cta">اطّلع على كل مشروع بالتفصيل <span aria-hidden="true">←</span></span></a>
+      <a class="scene-link" href="../scene/?lang=ar"><span class="sb-go" data-i18n="scene.cta">اطّلع على الأعمال بالتفصيل <span aria-hidden="true">←</span></span></a>
       <p class="scene-lead" data-i18n="scene.lead">الصفحات وعرض الهاتف والنظام البصري لكل مشروع، ملتقطة من المواقع كما هي على الإنترنت.</p>
     </div>
 
@@ -546,13 +550,14 @@
        The sentence is the studio's premise, FR first (assets/i18n atelier.*). -->
   <section class="nsp reveal" id="atelier" aria-labelledby="nsp-h">
     <figure class="nsp-scene">
-      <img class="nsp-img" src="../assets/illus/workbench-night.webp" srcset="../assets/illus/workbench-night-560.webp 560w, ../assets/illus/workbench-night.webp 1000w" sizes="(min-width:900px) 520px, calc(100vw - 32px)" width="1000" height="671" alt="ياسر على طاولة الورشة ليلاً يرفع لوحة مرسومة، وكورو، القط الأسود، جالس على مخطط بجانبه قرب كوب قهوة." data-i18n-alt="atelier.alt" loading="lazy" decoding="async">
+      <img class="nsp-img" src="../assets/illus/workbench-night.webp" srcset="../assets/illus/workbench-night-560.webp 560w, ../assets/illus/workbench-night.webp 1000w" sizes="(min-width:1000px) min(46vw, 650px), calc(100vw - 32px)" width="1000" height="671" alt="ياسر على طاولة الورشة ليلاً يرفع لوحة مرسومة، وكورو، القط الأسود، جالس على مخطط بجانبه قرب كوب قهوة." data-i18n-alt="atelier.alt" loading="lazy" decoding="async">
     </figure>
     <div class="nsp-copy">
       <p class="nsp-kick" data-i18n="atelier.kicker">برج بوعريريج · 36°04′N 4°46′E</p>
       <h2 class="nsp-h" id="nsp-h" data-i18n="atelier.title">ورشة الليل.</h2>
       <p class="nsp-line" data-i18n="atelier.line">نوميديا ورشة ليلية في برج بوعريريج، يبني فيها صانعٌ وقطّه الأسود صفحتك الرئيسية قبل أن تدفع، وكل مشروع يُسلَّم يفتح باباً إلى عالم آخر.</p>
       <a class="nsp-go" href="../hub/?lang=ar" data-i18n="atelier.cta">ادخل الورشة <span aria-hidden="true">←</span></a>
+      <p class="nsp-sub" data-i18n="atelier.sub">خدمات الاستوديو وأعماله وأسعاره</p>
     </div>
   </section>
 
@@ -636,7 +641,7 @@
           <img class="svc-spot" src="../assets/illus/svc-auto-400.webp" width="400" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
           <p class="promise" data-i18n="f3.promise">تخلّص من المهام المتكرّرة.</p>
           <p class="brief" data-i18n="f3.brief">جمع البيانات من الويب، ومعالجتها آلياً، واستقطاب العملاء المحتملين، وأتمتة سير العمل، وأدوات داخلية. العمل المتكرّر الهشّ الذي يلتهم ساعاتك — نجعله يعمل وحده عند الثالثة فجراً.</p>
-          <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill" data-i18n="tag.apis">واجهات برمجية</span><span class="pill">Claude</span></div>
+          <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill" data-i18n="tag.apis">واجهات برمجية</span></div>
           <span class="fam" data-i18n="svc.famEngine">البيانات والأتمتة</span>
         </div>
       </article>
@@ -699,7 +704,7 @@
         <div class="cap">
           <h4 data-i18n="c5.name">أدوات ومساعدات ذكاء اصطناعي مخصّصة</h4>
           <p class="promise" data-i18n="c5.promise">برمجيات تبني برمجياتك.</p>
-          <p class="brief" data-i18n="c5.brief">أدوات داخلية ومولّدات ومساعدات مخصّصة مدعومة بـ <bdi>Claude</bdi>: مهمّة متكرّرة تنطلق بنقرة واحدة.</p>
+          <p class="brief" data-i18n="c5.brief">أدوات داخلية ومولّدات ومساعدات مخصّصة: مهمّة متكرّرة تنطلق بنقرة واحدة.</p>
           <span class="fam" data-i18n="c5.fam">الاستشارة والذكاء الاصطناعي</span>
         </div>
       </div>
@@ -1141,10 +1146,10 @@
       <div class="contact-side">
         <p class="sub" data-i18n="contact.sub">يكفي سطران: نشاطك، وما يجب أن يقوم به الموقع، وموعدك. بالعربية أو الفرنسية أو الإنجليزية.</p>
         <dl class="channels">
-          <div class="ch"><dt data-i18n="footer.wa">واتساب</dt><dd><a class="wa-link" dir="ltr" href="https://wa.me/213672412578?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20Numidea%20Labs%20%E2%80%94%20%D8%A3%D9%88%D8%AF%D9%91%20%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%B9%D9%86%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9." target="_blank" rel="noopener"><bdi dir="ltr">+213 672 41 25 78</bdi></a><small class="ch-note" data-i18n="contact.waNote">رسائل فقط، دون مكالمات · مجاناً عبر التطبيق</small></dd></div>
+          <div class="ch"><dt data-i18n="footer.wa">واتساب</dt><dd><a class="wa-link" dir="ltr" href="https://wa.me/213672412578?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20Numidea%20Labs%20%E2%80%94%20%D8%A3%D9%88%D8%AF%D9%91%20%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%B9%D9%86%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9." target="_blank" rel="noopener"><bdi dir="ltr">+213 672 41 25 78</bdi></a><small class="ch-note" data-i18n="contact.waNote">رسائل فقط: موعد مكالمة الفيديو للمعاينة يُحدَّد برسالة · مجاناً عبر التطبيق</small></dd></div>
           <div class="ch"><dt data-i18n="form.email">البريد</dt><dd><a href="mailto:hamissemohamedyasser@gmail.com">hamissemohamedyasser@<wbr>gmail.com</a></dd></div>
           <div class="ch"><dt data-i18n="contact.chStudio">الاستوديو</dt><dd data-i18n="contact.vStudio">برج بوعريريج · الجزائر</dd></div>
-          <div class="ch"><dt data-i18n="contact.chReply">الردّ</dt><dd><span data-i18n="contact.vReply">في يوم العمل التالي · من الأحد إلى الخميس، من 9 إلى 18 (<bdi>UTC+1</bdi>) · بالفرنسية والإنجليزية والعربية</span><small class="ch-note" data-i18n="contact.tzNote">بتوقيت باريس شتاءً، وبساعة أقلّ صيفاً</small></dd></div>
+          <div class="ch"><dt data-i18n="contact.chReply">الردّ</dt><dd><span data-i18n="contact.vReply">في يوم العمل التالي، من الأحد إلى الخميس، من 9 إلى 18 بتوقيت الجزائر</span></dd></div>
         </dl>
         <!-- the workshop door open at night under the details (W07, 2026-11-19), the Studio's contact painting cut
              16:9 (assets/illus/porte-wide-*); its board is blank, the word on it is this page's text.
@@ -1173,16 +1178,16 @@
             <textarea id="f-message" name="message" rows="5" enterkeyhint="enter" required aria-describedby="f-message-err" data-i18n-ph="form.messagePh" placeholder="ماذا سنبني؟"></textarea>
             <span class="err" id="f-message-err" aria-live="polite"></span>
           </div>
-          <!-- The same message on WhatsApp, beside the submit: the one way
-               that needs no mail app. Baked with the Aperçu's opening line
+          <!-- The same message on WhatsApp, before the submit and the gold one
+               (WhatsApp first, home-09): the one way that needs no mail app. Baked with the Aperçu's opening line
                (scripts off); on a click app.js puts the name, the address
                and the message as typed in its place, through waUrl(). -->
           <div class="form-acts">
-            <button type="submit" class="btn btn-primary" data-i18n="form.send">أرسل طلبي <span aria-hidden="true">←</span></button>
-            <a class="btn wa-link btn-teal" id="form-wa-send" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20Numidea%20Labs%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%A7%D9%8A%D9%86%D8%A9%20%D9%85%D8%AC%D8%A7%D9%86%D9%8A%D8%A9%20%D9%84%D9%85%D9%88%D9%82%D8%B9%D9%8A%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.%0A%D8%A7%D9%84%D8%B4%D8%B1%D9%83%D8%A9%3A%20%0A%D8%A7%D9%84%D9%86%D8%B4%D8%A7%D8%B7%20%D9%88%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9%3A%20%0A%D8%A7%D9%84%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D8%AD%D8%A7%D9%84%D9%8A%20(%D8%A5%D9%86%20%D9%88%D9%8F%D8%AC%D8%AF)%3A%20" target="_blank" rel="noopener">
+            <a class="btn wa-link btn-primary" id="form-wa-send" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20Numidea%20Labs%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%A7%D9%8A%D9%86%D8%A9%20%D9%85%D8%AC%D8%A7%D9%86%D9%8A%D8%A9%20%D9%84%D9%85%D9%88%D9%82%D8%B9%D9%8A%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.%0A%D8%A7%D9%84%D8%B4%D8%B1%D9%83%D8%A9%3A%20%0A%D8%A7%D9%84%D9%86%D8%B4%D8%A7%D8%B7%20%D9%88%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9%3A%20%0A%D8%A7%D9%84%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D8%AD%D8%A7%D9%84%D9%8A%20(%D8%A5%D9%86%20%D9%88%D9%8F%D8%AC%D8%AF)%3A%20" target="_blank" rel="noopener">
               <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
               <span data-i18n="form.waInstead">راسلنا عبر واتساب</span>
             </a>
+            <button type="submit" class="btn btn-teal" data-i18n="form.send">أرسل طلبي <span aria-hidden="true">←</span></button>
           </div>
           <!-- What happens to the message, stated plainly. If the Supabase store is
                ever switched on this sentence stops being true: check.mjs then
@@ -1199,7 +1204,7 @@
              message" puts the subject and body on the clipboard for a webmail;
              #form-copied, inside this role=status, says so (app.js). -->
         <div class="form-success" role="status" aria-live="polite" tabindex="-1">
-          <span class="seal seal--sent" aria-hidden="true" data-i18n="seal.sent">أُرسل</span>
+          <span class="seal seal--sent" aria-hidden="true" data-i18n="seal.sent">جاهز</span>
           <svg class="ai ai-mail" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="3" y="5.5" width="18" height="13" rx="1.5"/><path class="p a-flap" pathLength="1" d="m3.6 6.6 8.4 6.4 8.4-6.4"/></svg>
           <p data-i18n="form.success">يفتح تطبيق البريد لديك ورسالتك جاهزة: أرسلها، ونردّ عليك في يوم العمل التالي بأسئلتنا.</p>
           <!-- The ways on, WhatsApp first: the one that needs no mail app,
@@ -1236,15 +1241,23 @@
     <nav aria-label="تذييل الصفحة" data-i18n-aria="footer.navAria">
       <a href="#work" data-i18n="nav.work">الأعمال</a>
       <a href="#services" data-i18n="nav.services">الخدمات</a>
-      <a href="#apercu" data-i18n="nav.about">المعاينة</a>
+      <a href="#apercu" data-i18n="nav.about">معاينة مجانية</a>
       <a href="#pricing" data-i18n="nav.pricing">الأسعار</a>
       <a href="tarifs/" data-i18n="tarifs.navLink">دليل الأسعار</a>
       <a href="#founder" data-i18n="nav.team">المؤسّس</a>
       <a href="#faq" data-i18n="nav.faq">الأسئلة</a>
       <a href="#contact" data-i18n="nav.contact">تواصل</a>
       <a href="../hub/?lang=ar" data-i18n="footer.studio">الاستوديو</a>
-      <a href="../workspacehq/">WorkspaceHQ</a>
+      <a href="../hub/lanterne/?lang=ar" data-i18n="nav.librairie">المكتبة</a>
+      <a href="../hub/monde.html?lang=ar" data-i18n="nav.monde">العالم</a>
+      <a href="../workspacehq/" data-i18n="footer.whq">أداتنا WorkspaceHQ بالإنجليزية</a>
     </nav>
+    <!-- how to reach the studio, as #contact gives it (home-19): the number, the address, the town -->
+    <address class="foot-reach">
+      <a class="wa-link" href="https://wa.me/213672412578?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20Numidea%20Labs%20%E2%80%94%20%D8%A3%D9%88%D8%AF%D9%91%20%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%B9%D9%86%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9." target="_blank" rel="noopener"><span class="foot-k" data-i18n="footer.wa">واتساب</span> <bdi dir="ltr">+213 672 41 25 78</bdi></a>
+      <a href="mailto:hamissemohamedyasser@gmail.com">hamissemohamedyasser@<wbr>gmail.com</a>
+      <span data-i18n="tb.place">برج بوعريريج، الجزائر</span>
+    </address>
   </div>
   <div class="meta">
     <span data-i18n="footer.rights"><bdi dir="ltr">© 2026 Numidea Labs</bdi></span>
@@ -1252,14 +1265,6 @@
     <span class="dim-line foot-coord" aria-hidden="true"><i></i><b dir="ltr">36°04'N · 4°46'E</b><i></i></span>
     <!-- legal notice + privacy links, written by scripts/build-legal.mjs once legal/ is published -->
     <span class="meta-legal"><!-- LEGAL:footer --><!-- /LEGAL:footer --></span>
-    <span class="meta-end">
-      <span class="lang" role="group" aria-label="اللغة" data-i18n-aria="ui.lang">
-        <a href="../" hreflang="fr" lang="fr" aria-label="Français (FR)">FR</a>
-        <a href="../en/" hreflang="en" lang="en" aria-label="English (EN)">EN</a>
-        <a href="../ar/" hreflang="ar" aria-label="العربية (ع)" aria-current="page"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></a>
-      </span>
-      <a class="meta-top" href="#top"><span data-i18n="ui.top">إلى الأعلى</span> <span aria-hidden="true">↑</span></a>
-    </span>
   </div>
 </footer>
 
@@ -1319,7 +1324,7 @@
      hero; it steps aside while #contact, or the footer just below it, is on
      screen, where #contact already offers both -->
 <nav class="m-contact" aria-label="تواصل سريع" data-i18n-aria="mbar.aria">
-  <a class="btn btn-primary m-main" href="#contact" data-apercu data-i18n="mbar.cta">معاينتي</a>
+  <a class="btn btn-primary m-main" href="#contact" data-apercu data-i18n="mbar.cta">معاينة مجانية</a>
   <a class="btn wa-link btn-teal" href="https://wa.me/213672412578?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20Numidea%20Labs%20%E2%80%94%20%D8%A3%D9%88%D8%AF%D9%91%20%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%B9%D9%86%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9." target="_blank" rel="noopener">
     <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
     <span data-i18n="footer.wa">واتساب</span>
@@ -1329,7 +1334,7 @@
        #est-cta): the estimate is in view whichever option the thumb is on,
        and nothing else is stuck to the top of the screen -->
   <p class="m-price" aria-hidden="true"><b class="mp-n"></b><span class="mp-w"></span></p>
-  <a class="btn btn-primary m-estgo" href="#contact" data-i18n="price.estCta" tabindex="-1">اطلب سعرك النهائي <span aria-hidden="true">←</span></a>
+  <a class="btn btn-primary m-estgo" href="#contact" data-i18n="price.estCtaShort" tabindex="-1">السعر النهائي <span aria-hidden="true">←</span></a>
 </nav>
 
 <!-- this page's dictionary (one language), then the script that reads it;

@@ -256,6 +256,9 @@ ul.dots li::before{content:"";position:absolute;inset-inline-start:0;top:.62em;w
 .bk-af .var--photo .var__box{position:relative;overflow:hidden;padding:0}
 .bk-af .var--photo .var__box > img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0}
 .bk-af .var--photo .var__box > img.lg{position:relative;width:min(70%,220px)}
+/* (world-12) version D: a night veil between the copper photo and the white logo, so the mark keeps 3:1 or more on every part of the picture it sits on */
+.bk-af .var--photo .var__box > img.lg{z-index:1}
+.bk-af .var--photo .var__box::after{content:"";position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 65% at 50% 50%,rgba(14,26,43,.86),rgba(14,26,43,.58))}
 .bk-af .cov-logo{width:min(100%,360px);border:0}
 .bk-af .tall{max-height:640px;object-fit:cover}
 .bk-af .f-man{font-family:"Manrope",sans-serif}
@@ -334,6 +337,8 @@ ul.dots li::before{content:"";position:absolute;inset-inline-start:0;top:.62em;w
 .bk-nu .meta div{display:grid;grid-template-columns:minmax(0,8.5em) minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1.5px solid var(--line)}
 .bk-nu .meta dt{font:500 12px/1.6 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
 .bk-nu .meta dd{color:var(--fg)}
+/* (world-17) the label above its value on a phone: the rule in the 720px block above sat before the base rule and lost to it */
+@media (max-width:720px){.bk-nu .meta div{grid-template-columns:minmax(0,1fr);gap:2px}}
 .bk-nu .specimen{display:grid;gap:12px;align-content:start;padding:clamp(16px,2vw,26px);border:1.5px solid var(--line)}
 .bk-nu .mono-s{font:500 clamp(16px,1.6vw,20px)/1.4 var(--f-mono);color:var(--fg);overflow-wrap:anywhere}
 .bk-nu .ico{width:64px;height:64px;border:0}
