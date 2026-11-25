@@ -7,6 +7,18 @@ file is not deployed (`scripts/site.mjs` `NOT_DEPLOYED`). Status as of
 2026-10-31: nothing has deployed since 2026-10-25 (GitHub Actions is blocked
 on billing; [section 9](#9-outage-and-fallback) says what to do meanwhile).
 
+## 0. The one rule (owner decision 2026-11-25)
+
+- **One trunk:** `claude/numidea-labs-landing-c4jokc`. Every change is a pull
+  request into it. No release branches, and no publishing from side branches
+  (a side-branch release nearly rolled back PR 19 on 2026-11-25).
+- A push builds a Vercel preview. Production is the trunk preview whose commit
+  passed `npm run verify`, published with the owner's go.
+- Before publishing, prove the candidate contains the live commit:
+  `git merge-base --is-ancestor <live-sha> <candidate-sha>`.
+- `main` and `master` share no history with the trunk and are retired. Never
+  target them.
+
 ## 1. Where the site lives
 
 - **Canonical host: the studio's own domain**, <https://www.numedialab.dev/>
