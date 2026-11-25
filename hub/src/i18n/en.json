@@ -409,7 +409,7 @@
   "proof": {
     "kicker": "/ 04 · THE RECEIPTS · WITH THE EVIDENCE",
     "title": "Everything below exists.",
-    "lead": "Three delivered clients and two pieces of the founder’s own work. Each file says what was made, for whom, and where to check it.",
+    "lead": "Four delivered clients and two pieces of the founder’s own work. Each file says what was made, for whom, and where to check it.",
     "actor": "Yasser celebrates a launch",
     "own": "Also, made in-house:",
     "glaive": "Glaive, the studio’s demo",
@@ -511,7 +511,10 @@
         }
       ]
     },
-    "whq": "an arcade cabinet for your codebase"
+    "whq": "an arcade cabinet for your codebase",
+    "site": "this site, our own: its sheet",
+    "done": "Also finished:",
+    "annuaire": "the Algerian industrial directory"
   },
   "lab": {
     "kicker": "/ THE LAB · UNCOMMISSIONED",

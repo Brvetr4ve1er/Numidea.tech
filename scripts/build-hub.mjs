@@ -69,9 +69,10 @@ import { carte, CARTE_HOSTS } from './lib/carte.mjs';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const HUB = join(ROOT, 'hub'), SRC = join(HUB, 'src');
 const LANGS = ['fr', 'en', 'ar'];
-// the five cases in the design's order (09 Proof); a fragment may be named
-// by its short slug too (bordj for bordjsteel)
-const CASES = [['bordjsteel', 'bordj'], ['alliance'], ['almaflow'], ['traveler'], ['heetch']];
+// the cases in the design's order (09 Proof): the four delivered clients
+// (Nomara joined on 2026-11-24, wave 3), then the founder's two; a fragment
+// may be named by its short slug too (bordj for bordjsteel)
+const CASES = [['bordjsteel', 'bordj'], ['alliance'], ['almaflow'], ['nomara'], ['traveler'], ['heetch']];
 const stamp = (readFileSync(join(ROOT, 'index.html'), 'utf8').match(/\?v=(\d+)/) || [, '1'])[1];
 const errors = [], notes = [];
 const fail = (m) => errors.push(m);
@@ -258,7 +259,7 @@ const EST_ROWS = `<tr><th scope="row">${DICT.fr['pricing.rc.base']} ${countedFr(
    or not, so 21 files were fetched at first paint, 364 kB in French and 527 kB in Arabic. */
 const FONT_RULES = [...readFileSync(join(HUB, 'fonts/fonts.css'), 'utf8').matchAll(/@font-face \{[^}]*\}/g)].map((m) => [(/font-family: "([^"]+)"/.exec(m[0]) || [])[1], m[0]]);
 const LAZY = {
-  bordjsteel: ['Montserrat'], alliance: ['Sora', 'DM Sans'], almaflow: ['Montserrat', 'Manrope'],
+  bordjsteel: ['Montserrat'], alliance: ['Sora', 'DM Sans'], almaflow: ['Montserrat', 'Manrope'], nomara: ['Space Mono'],
   traveler: ['Noto Serif JP', 'Space Mono', 'Archivo Condensed', 'Archivo Expanded'], heetch: ['Archivo Condensed', 'Archivo Expanded'],
 };
 const lazyFamilies = new Set(Object.values(LAZY).flat());

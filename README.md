@@ -188,7 +188,8 @@ refuses private material, machine paths and other e-mail addresses in it.
 
 See [OWNER-CONTENT.md](OWNER-CONTENT.md). The page leaves room for these and
 renders them only once they exist: the legal notice and privacy page, client
-quotes (with consent), a founder photo, team photos.
+quotes (with consent). There is no founder photo to wait for: the founder's
+face is the drawn Yasser (owner, 2026-11-24).
 
 ### Run it locally
 

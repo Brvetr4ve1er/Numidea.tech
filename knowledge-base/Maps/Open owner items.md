@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-11-06
+updated: 2026-11-24
 sources: [OWNER-CONTENT.md, README.md, IMPROVEMENTS.md, NOTICE.md, index.html, assets/i18n/fr.js, assets/i18n/ar.js, hub/index.html, scripts/legal-data.mjs, scripts/build-legal.mjs, scripts/voices-data.mjs, scripts/verify-domains.mjs, scripts/site.mjs, scripts/check.mjs]
 ---
 
@@ -16,11 +16,11 @@ The register's own status line reads "as of 2026-10-31 (after the owner's answer
 |---|---|---|---|---|
 | 1 | [[Legal notice + privacy page]] | Missing: 16 fields, 5 of them in three languages; "later" (owner, 2026-10-30) | The owner fills every `null`, then `npm run build` | `scripts/legal-data.mjs` |
 | 2 | [[Client quotes (voices), with consent\|Client quotes, with consent]] | None yet | Written agreement to the exact text, entered in `VOICES` | `scripts/voices-data.mjs` |
-| 3 | [[Founder photo (assetsfounder.webp)\|Founder photo]] | None; the monogram "Y" shows | A real photo, never generated, square, at least 400 px | `assets/founder.webp` |
+| 3 | [[Founder photo (assetsfounder.webp)\|Founder photo]] | Closed 2026-11-24 (wave 3): no photograph; the drawn Yasser is the founder's face, and the photo slot is removed | Nothing to supply | `index.html` #founder |
 | 4 | [[Team photos and 'four specialists' claim\|Team names, photos and team size]] | Answered 2026-10-30: one founder, with freelancers when needed; the page still says "four specialists" until the copy change | The copy change (the next change); no photos to add, there being no team | `index.html` #founder, `assets/i18n/*.js` |
 | 5 | [[Studio email on its own domain]] | Personal Gmail in use; it stays for now (owner, 2026-10-30) | A mailbox on the studio's domain, replaced everywhere | every place the address appears |
 | 6 | [[Clients' permission for paid ads]] | Not asked yet | Each client's written permission (an email or WhatsApp is enough) | campaign kit, outside this repo |
-| 7 | [[Nomara Voyages (unconfirmed client)\|Nomara Voyages: client or not]] | Unconfirmed | Confirmation and permission, or removal | `index.html` work grid, logo strip |
+| 7 | [[Nomara Voyages (unconfirmed client)\|Nomara Voyages: client or not]] | Closed 2026-11-24 (wave 3): a delivered client site, the fourth everywhere (sheet 04 on /scene/, client file 04 on the Studio) | Nothing to supply | `index.html` work grid, `scripts/scene-data.mjs`, `hub/src/cases/nomara.html` |
 | 8 | [[Arabic native review]] | Pending; every Arabic string added on 2026-10-31 listed in §8 | A native speaker's pass over the Arabic copy | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
 | 9 | [[Clients' own domains]] | None verifies | A client points a domain at the build; `verify-domains.mjs` confirms | `scripts/verify-domains.mjs` |
 | 10 | [[Hub fan art rights]] | No fan art on the site since 2026-10-28 (still in git history; not live: nothing has deployed since 2026-10-25) | Closed for the site by the hub's rebuild; the history is the owner's call, as for 12 | git history of `hub/` |
