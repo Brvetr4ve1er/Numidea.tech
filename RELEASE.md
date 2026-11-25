@@ -16,8 +16,9 @@ on billing; [section 9](#9-outage-and-fallback) says what to do meanwhile).
   passed `npm run verify`, published with the owner's go.
 - Before publishing, prove the candidate contains the live commit:
   `git merge-base --is-ancestor <live-sha> <candidate-sha>`.
-- `main` and `master` share no history with the trunk and are retired. Never
-  target them.
+- `main` (an old ancestor of the trunk, last 2026-10-07) and `master` (the
+  July 2025 prototype) are retired and kept as `archive/*` tags. Never target
+  them.
 
 ## 1. Where the site lives
 
