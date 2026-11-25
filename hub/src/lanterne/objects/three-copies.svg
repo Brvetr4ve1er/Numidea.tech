@@ -1,22 +1,38 @@
-<svg viewBox="0 0 360 240" class="lo-svg lp-three-copies-svg" aria-hidden="true" focusable="false">
-<defs><path id="lp-three-copies-k" d="M-11-14H5L11-8V14H-11Z"/><path id="lp-three-copies-bag" d="M34 118Q100 113 164 118L162 180Q161 193 148 193H50Q36 193 35 180Z"/><path id="lp-three-copies-st" d="M42 124Q46 30 100 32Q154 30 158 124"/></defs>
+<svg viewBox="0 0 360 240" class="lo-svg" aria-hidden="true">
+<defs><g id="lp-three-copies-k"><path class="l-c l-k1" d="M-12-15H5L12-8V15H-12Z"/><path class="l-p l-k1" d="M5-15V-8H12Z"/></g>
+<path id="lp-three-copies-t" d="M2 0Q46-1 90 0Q92 15 90 30Q46 31 2 30Q0 15 2 0Z"/></defs>
 <path class="l-k1 l-so" opacity=".35" d="M0 200H360"/>
-<path class="l-k1 l-so lo-three-copies-s0" d="M226 112L288 64L350 112M330 96V72H340V104"/><path class="l-k1 l-so" opacity=".5" stroke-dasharray="3 4" d="M236 112V196M340 112V196"/>
-<path class="l-k1" d="M252 148L262 162M324 148L314 162"/><path class="l-w l-k" d="M240 140L336 140L336 148L240 148L240 140Z"/><path class="l-k1 l-so" d="M246 143h22"/>
-<g class="l-k1 l-so" opacity=".35" stroke-dasharray="4 4"><use href="#lp-three-copies-bag"/><use href="#lp-three-copies-st"/><g transform="translate(83 76)"><use href="#lp-three-copies-k"/></g><g transform="translate(136 90)"><use href="#lp-three-copies-k"/></g></g>
-<g opacity=".35"><text class="l-t" x="83" y="82" text-anchor="middle" data-i18n="lant.lo.three-copies.t.0"></text><text class="l-t" x="136" y="96" text-anchor="middle" data-i18n="lant.lo.three-copies.t.1"></text></g>
-<g class="lp-three-copies-bag">
-<use href="#lp-three-copies-st" class="l-k lo-three-copies-s1"/><use href="#lp-three-copies-st" class="l-k lp-three-copies-sw lo-three-copies-s2"/>
-<path class="l-w2 l-k" d="M40 118L46 100Q100 94 152 100L158 118Z"/>
-<path class="l-n2 l-k" d="M57 84L109 84L111 85L112 87L112 121L111 123L109 124Q83 123 57 124L55 123L54 121L54 87L55 85L57 84Z"/><circle class="l-c l-k1" cx="94" cy="100" r="6"/><path class="l-k1 l-so" d="M60 92v12"/>
-<path class="l-c l-k" d="M124 98L148 98L150 99L150 100L150 122L149 123L148 124L124 124L123 123L122 122L122 100L123 99L124 98Z"/><circle class="l-a l-k1" cx="143" cy="104" r="2.5"/>
-<use href="#lp-three-copies-bag" class="l-w"/><path class="l-w2" d="M36 176H162Q161 192 148 192H50Q37 192 36 176Z"/><use href="#lp-three-copies-bag" class="l-k"/>
-<path class="l-k1 l-so lo-three-copies-s3" stroke-dasharray="4 3" d="M42 126Q100 122 156 126L154 176Q154 185 145 185H53Q44 185 43 176Z"/>
-<path class="l-a l-k1" d="M90 150H110V164H90Z"/><path class="l-k1" d="M100 150V164"/><path class="l-k1 l-so" d="M40 132Q40 124 48 123"/>
-<g transform="translate(83 76)"><g class="lp-three-copies-c1"><use href="#lp-three-copies-k" class="l-c l-k1"/><path class="l-p l-k1" d="M5-14V-8H11Z"/><text class="l-ti lp-three-copies-num" x="0" y="6" text-anchor="middle" data-i18n="lant.lo.three-copies.t.0"></text></g></g>
-<g transform="translate(136 90)"><g class="lp-three-copies-c2"><use href="#lp-three-copies-k" class="l-c l-k1"/><path class="l-p l-k1" d="M5-14V-8H11Z"/><text class="l-ti lp-three-copies-num" x="0" y="6" text-anchor="middle" data-i18n="lant.lo.three-copies.t.1"></text></g></g>
-</g>
-<g transform="translate(288 126)"><g class="lp-three-copies-c3"><use href="#lp-three-copies-k" class="l-c l-k1"/><path class="l-p l-k1" d="M5-14V-8H11Z"/><text class="l-ti lp-three-copies-num" x="0" y="6" text-anchor="middle" data-i18n="lant.lo.three-copies.t.2"></text></g></g>
-<g class="lp-three-copies-tick"><circle class="l-g l-k1 l-sg lo-three-copies-s0" cx="300" cy="112" r="10"/><path class="l-k l-sg" d="M295 112l4 4l7-8"/></g>
-<g class="lp-three-copies-hand"><path class="l-i l-k1 l-so" d="M88-6V14Q78 18 80 28Q82 37 90 36Q94 42 100 39Q106 43 111 38Q118 40 120 32Q122 22 113 15V-6Z"/><path class="l-k1 l-so lo-three-copies-s4" d="M90 28q2 6 0 8M100 30v8M110 30q1 5 1 8M88 18q6-2 8 6"/></g>
+<path class="l-i" opacity=".45" d="M246 198Q292 195 340 198Q292 201 246 198Z"/>
+<path class="l-k1 l-so" opacity=".35" stroke-dasharray="4 4" d="M24 112Q110 108 196 112L195 188Q194 195 184 195H36Q26 195 25 188Z"/>
+<g class="lp-three-copies-bag"><path class="l-k lo-three-copies-s0" d="M30 118C20 6 200 6 190 118"/><path class="lo-three-copies-s1" d="M30 118C20 6 200 6 190 118"/>
+<g class="lp-three-copies-hand"><path class="l-i l-k1 l-so" d="M99-40L101 20H123L127-40Z"/><path class="l-i l-k1 l-so" d="M97 30Q95 18 104 15Q114 13 123 16Q129 20 127 30Q128 38 125 40Q122 41 120 36Q121 43 116 43Q112 43 112 37Q112 43 107 43Q103 42 104 36Q103 42 99 41Q96 39 97 30Z"/><path class="l-k1 l-so" d="M104 36v-5M112 37v-6M120 36v-5"/></g>
+<path class="l-w2 l-k" d="M27 112Q28 100 40 98Q110 94 180 98Q192 100 193 112Z"/>
+<g transform="rotate(-4 88 84)"><path class="l-n2 l-k" d="M44 54Q88 52 132 54L132 114H44Z"/><path class="l-k1 l-so" d="M48 58Q88 56 128 58V112"/><path class="l-k1 l-so" opacity=".6" d="M52 64l10-4M52 72l18-8"/>
+<g transform="translate(90 84)"><g class="lp-three-copies-c1"><use href="#lp-three-copies-k"/><text class="l-ti lp-three-copies-num" y="7" data-i18n="lant.lo.three-copies.t.0"></text></g></g></g>
+<path class="l-k" d="M176 96Q190 92 186 110"/>
+<path class="l-a l-k" d="M146 72Q160 70 174 72L175 112H145Z"/><path class="l-a2" d="M146.5 100H174.5V111H146Z"/><circle class="l-c l-k1" cx="167" cy="79" r="2.6"/><path class="l-k1" d="M150 106h20"/>
+<g transform="translate(150 62) rotate(8)"><g class="lp-three-copies-c2"><use href="#lp-three-copies-k"/><text class="l-ti lp-three-copies-num" y="7" data-i18n="lant.lo.three-copies.t.1"></text></g></g>
+<path class="l-w l-k" d="M24 112Q110 108 196 112Q199 152 195 186Q194 195 184 195H36Q26 195 25 186Q21 152 24 112Z"/>
+<path class="l-w2" d="M25.5 178Q110 175 195.5 178Q195 194 184 194H36Q26 194 25.5 178Z"/>
+<path class="l-k1 lo-three-copies-s4" d="M34 184l6-6M44 186l7-8M184 186l6-6M174 186l7-8"/>
+<path class="l-k1 l-so" opacity=".7" d="M30 118Q110 114 190 118"/><path class="l-k1 l-so" d="M29 128Q28 120 36 119"/>
+<path class="l-w2 l-k" d="M42 130Q110 127 178 130Q180 152 177 172Q110 175 43 172Q40 152 42 130Z"/>
+<path class="l-k1 l-so lo-three-copies-s4" stroke-dasharray="3 3" d="M47 135Q110 132 173 135Q174 152 172 167Q110 170 48 167Q46 152 47 135Z"/>
+<path class="l-w l-k1" d="M70 111H84V166Q77 170 70 166ZM136 111H150V166Q143 170 136 166Z"/>
+<path class="l-a l-k1" d="M66 142H88V156H66ZM132 142H154V156H132Z"/><path class="l-k1" d="M70 146H84V152H70ZM77 146V152M136 146H150V152H136ZM143 146V152"/></g>
+<g class="lp-three-copies-way l-k l-so"><path stroke-dasharray="5 5" d="M186 64Q222 16 254 96"/><path d="M247 88l7 8l2-10"/></g>
+<path class="l-w2 l-k" d="M318 82H330V108H318Z"/>
+<path class="l-p l-k" d="M250 122Q293 120 334 122L335 196H249Z"/><path class="l-w2" opacity=".35" d="M250 182H334.5V195H249.5Z"/>
+<path class="l-w l-k" d="M238 126L292 76L346 126Q343 130 338 128L292 87L246 128Q240 130 238 126Z"/><path class="l-k1 l-so" opacity=".7" d="M250 120L290 84"/>
+<path class="l-w2 l-k" d="M308 158Q318 152 328 158V196H308Z"/><circle class="l-a l-k1" cx="312" cy="178" r="1.8"/>
+<path class="l-a l-k" d="M258 134H298V182H258Z"/><path class="l-a2" d="M259 172H297V181H259Z"/>
+<g transform="translate(278 158)"><g class="lp-three-copies-c3"><use href="#lp-three-copies-k"/><text class="l-ti lp-three-copies-num" y="7" data-i18n="lant.lo.three-copies.t.2"></text></g></g>
+<g class="lp-three-copies-tick"><circle class="l-g l-k l-sg" cx="294" cy="140" r="10"/><path class="l-k l-sg" d="M289 140l4 4l7-8"/></g>
+<g class="lp-three-copies-n3"><use href="#lp-three-copies-t" x="14" y="206" class="l-a l-k"/><text class="l-ti lp-three-copies-big" x="32" y="230" data-i18n="lant.lo.three-copies.t.2"></text>
+<path class="l-c l-k1" d="M52 213h8l3 3v13h-11zM68 213h8l3 3v13h-11zM84 213h8l3 3v13h-11z"/></g>
+<g class="lp-three-copies-n2"><use href="#lp-three-copies-t" x="134" y="206" class="l-a l-k"/><text class="l-ti lp-three-copies-big" x="152" y="230" data-i18n="lant.lo.three-copies.t.1"></text>
+<path class="l-n2 l-k1" d="M172 212h20v13h-20z"/><path class="l-k1" d="M169 228h26"/><path class="l-c l-k1" d="M203 211h10v18h-10z"/><circle class="l-i" cx="208" cy="215" r="1.4"/></g>
+<g class="lp-three-copies-n1"><use href="#lp-three-copies-t" x="254" y="206" class="l-c l-k l-sr"/><text class="l-ti lp-three-copies-big" x="272" y="230" data-i18n="lant.lo.three-copies.t.0"></text>
+<path class="l-p l-k1" d="M296 219l10-8l10 8v11h-20z"/><path class="l-k l-sg" d="M324 220l4 4l8-9"/></g>
+<circle class="l-o" cx="124" cy="221" r="2.5"/><circle class="l-o" cx="244" cy="221" r="2.5"/>
 </svg>

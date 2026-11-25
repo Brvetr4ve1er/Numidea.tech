@@ -8279,7 +8279,7 @@
       },
       "block-chain": {
         "cap": "Change an old operation and the next link no longer matches.",
-        "alt": "Four cream blocks joined by brass rings, each sealed with a fingerprint. Kūro's paw changes a line in the second block: the seal linking it to the third cracks, and the rest of the chain goes dark."
+        "alt": "Four cream blocks joined by brass rings; under each ring hangs the previous block's fingerprint: 9c1e, 47ab, d203. A hand rewrites a line in the second block: its fingerprint becomes e5f0, while the third block still holds 47ab. The two no longer match: the ring between them snaps in red, and the rest of the chain goes dark."
       },
       "four-layers": {
         "cap": "Around the logo: the identity, the system, and the brand, what people say about you when you are not in the room.",
@@ -8302,14 +8302,16 @@
       },
       "key-register": {
         "cap": "The wallet keeps your keys. It does not contain the coins: they stay in the ledger.",
-        "alt": "A public register on the wall, a row of coins in one column. Under the lamp a brass key turns and the row moves one column: the coins never leave the register. A red « support » bubble reaches for the key; a cover drops over it, with the tag « to no one ».",
+        "alt": "A big open public ledger: each coin is a written line in it. Beside it, a small wallet holds only a brass key. The key turns, and its line leads to the lock on one line of the ledger: it signs, and the coin moves from one line to the next, never leaving the ledger. A « support? » bubble asks for the key; it is crossed out in red, with the tag « never give it to anyone ».",
         "t": {
-          "0": "“support”",
-          "1": "to no one"
+          "0": "support?",
+          "1": "never give it to anyone",
+          "2": "public ledger",
+          "3": "wallet"
         }
       },
       "last-seat": {
-        "alt": "Two requests arrive at the same moment along the copper wire to the brass relay. The relay drops its gate: one hand gets the last seat, the other a « full » card.",
+        "alt": "A ticket booth with two windows and a single ticket on the counter. Two hands reach for it at the same moment; the booth stamps the ticket with a tick and gives it to one hand, then hangs « full » in front of the other window.",
         "t": {
           "0": "full"
         }
@@ -8381,7 +8383,7 @@
       },
       "three-copies": {
         "cap": "That is the “1” in 3-2-1: one copy outside the bag, online or with someone you trust.",
-        "alt": "Three file cards: two drop into the open bag, onto the laptop and the disk; the third lands on a shelf somewhere else. A shadow hand carries the bag away; the copy on the shelf stays, ticked.",
+        "alt": "A brown canvas messenger bag with two buckled straps holds two copies of the files: card 1 on the laptop, card 2 on an external drive, two different kinds of storage. Card 3 leaves the bag for a small house somewhere else. A shadow hand grabs the handle and carries the bag off; card 3, safe in the house, is ticked. Below, three counters: 3 copies, 2 kinds of storage, 1 outside the bag.",
         "t": {
           "0": "1",
           "1": "2",

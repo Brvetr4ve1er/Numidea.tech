@@ -1,20 +1,38 @@
-/* block-chain (web3-modules · m21): change an old operation and the next link no longer matches. Play 4000 ms, once. */
-.lo--block-chain .bc-fp{font-size:12px}
-.lo--block-chain .bc-rl{stroke:var(--red);stroke-width:3}
-.lo--block-chain .bc-ck{stroke-width:2}
-.lo--block-chain .bc-xx{stroke:var(--retry-line);stroke-width:3}
+/* block-chain (web3-modules · m21): each block carries the previous one's fingerprint; a hand rewrites a line of block 2,
+   its fingerprint becomes e5f0, block 3 still holds 47ab: the link 2-3 snaps (red) and the blocks after it go dark.
+   Play 4000 ms, once. The markup is the teaching frame (red line, e5f0 ≠ 47ab, broken link, blocks 3-4 dimmed). */
+.lo.lp-block-chain .lp-block-chain-tx{font:700 14px/1 var(--f-mono);letter-spacing:.02em}
+.lp-block-chain .lp-block-chain-tr{fill:var(--retry-line);color:var(--retry-line)}
+.lp-block-chain .lp-block-chain-ri{fill:none;stroke:var(--ink);stroke-width:7;stroke-linecap:round}
+.lp-block-chain .lp-block-chain-ra{stroke:var(--amber);stroke-width:3.5}
+.lp-block-chain .lp-block-chain-rr{fill:none;stroke:var(--red);stroke-width:3.5;stroke-linecap:round}
+.lp-block-chain .lp-block-chain-nl{stroke:var(--red);stroke-width:3}
+.lp-block-chain .lp-block-chain-pi{stroke:var(--ink);stroke-width:7;stroke-linecap:round}
+.lp-block-chain .lp-block-chain-pa{stroke:var(--amber);stroke-width:3.5;stroke-linecap:round}
+.lp-block-chain :is(.lp-block-chain-ol,.lp-block-chain-ok){opacity:0}
+.lp-block-chain .lp-block-chain-dim{opacity:.55}
+.lp-block-chain :is(.lp-block-chain-nl,.lp-block-chain-nw,.lp-block-chain-br,.lp-block-chain-ne){transform-box:fill-box;transform-origin:left center}
+.lp-block-chain :is(.lp-block-chain-br,.lp-block-chain-ne){transform-origin:center}
+/* Mouvement off: lanterne.css stops every .lo animation (html.motion-off .lo *) */
 @media (prefers-reduced-motion:no-preference){
-html:not(.motion-off) .lo--block-chain.is-playing .bc-paw{animation:lo-block-chain-p 4000ms both}
-html:not(.motion-off) .lo--block-chain.is-playing .bc-b1{animation:lo-block-chain-n 4000ms both}
-html:not(.motion-off) .lo--block-chain.is-playing .bc-rl{animation:lo-block-chain-l 4000ms both}
-html:not(.motion-off) .lo--block-chain.is-playing .bc-cr{animation:lo-block-chain-c 4000ms both}
-html:not(.motion-off) .lo--block-chain.is-playing .bc-x{animation:lo-block-chain-x 4000ms both}
-html:not(.motion-off) .lo--block-chain.is-playing .bc-dim{animation:lo-block-chain-d 4000ms both}
+.lp-block-chain.is-playing .lp-block-chain-hd{animation:lo-block-chain-h 4000ms both}
+.lp-block-chain.is-playing .lp-block-chain-ol{animation:lo-block-chain-o 4000ms both}
+.lp-block-chain.is-playing .lp-block-chain-nl{animation:lo-block-chain-l 4000ms both}
+.lp-block-chain.is-playing .lp-block-chain-od{animation:lo-block-chain-s 4000ms both}
+.lp-block-chain.is-playing .lp-block-chain-nw{animation:lo-block-chain-n 4000ms both}
+.lp-block-chain.is-playing .lp-block-chain-ok{animation:lo-block-chain-k 4000ms both}
+.lp-block-chain.is-playing .lp-block-chain-br{animation:lo-block-chain-b 4000ms both}
+.lp-block-chain.is-playing .lp-block-chain-ne{animation:lo-block-chain-e 4000ms both}
+.lp-block-chain.is-playing .lp-block-chain-dim{animation:lo-block-chain-d 4000ms both}
 }
-/* 0-1000 the paw nudges block 2; 1000-1500 its line turns red; 1500-3000 the seal 2->3 cracks, its fingerprint gets the cross; 3000-4000 the rest dims */
-@keyframes lo-block-chain-p{0%{transform:translateY(56px);animation-timing-function:cubic-bezier(.16,1,.3,1)}12%{transform:translateY(-44px);animation-timing-function:cubic-bezier(.87,0,.13,1)}25%,100%{transform:none}}
-@keyframes lo-block-chain-n{0%,10%{transform:none;animation-timing-function:cubic-bezier(.16,1,.3,1)}14%{transform:translateX(4px)}22%,100%{transform:none}}
-@keyframes lo-block-chain-l{0%,25%{opacity:0}37.5%,100%{opacity:1}}
-@keyframes lo-block-chain-c{0%,37.5%{opacity:0}60%,100%{opacity:1}}
-@keyframes lo-block-chain-x{0%,60%{opacity:0;transform:scale(.6)}75%,100%{opacity:1;transform:none}}
-@keyframes lo-block-chain-d{0%,75%{opacity:0}100%{opacity:.65}}
+/* 0-900 the hand comes down onto block 2; 900-1600 it rewrites the middle line (red); 1600-2300 block 2's fingerprint becomes
+   e5f0, the link 2-3 snaps and the 47ab tag stays with block 3; 2300-2700 ≠; 2700-3700 blocks 3-4 go dark; then it holds */
+@keyframes lo-block-chain-h{0%{transform:translate(60px,-140px);animation-timing-function:cubic-bezier(.16,1,.3,1)}22%{transform:none}27%{transform:translateX(-5px)}32%{transform:translateX(3px)}37%,100%{transform:none}}
+@keyframes lo-block-chain-o{0%,24%{opacity:1}36%,100%{opacity:0}}
+@keyframes lo-block-chain-l{0%,22%{transform:scaleX(0)}38%,100%{transform:none}}
+@keyframes lo-block-chain-n{0%,40%{opacity:0;transform:translateY(-12px) scale(.8);animation-timing-function:cubic-bezier(.16,1,.3,1)}52%,100%{opacity:1;transform:none}}
+@keyframes lo-block-chain-k{0%,48%{opacity:1}51%,100%{opacity:0}}
+@keyframes lo-block-chain-b{0%,48%{opacity:0;transform:scaleX(.85)}53%{opacity:1;transform:scaleX(1.1)}58%,100%{opacity:1;transform:none}}
+@keyframes lo-block-chain-s{0%,48%{transform:translateX(-38px);animation-timing-function:cubic-bezier(.16,1,.3,1)}58%,100%{transform:none}}
+@keyframes lo-block-chain-e{0%,58%{opacity:0;transform:scale(.6)}67%,100%{opacity:1;transform:none}}
+@keyframes lo-block-chain-d{0%,67%{opacity:0}92%,100%{opacity:.55}}

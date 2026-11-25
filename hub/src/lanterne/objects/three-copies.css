@@ -1,26 +1,31 @@
-/* three-copies · play 4000 ms once on entering view; default markup = the final teaching frame. */
-.lp-three-copies .lp-three-copies-bag,.lp-three-copies .lp-three-copies-hand{opacity:0}
-.lp-three-copies .lp-three-copies-tick{transform-box:fill-box;transform-origin:50% 50%}
-.lp-three-copies .lp-three-copies-num{font-size:13px}.lp-three-copies .lp-three-copies-sw{stroke:var(--wood-2)}
-@media (prefers-reduced-motion:no-preference){
-html:not(.motion-off) .lp-three-copies.is-playing :is(.lp-three-copies-c1,.lp-three-copies-c2,.lp-three-copies-c3,.lp-three-copies-bag,.lp-three-copies-hand,.lp-three-copies-tick){animation:4000ms cubic-bezier(.87,0,.13,1) both}
-html:not(.motion-off) .lp-three-copies.is-playing .lp-three-copies-c1{animation-name:lp-three-copies-c1}
-@keyframes lp-three-copies-c1{0%{transform:translate(90px,-80px);opacity:0}5%{opacity:1}22.5%,100%{transform:none;opacity:1}}
-html:not(.motion-off) .lp-three-copies.is-playing .lp-three-copies-c2{animation-name:lp-three-copies-c2}
-@keyframes lp-three-copies-c2{0%,10%{transform:translate(40px,-100px);opacity:0}15%{opacity:1}32.5%,100%{transform:none;opacity:1}}
-html:not(.motion-off) .lp-three-copies.is-playing .lp-three-copies-c3{animation-name:lp-three-copies-c3}
-@keyframes lp-three-copies-c3{0%,20%{transform:translate(-110px,-70px);opacity:0}25%{opacity:1}42.5%,100%{transform:none;opacity:1}}
-html:not(.motion-off) .lp-three-copies.is-playing .lp-three-copies-bag{animation-name:lp-three-copies-bag}
-@keyframes lp-three-copies-bag{0%,57.5%{transform:none;opacity:1}62.5%{opacity:1}75%,100%{transform:translateY(-150px);opacity:0}}
-html:not(.motion-off) .lp-three-copies.is-playing .lp-three-copies-hand{animation-name:lp-three-copies-hand}
-@keyframes lp-three-copies-hand{0%,45%{transform:translateY(-90px);opacity:0}57.5%{transform:none;opacity:1}62.5%{opacity:1}75%,100%{transform:translateY(-150px);opacity:0}}
-html:not(.motion-off) .lp-three-copies.is-playing .lp-three-copies-tick{animation-name:lp-three-copies-tick}
-@keyframes lp-three-copies-tick{0%,75%{transform:scale(.6);opacity:0}85%{opacity:1}100%{transform:none;opacity:1}}
-}
-@media (prefers-reduced-motion:reduce){.lp-three-copies *{animation:none!important}}
-/* the drawing's own line weights (2026-11-24: moved out of style="", which carries custom properties only; one class each, unscoped, so a <use> copy keeps it) */
-.lo-three-copies-s0{stroke-width:2}
-.lo-three-copies-s1{stroke-width:9}
-.lo-three-copies-s2{stroke-width:5}
-.lo-three-copies-s3{stroke-width:1.2}
-.lo-three-copies-s4{stroke-width:1}
+/* (Mouvement off and reduced motion: lanterne.css stops every .lo animation) three-copies · play 4000 ms once on entering view; default markup = the final teaching frame (a shadow hand lifts the bag with copies 1 and 2 off its dashed place; copy 3 away in the house, ticked; counters 3 · 2 · 1). */
+.lp-three-copies .lp-three-copies-bag{transform-box:view-box;transform-origin:112px 30px;transform:translate(6px,-12px) rotate(-6deg)}
+.lp-three-copies :is(.lp-three-copies-tick,.lp-three-copies-n3,.lp-three-copies-n2,.lp-three-copies-n1){transform-box:fill-box;transform-origin:50% 50%}
+.lp-three-copies text{text-anchor:middle}
+.lo.lp-three-copies text.lp-three-copies-num{font-size:17px;letter-spacing:0}
+.lo.lp-three-copies text.lp-three-copies-big{font-size:26px;letter-spacing:0}
+.lp-three-copies.is-playing :is(.lp-three-copies-c1,.lp-three-copies-c2,.lp-three-copies-c3,.lp-three-copies-way,.lp-three-copies-hand,.lp-three-copies-bag,.lp-three-copies-tick,.lp-three-copies-n3,.lp-three-copies-n2,.lp-three-copies-n1){animation:4000ms cubic-bezier(.87,0,.13,1) both}
+.lp-three-copies.is-playing .lp-three-copies-c1{animation-name:lp-three-copies-c1}
+@keyframes lp-three-copies-c1{0%{transform:translateY(-90px);opacity:0}4%{opacity:1}15%,100%{transform:none;opacity:1}}
+.lp-three-copies.is-playing .lp-three-copies-c2{animation-name:lp-three-copies-c2}
+@keyframes lp-three-copies-c2{0%,6%{transform:translateY(-80px);opacity:0}10%{opacity:1}21%,100%{transform:none;opacity:1}}
+.lp-three-copies.is-playing .lp-three-copies-c3{animation-name:lp-three-copies-c3}
+@keyframes lp-three-copies-c3{0%,14%{transform:translate(-110px,-110px);opacity:0}18%{transform:translate(-110px,-100px);opacity:1}40%,100%{transform:none;opacity:1}}
+.lp-three-copies.is-playing .lp-three-copies-way{animation-name:lp-three-copies-way}
+@keyframes lp-three-copies-way{0%,16%{opacity:0}30%,100%{opacity:1}}
+.lp-three-copies.is-playing .lp-three-copies-hand{animation-name:lp-three-copies-hand}
+@keyframes lp-three-copies-hand{0%,40%{transform:translateY(-80px);opacity:0}43%{opacity:1}52%,100%{transform:none;opacity:1}}
+.lp-three-copies.is-playing .lp-three-copies-bag{animation-name:lp-three-copies-bag}
+@keyframes lp-three-copies-bag{0%,54%{transform:none}68%,100%{transform:translate(6px,-12px) rotate(-6deg)}}
+.lp-three-copies.is-playing .lp-three-copies-n3{animation-name:lp-three-copies-n3}
+@keyframes lp-three-copies-n3{0%,62%{transform:scale(.6);opacity:0}70%,100%{transform:none;opacity:1}}
+.lp-three-copies.is-playing .lp-three-copies-n2{animation-name:lp-three-copies-n2}
+@keyframes lp-three-copies-n2{0%,68%{transform:scale(.6);opacity:0}76%,100%{transform:none;opacity:1}}
+.lp-three-copies.is-playing .lp-three-copies-n1{animation-name:lp-three-copies-n1}
+@keyframes lp-three-copies-n1{0%,74%{transform:scale(.6);opacity:0}82%,100%{transform:none;opacity:1}}
+.lp-three-copies.is-playing .lp-three-copies-tick{animation-name:lp-three-copies-tick}
+@keyframes lp-three-copies-tick{0%,84%{transform:scale(.6);opacity:0}94%,100%{transform:none;opacity:1}}
+/* the drawing's own line weights (one class each, unscoped, so a use copy keeps it) */
+.lo-three-copies-s0{stroke-width:13}
+.lo-three-copies-s1{fill:none;stroke:var(--wood-2);stroke-width:8;stroke-linecap:round}
+.lo-three-copies-s4{stroke-width:1.2}

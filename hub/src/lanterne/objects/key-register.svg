@@ -1,22 +1,36 @@
 <svg viewBox="0 0 360 240" class="lo-svg lp-key-register-svg" aria-hidden="true" focusable="false">
-<defs><g id="lp-key-register-c"><circle r="13" class="l-a l-k"/><circle r="7" class="l-k1 lo-key-register-s0"/><path class="l-a2" d="M-11 6A13 13 0 0 0 11 6A12 9 0 0 1-11 6Z"/><path class="l-k1 l-so" d="M-8-5Q-6-9-2-10"/></g></defs>
+<defs><g id="lp-key-register-c"><circle r="5.5" class="l-a l-k1 lo-key-register-s0"/><path class="l-a2" d="M-4.6 2.4A5.5 5.5 0 0 0 4.6 2.4A5 3.4 0 0 1-4.6 2.4Z"/></g>
+<path id="lp-key-register-w" d="M0 0q3-3.5 6 0t6 0t6 0t6 0t6 0"/><g id="lp-key-register-r"><use href="#lp-key-register-c"/><use class="l-k1 lo-key-register-s1" href="#lp-key-register-w" x="10" y="2"/></g></defs>
 <path class="l-k1 l-so" opacity=".35" d="M0 200H360"/>
-<path class="l-k1" d="M114 18L52 36M114 18L176 36"/><circle class="l-a l-k1" cx="114" cy="18" r="3"/>
-<path class="l-a l-k" d="M20 34Q115 33 210 34L213 35L214 38Q215 102 214 166L213 169L210 170Q115 168 20 170L18 169L16 166Q17 102 16 38L17 35L20 34Z"/>
-<path class="l-a2" d="M18 160H212V166Q211 169 206 169H22Q18 168 18 164Z"/>
-<path class="l-c l-k1" d="M26 44Q114 43 202 44Q201 101 202 158Q114 157 26 158Q25 101 26 44Z"/>
-<path class="l-k1" d="M70 45Q71 100 70 157M114 45Q113 100 114 157M158 45Q159 100 158 157M27 82Q114 81 201 82M27 120Q114 121 201 120"/>
-<path class="l-k1 lo-key-register-s1" d="M32 56q4-4 8 0t8 0t8 0M32 66q4-3 8 0t8 0M32 94q4-4 8 0t8 0t8 0M32 104q4-3 8 0t8 0M32 132q4-4 8 0t8 0t8 0M32 142q4-3 8 0t8 0M164 56q4-4 8 0t8 0t8 0M164 66q4-3 8 0t8 0M164 94q4-4 8 0t8 0t8 0M164 104q4-3 8 0t8 0M164 132q4-4 8 0t8 0t8 0M164 142q4-3 8 0t8 0"/>
-<path class="l-k1 l-so" d="M22 48Q22 40 30 40"/>
-<path class="l-k1 lo-key-register-s1" stroke-dasharray="2 3" d="M92 50V152"/>
-<g class="lp-key-register-coins"><use href="#lp-key-register-c" x="136" y="63"/><use href="#lp-key-register-c" x="136" y="101"/><use href="#lp-key-register-c" x="136" y="139"/></g>
-<path class="l-w l-k" d="M222 189Q290 188 358 189L358 198L222 198L222 189Z"/><path class="l-k1 l-so" d="M226 193H262"/>
-<path class="l-a" opacity=".25" d="M284 104L308 112L338 189H228Z"/>
-<path class="l-k" d="M336 187L346 128L318 98"/><circle class="l-a l-k1" cx="346" cy="128" r="3.5"/>
-<path class="l-a l-k" d="M298 82L322 98L310 114L280 102Z"/><path class="l-a2" d="M282 100L310 111L307 114L281 104Z"/><path class="l-k1 l-so" d="M300 87L314 96"/>
-<path class="l-a l-k" d="M324 189Q324 180 336 180Q348 180 348 189Z"/>
-<g transform="translate(262 180) rotate(-90)"><g class="lp-key-register-key"><path class="l-a l-k1 lo-key-register-s2" d="M7-2.5H36V6H32V2.5H28V7H24V2.5H7Z"/><circle r="8" class="l-a l-k"/><circle r="2.5" class="l-i"/></g></g>
-<g class="lp-key-register-cover"><path class="l-k" d="M242 189V152Q242 129 262 129Q282 129 282 152V189"/><path class="l-k1 l-so lo-key-register-s3" d="M248 180V153Q248 138 258 135"/><path class="l-k" d="M236 190H288"/><circle class="l-c l-k1" cx="262" cy="126" r="4"/></g>
-<g class="lp-key-register-bub"><path class="l-r l-k" d="M244 14L350 14L350 44Q313 43 276 44L256 58L262 44L244 44L244 14Z"/><text class="l-t" x="297" y="33" text-anchor="middle" data-i18n="lant.lo.key-register.t.0"></text></g>
-<g transform="rotate(-4 280 216)"><g class="lp-key-register-tag"><path class="l-r l-k" d="M230 216L240 206L334 206L334 226L240 226L230 216Z"/><circle class="l-n l-k1" cx="238" cy="216" r="2.5"/><text class="l-t" x="287" y="220" text-anchor="middle" data-i18n="lant.lo.key-register.t.1"></text></g></g>
+<path class="l-k1" d="M88 47L96 35M152 47L144 35"/>
+<path class="l-a l-k" d="M64 20Q120 18 176 20L177 36Q120 38 63 36Z"/><path class="l-a2" d="M64 31Q120 33 176 31L177 36Q120 38 63 36Z"/>
+<text class="l-ti" x="120" y="31" text-anchor="middle" data-i18n="lant.lo.key-register.t.2"></text>
+<path class="l-w l-k" d="M10 50Q120 42 230 50L232 192Q120 186 8 192Z"/><path class="l-w2" d="M10 178Q120 172 230 178L231 190Q120 185 9 190Z"/>
+<path class="l-k1 lo-key-register-s1" d="M16 189l7-9M25 189l7-9M34 188l7-9M206 188l7-9M215 188l7-9"/>
+<path class="l-p l-k" d="M15 60Q68 50 120 62Q172 50 225 60L225 187Q172 177 120 189Q68 177 15 187Z"/>
+<path class="l-c" d="M18 56Q68 46 119 58L119 180Q68 170 18 180ZM121 58Q172 46 222 56L222 180Q172 170 121 180Z"/>
+<path class="l-p" d="M103 53Q112 55 119 58V180Q112 176 103 174ZM121 58Q128 55 137 53V174Q128 176 121 180Z"/>
+<path class="l-k" d="M18 56Q68 46 119 58L119 180Q68 170 18 180ZM121 58Q172 46 222 56L222 180Q172 170 121 180Z"/>
+<path class="l-k1 lo-key-register-s1" d="M16 183Q68 173 120 185Q172 173 224 183"/>
+<path class="l-k1 lo-key-register-s2" opacity=".45" d="M26 82H112M26 104H112M26 126H112M26 148H112M26 170H112M128 82H214M128 104H214M128 126H214M128 148H214M128 170H214"/>
+<use href="#lp-key-register-r" x="32" y="74"/><use href="#lp-key-register-r" x="32" y="96"/><use href="#lp-key-register-r" x="32" y="118"/><use href="#lp-key-register-r" x="32" y="140"/><use href="#lp-key-register-r" x="32" y="162"/><use href="#lp-key-register-r" x="134" y="74"/><use href="#lp-key-register-r" x="134" y="96"/>
+<path class="l-k1" d="M90 76h16M90 98h12M90 120h16M90 142h10M90 164h14M188 76h18M188 98h12"/>
+<g class="lp-key-register-old" opacity=".4"><use href="#lp-key-register-r" x="134" y="118"/><path class="l-k1" d="M188 120h16"/></g>
+<path class="lp-key-register-st l-k1 lo-key-register-s3" d="M128 119Q166 117 208 119"/>
+<g class="lp-key-register-nw"><use href="#lp-key-register-c" x="134" y="140"/><path class="l-k1 lo-key-register-s1" d="M144 142q3-3.5 6 0t6 0t6 0"/></g>
+<path class="lp-key-register-sg l-k1 lo-key-register-s3" d="M166 144q4-12 7-3q2 6 5-3q2 8 5 0q3 6 7 1q2-2 5 0"/>
+<g class="lp-key-register-ln"><circle class="l-a" opacity=".3" cx="210" cy="140" r="12"/><path class="l-k1 l-sa lo-key-register-s3" stroke-dasharray="3 4" d="M247 128Q236 114 222 132"/><path class="l-k1 l-sa lo-key-register-s3" d="M219 125L221 133L228 129"/></g>
+<circle class="l-a l-k1" cx="210" cy="140" r="7"/><path class="l-i" d="M208.2 141.5L207.4 145.5H212.6L211.8 141.5A2.4 2.4 0 1 0 208.2 141.5Z"/>
+<circle class="l-k" cx="331" cy="143" r="5.5"/><circle class="l-k1 l-sa lo-key-register-s3" cx="331" cy="143" r="5.5"/>
+<path class="l-n2 l-k" d="M240 151Q296 147 352 151Q355 174 352 196Q296 199 240 196Q237 174 240 151Z"/>
+<path class="l-n" d="M242 187Q296 190 350 187L350 194Q296 197 242 194Z"/>
+<path class="l-k1" d="M241 163Q296 167 351 163"/><path class="l-k1 l-so lo-key-register-s1" stroke-dasharray="3 3" d="M246 158Q296 161 346 158"/><path class="l-k1 l-so" d="M245 175Q244 163 248 157"/>
+<path class="l-c l-k1" d="M248 169Q296 167 344 169L344 186Q296 187 248 186Z"/>
+<text class="l-ti" x="296" y="182" text-anchor="middle" data-i18n="lant.lo.key-register.t.3"></text>
+<g class="lp-key-register-key"><path class="l-a l-k1 lo-key-register-s4" d="M313 124.5H252V140H258V135H262V140H268V131.5H313Z"/><path class="l-a2" d="M268 128.5H313V131.5H268Z"/><path class="l-k1 l-so" d="M258 127H290"/>
+<circle class="l-a l-k" cx="322" cy="128" r="10"/><path class="l-a2" d="M313 131A10 10 0 0 0 331 131A11 7 0 0 1 313 131Z"/><circle class="l-n l-k1" cx="324" cy="126" r="3.5"/></g>
+<g transform="translate(0 30)"><g class="lp-key-register-bub"><path class="l-c l-k" d="M244 14Q298 12 352 14L353 44Q336 45 322 44Q318 58 314 76Q308 58 300 44Q262 45 244 44Q242 29 244 14Z"/>
+<path class="lp-key-register-no l-k l-sr lo-key-register-s5" d="M252 30Q298 26 346 29"/>
+<text class="l-ti" x="298" y="33" text-anchor="middle" data-i18n="lant.lo.key-register.t.0"></text></g></g>
+<g transform="rotate(-2 264 220)"><g class="lp-key-register-tag"><path class="l-k1 l-so" d="M180 219Q200 200 244 195"/><path class="l-r l-k" d="M168 220L179 208L356 208L356 232L179 232Z"/><circle class="l-n l-k1" cx="179" cy="220" r="2.5"/><text class="l-t lp-key-register-t1" x="273" y="223.5" text-anchor="middle" data-i18n="lant.lo.key-register.t.1"></text></g></g>
 </svg>

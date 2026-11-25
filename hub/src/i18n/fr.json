@@ -8280,7 +8280,7 @@
       },
       "block-chain": {
         "cap": "Modifiez une ancienne opération, et le lien suivant ne correspond plus.",
-        "alt": "Quatre blocs crème reliés par des anneaux de laiton, chacun scellé d’une empreinte. La patte de Kūro modifie une ligne du deuxième bloc : le sceau qui le relie au troisième se fend, et la suite de la chaîne s’éteint."
+        "alt": "Quatre blocs crème reliés par des anneaux de laiton ; sous chaque anneau pend l’empreinte du bloc précédent : 9c1e, 47ab, d203. Une main réécrit une ligne du deuxième bloc : son empreinte devient e5f0, alors que le troisième bloc garde 47ab. Les deux ne correspondent plus : l’anneau qui les relie se rompt en rouge, et la suite de la chaîne s’éteint."
       },
       "four-layers": {
         "cap": "Autour du logo : l’identité, le système, et la marque, ce qu’on dit de vous quand vous n’êtes pas là.",
@@ -8303,14 +8303,16 @@
       },
       "key-register": {
         "cap": "Le portefeuille garde vos clés. Il ne contient pas les pièces : elles restent dans le registre.",
-        "alt": "Un registre public au mur, une rangée de pièces dans une colonne. Sous la lampe, une clé de laiton tourne et la rangée avance d’une colonne : les pièces ne quittent jamais le registre. Une bulle rouge « support » tend vers la clé ; une cloche la recouvre, avec l’étiquette « à personne ».",
+        "alt": "Un grand registre public ouvert : chaque pièce y est une ligne écrite. À côté, un petit portefeuille ne garde qu’une clé de laiton. La clé tourne, et son trait mène à la serrure d’une ligne du registre : elle signe, la pièce passe d’une ligne à la suivante, sans jamais quitter le registre. Une bulle « support ? » réclame la clé ; elle est barrée de rouge, avec l’étiquette « ne la donnez à personne ».",
         "t": {
-          "0": "« support »",
-          "1": "à personne"
+          "0": "support ?",
+          "1": "ne la donnez à personne",
+          "2": "registre public",
+          "3": "portefeuille"
         }
       },
       "last-seat": {
-        "alt": "Deux demandes arrivent en même temps par le fil de cuivre jusqu’au relais de laiton. Le relais abaisse sa barrière : une main reçoit la dernière place, l’autre une carte « complet ».",
+        "alt": "Un guichet à deux fenêtres, un seul billet sur le comptoir. Deux mains l’attrapent en même temps ; le guichet tamponne le billet d’une coche et le donne à une main, puis accroche « complet » devant l’autre fenêtre.",
         "t": {
           "0": "complet"
         }
@@ -8382,7 +8384,7 @@
       },
       "three-copies": {
         "cap": "C’est le « 1 » de 3-2-1 : une copie hors du sac, en ligne ou chez quelqu’un de confiance.",
-        "alt": "Trois fiches de fichiers : deux tombent dans le sac ouvert, sur l’ordinateur et le disque ; la troisième se pose sur une étagère, ailleurs. Une main d’ombre emporte le sac ; la copie de l’étagère reste, cochée.",
+        "alt": "Un sac besace en toile brune, à deux sangles bouclées, contient deux copies des fichiers : la fiche 1 sur l’ordinateur portable, la fiche 2 sur un disque externe, deux supports différents. La fiche 3 sort du sac et part dans une petite maison, ailleurs. Une main d’ombre saisit la poignée et emporte le sac ; la fiche 3, restée dans la maison, est cochée. En bas, trois compteurs : 3 copies, 2 supports, 1 hors du sac.",
         "t": {
           "0": "1",
           "1": "2",
