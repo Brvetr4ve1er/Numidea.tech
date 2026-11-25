@@ -11,8 +11,8 @@ Snapshot 2026-11-25 23:45 UTC. [V] = verified here, [R] = reported by a thread.
 | [#26](https://github.com/Brvetr4ve1er/Numidea.tech/pull/26) | `claude/project-thread-r84igh` @ cbe6e8b | RELEASE.md: the one-trunk rule | 01 release |
 | [#24](https://github.com/Brvetr4ve1er/Numidea.tech/pull/24) | `claude/project-thread-ogl5jr` @ 5ecaa7b | Lantern shelf: 3D hardcovers + type system | 02 typography |
 | [#20](https://github.com/Brvetr4ve1er/Numidea.tech/pull/20) | `claude/project-thread-vm2rxf` @ 17b86e3 | Characters C1–C3 | 03 characters |
-| [#18](https://github.com/Brvetr4ve1er/Numidea.tech/pull/18) | `claude/project-thread-j3qmb0` @ f328fdc | Alliance Travel case + brand book | 04 Alliance |
-| [#14](https://github.com/Brvetr4ve1er/Numidea.tech/pull/14) | `claude/project-thread-a0zy0f` @ dc26b39 | Online banking course, slice 1 | none (older project) |
+| [#18](https://github.com/Brvetr4ve1er/Numidea.tech/pull/18) | `claude/project-thread-j3qmb0` @ f328fdc | Alliance Travel case + brand book (adding 2D+3D assets now) | 04 Alliance |
+| [#14](https://github.com/Brvetr4ve1er/Numidea.tech/pull/14) | `claude/project-thread-a0zy0f` @ dc26b39 | Online banking course, slice 1 | **parked** until the RPG game loop spec (owner, 2026-11-26) |
 | [#27](https://github.com/Brvetr4ve1er/Numidea.tech/pull/27) | `claude/project-thread-n0kxe1` @ ae7247e | docs only, under `audit/handoff-2026-11-25/` | 00 |
 
 ### Merged or closed in this project [R]

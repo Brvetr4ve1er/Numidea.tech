@@ -30,7 +30,7 @@ Owner feedback trail: v1 "don't like the way the cards are laid out", "missing t
 - Motion: 90 BPM clock. Tokens `--e8` 83 ms, `--d2` 167, `--d3` 250, `--d4` 333, `--d5` 420, `--beat` 667, `--bar` 2667. Easings are in the README.
 - Behaviour [R, Chromium only]: the intro plays once per tab session (sessionStorage). It can be skipped with the button, Esc, Space or Enter, and "Rejouer l'intro" replays it. Keys 1–6 and the arrows move the selection. A click plays the wipe, then navigates. Contact (WhatsApp) opens normally. Ctrl/Cmd-click and middle-click are never intercepted. Under reduced motion there's no intro, wipe or breath, and the mesh is drawn once. With no JS, every card is a plain link. CLS was 0 at 1920, 1440, 1280 and 390 px, with no horizontal overflow and no infinite animations.
 - **Open:**
-  1. The owner must decide whether it replaces the home hero or sits above it.
+  1. **Decided 2026-11-26: it replaces the home hero.** Remove the current hero when you integrate it, and keep a single `<h1>`.
   2. Untested on Safari, Firefox and real phones, and nobody has watched it play in real time.
   3. EN/AR strings (`data-say`, `data-label`, `data-dest`, `data-kuro-say`, visible text) and the mirrored AR layout (flip `--x`, `.l`/`.r`) aren't written.
   4. There's one still pose only. The six per-section drawings don't exist; they could come from the 28 queued Magnific generators, which the owner runs free in the app.

@@ -10,7 +10,8 @@ Collected from project memory and thread decisions, 2026-11-24 to 2026-11-26. Ow
 4. **Long runs** (full verify, builds over 10 min) run in the cloud right away (owner chose this 2026-11-24, re-ask after 2026-12-24).
 5. **Credits:** zero Magnific credits (about 237 left). Stock via Magnific is not free either (40 per item). Build assets in code instead. Reading or importing existing creations is fine.
 6. **Secrets:** never handle API keys. The owner adds them in Vercel.
-7. **Feedback style:** blunt and prioritized. Say what's weak. Don't claim something looks right without rendering it (a board shipped unrendered once and the owner caught it).
+7. **One thread per feature or change** (owner, 2026-11-26). Keep PRs scoped the same way.
+8. **Feedback style:** blunt and prioritized. Say what's weak. Don't claim something looks right without rendering it (a board shipped unrendered once and the owner caught it).
 
 ## Content
 
@@ -25,6 +26,10 @@ Collected from project memory and thread decisions, 2026-11-24 to 2026-11-26. Ow
 - Art style may change per series as long as it's consistent within the series and the traits hold. Model sheet is in `BRAND.md` (on PR #20).
 
 ## Art direction
+
+- **North star (owner, 2026-11-26):** the site becomes an **RPG with learning and rewards**. The thread "Design the RPG game loop" is writing the spec, and features like the banking course (PR #14) wait for it.
+- **Home:** the intro and navigation menu (`characters/site-menu/`) **replaces the home hero**.
+- **Cinzel:** keep it on the Lanterne only and retire it everywhere else.
 
 - **Gaming / anime aesthetic** (owner, 2026-11-25), and it must carry through UI and UI typography with a real typographic system. "I know exactly what I'm doing": take inspiration from Numidea's own material.
 - References the owner gave: a STUDIO/01-style anime studio landing (condensed caps, numbered sections, label rows, tape bands, hand annotations), an orange/black game site (huge 01/02/03, diagonal tapes, layered panels, cut-out characters), and a "P5-style command menu" for the intro/nav. Pinterest board: https://pin.it/3MmukShBR

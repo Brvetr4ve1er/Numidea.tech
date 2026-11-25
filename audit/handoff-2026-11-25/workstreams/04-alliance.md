@@ -1,6 +1,6 @@
 # 04 · Alliance Travel brand package
 
-Thread: "Upgrade Alliance Travel brand package". **MOVING again at 23:55 UTC:** the owner asked it to adapt a "murmuration wordmark" (a flock of birds forming the wordmark) animation for Alliance. No output at snapshot; watch `/mnt/project-files/alliance-brand/`. Two owner questions are still open (below).
+Thread: "Upgrade Alliance Travel brand package". **MOVING again at 23:55 UTC:** the owner asked it to adapt a "murmuration wordmark" (a flock of birds forming the wordmark) animation for Alliance. No output at snapshot; watch `/mnt/project-files/alliance-brand/`. The owner has answered both open questions (below).
 
 ## Site code: draft PR #18 (`claude/project-thread-j3qmb0` @ f328fdc)
 - Case page in five chapters with 6 Magnific mockups (stationery, boarding pass, reception wall, bus shelter, fair booth, suitcase; 400 credits spent on 11-24 before the zero-credit rule), a 14-plate brand book at `/hub/brand/alliance/`, and the social kit on the case track and brand book plate 14.
@@ -14,6 +14,6 @@ Thread: "Upgrade Alliance Travel brand package". **MOVING again at 23:55 UTC:** 
 - `3d/`: code-rendered (three.js) hero suitcase scene + 6 transparent objects (suitcase, passport, ticket, plane, pin, cloud). A step simpler than the owner's clay-render reference; no globe on purpose.
 - Canvas: https://claude.ai/artifact/EqY2khQ5dVTLA4DtvQQ2NS
 
-## Open owner questions
-1. Add the 2D illustrations and 3D renders to the case page and brand book (PR #18)?
-2. Publish PR #18?
+## Owner decisions (2026-11-26)
+1. **Yes:** add both the 2D illustrations and the 3D renders to the case page and brand book in PR #18. The thread is doing it now, so wait for its push and its gates.
+2. Publishing PR #18 is the publishing session's job, after that push and a fresh verify.
