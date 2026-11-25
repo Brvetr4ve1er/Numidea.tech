@@ -1,0 +1,251 @@
+{
+  "fr": {
+    "hud": "DOSSIER CLIENT 04",
+    "sector": "Voyages et Omra",
+    "tag": "Site bilingue",
+    "track": "Nomara Voyages : les pièces du dossier",
+    "cover": {
+      "k": "SITE · AR · FR",
+      "t": "Omra et voyages organisés, au départ de Constantine",
+      "s": "Agence de voyages et d’Omra · Aïn M’lila. Un site en arabe et en français, et la réservation sur WhatsApp.",
+      "chips": [
+        "Omra et Hajj",
+        "Voyages organisés",
+        "Hôtels · billets · visa",
+        "WhatsApp"
+      ]
+    },
+    "site": {
+      "k": "SITE · EN LIGNE",
+      "h": "Choisir son voyage, puis écrire sur WhatsApp",
+      "open": "Ouvrir ↗",
+      "fl": [
+        "PAGES",
+        "LANGUES",
+        "RÉSERVATION"
+      ]
+    },
+    "omra": {
+      "k": "NV-02 · OMRA ET HAJJ",
+      "h": "Deux saisons, trois hôtels au choix",
+      "items": [
+        "L’Omra de Chawwal et l’Omra de juin",
+        "Pour chacune, trois hôtels à trois distances du Haram",
+        "Le prix comprend le vol direct depuis Constantine, l’hôtel, l’accompagnement et le visa"
+      ],
+      "alt": "La page Omra et Hajj du site de Nomara Voyages, en arabe : « نرافقك في رحلة العمر », sur fond vert"
+    },
+    "trips": {
+      "k": "NV-03 · VOYAGES ORGANISÉS",
+      "h": "Cinq destinations, une page chacune",
+      "items": [
+        "Tunisie",
+        "Turquie",
+        "Azerbaïdjan",
+        "Malaisie",
+        "Égypte"
+      ],
+      "note": "Sur chaque page : le programme, ce que le prix comprend et ce qu’il ne comprend pas.",
+      "lab": "ISTANBUL · LA PAGE",
+      "alt": "La page Istanbul du site de Nomara Voyages, en arabe : la Mosquée bleue derrière le titre « إسطنبول — تركيا »"
+    },
+    "services": {
+      "k": "NV-04 · SERVICES",
+      "items": [
+        "Réservation d’hôtels",
+        "Billets d’avion",
+        "Aide au dossier de visa"
+      ],
+      "note": "Pour chacun, la marche à suivre étape par étape, puis WhatsApp."
+    },
+    "mobile": {
+      "k": "SUR MOBILE",
+      "alt": "L’accueil du site de Nomara Voyages sur un téléphone, en arabe"
+    },
+    "system": {
+      "k": "COULEURS ET TYPE",
+      "note": "Mode clair et mode sombre"
+    },
+    "scope": {
+      "k": "LIVRÉ · NOMARA VOYAGES",
+      "n": "6 LIVRABLES",
+      "t": "Agence de voyages, du choix du voyage au message WhatsApp",
+      "note": "Chaque case se coche quand vous avez vu la pièce dans le dossier.",
+      "items": [
+        "Site bilingue AR · FR",
+        "Page Omra et Hajj",
+        "5 pages destination",
+        "3 pages de services",
+        "Version mobile",
+        "Mode clair et mode sombre"
+      ],
+      "cta": "Un projet comme celui-ci →"
+    }
+  },
+  "en": {
+    "hud": "CLIENT FILE 04",
+    "sector": "Travel and Umrah",
+    "tag": "Bilingual site",
+    "track": "Nomara Voyages: the pieces of the file",
+    "cover": {
+      "k": "SITE · AR · FR",
+      "t": "Umrah and package tours, leaving from Constantine",
+      "s": "Travel and Umrah agency · Aïn M’lila. A site in Arabic and French, with booking on WhatsApp.",
+      "chips": [
+        "Umrah and Hajj",
+        "Package tours",
+        "Hotels · flights · visas",
+        "WhatsApp"
+      ]
+    },
+    "site": {
+      "k": "SITE · LIVE",
+      "h": "Pick the trip, then write on WhatsApp",
+      "open": "Open ↗",
+      "fl": [
+        "PAGES",
+        "LANGUAGES",
+        "BOOKING"
+      ]
+    },
+    "omra": {
+      "k": "NV-02 · UMRAH AND HAJJ",
+      "h": "Two seasons, three hotels to choose from",
+      "items": [
+        "Umrah in Shawwal and Umrah in June",
+        "For each, three hotels at three distances from the Haram",
+        "The price covers the direct flight from Constantine, the hotel, the guide and the visa"
+      ],
+      "alt": "The Umrah and Hajj page of the Nomara Voyages site, in Arabic: “نرافقك في رحلة العمر” on a green ground"
+    },
+    "trips": {
+      "k": "NV-03 · PACKAGE TOURS",
+      "h": "Five destinations, a page each",
+      "items": [
+        "Tunisia",
+        "Turkey",
+        "Azerbaijan",
+        "Malaysia",
+        "Egypt"
+      ],
+      "note": "On each page: the programme, what the price covers and what it does not.",
+      "lab": "ISTANBUL · THE PAGE",
+      "alt": "The Istanbul page of the Nomara Voyages site, in Arabic: the Blue Mosque behind the title “إسطنبول — تركيا”"
+    },
+    "services": {
+      "k": "NV-04 · SERVICES",
+      "items": [
+        "Hotel booking",
+        "Plane tickets",
+        "Help with the visa file"
+      ],
+      "note": "For each, the steps one by one, then WhatsApp."
+    },
+    "mobile": {
+      "k": "ON A PHONE",
+      "alt": "The home page of the Nomara Voyages site on a phone, in Arabic"
+    },
+    "system": {
+      "k": "COLOUR AND TYPE",
+      "note": "Light mode and dark mode"
+    },
+    "scope": {
+      "k": "DELIVERED · NOMARA VOYAGES",
+      "n": "6 DELIVERABLES",
+      "t": "A travel agency, from picking the trip to the WhatsApp message",
+      "note": "Each box ticks once you have seen the piece in the file.",
+      "items": [
+        "Bilingual site AR · FR",
+        "Umrah and Hajj page",
+        "5 destination pages",
+        "3 service pages",
+        "Mobile version",
+        "Light and dark mode"
+      ],
+      "cta": "A project like this one →"
+    }
+  },
+  "ar": {
+    "hud": "ملف العميل 04",
+    "sector": "سياحة وعمرة",
+    "tag": "موقع ثنائي اللغة",
+    "track": "نومارا للسياحة والأسفار: قطع الملف",
+    "cover": {
+      "k": "الموقع · العربية · الفرنسية",
+      "t": "العمرة والرحلات المنظمة، انطلاقاً من قسنطينة",
+      "s": "وكالة سياحة وعمرة · عين مليلة. موقع بالعربية والفرنسية، والحجز عبر واتساب.",
+      "chips": [
+        "العمرة والحج",
+        "الرحلات المنظمة",
+        "الفنادق · التذاكر · التأشيرة",
+        "واتساب"
+      ]
+    },
+    "site": {
+      "k": "الموقع · على الإنترنت",
+      "h": "اختر رحلتك، ثم راسلنا على واتساب",
+      "open": "فتح ↗",
+      "fl": [
+        "الصفحات",
+        "اللغات",
+        "الحجز"
+      ]
+    },
+    "omra": {
+      "k": "NV-02 · العمرة والحج",
+      "h": "موسمان، وثلاثة فنادق للاختيار",
+      "items": [
+        "عمرة شوّال وعمرة جوان",
+        "لكلّ منهما ثلاثة فنادق على ثلاث مسافات من الحرم",
+        "يشمل السعر الطيران المباشر من قسنطينة والفندق والمرافقة والتأشيرة"
+      ],
+      "alt": "صفحة العمرة والحج في موقع نومارا للسياحة والأسفار: «نرافقك في رحلة العمر» على خلفية خضراء"
+    },
+    "trips": {
+      "k": "NV-03 · الرحلات المنظمة",
+      "h": "خمس وجهات، لكلّ منها صفحتها",
+      "items": [
+        "تونس",
+        "تركيا",
+        "أذربيجان",
+        "ماليزيا",
+        "مصر"
+      ],
+      "note": "في كل صفحة: البرنامج، وما يشمله السعر، وما لا يشمله.",
+      "lab": "إسطنبول · الصفحة",
+      "alt": "صفحة إسطنبول في موقع نومارا للسياحة والأسفار: المسجد الأزرق خلف عنوان «إسطنبول — تركيا»"
+    },
+    "services": {
+      "k": "NV-04 · الخدمات",
+      "items": [
+        "حجز الفنادق",
+        "تذاكر الطيران",
+        "المساعدة في ملف التأشيرة"
+      ],
+      "note": "لكلّ خدمة خطواتها واحدة بواحدة، ثم واتساب."
+    },
+    "mobile": {
+      "k": "على الهاتف",
+      "alt": "الصفحة الرئيسية لموقع نومارا للسياحة والأسفار على هاتف"
+    },
+    "system": {
+      "k": "الألوان والخطوط",
+      "note": "وضع فاتح ووضع داكن"
+    },
+    "scope": {
+      "k": "سُلِّم · نومارا للسياحة والأسفار",
+      "n": "6 مُخرَجات",
+      "t": "وكالة سفر، من اختيار الرحلة إلى رسالة واتساب",
+      "note": "تُعلَّم كل خانة عندما ترى القطعة في الملف.",
+      "items": [
+        "موقع ثنائي اللغة (العربية والفرنسية)",
+        "صفحة العمرة والحج",
+        "5 صفحات للوجهات",
+        "3 صفحات للخدمات",
+        "نسخة الهاتف",
+        "وضع فاتح ووضع داكن"
+      ],
+      "cta": "مشروع مثل هذا ←"
+    }
+  }
+}

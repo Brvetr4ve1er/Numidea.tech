@@ -1866,9 +1866,33 @@
           }
           at = i;
         };
+        /* Studio opens, so the lowest price on the page sat behind a tab: one
+           line above the tabs says where the tiers start ("dès 90 000 DA
+           (Essentiel)"), from the cheapest card's own PRICE_MODEL floor and
+           name, in the shown currency. It goes with the tabs: from 961px the
+           three cards stand side by side and it is hidden (styles.css). */
+        var from = document.createElement('p');
+        from.className = 'tier-from';
+        var floor = function () {
+          var low = null, nm = '';
+          cards.forEach(function (c) {
+            var r = c.querySelector('.t-range[data-tier]'), m = r && PRICE_MODEL[r.getAttribute('data-tier')], h = c.querySelector('h3');
+            if (m && (low === null || m.base[0] < low)) { low = m.base[0]; nm = h ? h.textContent : ''; }
+          });
+          from.hidden = low === null;
+          if (low === null) return;
+          var parts = t('price.from').split('{p}'), b = document.createElement('b');
+          b.textContent = (CUR === 'DZD' ? '' : '≈ ') + pre(CUR) + grp(shown(low, CUR)) + (post(CUR) ? ' ' + post(CUR) : '');
+          from.textContent = parts[0];
+          from.appendChild(b);
+          from.appendChild(document.createTextNode((parts[1] || '').replace('{n}', nm)));
+        };
         var first = cards.findIndex(function (c) { return c.classList.contains('tier-pop'); });
-        names(); pick(first < 0 ? 0 : first);
+        names(); pick(first < 0 ? 0 : first); floor();
         tiers.parentNode.insertBefore(sw, tiers);
+        tiers.parentNode.insertBefore(from, sw);
+        document.addEventListener('numidea:cur', floor);
+        document.addEventListener('numidea:lang', floor);
         tiers.classList.add('tt');
         document.addEventListener('numidea:lang', names);
         if (window.matchMedia('(max-width: 720px)').matches) cards.forEach(function (c) { var d = c.querySelector('.t-incl'); if (d) d.open = false; });
@@ -1893,7 +1917,7 @@
           b.addEventListener('click', function (e) { e.stopPropagation(); flip(); });
           // a tap on the title or the tagline does the same (a pointer's reach; the button is the keyboard's)
           row.addEventListener('click', function (e) {
-            if (e.target.closest('a, button, .brief, .tags, .fam')) return;
+            if (e.target.closest('a, button, .brief, .fam')) return;
             if (window.matchMedia('(max-width: 960px)').matches) flip();
           });
         });
@@ -2479,8 +2503,8 @@
     var skio = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
       es.forEach(function (e) { e.target.classList.toggle('sk-run', e.isIntersecting && !e.target.classList.contains('sk-done')); });
     }) : null;
-    [].forEach.call(document.querySelectorAll('.proj .thumb img.shot, .plate img.pl, .fd-photo img'), function (img) {
-      var box = img.closest('.thumb, .plate, .fd-photo'); if (!box || (img.complete && img.naturalWidth)) return;
+    [].forEach.call(document.querySelectorAll('.proj .thumb img.shot, .plate img.pl'), function (img) {
+      var box = img.closest('.thumb, .plate'); if (!box || (img.complete && img.naturalWidth)) return;
       box.classList.add('sk');
       if (skio) skio.observe(box); else box.classList.add('sk-run');
       var done = function () {

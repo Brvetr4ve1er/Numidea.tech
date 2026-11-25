@@ -13,12 +13,12 @@ what the Studio page changed from your design).
 |---|---|---|---|
 | 1 | Legal notice + privacy details | **Missing (16 fields; 5 in three languages)**; "later" (owner, 2026-10-30): the pages stay unpublished, the slots stay empty | `scripts/legal-data.mjs` |
 | 2 | Client quotes, with consent | None yet | `scripts/voices-data.mjs` |
-| 3 | Founder photo | Still open: none yet (checked 2026-11-24). No monogram or stand-in face shows: since 2026-11-08 the card's right column holds the engraved Arch of Trajan plate, which stays; the photo goes beside the name in the `.fd-photo` slot, commented out in `index.html` until the file exists | `assets/founder.webp` |
+| 3 | Founder photo | Closed 2026-11-24 (wave 3): no photo ("thats me and id like to use animated ones or artworks instead"). The drawn Yasser is the founder's face: the night plate on the home's founder card, the rig on the Studio. The `.fd-photo` slot, its CSS and the "photo awaited" notes are gone | `index.html` #founder (nothing to supply) |
 | 4 | Team names and photos; the team-size claim | Answered 2026-10-30 and applied on 2026-11-03: one founder, with freelancers when a project calls for them (section 17). The page shows one team row, no initials and no photos | `index.html` #founder, `assets/i18n/*.js` (`team.*`) |
-| 5 | A studio email on its own domain | Personal Gmail in use; it stays for now (owner, 2026-10-30) | everywhere one address appears |
+| 5 | A studio email on its own domain | Personal Gmail in use; it stays for now (owner, 2026-10-30; no answer again on 2026-11-24, so it stays) | everywhere one address appears |
 | 6 | Clients' permission to appear in paid ads | Not asked yet | campaign kit (not in this repo) |
-| 7 | Nomara Voyages: client or not? | Unconfirmed | `index.html` work grid, client logo strip |
-| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03, 2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14, 2026-11-19 and 2026-11-21 (the recovery's new Studio, brand-book and home keys; the theme toggle's two labels; the Studio page and its five cases above all; on 2026-11-19 the two client courses, la fabrique and the alt texts of the owner's placed artworks, §38 to §41; on 2026-11-21 the courses' critique fixes and the web3 course's nine modules, 1,770 strings, §42; on 2026-11-22 and 2026-11-23 the Librairie's volume 2, toolbox and night cases; on 2026-11-24 the audit fix pass, 95 strings) is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
+| 7 | Nomara Voyages: client or not? | Answered 2026-11-24 (wave 3): a delivered client site. The fourth everywhere: the home, its sheet on /scene/ (sheet 04), its case on the Studio (client file 04) | `index.html`, `scripts/scene-data.mjs`, `hub/src/cases/nomara.html` |
+| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03, 2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14, 2026-11-19 and 2026-11-21 (the recovery's new Studio, brand-book and home keys; the theme toggle's two labels; the Studio page and its five cases above all; on 2026-11-19 the two client courses, la fabrique and the alt texts of the owner's placed artworks, §38 to §41; on 2026-11-21 the courses' critique fixes and the web3 course's nine modules, 1,770 strings, §42; on 2026-11-22 and 2026-11-23 the Librairie's volume 2, toolbox and night cases; on 2026-11-24 the audit fix pass, 95 strings, then wave 3's work, founder and services strings, listed at the end of this file) is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
 | 9 | Clients' own domains | None verifies | `scripts/verify-domains.mjs` |
 | 10 | Hub fan art | No fan art on the site since 2026-10-28 (still in git history). Not live: nothing has deployed since 2026-10-25, GitHub Actions being blocked on billing (RELEASE.md, "Outage and fallback") | git history of `hub/` |
 | 11 | Supabase lead store | Off on purpose | `index.html`, `scripts/legal-data.mjs` |
@@ -89,13 +89,20 @@ WorkspaceHQ). Only Bordj Steel, Alliance Travel, AlmaFlowClim and Nomara
 Voyages can be quoted. Get written agreement to the exact text.
 
 ## 3. Founder photo
-A real photo, never a generated face: square, at least 400 px, saved as
-`assets/founder.webp`. In `index.html` (#founder, `.fd-photo`), uncomment the
-`<img>` line; the monogram steps aside. Run `npm run bump`. Still open on 2026-11-06.
-No stand-in face or monogram stands in the card meanwhile (the old 'Y' mark is gone). Since
-2026-11-08 (Fleet 6 round 2) the card's right column holds an engraved plate instead, the Arch of
-Trajan at Timgad (`assets/illus/arch.webp`, the studio's own atlas, Pl. III), with crop marks and a
-caption, and it stays when the photo arrives: the photo goes beside the name (`.fd-photo`).
+**Closed on 2026-11-24 (wave 3), your answer: "thats me and id like to use
+animated ones or artworks instead".** There is no photograph to send. The
+founder's face is the drawn Yasser: on the home, the painted night plate in
+the founder card's right column (`assets/illus/founder-night-*`, since
+2026-11-19); on the Studio, the animated Yasser (the rig). The commented
+photo slot (`.fd-photo`) left `index.html`, with its CSS, its line in
+`assets/app.js` and the notes that waited for a photo (here, BRAND.md,
+README.md, RELEASE.md). The home's plate holds still: the rig is another
+drawing, with its own motion rule, and stays on the Studio; say if you want an
+animated Yasser on the home card too, and it is a new piece to draw within the
+motion rules (nothing loops, at most 5 s, nothing under reduced motion).
+
+Before 2026-11-24 the slot waited for a square photo of at least 400 px
+(`assets/founder.webp`), beside the name.
 
 ## 4. Team
 **Answered on 2026-10-30: one founder, with freelancers when needed** (section
@@ -121,6 +128,15 @@ written permission before they run in paid ads. An email or WhatsApp message
 is enough; keep it.
 
 ## 7. Nomara Voyages
+**Answered 2026-11-24 (wave 3): a delivered client site.** Nomara is the
+fourth delivered client everywhere: the home (plate, logo strip, its card,
+which now leads to its sheet), /scene/ (sheet 04, read off its live pages
+that day) and the Studio (client file 04, `hub/src/cases/nomara.html`, built
+from what the site shows: no charter or posters were made for it, so the
+case holds the site's own pieces). Its live address stays
+`nomaravoyages.netlify.app` until you send its Vercel address (section 3 of
+wave 3). The text below is the question as it stood.
+
 Shown as delivered work. Confirm it is a real client with permission to show
 the site; otherwise it comes off the work grid, the hero plate, the counts and
 the client logo strip (its `<li>` in index.html, `assets/clients/nomara.webp`,
@@ -138,7 +154,7 @@ item 6 can cover it.
 **Every Arabic string added or changed on 2026-10-31, 2026-11-03,
 2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14, 2026-11-15, 2026-11-19, 2026-11-21, 2026-11-22, 2026-11-23 and 2026-11-24 awaits native review** (the lists are at the end of this section,
 "Written on 2026-10-31", "Written or changed on 2026-11-03", "Written or
-changed on 2026-11-06", "Written or changed on 2026-11-07", "Written or changed on 2026-11-08", "Written or changed on 2026-11-11", "Written or changed on 2026-11-14", "Written or changed on 2026-11-15", "Written or changed on 2026-11-19", "Also written on 2026-11-19", "Written or changed on 2026-11-21", "Written or changed on 2026-11-22", "Written or changed on 2026-11-23" (with §47b) and "Written or changed on 2026-11-24"); nothing Arabic written by the fix fleets has been
+changed on 2026-11-06", "Written or changed on 2026-11-07", "Written or changed on 2026-11-08", "Written or changed on 2026-11-11", "Written or changed on 2026-11-14", "Written or changed on 2026-11-15", "Written or changed on 2026-11-19", "Also written on 2026-11-19", "Written or changed on 2026-11-21", "Written or changed on 2026-11-22", "Written or changed on 2026-11-23" (with §47b), "Written or changed on 2026-11-24" and §50, the Lantern objects and the banking-course panels); nothing Arabic written by the fix fleets has been
 read by a native speaker.
 
 The Arabic copy was written for this site and needs a native speaker's pass.
@@ -646,8 +662,8 @@ detached alpha speck (`face-smirk.webp` 90 px, `rig-y-glasses.webp` 49 px,
 they are intended or have them cut.
 The Studio has no contact form (WhatsApp, the Aperçu and e-mail only), so the
 sent-form seal exists on the home's form only; the estimator seal is on the
-home, the price guide and the Studio. The real photograph of Yasser (section 3)
-still replaces the drawn portrait where the home's founder card keeps its slot.
+home, the price guide and the Studio. (Section 3 is closed since 2026-11-24:
+no photograph; the drawn portrait is the founder's face.)
 
 Written or changed on 2026-11-19 (the manual's two client courses, §38; none
 read by a native speaker; every string is **AR: native review**). In
@@ -828,10 +844,13 @@ In `assets/i18n/ar.js`:
 - `work.demoLive` (new) « زيارة موقع Glaive Store ↗ » (French: « Voir Glaive Store ↗ »)
 - `footer.whq` (new) « أداتنا WorkspaceHQ بالإنجليزية » (French: « WorkspaceHQ, notre outil (EN) »)
 - `c5.brief` (changed, the fix round's last pass: the model's name taken out under the no-AI-names rule) « أدوات داخلية ومولّدات ومساعدات مخصّصة: مهمّة متكرّرة تنطلق بنقرة واحدة. » (French: « Outils internes, générateurs et assistants sur mesure : une tâche répétitive se lance en un clic. »)
+- `price.from` (new, wave 2, Q-16: the line above the home's phone price tabs; {p} is the lowest tier's floor with its currency, {n} the tier's name, both written by the page) « ابتداءً من {p} ({n}) », shown as « ابتداءً من 90 000 دج (الأساسي) » (French: « dès {p} ({n}) », shown as « dès 90 000 DA (Essentiel) »)
 
 In `hub/src/i18n/ar.json`:
 - `nav.accueil` (new) « الرئيسية » (French: « Accueil »)
 - `nav.cta` (changed) « معاينة مجانية » (French: « Aperçu gratuit »)
+- `hero.kicker` (changed, wave 2, Q-06: web first; the heading is unchanged) « / استوديو ويب وبرمجيات · برج بوعريريج · FR·EN·AR » (French: « / STUDIO WEB ET LOGICIEL · BORDJ BOU ARRÉRIDJ · FR·EN·AR »; the page's title already said « استوديو ويب وبرمجيات »)
+- `lab.more` (changed, wave 2, Q-05: the Marvel-logo piece A01 left the Lab, 35 pieces now) « عرض القطع الـ35 كلّها » (French: « Voir les 35 pièces »)
 - `hero.sub` (changed) « مواقع وتطبيقات وأتمتة وهويات بصرية، تُصمَّم وتُبرمَج بنفس الأيدي. المعاينة: صفحتك الرئيسية قبل أن تدفع. » (French: « Sites, applications, automatisations et identités, conçus et codés par les mêmes mains. L’Aperçu : votre page d’accueil, avant de payer. »)
 - `hero.cta1` (changed) « اطلب معاينتك المجانية » (French: « Demander mon Aperçu gratuit »)
 - `services.lead` (changed) « أربع عائلات من الخدمات. بعد سداد ثمن العمل كاملًا يصبح ملكك: الكود وملفات التصميم والمحتوى. » (French: « Quatre familles de services. Une fois le travail payé en entier, il vous appartient : le code, les fichiers de design et le contenu. »)
@@ -1157,8 +1176,8 @@ answer.
   OS preference (Daylight if it asks for light, Arcanum otherwise, nothing
   stored until they press the toggle). Decision 32 (heading faces) is moot:
   both themes set Cinzel.
-- **Founder photo** (section 3): the monogram is a 64 px mark meanwhile; the
-  slot takes the file as it is.
+- **Founder photo** (section 3): closed on 2026-11-24, no photograph; the
+  drawn Yasser is the founder's face.
 - **Hero lede** (decision 33): the reviewers want it cut to two lines, the
   founder sentence moved to the founder section or the Aperçu card. That
   reverses your decision 21 (the founder named in the lede). The other way:
@@ -1445,7 +1464,9 @@ CV)**
 - permission to show Bordj Steel's figures and logos, the clients' work, and
   Heetch's posters on a portfolio; "Chez Heetch depuis mai 2026" (the CV);
   "temps plein" and "Heetch Pro" were left out;
-- the AlmaFlow mockups show a phone number (07 55 01 60 13) and "Intervention
+- (answered 2026-11-24, "leave them empty": the number and the email are gone
+  from the pictures and the posts; the 24 h promise stays as drawn) the
+  AlmaFlow mockups show a phone number (07 55 01 60 13) and "Intervention
   sous 24h" and "Devis gratuit" in the pictures themselves, and the cards show
   contact@almaflowclim.fr; they are tagged MAQUETTE. Re-render without the
   number and the 24 h promise, or keep them?
@@ -2295,7 +2316,7 @@ session's notes (2026-11-18); this is what landed. Nothing is committed yet.
   "2,7 s · à chaque visite").
 
 **What changed on the home and its pages**: the founder's painted night
-plate (the photo slot stays for your real photograph), five small drawings
+plate (no photograph since 2026-11-24: the drawing is the face, section 3), five small drawings
 for the services on wide screens, the 404's road at night, Kūro's window by
 the FAQ, better crops of the hero plate and the atelier scene on phones; the
 price guide's ranges on a receipt with a "Prix publié" seal and a panel
@@ -11218,9 +11239,9 @@ Nothing below was decided for you; each item stays as it is until you answer.
   (short « Aperçu gratuit » in the nav and docks, long « Demander mon Aperçu gratuit » on the buttons) is on every page.
 - **Wording you approved, left alone:** the doors' premise (`doors.premise`) is unchanged; on the world page it now
   sits under the new lead (`world.note`), which says dossier 08 includes client work.
-- **Waiting on you (the plan's owner questions):** the Numidea brand book's closing band waits for your sign-off or
-  unlinking of the draft book (Q-04); the Marvel-logo piece A01 is still on the Lab wall (Q-05; if it goes, the Lab's
-  balanced order is measured again); the founder photo (Q-02, item 3); Nomara Voyages (Q-01, item 7).
+- **Waiting on you (the plan's owner questions):** the founder photo (Q-02, item 3); Nomara Voyages (Q-01, item 7). Both answered on 2026-11-24 (wave 3).
+  The draft Numidea brand book (Q-04) and the Marvel-logo piece A01 (Q-05) were settled by default on 2026-11-24
+  (§49): the book is unlinked until you sign it off, A01 is off the Lab wall and its order measured again.
 - **Flagged, not changed:** `workspacehq/index.html` names the AI model behind WorkspaceHQ's features in its meta
   description, hero, features, changelog, FAQ and footer. That describes the product's real features, but it conflicts
   with the rule that the site names no AI model or tool; say whether to keep it as product description or reword it.
@@ -11228,3 +11249,790 @@ Nothing below was decided for you; each item stays as it is until you answer.
   the sitemap; taking it out needs three changes made together (its `noindex`, the sitemap filter in
   `scripts/build-sitemap.mjs`, the noindex allow-list in `scripts/check.mjs`). The Studio's whole-page type restyle
   (S-28) was not done: it would move the five cases off their client faces, which BRAND.md treats as part of each case.
+
+## 49. Decisions taken by default while you were away (2026-11-24)
+
+You asked us to keep improving the site until you came back. Of the plan's owner questions, only those whose
+recommendation is reversible and needs no fact from you were taken, each on the recommended default. Each was taken
+by default on 2026-11-24 while you were away; each is reversible; say the word to undo. Nothing was invented: no
+client, figure, quote or picture was added. The two sections after this one give the detail by page;
+BRAND.md carries the rules that changed.
+
+| Question | What changed | How to undo |
+|---|---|---|
+| **Q-04** the draft Numidea brand book | Unlinked from every page: the Studio's `#brand` button « Notre propre marque, planche par planche → », the Numidea card's link in the brand atlas's picker, the exploration page's seven links (now to the Studio) and its plate 16 link (now to the character bible). The book stays at `/hub/brand/numidea/`, with `noindex` and out of the sitemap. | Put back `brand.more` and `brandc.items.3.spec.go[2]` (quoted in the Studio section below) and the links; remove the book from `NOINDEX_PAGES` in `scripts/build-sitemap.mjs` and its `noindex` meta. |
+| **Q-05, half** the Marvel-logo piece A01 | « REBEL BOY » is off the world page's Lab wall and its file `hub/img/studio/lab/c01.webp` is deleted (nothing else used it); the Lab says « Voir les 35 pièces » and its order was measured again for even columns. | Restore the file from git and its line in `hub/src/monde.html`; `lab.more` back to 36. |
+| **Q-06** the Studio's first label | « / STUDIO WEB ET LOGICIEL · BORDJ BOU ARRÉRIDJ · FR·EN·AR » (was « STUDIO LOGICIEL »). Your heading « Votre idée. Une seule main. Votre logiciel. » is unchanged. | `hero.kicker` in the three `hub/src/i18n/*.json`. |
+| **Q-07** the Studio's intro (the character sting) | Plays on a bare `/hub/` visit only. Arriving on a section (`/hub/#pricing`, `#contact`, la fabrique's « Chiffrer une animation ») lands on it at once, with no cover. The hero's replay control still plays it anywhere. | `location.hash.length<2` in the head script of `hub/src/page.html` and `deep()` in `hub/app.js`, section 1. |
+| **Q-08** the founder's extras | The night desk, the three modes, « Pause café » and the two polaroids left the Studio's `#studio` for the workshop diary on `hub/monde.html`. The polaroid « LE BUREAU » now shows the Studio's daylight desk (`desk3.webp`, its alt « Yasser à son bureau, dans un loft baigné de lumière, Kūro au fond ») instead of the sunset picture, which the diary already prints as J07; the other alt text is unchanged. The Studio keeps the plate and the facts. | Move the blocks back from `hub/src/monde.html` to the Studio's founder block (`hub/src/page.html`) and their CSS. |
+| **Q-10** « Le jeu juste » | Each of the eight levels ends with a real sorting exercise built only from that level's lesson text and its listed sources; a level is done when its situation is answered right and every row is in its place. « Je passe l'exercice » stays. | Restore `hub/src/lanterne/atlases/jeu.json` and `hub/src/lanterne/ex/jeu/g1.html` to `g8.html` from git (or remove the `.st-crs` sort block from each of the eight partials, and in `jeu.json` put back `"ex": "pick"`, drop `done`, and restore each level's `keys` `ex.t` and `ex.brief` to `lant.ui.ex.pick.t` and `lant.ui.ex.pick.brief`). The new `lant.at.jeu.d.*.sort`, `lant.at.jeu.d.*.ex.t` and `lant.ui.ex.sort.*` keys can stay or go. |
+| **Q-11** « Commencer ici » | The brand atlas (Marque), on its shelf card as before and now also as a first-step link in the shelf's first screen. | Remove `lant.shelf.heroStart` and its hole in `hub/src/lanterne/shelf.html`; the start book is `"start": true` in `hub/src/lanterne/shelf.json`. |
+| **Q-12** the Revolut card | Kept, with the reworded visitor note; no change. | Remove its entry (`"id": "revolut"`) from `hub/src/lanterne/apps.json`. |
+| **Q-15** the character bible | A short French opening under the name (`lang="fr"`): what the page is and that the rest is in English. No Arabic yet. | Delete the `<p class="fr">` in `hub/bible/index.html` and its rule in `hub/bible/style.css`. |
+| **Q-16** the home's phone prices | Up to 960 px, a line above the price tabs: « dès 90 000 DA (Essentiel) » (EN "from 90,000 DZD (Essential)", AR « ابتداءً من 90 000 دج (الأساسي) »), taken from the Essentiel card's own price in the shown currency, so no new price. Studio stays the open, recommended tab. Hidden on desktop, where the three cards stand side by side. | Remove the `floor()` block in the tier tabs of `assets/app.js`, `.tier-from` in `assets/styles.css` and `price.from` in `assets/i18n/*.js`. |
+| **E-05** the night cases' page | `hub/lanterne/enquetes.html` has the Librairie's mark in its bar and the same foot as the atlases (the way back, the radio chip, the colophon and its links). | `stFoot` and `WM` in `scripts/lib/enquetes.mjs`. |
+
+Not taken, as recommended: Q-09 (the Studio stays a full sales page for now), Q-17 (la fabrique's courses stay
+there), Q-18 (no shared site bar).
+
+**New Arabic for the native reader (AR: native review; none read by a native speaker yet).** Each is also in the
+lists above, with its French:
+- `hero.kicker` (changed) « / استوديو ويب وبرمجيات · برج بوعريريج · FR·EN·AR » (French: « / STUDIO WEB ET LOGICIEL · BORDJ BOU ARRÉRIDJ · FR·EN·AR ») — §8, `hub/src/i18n/ar.json`.
+- `lab.more` (changed) « عرض القطع الـ35 كلّها » (French: « Voir les 35 pièces ») — §8, `hub/src/i18n/ar.json`.
+- `founder.deskAlt` (changed) « ياسر في مكتبه داخل لوفت غامر بالضوء، وكورو في الخلفية » (French: « Yasser à son bureau, dans un loft baigné de lumière, Kūro au fond »): the polaroid « LE BUREAU » now shows the Studio's daylight desk; the same words as the Studio's service card (`services.items.0.alt`) — `hub/src/i18n/ar.json`.
+- `price.from` (new) « ابتداءً من {p} ({n}) », shown « ابتداءً من 90 000 دج (الأساسي) » (French: « dès {p} ({n}) ») — §8, `assets/i18n/ar.js`.
+- `lant.shelf.heroStart` (new) « أول زيارة؟ ابدأ من هنا: علامتك، قبل الشعار. » (French: « Première visite ? Commencez ici : la marque, avant le logo. »).
+- The exercises of « Le jeu juste », 116 new keys: the five shared lines `lant.ui.ex.sort.brief`, `.match`, `.other`,
+  `.score`, `.done`, and for each level g1 to g8 its title `lant.at.jeu.d.<level>.ex.t`, its label `.sort.aria`, its
+  boxes `.sort.bins.*` and its rows `.sort.rows.*.k` with their reasons `.sort.rows.*.why`. Every one is written out,
+  Arabic beside French, at the end of « Wave 2, the Librairie » below. The reasons cite studies by author and year
+  (Sailer and Homner, Koivisto and Hamari, Nunes and Drèze, Kivetz, Lepper, Hanus and Fox…): the reader should check
+  that names and figures read correctly in Arabic.
+The two strings removed with Q-04 (`brand.more`, `brandc.items.3.spec.go[2]`) need no review.
+
+**Still waiting on you** (facts, art or accounts; nothing changes until you answer):
+- **Q-01** Is Nomara Voyages a client? The home says « 4 sites livrés » and shows Nomara; the Studio and /scene/ say three (item 7).
+- **Q-02** A real founder photo for the home's `#founder` (item 3). *Answered 2026-11-24: no photo, the drawings instead (wave 3).*
+- **Q-03** Ask Bordj Steel, Alliance Travel and AlmaFlow to point their domains at the builds (item 9).
+- **Q-05, the other half: the robot drawing.** The companion « Le robot » in the tr4veler codex is a *The Matrix*
+  poster (`hub/brand/traveler/img/matrix.webp`, plates 08 and 14). It stays until you send an original drawing.
+- **Q-13** The home's founder block: confirm each delivery line (what was delivered, when) before the CV download and
+  the notebook link go and the Alliance Travel line is rewritten as deliveries. *Answered 2026-11-24 ("make it good"):
+  done in wave 3, the lines drafted from the site's own facts (section « Wave 3, the founder… » below).*
+- **Q-14** The home's services lead and « Le choix évident. » around a result: send or approve the outcome sentence.
+  *No answer; drafted on 2026-11-24 (wave 3), reversible (section « Wave 3, the founder… » below).*
+- **Q-19** AlmaFlow's mock-ups show 07 55 01 60 13 and contact@almaflowclim.fr: real, or replace with the reserved
+  01 99 00 12 34? *Answered 2026-11-24: "leave them empty". Done in wave 3: no number and no email in the book's
+  mock-ups or posts (section « Wave 3, the founder… » below).*
+- **Q-20** The contact address: the personal Gmail, or an address on numedialab.dev (item 5).
+
+## Wave 2, the Studio and the world (2026-11-24): taken by default while you were away
+
+Each item below was taken by default on 2026-11-24 while you were away; each is reversible; say the word to undo. No
+fact was invented. BRAND.md carries the rules that changed.
+- **Q-06, the Studio's first label** now says web first: « / STUDIO WEB ET LOGICIEL · BORDJ BOU ARRÉRIDJ · FR·EN·AR »
+  (EN « / WEB AND SOFTWARE STUDIO · … », AR « / استوديو ويب وبرمجيات · … », listed above for the native reader). Your
+  heading « Votre idée. Une seule main. Votre logiciel. » is unchanged. To undo: `hero.kicker` in the three
+  `hub/src/i18n/*.json`.
+- **Q-07, the Studio's intro** (the character sting) plays on a bare `/hub/` visit only. A visitor who arrives on a
+  section (`/hub/#pricing`, `#contact`, la fabrique's « Chiffrer… » buttons, any `#…` link) lands on it at once. The
+  replay control in the hero still plays it anywhere. To undo: `location.hash.length<2` in the head script of
+  `hub/src/page.html` and `deep()` in `hub/app.js` 1.
+- **Q-08, the founder's extras moved to the world page**: the night desk, the three modes (MODE TRAVAIL, CAFÉ, CHAT),
+  « Pause café · Kūro surveille » and the two polaroids (LE BUREAU, LES STICKERS) left the Studio's `#studio` for the
+  workshop diary on `hub/monde.html#diary`, with their alt text unchanged but for one polaroid (below). The night desk was already the diary's
+  head picture; it now carries the Studio's description of it instead of none. The three modes sit under the diary's
+  title, the coffee break and the polaroids close the strip. The Studio's founder block keeps the plate and the facts
+  (name, role, bio, the bible and CV links, the quote and motto, the two team cards). Note: the three modes are pictures
+  the diary already prints as J06, J01 and J03; say if you prefer them out of one of the two places. The « LE BUREAU »
+  polaroid printed the sunset picture, J07 of the same strip, about 150 px above it on a desktop: it now prints the
+  Studio's daylight desk (`desk3.webp`, which the world page did not show), with that picture's alt text in three
+  languages. The two polaroid captions are in ink on their paper (they had taken the night diary's cream and could not
+  be read).
+- **Q-04, the Numidea brand book** (draft 0.1) is no longer linked from any page: the Studio's brand section (the
+  button « Notre propre marque, planche par planche → », EN « Our own brand, plate by plate → », AR « هويتنا الخاصة،
+  لوحةً لوحة ← »), the Numidea card in the brand atlas's character picker (« Ouvrir le livret de marque de Numidea
+  Labs », EN « Open the Numidea Labs brand book », AR « افتح كتيّب علامة Numidea Labs ») and the exploration page
+  (its links now go to the Studio, and plate 16 to the character bible). The book stays at its address
+  (`/hub/brand/numidea/`) with `noindex` and out of the sitemap, as the exploration is. To re-link once you sign it
+  off: put those strings and links back, and remove it from `NOINDEX_PAGES` (`scripts/build-sitemap.mjs`) and its
+  `noindex` meta.
+- **Q-05, half: the Marvel-logo piece A01** (« REBEL BOY ») is off the Lab wall and its file is deleted (nothing
+  else used it). Its alt text stays in the dictionaries as `lab.pieces.23` so the other pieces keep their numbers.
+  The Lab's « Voir les 36 pièces » now opens on 35; its order was measured again (BRAND.md).
+- **Waiting on you, art: the robot in the tr4veler codex.** The companion « Le robot » in
+  `hub/brand/traveler/` is a *The Matrix* poster (`img/matrix.webp`, alt « Affiche The Matrix lair : le robot »):
+  third-party artwork, shown in plate 08 and again as the round medal of carousel image 4 in plate 14, beside merch
+  mock-ups. It needs an original drawing of the robot from you; it stays until you send one, which then replaces the
+  file in both places.
+- **Q-15, the character bible** (`hub/bible/`, English) opens with a short French paragraph under the name
+  (`lang="fr"`): what the page is, in plain words, and that the rest is in English. Arabic comes later, after a
+  native review; nothing Arabic was added.
+
+## Wave 2, the Librairie (2026-11-24): taken by default while you were away
+
+Each item below was taken by default on 2026-11-24 while you were away; each is reversible; say the word to undo. No
+fact was invented: every line of the new exercises comes from the course's own lesson text and its listed sources.
+- **Q-11, « Commencer ici »** is the brand atlas (« Le logo vient après. »), as before on its card, and now also in the
+  shelf's first screen, under « Voir les cours gratuits »: « Première visite ? Commencez ici : la marque, avant le
+  logo. » (EN « First visit? Start here: your brand, before the logo. », AR « أول زيارة؟ ابدأ من هنا: علامتك، قبل الشعار. »).
+  It follows the book marked `"start": true` in `hub/src/lanterne/shelf.json`. To undo: remove `lant.shelf.heroStart`
+  and its hole in `hub/src/lanterne/shelf.html`.
+- **Q-10, « Le jeu juste » has a real exercise per level.** Each of the eight levels keeps its reading and now ends
+  with a sort of the lesson's own cases (mechanics under their spring, the claims the studies make or do not, each
+  case by the kind of its source, what harms, our rules against what we refuse…), each row's reason quoted from
+  the reading and its sources. A level is done only when its situation is answered right and every row is in its
+  place (placing them is not enough); « Je passe l'exercice » stays, as on the other atlases. Copy:
+  `lant.at.jeu.d.<level>.ex.t` and `.sort.*`, the shared lines `lant.ui.ex.sort.*`. To undo: restore
+  `hub/src/lanterne/atlases/jeu.json` and the eight partials `hub/src/lanterne/ex/jeu/g1.html` to `g8.html` from git (or
+  remove the `.st-crs` sort block from each partial, and in `jeu.json` put back `"ex": "pick"`, drop `done` and restore
+  each level's `ex.t` and `ex.brief` keys to `lant.ui.ex.pick.*`).
+  Reviewed the same day (2026-11-24): level 1's third row now says there is nothing useful under the points (« Des
+  points et des badges posés sur une page qui ne sert à rien d'autre ») and its reason leads with the lesson's own
+  test (« si on retire le jeu et qu'il ne reste rien d'utile, ce n'était pas de la gamification »), since the lesson
+  never calls points and badges a « habillage »; level 7's fourth row no longer says « imposés », which the lesson does
+  not, and its reason leads with the caveat (« Une petite étude, mais elle prévient : … »); level 3's Arabic reasons
+  give the figures, as the French and English do.
+- **E-05, the night cases' page** (`hub/lanterne/enquetes.html`) has the Librairie's mark in its bar and the same
+  foot as the atlases (the way back, the radio chip, the colophon and its links).
+
+Arabic written for these (**AR: native review**, none read by a native speaker; the French beside each):
+- `lant.shelf.heroStart` « أول زيارة؟ ابدأ من هنا: علامتك، قبل الشعار. » (French: « Première visite ? Commencez ici : la marque, avant le logo. »)
+- `lant.ui.ex.sort.brief` « ضع كل سطر في خانته: يظهر تحته السبب، مأخوذاً من الدرس ومصادره. يكتمل التمرين حين يكون كل سطر في مكانه. لا شيء يُرسل. » (French: « Rangez chaque ligne dans sa case : la raison, tirée de la leçon et de ses sources, s’affiche dessous. L’exercice est fait quand chaque ligne est à sa place. Rien n’est envoyé. »)
+- `lant.ui.ex.sort.match` « صحيح. » (French: « Juste. »)
+- `lant.ui.ex.sort.other` « بل: {b}. » (French: « Plutôt : {b}. »)
+- `lant.ui.ex.sort.score` « {n} من {N} في مكانها » (French: « {n} sur {N} à leur place »)
+- `lant.ui.ex.sort.done` « كل سطر في مكانه. لم يخرج شيء من هذا المتصفح. » (French: « Chaque ligne est à sa place. Rien n’est sorti de ce navigateur. »)
+- `lant.at.jeu.d.g1.ex.t` « تلعيب، أم لعبة كاملة، أم طلاء خارجي؟ » (French: « Gamification, jeu entier ou habillage ? »)
+- `lant.at.jeu.d.g1.sort.aria` « رتّب أربعة أمثلة: تلعيب، أو لعبة كاملة، أو طلاء خارجي » (French: « Ranger quatre exemples : gamification, jeu entier ou habillage »)
+- `lant.at.jeu.d.g1.sort.bins.0` « تلعيب » (French: « Gamification »)
+- `lant.at.jeu.d.g1.sort.bins.1` « لعبة كاملة » (French: « Un jeu entier »)
+- `lant.at.jeu.d.g1.sort.bins.2` « طلاء خارجي » (French: « Un habillage »)
+- `lant.at.jeu.d.g1.sort.rows.0.k` « شريط تقدّم في دورة على الإنترنت » (French: « Une barre de progression dans un cours en ligne »)
+- `lant.at.jeu.d.g1.sort.rows.0.why` « تبقى الدورة دورة؛ والشريط يعيرها نابضاً من نوابض اللعبة: أن ترى أنك تتقدّم. » (French: « Le cours reste un cours ; la barre lui prête un ressort du jeu : voir qu’on avance. »)
+- `lant.at.jeu.d.g1.sort.rows.1.k` « لعبة فيديو تعليمية كاملة » (French: « Un jeu vidéo éducatif complet »)
+- `lant.at.jeu.d.g1.sort.rows.1.why` « صنع لعبة كاملة ليس تلعيباً: إنه لعبة. » (French: « Fabriquer un jeu entier, ce n’est pas de la gamification : c’est un jeu. »)
+- `lant.at.jeu.d.g1.sort.rows.2.k` (changed the same day) « نقاط وشارات توضع على صفحة لا تنفع في شيء آخر » (French: « Des points et des badges posés sur une page qui ne sert à rien d’autre »)
+- `lant.at.jeu.d.g1.sort.rows.2.why` (changed the same day) « اختبار الدرس: إن نزعنا اللعبة ولم يبقَ شيء نافع، فلم يكن ذلك تلعيباً. وقد سمّت مارغريت روبرتسون هذا سنة 2010 «التنقيط». » (French: « Le test de la leçon : si on retire le jeu et qu’il ne reste rien d’utile, ce n’était pas de la gamification. Margaret Robertson appelait cela en 2010 la « pointsification ». »)
+- `lant.at.jeu.d.g1.sort.rows.3.k` « ثمانية ملصقات تُجمع في دورة تبقى دورة » (French: « Huit stickers à collectionner dans un cours qui reste un cours »)
+- `lant.at.jeu.d.g1.sort.rows.3.why` « الجمع نابض من نوابض اللعبة، والدورة تبقى النشاط الحقيقي: هذا ما تفعله هذه الدورة. » (French: « La collection est un ressort du jeu, et le cours reste la vraie activité : c’est ce que fait ce cours. »)
+- `lant.at.jeu.d.g2.ex.t` « كل نابض تحت حاجته » (French: « Chaque ressort sous son besoin »)
+- `lant.at.jeu.d.g2.sort.aria` « رتّب خمسة نوابض تحت الحاجات الثلاث » (French: « Ranger cinq ressorts sous les trois besoins »)
+- `lant.at.jeu.d.g2.sort.bins.0` « قادر » (French: « Capable »)
+- `lant.at.jeu.d.g2.sort.bins.1` « حرّ » (French: « Libre »)
+- `lant.at.jeu.d.g2.sort.bins.2` « مرتبط » (French: « Relié »)
+- `lant.at.jeu.d.g2.sort.rows.0.k` « ردّ فوري بعد كل إجابة » (French: « Un retour immédiat après chaque réponse »)
+- `lant.at.jeu.d.g2.sort.rows.0.why` « ترى نفسك تتقدّم: هذه حاجة الكفاءة. » (French: « On voit qu’on progresse : c’est le besoin de compétence. »)
+- `lant.at.jeu.d.g2.sort.rows.1.k` « أن تختار طريقك وإيقاعك » (French: « Choisir son chemin et son rythme »)
+- `lant.at.jeu.d.g2.sort.rows.1.why` « ما يصير إجبارياً يكفّ عن كونه لعبة: هذه حاجة الاستقلالية. » (French: « Ce qui devient obligatoire cesse d’être un jeu : c’est le besoin d’autonomie. »)
+- `lant.at.jeu.d.g2.sort.rows.2.k` « أن تلعب مع آخرين » (French: « Jouer avec d’autres »)
+- `lant.at.jeu.d.g2.sort.rows.2.why` « هذه حاجة الارتباط. » (French: « C’est le besoin de lien. »)
+- `lant.at.jeu.d.g2.sort.rows.3.k` « درجات في المتناول » (French: « Des paliers à sa portée »)
+- `lant.at.jeu.d.g2.sort.rows.3.why` « درجة تستطيع بلوغها تُريك أنك تتقدّم: الكفاءة مرة أخرى. » (French: « Un palier qu’on peut atteindre montre qu’on progresse : la compétence encore. »)
+- `lant.at.jeu.d.g2.sort.rows.4.k` « أن تنتمي إلى عالم مشترك » (French: « Appartenir à un monde commun »)
+- `lant.at.jeu.d.g2.sort.rows.4.why` « الارتباط ليس اللعب معاً فقط: إنه أيضاً الانتماء إلى عالم مشترك. » (French: « Le lien, ce n’est pas seulement jouer ensemble : c’est aussi appartenir à un monde commun. »)
+- `lant.at.jeu.d.g3.ex.t` « ما تقوله الدراسات، وما لا تقوله » (French: « Ce que disent les études, et ce qu’elles ne disent pas »)
+- `lant.at.jeu.d.g3.sort.aria` « رتّب خمس جمل: تقولها الدراسات، أو لا » (French: « Ranger cinq phrases : les études le disent, ou non »)
+- `lant.at.jeu.d.g3.sort.bins.0` « تقوله الدراسات » (French: « Les études le disent »)
+- `lant.at.jeu.d.g3.sort.bins.1` « لا تقوله » (French: « Elles ne le disent pas »)
+- `lant.at.jeu.d.g3.sort.rows.0.k` « التلعيب يساعد على التعلّم، بآثار صغيرة لكنها حقيقية » (French: « La gamification aide à apprendre, avec des effets petits mais réels »)
+- `lant.at.jeu.d.g3.sort.rows.0.why` « سايلر وهومنر (2020)، 40 تجربة: نعم، آثار صغيرة لكنها حقيقية. » (French: « Sailer et Homner (2020), 40 expériences : oui, des effets petits mais réels. »)
+- `lant.at.jeu.d.g3.sort.rows.1.k` « التلعيب ينجح في كل مرة » (French: « La gamification marche à tous les coups »)
+- `lant.at.jeu.d.g3.sort.rows.1.why` « لا تقول ذلك أيّ منها. كويفيستو وهاماري (2019، 819 دراسة) وجدا حصة لافتة من النتائج المتباينة. » (French: « Aucune ne le dit. Koivisto et Hamari (2019, 819 études) trouvent une part remarquable de résultats mitigés. »)
+- `lant.at.jeu.d.g3.sort.rows.2.k` « أثبت أثر هو على ما يُتعلَّم » (French: « L’effet le plus stable porte sur ce qu’on apprend »)
+- `lant.at.jeu.d.g3.sort.rows.2.why` (changed the same day) « على المعارف، <bdi>g = 0.49</bdi>: أثبت نتيجة في الدراسة، حتى عند الإبقاء على أدقّ التجارب فقط. » (French: « Sur les savoirs, g = 0,49 : le résultat le plus stable de l’étude, même en ne gardant que les expériences les plus rigoureuses. »)
+- `lant.at.jeu.d.g3.sort.rows.3.k` « الأثر على ما يفعله الناس حقاً هو الأقوى بين الثلاثة » (French: « L’effet sur ce qu’on fait vraiment est le plus fort des trois »)
+- `lant.at.jeu.d.g3.sort.rows.3.why` (changed the same day) « العكس: على الأفعال، <bdi>g = 0.25</bdi>، الأصغر بين الثلاثة، وأقل ثباتاً. » (French: « C’est l’inverse : sur les actes, g = 0,25, le plus petit des trois, et moins stable. »)
+- `lant.at.jeu.d.g3.sort.rows.4.k` « الآثار تتوقف كثيراً على السياق وعلى الأشخاص » (French: « Les effets dépendent beaucoup du contexte et des personnes »)
+- `lant.at.jeu.d.g3.sort.rows.4.why` « هاماري وزملاؤه (2014، 24 دراسة): آثار إيجابية تتوقف كثيراً على السياق وعلى الأشخاص. » (French: « Hamari et ses collègues (2014, 24 études) : des effets positifs, qui dépendent beaucoup du contexte et des personnes. »)
+- `lant.at.jeu.d.g4.ex.t` « تعرّف على الآلية » (French: « Reconnaître la mécanique »)
+- `lant.at.jeu.d.g4.sort.aria` « رتّب أربع ملاحظات تحت آليتها » (French: « Ranger quatre observations sous leur mécanique »)
+- `lant.at.jeu.d.g4.sort.bins.0` « التقدّم الممنوح » (French: « L’avance offerte »)
+- `lant.at.jeu.d.g4.sort.bins.1` « الاقتراب من الهدف » (French: « L’approche du but »)
+- `lant.at.jeu.d.g4.sort.bins.2` « الشارات » (French: « Les badges »)
+- `lant.at.jeu.d.g4.sort.bins.3` « السلاسل » (French: « Les séries »)
+- `lant.at.jeu.d.g4.sort.rows.0.k` « بطاقة من عشر خانات، اثنتان منها مختومتان مسبقاً » (French: « Une carte de dix cases, dont deux déjà tamponnées »)
+- `lant.at.jeu.d.g4.sort.rows.0.why` « نونيس ودريز (2006): البدء من 2 على 10 يُلزمك أكثر من البدء من 0 على 8. » (French: « Nunes et Drèze (2006) : commencer à 2 sur 10 engage plus que commencer à 0 sur 8. »)
+- `lant.at.jeu.d.g4.sort.rows.1.k` « كلما اقتربت القهوة المجانية، اشترى الزبائن أكثر » (French: « Plus le café offert est proche, plus on achète souvent »)
+- `lant.at.jeu.d.g4.sort.rows.1.why` « كيفيتز وزملاؤه (2006)، في مقهى حقيقي: نسرع قرب خط النهاية. » (French: « Kivetz et ses collègues (2006), dans un vrai café : on accélère près de la ligne d’arrivée. »)
+- `lant.at.jeu.d.g4.sort.rows.2.k` « النشاط يرتفع قبل مكافأة تظهر على الملف الشخصي، ثم يتراجع » (French: « L’activité monte avant une récompense affichée sur le profil, puis retombe »)
+- `lant.at.jeu.d.g4.sort.rows.2.why` « أندرسون وزملاؤه (2013)، على موقع Stack Overflow. ودراسة من 2020 تدقّق: نحو 20% من المستخدمين يتجاوبون. » (French: « Anderson et ses collègues (2013), sur Stack Overflow. Une étude de 2020 nuance : environ 20 % des utilisateurs y réagissent. »)
+- `lant.at.jeu.d.g4.sort.rows.3.k` « العودة كل يوم كي لا ينقطع عدّ الأيام » (French: « Revenir chaque jour pour ne pas rompre le compte des jours »)
+- `lant.at.jeu.d.g4.sort.rows.3.why` « تقول Duolingo لمساهميها إنها تجري مئات التجارب، ومنها على الإشعارات والسلاسل، لتعيد مستخدميها. » (French: « Duolingo dit à ses actionnaires mener des centaines d’expériences, notamment sur les notifications et les séries, pour faire revenir ses utilisateurs. »)
+- `lant.at.jeu.d.g5.ex.t` « ما تعطيه اللعبة للعلامة، وأين تخذلها » (French: « Ce que le jeu donne à une marque, et où il la dessert »)
+- `lant.at.jeu.d.g5.sort.aria` « رتّب أربعة عناصر: صوت، أو عالم، أو طقس، أو ضد العلامة » (French: « Ranger quatre éléments : une voix, un monde, un rituel, ou contre la marque »)
+- `lant.at.jeu.d.g5.sort.bins.0` « صوت » (French: « Une voix »)
+- `lant.at.jeu.d.g5.sort.bins.1` « عالم » (French: « Un monde »)
+- `lant.at.jeu.d.g5.sort.bins.2` « طقس » (French: « Un rituel »)
+- `lant.at.jeu.d.g5.sort.bins.3` « ضد العلامة » (French: « Contre la marque »)
+- `lant.at.jeu.d.g5.sort.rows.0.k` « كورو يحكم على إجاباتك بكلمتين » (French: « Kūro juge vos réponses en deux mots »)
+- `lant.at.jeu.d.g5.sort.rows.0.why` « علامة تتفاعل مع ما تفعله لها شخصية؛ وعلامة تكتفي بالتلاوة لا شخصية لها. » (French: « Une marque qui réagit à ce que vous faites a un caractère ; une marque qui récite n’en a pas. »)
+- `lant.at.jeu.d.g5.sort.rows.1.k` « الراديو وحاسبة DOURO·8 والأختام كلها من مكان واحد » (French: « La radio, la console DOURO·8 et les sceaux viennent du même endroit »)
+- `lant.at.jeu.d.g5.sort.rows.1.why` « تتعرّف على العلامة من دون أن ترى شعارها. » (French: « On reconnaît la marque sans voir son logo. »)
+- `lant.at.jeu.d.g5.sort.rows.2.k` « طوابع تُكسب حتى آخر الصفحة » (French: « Des tampons à gagner jusqu’au bout de la page »)
+- `lant.at.jeu.d.g5.sort.rows.2.why` « نهايات صغيرة تُبلَغ: سبب لإكمال الصفحة وللعودة إليها. » (French: « De petites fins à atteindre : une raison de finir la page et d’y revenir. »)
+- `lant.at.jeu.d.g5.sort.rows.3.k` « لعبة تخفي السعر أو وسيلة التواصل » (French: « Un jeu qui cache le prix ou le contact »)
+- `lant.at.jeu.d.g5.sort.rows.3.why` « اللعبة تخدم الرسالة ولا تحلّ محلها. » (French: « Le jeu sert le message ; il ne le remplace pas. »)
+- `lant.at.jeu.d.g6.ex.t` « زِن كل مصدر » (French: « Peser chaque source »)
+- `lant.at.jeu.d.g6.sort.aria` « رتّب أربع حالات حسب مصدرها » (French: « Ranger quatre cas selon leur source »)
+- `lant.at.jeu.d.g6.sort.bins.0` « منشور علمي » (French: « Une publication scientifique »)
+- `lant.at.jeu.d.g6.sort.bins.1` « رقم من الشركة » (French: « Un chiffre de l’entreprise »)
+- `lant.at.jeu.d.g6.sort.bins.2` « رقم من حملة » (French: « Un chiffre de campagne »)
+- `lant.at.jeu.d.g6.sort.rows.0.k` « Starbucks Rewards: 59% من المبالغ المحصّلة تأتي من الأعضاء » (French: « Starbucks Rewards : 59 % des montants encaissés viennent des membres »)
+- `lant.at.jeu.d.g6.sort.rows.0.why` « أرقام نشرتها Starbucks نفسها، عن الربع المنتهي أواخر يونيو 2026. » (French: « Des chiffres publiés par Starbucks elle-même, pour le trimestre clos fin juin 2026. »)
+- `lant.at.jeu.d.g6.sort.rows.1.k` « Deloitte: زيادة 37% في المستخدمين كل أسبوع » (French: « Deloitte : 37 % d’utilisateurs en plus chaque semaine »)
+- `lant.at.jeu.d.g6.sort.rows.1.why` « نقلته Harvard Business Review، لكنه رقم من الشركة، بلا مجموعة مقارنة. » (French: « Rapporté par la Harvard Business Review, mais c’est un chiffre de l’entreprise, sans groupe de comparaison. »)
+- `lant.at.jeu.d.g6.sort.rows.2.k` « Foldit: بنية إنزيم حُدّدت بفضل اللاعبين » (French: « Foldit : la structure d’une enzyme trouvée grâce aux joueurs »)
+- `lant.at.jeu.d.g6.sort.rows.2.why` « نُشرت النتيجة في Nature Structural & Molecular Biology (2011). » (French: « Le résultat est publié dans Nature Structural & Molecular Biology (2011). »)
+- `lant.at.jeu.d.g6.sort.rows.3.k` « يانصيب الرادار: من 32 إلى 25 كم/س » (French: « La loterie des radars : de 32 à 25 km/h »)
+- `lant.at.jeu.d.g6.sort.rows.3.why` « ثلاثة أيام، بلا مجموعة ضابطة، ورقم أعطاه الراعي، Volkswagen. » (French: « Trois jours, pas de groupe témoin, et un chiffre donné par le sponsor, Volkswagen. »)
+- `lant.at.jeu.d.g7.ex.t` « اكتشف ما يضرّ » (French: « Repérer ce qui abîme »)
+- `lant.at.jeu.d.g7.sort.aria` « رتّب خمس ممارسات: تضرّ، أو تحفظ الاهتمام » (French: « Ranger cinq pratiques : ça abîme, ou ça garde l’intérêt »)
+- `lant.at.jeu.d.g7.sort.bins.0` « تضرّ » (French: « Ça abîme »)
+- `lant.at.jeu.d.g7.sort.bins.1` « تحفظ الاهتمام » (French: « Ça garde l’intérêt »)
+- `lant.at.jeu.d.g7.sort.rows.0.k` « الوعد بمكافأة على نشاط كان محبوباً من قبل » (French: « Promettre une récompense pour une activité qu’on aimait déjà »)
+- `lant.at.jeu.d.g7.sort.rows.0.why` « ليبر وغرين ونيسبت (1973): بعد مكافأة موعودة يقلّ الاهتمام بالنشاط. » (French: « Lepper, Greene et Nisbett (1973) : après une récompense promise, l’intérêt pour l’activité baisse. »)
+- `lant.at.jeu.d.g7.sort.rows.1.k` « تقديم مكافأة مفاجئة، بعد الفعل » (French: « Offrir une récompense surprise, après coup »)
+- `lant.at.jeu.d.g7.sort.rows.1.why` « في الدراسة نفسها، احتفظ الأطفال الذين نالوا مكافأة مفاجئة باهتمامهم. » (French: « Dans la même étude, les enfants qui reçoivent une récompense surprise gardent leur intérêt. »)
+- `lant.at.jeu.d.g7.sort.rows.2.k` « ترك النشاط يُمارَس من دون وعد بشيء » (French: « Laisser faire l’activité sans rien promettre »)
+- `lant.at.jeu.d.g7.sort.rows.2.why` « من لم ينالوا شيئاً احتفظوا هم أيضاً باهتمامهم (ليبر وغرين ونيسبت، 1973). » (French: « Ceux qui ne reçoivent rien gardent eux aussi leur intérêt (Lepper, Greene et Nisbett, 1973). »)
+- `lant.at.jeu.d.g7.sort.rows.3.k` (changed the same day) « قسم فيه شارات ولوحة ترتيب، ستة عشر أسبوعاً » (French: « Une classe avec badges et classement, seize semaines »)
+- `lant.at.jeu.d.g7.sort.rows.3.why` (changed the same day) « دراسة صغيرة، لكنها تنبّه: عند هانوس وفوكس (2015) انتهى القسم الذي فيه شارات ولوحة ترتيب أقل دافعية وأقل رضا وبنتائج أدنى. » (French: « Une petite étude, mais elle prévient : chez Hanus et Fox (2015), la classe avec badges et classement finit moins motivée, moins satisfaite, avec de moins bonnes notes. »)
+- `lant.at.jeu.d.g7.sort.rows.4.k` « واجهة تدفعك إلى شراء ما كنت لتشتريه » (French: « Une interface qui pousse à un achat qu’on n’aurait pas fait »)
+- `lant.at.jeu.d.g7.sort.rows.4.why` « «نمط مظلم» بحسب تقرير FTC (2022). وفي السنة نفسها قبلت الشركة الناشرة للعبة Fortnite دفع 245 مليون دولار عن مشتريات غير مرغوب فيها. » (French: « Un « dark pattern », selon le rapport de la FTC (2022). La même année, l’éditeur de Fortnite accepte de verser 245 millions de dollars pour des achats non voulus. »)
+- `lant.at.jeu.d.g8.ex.t` « قاعدتنا، أم ما نرفضه؟ » (French: « Notre règle, ou ce que nous refusons ? »)
+- `lant.at.jeu.d.g8.sort.aria` « رتّب خمس ممارسات: يفعلها هذا الموقع، أو يرفضها » (French: « Ranger cinq pratiques : ce site le fait, ou s’y refuse »)
+- `lant.at.jeu.d.g8.sort.bins.0` « يفعله هذا الموقع » (French: « Ce site le fait »)
+- `lant.at.jeu.d.g8.sort.bins.1` « يرفضه هذا الموقع » (French: « Ce site s’y refuse »)
+- `lant.at.jeu.d.g8.sort.rows.0.k` « الراديو ينتظر حركتك ليشتغل » (French: « La radio attend votre geste pour jouer »)
+- `lant.at.jeu.d.g8.sort.rows.0.why` « لا شيء يبدأ وحده: كل شيء ينتظر حركتك، وكل شيء يتوقف بحركة. » (French: « Rien ne démarre seul : tout attend votre geste, et tout s’arrête d’un geste. »)
+- `lant.at.jeu.d.g8.sort.rows.1.k` « سلسلة أيام تخشى انقطاعها » (French: « Une série de jours à ne pas rompre »)
+- `lant.at.jeu.d.g8.sort.rows.1.why` « بلا ضغط: لا سلسلة تخشى انقطاعها، ولا عدّ تنازلي. » (French: « Pas de pression : aucune série à ne pas rompre, aucun compte à rebours. »)
+- `lant.at.jeu.d.g8.sort.rows.2.k` « سبعة أختام تفتح رسماً » (French: « Sept sceaux pour ouvrir un dessin »)
+- `lant.at.jeu.d.g8.sort.rows.2.why` « رسم، لا تخفيض: المكافأة شيء يُنظر إليه. » (French: « Un dessin, pas une remise : on récompense par quelque chose à regarder. »)
+- `lant.at.jeu.d.g8.sort.rows.3.k` « تخفيض مقابل عنوانك » (French: « Une remise en échange de votre adresse »)
+- `lant.at.jeu.d.g8.sort.rows.3.why` « لا مكافأة هنا تُبادَل بعنوانك أو بعملية شراء. » (French: « Aucune récompense ici ne s’échange contre votre adresse ou contre un achat. »)
+- `lant.at.jeu.d.g8.sort.rows.4.k` « لوحة ترتيب بين الزوار » (French: « Un classement entre visiteurs »)
+- `lant.at.jeu.d.g8.sort.rows.4.why` « الطوابع والأختام والملصقات تبقى في متصفحك: لا حساب ولا لوحة ترتيب. » (French: « Tampons, sceaux et stickers restent dans votre navigateur : il n’y a ni compte ni classement. »)
+
+## 50. The Librairie's Lantern objects and your banking-course panels (2026-11-24, lb2)
+
+Your order of 2026-11-24, « use all the banking course panels too », is done: **all 16 pictures of « Numidea · Banking course » are on the Librairie**, each beside the sentence it illustrates, plus two of your other scenes and nine objects cut from your object sheet. Next to them, 21 « Lantern objects » (18, then three more in fix round 1): small code-drawn machines, one idea each, that answer the reader (they play once when the stop comes into view, or move one step per press) and then stop on the drawing that teaches. With reduced motion or « Mouvement » off nothing moves: the final drawing is there from the start. Nothing here is committed.
+
+### Your pictures, stop by stop
+
+| picture (file under hub/img/lanterne/) | book · stop | where |
+|---|---|---|
+| `plates/bank-desk.webp` | argent · Clés (crypto) | the stop's own plate (wide), shown alone: your full scene already paints Yasser and Kūro, so no cut-out stands on it or beside it (fix round 1) |
+| `plates/bank-desk-close.webp` | route · Sécurité (n6) | the stop's own plate (portrait), a close crop of the second desk take, without the raven and pigeon cut-outs (fix round 1); only the keys prop stays, hung upper left on the window frame, clear of the padlock and the notebook |
+| `panels/bank-routes.webp` | argent · Route (pay) | in the reading, caption « La route d’abord, le prix ensuite. » (the stop's own decision) |
+| `panels/bank-id.webp` | argent · Change (bank) | in the reading, beside « Quatre questions à poser avant d’ouvrir » on a wide screen; caption « Pour ouvrir, le service vérifiera qui vous êtes. Demandez-lui d’abord : accepte-t-il les résidents de mon pays ? » |
+| `panels/bank-balance.webp` | argent · Trésorerie (treso) | above the calculator |
+| `panels/bank-bell.webp` | route · Départ (n8) | above the four files |
+| `panels/bank-hooks.webp` | web3 · Arnaques (w5) | in the dossier, after the rule |
+| `panels/bank-calm.webp` | argent · Appel (new side stop) | in the dossier, after the rule |
+| `panels/bank-mask.webp` | argent · Clés (crypto) | above the reading |
+| `panels/bank-hangup.webp` | argent · Appel | above the reading |
+| `panels/bank-judge.webp` | web3 · Arnaques (w5) | above the six-message sort |
+| `panels/bank-key.webp` | route · Sécurité (n6) | above the reading (fix round 1: the dossier now holds the « net-path » object, the network decision) |
+| `panels/bank-card.webp` | argent · Appel | the stop's keepsake, « Le tampon « Appel » » |
+| `plates/bank-post.webp` | argent · Change (bank) | the stop's own plate (wide), shown alone, no cut-out (fix round 1) |
+| `plates/bank-call.webp` | argent · Appel | the plate of the new side act « Chemin de traverse · L’appel », shown alone, no cut-out (fix round 1) |
+| `panels/bank-fridge.webp` | route · the sac | the reward picture, on its own above « Huit sur huit », captioned « Le carnet est rempli, la liste est cochée. », so it is not taken for the wallpaper (fix round 1) |
+| `panels/devis-folders.webp` | route · Devis (n3) | above the reading (your « Personal » binder tower), caption « Sans la ligne des retouches au devis, un projet ne finit jamais. » (from the course: the picture shows the failure, fix round 1) |
+| `panels/night-platform.webp` | route · Sac (n5) | above the reading (the night-platform vignette of your chat image 10), caption the course's own line « Votre bureau tient dans un sac : tout ce qui casse, se perd ou se coupe vous arrête net. » (fix round 1: the old one gave Selma's « her office » to a drawing of Yasser) |
+
+The two near-duplicate desk takes: the first (lamp left) is the better one and is the plate of argent « Clés »; the second cannot ship whole (a mark on its passbook), so only a text-free close crop of it is used, as the plate of route « Sécurité ». One per book, never on the same page. Props cut from your object sheet, each on a plate that does not already paint it: bag (route n5), keys (route n6), headphones (route n4), pencil (route n3), closed laptop (marque b5), stylus (marque b4), cat collar (marque b7), sketchbook (web3 w2), round glasses (jeu g3). Since fix round 1 the six that sit on a stop shown as a 120 px strip (glasses, stylus, collar, pencil, bag, sketchbook) show there too, small, between the two guides; before, the strip hid them.
+
+**The new side stop « Appel »** (argent, act a3, side: not counted in the five lessons, the HUD says « chemin de traverse : m / M »). Selma gets a fake adviser's call. Every fact in it is already in the course: urgency is a sign of a scam, no support asks for the recovery phrase, what goes to a scammer cannot be recalled, recovery is nearly impossible (Europol), 2-step verification keeps thieves out as long as its code never leaves your phone (you read it to no one on a call: fix round 1, the usual move of this exact scam); « on raccroche » is plain common knowledge. It says nothing about any named bank, post office, card number or SMS code. One thing to know: the shelf card for « Gagner sa vie de loin » now counts 6 stops (it counts every stop, as the night course does with its side path), while the kicker still says « cinq leçons ».
+
+### The 21 Lantern objects
+
+| object | book · stop | how it moves | caption (FR) |
+|---|---|---|---|
+| `banner-vector` | marque · b5 | plays once, 4 s | Un vectoriel reste net à toutes les tailles ; une image en pixels, non. |
+| `billed-days` | argent · rate (10 of 22 days grey since fix round 1: 12 billed, the calculator's default) | 3 steps, one per press | Pas les 22 : une partie des jours part en prospection, en devis, en administratif et en congés. Divisez par les jours facturés. |
+| `block-chain` | web3-modules · m21 | plays once, 4 s | Modifiez une ancienne opération, et le lien suivant ne correspond plus. |
+| `four-layers` | marque · b1 | plays once, 4 s | Autour du logo : l’identité, le système, et la marque, ce qu’on dit de vous quand vous n’êtes pas là. |
+| `funnel-planes` | route · n1 | plays once, 4.5 s | Une signature pour 40 messages, donc 120 messages pour 3 clients. |
+| `hash-receipt` | web3 · w8 | 4 steps, one per press | Le hash dit « envoyé ». Le reçu dit si c’est réussi. |
+| `key-register` | argent · crypto | plays once, 4.5 s | Le portefeuille garde vos clés. Il ne contient pas les pièces : elles restent dans le registre. |
+| `last-seat` | cours-du-soir · architecture | plays once, 4 s | Une place, une confirmation |
+| `loyalty-cards` | jeu · g4 (the two gifted boxes stay brass in the final frame, fix round 1) | 9 steps, one per press | Le même effort, mais on a déjà commencé : c’est l’effet de progression offerte. |
+| `months-jar` | argent · treso | plays once, 4.5 s | Un client paie à 60 jours : de quoi tenir au moins ces deux mois. |
+| `one-writer` | web3 · w2 | two states, two buttons | Un seul qui écrit : l’arbre propose une base de données. / second state: Plusieurs qui écrivent : la question se pose (pas une réponse automatique). |
+| `promise-proof` | marque · b3 | plays once, 3.5 s | Un délai se vérifie. « Meilleur » ne se vérifie pas. |
+| `schengen-window` | route · n8 | a slider (no motion), days 40 to 240 since fix round 1: past day 179 the first days leave the frame and the count falls | On compte 180 jours en arrière depuis chaque jour du séjour : sortir une journée n’efface rien. |
+| `seal-ring` | web3-modules · m14 | 3 steps, one per press | Elle prouve quelle clé a signé et que rien n’a changé, mais elle ne cache rien. |
+| `spare-key` | web3-modules · m34 | plays once, 4.5 s | Une autorisation illimitée reste valable tant que vous ne la révoquez pas, même après « déconnexion ». |
+| `three-copies` | route · n5 | plays once, 4 s | C’est le « 1 » de 3-2-1 : une copie hors du sac, en ligne ou chez quelqu’un de confiance. |
+| `two-days` | route · n4 | plays once, 4 s | 16 h chez vous, c’est 10 h chez votre client : l’heure tombe dans les deux journées. |
+| `wallet-seams` | argent · bank | 4 steps, one per press | Ce qui coûte n’est presque jamais l’ouverture : ce sont trois frais. |
+| `rate-gap` (fix round 1) | argent · bank, in the reading | 3 steps, one per press | Comparer le taux appliqué, pas l’affiche. (the stop's decision; two boards « marché » and « offert », the gap « votre vrai prix », the « 0 frais » sticker peels off; no real rate) |
+| `net-path` (fix round 1) | route · n6 | two states, two buttons | Le réseau du téléphone plutôt que le Wi-Fi public. (the stop's decision; « réseau non maîtrisé » with a shadow hand on the line, then « réseau mobile ») |
+| `margin-block` (fix round 1) | route · n2 | 3 steps, one per press | La marge paie l’imprévu ; le prix ferme ne bouge pas. (the stop's decision; two extra days go into the brass margin under the « prix ferme » tag, then a scope block makes a « nouveau devis ») |
+
+Every caption quotes a line already in the course (or names an existing key); the drawings use only the site's own colours. Their sources are `hub/src/lanterne/objects/<id>.svg|.css|.json`, the shared look is in `hub/css/lanterne.css`, the controller is `hub/lanterne-objects.js` (BRAND.md « Lantern props »).
+
+### Arabic for native review (written on 2026-11-24, « à relire par un locuteur natif », 128 strings; fix round 1 rewrote 10 and added 17)
+
+None of this Arabic has been read by a native speaker. The captions that quote the course reuse the course's own Arabic where it exists; the alt texts, labels, the « Appel » stop and the panel captions are new drafts. Numbers and Latin words that are the same in the three languages are left out.
+
+- `lant.at.argent.act.a3` « طريق جانبي · المكالمة » (French: « Chemin de traverse · L’appel »)
+- `lant.at.argent.actShort.a3` « جانبي » (French: « Traverse »)
+- `lant.at.argent.d.appel.a.0` « نبرته المهذّبة » (French: « Son ton poli »)
+- `lant.at.argent.d.appel.a.1` « الاستعجال: إنه علامة احتيال » (French: « L’urgence : c’est un signe d’arnaque »)
+- `lant.at.argent.d.appel.a.2` « توقيت المكالمة » (French: « L’heure de l’appel »)
+- `lant.at.argent.d.appel.decision` « الاستعجال علامة: أُغلق الخط. » (French: « L’urgence est un signal : je raccroche. »)
+- `lant.at.argent.d.appel.f.0` « الأدب لا يثبت شيئاً. العلامة هي الاستعجال: تعدّه السلطات من علامات الاحتيال. » (French: « La politesse ne prouve rien. Le signal, c’est l’urgence : les autorités la rangent parmi les signes d’arnaque. »)
+- `lant.at.argent.d.appel.f.1` « نعم. الاستعجال ليس معلومة: إنه علامة احتيال. » (French: « Oui. L’urgence n’est pas une information : c’est un signe d’arnaque. »)
+- `lant.at.argent.d.appel.f.2` « التوقيت لا يقول شيئاً. العلامة هي الاستعجال. » (French: « L’heure ne dit rien. Le signal, c’est l’urgence. »)
+- `lant.at.argent.d.appel.handoff` « تُغلق سلمى الخط؛ وتبقى حساباتها سليمة. » (French: « Selma raccroche ; ses comptes restent en ordre. »)
+- `lant.at.argent.d.appel.keep` « ختم «المكالمة» » (French: « Le tampon « Appel » »)
+- `lant.at.argent.d.appel.lore` « ذات مساء يرنّ هاتف سلمى: «مستشار» يعلن أن حسابها سيُجمَّد إن لم تتصرّف فوراً. » (French: « Un soir, le téléphone de Selma sonne : un « conseiller » annonce que son compte sera bloqué si elle n’agit pas tout de suite. »)
+- `lant.at.argent.d.appel.name` « المكالمة » (French: « Appel »)
+- `lant.at.argent.d.appel.pick.0.k` « الاستعجال » (French: « L’urgence »)
+- `lant.at.argent.d.appel.pick.0.v` « الاستعجال ليس معلومة؛ إنه علامة احتيال. » (French: « L’urgence n’est pas une information ; c’est un signe d’arnaque. »)
+- `lant.at.argent.d.appel.pick.1.k` « الدعم المزيّف » (French: « Le faux support »)
+- `lant.at.argent.d.appel.pick.1.v` « انتحال صفة. عبارة الاسترداد: لا دعم يطلبها. أبداً. » (French: « Usurpation. La phrase de récupération : aucun support ne la demande. Jamais. »)
+- `lant.at.argent.d.appel.pick.2.k` « ما يذهب إلى محتال » (French: « Ce qui part vers un escroc ») *(rewritten in fix round 1)*
+- `lant.at.argent.d.appel.pick.2.v` « لا يمكن استرجاعه: الاسترداد شبه مستحيل (Europol). » (French: « Il ne se rappelle pas : la récupération est presque impossible (Europol). ») *(rewritten in fix round 1)*
+- `lant.at.argent.d.appel.pick.3.k` « التحقق بخطوتين » (French: « La validation en deux étapes »)
+- `lant.at.argent.d.appel.pick.3.v` « يُبقي اللصوص خارجاً حتى لو عرفوا كلمة مرورك، ما دام رمزه لا يغادر هاتفك: لا تقرأه لأحد في مكالمة. » (French: « Elle garde les voleurs dehors même s’ils connaissent votre mot de passe, tant que son code ne quitte pas votre téléphone : on ne le lit à personne au téléphone. ») *(rewritten in fix round 1)*
+- `lant.at.argent.d.appel.q` « يُلحّ «المستشار»: يجب أن يتمّ كل شيء الآن. ما العلامة؟ » (French: « Le « conseiller » insiste : tout doit se faire maintenant. Quel est le signal ? »)
+- `lant.at.argent.d.appel.rule` « الاستعجال ليس معلومة، بل علامة احتيال: نُغلق الخط. » (French: « L’urgence n’est pas une information, c’est un signe d’arnaque : on raccroche. »)
+- `lant.at.argent.d.appel.scene` « المستشار المزيّف » (French: « Le faux conseiller »)
+- `lant.at.argent.d.appel.sub` « المستشار المزيّف » (French: « Le faux conseiller »)
+- `lant.at.argent.plate.call` « في المساء، على الأريكة، ينظر ياسر إلى هاتف يهتزّ في يده؛ وفوقه هيئة من ظلّ داخل هالة وصنّارات حمراء؛ وكورو يقوّس ظهره ويفحّ. » (French: « Le soir, sur le canapé, Yasser regarde un téléphone qui vibre dans sa main ; au-dessus, une silhouette d’ombre dans un halo et des hameçons rouges ; Kūro, le dos rond, feule. »)
+- `lant.at.argent.plate.desk` « في الليل، على مكتبه أمام أسطح المدينة، يمسك ياسر هاتفاً مفتوحاً على تطبيق يحمل درعاً؛ وكورو يُبعد بضربة من مخلبه فقاعة حمراء على شكل صنّارة. على المكتب: دفتر أصفر وبطاقة بنكية وقفل ودفتر ملاحظات. » (French: « La nuit, à son bureau devant les toits, Yasser tient un téléphone ouvert sur une application marquée d’un bouclier ; Kūro écarte d’un coup de patte une bulle rouge en forme d’hameçon. Sur le bureau, un livret jaune, une carte bancaire, un cadenas et un carnet. »)
+- `lant.at.argent.plate.post` « في مكتب البريد، طابور طويل ينتظر عند الشبّاك؛ وعند الجدار يُنجز ياسر المعاملة نفسها على هاتفه، وكورو على كتفه. » (French: « Au bureau de poste, une longue file attend au guichet ; contre le mur, Yasser fait la même démarche sur son téléphone, Kūro sur l’épaule. »)
+- `lant.at.route.plate.desk` « ينظر ياسر إلى هاتفه، وعلى الشاشة درع؛ ويرفع كورو مخلبه نحو فقاعة حمراء عليها صنّارة. » (French: « Yasser regarde son téléphone, un bouclier à l’écran ; Kūro lève la patte vers une bulle rouge marquée d’un hameçon. »)
+- `lant.lo.banner-vector.alt` « لافتة تنفرد من بكرة، والعلامة نفسها تكبر ثماني مرات: على اليسار، بصيغة JPEG، تتكسّر إلى مربعات؛ وعلى اليمين، بصيغة SVG أو PDF، تبقى حادّة. » (French: « Une bâche se déroule d’un rouleau et le même signe grandit huit fois : à gauche, en JPEG, il se casse en carrés ; à droite, en SVG ou PDF, il reste net. »)
+- `lant.lo.banner-vector.cap` « الملف المتّجه يبقى حادّاً بكل الأحجام؛ صورة البكسل لا. » (French: « Un vectoriel reste net à toutes les tailles ; une image en pixels, non. »)
+- `lant.lo.billed-days.alt` « كومة من القطع النقدية وشهر من 22 خانة. عشر خانات تصير رمادية، عليها عدسة مكبّرة أو عرض سعر أو ختم أو شمس؛ وتتوزّع الكومة نفسها على الخانات الاثنتي عشرة الباقية، فيعلو كل عمود من القطع. » (French: « Un tas de pièces et un mois de 22 cases. Dix cases grisent, marquées d’une loupe, d’un devis, d’un tampon ou d’un soleil ; le même tas se partage sur les douze cases restantes, et chaque pile grandit. ») *(rewritten in fix round 1)*
+- `lant.lo.billed-days.cap` « ليست الاثنين والعشرين كلها: بعض الأيام يذهب في البحث عن عملاء والعروض والإدارة والعطل. اقسم على الأيام المفوترة. » (French: « Pas les 22 : une partie des jours part en prospection, en devis, en administratif et en congés. Divisez par les jours facturés. »)
+- `lant.lo.block-chain.alt` « أربع كتل بلون الكريم تربطها حلقات نحاسية، كلٌّ منها مختوم ببصمة. مخلب كورو يغيّر سطراً في الكتلة الثانية: فيتشقّق الختم الذي يربطها بالثالثة، ويخفت باقي السلسلة. » (French: « Quatre blocs crème reliés par des anneaux de laiton, chacun scellé d’une empreinte. La patte de Kūro modifie une ligne du deuxième bloc : le sceau qui le relie au troisième se fend, et la suite de la chaîne s’éteint. »)
+- `lant.lo.block-chain.cap` « عدّل عملية قديمة فلا يعود الرابط التالي مطابقاً. » (French: « Modifiez une ancienne opération, et le lien suivant ne correspond plus. »)
+- `lant.lo.four-layers.alt` « أربع بطاقات مفرودة كالمروحة، من الأكبر إلى الأصغر: العلامة (فقاعة كلام)، والنظام (ورقة قواعد)، والهوية (ألوان وحروف)، وفي المقدّمة الشعار، وهو الأصغر. » (French: « Quatre cartes en éventail, de la plus grande à la plus petite : la marque (une bulle de parole), le système (une feuille de règles), l’identité (des couleurs et des lettres) et, devant, le logo, la plus petite. »)
+- `lant.lo.four-layers.cap` « حول الشعار: الهوية، والنظام، والعلامة: ما يقوله الناس عنك في غيابك. » (French: « Autour du logo : l’identité, le système, et la marque, ce qu’on dit de vous quand vous n’êtes pas là. »)
+- `lant.lo.funnel-planes.alt` « عشر طائرات ورقية، تمثّل 40 رسالة، تدخل قمعاً نحاسياً؛ تخرج منه أربعة مظاريف، وواحد فقط يتلقّى الختم الأحمر. على اليمين: «×3»، ثم 120 وثلاثة مظاريف مختومة. » (French: « Dix avions en papier, pour 40 messages, entrent dans un entonnoir de laiton ; quatre enveloppes en sortent, une seule reçoit le sceau rouge. À droite : « ×3 », puis 120 et trois enveloppes scellées. »)
+- `lant.lo.funnel-planes.cap` « توقيع واحد لكل 40 رسالة، إذن 120 رسالة لثلاثة عملاء. » (French: « Une signature pour 40 messages, donc 120 messages pour 3 clients. »)
+- `lant.lo.hash-receipt.alt` « ظرف يدخل في فتحة نحاسية؛ وتخرج تذكرة عليها معرّف «0x…» وكلمة «مُرسَلة». بعد الانتظار، إيصالان ممكنان: «مؤكَّدة» أو «فاشلة». التذكرة وحدها لا تقول أيّهما. » (French: « Une enveloppe entre dans une fente de laiton ; un ticket sort avec un identifiant « 0x… » et le mot « Envoyée ». Après l’attente, deux reçus possibles : « Confirmée » ou « Échouée ». Le ticket seul ne dit pas lequel. »)
+- `lant.lo.hash-receipt.cap` « الـhash يقول «أُرسلت». الإيصال يقول هل نجحت. » (French: « Le hash dit « envoyé ». Le reçu dit si c’est réussi. »)
+- `lant.lo.key-register.alt` « سجلّ عمومي على الحائط، وصفّ من القطع النقدية في أحد أعمدته. تحت المصباح يدور مفتاح نحاسي فيتقدّم الصف عموداً واحداً: القطع لا تغادر السجل أبداً. فقاعة حمراء «الدعم» تمتدّ نحو المفتاح؛ ثم يغطّيه ناقوس زجاجي، مع بطاقة «لا لأحد». » (French: « Un registre public au mur, une rangée de pièces dans une colonne. Sous la lampe, une clé de laiton tourne et la rangée avance d’une colonne : les pièces ne quittent jamais le registre. Une bulle rouge « support » tend vers la clé ; une cloche la recouvre, avec l’étiquette « à personne ». »)
+- `lant.lo.key-register.cap` « المحفظة تحفظ مفاتيحك. لا تحتوي على العملات: هي باقية في السجل. » (French: « Le portefeuille garde vos clés. Il ne contient pas les pièces : elles restent dans le registre. »)
+- `lant.lo.key-register.t.0` « «الدعم» » (French: « « support » »)
+- `lant.lo.key-register.t.1` « لا لأحد » (French: « à personne »)
+- `lant.lo.last-seat.alt` « طلبان يصلان في اللحظة نفسها عبر السلك النحاسي إلى المُرحِّل النحاسي. يُنزل المُرحِّل حاجزه: يد تتلقّى المقعد الأخير، والأخرى بطاقة «مكتمل». » (French: « Deux demandes arrivent en même temps par le fil de cuivre jusqu’au relais de laiton. Le relais abaisse sa barrière : une main reçoit la dernière place, l’autre une carte « complet ». »)
+- `lant.lo.last-seat.t.0` « مكتمل » (French: « complet »)
+- `lant.lo.loyalty-cards.alt` « بطاقتا ولاء: إحداهما فيها ثماني خانات فارغة، والأخرى عشر خانات اثنتان منها مختومتان مسبقاً باللون النحاسي، هديةً. كل ضربة ختم تملأ خانة في كل بطاقة؛ وعند الثامنة تمتلئ البطاقتان. » (French: « Deux cartes de fidélité : l’une a huit cases vides, l’autre dix cases dont deux déjà tamponnées en laiton, offertes. Chaque coup de tampon remplit une case sur chacune ; au huitième, les deux cartes sont pleines. ») *(rewritten in fix round 1)*
+- `lant.lo.loyalty-cards.cap` « الجهد نفسه، لكنك بدأت بالفعل: هذا أثر التقدّم الممنوح. » (French: « Le même effort, mais on a déjà commencé : c’est l’effet de progression offerte. »)
+- `lant.lo.loyalty-cards.next` « اختم » (French: « Tamponner »)
+- `lant.lo.margin-block.alt` « شريط من الأيام المقدَّرة يليه مكعّب نحاسي، الهامش؛ وفوقهما بطاقة «سعر ثابت» تغطّيهما. خطوة بخطوة: يومان إضافيان، بالأحمر، يدخلان الهامش، والبطاقة لا تتحرّك؛ ثم يكبر النطاق بمكعّب منقّط، وتخرج بطاقة «عرض سعر جديد» على حدة. » (French: « Une barre de jours estimés suivie d’un bloc de laiton, la marge ; au-dessus, l’étiquette « prix ferme » couvre les deux. Pas à pas : deux jours de plus, en rouge, entrent dans la marge, et l’étiquette ne bouge pas ; puis le périmètre grandit d’un bloc en pointillés, et une fiche « nouveau devis » sort à part. ») *(new in fix round 1)*
+- `lant.lo.margin-block.t.0` « الأيام المقدَّرة » (French: « jours estimés ») *(new in fix round 1)*
+- `lant.lo.margin-block.t.1` « الهامش » (French: « marge ») *(new in fix round 1)*
+- `lant.lo.margin-block.t.2` « سعر ثابت » (French: « prix ferme ») *(new in fix round 1)*
+- `lant.lo.margin-block.t.3` « النطاق » (French: « périmètre ») *(new in fix round 1)*
+- `lant.lo.margin-block.t.4` « عرض سعر جديد » (French: « nouveau devis ») *(new in fix round 1)*
+- `lant.lo.months-jar.alt` « برطمان من القطع النقدية فوق تقويم من ثلاثة أشهر: في الشهر الأول تخرج كومة من القطع، وفي الثاني كومة أخرى؛ وفي اليوم الستين يصل دفع العميل فيملأ البرطمان من جديد. قوس أحمر يحدّد الشهرين اللذين يجب الصمود فيهما. » (French: « Un bocal de pièces au-dessus d’un calendrier de trois mois : le premier mois, une pile de pièces part ; le deuxième, une autre ; au 60e jour, le paiement du client arrive et remplit le bocal. Une accolade rouge marque les deux mois à tenir. »)
+- `lant.lo.months-jar.cap` « عميل يدفع بعد 60 يوماً: ما يكفي للصمود هذين الشهرين على الأقل. » (French: « Un client paie à 60 jours : de quoi tenir au moins ces deux mois. »)
+- `lant.lo.net-path.alt` « حاسوب محمول وطريقان. الأول، بخط أحمر متقطّع، يذهب إلى هوائي Wi-Fi المطار، «شبكة لا تتحكّم فيها»، ويدٌ من ظلّ تمسك الخط. مع الزر الثاني يمرّ الخط عبر الهاتف، «شبكة الهاتف»، وتضيء علامة صحّ خضراء. » (French: « Un ordinateur portable et deux chemins. Le premier, en pointillés rouges, va à l’antenne Wi-Fi de l’aéroport, « réseau non maîtrisé », et une main d’ombre attrape la ligne. Avec le second bouton, la ligne passe par le téléphone, « réseau mobile », et une coche verte s’allume. ») *(new in fix round 1)*
+- `lant.lo.net-path.b.0` « Wi-Fi المطار » (French: « Wi-Fi de l’aéroport ») *(new in fix round 1)*
+- `lant.lo.net-path.b.1` « مشاركة اتصال الهاتف » (French: « Partage de connexion ») *(new in fix round 1)*
+- `lant.lo.net-path.t.0` « شبكة لا تتحكّم فيها » (French: « réseau non maîtrisé ») *(new in fix round 1)*
+- `lant.lo.net-path.t.1` « شبكة الهاتف » (French: « réseau mobile ») *(new in fix round 1)*
+- `lant.lo.one-writer.alt` « على منضدة، دفتر واحد ويد واحدة تكتب: البطاقة تقول «قاعدة بيانات». مع الزر الثاني، يُنسَخ الدفتر على أربع طاولات تكتب فيها أربع أيادٍ: وتصير البطاقة «عدة منظمات؟». » (French: « Sur un comptoir, un seul carnet et une seule main qui écrit : l’étiquette dit « une base de données ». Avec le second bouton, le carnet se copie sur quatre tables où quatre mains écrivent : l’étiquette devient « plusieurs organisations ? ». »)
+- `lant.lo.one-writer.b.0` « الصالة وحدها تكتب » (French: « Une seule salle écrit »)
+- `lant.lo.one-writer.b.1` « عدة منظمات تكتب » (French: « Plusieurs organisations écrivent »)
+- `lant.lo.one-writer.cap` « كاتب واحد: الشجرة تقترح قاعدة بيانات. » (French: « Un seul qui écrit : l’arbre propose une base de données. »)
+- `lant.lo.one-writer.cap2` « عدة كُتّاب: يُطرح السؤال (ليس جواباً تلقائياً). » (French: « Plusieurs qui écrivent : la question se pose (pas une réponse automatique). ») *(new in fix round 1)*
+- `lant.lo.one-writer.t.0` « قاعدة بيانات » (French: « une base de données »)
+- `lant.lo.one-writer.t.1` « عدة منظمات؟ » (French: « plusieurs organisations ? »)
+- `lant.lo.promise-proof.alt` « بطاقتا طلب مثبّتتان على لوح: «أفضل جودة» تتلقّى ختماً رمادياً «شعار دعائي»؛ و«جاهز في الموعد الموعود» تُرفَق بها ساعة وصورة للطلب، ثم علامة صح. » (French: « Deux bons de commande épinglés : « la meilleure qualité » reçoit un tampon gris « slogan » ; « prêt à l’heure promise » reçoit une horloge et une photo de la commande, puis une coche. »)
+- `lant.lo.promise-proof.cap` « الموعد يمكن التحقق منه. «الأفضل» لا. » (French: « Un délai se vérifie. « Meilleur » ne se vérifie pas. »)
+- `lant.lo.promise-proof.t.0` « أفضل جودة » (French: « la meilleure qualité »)
+- `lant.lo.promise-proof.t.1` « جاهز في الموعد الموعود » (French: « prêt à l’heure promise »)
+- `lant.lo.promise-proof.t.2` « شعار دعائي » (French: « slogan »)
+- `lant.lo.rate-gap.alt` « لوحتا صرف، «السوق» و«المعروض»، تستقبلان كومة القطع نفسها. خطوة بخطوة: تُعيد كل منهما شريطاً، وشريط العرض أقصر؛ قوس أحمر يقيس الفرق بينهما، «سعرك الحقيقي»، وينفصل ملصق «0 رسوم». » (French: « Deux tableaux de change, « marché » et « offert », reçoivent la même pile de pièces. Pas à pas : chacun rend une barre, celle de l’offre plus courte ; une accolade rouge mesure l’écart entre les deux, « votre vrai prix », et l’autocollant « 0 frais » se décolle. ») *(new in fix round 1)*
+- `lant.lo.rate-gap.t.0` « السوق » (French: « marché ») *(new in fix round 1)*
+- `lant.lo.rate-gap.t.1` « المعروض » (French: « offert ») *(new in fix round 1)*
+- `lant.lo.rate-gap.t.2` « سعرك الحقيقي » (French: « votre vrai prix ») *(new in fix round 1)*
+- `lant.lo.schengen-window.alt` « شريط من الأيام: إقامة من 50 يوماً، ثم يوم واحد في الخارج، ثم 30 يوماً بعد العودة. إطار نحاسي بعرض 180 يوماً ينزلق مع اليوم المختار؛ وعدد أيام الإقامة داخله لا يعود إلى الصفر بعد الخروج. وأبعد من ذلك، تخرج الأيام الأولى من الإطار فينخفض العدد. » (French: « Une bande de jours : un séjour de 50 jours, une journée de sortie, puis 30 jours de retour. Un cadre de laiton large de 180 jours glisse avec le jour choisi ; le compte des jours de séjour qu’il contient ne repart pas de zéro après la sortie. Plus loin, les premiers jours sortent du cadre et le compte baisse. ») *(rewritten in fix round 1)*
+- `lant.lo.schengen-window.cap` « يُحسب 180 يوماً إلى الوراء من كل يوم من أيام الإقامة: الخروج يوماً واحداً لا يمحو شيئاً. » (French: « On compte 180 jours en arrière depuis chaque jour du séjour : sortir une journée n’efface rien. »)
+- `lant.lo.schengen-window.ctl` « حرّك اليوم » (French: « Avancer le jour »)
+- `lant.lo.schengen-window.out` « أيام الإقامة خلال آخر 180 يومًا: {n} من 90 » (French: « Jours de séjour dans les 180 derniers : {n} sur 90 »)
+- `lant.lo.seal-ring.alt` « خاتم ختم، يبقى في اليد، يختم رسالة مفتوحة يستطيع أي أحد قراءتها. أي أحد يقارن البصمة العامة بالختم: فتتطابق. أضف فاصلة واحدة إلى الرسالة فتتغيّر البصمة كلياً: ويسقط التطابق. » (French: « Une bague à cacheter, gardée en main, scelle une lettre ouverte qu’on peut toujours lire. N’importe qui compare l’empreinte publique au sceau : elle correspond. Une virgule ajoutée à la lettre, et l’empreinte change entièrement : la correspondance tombe. »)
+- `lant.lo.seal-ring.cap` « يثبت أي مفتاح وقّع وأن شيئاً لم يتغيّر، لكنه لا يخفي شيئاً. » (French: « Elle prouve quelle clé a signé et que rien n’a changé, mais elle ne cache rien. »)
+- `lant.lo.spare-key.alt` « مفتاح احتياطي بشريط أحمر، «إذن غير محدود»، يعبر الباب ويدخل في قفل الصندوق. يُغلَق الباب على «قطع الاتصال»، لكن المفتاح ما زال يدور والدُّرج ينفتح. بطاقة حمراء تتدلّى من المفتاح: سحبه يكلّف رسوماً. » (French: « Une clé de secours, au ruban rouge « autorisation illimitée », passe la porte et entre dans la serrure de la caisse. La porte se ferme sur « déconnexion », mais la clé tourne encore et le tiroir s’ouvre. Une étiquette rouge pend à la clé : la révoquer coûte des frais. »)
+- `lant.lo.spare-key.cap` « الإذن غير المحدود يبقى سارياً ما لم تسحبه، حتى بعد «قطع الاتصال». » (French: « Une autorisation illimitée reste valable tant que vous ne la révoquez pas, même après « déconnexion ». »)
+- `lant.lo.spare-key.t.0` « إذن غير محدود » (French: « autorisation illimitée »)
+- `lant.lo.spare-key.t.1` « قطع الاتصال » (French: « déconnexion »)
+- `lant.lo.spare-key.t.2` « السحب: رسوم » (French: « révoquer : des frais »)
+- `lant.lo.three-copies.alt` « ثلاث بطاقات ملفات: اثنتان تسقطان في الحقيبة المفتوحة، على الحاسوب والقرص؛ والثالثة تستقرّ على رفّ في مكان آخر. يد من ظلّ تحمل الحقيبة بعيداً؛ وتبقى النسخة التي على الرف، وعليها علامة صح. » (French: « Trois fiches de fichiers : deux tombent dans le sac ouvert, sur l’ordinateur et le disque ; la troisième se pose sur une étagère, ailleurs. Une main d’ombre emporte le sac ; la copie de l’étagère reste, cochée. »)
+- `lant.lo.three-copies.cap` « هذا هو «1» في 3-2-1: نسخة خارج الحقيبة، على الإنترنت أو عند شخص تثق به. » (French: « C’est le « 1 » de 3-2-1 : une copie hors du sac, en ligne ou chez quelqu’un de confiance. »)
+- `lant.lo.two-days.alt` « يوما عمل على مسطرة واحدة من 24 ساعة: يوم سلمى من 9 إلى 18، ويوم العميل مُزاح بستّ ساعات. الجزء المشترك بينهما، من 15 إلى 18 بتوقيت سلمى، يُضاء؛ ويحطّ هاتف عند الساعة 16. » (French: « Deux journées de travail sur une même règle de 24 heures : celle de Selma de 9 h à 18 h, celle du client décalée de six heures. Leur part commune, de 15 h à 18 h chez Selma, s’allume ; un téléphone se pose à 16 h. »)
+- `lant.lo.two-days.cap` « 16:00 عندك هي 10:00 عند عميلك: الساعة تقع داخل اليومين معاً. » (French: « 16 h chez vous, c’est 10 h chez votre client : l’heure tombe dans les deux journées. »)
+- `lant.lo.wallet-seams.alt` « محفظة جلدية تنفتح على ثلاثة جيوب من الأوراق النقدية؛ ثلاثة مشابك نحاسية تحدّد أين تختبئ الكلفة: الصرف بين الجيوب، والتحويل عند السحّاب، والبطاقة والسحب عند فتحة البطاقة. وملصق «0 رسوم» تنفصل حافته. » (French: « Un portefeuille en cuir s’ouvre sur trois poches de billets ; trois pinces de laiton marquent où se cache le coût : le change entre les poches, le transfert à la fermeture, la carte et le retrait à la fente de la carte. L’étiquette « 0 frais » se décolle. »)
+- `lant.lo.wallet-seams.cap` « ما يكلّف ليس الفتح في الغالب، بل ثلاثة رسوم. » (French: « Ce qui coûte n’est presque jamais l’ouverture : ce sont trois frais. »)
+- `lant.lo.wallet-seams.t.0` « 0 رسوم » (French: « 0 frais »)
+- `lant.panel.bank-balance.alt` « يتفحّص كورو هاتفاً بعدسة مكبّرة: شريطان بطولين مختلفين وساعة رملية باهتة. » (French: « Kūro examine à la loupe un téléphone : deux barres de longueurs différentes et un sablier pâli. »)
+- `lant.panel.bank-balance.cap` « ما ادّخرته، وما يخرج كل شهر: السيولة تُحسب بالأشهر. » (French: « Ce qu’on a de côté, ce qui part chaque mois : la trésorerie se compte en mois. »)
+- `lant.panel.bank-bell.alt` « ينصب كورو أذنيه: الهاتف يهتزّ تحت جرس ذهبي صغير. » (French: « Kūro dresse les oreilles : le téléphone vibre sous une petite cloche dorée. »)
+- `lant.panel.bank-bell.cap` « تحقّق قبل الرحيل: هل سيستقبل رقمي هناك رموز بنكي؟ » (French: « À vérifier avant le départ : mon numéro recevra-t-il là-bas les codes de ma banque ? »)
+- `lant.panel.bank-calm.alt` « يجلس كورو هادئاً لا يتحرّك، بين منبّه يرنّ وضوء إنذار أحمر. » (French: « Kūro reste assis, impassible, entre un réveil qui sonne et un gyrophare rouge. »)
+- `lant.panel.bank-calm.cap` « الاستعجال ليس معلومة. » (French: « L’urgence n’est pas une information. »)
+- `lant.panel.bank-fridge.alt` « في المطبخ، في وضح النهار، يثبّت ياسر ورقة صغيرة على الثلاجة بمغناطيس؛ وعلى الطاولة هاتف وقائمة مؤشَّر عليها؛ وكورو يحمل ميدالية ذهبية صغيرة. » (French: « Dans la cuisine, en plein jour, Yasser fixe une petite note sur le frigo avec un aimant ; sur la table, un téléphone et une liste cochée ; Kūro porte une petite médaille dorée. »)
+- `lant.panel.bank-fridge.cap` « امتلأ دفتر الطريق، والقائمة مؤشَّر عليها كلها. » (French: « Le carnet est rempli, la liste est cochée. ») *(new in fix round 1)*
+- `lant.panel.bank-hangup.alt` « بمخلب يضغط كورو على الزرّ الأحمر لإنهاء المكالمة، وبالآخر يمسك بطاقة بنكية. » (French: « D’une patte, Kūro appuie sur le bouton rouge pour raccrocher ; de l’autre, il tient une carte bancaire. »)
+- `lant.panel.bank-hangup.cap` « عُرفت العلامة، فنُغلق الخط. » (French: « Le signal reconnu, on raccroche. »)
+- `lant.panel.bank-hooks.alt` « يربض كورو أمام ظرف وفقاعة رسالة وسمّاعة هاتف، كلّ منها معلّق بصنّارة حمراء. » (French: « Kūro se tapit devant une enveloppe, une bulle de message et un combiné de téléphone, chacun pendu à un hameçon rouge. »)
+- `lant.panel.bank-hooks.cap` « رسالة ورقية، رسالة نصية، مكالمة: الطُّعم نفسه، الاستعجال ورابط يشبه الحقيقي. » (French: « Une lettre, un message, un appel : le même hameçon, l’urgence et le lien qui ressemble au vrai. »)
+- `lant.panel.bank-id.alt` « يرفع كورو بطاقة هوية خضراء بجانب هاتف تنتظر شاشته صورة ذاتية داخل إطار منقّط. » (French: « Kūro tient une carte d’identité verte à côté d’un téléphone dont l’écran attend un selfie dans un cadre en pointillés. »)
+- `lant.panel.bank-id.cap` « لفتح الحساب، ستتحقّق الخدمة من هويتك. اسألها أولاً: هل تقبل المقيمين في بلدي؟ » (French: « Pour ouvrir, le service vérifiera qui vous êtes. Demandez-lui d’abord : accepte-t-il les résidents de mon pays ? ») *(rewritten in fix round 1)*
+- `lant.panel.bank-judge.alt` « كورو في دور القاضي، ومطرقة عند قدميه، بين هاتفين: فقاعة خضراء عليها علامة صحّ، وفقاعة حمراء عليها علامة خطأ. » (French: « Kūro en juge, un marteau à ses pieds, entre deux téléphones : une bulle verte cochée, une bulle rouge barrée. »)
+- `lant.panel.bank-judge.cap` « احتيال، أم لا شيء غريب؟ صنّف الرسائل الست. » (French: « Arnaque, ou rien d’anormal ? Triez les six messages. »)
+- `lant.panel.bank-key.alt` « يدير كورو مفتاحاً نحاسياً كبيراً في قفل موضوع على هاتف؛ وبجانبه مفتاح أمان صغير في حلقة. » (French: « Kūro tourne une grande clé de laiton dans un cadenas posé sur un téléphone ; à côté, une petite clé de sécurité sur un anneau. »)
+- `lant.panel.bank-key.cap` « قفل ثانٍ: التحقق بخطوتين يُبقي اللصوص خارجاً حتى لو عرفوا كلمة مرورك. » (French: « Une deuxième serrure : la double validation garde les voleurs dehors même s’ils connaissent votre mot de passe. »)
+- `lant.panel.bank-mask.alt` « يرفع كورو قناعاً من الكرتون مرسوماً عليه ابتسامة: وخلفه يدٌ من ظلّ تمتدّ نحو محفظة. » (French: « Kūro soulève un masque en carton au sourire peint : derrière, une main d’ombre se tend vers un portefeuille. »)
+- `lant.panel.bank-mask.cap` « «الدعم» المزيّف يرتدي قناعاً لطيفاً. من يقرأ عبارة الاسترداد يأخذ كل شيء. » (French: « Le faux « support » porte un masque aimable. Qui lit la phrase de récupération prend tout. »)
+- `lant.panel.bank-routes.alt` « يتردّد كورو بين ثلاثة أشياء صغيرة: مصرف بأعمدة، وحاسوب مفتوح على لوحة متابعة، وهاتف. » (French: « Kūro hésite entre trois petits objets : une banque à colonnes, un ordinateur ouvert sur un tableau de bord, un téléphone. »)
+- `lant.panel.devis-folders.alt` « ياسر، ويده على جبينه، بجانب برج من الملفّات والمجلّدات تبرز منه الملاحظات؛ وكورو جالس على لوحة مفاتيح الحاسوب. » (French: « Yasser, la main sur le front, à côté d’une tour de classeurs et de dossiers hérissée de notes ; Kūro assis sur le clavier de l’ordinateur. »)
+- `lant.panel.devis-folders.cap` « بدون بند التعديلات في عرض السعر لا ينتهي مشروع أبداً. » (French: « Sans la ligne des retouches au devis, un projet ne finit jamais. ») *(rewritten in fix round 1)*
+- `lant.panel.night-platform.alt` « في الليل، على رصيف محطة، يقرأ ياسر خريطة مضيئة وحزام حقيبة على صدره؛ وكورو ينتظر عند قدميه. » (French: « La nuit, sur un quai de gare, Yasser lit une carte qui luit, la bandoulière d’un sac en travers du torse ; Kūro attend à ses pieds. ») *(rewritten in fix round 1)*
+- `lant.panel.night-platform.cap` « مكتبك يسع في حقيبة: كل ما ينكسر أو يضيع أو ينقطع يوقفك تماماً. » (French: « Votre bureau tient dans un sac : tout ce qui casse, se perd ou se coupe vous arrête net. ») *(rewritten in fix round 1)*
+- `lant.ui.lo.next` « التالي » (French: « Suite »)
+- `lant.ui.lo.play` « اعرض » (French: « Montrer »)
+- `lant.ui.lo.replay` « أعد العرض » (French: « Rejouer »)
+- `lant.ui.lo.restart` « من جديد » (French: « Recommencer »)
+- `lant.ui.lo.step` « الخطوة {i} من {n} » (French: « Étape {i} sur {n} »)
+- `lant.ui.lo.steps` « خطوة بخطوة » (French: « Pas à pas »)
+
+### Fix round 1 (2026-11-24): what changed after the review, and one question for you
+
+- **Captions that fought their picture.** The night platform, the binder tower and the ID check now carry a line about what they show (see the table above); the « Appel » stop's 2-step card says the code must never leave your phone, and « ce qui part » no longer reads as an absolute rule about bank transfers. The toggle in web3 « Chaîne ? » has a caption per state.
+- **Your full scenes stand alone.** On the four plates that already paint Yasser and Kūro (bank-post, bank-desk, bank-call, bank-desk-close) the pigeon, raven and rat cut-outs are gone; on route « Sécurité » only the keys stay, in the empty upper left.
+- **Labels on phones.** Where a drawing is narrower than 340 px, its word labels repeat under it in readable type; the hour and day numbers grow inside the drawing.
+- **Three new objects** for the decisions that had no picture: the rate gap (argent « Change »), the network choice (route « Sécurité »), the margin under a fixed price (route « Prix »).
+- **On wide screens** a panel or object in a reading takes a column beside it instead of sitting alone on the navy.
+- **Question: Kūro in the banking set.** Your banking-course panels draw Kūro as a fluffy dark-brown cat without the red collar; everywhere else he is the sleek black cat with amber eyes and the red collar. We read the set as your own variant and kept it (your order was to use all sixteen pictures; the « Appel » keepsake is `panels/bank-card.webp`, the only place that picture appears, so it stays). To keep the two cats from standing side by side, web3 « Arnaques » now has the rat as its lead cut-out instead of Kūro, next to the bank-hooks panel. **Is the fluffy Kūro an approved variant, or should the banking set be redrawn to the sleek model?** Until you say, nothing else changes.
+## Wave 3, the work (2026-11-24): Nomara, Alliance's domain, the directory, our own site
+Your answers (WAVE3.md items 1 and 3), applied:
+
+- **Alliance Travel** links to `https://alliancetravel.app/` everywhere it
+  linked `alliancetravel34.netlify.app`: the home's plate and card (and so
+  /en/ and /ar/), its sheet on /scene/, its Studio case (the browser bar and
+  both links), and the capture and logo scripts (`scripts/shots.mjs`,
+  `scripts/work-capture.mjs`, `scripts/client-logos.mjs`,
+  `scripts/build-creative.mjs`). Its committed captures were not retaken:
+  they show the same site.
+- **Nomara Voyages** is the fourth delivered client everywhere (item 7
+  above): « 4 » on the home, « quatre » / "four" / « أربع » on /scene/'s
+  lead and the Studio's proof lead.
+- **Annuaire industriel algérien** (`https://annuaire-dz.vercel.app/fr`) is
+  a finished project under the site's own name: a sheet on /scene/ (sheet
+  05, chip « Projet terminé »), one line under the four clients on the home
+  (the grid stays a lead row and three: client sites only) and one line in
+  the Studio's work section. Every sentence comes from its own pages (the
+  directory, two company pages, its legal notice), read on 2026-11-24. It
+  is **not** counted among the delivered sites, and nothing says whose order
+  it was: tell us if it should be counted as a client, and it moves up.
+- **Our own site** is a finished project too: sheet 08 on /scene/, chip
+  « Notre propre site », captured from this repository (the home and the
+  price guide at night, the Studio in its cream day, the Librairie); one
+  line on the home, one link in the Studio's « Aussi, faits maison ».
+- Captures: `assets/work/nomara/`, `assets/work/annuaire/`,
+  `assets/work/numidea/` (`npm run work:capture <slug>`). The directory has
+  no home preview file (`line: true` in `scripts/shots.mjs`), like Glaive.
+
+**Arabic for native review** (wave 3, all new): the home's three lines, the
+Studio's four, the three new sheets and the scene's new interface strings,
+and the Nomara case.
+- `work.annuaire` « وأُنجز أيضاً: الدليل الصناعي الجزائري، كفاءات المؤسسات الصناعية الجزائرية وشهاداتها واحتياجاتها، بثلاث لغات. » (French: « Terminé aussi : l’Annuaire industriel algérien, les savoir-faire, certifications et besoins des entreprises industrielles algériennes, en trois langues. »)
+- `work.annuaireLive` « زيارة الدليل ↗ » (French: « Voir l’annuaire ↗ »)
+- `work.own` « وهذا الموقع، موقعنا: ثلاث لغات، ودليل للأسعار، والاستوديو، والمكتبة، وتحقيقات الليل. » (French: « Et ce site, le nôtre : trois langues, un guide des prix, le Studio, la Librairie et les enquêtes de nuit. »)
+- `proof.lead` (Studio, changed) « أربعة عملاء سُلّمت أعمالهم، وعملان للمؤسّس. كل ملف يقول ما الذي صُنع، ولمن، وأين تتحقق منه. » (French: « Quatre clients livrés et deux travaux du fondateur. … »)
+- `proof.site` « هذا الموقع، موقعنا: بطاقته » (French: « ce site, le nôtre : sa fiche »)
+- `proof.done` « وأُنجز أيضًا: » (French: « Terminé aussi : »)
+- `proof.annuaire` « الدليل الصناعي الجزائري » (French: « l’Annuaire industriel algérien »)
+- `p.nomara.ctx` « وكالة سياحة وعمرة من عين مليلة، تُسفّر المسافرين من شرق الجزائر انطلاقاً من مطار قسنطينة، ويحجز عملاؤها عبر واتساب أو بالهاتف. » (French: « Une agence de voyages et d’Omra d’Aïn M’lila, qui fait partir les voyageurs de l’Est algérien depuis l’aéroport de Constantine ; on y réserve sur WhatsApp ou par téléphone. »)
+- `p.nomara.g0` « يقارن المعتمر باقات العمرة لكل موسم حسب الفندق والمسافة من الحرم والسعر للشخص، ويقرأ ما يشمله السعر، بما فيه التأشيرة. » (French: « Un pèlerin compare les forfaits Omra de chaque saison par hôtel, distance du Haram et prix par personne, et lit ce que le prix comprend, visa compris. »)
+- `p.nomara.g1` (changed 2026-11-24, the review: Egypt’s price is on request) « يتصفّح المسافر في صفحة واحدة الوجهات المنطلقة من قسنطينة مع السعر للشخص أو عند الطلب، ويفتح من كل وجهة تفاصيلها أو واتساب. » (French: « Un voyageur parcourt sur une seule page les destinations au départ de Constantine, prix par personne à l’appui, ou sur demande, et ouvre de chacune le détail ou WhatsApp. »)
+- `p.nomara.g2` « وفي صفحة كل وجهة، يقرأ البرنامج وما يشمله السعر، وما لا يشمله مكتوباً بوضوح. » (French: « Sur la page d’une destination, il lit le programme, ce que le prix comprend et, écrit en clair, ce qu’il ne comprend pas. »)
+- `p.nomara.g3` « ولتأشيرة أو فندق أو تذكرة طيران، يقرأ كيف تعمل الوكالة خطوة بخطوة، ثم يبدأ طلبه عبر واتساب. » (French: « Pour un visa, un hôtel ou un billet d’avion, il lit comment l’agence procède, étape par étape, puis lance sa demande sur WhatsApp. »)
+- `p.nomara.g4` « يقرأ الموقع بالعربية أو بالفرنسية، بالوضع الفاتح أو الداكن. » (French: « Il lit le site en arabe ou en français, en mode clair ou en mode sombre. »)
+- `p.nomara.sector` « سياحة وعمرة · عين مليلة » (French: « Voyages et Omra · Aïn M’lila »)
+- `p.nomara.scope` « موقع تعريفي ثنائي اللغة وحجز عبر واتساب » (French: « Site vitrine bilingue et réservation WhatsApp »)
+- `p.nomara.summary` (changed 2026-11-24, the review: one destination’s price is on request) « وكالة سياحة وعمرة في شرق الجزائر: باقات العمرة حسب الفندق والمسافة من الحرم، وصفحة لكل وجهة ببرنامجها وما يشمله السعر، والخدمات (الفنادق والتذاكر والتأشيرة)، والحجز عبر واتساب. بالعربية والفرنسية، بوضعين فاتح وداكن. » (French: « Une agence de voyages et d’Omra de l’Est algérien : les forfaits Omra par hôtel et distance du Haram, une page par destination avec son programme et ce que le prix comprend, les services (hôtels, billets, visa) et la réservation sur WhatsApp. En arabe et en français, en mode clair et sombre. »)
+- `p.nomara.d0` « موقع ثنائي اللغة (العربية والفرنسية)، والعربية من اليمين إلى اليسار » (French: « Site bilingue AR · FR, arabe en RTL »)
+- `p.nomara.d1` « صفحة العمرة والحج » (French: « Page Omra et Hajj »)
+- `p.nomara.d2` « 5 صفحات للوجهات » (French: « 5 pages destination »)
+- `p.nomara.d3` « 3 صفحات للخدمات » (French: « 3 pages de services »)
+- `p.nomara.d4` « الحجز عبر واتساب » (French: « Réservation sur WhatsApp »)
+- `p.nomara.d5` « وضع فاتح ووضع داكن » (French: « Mode clair et mode sombre »)
+- `p.nomara.pg0` « الرئيسية » (French: « Accueil »)
+- `p.nomara.pg1` « العمرة والحج » (French: « Omra et Hajj »)
+- `p.nomara.pg2` « الرحلات المنظمة » (French: « Voyages organisés »)
+- `p.nomara.pg3` « إسطنبول » (French: « Istanbul »)
+- `p.nomara.ph0` « الرئيسية » (French: « Accueil »)
+- `p.nomara.ph1` « العمرة والحج » (French: « Omra et Hajj »)
+- `p.annuaire.ctx` « دليل عمومي للمؤسسات الصناعية الجزائرية: ما تتقنه وما تبحث عنه، ليجد المشترون والمستثمرون والشركاء المؤسسات التي يحتاجونها. » (French: « Un annuaire public des entreprises industrielles algériennes : ce qu’elles savent faire et ce qu’elles recherchent, pour que les acheteurs, les investisseurs et les partenaires trouvent celles qu’il leur faut. »)
+- `p.annuaire.g0` « يبحث المشتري عن مؤسسة أو نشاط، ثم يصفّي القائمة حسب الولاية ونوع المؤسسة. » (French: « Un acheteur cherche une entreprise ou une activité, puis filtre la liste par wilaya et par type d’entreprise. »)
+- `p.annuaire.g1` « في صفحة كل مؤسسة، يقرأ ما تتقنه وشهاداتها واحتياجاتها، مع ولايتها وفئة عدد عمّالها ورابط موقعها. » (French: « Sur la fiche d’une entreprise, il lit ce qu’elle sait faire, ses certifications et ses besoins, avec sa wilaya, sa tranche d’effectif et un lien vers son site. »)
+- `p.annuaire.g2` « ومن هناك، ينتقل إلى مؤسسات مشابهة. » (French: « De là, il passe à des entreprises similaires. »)
+- `p.annuaire.g3` « ويعرف ما يُنشر وما لا يُنشر أبداً: لا بيانات اتصال الأشخاص، ولا أرقام المؤسسات، ولا تمويلاتها. » (French: « Il sait ce qui est publié et ce qui ne l’est jamais : ni les coordonnées des personnes, ni les chiffres des entreprises, ni leurs financements. »)
+- `p.annuaire.g4` « يقرأ الدليل بالفرنسية أو العربية أو الإنجليزية. » (French: « Il lit l’annuaire en français, en arabe ou en anglais. »)
+- `p.annuaire.sector` « دليل صناعي · الجزائر » (French: « Annuaire industriel · Algérie »)
+- `p.annuaire.scope` « دليل إلكتروني ثلاثي اللغة » (French: « Annuaire en ligne trilingue »)
+- `p.annuaire.summary` « دليل المؤسسات الصناعية الجزائرية: الكفاءات والشهادات والاحتياجات. بحث مع تصفية حسب الولاية والنوع، وصفحة لكل مؤسسة مع مؤسسات مشابهة، بالفرنسية والعربية والإنجليزية. » (French: « L’annuaire des entreprises industrielles algériennes : savoir-faire, certifications et besoins. Une recherche filtrée par wilaya et par type, une fiche par entreprise avec ses entreprises similaires, en français, en arabe et en anglais. »)
+- `p.annuaire.d0` « دليل ثلاثي اللغة (الفرنسية والعربية والإنجليزية)، والعربية من اليمين إلى اليسار » (French: « Annuaire trilingue FR · AR · EN, arabe en RTL »)
+- `p.annuaire.d1` « بحث وتصفية حسب الولاية والنوع » (French: « Recherche et filtres par wilaya et par type »)
+- `p.annuaire.d2` « صفحة لكل مؤسسة » (French: « Une fiche par entreprise »)
+- `p.annuaire.d3` « مؤسسات مشابهة » (French: « Entreprises similaires »)
+- `p.annuaire.d4` « فضاء الإدارة » (French: « Espace d’administration »)
+- `p.annuaire.d5` « الإشعار القانوني والخصوصية » (French: « Mentions légales et confidentialité »)
+- `p.annuaire.pg0` « الدليل » (French: « L’annuaire »)
+- `p.annuaire.pg1` « صفحة مؤسسة، جيجل » (French: « Fiche entreprise, Jijel »)
+- `p.annuaire.pg2` « صفحة مؤسسة، برج بوعريريج » (French: « Fiche entreprise, Bordj Bou Arréridj »)
+- `p.annuaire.pg3` (changed 2026-11-24, the review: the fourth capture is now the directory in Arabic) « الدليل بالعربية » (French: « L’annuaire en arabe »)
+- `p.annuaire.ph0` « الدليل » (French: « L’annuaire »)
+- `p.annuaire.ph1` « صفحة مؤسسة » (French: « Fiche entreprise »)
+- `p.numidea.ctx` « موقعنا الخاص، الذي تقرؤه الآن: فيه يعرض الاستوديو أسعاره وأعماله، وفيه دروسه المجانية. » (French: « Notre propre site, celui que vous lisez : le studio y présente ses prix et ses travaux, et y tient ses leçons gratuites. »)
+- `p.numidea.g0` « يقرأ الزائر الموقع بالفرنسية أو الإنجليزية أو العربية، ويطلب معاينة مجانية لصفحته الرئيسية قبل أن يدفع. » (French: « Un visiteur lit le site en français, en anglais ou en arabe, et demande un Aperçu gratuit de sa page d’accueil avant de payer. »)
+- `p.numidea.g1` « يقرأ الأسعار المنشورة بالدينار، وما تشمله كل باقة، قبل أن يراسل. » (French: « Il lit les prix publiés, en dinars, et ce que chaque formule comprend, avant d’écrire. »)
+- `p.numidea.g2` « وفي الاستوديو، يفتح ملف كل عميل سُلِّم عمله، قطعة بقطعة، ويقدّر كلفة مشروعه. » (French: « Au Studio, il ouvre le dossier de chaque client livré, pièce par pièce, et estime son propre projet. »)
+- `p.numidea.g3` « وفي المكتبة، يتابع دروساً مجانية، كلّ منها أطلس يُلعب حيّاً بحيّ. » (French: « À la Librairie Lanterne, il suit des leçons gratuites, chacune un atlas qu’on joue quartier par quartier. »)
+- `p.numidea.g4` « وفي تحقيقات الليل، يقرأ ادّعاءً رائجاً ويشير إلى الدليل على شاشة وهمية، مجاناً، في متصفّحه. » (French: « Aux enquêtes de nuit, il lit une affirmation en vogue et pointe la preuve sur un écran factice, gratuitement, dans son navigateur. »)
+- `p.numidea.sector` « استوديو ويب · برج بوعريريج » (French: « Studio web · Bordj Bou Arréridj »)
+- `p.numidea.scope` « موقعنا الخاص، بثلاث لغات » (French: « Notre propre site, en trois langues »)
+- `p.numidea.summary` « موقعنا الخاص، الذي تقرؤه الآن: بالفرنسية والإنجليزية والعربية، مع دليل لأسعارنا المنشورة، والاستوديو وملفات العملاء، والمكتبة ودروسها المجانية، وتحقيقات الليل، وهي لعبة. » (French: « Notre propre site, celui que vous lisez : en français, en anglais et en arabe, avec un guide des prix publiés, le Studio et les dossiers des clients, la Librairie Lanterne et ses leçons gratuites, et les enquêtes de nuit, un jeu. »)
+- `p.numidea.d0` « موقع ثلاثي اللغة (الفرنسية والإنجليزية والعربية)، والعربية من اليمين إلى اليسار » (French: « Site trilingue FR · EN · AR, arabe en RTL »)
+- `p.numidea.d1` « دليل الأسعار » (French: « Guide des prix »)
+- `p.numidea.d2` « الاستوديو وملفات العملاء » (French: « Le Studio et les dossiers clients »)
+- `p.numidea.d3` « المكتبة » (French: « La Librairie Lanterne »)
+- `p.numidea.d4` « تحقيقات الليل، لعبة » (French: « Les enquêtes de nuit, un jeu »)
+- `p.numidea.d5` « مظهران، ليلي ونهاري » (French: « Deux thèmes, nuit et jour »)
+- `p.numidea.pg0` « الرئيسية » (French: « Accueil »)
+- `p.numidea.pg1` « دليل الأسعار » (French: « Guide des prix »)
+- `p.numidea.pg2` « الاستوديو » (French: « Le Studio »)
+- `p.numidea.pg3` « المكتبة » (French: « La Librairie Lanterne »)
+- `p.numidea.ph0` « الرئيسية » (French: « Accueil »)
+- `p.numidea.ph1` « الاستوديو » (French: « Le Studio »)
+- `ui.lead` « اللوحات الأربع الأولى مواقع سُلِّمت لعملاء، كما هي على الإنترنت اليوم؛ ثم مشاريعنا المنجزة الأخرى: دليل صناعي، وعرض تجريبي ضمن الأعمال، وأداتنا الخاصة، وهذا الموقع. » (French: « Les quatre premières planches sont des sites livrés à des clients, tels qu’ils sont en ligne ; puis nos autres projets terminés : un annuaire industriel, une démo de portfolio, notre propre outil et ce site. »)
+- `ui.group` « مشاريع منجزة أخرى: دليل، وعرض تجريبي، وأداتنا، وهذا الموقع » (French: « Autres projets terminés : un annuaire, une démo, notre outil et ce site »)
+- `ui.status.finished` « مشروع منجز » (French: « Projet terminé »)
+- `ui.gain.finished` « ما يقدّمه الموقع لزوّاره » (French: « Ce que le site apporte à ses visiteurs »)
+- `ui.ctxL.finished` « المشروع » (French: « Le projet »)
+- `ui.status.own` « موقعنا الخاص » (French: « Notre propre site »)
+- `ui.gain.own` « ما يقدّمه الموقع لزوّاره » (French: « Ce que le site apporte à ses visiteurs »)
+- `ui.ctxL.own` « الإطار » (French: « Le cadre »)
+- `cases.nomara.hud` « ملف العميل 04 » (French: « DOSSIER CLIENT 04 »)
+- `cases.nomara.sector` « سياحة وعمرة » (French: « Voyages et Omra »)
+- `cases.nomara.tag` « موقع ثنائي اللغة » (French: « Site bilingue »)
+- `cases.nomara.track` « نومارا للسياحة والأسفار: قطع الملف » (French: « Nomara Voyages : les pièces du dossier »)
+- `cases.nomara.cover.k` « الموقع · العربية · الفرنسية » (French: « SITE · AR · FR »)
+- `cases.nomara.cover.t` « العمرة والرحلات المنظمة، انطلاقاً من قسنطينة » (French: « Omra et voyages organisés, au départ de Constantine »)
+- `cases.nomara.cover.s` « وكالة سياحة وعمرة · عين مليلة. موقع بالعربية والفرنسية، والحجز عبر واتساب. » (French: « Agence de voyages et d’Omra · Aïn M’lila. Un site en arabe et en français, et la réservation sur WhatsApp. »)
+- `cases.nomara.cover.chips.0` « العمرة والحج » (French: « Omra et Hajj »)
+- `cases.nomara.cover.chips.1` « الرحلات المنظمة » (French: « Voyages organisés »)
+- `cases.nomara.cover.chips.2` « الفنادق · التذاكر · التأشيرة » (French: « Hôtels · billets · visa »)
+- `cases.nomara.cover.chips.3` « واتساب » (French: « WhatsApp »)
+- `cases.nomara.site.k` « الموقع · على الإنترنت » (French: « SITE · EN LIGNE »)
+- `cases.nomara.site.h` « اختر رحلتك، ثم راسلنا على واتساب » (French: « Choisir son voyage, puis écrire sur WhatsApp »)
+- `cases.nomara.site.open` « فتح ↗ » (French: « Ouvrir ↗ »)
+- `cases.nomara.site.fl.0` « الصفحات » (French: « PAGES »)
+- `cases.nomara.site.fl.1` « اللغات » (French: « LANGUES »)
+- `cases.nomara.site.fl.2` « الحجز » (French: « RÉSERVATION »)
+- `cases.nomara.omra.k` « NV-02 · العمرة والحج » (French: « NV-02 · OMRA ET HAJJ »)
+- `cases.nomara.omra.h` « موسمان، وثلاثة فنادق للاختيار » (French: « Deux saisons, trois hôtels au choix »)
+- `cases.nomara.omra.items.0` « عمرة شوّال وعمرة جوان » (French: « L’Omra de Chawwal et l’Omra de juin »)
+- `cases.nomara.omra.items.1` « لكلّ منهما ثلاثة فنادق على ثلاث مسافات من الحرم » (French: « Pour chacune, trois hôtels à trois distances du Haram »)
+- `cases.nomara.omra.items.2` « يشمل السعر الطيران المباشر من قسنطينة والفندق والمرافقة والتأشيرة » (French: « Le prix comprend le vol direct depuis Constantine, l’hôtel, l’accompagnement et le visa »)
+- `cases.nomara.omra.alt` « صفحة العمرة والحج في موقع نومارا للسياحة والأسفار: «نرافقك في رحلة العمر» على خلفية خضراء » (French: « La page Omra et Hajj du site de Nomara Voyages, en arabe : « نرافقك في رحلة العمر », sur fond vert »)
+- `cases.nomara.trips.k` « NV-03 · الرحلات المنظمة » (French: « NV-03 · VOYAGES ORGANISÉS »)
+- `cases.nomara.trips.h` « خمس وجهات، لكلّ منها صفحتها » (French: « Cinq destinations, une page chacune »)
+- `cases.nomara.trips.items.0` « تونس » (French: « Tunisie »)
+- `cases.nomara.trips.items.1` « تركيا » (French: « Turquie »)
+- `cases.nomara.trips.items.2` « أذربيجان » (French: « Azerbaïdjan »)
+- `cases.nomara.trips.items.3` « ماليزيا » (French: « Malaisie »)
+- `cases.nomara.trips.items.4` « مصر » (French: « Égypte »)
+- `cases.nomara.trips.note` « في كل صفحة: البرنامج، وما يشمله السعر، وما لا يشمله. » (French: « Sur chaque page : le programme, ce que le prix comprend et ce qu’il ne comprend pas. »)
+- `cases.nomara.trips.lab` « إسطنبول · الصفحة » (French: « ISTANBUL · LA PAGE »)
+- `cases.nomara.trips.alt` « صفحة إسطنبول في موقع نومارا للسياحة والأسفار: المسجد الأزرق خلف عنوان «إسطنبول — تركيا» » (French: « La page Istanbul du site de Nomara Voyages, en arabe : la Mosquée bleue derrière le titre « إسطنبول — تركيا » »)
+- `cases.nomara.services.k` « NV-04 · الخدمات » (French: « NV-04 · SERVICES »)
+- `cases.nomara.services.items.0` « حجز الفنادق » (French: « Réservation d’hôtels »)
+- `cases.nomara.services.items.1` « تذاكر الطيران » (French: « Billets d’avion »)
+- `cases.nomara.services.items.2` « المساعدة في ملف التأشيرة » (French: « Aide au dossier de visa »)
+- `cases.nomara.services.note` « لكلّ خدمة خطواتها واحدة بواحدة، ثم واتساب. » (French: « Pour chacun, la marche à suivre étape par étape, puis WhatsApp. »)
+- `cases.nomara.mobile.k` « على الهاتف » (French: « SUR MOBILE »)
+- `cases.nomara.mobile.alt` « الصفحة الرئيسية لموقع نومارا للسياحة والأسفار على هاتف » (French: « L’accueil du site de Nomara Voyages sur un téléphone, en arabe »)
+- `cases.nomara.system.k` « الألوان والخطوط » (French: « COULEURS ET TYPE »)
+- `cases.nomara.system.note` « وضع فاتح ووضع داكن » (French: « Mode clair et mode sombre »)
+- `cases.nomara.scope.k` « سُلِّم · نومارا للسياحة والأسفار » (French: « LIVRÉ · NOMARA VOYAGES »)
+- `cases.nomara.scope.n` « 6 مُخرَجات » (French: « 6 LIVRABLES »)
+- `cases.nomara.scope.t` « وكالة سفر، من اختيار الرحلة إلى رسالة واتساب » (French: « Agence de voyages, du choix du voyage au message WhatsApp »)
+- `cases.nomara.scope.note` « تُعلَّم كل خانة عندما ترى القطعة في الملف. » (French: « Chaque case se coche quand vous avez vu la pièce dans le dossier. »)
+- `cases.nomara.scope.items.0` « موقع ثنائي اللغة (العربية والفرنسية) » (French: « Site bilingue AR · FR »)
+- `cases.nomara.scope.items.1` « صفحة العمرة والحج » (French: « Page Omra et Hajj »)
+- `cases.nomara.scope.items.2` « 5 صفحات للوجهات » (French: « 5 pages destination »)
+- `cases.nomara.scope.items.3` « 3 صفحات للخدمات » (French: « 3 pages de services »)
+- `cases.nomara.scope.items.4` « نسخة الهاتف » (French: « Version mobile »)
+- `cases.nomara.scope.items.5` « وضع فاتح ووضع داكن » (French: « Mode clair et mode sombre »)
+- `cases.nomara.scope.cta` « مشروع مثل هذا ← » (French: « Un projet comme celui-ci → »)
+
+## Wave 3, the founder, the services copy and AlmaFlow's book (2026-11-24)
+Your answers (WAVE3.md items 2, 5, 6 and 7), applied. Items 5 and 6 are
+**drafted**: each is reversible, and the way back is given.
+
+- **No founder photo** (item 2, section 3 closed). The drawn Yasser stays the
+  founder's face: the night plate on the home's card. The commented photo
+  slot, its CSS (`.fd-photo`), its line in `assets/app.js` and the notes that
+  waited for a photo are gone. The plate holds still: the animated Yasser (the
+  rig) is another drawing and stays on the Studio, where its motion rule
+  lives; an animated version of the home's plate does not exist, so none was
+  put on the card. Say if you want one drawn.
+- **The founder card's lines are deliveries** (item 5, drafted). The block
+  « Livré récemment », which gave two job titles, is now « En ligne
+  aujourd'hui »: each site live today, linked to its sheet, what it is in its
+  sheet's own words, and a date only where the site already gave one (the CV
+  periods):
+  - Alliance Travel · identité, site et parcours de réservation · Fév. – mai 2026
+  - SPA Bordj Steel · identité et site corporate B2B · Août 2025 – fév. 2026
+  - Nomara Voyages · site bilingue et réservation WhatsApp (no date on record)
+  - AlmaFlowClim · site vitrine et demande de devis (no date on record)
+  - Annuaire industriel algérien · annuaire en ligne en trois langues, projet terminé (no date on record)
+  Send a month for Nomara, AlmaFlowClim or the directory and it joins its line.
+  Undo: the two old lines (`fx3`, `fx3.when`; `fx4`, `fx4.when`) under
+  `founder.recent` « Livré récemment » in `index.html`; the new keys are
+  `fd.*` in `assets/i18n/*.js`.
+- **The CV download and the character-notebook link left the home's founder
+  block** (item 5, Q-13). Both stay on the Studio (its founder block links the
+  bible and the PDF). The career panel (« Voir le parcours ») stays; its two
+  client names now lead to their sheets. Undo: the `.cv-dl` link and the
+  `.fd-bible` link in `index.html`, their keys `founder.download` and
+  `founder.bible` and their CSS (git history, 2026-11-24).
+- **The home's services say what you get** (item 6, drafted, no figure):
+  - `svc.lead` « Ce que vous en retirez : un site qui donne envie de vous écrire, une image qui inspire confiance, des heures rendues à votre métier. Un seul interlocuteur, du premier message à la mise en ligne. » (was « Cinq services principaux, et cinq autres juste en dessous. Un seul interlocuteur pour tous. »)
+  - `f1.promise` « Un site qui transforme la visite en message. » (was « Le choix évident. »)
+  - English: "What you walk away with: a site that makes people want to write to you, an image that earns trust, hours handed back to your trade. One contact, from the first message to launch." and "A site that turns a visit into a message."
+  The stack tags (React, Next.js, Tailwind, Python, Playwright…) and the
+  other tag rows left the five home cards; the tools stay on the project
+  sheets (/scene/). Undo: the two keys in `assets/i18n/*.js`, the `.tags`
+  rows and their CSS and `tag.*` keys from git history.
+- **AlmaFlow's brand book shows no phone number and no email** (item 7). The
+  three mock-ups that had them in the picture were retouched (`m-cards`: the
+  back of the card is plain night; `m-van`: no number on the side; `m-hanger`:
+  no number and no phone icon in the white band; « Intervention sous 24h » and
+  « Devis gratuit » stay as drawn). The two social posts' buttons now read
+  « Rendez-vous » and « Devis » with no number (the sample 01 99 00 12 34 is
+  gone), and the captions say the details are left empty. The same pictures
+  show on the Studio's AlmaFlow case, so it is empty there too. The design
+  export's masters still carry the number: if the pictures are cut again
+  from them (`scripts/build-hub-img.mjs`), retouch the masters first.
+
+**Arabic for native review** (wave 3, new or changed; AR: native review):
+- `founder.recent` « على الإنترنت اليوم » (French: « En ligne aujourd’hui »)
+- `fd.alliance` « الهوية والموقع ومسار الحجز » (French: « identité, site et parcours de réservation »)
+- `fd.bordjsteel` « الهوية وموقع مؤسسي B2B » (French: « identité et site corporate B2B »)
+- `fd.nomara` « موقع ثنائي اللغة وحجز عبر واتساب » (French: « site bilingue et réservation WhatsApp »)
+- `fd.almaflow` « موقع تعريفي وطلب عرض سعر » (French: « site vitrine et demande de devis »)
+- `fd.annuaireName` « الدليل الصناعي الجزائري » (French: « Annuaire industriel algérien »)
+- `fd.annuaire` « دليل إلكتروني بثلاث لغات، مشروع منجز » (French: « annuaire en ligne en trois langues, projet terminé »)
+- `svc.lead` « ما تخرج به: موقع يدفع زوّاره إلى مراسلتك، وصورة تبعث على الثقة، وساعات تعود إلى عملك. ومحاور واحد، من أول رسالة إلى الإطلاق. » (French: as above)
+- `f1.promise` « موقع يحوّل الزيارة إلى رسالة. » (French: « Un site qui transforme la visite en message. »)
+The removed keys (`founder.download`, `founder.bible`, `tag.*`) need no review.
+
+## Your answers, applied (2026-11-24)
+Your eight answers of 2026-11-24, in your words, and what each changed. The two
+sections just above give the detail, the way back for each drafted change, and
+the full Arabic lists.
+
+1. **Nomara Voyages.** « yes a client … the website was made already ». Nomara
+   is the fourth delivered client everywhere: « 4 » on the home, « quatre » on
+   /scene/'s lead and on the Studio's proof lead (and in English and Arabic).
+   It has a sheet on /scene/ (sheet 04) and a full case on the Studio (client
+   file 04), written only from what its own live pages show. Row 7 and
+   section 7 are closed.
+2. **Founder photo.** « thats me and id like to use animated ones or artworks
+   instead ». No photo: the commented slot, its CSS and every "photo awaited"
+   note are gone (row 3 and section 3 closed). The drawn night plate stays the
+   face on the home's founder card. The animated Yasser (the rig) is a
+   different drawing and stays on the Studio, so the home's plate holds still.
+   Say if you want an animated version of the plate drawn.
+3. **Domains.** « the real sites are available on vercel for alliance travel
+   and hiba and workspace hq and all the others are on github and vercel also
+   numidea itself should be among the finished projects ».
+   - Alliance Travel links to `https://alliancetravel.app/` everywhere, the
+     capture and logo scripts included. No `alliancetravel34.netlify.app` link
+     is left on the site.
+   - The industrial directory (`https://annuaire-dz.vercel.app/fr`) is a new
+     finished project under its own name, « Annuaire industriel algérien »:
+     sheet 05 on /scene/ (chip « Projet terminé »), a line under the four
+     clients on the home, a « Terminé aussi » line on the Studio. It is not
+     counted among the delivered sites. The person's name is printed nowhere.
+   - Our own site is a finished project, honestly labelled « Notre propre
+     site »: sheet 08 on /scene/, a line on the home, a link in the Studio's
+     « Aussi, faits maison ». It was captured from this repository, not from
+     the live host.
+   - WorkspaceHQ, Bordj Steel, AlmaFlowClim and Nomara keep their current links
+     (see "Still waiting" below).
+4. **The Matrix robot.** « not sure yet ». Unchanged: the poster stays in the
+   tr4veler codex until you send an original drawing.
+5. **Founder card delivery lines.** « we will work on that later make it good
+   thats all ». Drafted: « Livré récemment » is now « En ligne aujourd'hui »,
+   five lines (the four clients and the directory), each linked to its sheet
+   and described in that sheet's own words. Dates appear only where the site
+   already gave one (the CV periods of Alliance Travel and Bordj Steel). The
+   CV download and the character-notebook link left the home's founder block.
+   Both stay on the Studio.
+6. **Home services intro.** No answer. Drafted: the services lead and « Le
+   choix évident. » now say what the visitor gets, with no figure, and the
+   stack tags left the home's cards (they stay on /scene/). Reversible.
+7. **AlmaFlow phone numbers.** « leave them empty ». No phone number and no
+   email in AlmaFlow's brand book: three mock-up pictures retouched (both
+   sizes), and the sample number left the two social posts.
+8. **Contact address on numedialab.dev.** No answer: the Gmail address stays.
+
+**Still waiting on you**
+- **Vercel addresses** for WorkspaceHQ, Bordj Steel, AlmaFlowClim and Nomara.
+  None of them was found in the Vercel team this site can see, so each keeps
+  its current live link (`bordjsteelb2b.netlify.app`, `almaflowclim.netlify.app`,
+  `nomaravoyages.netlify.app`; WorkspaceHQ's own page on this site). Send each
+  Vercel address and the link changes.
+- **The robot drawing** for the tr4veler codex (Q-05's other half).
+- **A contact address** on the studio's own domain (row 5). The Gmail address
+  stays until then.
+- A month for Nomara, AlmaFlowClim or the directory, if you want a date on its
+  founder-card line. Without one, the line has no date.
+- Whether the directory should count as a delivered client. Until you say so,
+  it stays under "other finished projects".
+
+**New Arabic strings for native review** (wave 3, 140, all flagged): the home's
+`work.annuaire`, `work.annuaireLive`, `work.own`, `founder.recent`, `fd.*`,
+`svc.lead` and `f1.promise`; the Studio's `proof.lead`, `proof.site`,
+`proof.done` and `proof.annuaire`; the three new sheets (`p.nomara.*`,
+`p.annuaire.*`, `p.numidea.*`) and /scene/'s `ui.lead`, `ui.group`,
+`ui.status`, `ui.gain` and `ui.ctxL` for `finished` and `own`; the Nomara case
+(`cases.nomara.*`). Each one is listed beside its French source in the two
+sections above. In `scripts/scene-data.mjs` the same strings carry an
+`// AR review` marker.
+
+## Wave 3, the review's fixes (2026-11-24)
+What the review of wave 3 changed, and what it leaves with you.
+
+- **The directory's company pages, on the live site.** On every company page of
+  `annuaire-dz.vercel.app` the company's initials badge (« AS », « BE ») sits
+  half under the blue banner: the banner is drawn over it. The fix belongs to
+  the live site (the badge needs to stack above the banner, a `z-index` or
+  `position: relative` on it), not to this repository. Until then the /scene/
+  captures of the two company pages (`assets/work/annuaire/d2`, `d3`, `m2`)
+  open at the company's name, so the half-hidden badge is not their subject.
+  Say when the live site is fixed and they can be taken again from the top.
+- **The directory's fourth capture** is now the directory in Arabic
+  (`https://annuaire-dz.vercel.app/ar`), not the legal notice, whose editor
+  line still reads « seront publiés prochainement ». The legal notice stays a
+  deliverable line on the sheet.
+- **Nomara's prices.** The sheet no longer says every destination has an
+  all-inclusive price: the Egypt page and its tile read « السعر عند الطلب »
+  (price on request). The summary now says « son programme et ce que le prix
+  comprend », and the destinations line « prix par personne à l'appui, ou sur
+  demande ».
+- **WorkspaceHQ names a model, for you to decide.** WorkspaceHQ's own page
+  (`workspacehq/index.html`, lines 10, 103, 143 and 180) and so its /scene/
+  capture name the AI model the console runs on (in its tagline and its « Ask
+  … » button). That is the product's own copy, so it is left as it is; the site's rule elsewhere is
+  to name no AI model or generator. Say whether the rule applies to the
+  product's page: if it does, the copy is reworded and its captures retaken
+  (`npm run work:capture workspacehq`).
+
+**Arabic for native review** (AR: native review, new or changed in this pass):
+- `p.annuaire.name` (new, the sheet's heading in Arabic, as the Arabic home and
+  the Studio name the project) « الدليل الصناعي الجزائري » (French: « Annuaire
+  industriel algérien »)
+- `p.annuaire.pg3` (changed) « الدليل بالعربية » (French: « L’annuaire en arabe »)
+- `p.nomara.summary` (changed) « … وصفحة لكل وجهة ببرنامجها وما يشمله السعر … »
+  (French: « … une page par destination avec son programme et ce que le prix
+  comprend … »)
+- `p.nomara.g1` (changed) « … الوجهات المنطلقة من قسنطينة مع السعر للشخص أو عند
+  الطلب … » (French: « … prix par personne à l’appui, ou sur demande … »)
+- `atelier.kicker` (markup only: the coordinates in a left-to-right `<bdi>`, so
+  they no longer read « N 4°46′E′04°36 ») « برج بوعريريج · 36°04′N 4°46′E »

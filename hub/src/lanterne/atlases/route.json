@@ -1,5 +1,5 @@
 {
-  "_note": "« Le carnet de route » (SPEC §4.6): eight districts in three acts. Copy under lant.at.route.* or the course's existing keys. Case: Selma on the road, an invented example (L5); the traveller Yasser cut-out walks this road (L8). Keepsakes: the stops' own tab drawings, named after the passport's labels. Reward: the phone wallpaper (_sac).",
+  "_note": "« Le carnet de route » (SPEC §4.6): eight districts in three acts. Copy under lant.at.route.* or the course's existing keys. Case: Selma on the road, an invented example (L5); the traveller Yasser cut-out walks this road (L8). Keepsakes: the stops' own tab drawings, named after the passport's labels. Reward: the phone wallpaper (_sac). 2026-11-24 (lb2 fix round 1): n6 shows the owner's plate bank-desk-close without the cast cut-outs (a full painted scene); only the keys prop stays, hung in the empty upper left on the window frame, clear of the padlock and the notebook, its panel bank-key moves to the exercise and the dossier takes the net-path object; n2 takes the margin-block object.",
   "slug": "route",
   "key": "route",
   "store": "numidea-lanterne-route",
@@ -62,7 +62,8 @@
         "ex.brief": "lant.ui.ex.calc.brief",
         "name": "nomade.stops.0",
         "alt": "lant.at.route.plate.r1"
-      }
+      },
+      "object": "funnel-planes"
     },
     "n2": {
       "guide": "yasser",
@@ -82,13 +83,14 @@
         "ex.brief": "lant.ui.ex.calc.brief",
         "name": "nomade.stops.1",
         "alt": "lant.at.route.plate.r1"
-      }
+      },
+      "object": "margin-block"
     },
     "n3": {
       "guide": "yasser",
       "lead": "ratman",
       "companion": "yasser",
-      "prop": "paper",
+      "prop": "pencil",
       "right": 1,
       "ex": "pick",
       "ask": "after",
@@ -102,13 +104,14 @@
         "ex.brief": "lant.ui.ex.pick.brief",
         "name": "nomade.stops.2",
         "alt": "lant.at.route.plate.r1"
-      }
+      },
+      "panelEx": "devis-folders"
     },
     "n4": {
       "guide": "raven",
       "lead": "raven",
       "companion": "pigeon",
-      "prop": "recorder",
+      "prop": "headphones",
       "right": 1,
       "ex": "calc:zones",
       "ask": "brief",
@@ -122,13 +125,14 @@
         "ex.brief": "lant.ui.ex.calc.brief",
         "name": "nomade.stops.3",
         "alt": "lant.at.route.plate.r2"
-      }
+      },
+      "object": "two-days"
     },
     "n5": {
       "guide": "yasser",
       "lead": "yasser",
       "companion": "kuro",
-      "prop": "recorder",
+      "prop": "bag",
       "right": 1,
       "ex": "pick",
       "ask": "after",
@@ -146,13 +150,12 @@
       "tools": {
         "k": "lant.tools.in.n5",
         "at": "tl-travel"
-      }
+      },
+      "object": "three-copies",
+      "panelEx": "night-platform"
     },
     "n6": {
       "guide": "raven",
-      "lead": "raven",
-      "companion": "pigeon",
-      "prop": "eyeflower",
       "right": 1,
       "ex": "pick",
       "ask": "after",
@@ -165,8 +168,13 @@
         "ex.t": "lant.ui.ex.pick.t",
         "ex.brief": "lant.ui.ex.pick.brief",
         "name": "nomade.stops.5",
-        "alt": "lant.at.route.plate.r2"
-      }
+        "alt": "lant.at.route.plate.desk"
+      },
+      "plate": "bank-desk-close",
+      "object": "net-path",
+      "panelEx": "bank-key",
+      "prop": "keys",
+      "propAt": "left"
     },
     "n7": {
       "guide": "yasser",
@@ -210,7 +218,9 @@
       "tools": {
         "k": "lant.tools.in.n8",
         "at": "tl-travel"
-      }
+      },
+      "object": "schengen-window",
+      "panelEx": "bank-bell"
     }
   }
 }

@@ -1,21 +1,23 @@
 ---
 type: map
-updated: 2026-11-06
+updated: 2026-11-24
 sources: [index.html, assets/app.js, scripts/scene-data.mjs, scripts/voices-data.mjs, scripts/check.mjs, scripts/shots.mjs, scripts/verify-domains.mjs, OWNER-CONTENT.md, README.md, BRAND.md]
 ---
 
 # Clients and projects
 
-The work grid shows four live client sites and one portfolio demo, and only those four clients appear in the logo strip or can carry a quote (index.html › #work, work.lead, .titleblock; scripts/voices-data.mjs › VOICE_CLIENTS; scripts/check.mjs › block 5b). One of the four, Nomara Voyages, is shown as delivered but the owner has not confirmed it is a client (OWNER-CONTENT.md › 7). The studio's own product, WorkspaceHQ v3, has a project sheet (04) and a link from hub/, but no card in the grid; its footer cartridge on the home page went on 2026-10-26, an owner decision (scripts/scene-data.mjs › workspacehq; hub/index.html › .whq-cart; BRAND.md › workspacehq/ — the WorkspaceHQ v3 launch page). Two projects in progress, Doctor Cherfia Clinic and Étoile de l'Est, have no card until each site is live, an owner decision of 2026-10-26 (BRAND.md › Bento, loading states and wayfinding; OWNER-CONTENT.md › 9). Start with the roster, then the rules the code enforces, then the owner flags in [[Open owner items]].
+The work grid shows four live client sites and one portfolio demo, and only those four clients appear in the logo strip or can carry a quote (index.html › #work, work.lead, .titleblock; scripts/voices-data.mjs › VOICE_CLIENTS; scripts/check.mjs › block 5b). Nomara Voyages is the fourth delivered client, confirmed by the owner on 2026-11-24 (wave 3), with sheet 04 on /scene/ and client file 04 on the Studio (OWNER-CONTENT.md › 7). Two finished projects that are not counted as clients sit under them: the Annuaire industriel algérien (sheet 05) and the studio's own site (sheet 08) (scripts/scene-data.mjs › annuaire, numidea; OWNER-CONTENT.md › Wave 3, the work). The studio's own product, WorkspaceHQ v3, has a project sheet (04) and a link from hub/, but no card in the grid; its footer cartridge on the home page went on 2026-10-26, an owner decision (scripts/scene-data.mjs › workspacehq; hub/index.html › .whq-cart; BRAND.md › workspacehq/ — the WorkspaceHQ v3 launch page). Two projects in progress, Doctor Cherfia Clinic and Étoile de l'Est, have no card until each site is live, an owner decision of 2026-10-26 (BRAND.md › Bento, loading states and wayfinding; OWNER-CONTENT.md › 9). Start with the roster, then the rules the code enforces, then the owner flags in [[Open owner items]].
 
 ## Roster
 
 | Project | Status on the site | Card category | What it is | Linked build | Project sheet |
 |---|---|---|---|---|---|
 | [[Bordj Steel]] | Delivered client, live | Industrie · B2B | B2B corporate site for Bordj Steel SPA: product catalogue, references, recruitment | bordjsteelb2b.netlify.app | Yes: 12 pages, FR |
-| [[Alliance Travel_1\|Alliance Travel]] | Delivered client, live | Voyage · Croissance | Brand identity, trilingual site and visa-appointment booking for a travel agency in Bordj Bou Arréridj | alliancetravel34.netlify.app | Yes: 9 pages, FR · EN · AR |
+| [[Alliance Travel_1\|Alliance Travel]] | Delivered client, live | Voyage · Croissance | Brand identity, trilingual site and visa-appointment booking for a travel agency in Bordj Bou Arréridj | alliancetravel.app | Yes: 9 pages, FR · EN · AR |
 | [[AlmaFlowClim]] | Delivered client, live | Artisan · Île-de-France | Site of an air-conditioning, heating and plumbing firm in Gennevilliers: one page per trade, past jobs, one-form quote | almaflowclim.netlify.app | Yes: 7 pages, FR |
-| [[Nomara Voyages]] | Shown as delivered, client status unconfirmed | Voyage · Omra | Bilingual storefront for package tours and Umrah trips from Constantine | nomaravoyages.netlify.app | No |
+| [[Nomara Voyages]] | Delivered client, live (confirmed 2026-11-24) | Voyage · Omra | Bilingual showcase site for a travel and Umrah agency in Aïn M'lila: Umrah packages, five destination pages, three service pages, WhatsApp booking | nomaravoyages.netlify.app | Yes: sheet 04, 15 pages, AR · FR; Studio client file 04 |
+| Annuaire industriel algérien | Finished project, not counted as a client | — (one line under the four clients) | Trilingual public directory of Algerian industrial companies: capabilities, certifications and needs | annuaire-dz.vercel.app/fr | Yes: sheet 05, FR · AR · EN |
+| Numidea Labs (this site) | The studio's own site, labelled as such | — (one line on the home) | The studio's site in three languages, with the price guide, the Studio, the Librairie and the night cases | www.numedialab.dev (captured from this repository) | Yes: sheet 08, FR · EN · AR |
 | [[Glaive Store]] | Portfolio demo, not a client | Commerce · Gaming | Fictional gaming-gear brand and online store, labelled as a demo on every page | glaivestore.netlify.app | Yes: portfolio demo, EN |
 | WorkspaceHQ v3 | The studio's own product (no work card) | — | Desktop console (Electron) that shows the state of every git repository on a developer's machine in one scan; launch page in `workspacehq/` | `workspacehq/` | Yes: own product, EN |
 | [[Doctor Cherfia Clinic_1\|Doctor Cherfia Clinic]] | In progress; no card until the site is live | — | Site with online booking for a small practice | none | No |
@@ -50,10 +52,11 @@ Sources: index.html › #work (cards, categories, links); assets/app.js › proj
 - Graph: [[AlmaFlowClim HVAC and plumbing showcase site (sheet 05, 7 pages, FR)]].
 
 ### Nomara Voyages
-- Shown as delivered work, but the owner has not confirmed it is a real client with permission to show the site (OWNER-CONTENT.md › 7).
-- If it is not, it comes off the work grid, the hero plate, the counts, the logo strip, `client-logos.mjs`, `proj6.gain` and `VOICE_CLIENTS` (OWNER-CONTENT.md › 7).
-- It has no project sheet (BRAND.md › Client voices and photo slots), so its benefit line on the card links nowhere (scripts/check.mjs › block 5c).
-- Graph: [[Nomara Voyages (unconfirmed client)]].
+- A delivered client site, confirmed by the owner on 2026-11-24 (wave 3); row 7 and section 7 of the register are closed (OWNER-CONTENT.md › 7).
+- A travel and Umrah agency from Aïn M'lila whose travellers leave from Constantine airport and book on WhatsApp or by phone (scripts/scene-data.mjs › nomara.context).
+- Delivered: bilingual site AR · FR with right-to-left Arabic, an Umrah and Hajj page, 5 destination pages, 3 service pages, WhatsApp booking, light and dark modes (scripts/scene-data.mjs › nomara.t.en.deliverables).
+- It has sheet 04 on /scene/ and client file 04 on the Studio (`hub/src/cases/nomara.html`), both written only from its own live pages.
+- Graph: [[Nomara Voyages (unconfirmed client)]] (the graph's node name dates from before 2026-11-24; the status above is current).
 
 ### Glaive Store and WorkspaceHQ
 - Glaive Store has no client: a brand the studio invented to show a complete online store (scripts/scene-data.mjs › glaive.context; [[Glaive Store gaming-gear shop (sheet 03, portfolio demo)]]).

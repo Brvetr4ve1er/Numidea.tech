@@ -796,7 +796,7 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 .proj .body p{font-size:var(--t-body);line-height:1.6;color:var(--body-strong);margin-bottom:var(--s-2);min-height:0}
 /* What the client gets: the second sentence under the description, in the
    muted ink. It links to the full list on the project sheet (scene/, "Ce que
-   le site apporte"); Nomara has no sheet, so its line is plain text. */
+   le site apporte"); a card without a sheet would carry it as plain text (all four have one since wave 3). */
 .proj .body .gain{display:block;margin:0;padding:0;border:0;font-size:var(--t-body);line-height:1.6;color:var(--muted);text-decoration:none;text-wrap:pretty}
 .proj .body a.gain{padding-block:10px;margin-block:-10px}   /* a one-line sentence is still a 44px tap target */
 @media (hover:hover){.proj .body a.gain:hover{color:var(--ice);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}}
@@ -848,13 +848,6 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 .founder-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
   background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--crimson) 70%,transparent),transparent)}
 .fd-top{display:flex;gap:var(--col-gap);align-items:center;margin-bottom:var(--s-5)}
-/* The monogram is a mark, not an avatar: 64px, the heading face, a hairline
-   ring. At up to 100px with a gold ring and a crimson glow it read as the
-   placeholder for a photo that has not arrived (the img rule at the end of
-   the sheet still takes the portrait the day it does). */
-.fd-photo{width:64px;height:64px;flex:none;border-radius:50%;
-  display:grid;place-items:center;background:var(--void);border:1px solid var(--hairline-2);position:relative;overflow:hidden}
-.fd-photo .mono{font-family:var(--font-head);font-weight:var(--head-weight);font-size:28px;line-height:1;color:var(--ice);position:relative;z-index:1}
 .fd-id h3{font-family:var(--font-display);font-weight:600;font-size:clamp(16.4px, 11.87px + 1.26vw, 30px);letter-spacing:.01em}
 .fd-role{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--muted);margin:var(--s-2) 0 var(--s-3)}
 .fd-bio{color:var(--body-strong);line-height:1.65;max-width:43.758em;margin-bottom:var(--s-5)}
@@ -917,6 +910,9 @@ html:not(.js):not(.js-ready) .cv-panel .cv-inner{visibility:visible}
 .tl-now .tl-date{color:var(--teal-text)}
 .timeline b{font-family:var(--font-display);font-weight:600;font-size:var(--t-cv);color:var(--ice)}
 html[dir="rtl"] .timeline b{font-family:var(--font-ar-display)}
+/* the two client names lead to their sheets (wave 3: the panel's links since the CV download left it) */
+.timeline b a{color:inherit;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;text-decoration-color:var(--hairline-2)}
+@media (hover:hover){.timeline b a:hover{color:var(--crimson-text)}}
 .timeline i{font-style:normal;font-size:var(--t-small);color:var(--body-strong)}
 .timeline p{font-size:var(--t-cv);line-height:1.6;color:var(--muted);margin-top:var(--s-1)}
 
@@ -927,7 +923,6 @@ html[dir="rtl"] .timeline b{font-family:var(--font-ar-display)}
 html[dir="rtl"] .skills dt{font-family:var(--font-ar-display)}
 .skills dd{margin:0;font-size:var(--t-cv);line-height:1.6;color:var(--muted)}
 .cv-block .cv-note{font-size:var(--t-small);color:var(--faint);margin-top:var(--s-2)}
-.cv-dl{margin-top:var(--s-2)}
 
 /* the team: anonymized by design, so the initial is the name */
 .team{margin-top:var(--s-6);max-width:940px}
@@ -1131,7 +1126,6 @@ html[dir="rtl"] .svc-row h3{font-family:var(--font-ar-display)}
 .svc-row .proof{font-family:var(--font-mono);font-size:12px;color:var(--faint);line-height:1.6;margin-bottom:var(--s-4)}
 .svc-row .proof b{color:var(--muted);font-weight:400;letter-spacing:.12em;text-transform:uppercase;margin-right:var(--s-2)}
 html[dir="rtl"] .svc-row .proof b{margin-right:0;margin-left:var(--s-2)}
-.svc-row .tags{display:flex;flex-wrap:wrap;gap:var(--s-2)}
 
 /* signature offer — pinned */
 .preview{position:relative;border:1px solid var(--hairline-2);border-radius:var(--r-lg);padding:var(--card-pad-lg);margin-bottom:var(--s-8);overflow:clip;background:var(--grad-noir);display:grid;grid-template-columns:46px minmax(0,1fr);gap:var(--s-5)}
@@ -2539,7 +2533,6 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
   from{transform:translateX(0);clip-path:inset(0 0 0 54.545% round var(--sk-r,0px))}
   to{transform:translateX(54.545%);clip-path:inset(0 45.455% 0 0 round var(--sk-r,0px))}}
 .plate.sk,.proj .thumb.sk{--sk-r:var(--r-md)}
-.fd-photo.sk{--sk-r:32px}
 .proj .thumb.sk::after{z-index:2}
 .proj .thumb .browser{z-index:3}
 
@@ -2851,9 +2844,6 @@ section.band::after,section.band+section.band::after{
 .voice figcaption{font-size:var(--t-small);color:var(--muted)}
 .voice figcaption b{color:var(--body-strong);font-weight:600}
 
-/* ---- Photo slots: a real <img> replaces the monogram or the initial ---- */
-.fd-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
-.fd-photo:has(img) .mono{visibility:hidden}
 
 /* ===== r3/a: FAQ columns, scroll comfort, mobile ===== */
 /* FAQ: two independent columns (questions 1-3 and 4-6), not one grid of
@@ -3093,14 +3083,11 @@ html[dir="rtl"] .preview .promise{font-family:var(--font-ar-body)}
 .svc-row h3{margin:0}
 .svc-row>div{display:grid;row-gap:var(--s-3);align-content:start}
 .svc-row .brief{margin:0;max-width:34em;color:var(--body-strong)}
-.svc-row .tags{display:flex;flex-wrap:wrap;gap:0;font-size:var(--t-small);line-height:1.5;color:var(--muted)}
-.svc-row .tags .pill{font-family:var(--font-body);font-size:var(--t-small);letter-spacing:0;color:var(--muted)}
-.svc-row .tags .pill+.pill::before{content:"·";margin-inline:var(--s-2);color:var(--faint)}
 @media (min-width:961px){
   .svc-grid>.svc-row{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col-gap);row-gap:var(--s-3);padding-block:var(--s-6)}
   .svc-row>div{display:contents}
   .svc-row h3{grid-column:1/span 4;grid-row:1/span 2}
-  .svc-row .brief,.svc-row .tags{grid-column:5/-1}
+  .svc-row .brief{grid-column:5/-1}
 }
 /* the five others: the list's last row, the same rule, a brass chevron */
 .capabilities{margin-top:0;border:0;border-top:1px solid var(--hairline);border-radius:0;background:none}
@@ -3484,8 +3471,6 @@ html[dir="rtl"] .prev-paid{gap:var(--s-2)}
 @media (min-width:961px){
   .svc-row h3{grid-column:1/span 4;grid-row:1}
   .svc-row .brief{grid-column:5/span 6;grid-row:1;max-width:36em}
-  .svc-row .tags{grid-column:11/-1;grid-row:1;flex-direction:column;align-items:flex-end;text-align:end;gap:2px}
-  .svc-row .tags .pill+.pill::before{content:none}
   .cap h4{grid-column:1/span 4}
   .cap .brief{grid-column:5/span 6;max-width:36em}
 }
@@ -3721,17 +3706,12 @@ html[dir="rtl"] main:has(>#work)>section:not(.hero,.proof)>.kicker::after{align-
 }
 @media (max-width:959px){.work-grid{row-gap:var(--s-7)}.work-foot{margin-top:var(--s-6)}}
 
-/* ---- services: the tools as one mono line, a brass tick on each rule ---- */
-.svc-row .tags{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.04em;line-height:1.6;color:var(--faint)}
-.svc-row .tags .pill{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.04em;color:var(--muted)}
-.svc-row .tags .pill+.pill::before{content:"·";margin-inline:var(--s-2);color:var(--crimson-text)}
+/* ---- services: a brass tick on each rule (the tools line left the home in wave 3) ---- */
 #services .svc-grid>.svc-row{position:relative}
 #services .svc-grid>.svc-row::after{content:"";position:absolute;top:-1px;inset-inline-start:0;width:28px;height:2px;background:var(--crimson);pointer-events:none}
 @media (min-width:961px){
   .svc-row h3{grid-row:1/span 2}
   .svc-row .brief{grid-column:5/span 7;max-width:43em}
-  .svc-row .tags{grid-column:5/span 7;grid-row:2;flex-direction:row;align-items:baseline;text-align:start;gap:0}
-  .svc-row .tags .pill+.pill::before{content:"·"}
   .svc-grid>.svc-row{padding-block:var(--s-4);row-gap:var(--s-2)}
 }
 /* the five steps share one baseline for their lines: two lines of the title (1.4) hold their room */
@@ -3856,7 +3836,6 @@ html[dir="rtl"] .svc-row .fam,html[dir="rtl"] .cap .fam{letter-spacing:0;text-tr
   /* the five: tagline, brief, tools on the right; the title and, under it, the family on the left */
   .svc-row .promise{grid-column:5/span 7;grid-row:1}
   .svc-row .brief{grid-row:2}
-  .svc-row .tags{grid-row:3}
   .svc-row h3{grid-row:1/span 2}
   .svc-row .fam{grid-column:1/span 4;grid-row:3;align-self:end}
   /* the five others: the title and the family on the left, tagline and brief on the right */
@@ -3873,10 +3852,6 @@ html[dir="rtl"] .prev-out b{letter-spacing:0;text-transform:none}
 .scene-lead{flex:1 1 100%;margin:0;font-size:var(--t-small);line-height:1.5;color:var(--muted)}
 @media (min-width:720px){.scene-lead{text-align:end}}
 
-/* the link to the English-only bible: the ghost button's look as a plain text link, not a fifth .btn geometry (design-check) */
-.fd-actions .fd-bible{display:inline-flex;align-items:center;gap:var(--s-2);min-height:44px;font-family:var(--font-body);font-size:var(--t-ui);font-weight:600;line-height:1.4;color:var(--crimson-text);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px;text-decoration-color:color-mix(in srgb,var(--crimson-text) 45%,transparent)}
-@media (hover:hover){.fd-actions .fd-bible:hover{color:var(--ice);text-decoration-color:currentColor}}
-.fd-actions .fd-bible:focus-visible{color:var(--ice);text-decoration-color:currentColor}
 @media (max-width:600px){.fd-actions{gap:var(--s-2)}}
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -4242,9 +4217,9 @@ html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
   #services .svc-grid>.svc-row .brief{line-height:1.5}
   #services .cap{display:grid;grid-template-columns:minmax(0,1fr)}
   #services :is(.svc-row,.cap) .fam{margin-top:var(--s-1)}
-  #services.svc-fold :is(.svc-row,.cap):not(.open) :is(.brief,.tags,.fam){display:none}
+  #services.svc-fold :is(.svc-row,.cap):not(.open) :is(.brief,.fam){display:none}
   #services.svc-fold :is(.svc-row,.cap){cursor:pointer}
-  #services.svc-fold :is(.svc-row,.cap) :is(.brief,.tags,.fam){cursor:auto}
+  #services.svc-fold :is(.svc-row,.cap) :is(.brief,.fam){cursor:auto}
   #services .svc-tog{display:block;position:absolute;z-index:1;inset-block-start:0;inset-inline-end:0;width:48px;height:56px;padding:0;background:none;border:0;cursor:pointer}
   #services .svc-tog::before,#services .svc-tog::after{content:"";position:absolute;left:50%;top:calc(var(--s-3) + 11px);background:var(--crimson-text);border-radius:2px;transition:transform var(--t-hover),opacity var(--t-hover)}
   #services .svc-tog::before{width:14px;height:2px;margin:-1px 0 0 -7px}
@@ -4259,10 +4234,9 @@ html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
 }
 @media (prefers-reduced-motion:reduce){#services .svc-tog::before,#services .svc-tog::after{transition:none}}
 /* what a fold opens rises into place (the FAQ's rule, above): a service's
-   text and tags, the path's other steps */
+   text, the path's other steps */
 @media (max-width:960px) and (prefers-reduced-motion:no-preference){
-  #services.svc-fold .open :is(.brief,.tags,.fam){animation:m-rise var(--m-enter) var(--m-ease-enter) both}
-  #services.svc-fold .open .tags{animation-delay:var(--m-step)}
+  #services.svc-fold .open :is(.brief,.fam){animation:m-rise var(--m-enter) var(--m-ease-enter) both}
   #services.svc-fold .open .fam{animation-delay:calc(2 * var(--m-step))}
 }
 @container (max-width:719px){
@@ -4275,8 +4249,12 @@ html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
 }
 
 /* ---- the prices: one card at a time on a phone (Studio first), three abreast on a tablet ---- */
-.tier-tabs{display:none}
+.tier-tabs,.tier-from{display:none}
 @media (max-width:960px){
+  /* the floor, said once above the tabs (Studio opens; Essentiel's price is behind a tab) */
+  .tier-from{display:block;margin:0 0 var(--s-2);font-size:var(--t-small);color:var(--muted)}
+  .tier-from b{color:var(--ice);font-weight:600;white-space:nowrap}
+  .tier-from[hidden]{display:none}
   .tier-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:var(--s-4);border:1px solid var(--hairline-2);border-radius:var(--r-sm);overflow:hidden}
   .tier-tabs button{min-height:44px;padding:0 var(--s-2);background:none;border:0;border-inline-start:1px solid var(--hairline-2);cursor:pointer;
     font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--muted);transition:color var(--t-hover),background-color var(--t-hover)}
@@ -4330,7 +4308,7 @@ html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
   .fd-bio{margin-bottom:var(--s-3)}
   .founder-card>.team{margin-top:var(--s-3);padding-top:var(--s-3)}
   .founder-card>.fd-recent{margin-top:var(--s-3)}
-  .fd-recent a,.team .tm span{font-size:var(--t-small)}
+  .fd-recent li,.team .tm span{font-size:var(--t-small)}   /* the whole line, not the name alone: five lines since wave 3 */
   .fd-links{margin-top:var(--s-3);gap:0 var(--s-4)}
   .fd-actions{display:flex;flex-wrap:wrap;gap:var(--s-2)}
   .fd-actions{flex-direction:column;align-items:flex-start;gap:0}
@@ -4713,8 +4691,6 @@ html[dir="rtl"] .proj .thumb:is(*,:has(.shot)){background-position:calc(100% - 1
   #services .svc-grid>.svc-row .fam{grid-column:3/span 3;grid-row:3}
   #services .svc-grid>.svc-row .promise{grid-column:6/-1;grid-row:1}
   #services .svc-grid>.svc-row .brief{grid-column:6/-1;grid-row:2;max-width:40em}
-  #services .svc-grid>.svc-row .tags{grid-column:6/-1;grid-row:3;flex-direction:row;align-items:baseline;justify-content:flex-start;text-align:start;gap:0}
-  #services .svc-grid>.svc-row .tags .pill+.pill::before{content:"·";margin-inline:var(--s-2);color:var(--faint)}
 }
 
 /* ---- the phone's open plan: its first three inclusions under the range,

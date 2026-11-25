@@ -193,7 +193,11 @@
      Only with scripts on and without reduced motion; never in the HTML, so
      a reader without scripts and every crawler get the page as it is; and
      not while sessionStorage 'numidea-sting' is '1' (nothing here writes
-     it: the gates set it to look at the page beneath). Built around the
+     it: the gates set it to look at the page beneath); and, since
+     2026-11-24 (Q-07), not when the visit arrives on a section (the address
+     has a #hash: /hub/#pricing, la fabrique's console links, the world's
+     links into the Studio), so a deep link lands at once; a bare /hub/
+     still plays it, and the replay control plays it anywhere. Built around the
      characters (2026-11-15): Yasser in three rig frames on the red block
      (base, up, smirk: the hero's own files, already in the page), Kuro's
      eyes in a night cut, the red stamp, then the paper wipes up. One bar
@@ -217,7 +221,9 @@
   // read when the sting would start, not once at load: a visitor may turn reduced motion on during the visit and come back by the back button
   var stillNow = function () { return reduce || matchMedia('(prefers-reduced-motion: reduce)').matches; };
   var gated = function () { try { return sessionStorage.getItem('numidea-sting') === '1'; } catch (e) { return false; } };
-  var stinging = false, stingDue = !!$('#rig') && !reduce && !gated(), stingEnd = null;
+  // a section in the address (the head script reads the same, and paints no cover then)
+  var deep = function () { return location.hash.length > 1; };
+  var stinging = false, stingDue = !!$('#rig') && !reduce && !gated() && !deep(), stingEnd = null;
   var uncover = function () { root.classList.remove('st-sting-pending'); };
   // what waited for the first sting (the rig's first line) goes once it is over, or once it is clear there will be none
   var released = function () { stingDue = false; var q = stingDone; stingDone = []; q.forEach(function (fn) { fn(); }); };
@@ -233,7 +239,7 @@
   function playSting(opts) {
     if (stinging) return;
     var replay = !!(opts && opts.replay), shown = !!(opts && opts.shown);
-    if (!$('#rig') || stillNow() || gated()) { uncover(); released(); return; }
+    if (!$('#rig') || stillNow() || gated() || (!replay && deep())) { uncover(); released(); return; }
     /* the load's sting plays only under the head's cover (which also holds
        the scroll): once that is off (its 3.333 s backstop, on a slow link)
        the page is the reader's, and a paper coming over it then would take
@@ -1508,7 +1514,15 @@
      scroll: when the scroll ends (or 1.2 s, whichever is first) the target is
      measured again and, if it is more than 24 px off, the page jumps the rest;
      once more after that, then it stops. None runs once the visitor has
-     scrolled, pressed a key or touched the page. */
+     scrolled, pressed a key or touched the page.
+     Since the intro is skipped on an address with a section (Q-07), nothing
+     covers the arrival, and on a desktop the cases above #pricing lay out
+     (860 px guessed, about 725 real, one after another) once the browser
+     has jumped: the page was seen moving two or three times in the first
+     second. So, from the start until two beats after load, a change of size
+     above the target is answered in the same frame, before it is painted (a
+     ResizeObserver runs after layout and before paint): the first landing
+     is the last. */
   (function () {
     var touched = false;
     ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(function (ev) { addEventListener(ev, function () { touched = true; }, { passive: true }); });
@@ -1523,6 +1537,14 @@
       afterSting(function () { requestAnimationFrame(function () { fix(el); }); });
     };
     addEventListener('load', settle);
+    // the arrival's hold (above): the main column's blocks and the cases, watched until two beats after load or the first touch
+    (function () {
+      var el = byId(location.hash.slice(1));
+      if (!el || !window.ResizeObserver) return;
+      var ro = new ResizeObserver(function () { if (touched) { ro.disconnect(); return; } fix(el); });
+      document.querySelectorAll('main > *, #work .st-case, #work .st-proj').forEach(function (n) { if (!n.contains(el)) ro.observe(n); });
+      addEventListener('load', function () { setTimeout(function () { ro.disconnect(); }, M(16)); });
+    })();
     var chase = function (el) {
       var tries = 0, timer = 0;
       var check = function () {

@@ -1,0 +1,24 @@
+<svg viewBox="0 0 360 240" class="lo-svg lp-months-jar-svg" aria-hidden="true" focusable="false">
+<defs><ellipse id="lp-months-jar-c" class="l-a l-k1" rx="11" ry="4.5"/>
+<g id="lp-months-jar-s"><use href="#lp-months-jar-c" y="0"/><use href="#lp-months-jar-c" y="-6"/><use href="#lp-months-jar-c" y="-12"/><use href="#lp-months-jar-c" y="-18"/><use href="#lp-months-jar-c" y="-24"/><path class="l-k1 l-so" d="M-7-26h5"/></g></defs>
+<path class="l-k1 l-so" opacity=".35" d="M0 200H360"/>
+<path class="l-c l-k" d="M160 112L216 112Q215 144 216 176Q188 177 160 176Q161 144 160 112Z"/><path class="l-p l-k1" d="M161 113H215V126H161Z"/>
+<text class="l-ti" x="188" y="123" text-anchor="middle" data-i18n="lant.lo.months-jar.t.0"></text>
+<path class="l-c l-k" d="M222 112Q250 111 278 112Q279 144 278 176Q250 175 222 176Q224 144 222 112Z"/><path class="l-p l-k1" d="M223 113H277V126H223Z"/>
+<text class="l-ti" x="250" y="123" text-anchor="middle" data-i18n="lant.lo.months-jar.t.1"></text>
+<path class="l-c l-k" d="M284 112Q312 111 340 112Q339 144 340 176Q312 175 284 176Q283 144 284 112Z"/><path class="l-p l-k1" d="M285 113H339V126H285Z"/>
+<text class="l-ti" x="312" y="123" text-anchor="middle" data-i18n="lant.lo.months-jar.t.2"></text>
+<path class="l-k1" d="M174 108v8M202 108v8M236 108v8M264 108v8M298 108v8M326 108v8"/>
+<path class="l-k lo-months-jar-s0" stroke-dasharray="0 7.5" d="M169 138H210M169 150H210M169 162H210M231 138H272M231 150H272M231 162H272M293 138H334M293 150H334M293 162H334"/>
+<g class="lp-months-jar-sh1"><path class="l-p" d="M162 127H214V174H162Z"/><path class="l-k1 lo-months-jar-s1" d="M168 132Q186 150 208 170M169 168Q190 151 207 130"/></g>
+<g class="lp-months-jar-sh2"><path class="l-p" d="M224 127H276V174H224Z"/><path class="l-k1 lo-months-jar-s1" d="M230 132Q248 150 270 170M231 168Q252 151 269 130"/></g>
+<path class="l-n2 l-k" d="M54 88V97Q40 102 40 116V180Q40 194 54 194H120Q134 194 134 180V116Q134 102 120 97V88Z"/>
+<g class="lp-months-jar-st3"><use href="#lp-months-jar-s" x="112" y="186"/></g>
+<g class="lp-months-jar-st2"><use href="#lp-months-jar-s" x="87" y="186"/></g>
+<g class="lp-months-jar-st1"><use href="#lp-months-jar-s" x="62" y="186"/></g>
+<path class="l-k1 l-so lo-months-jar-s2" d="M48 120Q46 150 49 178M54 100Q49 104 48 110"/><path class="l-k1" d="M55 97H119"/>
+<path class="l-a l-k" d="M48 74Q87 73 126 74L126 90Q87 89 48 90L48 74Z"/><path class="l-a2" d="M50 84H124V89H50Z"/><path class="l-k1 lo-months-jar-s3" d="M60 77v10M72 77v10M84 77v10M96 77v10M108 77v10M120 77v10"/><path class="l-k1 l-so" d="M53 77h5"/>
+<g class="lp-months-jar-env"><path class="l-c l-k" d="M256 62L302 62L302 90L256 90L256 62Z"/><path class="l-k1" d="M257 63L279 79L301 63"/><circle class="l-r l-k1" cx="279" cy="79" r="4.5"/>
+<path class="l-k1" d="M279 90V95"/><path class="l-a l-k1" d="M264 93H294V109H264Z"/><text class="l-ti" x="279" y="105" text-anchor="middle" data-i18n="lant.lo.months-jar.t.3"></text></g>
+<path class="lp-months-jar-brk l-k l-sr lo-months-jar-s4" d="M162 182Q162 189 176 189H210Q219 189 219 196Q219 189 228 189H262Q277 189 277 182"/>
+</svg>

@@ -105,7 +105,7 @@ site does until then. Details and status are in
 | --- | --- | --- |
 | Legal notice and privacy details | [§1](OWNER-CONTENT.md#1-legal-notice--privacy-page) | `legal/` is built and deployed only when every field is filled; until then `check.mjs` refuses any link to it |
 | Client quotes, with consent | [§2](OWNER-CONTENT.md#2-client-quotes-voices) | the build refuses a quote without a consent date and where the consent is kept |
-| Founder photo | [§3](OWNER-CONTENT.md#3-founder-photo) | a 64 px monogram shows; the slot takes the file as it is |
+| Founder photo | [§3](OWNER-CONTENT.md#3-founder-photo) | closed 2026-11-24 (wave 3): no photograph; the drawn Yasser is the founder's face, and the slot is gone |
 | Team photos; the "four specialists" claim | [§4](OWNER-CONTENT.md#4-team) | answered 2026-10-30 (one founder, with freelancers when needed); on the page since 2026-11-03: one team row, no initials, no photos |
 | A studio email on its own domain | [§5](OWNER-CONTENT.md#5-studio-email-on-its-own-domain) | `check.mjs` fails until every contact point uses one address |
 | Clients' permission for paid ads | [§6](OWNER-CONTENT.md#6-clients-permission-for-paid-ads) | the campaign kit is not in this repository |

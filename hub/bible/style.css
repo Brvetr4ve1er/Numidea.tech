@@ -192,6 +192,7 @@ strong,b{font-weight:600}
   .cover .chip-row{order:2}
   .cover h1{order:3;margin-top:0;font-size:clamp(56px,20vw,132px)}
   .cover-art{order:4;margin-top:4px;aspect-ratio:auto;height:min(46svh,62vw,420px);min-height:190px}
+  .cover .fr{order:5}
   .cover .seal-row{order:5;margin-top:6px}
   .cover .marker{order:6}
   .cover .motto{order:7}
@@ -481,6 +482,10 @@ html:not(.js) .ctrls{display:none}
 
 /* project voice: the intro under the cover tagline and the lede under each section heading */
 .cover .intro{margin-top:4px;max-width:46ch;font-size:15px}
+/* (Q-15, 2026-11-24) the French opening under the name: a framed note, so it reads as the page's door for a French
+   reader and not as part of the English copy; on a phone it comes right after the drawing */
+.cover .fr{margin:2px 0 4px;padding:10px 14px;max-width:52ch;border:2px solid var(--ink);background:var(--cream);font-size:15px;line-height:1.5;text-wrap:pretty}
+.cover .fr b{font:600 12px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--red-text);margin-inline-end:6px}
 .sh+.lede{margin-top:14px}
 .sec>.lede+.outs{margin-top:16px}
 

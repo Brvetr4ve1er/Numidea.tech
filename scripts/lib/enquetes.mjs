@@ -138,7 +138,7 @@ const VERDICTS = ['yes', 'partly', 'no', 'added'];
 const PLACES = ['awning', 'shelves', 'headphones', 'book', 'lantern', 'satchel', 'drawers', 'kuro'];
 
 export function enquetes(h) {
-  const { LS, HUB, DICT, LANGS, fail, notes, esc, json, need, headFor, swap, menu, langSwitch, scripts, radioJson, WA, TOOLS } = h;
+  const { LS, HUB, DICT, LANGS, fail, notes, esc, json, need, headFor, swap, menu, motionBtn, langSwitch, scripts, radioJson, WA, TOOLS, WM, stFoot } = h;
   const at = 'hub/src/lanterne/enquetes.json', CD = join(LS, 'enquetes');
   const E = json(join(LS, 'enquetes.json'));
   if (!E) return null;
@@ -363,12 +363,12 @@ export function enquetes(h) {
 <body class="lt lt-enq" data-lt-enq>
 <a class="skip" href="#main" data-i18n="${k('ui.skip')}"></a>
 <header class="mast lt-wrap">
-  <a class="mast__word" href="../" dir="ltr" data-i18n-aria="nav.home">Numidea Labs</a>
+  ${WM}
   <a class="mast__back" href="./" data-i18n="lant.ui.library"></a>
   <p class="mast__title" data-i18n="${k('mast')}"></p>
-  <button type="button" class="motion js-only" data-lt-motion aria-pressed="true" data-i18n-title="lant.ui.motionHint"><span class="motion__dot" aria-hidden="true"></span><span data-i18n="lant.ui.motion"></span></button>
+  ${motionBtn(' mast__motion')}
   ${langSwitch()}
-  ${menu([['./', 'lant.ui.library'], ...(TOOLS ? [['outils.html', 'lant.tools.mast']] : []), ['./#comptoir', 'lant.shelf.cta'], [WA, 'lant.ui.wa'], ['../', 'lant.ui.studio']])}
+  ${menu([['./', 'lant.ui.library'], ...(TOOLS ? [['outils.html', 'lant.tools.mast']] : []), ['./#comptoir', 'lant.shelf.cta'], [WA, 'lant.ui.wa'], ['../', 'lant.ui.studio']], true)}
 </header>
 <main id="main" class="lt-wrap enq" tabindex="-1">
   <!-- the game's stage: hub/enquetes.js builds every screen here, from #enq-data, the open cases' files (hub/lanterne/
@@ -377,7 +377,9 @@ export function enquetes(h) {
   <div class="enq-app" id="enq" data-enq tabindex="-1" hidden></div>
   <p class="sr" id="enq-live" aria-live="polite"></p>${clair}
 </main>
-<footer class="foot lt-foot lt-wrap">
+<!-- the Librairie's foot (E-05): the atlases' colophon, the way back and the radio chip -->
+${stFoot(`
+  <div class="lt-foot">
   <a href="./" class="mast__back" data-i18n="lant.ui.footerBack"></a>
   <div class="lt-rchip" data-radio-chip role="group" data-i18n-aria="radio.chip">
     <span class="lt-rchip__k" data-i18n="radio.chip"></span>
@@ -385,9 +387,7 @@ export function enquetes(h) {
     <span class="lt-rchip__t" data-radio-title>{{radioFirst}}</span>
     <button type="button" class="st-rchip__b" data-radio-next data-i18n-aria="radio.next" disabled><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4l11 8-11 8zM17 4h3v16h-3z"/></svg></button>
   </div>
-  <a href="../" data-i18n="lant.ui.studio"></a>
-  <span data-i18n="footer.line"></span>
-</footer>
+  </div>`)}
 <script type="application/json" id="hub-radio">${radioJson}</script>
 <!-- hub/lanterne.js reads #lant-data for the page's kind: an empty tools list keeps it to the mast, the menu and the words -->
 <script type="application/json" id="lant-data">{"tools":[]}</script>

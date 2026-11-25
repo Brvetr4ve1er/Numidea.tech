@@ -90,6 +90,9 @@ html.js .note-nojs,html.js .board__nojs{display:none}
 .hero__pitch{max-width:44ch;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:var(--cream)}
 .hero__case{font-size:14px;color:var(--on-navy-2);border-inline-start:3px solid var(--amber);padding-inline-start:10px}
 .hero__copy .btn{align-self:flex-start;margin-top:6px}
+.hero__start{align-self:flex-start;display:inline-block;padding:12px 0;margin-top:-12px;min-height:44px;box-sizing:border-box;color:var(--cream);font-weight:600;font-size:15px;line-height:1.35;text-decoration:underline;text-decoration-color:var(--amber);text-decoration-thickness:2px;text-underline-offset:4px}
+.hero__start::after{content:"→";margin-inline-start:8px;color:var(--amber)}.hero__start:dir(rtl)::after{content:"←"}
+.hero__start:hover{color:var(--amber)}
 .hero--shelf{grid-template-columns:minmax(0,1.1fr) minmax(0,1.4fr)}
 .hero--shelf .hero__pitch{max-width:58ch;font-size:clamp(15px,1.1vw,17px)}
 
@@ -145,6 +148,8 @@ html.js .district+.district{margin-top:0}
 .dio__plate{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;max-width:none}
 .dio__prop,.dio__lead,.dio__comp{position:absolute;z-index:2;max-width:none;filter:drop-shadow(4px 4px 0 rgba(33,30,27,.6))}
 .dio__prop{width:min(29cqw,var(--nw));height:auto;max-height:30cqh;object-fit:contain;right:8cqw;top:12cqh;filter:none}
+/* a plate that paints someone at its upper right (route « Sécurité », 2026-11-24): the prop hangs on the dark window, upper left ("propAt": "left") */
+.dio__prop--left{right:auto;left:6cqw;top:6cqh}
 .dio__lead{height:min(52cqh,var(--nh));width:auto;max-width:55cqw;object-fit:contain;object-position:bottom;right:1cqw;bottom:2cqh}
 .dio__comp{height:min(31cqh,var(--nh));width:auto;max-width:30cqw;object-fit:contain;object-position:bottom;left:2cqw;bottom:3cqh}
 .dio__cap{display:flex;flex-direction:column;gap:2px;margin-top:12px;order:2}
@@ -157,7 +162,8 @@ html.js .district+.district{margin-top:0}
 .dio--strip{max-width:none}
 .dio--strip .dio__frame{aspect-ratio:auto;height:120px}
 .dio--strip .dio__plate{object-fit:cover;object-position:50% 40%}
-.dio--strip .dio__prop{display:none}
+/* a strip keeps its prop, small, between the companion (left) and the lead (right) (fix round 1: hidden, six props were never seen) */
+.dio--strip .dio__prop{width:auto;height:min(84px,70cqh);max-height:none;max-width:30cqw;top:12cqh;right:auto;left:50%;translate:-50% 0}
 .dio__zoom{display:none}
 /* parallax layers: only the transform the pointer writes; settle over 333 ms */
 .layer{transform:translate3d(calc(var(--px,0px) * var(--rate,0)),calc(var(--py,0px) * var(--rate,0)),0)}
@@ -660,3 +666,63 @@ html.motion-off{scroll-behavior:auto}
 .lt-tools-in{display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px 18px}
 .lt-tools-in__art{grid-row:1/span 3;width:96px;height:auto;align-self:center}
 .lt-tools-in .st-btn{justify-self:start}
+/* the Lantern objects (2026-11-24, lb2 SPEC §4.4): a code-drawn teaching machine after a district's rule, one idea each; the
+   drawing on navy, its caption and its control on cream. The kit's classes are the same for every drawing; each drawing's own
+   moves ride in its <style>, only under no-preference and without html.motion-off, once, and stop on the teaching frame */
+.lo{margin-block:4px;max-width:400px;border:2px solid var(--ink);background:var(--navy);box-shadow:4px 4px 0 var(--ink)}
+.lo__stage svg{display:block;width:100%;height:auto}
+.lo__cap{padding:10px 12px;background:var(--cream);border-top:2px solid var(--ink);font:500 14px/1.45 var(--f-body);color:var(--ink)}
+.lo__bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:0 12px 12px;background:var(--cream)}
+.lo__btn{min-height:44px;padding:0 14px;border:2px solid var(--ink);background:var(--amber);color:var(--ink);font:700 13px var(--f-mono)}
+.lo__btn[aria-pressed=true]{background:var(--ink);color:var(--cream)}
+.lo :focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.lo__ctl{display:flex;flex-direction:column;gap:4px;flex:1 1 180px;font:700 13px var(--f-mono)}
+.lo__ctl input{width:100%;min-height:44px;accent-color:var(--red)}
+.lo__out{flex:1 1 100%;font:700 13px/1.4 var(--f-mono)}
+.l-k{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.l-k1{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.l-c{fill:var(--cream)}.l-p{fill:var(--paper)}.l-r{fill:var(--red)}.l-a{fill:var(--amber)}.l-a2{fill:color-mix(in srgb,var(--amber) 68%,var(--wood-2))}
+.l-n{fill:var(--navy)}.l-n2{fill:var(--navy-2)}.l-w{fill:var(--wood)}.l-w2{fill:var(--wood-2)}.l-i{fill:var(--ink)}.l-o{fill:var(--on-navy)}.l-g{fill:var(--right)}.l-x{fill:var(--retry)}
+.l-sr{stroke:var(--red)}.l-sa{stroke:var(--amber)}.l-so{stroke:var(--on-navy)}.l-sg{stroke:var(--right-line)}.l-sx{stroke:var(--retry-line)}
+.l-t,.l-ti{font:700 11px/1 var(--f-mono);letter-spacing:.04em;fill:var(--on-navy);color:var(--on-navy)}.l-ti{fill:var(--ink);color:var(--ink)}
+:lang(ar) .lo :is(.l-t,.l-ti){font-family:var(--f-body);font-size:12px;letter-spacing:0}
+.lo [data-s],.lo [data-s-until]{transition:opacity var(--m-reveal) var(--m-ease-move),transform var(--m-reveal) var(--m-ease-move)}
+.lo .is-off{opacity:0}
+/* the owner's panels on a cream mat: in the dossier, in the exercise (on navy), and the set's reward; one rise into view */
+.lt-panel{max-width:320px;margin-block:4px;padding:8px;background:var(--cream);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);color:var(--ink)}
+.lt-panel img{display:block;width:100%;height:auto}
+.lt-panel figcaption{margin-top:8px;font:500 14px/1.45 var(--f-body);color:var(--ink)}
+.lt-panel--terrain{margin-block:16px 0}
+.lt-panel--wide{max-width:560px;margin-block:14px}
+.lt-panel--wait{opacity:0;translate:0 12px}
+.lt-panel.is-in{opacity:1;translate:0 0;transition:opacity var(--m-enter) var(--m-ease-enter),translate var(--m-enter) var(--m-ease-enter)}
+@media (prefers-reduced-motion:reduce){.lo *,.lt-panel{animation:none!important;transition:none!important}.lt-panel--wait{opacity:1;translate:none}}
+html.motion-off .lo *,html.motion-off .lt-panel{animation:none!important;transition:none!important}
+html.motion-off .lt-panel--wait{opacity:1;translate:none}
+@media print{.lt-panel--wait{opacity:1;translate:none}.lo__bar{display:none}}
+/* fix round 1 (2026-11-24): the drawing's word labels again under it where it is narrower than 340 px (an 11 px label in a
+   360-unit drawing reads at 6.5 px at 280); a toggle's caption per state; the exercise's panel or object in a column beside
+   the board on a wide screen, the reading's panel beside its list (.lt-panel-row); the route reward's picture above its line */
+.lo{container-type:inline-size;display:flex;flex-direction:column}.lo>.lo__bar,.lo>[data-lo-now]{order:2}
+.lo__keys{display:none}
+@container (max-width:339px){
+  .lo__keys{display:flex;flex-wrap:wrap;gap:4px 6px;margin:0;padding:10px 12px 0;background:var(--cream);border-top:2px solid var(--ink)}
+  .lo__keys span{padding:2px 6px;border:1px solid var(--ink);font:700 12px/1.35 var(--f-mono);color:var(--ink)}
+  :lang(ar) .lo__keys span{font-family:var(--f-body);font-size:13px}
+  .lo:has(>.lo__keys) .lo__cap{border-top:0;padding-top:8px}
+}
+.lo__cap [hidden]{display:none}
+.lo--terrain{margin-block:16px 0}
+@media (min-width:900px){
+  .terrain:has(> .lt-panel--terrain,> .lo--terrain){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,max-content);column-gap:32px;align-items:start}
+  .terrain:has(> .lt-panel--terrain,> .lo--terrain)>*{grid-column:1/-1}
+  .terrain:has(> .lt-panel--terrain,> .lo--terrain)>:is(.terrain__head,.terrain__brief,.board){grid-column:1}
+  .terrain>:is(.lt-panel--terrain,.lo--terrain){grid-column:2;grid-row:1/span 3;margin-top:0;width:min(320px,30vw)}
+  .terrain>.lo--terrain{width:min(360px,32vw)}
+  .lt-panel-row{display:flex;flex-direction:row-reverse;align-items:flex-start;gap:24px}
+  .lt-panel-row>.st-ls__list{flex:1 1 0;min-width:0}
+  .lt-panel-row>.lt-panel{flex:0 0 min(300px,40%);margin:0}
+}
+.lt-panel-row>.lt-panel{margin-block:4px 14px}
+.lt-all__pic{flex:1 1 100%}
+.lt-all__pic .lt-panel{margin:0}

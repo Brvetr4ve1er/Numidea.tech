@@ -34,7 +34,7 @@
     "skipL": "Skip the intro"
   },
   "hero": {
-    "kicker": "/ SOFTWARE STUDIO · BORDJ BOU ARRÉRIDJ · FR·EN·AR",
+    "kicker": "/ WEB AND SOFTWARE STUDIO · BORDJ BOU ARRÉRIDJ · FR·EN·AR",
     "h1a": "Your idea.",
     "h1b": "One pair of hands.",
     "h1c": "Your product.",
@@ -360,7 +360,6 @@
     ],
     "aside": "The building, foundations included.",
     "pick": "Layers of the brand",
-    "more": "Our own brand, plate by plate →",
     "sectionAlt": "A cross-section of the workshop: the sign on the street, then below the pavement the drawing room, the steel frame and machines, and the foundations where Kūro keeps watch.",
     "prep": "Prepare your brand in nine steps →",
     "how": "The four scenes of the making page →"
@@ -410,7 +409,7 @@
   "proof": {
     "kicker": "/ 04 · THE RECEIPTS · WITH THE EVIDENCE",
     "title": "Everything below exists.",
-    "lead": "Three delivered clients and two pieces of the founder’s own work. Each file says what was made, for whom, and where to check it.",
+    "lead": "Four delivered clients and two pieces of the founder’s own work. Each file says what was made, for whom, and where to check it.",
     "actor": "Yasser celebrates a launch",
     "own": "Also, made in-house:",
     "glaive": "Glaive, the studio’s demo",
@@ -512,7 +511,10 @@
         }
       ]
     },
-    "whq": "an arcade cabinet for your codebase"
+    "whq": "an arcade cabinet for your codebase",
+    "site": "this site, our own: its sheet",
+    "done": "Also finished:",
+    "annuaire": "the Algerian industrial directory"
   },
   "lab": {
     "kicker": "/ THE LAB · UNCOMMISSIONED",
@@ -572,7 +574,7 @@
       "Blue and yellow screenprint: a traveller in a varsity jacket stands in the tall grass of a plateau, facing a sun ringed by two blue halos, a pylon and silos on the horizon.",
       "Blue and yellow screenprint: a figure with butterfly wings stands before a large octagonal window in a steel frame, a blue ring behind it."
     ],
-    "more": "See all 36 pieces"
+    "more": "See all 35 pieces"
   },
   "founder": {
     "kicker": "/ 09 · THE STUDIO · ONE PAIR OF HANDS",
@@ -605,7 +607,7 @@
     "photo": "Yasser at his desk at night, with Kūro",
     "duo": "Yasser and Kūro sitting on the floor",
     "desk": "THE DESK",
-    "deskAlt": "Yasser and Kūro at sunset",
+    "deskAlt": "Yasser at his desk in a sunlit loft, Kūro in the background",
     "stickers": "THE STICKERS",
     "stickersAlt": "A sheet of Kūro stickers and merch",
     "bible": "The character bible →",
@@ -2015,8 +2017,7 @@
           ],
           "go": [
             "Open the AlmaFlowClim brand book",
-            "Open the tr4veler.exe brand book",
-            "Open the Numidea Labs brand book"
+            "Open the tr4veler.exe brand book"
           ],
           "note": "These are three identities made in this workshop: they show a mood, not what you will receive. Your identity starts from your brief."
         },
@@ -6268,11 +6269,26 @@
           "brief": "Choose where your users are: each country’s card opens. The exercise is done as soon as one card is open."
         },
         "ficheDone": "Noted: the brief keeps your answer, on this device only.",
-        "labDone": "Diagram worked through to the end. Nothing left this browser."
+        "labDone": "Diagram worked through to the end. Nothing left this browser.",
+        "sort": {
+          "brief": "Put each line in its box: the reason, taken from the lesson and its sources, shows underneath. The exercise is done when every line is in its place. Nothing is sent.",
+          "match": "Right.",
+          "other": "Rather: {b}.",
+          "score": "{n} of {N} in their place",
+          "done": "Every line is in its place. Nothing left this browser."
+        }
       },
       "journalCountMain": {
         "one": "{n}/{N} case note",
         "other": "{n}/{N} case notes"
+      },
+      "lo": {
+        "play": "Show",
+        "replay": "Replay",
+        "steps": "Step by step",
+        "next": "Next",
+        "restart": "Start again",
+        "step": "Step {i} of {n}"
       }
     },
     "cast": {
@@ -6306,6 +6322,7 @@
       "lore": "Free courses: brand, money, web3, nomad life, games. The Lantern is a night bookshop in the world of Numidea, and each atlas there is a course: you pick a district, settle a situation, do the exercise, and the decision goes into the journal. Nothing leaves here until you press.",
       "fiction": "The Lantern is an invented bookshop: it exists only at night, on this site.",
       "heroCta": "See the free courses",
+      "heroStart": "First visit? Start here: your brand, before the logo.",
       "heroAlt": "The Lantern Bookshop at night: under the red-and-cream striped awning, a giant open book on the counter and a lit lantern; Yasser sits reading an atlas by the stall, Kūro sleeps on the counter, the town’s towers under a starry sky.",
       "rayonsK": "/ THE SHELVES",
       "shelf1": "For your projects",
@@ -6839,15 +6856,20 @@
         "conclusion": "Selma knows which way the money comes, what it costs her, what to charge and how much to keep aside.",
         "act": {
           "a1": "Act I · Getting paid",
-          "a2": "Act II · Keeping the books"
+          "a2": "Act II · Keeping the books",
+          "a3": "Side path · The call"
         },
         "actShort": {
           "a1": "Act I",
-          "a2": "Act II"
+          "a2": "Act II",
+          "a3": "Side path"
         },
         "plate": {
           "a1": "A post-office arcade at dusk: a long wooden counter with sealed envelopes and string-tied parcels, a brass letter scale, empty pigeon lofts on the roof.",
-          "a2": "A counting room at night: a wooden desk with closed ledgers and an open notebook of blank lines, a small iron strongbox, a calendar of empty squares, a lit lantern and the towers through the window."
+          "a2": "A counting room at night: a wooden desk with closed ledgers and an open notebook of blank lines, a small iron strongbox, a calendar of empty squares, a lit lantern and the towers through the window.",
+          "desk": "At night, at his desk in front of the rooftops, Yasser holds a phone open on an app marked with a shield; Kūro swats away a red bubble shaped like a fishing hook. On the desk: a yellow passbook, a bank card, a padlock and a notebook.",
+          "post": "At the post office a long queue waits at the counter; against the wall, Yasser does the same errand on his phone, Kūro on his shoulder.",
+          "call": "In the evening on the sofa, Yasser looks at a phone buzzing in his hand; above it, a shadow figure in a halo and red hooks; Kūro arches his back and hisses."
         },
         "toComptoir": "To talk it through one to one, the fixed-price services are at the Bookshop’s counter.",
         "toComptoirGo": "Go to the counter",
@@ -6916,6 +6938,45 @@
             "handoff": "Selma keeps her phrase to herself, and her books in order.",
             "decision": "My recovery phrase goes to no one.",
             "keep": "The “Keys” stamp"
+          },
+          "appel": {
+            "name": "The call",
+            "sub": "The fake adviser",
+            "lore": "One evening Selma’s phone rings: an “adviser” says her account will be blocked if she does not act right now.",
+            "rule": "Urgency is not information, it is a sign of a scam: you hang up.",
+            "q": "The “adviser” insists: everything must happen now. What is the signal?",
+            "a": {
+              "0": "The polite tone",
+              "1": "The urgency: it is a sign of a scam",
+              "2": "The time of the call"
+            },
+            "f": {
+              "0": "Politeness proves nothing. The signal is the urgency: the authorities list it among the signs of a scam.",
+              "1": "Yes. Urgency is not information: it is a sign of a scam.",
+              "2": "The time says nothing. The signal is the urgency."
+            },
+            "keep": "The “Call” stamp",
+            "scene": "The fake adviser",
+            "handoff": "Selma hangs up; her accounts stay in order.",
+            "decision": "Urgency is a signal: I hang up.",
+            "pick": {
+              "0": {
+                "k": "Urgency",
+                "v": "Urgency is not information; it is a sign of a scam."
+              },
+              "1": {
+                "k": "The fake support",
+                "v": "Impersonation. The recovery phrase: no support asks for it. Ever."
+              },
+              "2": {
+                "k": "What goes to a scammer",
+                "v": "It cannot be recalled: recovery is nearly impossible (Europol)."
+              },
+              "3": {
+                "k": "2-step verification",
+                "v": "It keeps criminals out even if they know your password, as long as its code never leaves your phone: you read it to no one on a call."
+              }
+            }
           }
         }
       },
@@ -6939,7 +7000,8 @@
         "plate": {
           "r1": "A rooftop café terrace at dusk: a small table with an open notebook of blank pages, a phone and a glass of tea, string lights, the sea and white houses below.",
           "r2": "A railway station hall at night: two round clocks without numerals showing different times, a bench, a luggage trolley with a backpack, a wall socket with its cable, tall arched windows.",
-          "r3": "A guesthouse room at dawn: an arched window onto the sea, a closed booklet and a plant on the ledge, a calendar of empty squares on the wall, a packed backpack by the door."
+          "r3": "A guesthouse room at dawn: an arched window onto the sea, a closed booklet and a plant on the ledge, a calendar of empty squares on the wall, a packed backpack by the door.",
+          "desk": "Yasser looks at his phone, a shield on the screen; Kūro raises a paw at a red bubble marked with a fishing hook."
         },
         "toKit": "The Nomad kit and the fixed-price services are at the Bookshop’s counter.",
         "d": {
@@ -7075,7 +7137,36 @@
               "2": "A mascot alone is decoration. If you take the game away and nothing useful remains, it was not gamification."
             },
             "handoff": "A loyalty card, then? Which need it would feed is still open.",
-            "decision": "The class stays a class; it borrows one spring from games."
+            "decision": "The class stays a class; it borrows one spring from games.",
+            "ex": {
+              "t": "Gamification, a whole game or a coat of paint?"
+            },
+            "sort": {
+              "aria": "Sort four examples: gamification, a whole game or a coat of paint",
+              "bins": [
+                "Gamification",
+                "A whole game",
+                "A coat of paint"
+              ],
+              "rows": [
+                {
+                  "k": "A progress bar in an online course",
+                  "why": "The course stays a course; the bar lends it a game’s spring: seeing yourself move forward."
+                },
+                {
+                  "k": "A complete educational video game",
+                  "why": "Building a whole game is not gamification: it is a game."
+                },
+                {
+                  "k": "Points and badges put on a page that does nothing else",
+                  "why": "The lesson’s test: if you take the game away and nothing useful is left, it was not gamification. Margaret Robertson called this “pointsification” in 2010."
+                },
+                {
+                  "k": "Eight stickers to collect in a course that stays a course",
+                  "why": "Collecting is a game’s spring, and the course stays the real activity: that is what this course does."
+                }
+              ]
+            }
           },
           "g2": {
             "name": "Level 2",
@@ -7087,7 +7178,40 @@
               "2": "Connection is playing with others. A progress bar shows what you have already done: it feeds the need to feel capable."
             },
             "handoff": "The need found, the bookseller wants to know whether it really works.",
-            "decision": "The card shows the way done: it serves competence."
+            "decision": "The card shows the way done: it serves competence.",
+            "ex": {
+              "t": "Each spring under its need"
+            },
+            "sort": {
+              "aria": "Sort five springs under the three needs",
+              "bins": [
+                "Capable",
+                "Free",
+                "Connected"
+              ],
+              "rows": [
+                {
+                  "k": "Immediate feedback after each answer",
+                  "why": "You can see yourself improve: that is the need for competence."
+                },
+                {
+                  "k": "Choosing your path and your pace",
+                  "why": "What becomes compulsory stops being a game: that is the need for autonomy."
+                },
+                {
+                  "k": "Playing with others",
+                  "why": "That is the need for relatedness."
+                },
+                {
+                  "k": "Steps within reach",
+                  "why": "A step you can reach shows you improving: competence again."
+                },
+                {
+                  "k": "Belonging to a shared world",
+                  "why": "Relatedness is not only playing together: it is also belonging to a shared world."
+                }
+              ]
+            }
           },
           "g3": {
             "name": "Level 3",
@@ -7099,7 +7223,39 @@
               "2": "The studies do find effects, small but real, when gamification is designed for its audience."
             },
             "handoff": "Cautious, she moves on to the mechanics, one by one.",
-            "decision": "Real, modest effects: promise nothing more."
+            "decision": "Real, modest effects: promise nothing more.",
+            "ex": {
+              "t": "What the studies say, and what they do not"
+            },
+            "sort": {
+              "aria": "Sort five sentences: the studies say it, or not",
+              "bins": [
+                "The studies say it",
+                "They do not say it"
+              ],
+              "rows": [
+                {
+                  "k": "Gamification helps people learn, with small but real effects",
+                  "why": "Sailer and Homner (2020), 40 experiments: yes, small but real effects."
+                },
+                {
+                  "k": "Gamification works every time",
+                  "why": "None of them says so. Koivisto and Hamari (2019, 819 studies) find a remarkable share of mixed results."
+                },
+                {
+                  "k": "The most stable effect is on what is learned",
+                  "why": "On knowledge, g = 0.49: the study’s most stable result, even when only the most rigorous experiments are kept."
+                },
+                {
+                  "k": "The effect on what people actually do is the strongest of the three",
+                  "why": "The reverse: on behaviour, g = 0.25, the smallest of the three, and less stable."
+                },
+                {
+                  "k": "The effects depend greatly on the context and on the people",
+                  "why": "Hamari and colleagues (2014, 24 studies): positive effects that depend greatly on the context and on the people."
+                }
+              ]
+            }
           },
           "g4": {
             "name": "Level 4",
@@ -7111,7 +7267,37 @@
               "2": "Nunes and Drèze found a difference: the card that starts at 2 of 10 is finished more often, and faster."
             },
             "handoff": "The card drawn, what it says about the Lantern remains.",
-            "decision": "A card that starts with two boxes stamped."
+            "decision": "A card that starts with two boxes stamped.",
+            "ex": {
+              "t": "Name the mechanic"
+            },
+            "sort": {
+              "aria": "Sort four observations under their mechanic",
+              "bins": [
+                "A head start",
+                "Nearing the goal",
+                "Badges",
+                "Streaks"
+              ],
+              "rows": [
+                {
+                  "k": "A card of ten boxes, two already stamped",
+                  "why": "Nunes and Drèze (2006): starting at 2 of 10 commits you more than starting at 0 of 8."
+                },
+                {
+                  "k": "The closer the free coffee, the more often people buy",
+                  "why": "Kivetz and colleagues (2006), in a real café: people speed up near the finish line."
+                },
+                {
+                  "k": "Activity rises before a reward shown on the profile, then falls back",
+                  "why": "Anderson and colleagues (2013), on Stack Overflow. A 2020 study adds a caveat: about 20% of users respond."
+                },
+                {
+                  "k": "Coming back every day so as not to break the count of days",
+                  "why": "Duolingo tells its shareholders it runs hundreds of experiments, on notifications and streaks among other things, to bring users back."
+                }
+              ]
+            }
           },
           "g5": {
             "name": "Level 5",
@@ -7123,7 +7309,37 @@
               "2": "Clicks may follow, but what brings people back is character: a voice, a world, a ritual."
             },
             "handoff": "Before launching her card, the bookseller looks at real cases.",
-            "decision": "The Lantern keeps its voice: that is what brings people back."
+            "decision": "The Lantern keeps its voice: that is what brings people back.",
+            "ex": {
+              "t": "What the game gives a brand, and where it lets it down"
+            },
+            "sort": {
+              "aria": "Sort four elements: a voice, a world, a ritual, or against the brand",
+              "bins": [
+                "A voice",
+                "A world",
+                "A ritual",
+                "Against the brand"
+              ],
+              "rows": [
+                {
+                  "k": "Kūro judges your answers in two words",
+                  "why": "A brand that reacts to what you do has a character; a brand that recites has none."
+                },
+                {
+                  "k": "The radio, the DOURO·8 console and the seals come from the same place",
+                  "why": "You recognise the brand without seeing its logo."
+                },
+                {
+                  "k": "Stamps to earn all the way to the end of the page",
+                  "why": "Small ends to reach: a reason to finish the page and to come back to it."
+                },
+                {
+                  "k": "A game that hides the price or the contact",
+                  "why": "The game serves the message; it does not replace it."
+                }
+              ]
+            }
           },
           "g6": {
             "name": "Level 6",
@@ -7135,7 +7351,36 @@
               "2": "The speed camera lottery is a famous but fragile case, from a campaign. The scientific paper is Foldit."
             },
             "handoff": "The figures read, the bookseller looks for where it breaks.",
-            "decision": "Read where a figure comes from before believing it."
+            "decision": "Read where a figure comes from before believing it.",
+            "ex": {
+              "t": "Weigh each source"
+            },
+            "sort": {
+              "aria": "Sort four cases by their source",
+              "bins": [
+                "A scientific publication",
+                "A company figure",
+                "A campaign figure"
+              ],
+              "rows": [
+                {
+                  "k": "Starbucks Rewards: 59% of the money taken comes from members",
+                  "why": "Figures published by Starbucks itself, for the quarter ended in late June 2026."
+                },
+                {
+                  "k": "Deloitte: 37% more users each week",
+                  "why": "Reported by Harvard Business Review, but it is a company figure, with no comparison group."
+                },
+                {
+                  "k": "Foldit: an enzyme’s structure found thanks to the players",
+                  "why": "The result was published in Nature Structural & Molecular Biology (2011)."
+                },
+                {
+                  "k": "The speed camera lottery: from 32 to 25 km/h",
+                  "why": "Three days, no control group, and a figure given by the sponsor, Volkswagen."
+                }
+              ]
+            }
           },
           "g7": {
             "name": "Level 7",
@@ -7147,7 +7392,39 @@
               "2": "Gartner does not point at the technology; it points at poor design."
             },
             "handoff": "The rules of her card are still to be written.",
-            "decision": "No pressure, no reward promised in advance."
+            "decision": "No pressure, no reward promised in advance.",
+            "ex": {
+              "t": "Spot what harms"
+            },
+            "sort": {
+              "aria": "Sort five practices: it harms, or it keeps the interest",
+              "bins": [
+                "It harms",
+                "It keeps the interest"
+              ],
+              "rows": [
+                {
+                  "k": "Promising a reward for an activity people already liked",
+                  "why": "Lepper, Greene and Nisbett (1973): after a promised reward, interest in the activity drops."
+                },
+                {
+                  "k": "Giving a surprise reward, afterwards",
+                  "why": "In the same study, children who got a surprise reward kept their interest."
+                },
+                {
+                  "k": "Letting people do the activity with nothing promised",
+                  "why": "Those who got nothing kept their interest too (Lepper, Greene and Nisbett, 1973)."
+                },
+                {
+                  "k": "A class with badges and a leaderboard, for sixteen weeks",
+                  "why": "A small study, but a warning: in Hanus and Fox (2015), the class with badges and a leaderboard ended less motivated, less satisfied, with lower scores."
+                },
+                {
+                  "k": "An interface that pushes you into a purchase you would not have made",
+                  "why": "A “dark pattern”, in the FTC’s report (2022). The same year the maker of Fortnite agreed to pay 245 million dollars over unwanted purchases."
+                }
+              ]
+            }
           },
           "g8": {
             "name": "Level 8",
@@ -7159,7 +7436,39 @@
               "2": "There is no account and no ranking: the seals stay in your browser, and they open a drawing."
             },
             "handoff": "The card is ready.",
-            "decision": "The Lantern’s card gives a print from the class, never a discount."
+            "decision": "The Lantern’s card gives a print from the class, never a discount.",
+            "ex": {
+              "t": "Our rule, or what we refuse?"
+            },
+            "sort": {
+              "aria": "Sort five practices: this site does it, or refuses to",
+              "bins": [
+                "This site does it",
+                "This site refuses it"
+              ],
+              "rows": [
+                {
+                  "k": "The radio waits for your move to play",
+                  "why": "Nothing starts by itself: everything waits for your move, and everything stops with one."
+                },
+                {
+                  "k": "A streak of days not to break",
+                  "why": "No pressure: no streak to keep, no countdown."
+                },
+                {
+                  "k": "Seven seals to open a drawing",
+                  "why": "A drawing, not a discount: the reward is something to look at."
+                },
+                {
+                  "k": "A discount in exchange for your address",
+                  "why": "No reward here is traded for your address or for a purchase."
+                },
+                {
+                  "k": "A leaderboard between visitors",
+                  "why": "Stamps, seals and stickers stay in your browser: there is no account and no leaderboard."
+                }
+              ]
+            }
           }
         }
       },
@@ -7957,6 +8266,229 @@
             "0": "No flame tonight. The case still closed."
           }
         }
+      }
+    },
+    "lo": {
+      "banner-vector": {
+        "cap": "A vector stays sharp at any size; a pixel image does not.",
+        "alt": "A banner unrolls from a roller and the same mark grows eight times: on the left, as a JPEG, it breaks into squares; on the right, as SVG or PDF, it stays sharp."
+      },
+      "billed-days": {
+        "cap": "Not all 22: some days go to prospecting, quotes, admin and time off. Divide by the days billed.",
+        "alt": "A heap of coins and a month of 22 tiles. Ten tiles turn grey, marked with a magnifier, a quote, a stamp or a sun; the same heap is shared over the twelve tiles left, and each stack grows taller."
+      },
+      "block-chain": {
+        "cap": "Change an old operation and the next link no longer matches.",
+        "alt": "Four cream blocks joined by brass rings, each sealed with a fingerprint. Kūro's paw changes a line in the second block: the seal linking it to the third cracks, and the rest of the chain goes dark."
+      },
+      "four-layers": {
+        "cap": "Around the logo: the identity, the system, and the brand, what people say about you when you are not in the room.",
+        "alt": "Four cards fanned out, largest to smallest: the brand (a speech bubble), the system (a sheet of rules), the identity (colours and letters) and, in front, the logo, the smallest."
+      },
+      "funnel-planes": {
+        "cap": "One signature per 40 messages, so 120 messages for 3 clients.",
+        "alt": "Ten paper planes, standing for 40 messages, fly into a brass funnel; four envelopes come out and only one gets the red seal. On the right: « ×3 », then 120 and three sealed envelopes.",
+        "t": {
+          "0": "40",
+          "1": "4",
+          "2": "1",
+          "3": "×3",
+          "4": "120"
+        }
+      },
+      "hash-receipt": {
+        "cap": "The hash says “sent”. The receipt says whether it worked.",
+        "alt": "An envelope goes into a brass slot; a ticket comes out with an « 0x… » identifier and the word « Sent ». After the wait, two possible receipts: « Confirmed » or « Failed ». The ticket alone does not say which."
+      },
+      "key-register": {
+        "cap": "The wallet keeps your keys. It does not contain the coins: they stay in the ledger.",
+        "alt": "A public register on the wall, a row of coins in one column. Under the lamp a brass key turns and the row moves one column: the coins never leave the register. A red « support » bubble reaches for the key; a cover drops over it, with the tag « to no one ».",
+        "t": {
+          "0": "“support”",
+          "1": "to no one"
+        }
+      },
+      "last-seat": {
+        "alt": "Two requests arrive at the same moment along the copper wire to the brass relay. The relay drops its gate: one hand gets the last seat, the other a « full » card.",
+        "t": {
+          "0": "full"
+        }
+      },
+      "loyalty-cards": {
+        "cap": "The same effort, but you have already started: that is the endowed progress effect.",
+        "alt": "Two loyalty cards: one has eight empty boxes, the other ten boxes with two already stamped in brass, as a gift. Each stamp fills one box on each; at the eighth, both cards are full.",
+        "next": "Stamp",
+        "t": {
+          "0": "8",
+          "1": "10"
+        }
+      },
+      "months-jar": {
+        "cap": "A client pays at 60 days: enough to last at least those two months.",
+        "alt": "A jar of coins above a three-month calendar: in month one a stack of coins leaves; in month two, another; on day 60 the client’s payment arrives and refills the jar. A red bracket marks the two months to get through.",
+        "t": {
+          "0": "1",
+          "1": "2",
+          "2": "3",
+          "3": "60"
+        }
+      },
+      "one-writer": {
+        "cap": "One writer: the flowchart suggests a database.",
+        "alt": "On a counter, one notebook and one writing hand: the tag says « a database ». With the second button the notebook is copied onto four tables where four hands write: the tag becomes « several organisations? ».",
+        "t": {
+          "0": "a database",
+          "1": "several organisations?"
+        },
+        "b": {
+          "0": "Only the gym writes",
+          "1": "Several organisations write"
+        },
+        "cap2": "Several writers: the question arises (not an automatic answer)."
+      },
+      "promise-proof": {
+        "cap": "A deadline can be checked. “Best” cannot.",
+        "alt": "Two order tickets pinned up: « the best quality » gets a grey « slogan » stamp; « ready at the promised time » gets a clock and a photo of the order, then a tick.",
+        "t": {
+          "0": "the best quality",
+          "1": "ready at the promised time",
+          "2": "slogan"
+        }
+      },
+      "schengen-window": {
+        "cap": "You count back 180 days from each day of your stay: leaving for a day erases nothing.",
+        "alt": "A strip of days: a 50-day stay, one day out, then 30 days back. A brass frame 180 days wide slides with the chosen day; the count of stay days inside it does not restart after the day out. Further on, the first days slide out of the frame and the count falls.",
+        "ctl": "Move the day",
+        "out": "Days of stay in the last 180: {n} of 90",
+        "t": {
+          "0": "0",
+          "1": "50",
+          "2": "80"
+        }
+      },
+      "seal-ring": {
+        "cap": "It proves which key signed and that nothing has changed, but it hides nothing.",
+        "alt": "A signet ring, kept in hand, seals an open letter that anyone can still read. Anyone compares the public imprint with the seal: it matches. Add one comma to the letter and the fingerprint changes entirely: the match fails."
+      },
+      "spare-key": {
+        "cap": "An unlimited approval stays valid until you revoke it, even after “disconnecting”.",
+        "alt": "A spare key on a red ribbon, « unlimited approval », goes through the door into the till's lock. The door shuts on « disconnect », but the key still turns and the drawer opens. A red tag hangs from the key: revoking it costs fees.",
+        "t": {
+          "0": "unlimited approval",
+          "1": "disconnect",
+          "2": "revoking: fees"
+        }
+      },
+      "three-copies": {
+        "cap": "That is the “1” in 3-2-1: one copy outside the bag, online or with someone you trust.",
+        "alt": "Three file cards: two drop into the open bag, onto the laptop and the disk; the third lands on a shelf somewhere else. A shadow hand carries the bag away; the copy on the shelf stays, ticked.",
+        "t": {
+          "0": "1",
+          "1": "2",
+          "2": "3"
+        }
+      },
+      "two-days": {
+        "cap": "16:00 for you is 10:00 for your client: the hour falls inside both days.",
+        "alt": "Two working days on one 24-hour ruler: Selma’s from 9 to 18, the client’s shifted by six hours. Their shared part, 15 to 18 on Selma’s clock, lights up; a phone lands at 16.",
+        "t": {
+          "0": "UTC+1",
+          "1": "UTC−5",
+          "2": "0",
+          "3": "6",
+          "4": "12",
+          "5": "18",
+          "6": "24"
+        }
+      },
+      "wallet-seams": {
+        "cap": "What costs is almost never the opening: it is three fees.",
+        "alt": "A leather wallet opens on three pockets of notes; three brass clips mark where the cost hides: the exchange between the pockets, the transfer at the zip, the card and the withdrawal at the card slot. The « 0 fees » sticker peels off.",
+        "t": {
+          "0": "0 fees"
+        }
+      },
+      "rate-gap": {
+        "t": {
+          "0": "market",
+          "1": "offered",
+          "2": "your real price"
+        },
+        "alt": "Two exchange boards, “market” and “offered”, take the same stack of coins. Step by step: each gives back a bar, the offered one shorter; a red bracket measures the gap between them, “your real price”, and the “0 fees” sticker peels off."
+      },
+      "net-path": {
+        "t": {
+          "0": "uncontrolled network",
+          "1": "mobile network"
+        },
+        "b": {
+          "0": "Airport Wi-Fi",
+          "1": "Phone hotspot"
+        },
+        "alt": "A laptop and two paths. The first, dashed in red, goes to the airport’s Wi-Fi antenna, “uncontrolled network”, and a shadow hand grabs the line. With the second button the line goes through the phone, “mobile network”, and a green tick lights up."
+      },
+      "margin-block": {
+        "t": {
+          "0": "estimated days",
+          "1": "margin",
+          "2": "fixed price",
+          "3": "scope",
+          "4": "new quote"
+        },
+        "alt": "A bar of estimated days followed by a brass block, the margin; above, the “fixed price” tag covers both. Step by step: two extra days, in red, go into the margin, and the tag does not move; then the scope grows by a dashed block, and a “new quote” card comes out on its own."
+      }
+    },
+    "panel": {
+      "bank-routes": {
+        "alt": "Kūro hesitates between three small objects: a bank with columns, a laptop open on a dashboard, a phone."
+      },
+      "bank-id": {
+        "alt": "Kūro holds up a green ID card next to a phone whose screen waits for a selfie in a dotted frame.",
+        "cap": "To open an account, the service will check who you are. Ask it first: does it accept residents of my country?"
+      },
+      "bank-balance": {
+        "alt": "Kūro studies a phone through a magnifying glass: two bars of different lengths and a faded hourglass.",
+        "cap": "What you have set aside, what goes out each month: cash in hand is counted in months."
+      },
+      "bank-bell": {
+        "alt": "Kūro pricks up his ears: the phone buzzes under a small golden bell.",
+        "cap": "To check before you go: will my number receive my bank’s codes there?"
+      },
+      "bank-hooks": {
+        "alt": "Kūro crouches before an envelope, a message bubble and a phone handset, each hanging from a red fishing hook.",
+        "cap": "A letter, a message, a call: the same hook, urgency and a link that looks like the real one."
+      },
+      "bank-calm": {
+        "alt": "Kūro sits unmoved between a ringing alarm clock and a flashing red siren.",
+        "cap": "Urgency is not information."
+      },
+      "bank-mask": {
+        "alt": "Kūro lifts a cardboard mask with a painted smile: behind it, a shadow hand reaches for a wallet.",
+        "cap": "The fake “support” wears a friendly mask. Whoever reads the recovery phrase takes everything."
+      },
+      "bank-hangup": {
+        "alt": "With one paw Kūro presses the red button to hang up; with the other he holds a bank card.",
+        "cap": "Signal spotted: you hang up."
+      },
+      "bank-judge": {
+        "alt": "Kūro as a judge, a gavel at his feet, between two phones: a green bubble with a tick, a red bubble with a cross.",
+        "cap": "Scam, or nothing wrong? Sort the six messages."
+      },
+      "bank-key": {
+        "alt": "Kūro turns a big brass key in a padlock lying on a phone; beside it, a small security key on a ring.",
+        "cap": "A second lock: 2-step verification keeps criminals out even if they know your password."
+      },
+      "bank-fridge": {
+        "alt": "In the kitchen, in daylight, Yasser fixes a small note to the fridge with a magnet; on the table, a phone and a ticked list; Kūro wears a small gold medal.",
+        "cap": "The road book is full, the list is ticked."
+      },
+      "devis-folders": {
+        "alt": "Yasser, hand on his forehead, beside a tower of binders and folders bristling with notes; Kūro sits on the laptop keyboard.",
+        "cap": "Without the revisions line in the quote, a project never ends."
+      },
+      "night-platform": {
+        "alt": "At night on a station platform, Yasser reads a glowing map, a bag strap across his chest; Kūro waits at his feet.",
+        "cap": "Your office fits in a bag: anything that breaks, gets lost or cuts out stops you dead."
       }
     }
   }

@@ -1,0 +1,22 @@
+/* banner-vector (marque · b5): a JPEG has a size, a vector does not. Play 4000 ms, once. */
+.lo--banner-vector .bv-t1{fill:var(--cream);color:var(--cream)}
+.lo--banner-vector .bv-t2{fill:var(--right-line);color:var(--right-line)}
+.lo--banner-vector .l-t{font-size:12px}
+.lo--banner-vector .bv-m1{fill:color-mix(in srgb,var(--red) 55%,var(--cream))}
+.lo--banner-vector .bv-m2{fill:color-mix(in srgb,var(--ink) 60%,var(--red))}
+.lo--banner-vector .bv-cl{opacity:0}
+.lo--banner-vector .bv-ban{transform-box:fill-box;transform-origin:50% 0}
+.lo--banner-vector .bv-mark{transform-box:fill-box;transform-origin:center}
+@media (prefers-reduced-motion:no-preference){
+html:not(.motion-off) .lo--banner-vector.is-playing .bv-ban{animation:lo-banner-vector-u 4000ms both}
+html:not(.motion-off) .lo--banner-vector.is-playing .bv-mark{animation:lo-banner-vector-g 4000ms both}
+html:not(.motion-off) .lo--banner-vector.is-playing .bv-px{animation:lo-banner-vector-p 4000ms steps(1,end) both}
+html:not(.motion-off) .lo--banner-vector.is-playing .bv-cl{animation:lo-banner-vector-c 4000ms steps(1,end) both}
+html:not(.motion-off) .lo--banner-vector.is-playing .bv-tags{animation:lo-banner-vector-t 4000ms both}
+}
+/* 0-2000 the banner unrolls and the mark grows x8; at 2000 the left half cuts to pixels (no tween); 3500-4000 the tags drop in */
+@keyframes lo-banner-vector-u{0%{transform:scaleY(.04);animation-timing-function:cubic-bezier(.33,1,.68,1)}45%,100%{transform:none}}
+@keyframes lo-banner-vector-g{0%{transform:scale(.125);animation-timing-function:cubic-bezier(.87,0,.13,1)}50%,100%{transform:none}}
+@keyframes lo-banner-vector-p{0%{opacity:0}50%,100%{opacity:1}}
+@keyframes lo-banner-vector-c{0%{opacity:1}50%,100%{opacity:0}}
+@keyframes lo-banner-vector-t{0%,87.5%{opacity:0;transform:translateY(-10px);animation-timing-function:cubic-bezier(.16,1,.3,1)}100%{opacity:1;transform:none}}
