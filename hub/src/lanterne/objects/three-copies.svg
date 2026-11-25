@@ -1,0 +1,22 @@
+<svg viewBox="0 0 360 240" class="lo-svg lp-three-copies-svg" aria-hidden="true" focusable="false">
+<defs><path id="lp-three-copies-k" d="M-11-14H5L11-8V14H-11Z"/><path id="lp-three-copies-bag" d="M34 118Q100 113 164 118L162 180Q161 193 148 193H50Q36 193 35 180Z"/><path id="lp-three-copies-st" d="M42 124Q46 30 100 32Q154 30 158 124"/></defs>
+<path class="l-k1 l-so" opacity=".35" d="M0 200H360"/>
+<path class="l-k1 l-so lo-three-copies-s0" d="M226 112L288 64L350 112M330 96V72H340V104"/><path class="l-k1 l-so" opacity=".5" stroke-dasharray="3 4" d="M236 112V196M340 112V196"/>
+<path class="l-k1" d="M252 148L262 162M324 148L314 162"/><path class="l-w l-k" d="M240 140L336 140L336 148L240 148L240 140Z"/><path class="l-k1 l-so" d="M246 143h22"/>
+<g class="l-k1 l-so" opacity=".35" stroke-dasharray="4 4"><use href="#lp-three-copies-bag"/><use href="#lp-three-copies-st"/><g transform="translate(83 76)"><use href="#lp-three-copies-k"/></g><g transform="translate(136 90)"><use href="#lp-three-copies-k"/></g></g>
+<g opacity=".35"><text class="l-t" x="83" y="82" text-anchor="middle" data-i18n="lant.lo.three-copies.t.0"></text><text class="l-t" x="136" y="96" text-anchor="middle" data-i18n="lant.lo.three-copies.t.1"></text></g>
+<g class="lp-three-copies-bag">
+<use href="#lp-three-copies-st" class="l-k lo-three-copies-s1"/><use href="#lp-three-copies-st" class="l-k lp-three-copies-sw lo-three-copies-s2"/>
+<path class="l-w2 l-k" d="M40 118L46 100Q100 94 152 100L158 118Z"/>
+<path class="l-n2 l-k" d="M57 84L109 84L111 85L112 87L112 121L111 123L109 124Q83 123 57 124L55 123L54 121L54 87L55 85L57 84Z"/><circle class="l-c l-k1" cx="94" cy="100" r="6"/><path class="l-k1 l-so" d="M60 92v12"/>
+<path class="l-c l-k" d="M124 98L148 98L150 99L150 100L150 122L149 123L148 124L124 124L123 123L122 122L122 100L123 99L124 98Z"/><circle class="l-a l-k1" cx="143" cy="104" r="2.5"/>
+<use href="#lp-three-copies-bag" class="l-w"/><path class="l-w2" d="M36 176H162Q161 192 148 192H50Q37 192 36 176Z"/><use href="#lp-three-copies-bag" class="l-k"/>
+<path class="l-k1 l-so lo-three-copies-s3" stroke-dasharray="4 3" d="M42 126Q100 122 156 126L154 176Q154 185 145 185H53Q44 185 43 176Z"/>
+<path class="l-a l-k1" d="M90 150H110V164H90Z"/><path class="l-k1" d="M100 150V164"/><path class="l-k1 l-so" d="M40 132Q40 124 48 123"/>
+<g transform="translate(83 76)"><g class="lp-three-copies-c1"><use href="#lp-three-copies-k" class="l-c l-k1"/><path class="l-p l-k1" d="M5-14V-8H11Z"/><text class="l-ti lp-three-copies-num" x="0" y="6" text-anchor="middle" data-i18n="lant.lo.three-copies.t.0"></text></g></g>
+<g transform="translate(136 90)"><g class="lp-three-copies-c2"><use href="#lp-three-copies-k" class="l-c l-k1"/><path class="l-p l-k1" d="M5-14V-8H11Z"/><text class="l-ti lp-three-copies-num" x="0" y="6" text-anchor="middle" data-i18n="lant.lo.three-copies.t.1"></text></g></g>
+</g>
+<g transform="translate(288 126)"><g class="lp-three-copies-c3"><use href="#lp-three-copies-k" class="l-c l-k1"/><path class="l-p l-k1" d="M5-14V-8H11Z"/><text class="l-ti lp-three-copies-num" x="0" y="6" text-anchor="middle" data-i18n="lant.lo.three-copies.t.2"></text></g></g>
+<g class="lp-three-copies-tick"><circle class="l-g l-k1 l-sg lo-three-copies-s0" cx="300" cy="112" r="10"/><path class="l-k l-sg" d="M295 112l4 4l7-8"/></g>
+<g class="lp-three-copies-hand"><path class="l-i l-k1 l-so" d="M88-6V14Q78 18 80 28Q82 37 90 36Q94 42 100 39Q106 43 111 38Q118 40 120 32Q122 22 113 15V-6Z"/><path class="l-k1 l-so lo-three-copies-s4" d="M90 28q2 6 0 8M100 30v8M110 30q1 5 1 8M88 18q6-2 8 6"/></g>
+</svg>

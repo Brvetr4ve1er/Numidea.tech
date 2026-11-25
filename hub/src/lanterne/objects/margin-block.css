@@ -1,0 +1,6 @@
+/* margin-block (route · n2) · steps (3). Default markup = step 3 (the teaching frame): the overrun inside the margin, the fixed price, the new quote apart. */
+.lp-margin-block .lp-margin-block-over.is-off{transform:translateX(-12px)}
+.lp-margin-block .lp-margin-block-new.is-off{transform:translateY(8px)}
+@media (prefers-reduced-motion:reduce){.lp-margin-block *{transition:none!important}}
+.lp-margin-block .lp-margin-block-q{font-size:10px;letter-spacing:0}
+.lo-margin-block-s0{stroke-width:1;opacity:.55}

@@ -1,0 +1,7 @@
+{
+  "kind": "steps",
+  "n": 3,
+  "atlas": "argent",
+  "stop": "bank",
+  "cap": "lant.at.argent.d.bank.decision"
+}

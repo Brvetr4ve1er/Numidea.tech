@@ -1,0 +1,37 @@
+<svg viewBox="0 0 360 240" class="lo-svg lp-wallet-seams-svg" aria-hidden="true" focusable="false">
+<defs><path id="lp-wallet-seams-b" d="M33 86Q180 84 327 86L333 88L335 95Q333 139 336 183L334 189L327 192Q180 194 33 192L27 190L24 183Q26 139 24 95L27 89L33 86Z"/>
+<g id="lp-wallet-seams-c"><path class="l-k1" d="M-6 1L-4-11H4L6 1"/><path class="l-a l-k1" d="M-9 0H9L7 10H-7Z"/><path class="l-a2" d="M-7.5 6H7.5L7 9.5H-7Z"/><path class="l-k1 l-so" d="M-5 2.5H1"/></g></defs>
+<path class="l-k1 l-so" opacity=".35" d="M0 200H360"/>
+<g transform="translate(0 6)">
+<use href="#lp-wallet-seams-b" class="l-w"/>
+<path class="l-w2" d="M25 175Q180 172 335 174V183Q334 190 326 192H33Q25 191 25 183Z"/>
+<use href="#lp-wallet-seams-b" class="l-k"/>
+<path class="l-k1 l-so lo-wallet-seams-s0" stroke-dasharray="4 3" d="M36 93Q180 94 324 93L327 95L329 98Q328 139 329 180L327 184L324 185Q180 184 36 185L32 184L31 180Q30 139 31 98L33 94L36 93Z"/>
+<path class="l-k1" d="M198 88Q200 140 199 191"/>
+<path class="l-k1 l-so" d="M30 106Q30 92 44 91M206 106Q206 95 216 94"/>
+<path class="l-k1 lo-wallet-seams-s1" d="M300 160l-8 10M308 160l-8 10M316 160l-8 10M210 160l-6 8M216 162l-6 8"/>
+<path class="l-k lo-wallet-seams-s2" stroke-dasharray="1.6 2.2" d="M208 86H316"/>
+<path class="l-a l-k1" d="M319 85H329L327 101H321Z"/><circle class="l-k1" cx="324" cy="96" r="2"/>
+<path class="l-c l-k1" d="M214 140L215 117Q250 115 285 117L284 140Z"/>
+<path class="l-a l-k1" d="M222 123h12v9h-12z"/><path class="l-k1 lo-wallet-seams-s1" d="M240 126h22M240 131h14"/><path class="l-k1 l-so" d="M246 120h20"/>
+<path class="l-w2" d="M206 138H302V145H206Z"/><path class="l-k" d="M205 138Q254 136 303 138"/>
+<g transform="rotate(-8 244 166)"><g class="lp-wallet-seams-sb"><circle class="l-c l-k l-sr" cx="244" cy="166" r="26"/>
+<text class="l-ti lp-wallet-seams-t0" x="244" y="170" text-anchor="middle" data-i18n="lant.lo.wallet-seams.t.0"></text></g>
+<g class="lp-wallet-seams-curl" data-s="4"><path class="l-w" d="M268 176A26 26 0 0 1 240 192Z"/>
+<path class="l-p l-k1" d="M268 176Q246 172 240 192Z"/></g></g>
+<g class="lp-wallet-seams-open" data-s="2">
+<path class="l-p l-k" d="M107 46L153 49L149 107Q126 106 103 104L107 46Z"/><path class="l-k1 lo-wallet-seams-s1" d="M111 50L148 53L145 102L108 99L111 50Z"/><ellipse class="l-k1 lo-wallet-seams-s0" cx="128" cy="70" rx="6" ry="8" transform="rotate(4 128 70)"/>
+<path class="l-w2 l-k" d="M98 104Q129 97 160 103L161 175H97Z"/><path class="l-k1 l-so" d="M104 105Q125 100 135 101"/>
+<path class="l-c l-k" d="M38 60Q60 56 82 53L91 104L45 111Q42 85 38 60Z"/><path class="l-k1 lo-wallet-seams-s1" d="M43 64L79 58L86 100L49 106L43 64Z"/><ellipse class="l-k1 lo-wallet-seams-s0" cx="64" cy="76" rx="6" ry="8" transform="rotate(-9 64 76)"/>
+<path class="l-a l-k" d="M158 58L195 65Q191 90 186 114L149 108L158 58Z"/><path class="l-k1 lo-wallet-seams-s1" d="M161 63L190 68L183 109L154 104L161 63Z"/><ellipse class="l-k1 lo-wallet-seams-s0" cx="172" cy="80" rx="6" ry="8" transform="rotate(10 172 80)"/>
+<path class="l-w2 l-k" d="M30 110Q68 103 106 109L107 175H29Z"/><path class="l-k1 l-so" d="M36 111Q64 106 74 107"/>
+<path class="l-w2 l-k" d="M150 110Q172 103 193 109L194 175H149Z"/><path class="l-k1 l-so" d="M156 111Q168 106 178 107"/>
+</g>
+<g class="lp-wallet-seams-flap is-off" data-s-until="1"><path class="l-w l-k" d="M36 84Q114 86 192 84L200 87L204 96Q202 138 204 180L201 189L192 192Q114 194 36 192L28 189L24 180Q26 138 24 96L27 88L36 84Z"/>
+<path class="l-w2" d="M27 175Q110 172 200 175V182Q198 189 190 190H35Q27 189 27 182Z"/>
+<path class="l-k1 l-so lo-wallet-seams-s0" stroke-dasharray="4 3" d="M39 91Q114 90 189 91L195 94L197 99Q196 138 197 177L195 183L189 185L39 185L33 183L31 177L31 99L33 93L39 91Z"/>
+<circle class="l-a l-k1" cx="188" cy="137" r="5"/><path class="l-k1 l-so" d="M30 106Q30 91 45 90M186 135l2-1"/></g>
+<g class="lp-wallet-seams-clip lp-wallet-seams-c1" data-s="2"><use href="#lp-wallet-seams-c" x="102" y="104"/><path class="l-k1" d="M102 114V118"/><path class="l-c l-k1" d="M62 118L142 118L142 134Q102 135 62 134L62 118Z"/><text class="l-ti" x="102" y="130" text-anchor="middle" data-i18n="money.ls.items.1.pick.0.k"></text></g>
+<g class="lp-wallet-seams-clip" data-s="3"><use href="#lp-wallet-seams-c" x="262" y="82"/><path class="l-k1" d="M262 92V96"/><path class="l-c l-k1" d="M214 96Q262 95 310 96L310 112Q262 113 214 112L214 96Z"/><text class="l-ti" x="262" y="108" text-anchor="middle" data-i18n="money.ls.items.1.pick.1.k"></text></g>
+<g class="lp-wallet-seams-clip" data-s="4"><use href="#lp-wallet-seams-c" x="298" y="134"/><path class="l-k1" d="M298 144Q304 172 296 198"/><path class="l-c l-k1" d="M142 198L314 198L314 214Q228 215 142 214L142 198Z"/><text class="l-ti" x="228" y="210" text-anchor="middle" data-i18n="money.ls.items.1.pick.2.k"></text></g>
+</g></svg>

@@ -1,0 +1,22 @@
+<svg viewBox="0 0 360 240" class="lo-svg lp-key-register-svg" aria-hidden="true" focusable="false">
+<defs><g id="lp-key-register-c"><circle r="13" class="l-a l-k"/><circle r="7" class="l-k1 lo-key-register-s0"/><path class="l-a2" d="M-11 6A13 13 0 0 0 11 6A12 9 0 0 1-11 6Z"/><path class="l-k1 l-so" d="M-8-5Q-6-9-2-10"/></g></defs>
+<path class="l-k1 l-so" opacity=".35" d="M0 200H360"/>
+<path class="l-k1" d="M114 18L52 36M114 18L176 36"/><circle class="l-a l-k1" cx="114" cy="18" r="3"/>
+<path class="l-a l-k" d="M20 34Q115 33 210 34L213 35L214 38Q215 102 214 166L213 169L210 170Q115 168 20 170L18 169L16 166Q17 102 16 38L17 35L20 34Z"/>
+<path class="l-a2" d="M18 160H212V166Q211 169 206 169H22Q18 168 18 164Z"/>
+<path class="l-c l-k1" d="M26 44Q114 43 202 44Q201 101 202 158Q114 157 26 158Q25 101 26 44Z"/>
+<path class="l-k1" d="M70 45Q71 100 70 157M114 45Q113 100 114 157M158 45Q159 100 158 157M27 82Q114 81 201 82M27 120Q114 121 201 120"/>
+<path class="l-k1 lo-key-register-s1" d="M32 56q4-4 8 0t8 0t8 0M32 66q4-3 8 0t8 0M32 94q4-4 8 0t8 0t8 0M32 104q4-3 8 0t8 0M32 132q4-4 8 0t8 0t8 0M32 142q4-3 8 0t8 0M164 56q4-4 8 0t8 0t8 0M164 66q4-3 8 0t8 0M164 94q4-4 8 0t8 0t8 0M164 104q4-3 8 0t8 0M164 132q4-4 8 0t8 0t8 0M164 142q4-3 8 0t8 0"/>
+<path class="l-k1 l-so" d="M22 48Q22 40 30 40"/>
+<path class="l-k1 lo-key-register-s1" stroke-dasharray="2 3" d="M92 50V152"/>
+<g class="lp-key-register-coins"><use href="#lp-key-register-c" x="136" y="63"/><use href="#lp-key-register-c" x="136" y="101"/><use href="#lp-key-register-c" x="136" y="139"/></g>
+<path class="l-w l-k" d="M222 189Q290 188 358 189L358 198L222 198L222 189Z"/><path class="l-k1 l-so" d="M226 193H262"/>
+<path class="l-a" opacity=".25" d="M284 104L308 112L338 189H228Z"/>
+<path class="l-k" d="M336 187L346 128L318 98"/><circle class="l-a l-k1" cx="346" cy="128" r="3.5"/>
+<path class="l-a l-k" d="M298 82L322 98L310 114L280 102Z"/><path class="l-a2" d="M282 100L310 111L307 114L281 104Z"/><path class="l-k1 l-so" d="M300 87L314 96"/>
+<path class="l-a l-k" d="M324 189Q324 180 336 180Q348 180 348 189Z"/>
+<g transform="translate(262 180) rotate(-90)"><g class="lp-key-register-key"><path class="l-a l-k1 lo-key-register-s2" d="M7-2.5H36V6H32V2.5H28V7H24V2.5H7Z"/><circle r="8" class="l-a l-k"/><circle r="2.5" class="l-i"/></g></g>
+<g class="lp-key-register-cover"><path class="l-k" d="M242 189V152Q242 129 262 129Q282 129 282 152V189"/><path class="l-k1 l-so lo-key-register-s3" d="M248 180V153Q248 138 258 135"/><path class="l-k" d="M236 190H288"/><circle class="l-c l-k1" cx="262" cy="126" r="4"/></g>
+<g class="lp-key-register-bub"><path class="l-r l-k" d="M244 14L350 14L350 44Q313 43 276 44L256 58L262 44L244 44L244 14Z"/><text class="l-t" x="297" y="33" text-anchor="middle" data-i18n="lant.lo.key-register.t.0"></text></g>
+<g transform="rotate(-4 280 216)"><g class="lp-key-register-tag"><path class="l-r l-k" d="M230 216L240 206L334 206L334 226L240 226L230 216Z"/><circle class="l-n l-k1" cx="238" cy="216" r="2.5"/><text class="l-t" x="287" y="220" text-anchor="middle" data-i18n="lant.lo.key-register.t.1"></text></g></g>
+</svg>

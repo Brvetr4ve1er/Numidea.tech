@@ -1,0 +1,18 @@
+/* hash-receipt (web3 · w8): the hash says « sent », only the receipt says success or failure. Steps, n=4.
+   No data-lo-step (no JS, reduced motion, first view) = step 4: the envelope and the dots carry .is-off in the markup. */
+.lo--hash-receipt .l-ti{font-size:11px}
+.lo--hash-receipt .hr-hx{font-size:12px}
+.lo--hash-receipt .hr-ok{stroke:var(--right-line);stroke-width:3.5}
+.lo--hash-receipt .hr-no{stroke:var(--retry-line);stroke-width:3.5}
+.lo--hash-receipt .hr-env.is-off{transform:translateX(40px)}
+.lo--hash-receipt .hr-tk.is-off{transform:translateY(-30px)}
+.lo--hash-receipt :is(.hr-r0,.hr-r1){transform-box:fill-box;transform-origin:center;transition:transform var(--m-reveal) var(--m-ease-move)}
+.lo--hash-receipt .hr-r1{transition-delay:83ms}
+.lo--hash-receipt .hr-rc.is-off :is(.hr-r0,.hr-r1){transform:scaleY(0)}
+.lo--hash-receipt :is(.hr-dots,.hr-dw){transition-duration:var(--m-quick)}
+@media (prefers-reduced-motion:no-preference){
+html:not(.motion-off) .lo--hash-receipt[data-lo-step="3"] .hr-d0{animation:lo-hash-receipt-d var(--m-quick) both}
+html:not(.motion-off) .lo--hash-receipt[data-lo-step="3"] .hr-d1{animation:lo-hash-receipt-d var(--m-quick) 83ms both}
+html:not(.motion-off) .lo--hash-receipt[data-lo-step="3"] .hr-d2{animation:lo-hash-receipt-d var(--m-quick) 166ms both}
+}
+@keyframes lo-hash-receipt-d{0%{opacity:0;transform:translateY(4px)}100%{opacity:1;transform:none}}

@@ -138,7 +138,7 @@ item 6 can cover it.
 **Every Arabic string added or changed on 2026-10-31, 2026-11-03,
 2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14, 2026-11-15, 2026-11-19, 2026-11-21, 2026-11-22, 2026-11-23 and 2026-11-24 awaits native review** (the lists are at the end of this section,
 "Written on 2026-10-31", "Written or changed on 2026-11-03", "Written or
-changed on 2026-11-06", "Written or changed on 2026-11-07", "Written or changed on 2026-11-08", "Written or changed on 2026-11-11", "Written or changed on 2026-11-14", "Written or changed on 2026-11-15", "Written or changed on 2026-11-19", "Also written on 2026-11-19", "Written or changed on 2026-11-21", "Written or changed on 2026-11-22", "Written or changed on 2026-11-23" (with §47b) and "Written or changed on 2026-11-24"); nothing Arabic written by the fix fleets has been
+changed on 2026-11-06", "Written or changed on 2026-11-07", "Written or changed on 2026-11-08", "Written or changed on 2026-11-11", "Written or changed on 2026-11-14", "Written or changed on 2026-11-15", "Written or changed on 2026-11-19", "Also written on 2026-11-19", "Written or changed on 2026-11-21", "Written or changed on 2026-11-22", "Written or changed on 2026-11-23" (with §47b), "Written or changed on 2026-11-24" and §50, the Lantern objects and the banking-course panels); nothing Arabic written by the fix fleets has been
 read by a native speaker.
 
 The Arabic copy was written for this site and needs a native speaker's pass.
@@ -11473,3 +11473,204 @@ Arabic written for these (**AR: native review**, none read by a native speaker; 
 - `lant.at.jeu.d.g8.sort.rows.3.why` « لا مكافأة هنا تُبادَل بعنوانك أو بعملية شراء. » (French: « Aucune récompense ici ne s’échange contre votre adresse ou contre un achat. »)
 - `lant.at.jeu.d.g8.sort.rows.4.k` « لوحة ترتيب بين الزوار » (French: « Un classement entre visiteurs »)
 - `lant.at.jeu.d.g8.sort.rows.4.why` « الطوابع والأختام والملصقات تبقى في متصفحك: لا حساب ولا لوحة ترتيب. » (French: « Tampons, sceaux et stickers restent dans votre navigateur : il n’y a ni compte ni classement. »)
+
+## 50. The Librairie's Lantern objects and your banking-course panels (2026-11-24, lb2)
+
+Your order of 2026-11-24, « use all the banking course panels too », is done: **all 16 pictures of « Numidea · Banking course » are on the Librairie**, each beside the sentence it illustrates, plus two of your other scenes and nine objects cut from your object sheet. Next to them, 21 « Lantern objects » (18, then three more in fix round 1): small code-drawn machines, one idea each, that answer the reader (they play once when the stop comes into view, or move one step per press) and then stop on the drawing that teaches. With reduced motion or « Mouvement » off nothing moves: the final drawing is there from the start. Nothing here is committed.
+
+### Your pictures, stop by stop
+
+| picture (file under hub/img/lanterne/) | book · stop | where |
+|---|---|---|
+| `plates/bank-desk.webp` | argent · Clés (crypto) | the stop's own plate (wide), shown alone: your full scene already paints Yasser and Kūro, so no cut-out stands on it or beside it (fix round 1) |
+| `plates/bank-desk-close.webp` | route · Sécurité (n6) | the stop's own plate (portrait), a close crop of the second desk take, without the raven and pigeon cut-outs (fix round 1); only the keys prop stays, hung upper left on the window frame, clear of the padlock and the notebook |
+| `panels/bank-routes.webp` | argent · Route (pay) | in the reading, caption « La route d’abord, le prix ensuite. » (the stop's own decision) |
+| `panels/bank-id.webp` | argent · Change (bank) | in the reading, beside « Quatre questions à poser avant d’ouvrir » on a wide screen; caption « Pour ouvrir, le service vérifiera qui vous êtes. Demandez-lui d’abord : accepte-t-il les résidents de mon pays ? » |
+| `panels/bank-balance.webp` | argent · Trésorerie (treso) | above the calculator |
+| `panels/bank-bell.webp` | route · Départ (n8) | above the four files |
+| `panels/bank-hooks.webp` | web3 · Arnaques (w5) | in the dossier, after the rule |
+| `panels/bank-calm.webp` | argent · Appel (new side stop) | in the dossier, after the rule |
+| `panels/bank-mask.webp` | argent · Clés (crypto) | above the reading |
+| `panels/bank-hangup.webp` | argent · Appel | above the reading |
+| `panels/bank-judge.webp` | web3 · Arnaques (w5) | above the six-message sort |
+| `panels/bank-key.webp` | route · Sécurité (n6) | above the reading (fix round 1: the dossier now holds the « net-path » object, the network decision) |
+| `panels/bank-card.webp` | argent · Appel | the stop's keepsake, « Le tampon « Appel » » |
+| `plates/bank-post.webp` | argent · Change (bank) | the stop's own plate (wide), shown alone, no cut-out (fix round 1) |
+| `plates/bank-call.webp` | argent · Appel | the plate of the new side act « Chemin de traverse · L’appel », shown alone, no cut-out (fix round 1) |
+| `panels/bank-fridge.webp` | route · the sac | the reward picture, on its own above « Huit sur huit », captioned « Le carnet est rempli, la liste est cochée. », so it is not taken for the wallpaper (fix round 1) |
+| `panels/devis-folders.webp` | route · Devis (n3) | above the reading (your « Personal » binder tower), caption « Sans la ligne des retouches au devis, un projet ne finit jamais. » (from the course: the picture shows the failure, fix round 1) |
+| `panels/night-platform.webp` | route · Sac (n5) | above the reading (the night-platform vignette of your chat image 10), caption the course's own line « Votre bureau tient dans un sac : tout ce qui casse, se perd ou se coupe vous arrête net. » (fix round 1: the old one gave Selma's « her office » to a drawing of Yasser) |
+
+The two near-duplicate desk takes: the first (lamp left) is the better one and is the plate of argent « Clés »; the second cannot ship whole (a mark on its passbook), so only a text-free close crop of it is used, as the plate of route « Sécurité ». One per book, never on the same page. Props cut from your object sheet, each on a plate that does not already paint it: bag (route n5), keys (route n6), headphones (route n4), pencil (route n3), closed laptop (marque b5), stylus (marque b4), cat collar (marque b7), sketchbook (web3 w2), round glasses (jeu g3). Since fix round 1 the six that sit on a stop shown as a 120 px strip (glasses, stylus, collar, pencil, bag, sketchbook) show there too, small, between the two guides; before, the strip hid them.
+
+**The new side stop « Appel »** (argent, act a3, side: not counted in the five lessons, the HUD says « chemin de traverse : m / M »). Selma gets a fake adviser's call. Every fact in it is already in the course: urgency is a sign of a scam, no support asks for the recovery phrase, what goes to a scammer cannot be recalled, recovery is nearly impossible (Europol), 2-step verification keeps thieves out as long as its code never leaves your phone (you read it to no one on a call: fix round 1, the usual move of this exact scam); « on raccroche » is plain common knowledge. It says nothing about any named bank, post office, card number or SMS code. One thing to know: the shelf card for « Gagner sa vie de loin » now counts 6 stops (it counts every stop, as the night course does with its side path), while the kicker still says « cinq leçons ».
+
+### The 21 Lantern objects
+
+| object | book · stop | how it moves | caption (FR) |
+|---|---|---|---|
+| `banner-vector` | marque · b5 | plays once, 4 s | Un vectoriel reste net à toutes les tailles ; une image en pixels, non. |
+| `billed-days` | argent · rate (10 of 22 days grey since fix round 1: 12 billed, the calculator's default) | 3 steps, one per press | Pas les 22 : une partie des jours part en prospection, en devis, en administratif et en congés. Divisez par les jours facturés. |
+| `block-chain` | web3-modules · m21 | plays once, 4 s | Modifiez une ancienne opération, et le lien suivant ne correspond plus. |
+| `four-layers` | marque · b1 | plays once, 4 s | Autour du logo : l’identité, le système, et la marque, ce qu’on dit de vous quand vous n’êtes pas là. |
+| `funnel-planes` | route · n1 | plays once, 4.5 s | Une signature pour 40 messages, donc 120 messages pour 3 clients. |
+| `hash-receipt` | web3 · w8 | 4 steps, one per press | Le hash dit « envoyé ». Le reçu dit si c’est réussi. |
+| `key-register` | argent · crypto | plays once, 4.5 s | Le portefeuille garde vos clés. Il ne contient pas les pièces : elles restent dans le registre. |
+| `last-seat` | cours-du-soir · architecture | plays once, 4 s | Une place, une confirmation |
+| `loyalty-cards` | jeu · g4 (the two gifted boxes stay brass in the final frame, fix round 1) | 9 steps, one per press | Le même effort, mais on a déjà commencé : c’est l’effet de progression offerte. |
+| `months-jar` | argent · treso | plays once, 4.5 s | Un client paie à 60 jours : de quoi tenir au moins ces deux mois. |
+| `one-writer` | web3 · w2 | two states, two buttons | Un seul qui écrit : l’arbre propose une base de données. / second state: Plusieurs qui écrivent : la question se pose (pas une réponse automatique). |
+| `promise-proof` | marque · b3 | plays once, 3.5 s | Un délai se vérifie. « Meilleur » ne se vérifie pas. |
+| `schengen-window` | route · n8 | a slider (no motion), days 40 to 240 since fix round 1: past day 179 the first days leave the frame and the count falls | On compte 180 jours en arrière depuis chaque jour du séjour : sortir une journée n’efface rien. |
+| `seal-ring` | web3-modules · m14 | 3 steps, one per press | Elle prouve quelle clé a signé et que rien n’a changé, mais elle ne cache rien. |
+| `spare-key` | web3-modules · m34 | plays once, 4.5 s | Une autorisation illimitée reste valable tant que vous ne la révoquez pas, même après « déconnexion ». |
+| `three-copies` | route · n5 | plays once, 4 s | C’est le « 1 » de 3-2-1 : une copie hors du sac, en ligne ou chez quelqu’un de confiance. |
+| `two-days` | route · n4 | plays once, 4 s | 16 h chez vous, c’est 10 h chez votre client : l’heure tombe dans les deux journées. |
+| `wallet-seams` | argent · bank | 4 steps, one per press | Ce qui coûte n’est presque jamais l’ouverture : ce sont trois frais. |
+| `rate-gap` (fix round 1) | argent · bank, in the reading | 3 steps, one per press | Comparer le taux appliqué, pas l’affiche. (the stop's decision; two boards « marché » and « offert », the gap « votre vrai prix », the « 0 frais » sticker peels off; no real rate) |
+| `net-path` (fix round 1) | route · n6 | two states, two buttons | Le réseau du téléphone plutôt que le Wi-Fi public. (the stop's decision; « réseau non maîtrisé » with a shadow hand on the line, then « réseau mobile ») |
+| `margin-block` (fix round 1) | route · n2 | 3 steps, one per press | La marge paie l’imprévu ; le prix ferme ne bouge pas. (the stop's decision; two extra days go into the brass margin under the « prix ferme » tag, then a scope block makes a « nouveau devis ») |
+
+Every caption quotes a line already in the course (or names an existing key); the drawings use only the site's own colours. Their sources are `hub/src/lanterne/objects/<id>.svg|.css|.json`, the shared look is in `hub/css/lanterne.css`, the controller is `hub/lanterne-objects.js` (BRAND.md « Lantern props »).
+
+### Arabic for native review (written on 2026-11-24, « à relire par un locuteur natif », 128 strings; fix round 1 rewrote 10 and added 17)
+
+None of this Arabic has been read by a native speaker. The captions that quote the course reuse the course's own Arabic where it exists; the alt texts, labels, the « Appel » stop and the panel captions are new drafts. Numbers and Latin words that are the same in the three languages are left out.
+
+- `lant.at.argent.act.a3` « طريق جانبي · المكالمة » (French: « Chemin de traverse · L’appel »)
+- `lant.at.argent.actShort.a3` « جانبي » (French: « Traverse »)
+- `lant.at.argent.d.appel.a.0` « نبرته المهذّبة » (French: « Son ton poli »)
+- `lant.at.argent.d.appel.a.1` « الاستعجال: إنه علامة احتيال » (French: « L’urgence : c’est un signe d’arnaque »)
+- `lant.at.argent.d.appel.a.2` « توقيت المكالمة » (French: « L’heure de l’appel »)
+- `lant.at.argent.d.appel.decision` « الاستعجال علامة: أُغلق الخط. » (French: « L’urgence est un signal : je raccroche. »)
+- `lant.at.argent.d.appel.f.0` « الأدب لا يثبت شيئاً. العلامة هي الاستعجال: تعدّه السلطات من علامات الاحتيال. » (French: « La politesse ne prouve rien. Le signal, c’est l’urgence : les autorités la rangent parmi les signes d’arnaque. »)
+- `lant.at.argent.d.appel.f.1` « نعم. الاستعجال ليس معلومة: إنه علامة احتيال. » (French: « Oui. L’urgence n’est pas une information : c’est un signe d’arnaque. »)
+- `lant.at.argent.d.appel.f.2` « التوقيت لا يقول شيئاً. العلامة هي الاستعجال. » (French: « L’heure ne dit rien. Le signal, c’est l’urgence. »)
+- `lant.at.argent.d.appel.handoff` « تُغلق سلمى الخط؛ وتبقى حساباتها سليمة. » (French: « Selma raccroche ; ses comptes restent en ordre. »)
+- `lant.at.argent.d.appel.keep` « ختم «المكالمة» » (French: « Le tampon « Appel » »)
+- `lant.at.argent.d.appel.lore` « ذات مساء يرنّ هاتف سلمى: «مستشار» يعلن أن حسابها سيُجمَّد إن لم تتصرّف فوراً. » (French: « Un soir, le téléphone de Selma sonne : un « conseiller » annonce que son compte sera bloqué si elle n’agit pas tout de suite. »)
+- `lant.at.argent.d.appel.name` « المكالمة » (French: « Appel »)
+- `lant.at.argent.d.appel.pick.0.k` « الاستعجال » (French: « L’urgence »)
+- `lant.at.argent.d.appel.pick.0.v` « الاستعجال ليس معلومة؛ إنه علامة احتيال. » (French: « L’urgence n’est pas une information ; c’est un signe d’arnaque. »)
+- `lant.at.argent.d.appel.pick.1.k` « الدعم المزيّف » (French: « Le faux support »)
+- `lant.at.argent.d.appel.pick.1.v` « انتحال صفة. عبارة الاسترداد: لا دعم يطلبها. أبداً. » (French: « Usurpation. La phrase de récupération : aucun support ne la demande. Jamais. »)
+- `lant.at.argent.d.appel.pick.2.k` « ما يذهب إلى محتال » (French: « Ce qui part vers un escroc ») *(rewritten in fix round 1)*
+- `lant.at.argent.d.appel.pick.2.v` « لا يمكن استرجاعه: الاسترداد شبه مستحيل (Europol). » (French: « Il ne se rappelle pas : la récupération est presque impossible (Europol). ») *(rewritten in fix round 1)*
+- `lant.at.argent.d.appel.pick.3.k` « التحقق بخطوتين » (French: « La validation en deux étapes »)
+- `lant.at.argent.d.appel.pick.3.v` « يُبقي اللصوص خارجاً حتى لو عرفوا كلمة مرورك، ما دام رمزه لا يغادر هاتفك: لا تقرأه لأحد في مكالمة. » (French: « Elle garde les voleurs dehors même s’ils connaissent votre mot de passe, tant que son code ne quitte pas votre téléphone : on ne le lit à personne au téléphone. ») *(rewritten in fix round 1)*
+- `lant.at.argent.d.appel.q` « يُلحّ «المستشار»: يجب أن يتمّ كل شيء الآن. ما العلامة؟ » (French: « Le « conseiller » insiste : tout doit se faire maintenant. Quel est le signal ? »)
+- `lant.at.argent.d.appel.rule` « الاستعجال ليس معلومة، بل علامة احتيال: نُغلق الخط. » (French: « L’urgence n’est pas une information, c’est un signe d’arnaque : on raccroche. »)
+- `lant.at.argent.d.appel.scene` « المستشار المزيّف » (French: « Le faux conseiller »)
+- `lant.at.argent.d.appel.sub` « المستشار المزيّف » (French: « Le faux conseiller »)
+- `lant.at.argent.plate.call` « في المساء، على الأريكة، ينظر ياسر إلى هاتف يهتزّ في يده؛ وفوقه هيئة من ظلّ داخل هالة وصنّارات حمراء؛ وكورو يقوّس ظهره ويفحّ. » (French: « Le soir, sur le canapé, Yasser regarde un téléphone qui vibre dans sa main ; au-dessus, une silhouette d’ombre dans un halo et des hameçons rouges ; Kūro, le dos rond, feule. »)
+- `lant.at.argent.plate.desk` « في الليل، على مكتبه أمام أسطح المدينة، يمسك ياسر هاتفاً مفتوحاً على تطبيق يحمل درعاً؛ وكورو يُبعد بضربة من مخلبه فقاعة حمراء على شكل صنّارة. على المكتب: دفتر أصفر وبطاقة بنكية وقفل ودفتر ملاحظات. » (French: « La nuit, à son bureau devant les toits, Yasser tient un téléphone ouvert sur une application marquée d’un bouclier ; Kūro écarte d’un coup de patte une bulle rouge en forme d’hameçon. Sur le bureau, un livret jaune, une carte bancaire, un cadenas et un carnet. »)
+- `lant.at.argent.plate.post` « في مكتب البريد، طابور طويل ينتظر عند الشبّاك؛ وعند الجدار يُنجز ياسر المعاملة نفسها على هاتفه، وكورو على كتفه. » (French: « Au bureau de poste, une longue file attend au guichet ; contre le mur, Yasser fait la même démarche sur son téléphone, Kūro sur l’épaule. »)
+- `lant.at.route.plate.desk` « ينظر ياسر إلى هاتفه، وعلى الشاشة درع؛ ويرفع كورو مخلبه نحو فقاعة حمراء عليها صنّارة. » (French: « Yasser regarde son téléphone, un bouclier à l’écran ; Kūro lève la patte vers une bulle rouge marquée d’un hameçon. »)
+- `lant.lo.banner-vector.alt` « لافتة تنفرد من بكرة، والعلامة نفسها تكبر ثماني مرات: على اليسار، بصيغة JPEG، تتكسّر إلى مربعات؛ وعلى اليمين، بصيغة SVG أو PDF، تبقى حادّة. » (French: « Une bâche se déroule d’un rouleau et le même signe grandit huit fois : à gauche, en JPEG, il se casse en carrés ; à droite, en SVG ou PDF, il reste net. »)
+- `lant.lo.banner-vector.cap` « الملف المتّجه يبقى حادّاً بكل الأحجام؛ صورة البكسل لا. » (French: « Un vectoriel reste net à toutes les tailles ; une image en pixels, non. »)
+- `lant.lo.billed-days.alt` « كومة من القطع النقدية وشهر من 22 خانة. عشر خانات تصير رمادية، عليها عدسة مكبّرة أو عرض سعر أو ختم أو شمس؛ وتتوزّع الكومة نفسها على الخانات الاثنتي عشرة الباقية، فيعلو كل عمود من القطع. » (French: « Un tas de pièces et un mois de 22 cases. Dix cases grisent, marquées d’une loupe, d’un devis, d’un tampon ou d’un soleil ; le même tas se partage sur les douze cases restantes, et chaque pile grandit. ») *(rewritten in fix round 1)*
+- `lant.lo.billed-days.cap` « ليست الاثنين والعشرين كلها: بعض الأيام يذهب في البحث عن عملاء والعروض والإدارة والعطل. اقسم على الأيام المفوترة. » (French: « Pas les 22 : une partie des jours part en prospection, en devis, en administratif et en congés. Divisez par les jours facturés. »)
+- `lant.lo.block-chain.alt` « أربع كتل بلون الكريم تربطها حلقات نحاسية، كلٌّ منها مختوم ببصمة. مخلب كورو يغيّر سطراً في الكتلة الثانية: فيتشقّق الختم الذي يربطها بالثالثة، ويخفت باقي السلسلة. » (French: « Quatre blocs crème reliés par des anneaux de laiton, chacun scellé d’une empreinte. La patte de Kūro modifie une ligne du deuxième bloc : le sceau qui le relie au troisième se fend, et la suite de la chaîne s’éteint. »)
+- `lant.lo.block-chain.cap` « عدّل عملية قديمة فلا يعود الرابط التالي مطابقاً. » (French: « Modifiez une ancienne opération, et le lien suivant ne correspond plus. »)
+- `lant.lo.four-layers.alt` « أربع بطاقات مفرودة كالمروحة، من الأكبر إلى الأصغر: العلامة (فقاعة كلام)، والنظام (ورقة قواعد)، والهوية (ألوان وحروف)، وفي المقدّمة الشعار، وهو الأصغر. » (French: « Quatre cartes en éventail, de la plus grande à la plus petite : la marque (une bulle de parole), le système (une feuille de règles), l’identité (des couleurs et des lettres) et, devant, le logo, la plus petite. »)
+- `lant.lo.four-layers.cap` « حول الشعار: الهوية، والنظام، والعلامة: ما يقوله الناس عنك في غيابك. » (French: « Autour du logo : l’identité, le système, et la marque, ce qu’on dit de vous quand vous n’êtes pas là. »)
+- `lant.lo.funnel-planes.alt` « عشر طائرات ورقية، تمثّل 40 رسالة، تدخل قمعاً نحاسياً؛ تخرج منه أربعة مظاريف، وواحد فقط يتلقّى الختم الأحمر. على اليمين: «×3»، ثم 120 وثلاثة مظاريف مختومة. » (French: « Dix avions en papier, pour 40 messages, entrent dans un entonnoir de laiton ; quatre enveloppes en sortent, une seule reçoit le sceau rouge. À droite : « ×3 », puis 120 et trois enveloppes scellées. »)
+- `lant.lo.funnel-planes.cap` « توقيع واحد لكل 40 رسالة، إذن 120 رسالة لثلاثة عملاء. » (French: « Une signature pour 40 messages, donc 120 messages pour 3 clients. »)
+- `lant.lo.hash-receipt.alt` « ظرف يدخل في فتحة نحاسية؛ وتخرج تذكرة عليها معرّف «0x…» وكلمة «مُرسَلة». بعد الانتظار، إيصالان ممكنان: «مؤكَّدة» أو «فاشلة». التذكرة وحدها لا تقول أيّهما. » (French: « Une enveloppe entre dans une fente de laiton ; un ticket sort avec un identifiant « 0x… » et le mot « Envoyée ». Après l’attente, deux reçus possibles : « Confirmée » ou « Échouée ». Le ticket seul ne dit pas lequel. »)
+- `lant.lo.hash-receipt.cap` « الـhash يقول «أُرسلت». الإيصال يقول هل نجحت. » (French: « Le hash dit « envoyé ». Le reçu dit si c’est réussi. »)
+- `lant.lo.key-register.alt` « سجلّ عمومي على الحائط، وصفّ من القطع النقدية في أحد أعمدته. تحت المصباح يدور مفتاح نحاسي فيتقدّم الصف عموداً واحداً: القطع لا تغادر السجل أبداً. فقاعة حمراء «الدعم» تمتدّ نحو المفتاح؛ ثم يغطّيه ناقوس زجاجي، مع بطاقة «لا لأحد». » (French: « Un registre public au mur, une rangée de pièces dans une colonne. Sous la lampe, une clé de laiton tourne et la rangée avance d’une colonne : les pièces ne quittent jamais le registre. Une bulle rouge « support » tend vers la clé ; une cloche la recouvre, avec l’étiquette « à personne ». »)
+- `lant.lo.key-register.cap` « المحفظة تحفظ مفاتيحك. لا تحتوي على العملات: هي باقية في السجل. » (French: « Le portefeuille garde vos clés. Il ne contient pas les pièces : elles restent dans le registre. »)
+- `lant.lo.key-register.t.0` « «الدعم» » (French: « « support » »)
+- `lant.lo.key-register.t.1` « لا لأحد » (French: « à personne »)
+- `lant.lo.last-seat.alt` « طلبان يصلان في اللحظة نفسها عبر السلك النحاسي إلى المُرحِّل النحاسي. يُنزل المُرحِّل حاجزه: يد تتلقّى المقعد الأخير، والأخرى بطاقة «مكتمل». » (French: « Deux demandes arrivent en même temps par le fil de cuivre jusqu’au relais de laiton. Le relais abaisse sa barrière : une main reçoit la dernière place, l’autre une carte « complet ». »)
+- `lant.lo.last-seat.t.0` « مكتمل » (French: « complet »)
+- `lant.lo.loyalty-cards.alt` « بطاقتا ولاء: إحداهما فيها ثماني خانات فارغة، والأخرى عشر خانات اثنتان منها مختومتان مسبقاً باللون النحاسي، هديةً. كل ضربة ختم تملأ خانة في كل بطاقة؛ وعند الثامنة تمتلئ البطاقتان. » (French: « Deux cartes de fidélité : l’une a huit cases vides, l’autre dix cases dont deux déjà tamponnées en laiton, offertes. Chaque coup de tampon remplit une case sur chacune ; au huitième, les deux cartes sont pleines. ») *(rewritten in fix round 1)*
+- `lant.lo.loyalty-cards.cap` « الجهد نفسه، لكنك بدأت بالفعل: هذا أثر التقدّم الممنوح. » (French: « Le même effort, mais on a déjà commencé : c’est l’effet de progression offerte. »)
+- `lant.lo.loyalty-cards.next` « اختم » (French: « Tamponner »)
+- `lant.lo.margin-block.alt` « شريط من الأيام المقدَّرة يليه مكعّب نحاسي، الهامش؛ وفوقهما بطاقة «سعر ثابت» تغطّيهما. خطوة بخطوة: يومان إضافيان، بالأحمر، يدخلان الهامش، والبطاقة لا تتحرّك؛ ثم يكبر النطاق بمكعّب منقّط، وتخرج بطاقة «عرض سعر جديد» على حدة. » (French: « Une barre de jours estimés suivie d’un bloc de laiton, la marge ; au-dessus, l’étiquette « prix ferme » couvre les deux. Pas à pas : deux jours de plus, en rouge, entrent dans la marge, et l’étiquette ne bouge pas ; puis le périmètre grandit d’un bloc en pointillés, et une fiche « nouveau devis » sort à part. ») *(new in fix round 1)*
+- `lant.lo.margin-block.t.0` « الأيام المقدَّرة » (French: « jours estimés ») *(new in fix round 1)*
+- `lant.lo.margin-block.t.1` « الهامش » (French: « marge ») *(new in fix round 1)*
+- `lant.lo.margin-block.t.2` « سعر ثابت » (French: « prix ferme ») *(new in fix round 1)*
+- `lant.lo.margin-block.t.3` « النطاق » (French: « périmètre ») *(new in fix round 1)*
+- `lant.lo.margin-block.t.4` « عرض سعر جديد » (French: « nouveau devis ») *(new in fix round 1)*
+- `lant.lo.months-jar.alt` « برطمان من القطع النقدية فوق تقويم من ثلاثة أشهر: في الشهر الأول تخرج كومة من القطع، وفي الثاني كومة أخرى؛ وفي اليوم الستين يصل دفع العميل فيملأ البرطمان من جديد. قوس أحمر يحدّد الشهرين اللذين يجب الصمود فيهما. » (French: « Un bocal de pièces au-dessus d’un calendrier de trois mois : le premier mois, une pile de pièces part ; le deuxième, une autre ; au 60e jour, le paiement du client arrive et remplit le bocal. Une accolade rouge marque les deux mois à tenir. »)
+- `lant.lo.months-jar.cap` « عميل يدفع بعد 60 يوماً: ما يكفي للصمود هذين الشهرين على الأقل. » (French: « Un client paie à 60 jours : de quoi tenir au moins ces deux mois. »)
+- `lant.lo.net-path.alt` « حاسوب محمول وطريقان. الأول، بخط أحمر متقطّع، يذهب إلى هوائي Wi-Fi المطار، «شبكة لا تتحكّم فيها»، ويدٌ من ظلّ تمسك الخط. مع الزر الثاني يمرّ الخط عبر الهاتف، «شبكة الهاتف»، وتضيء علامة صحّ خضراء. » (French: « Un ordinateur portable et deux chemins. Le premier, en pointillés rouges, va à l’antenne Wi-Fi de l’aéroport, « réseau non maîtrisé », et une main d’ombre attrape la ligne. Avec le second bouton, la ligne passe par le téléphone, « réseau mobile », et une coche verte s’allume. ») *(new in fix round 1)*
+- `lant.lo.net-path.b.0` « Wi-Fi المطار » (French: « Wi-Fi de l’aéroport ») *(new in fix round 1)*
+- `lant.lo.net-path.b.1` « مشاركة اتصال الهاتف » (French: « Partage de connexion ») *(new in fix round 1)*
+- `lant.lo.net-path.t.0` « شبكة لا تتحكّم فيها » (French: « réseau non maîtrisé ») *(new in fix round 1)*
+- `lant.lo.net-path.t.1` « شبكة الهاتف » (French: « réseau mobile ») *(new in fix round 1)*
+- `lant.lo.one-writer.alt` « على منضدة، دفتر واحد ويد واحدة تكتب: البطاقة تقول «قاعدة بيانات». مع الزر الثاني، يُنسَخ الدفتر على أربع طاولات تكتب فيها أربع أيادٍ: وتصير البطاقة «عدة منظمات؟». » (French: « Sur un comptoir, un seul carnet et une seule main qui écrit : l’étiquette dit « une base de données ». Avec le second bouton, le carnet se copie sur quatre tables où quatre mains écrivent : l’étiquette devient « plusieurs organisations ? ». »)
+- `lant.lo.one-writer.b.0` « الصالة وحدها تكتب » (French: « Une seule salle écrit »)
+- `lant.lo.one-writer.b.1` « عدة منظمات تكتب » (French: « Plusieurs organisations écrivent »)
+- `lant.lo.one-writer.cap` « كاتب واحد: الشجرة تقترح قاعدة بيانات. » (French: « Un seul qui écrit : l’arbre propose une base de données. »)
+- `lant.lo.one-writer.cap2` « عدة كُتّاب: يُطرح السؤال (ليس جواباً تلقائياً). » (French: « Plusieurs qui écrivent : la question se pose (pas une réponse automatique). ») *(new in fix round 1)*
+- `lant.lo.one-writer.t.0` « قاعدة بيانات » (French: « une base de données »)
+- `lant.lo.one-writer.t.1` « عدة منظمات؟ » (French: « plusieurs organisations ? »)
+- `lant.lo.promise-proof.alt` « بطاقتا طلب مثبّتتان على لوح: «أفضل جودة» تتلقّى ختماً رمادياً «شعار دعائي»؛ و«جاهز في الموعد الموعود» تُرفَق بها ساعة وصورة للطلب، ثم علامة صح. » (French: « Deux bons de commande épinglés : « la meilleure qualité » reçoit un tampon gris « slogan » ; « prêt à l’heure promise » reçoit une horloge et une photo de la commande, puis une coche. »)
+- `lant.lo.promise-proof.cap` « الموعد يمكن التحقق منه. «الأفضل» لا. » (French: « Un délai se vérifie. « Meilleur » ne se vérifie pas. »)
+- `lant.lo.promise-proof.t.0` « أفضل جودة » (French: « la meilleure qualité »)
+- `lant.lo.promise-proof.t.1` « جاهز في الموعد الموعود » (French: « prêt à l’heure promise »)
+- `lant.lo.promise-proof.t.2` « شعار دعائي » (French: « slogan »)
+- `lant.lo.rate-gap.alt` « لوحتا صرف، «السوق» و«المعروض»، تستقبلان كومة القطع نفسها. خطوة بخطوة: تُعيد كل منهما شريطاً، وشريط العرض أقصر؛ قوس أحمر يقيس الفرق بينهما، «سعرك الحقيقي»، وينفصل ملصق «0 رسوم». » (French: « Deux tableaux de change, « marché » et « offert », reçoivent la même pile de pièces. Pas à pas : chacun rend une barre, celle de l’offre plus courte ; une accolade rouge mesure l’écart entre les deux, « votre vrai prix », et l’autocollant « 0 frais » se décolle. ») *(new in fix round 1)*
+- `lant.lo.rate-gap.t.0` « السوق » (French: « marché ») *(new in fix round 1)*
+- `lant.lo.rate-gap.t.1` « المعروض » (French: « offert ») *(new in fix round 1)*
+- `lant.lo.rate-gap.t.2` « سعرك الحقيقي » (French: « votre vrai prix ») *(new in fix round 1)*
+- `lant.lo.schengen-window.alt` « شريط من الأيام: إقامة من 50 يوماً، ثم يوم واحد في الخارج، ثم 30 يوماً بعد العودة. إطار نحاسي بعرض 180 يوماً ينزلق مع اليوم المختار؛ وعدد أيام الإقامة داخله لا يعود إلى الصفر بعد الخروج. وأبعد من ذلك، تخرج الأيام الأولى من الإطار فينخفض العدد. » (French: « Une bande de jours : un séjour de 50 jours, une journée de sortie, puis 30 jours de retour. Un cadre de laiton large de 180 jours glisse avec le jour choisi ; le compte des jours de séjour qu’il contient ne repart pas de zéro après la sortie. Plus loin, les premiers jours sortent du cadre et le compte baisse. ») *(rewritten in fix round 1)*
+- `lant.lo.schengen-window.cap` « يُحسب 180 يوماً إلى الوراء من كل يوم من أيام الإقامة: الخروج يوماً واحداً لا يمحو شيئاً. » (French: « On compte 180 jours en arrière depuis chaque jour du séjour : sortir une journée n’efface rien. »)
+- `lant.lo.schengen-window.ctl` « حرّك اليوم » (French: « Avancer le jour »)
+- `lant.lo.schengen-window.out` « أيام الإقامة خلال آخر 180 يومًا: {n} من 90 » (French: « Jours de séjour dans les 180 derniers : {n} sur 90 »)
+- `lant.lo.seal-ring.alt` « خاتم ختم، يبقى في اليد، يختم رسالة مفتوحة يستطيع أي أحد قراءتها. أي أحد يقارن البصمة العامة بالختم: فتتطابق. أضف فاصلة واحدة إلى الرسالة فتتغيّر البصمة كلياً: ويسقط التطابق. » (French: « Une bague à cacheter, gardée en main, scelle une lettre ouverte qu’on peut toujours lire. N’importe qui compare l’empreinte publique au sceau : elle correspond. Une virgule ajoutée à la lettre, et l’empreinte change entièrement : la correspondance tombe. »)
+- `lant.lo.seal-ring.cap` « يثبت أي مفتاح وقّع وأن شيئاً لم يتغيّر، لكنه لا يخفي شيئاً. » (French: « Elle prouve quelle clé a signé et que rien n’a changé, mais elle ne cache rien. »)
+- `lant.lo.spare-key.alt` « مفتاح احتياطي بشريط أحمر، «إذن غير محدود»، يعبر الباب ويدخل في قفل الصندوق. يُغلَق الباب على «قطع الاتصال»، لكن المفتاح ما زال يدور والدُّرج ينفتح. بطاقة حمراء تتدلّى من المفتاح: سحبه يكلّف رسوماً. » (French: « Une clé de secours, au ruban rouge « autorisation illimitée », passe la porte et entre dans la serrure de la caisse. La porte se ferme sur « déconnexion », mais la clé tourne encore et le tiroir s’ouvre. Une étiquette rouge pend à la clé : la révoquer coûte des frais. »)
+- `lant.lo.spare-key.cap` « الإذن غير المحدود يبقى سارياً ما لم تسحبه، حتى بعد «قطع الاتصال». » (French: « Une autorisation illimitée reste valable tant que vous ne la révoquez pas, même après « déconnexion ». »)
+- `lant.lo.spare-key.t.0` « إذن غير محدود » (French: « autorisation illimitée »)
+- `lant.lo.spare-key.t.1` « قطع الاتصال » (French: « déconnexion »)
+- `lant.lo.spare-key.t.2` « السحب: رسوم » (French: « révoquer : des frais »)
+- `lant.lo.three-copies.alt` « ثلاث بطاقات ملفات: اثنتان تسقطان في الحقيبة المفتوحة، على الحاسوب والقرص؛ والثالثة تستقرّ على رفّ في مكان آخر. يد من ظلّ تحمل الحقيبة بعيداً؛ وتبقى النسخة التي على الرف، وعليها علامة صح. » (French: « Trois fiches de fichiers : deux tombent dans le sac ouvert, sur l’ordinateur et le disque ; la troisième se pose sur une étagère, ailleurs. Une main d’ombre emporte le sac ; la copie de l’étagère reste, cochée. »)
+- `lant.lo.three-copies.cap` « هذا هو «1» في 3-2-1: نسخة خارج الحقيبة، على الإنترنت أو عند شخص تثق به. » (French: « C’est le « 1 » de 3-2-1 : une copie hors du sac, en ligne ou chez quelqu’un de confiance. »)
+- `lant.lo.two-days.alt` « يوما عمل على مسطرة واحدة من 24 ساعة: يوم سلمى من 9 إلى 18، ويوم العميل مُزاح بستّ ساعات. الجزء المشترك بينهما، من 15 إلى 18 بتوقيت سلمى، يُضاء؛ ويحطّ هاتف عند الساعة 16. » (French: « Deux journées de travail sur une même règle de 24 heures : celle de Selma de 9 h à 18 h, celle du client décalée de six heures. Leur part commune, de 15 h à 18 h chez Selma, s’allume ; un téléphone se pose à 16 h. »)
+- `lant.lo.two-days.cap` « 16:00 عندك هي 10:00 عند عميلك: الساعة تقع داخل اليومين معاً. » (French: « 16 h chez vous, c’est 10 h chez votre client : l’heure tombe dans les deux journées. »)
+- `lant.lo.wallet-seams.alt` « محفظة جلدية تنفتح على ثلاثة جيوب من الأوراق النقدية؛ ثلاثة مشابك نحاسية تحدّد أين تختبئ الكلفة: الصرف بين الجيوب، والتحويل عند السحّاب، والبطاقة والسحب عند فتحة البطاقة. وملصق «0 رسوم» تنفصل حافته. » (French: « Un portefeuille en cuir s’ouvre sur trois poches de billets ; trois pinces de laiton marquent où se cache le coût : le change entre les poches, le transfert à la fermeture, la carte et le retrait à la fente de la carte. L’étiquette « 0 frais » se décolle. »)
+- `lant.lo.wallet-seams.cap` « ما يكلّف ليس الفتح في الغالب، بل ثلاثة رسوم. » (French: « Ce qui coûte n’est presque jamais l’ouverture : ce sont trois frais. »)
+- `lant.lo.wallet-seams.t.0` « 0 رسوم » (French: « 0 frais »)
+- `lant.panel.bank-balance.alt` « يتفحّص كورو هاتفاً بعدسة مكبّرة: شريطان بطولين مختلفين وساعة رملية باهتة. » (French: « Kūro examine à la loupe un téléphone : deux barres de longueurs différentes et un sablier pâli. »)
+- `lant.panel.bank-balance.cap` « ما ادّخرته، وما يخرج كل شهر: السيولة تُحسب بالأشهر. » (French: « Ce qu’on a de côté, ce qui part chaque mois : la trésorerie se compte en mois. »)
+- `lant.panel.bank-bell.alt` « ينصب كورو أذنيه: الهاتف يهتزّ تحت جرس ذهبي صغير. » (French: « Kūro dresse les oreilles : le téléphone vibre sous une petite cloche dorée. »)
+- `lant.panel.bank-bell.cap` « تحقّق قبل الرحيل: هل سيستقبل رقمي هناك رموز بنكي؟ » (French: « À vérifier avant le départ : mon numéro recevra-t-il là-bas les codes de ma banque ? »)
+- `lant.panel.bank-calm.alt` « يجلس كورو هادئاً لا يتحرّك، بين منبّه يرنّ وضوء إنذار أحمر. » (French: « Kūro reste assis, impassible, entre un réveil qui sonne et un gyrophare rouge. »)
+- `lant.panel.bank-calm.cap` « الاستعجال ليس معلومة. » (French: « L’urgence n’est pas une information. »)
+- `lant.panel.bank-fridge.alt` « في المطبخ، في وضح النهار، يثبّت ياسر ورقة صغيرة على الثلاجة بمغناطيس؛ وعلى الطاولة هاتف وقائمة مؤشَّر عليها؛ وكورو يحمل ميدالية ذهبية صغيرة. » (French: « Dans la cuisine, en plein jour, Yasser fixe une petite note sur le frigo avec un aimant ; sur la table, un téléphone et une liste cochée ; Kūro porte une petite médaille dorée. »)
+- `lant.panel.bank-fridge.cap` « امتلأ دفتر الطريق، والقائمة مؤشَّر عليها كلها. » (French: « Le carnet est rempli, la liste est cochée. ») *(new in fix round 1)*
+- `lant.panel.bank-hangup.alt` « بمخلب يضغط كورو على الزرّ الأحمر لإنهاء المكالمة، وبالآخر يمسك بطاقة بنكية. » (French: « D’une patte, Kūro appuie sur le bouton rouge pour raccrocher ; de l’autre, il tient une carte bancaire. »)
+- `lant.panel.bank-hangup.cap` « عُرفت العلامة، فنُغلق الخط. » (French: « Le signal reconnu, on raccroche. »)
+- `lant.panel.bank-hooks.alt` « يربض كورو أمام ظرف وفقاعة رسالة وسمّاعة هاتف، كلّ منها معلّق بصنّارة حمراء. » (French: « Kūro se tapit devant une enveloppe, une bulle de message et un combiné de téléphone, chacun pendu à un hameçon rouge. »)
+- `lant.panel.bank-hooks.cap` « رسالة ورقية، رسالة نصية، مكالمة: الطُّعم نفسه، الاستعجال ورابط يشبه الحقيقي. » (French: « Une lettre, un message, un appel : le même hameçon, l’urgence et le lien qui ressemble au vrai. »)
+- `lant.panel.bank-id.alt` « يرفع كورو بطاقة هوية خضراء بجانب هاتف تنتظر شاشته صورة ذاتية داخل إطار منقّط. » (French: « Kūro tient une carte d’identité verte à côté d’un téléphone dont l’écran attend un selfie dans un cadre en pointillés. »)
+- `lant.panel.bank-id.cap` « لفتح الحساب، ستتحقّق الخدمة من هويتك. اسألها أولاً: هل تقبل المقيمين في بلدي؟ » (French: « Pour ouvrir, le service vérifiera qui vous êtes. Demandez-lui d’abord : accepte-t-il les résidents de mon pays ? ») *(rewritten in fix round 1)*
+- `lant.panel.bank-judge.alt` « كورو في دور القاضي، ومطرقة عند قدميه، بين هاتفين: فقاعة خضراء عليها علامة صحّ، وفقاعة حمراء عليها علامة خطأ. » (French: « Kūro en juge, un marteau à ses pieds, entre deux téléphones : une bulle verte cochée, une bulle rouge barrée. »)
+- `lant.panel.bank-judge.cap` « احتيال، أم لا شيء غريب؟ صنّف الرسائل الست. » (French: « Arnaque, ou rien d’anormal ? Triez les six messages. »)
+- `lant.panel.bank-key.alt` « يدير كورو مفتاحاً نحاسياً كبيراً في قفل موضوع على هاتف؛ وبجانبه مفتاح أمان صغير في حلقة. » (French: « Kūro tourne une grande clé de laiton dans un cadenas posé sur un téléphone ; à côté, une petite clé de sécurité sur un anneau. »)
+- `lant.panel.bank-key.cap` « قفل ثانٍ: التحقق بخطوتين يُبقي اللصوص خارجاً حتى لو عرفوا كلمة مرورك. » (French: « Une deuxième serrure : la double validation garde les voleurs dehors même s’ils connaissent votre mot de passe. »)
+- `lant.panel.bank-mask.alt` « يرفع كورو قناعاً من الكرتون مرسوماً عليه ابتسامة: وخلفه يدٌ من ظلّ تمتدّ نحو محفظة. » (French: « Kūro soulève un masque en carton au sourire peint : derrière, une main d’ombre se tend vers un portefeuille. »)
+- `lant.panel.bank-mask.cap` « «الدعم» المزيّف يرتدي قناعاً لطيفاً. من يقرأ عبارة الاسترداد يأخذ كل شيء. » (French: « Le faux « support » porte un masque aimable. Qui lit la phrase de récupération prend tout. »)
+- `lant.panel.bank-routes.alt` « يتردّد كورو بين ثلاثة أشياء صغيرة: مصرف بأعمدة، وحاسوب مفتوح على لوحة متابعة، وهاتف. » (French: « Kūro hésite entre trois petits objets : une banque à colonnes, un ordinateur ouvert sur un tableau de bord, un téléphone. »)
+- `lant.panel.devis-folders.alt` « ياسر، ويده على جبينه، بجانب برج من الملفّات والمجلّدات تبرز منه الملاحظات؛ وكورو جالس على لوحة مفاتيح الحاسوب. » (French: « Yasser, la main sur le front, à côté d’une tour de classeurs et de dossiers hérissée de notes ; Kūro assis sur le clavier de l’ordinateur. »)
+- `lant.panel.devis-folders.cap` « بدون بند التعديلات في عرض السعر لا ينتهي مشروع أبداً. » (French: « Sans la ligne des retouches au devis, un projet ne finit jamais. ») *(rewritten in fix round 1)*
+- `lant.panel.night-platform.alt` « في الليل، على رصيف محطة، يقرأ ياسر خريطة مضيئة وحزام حقيبة على صدره؛ وكورو ينتظر عند قدميه. » (French: « La nuit, sur un quai de gare, Yasser lit une carte qui luit, la bandoulière d’un sac en travers du torse ; Kūro attend à ses pieds. ») *(rewritten in fix round 1)*
+- `lant.panel.night-platform.cap` « مكتبك يسع في حقيبة: كل ما ينكسر أو يضيع أو ينقطع يوقفك تماماً. » (French: « Votre bureau tient dans un sac : tout ce qui casse, se perd ou se coupe vous arrête net. ») *(rewritten in fix round 1)*
+- `lant.ui.lo.next` « التالي » (French: « Suite »)
+- `lant.ui.lo.play` « اعرض » (French: « Montrer »)
+- `lant.ui.lo.replay` « أعد العرض » (French: « Rejouer »)
+- `lant.ui.lo.restart` « من جديد » (French: « Recommencer »)
+- `lant.ui.lo.step` « الخطوة {i} من {n} » (French: « Étape {i} sur {n} »)
+- `lant.ui.lo.steps` « خطوة بخطوة » (French: « Pas à pas »)
+
+### Fix round 1 (2026-11-24): what changed after the review, and one question for you
+
+- **Captions that fought their picture.** The night platform, the binder tower and the ID check now carry a line about what they show (see the table above); the « Appel » stop's 2-step card says the code must never leave your phone, and « ce qui part » no longer reads as an absolute rule about bank transfers. The toggle in web3 « Chaîne ? » has a caption per state.
+- **Your full scenes stand alone.** On the four plates that already paint Yasser and Kūro (bank-post, bank-desk, bank-call, bank-desk-close) the pigeon, raven and rat cut-outs are gone; on route « Sécurité » only the keys stay, in the empty upper left.
+- **Labels on phones.** Where a drawing is narrower than 340 px, its word labels repeat under it in readable type; the hour and day numbers grow inside the drawing.
+- **Three new objects** for the decisions that had no picture: the rate gap (argent « Change »), the network choice (route « Sécurité »), the margin under a fixed price (route « Prix »).
+- **On wide screens** a panel or object in a reading takes a column beside it instead of sitting alone on the navy.
+- **Question: Kūro in the banking set.** Your banking-course panels draw Kūro as a fluffy dark-brown cat without the red collar; everywhere else he is the sleek black cat with amber eyes and the red collar. We read the set as your own variant and kept it (your order was to use all sixteen pictures; the « Appel » keepsake is `panels/bank-card.webp`, the only place that picture appears, so it stays). To keep the two cats from standing side by side, web3 « Arnaques » now has the rat as its lead cut-out instead of Kūro, next to the bank-hooks panel. **Is the fluffy Kūro an approved variant, or should the banking set be redrawn to the sleek model?** Until you say, nothing else changes.

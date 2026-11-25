@@ -3869,6 +3869,26 @@ The two volumes point at each other: each volume 1 district has a « Pour compre
 - **Names.** 06 Facebook, District, Farcaster, Mastodon, Bluesky; 07 none; 08 PayPal, MetaMask; 09 Google, Sign-In with Ethereum; 10 GoDaddy, ENS; 11 Dropbox, IPFS, Filecoin; 12 Patreon, Unlock Protocol; 13 every chart name. In Arabic, the makers' own words each case's sources print are read for that case only (`TERMS`: ENS's .eth and .org endings, Price Cooldown, GoDaddy's Domain Privacy; IPFS's CID, bafy, Qm, add, /ipfs/, URL, GiB; Filecoin's onramps; Sign-In with Ethereum's https), and the invented pieces (shortened hex and content addresses, an ISO time's pieces, the words two look-alike addresses are compared on, @trainergym, @supplier_desk) join `ADDRESS` and `HANDLES`. Case 12's pass says « State: Expired » in English, so the chart name Status is not printed outside its case.
 - **Seen in a browser on 2026-11-24**, with misses: cases 06 to 13 at depth 1 in French at 390 px; cases 07, 09 and 11 at depths 2 and 3 in Arabic at 390 px and in English at 1440 px (`ENQ_ONLY=batch2 npm run enquetes:play`, contact sheets looked at); `npm run enquetes:play` now plays every open case's depth 1 from the chart.
 
+### Lantern props (2026-11-24)
+
+A Lantern object (`hub/src/lanterne/objects/<id>`, rendered after a district's rule) teaches **one idea**, drawn in the
+owner's inked, cel-shaded look on the navy ground with the site's own tokens (the kit classes `.l-*`, no typed colour).
+It **answers the reader**: a play runs once when its stop comes into view (and again on « Rejouer »), a step or a toggle
+moves on a press, a slider on a drag; then it **stops** on the teaching frame. A play is at most 5 s, transform and
+opacity only, nothing loops. Under reduced motion or « Mouvement » off nothing moves and the play button goes: the
+markup itself is the final teaching frame, so it reads the same without JavaScript. Its caption quotes the course. The
+owner's panels sit on a cream mat (`.lt-panel`), each in one place site-wide, and rise once into view under the same
+rule. The build refuses an object over 5 s or 9 steps, a drawing over 5,000 bytes or a sheet over 3,000, a loop, a
+typed colour, a script or an outside link (scripts/lib/lanterne.mjs).
+
+Fix round 1 (2026-11-24): **a caption never contradicts its frame** (a toggle may carry a second caption,
+`lant.lo.<id>.cap2`, that follows the pressed state); where a drawing is narrower than 340 px its word labels repeat
+under it in the cream band (`.lo__keys`, 12 px mono, 13 px in Arabic), numbers stay in the drawing and grow; an object
+may also stand in the exercise (`"objectEx"`), and from 900 px the exercise's panel or object takes a column beside the
+board instead of leaving a missing column of navy. **The owner's full painted scenes take no cut-out cast** (bank-post,
+bank-desk, bank-call, bank-desk-close): at most a small prop in a corner the scene leaves empty, never over what the
+scene is about. A strip (the act's plate again) shows its prop, small, between the companion and the lead.
+
 ## La carte (2026-11-21)
 
 « La carte » is the Studio's services catalogue, in `#services` where the reel was: 18 services in five tabs (Marque, Web & écrans, Réseaux & motion, Print & objets, Pitch & conseil), then the « On le construit aussi » card (the estimator's site types), the « Carte blanche » card, the bundles strip and the sources (eleven, numbered, read on 2026-11-21). Each card, top to bottom: the mockup (drawn from the studio's real work in one language: client names only where the owner approved them, Glaive and WorkspaceHQ labelled as the studio's own projects), the hanging price tag, what you get, the tier table (★ marks the tier the tag shows), the lead time, a market line with its source number, the call (the console where the estimator prices the service, WhatsApp where it does not). Markup by `scripts/lib/carte.mjs`, styles in `hub/css/carte.css` (scoped under `.crt`, the Studio only), words in `hub/src/carte.i18n.json`.
