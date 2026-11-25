@@ -26,7 +26,7 @@ Copies of the board sources are in `/mnt/project-files/characters/canvas-src/`.
 |---|---|---|
 | Paper rig: Yasser and Kūro | Main.dc.html | three.js turntable of paper cut-outs, done |
 | Talk to him: the reaction board | Talk.dc.html | v4: slam, echo, prop burst and callout card, blink and lip flap, Kūro card in the dialogue box. 18 acts, including `oops` |
-| Intro and navigation menu | Menu.dc.html | v2 (collage). **Waiting on owner feedback** |
+| Intro and navigation menu | Menu.dc.html | v3: owner approved the v2 look (2026-11-26), v3 adds the motion tokens, press and exit. **Site-ready package: `site-menu/` (see its README).** |
 
 Menu v2 details:
 - **Intro, 5 beats at 90 BPM:** a typed line, the red slab, Yasser slams with an echo and a shake, shards and a burst, the name stamps, then the cards fan out.
@@ -38,7 +38,7 @@ Menu v2 details:
   - v1: "don't like the card layout", "missing the other 50% of the style". v2 answers that with a dense collage.
   - v2: no verdict yet.
 - **Open questions for the owner:** which cards still feel wrong, and whether the mesh should be more visible.
-- **Not ported to the site.** Porting changes the home, so it needs the owner's call and goes through the publishing session.
+- **Site-ready package:** `/mnt/project-files/characters/site-menu/` holds plain HTML/CSS/JS, fonts, images, QA shots, a motion spec and integration steps. It is not integrated: the publishing session places it, and the owner decides what it replaces on the home.
 
 ## 3. Docs
 

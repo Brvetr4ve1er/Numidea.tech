@@ -1,4 +1,4 @@
-# 03 · Characters, mascot, Talk board, intro/nav Menu (ACTIVE at snapshot)
+# 03 · Characters, mascot, Talk board, intro/nav Menu (ACTIVE at snapshot; menu packaged 23:49 UTC)
 
 Thread: "Improve artworks, characters and mascot animations".
 Its own, newer notes: `/mnt/project-files/characters/STATE.md`. **Read that first; it wins over this file.**
@@ -18,17 +18,23 @@ Its own, newer notes: `/mnt/project-files/characters/STATE.md`. **Read that firs
 |---|---|---|
 | Main: paper rig | `canvas-src/Main.dc.html` | three.js turntable of paper cut-outs, done |
 | Talk to him (`#artboard-Talk`) | `canvas-src/Talk.dc.html` | v4: slam, ink/red echo twin, prop burst + callout card, blink and lip flap, Kūro card in the dialogue box, 18 acts incl. `oops` |
-| Intro and navigation menu (`#artboard-Menu`) | `canvas-src/Menu.dc.html` | v2 collage. **Owner, 23:39 UTC: "I like it more like this now, do the animation rules and motion effects and easings and get it ready for publishing."** Thread is now adding motion tokens, idle/hover/press/exit motion, reduced-motion path, and a **site-ready plain HTML/CSS/JS build** + motion spec |
+| Intro and navigation menu (`#artboard-Menu`) | `canvas-src/Menu.dc.html` | v3 (canvas version 12). Owner approved the v2 look on 2026-11-26 ("I like it more like this now"). v3 adds motion tokens, press and exit. **Site-ready package: `characters/site-menu/`** |
 
 Menu v2 content [R]: 5-beat intro at 90 BPM (typed line, red slab, Yasser slams with echo + shake, shards + burst, name stamp, cards fan out). Six cards → Travaux `/scene/`, Tarifs `/tarifs/`, L'Atelier `/hub/`, La Lanterne `/hub/lanterne/`, La Bible `/hub/bible/`, Contact (WhatsApp). Hover, arrows or keys 1–6; click plays a red wipe. HUD: mood grid, Yasser's banner line, Kūro with tarot card. Background: the owner's React "constellation grid" snippet ported to plain canvas in Numidea colours, neighbour-only links, stops under reduced motion.
 
 Owner feedback trail: v1 "don't like the way the cards are laid out", "missing the other 50% of the style, check the references". v2: liked (see quote above). Open: whether the mesh should be more visible (the collage mostly covers it).
 
-## C. Porting the Menu to the live home (when the site-ready build lands)
-- It replaces the home intro/nav, a big UX change. Get the owner's explicit go.
-- Thread's own risk call: ~3 s before content; six fanned cards don't fit 390 px. Recommended: play once per visitor (with skip), stacked cards on mobile, reduced-motion = static.
-- Missing art: one drawn pose per menu section (he stands still now), second pose per gesture, side/back views, Kūro reacting in scene. Those would come from the 28 queued Magnific generators (owner runs them free in the app).
-- No React/Tailwind/shadcn. CSP is `'self'`.
+## C. Site-ready menu package: `/mnt/project-files/characters/site-menu/` (not integrated)
+- Files: `index.html` (standalone preview), `menu.html` (markup to paste), `menu.css` (scoped `.nl-menu`, motion tokens on top, ~5.5 KB gz), `menu.js` (no deps, ~3.7 KB gz), `img/` (20 WebPs, ~350 KB, full body 96 KB with fetchpriority=high), `fonts/` (Archivo 900 26 KB; Noto Sans JP 900 subset 2.4 KB for the ヌミデア watermark), `qa/`.
+- **Integration steps are in its README.** Copy the assets, fix the relative paths, paste the markup, load the CSS in `<head>` and the JS with `defer`, resolve the `<h1>`, then run `npm run verify`.
+- Motion: 90 BPM clock. Tokens `--e8` 83 ms, `--d2` 167, `--d3` 250, `--d4` 333, `--d5` 420, `--beat` 667, `--bar` 2667. Easings are in the README.
+- Behaviour [R, Chromium only]: the intro plays once per tab session (sessionStorage). It can be skipped with the button, Esc, Space or Enter, and "Rejouer l'intro" replays it. Keys 1–6 and the arrows move the selection. A click plays the wipe, then navigates. Contact (WhatsApp) opens normally. Ctrl/Cmd-click and middle-click are never intercepted. Under reduced motion there's no intro, wipe or breath, and the mesh is drawn once. With no JS, every card is a plain link. CLS was 0 at 1920, 1440, 1280 and 390 px, with no horizontal overflow and no infinite animations.
+- **Open:**
+  1. The owner must decide whether it replaces the home hero or sits above it.
+  2. Untested on Safari, Firefox and real phones, and nobody has watched it play in real time.
+  3. EN/AR strings (`data-say`, `data-label`, `data-dest`, `data-kuro-say`, visible text) and the mirrored AR layout (flip `--x`, `.l`/`.r`) aren't written.
+  4. There's one still pose only. The six per-section drawings don't exist; they could come from the 28 queued Magnific generators, which the owner runs free in the app.
+- No React, Tailwind or shadcn. CSP is `'self'`.
 
 ## D. Tools and how to check work
 - Always render a board before publishing it to the canvas: `node characters/tools/board-render.cjs BOARD.dc.html map.json OUTDIR` (map = blob id → local file). Menu: `menu-render-gen.cjs`.

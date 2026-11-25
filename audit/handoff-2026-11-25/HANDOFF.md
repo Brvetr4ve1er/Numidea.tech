@@ -1,6 +1,6 @@
 # Numidea Labs: handoff to the publishing session
 
-Snapshot: **2026-11-25 23:45 UTC (00:45 Paris, 26 Nov)**. Written by the "Package project handoff" thread of the Claude project "Numidea Labs landing page".
+Snapshot: **2026-11-25 23:45 UTC (00:45 Paris, 26 Nov)**, refreshed **23:55 UTC** (site-ready menu package, Alliance flock request). Written by the "Package project handoff" thread of the Claude project "Numidea Labs landing page".
 
 **The rule that created this file:** the owner (Br4ve, GitHub `Brvetr4ve1er`) decided that the project does not publish. It produces drafts, previews, canvases and files. **You, the publishing session, do all merging, deploying, repo cleanup and settings changes.** Nothing below has been published unless it says "live".
 
@@ -53,9 +53,15 @@ Never publish from a side branch. The safe path is: PR into the trunk, Vercel pr
 ## 3. In progress at snapshot time (moving)
 
 1. **Typography / gaming-anime UI type system** (thread "Rebuild typography for a gaming anime look"). Owner called the current type and layout "mediocre", "1-dimensional", and "a cheap knock-off of a real anime website". The thread wrote a type system (4 roles, one scale) and rebuilt the Lanterne shelf on it in PR #24 (5ecaa7b). Spec: https://claude.ai/artifact/BrvX62HC49TTPheF3Yiwhw. Roll-out to the rest of the site waits on the owner's OK on the shelf. Its own notes: `/mnt/project-files/aesthetics/HANDOFF.md`.
-2. **Characters: intro and navigation menu** (thread "Improve artworks, characters and mascot animations"). Menu v2 (collage of six tilted cards around a full-body Yasser, cursor-mesh background) is on the Claude Design canvas. The owner said at 23:39 UTC "I like it more like this now, do the animation rules, motion effects and easings, and get it ready for publishing". The thread is now locking motion tokens and building a **site-ready plain HTML/CSS/JS version**. Its own notes: `/mnt/project-files/characters/STATE.md`. Expect a site-ready package to appear in `/mnt/project-files/characters/` after this snapshot.
+2. **Characters: intro and navigation menu** (thread "Improve artworks, characters and mascot animations"). The owner approved the v2 look on 2026-11-26 ("I like it more like this now") and asked for the motion rules and a publish-ready build. **Done: a site-ready package now sits in `/mnt/project-files/characters/site-menu/`.** It's plain HTML/CSS/JS with no dependencies and is CSP-safe (`script-src 'self'`). It ships with 20 WebPs (~350 KB), fonts, a motion spec (90 BPM ladder, easings) and integration steps in its README, plus QA scripts. It is **not integrated**. Still open:
+   - Untested on Safari, Firefox and real phones. It was only tested in Chromium (Playwright), with CLS 0 and no infinite animations.
+   - There's only one still pose; the six per-section drawings don't exist.
+   - EN and AR copy and the mirrored Arabic (RTL) layout aren't written.
+   - **The owner hasn't decided whether the menu replaces the home hero or sits above it.** Ask before you place it.
+   - It ships its own `<h1>`; resolve that against the home's.
+3. **Alliance Travel: "murmuration wordmark" flock animation** (thread "Upgrade Alliance Travel brand package"). The owner just asked for a flock-of-birds wordmark animation adapted for Alliance. It had just started at the refresh, so there's no output yet. Watch `/mnt/project-files/alliance-brand/` for it.
 
-Re-read both of those files when you start. They will be newer than this one.
+Re-read `aesthetics/HANDOFF.md`, `characters/STATE.md` and `characters/site-menu/README.md` when you start. They will be newer than this one.
 
 ---
 
@@ -67,7 +73,7 @@ Re-read both of those files when you start. They will be newer than this one.
 | 2 | Run `ops/delete-dead-branches.sh` | `/mnt/project-files/handoff/files/delete-dead-branches.sh` (copy) | Cloud sessions get 403 on branch deletes and tag pushes. The script tags every branch `archive/<name>` first, then deletes. Fully reversible. |
 | 3 | `ANTHROPIC_API_KEY` in Vercel env + a Console spend limit | Vercel project env | Only needed if the PR #20 talk box ships. Without it the box plays an offline line. Never handle the key yourself. |
 | 4 | Search Console: add a **Domain** property for `numedialab.dev`, resubmit the sitemap | Google Search Console | Current property is URL-prefix non-www, so it shows 0 impressions. |
-| 5 | Verdicts: type-system shelf (PR 24), Menu v2 cards and mesh visibility, PR 14 revive-or-close, PR 18's two questions | the owner | Gates the order in section 2. |
+| 5 | Verdicts: type-system shelf (PR 24); **menu: replace the home hero or sit above it**; PR 14 revive-or-close; PR 18's two questions | the owner | Gates the order in section 2. |
 | 6 | Magnific: 28 rig-frame generators queued in the owner's "Numidea" space, not run | Magnific app (runs free there; via MCP it costs credits) | Feeds missing poses (second pose per gesture, one pose per menu section, side/back views). |
 
 ---
@@ -85,7 +91,7 @@ Re-read both of those files when you start. They will be newer than this one.
 9. **Playwright:** the lockfile pins 1.61 while cloud containers ship 1.63. Symlink `node_modules/playwright` to the preinstalled global one. That's why Dependabot bumps were closed.
 10. **Naming rule enforced by check.mjs:** never name the image tool or model (e.g. "Magnific", model names) anywhere under `hub/`.
 11. **Arabic copy** in PRs 14, 18 and the Lantern objects is flagged for a native reader before or after publish.
-12. **Menu as the home intro** [R, the characters thread's own warning]: about 3 s before content and six fanned cards don't fit 390 px. Recommended: play once per visitor with a skip, stacked cards on mobile. Not built yet.
+12. **Menu as the home intro** [R]: the site-menu package already plays the intro once per tab session, with a skip (button, Esc, Space, Enter) and a "Rejouer l'intro" link. Under reduced motion it shows no intro, and with no JS every card is a plain link. It was laid out without overflow at 390 px, but nobody has checked it on a real phone or in Safari.
 
 ---
 

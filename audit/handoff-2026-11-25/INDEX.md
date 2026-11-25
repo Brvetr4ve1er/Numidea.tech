@@ -50,6 +50,7 @@ Snapshot 2026-11-25 23:45 UTC. [V] = verified here, [R] = reported by a thread.
 | `ops/` | `release-audit-2026-11-25.md` (full branch/PR audit with hand-off section), `delete-dead-branches.sh` |
 | `aesthetics/` | `HANDOFF.md` (typography thread's own notes), screenshots: `tree-v1-*`, `tree-v2-*`, `b2-*`, `b4-*`, `books-3d-*`, `type-shelf-*` |
 | `characters/STATE.md` | characters thread's own current-state notes |
+| `characters/site-menu/` (snapshot in the repo copy: `files/site-menu/`) | **site-ready intro + navigation menu**: `index.html` preview, `menu.html` markup, `menu.css` (motion tokens at top), `menu.js`, `img/` (20 WebPs), `fonts/` (Archivo 900, Noto Sans JP subset), `qa/` (shots + Playwright scripts), README with motion spec and integration steps. Not integrated. |
 | `characters/bible-clean/` | 25 bible frames with paper halos removed + rig frames (blink, talk a/b), turnaround. **The site still ships the old haloed frames**: swap these into PR #20 |
 | `characters/new-props/cut-v2/` | clean prop cut-outs (satchel, laptop, sketchbook, fineliner, boxes, headphones, scooter, server rack, hairsticks, tarot, masters). `raw/`, `cut/` are older |
 | `characters/site-ready/` | turnaround WebPs + kuro-scale used by PR #20, README |
