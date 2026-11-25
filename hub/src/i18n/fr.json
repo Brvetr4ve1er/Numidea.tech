@@ -409,7 +409,7 @@
   "proof": {
     "kicker": "/ 04 · LES REÇUS · PIÈCES À L’APPUI",
     "title": "Tout ce qui suit existe.",
-    "lead": "Trois clients livrés et deux travaux du fondateur. Chaque dossier dit ce qui a été fait, pour qui, et où le vérifier.",
+    "lead": "Quatre clients livrés et deux travaux du fondateur. Chaque dossier dit ce qui a été fait, pour qui, et où le vérifier.",
     "actor": "Yasser fête une mise en ligne",
     "own": "Aussi, faits maison :",
     "glaive": "Glaive, la démo du studio",
@@ -511,7 +511,10 @@
         }
       ]
     },
-    "whq": "une borne d’arcade pour votre code"
+    "whq": "une borne d’arcade pour votre code",
+    "site": "ce site, le nôtre : sa fiche",
+    "done": "Terminé aussi :",
+    "annuaire": "l’Annuaire industriel algérien"
   },
   "lab": {
     "kicker": "/ LE LAB · HORS COMMANDE",
@@ -6278,6 +6281,14 @@
       "journalCountMain": {
         "one": "{n} / {N} note",
         "other": "{n} / {N} notes"
+      },
+      "lo": {
+        "play": "Montrer",
+        "replay": "Rejouer",
+        "steps": "Pas à pas",
+        "next": "Suite",
+        "restart": "Recommencer",
+        "step": "Étape {i} sur {n}"
       }
     },
     "cast": {
@@ -6848,15 +6859,20 @@
         "conclusion": "Selma sait par où passe l’argent, ce qu’il lui coûte, combien demander et combien garder de côté.",
         "act": {
           "a1": "Acte I · Être payé",
-          "a2": "Acte II · Tenir ses comptes"
+          "a2": "Acte II · Tenir ses comptes",
+          "a3": "Chemin de traverse · L’appel"
         },
         "actShort": {
           "a1": "Acte I",
-          "a2": "Acte II"
+          "a2": "Acte II",
+          "a3": "Traverse"
         },
         "plate": {
           "a1": "Une arcade de poste au crépuscule : un long comptoir en bois chargé d’enveloppes scellées et de colis ficelés, une balance à lettres en laiton, des pigeonniers vides sur le toit.",
-          "a2": "Une pièce de comptes la nuit : un bureau en bois avec des registres fermés et un carnet ouvert aux lignes vierges, un petit coffre en fer, un calendrier aux cases vides, une lanterne allumée et, par la fenêtre, les tours."
+          "a2": "Une pièce de comptes la nuit : un bureau en bois avec des registres fermés et un carnet ouvert aux lignes vierges, un petit coffre en fer, un calendrier aux cases vides, une lanterne allumée et, par la fenêtre, les tours.",
+          "desk": "La nuit, à son bureau devant les toits, Yasser tient un téléphone ouvert sur une application marquée d’un bouclier ; Kūro écarte d’un coup de patte une bulle rouge en forme d’hameçon. Sur le bureau, un livret jaune, une carte bancaire, un cadenas et un carnet.",
+          "post": "Au bureau de poste, une longue file attend au guichet ; contre le mur, Yasser fait la même démarche sur son téléphone, Kūro sur l’épaule.",
+          "call": "Le soir, sur le canapé, Yasser regarde un téléphone qui vibre dans sa main ; au-dessus, une silhouette d’ombre dans un halo et des hameçons rouges ; Kūro, le dos rond, feule."
         },
         "toComptoir": "Pour en parler à deux, les services à prix fixe sont au comptoir de la Librairie.",
         "toComptoirGo": "Aller au comptoir",
@@ -6925,6 +6941,45 @@
             "handoff": "Selma garde sa phrase pour elle, et ses comptes en ordre.",
             "decision": "Ma phrase de récupération ne se donne à personne.",
             "keep": "Le tampon « Clés »"
+          },
+          "appel": {
+            "name": "Appel",
+            "sub": "Le faux conseiller",
+            "lore": "Un soir, le téléphone de Selma sonne : un « conseiller » annonce que son compte sera bloqué si elle n’agit pas tout de suite.",
+            "rule": "L’urgence n’est pas une information, c’est un signe d’arnaque : on raccroche.",
+            "q": "Le « conseiller » insiste : tout doit se faire maintenant. Quel est le signal ?",
+            "a": {
+              "0": "Son ton poli",
+              "1": "L’urgence : c’est un signe d’arnaque",
+              "2": "L’heure de l’appel"
+            },
+            "f": {
+              "0": "La politesse ne prouve rien. Le signal, c’est l’urgence : les autorités la rangent parmi les signes d’arnaque.",
+              "1": "Oui. L’urgence n’est pas une information : c’est un signe d’arnaque.",
+              "2": "L’heure ne dit rien. Le signal, c’est l’urgence."
+            },
+            "keep": "Le tampon « Appel »",
+            "scene": "Le faux conseiller",
+            "handoff": "Selma raccroche ; ses comptes restent en ordre.",
+            "decision": "L’urgence est un signal : je raccroche.",
+            "pick": {
+              "0": {
+                "k": "L’urgence",
+                "v": "L’urgence n’est pas une information ; c’est un signe d’arnaque."
+              },
+              "1": {
+                "k": "Le faux support",
+                "v": "Usurpation. La phrase de récupération : aucun support ne la demande. Jamais."
+              },
+              "2": {
+                "k": "Ce qui part vers un escroc",
+                "v": "Il ne se rappelle pas : la récupération est presque impossible (Europol)."
+              },
+              "3": {
+                "k": "La validation en deux étapes",
+                "v": "Elle garde les voleurs dehors même s’ils connaissent votre mot de passe, tant que son code ne quitte pas votre téléphone : on ne le lit à personne au téléphone."
+              }
+            }
           }
         }
       },
@@ -6948,7 +7003,8 @@
         "plate": {
           "r1": "Une terrasse de café sur un toit au crépuscule : une petite table avec un carnet ouvert aux pages blanches, un téléphone et un verre de thé, des guirlandes lumineuses, la mer et les maisons blanches en contrebas.",
           "r2": "Le hall d’une gare la nuit : deux horloges rondes sans chiffres qui marquent des heures différentes, un banc, un chariot à bagages avec un sac à dos, une prise murale et son câble, de hautes fenêtres en arc.",
-          "r3": "Une chambre d’auberge à l’aube : une fenêtre en arc ouverte sur la mer, un livret fermé et une plante sur le rebord, un calendrier aux cases vides au mur, un sac à dos bouclé près de la porte."
+          "r3": "Une chambre d’auberge à l’aube : une fenêtre en arc ouverte sur la mer, un livret fermé et une plante sur le rebord, un calendrier aux cases vides au mur, un sac à dos bouclé près de la porte.",
+          "desk": "Yasser regarde son téléphone, un bouclier à l’écran ; Kūro lève la patte vers une bulle rouge marquée d’un hameçon."
         },
         "toKit": "Le Kit nomade et les services à prix fixe sont au comptoir de la Librairie.",
         "d": {
@@ -8214,6 +8270,229 @@
             "0": "Pas de flamme ce soir. L’enquête est close quand même."
           }
         }
+      }
+    },
+    "lo": {
+      "banner-vector": {
+        "cap": "Un vectoriel reste net à toutes les tailles ; une image en pixels, non.",
+        "alt": "Une bâche se déroule d’un rouleau et le même signe grandit huit fois : à gauche, en JPEG, il se casse en carrés ; à droite, en SVG ou PDF, il reste net."
+      },
+      "billed-days": {
+        "cap": "Pas les 22 : une partie des jours part en prospection, en devis, en administratif et en congés. Divisez par les jours facturés.",
+        "alt": "Un tas de pièces et un mois de 22 cases. Dix cases grisent, marquées d’une loupe, d’un devis, d’un tampon ou d’un soleil ; le même tas se partage sur les douze cases restantes, et chaque pile grandit."
+      },
+      "block-chain": {
+        "cap": "Modifiez une ancienne opération, et le lien suivant ne correspond plus.",
+        "alt": "Quatre blocs crème reliés par des anneaux de laiton, chacun scellé d’une empreinte. La patte de Kūro modifie une ligne du deuxième bloc : le sceau qui le relie au troisième se fend, et la suite de la chaîne s’éteint."
+      },
+      "four-layers": {
+        "cap": "Autour du logo : l’identité, le système, et la marque, ce qu’on dit de vous quand vous n’êtes pas là.",
+        "alt": "Quatre cartes en éventail, de la plus grande à la plus petite : la marque (une bulle de parole), le système (une feuille de règles), l’identité (des couleurs et des lettres) et, devant, le logo, la plus petite."
+      },
+      "funnel-planes": {
+        "cap": "Une signature pour 40 messages, donc 120 messages pour 3 clients.",
+        "alt": "Dix avions en papier, pour 40 messages, entrent dans un entonnoir de laiton ; quatre enveloppes en sortent, une seule reçoit le sceau rouge. À droite : « ×3 », puis 120 et trois enveloppes scellées.",
+        "t": {
+          "0": "40",
+          "1": "4",
+          "2": "1",
+          "3": "×3",
+          "4": "120"
+        }
+      },
+      "hash-receipt": {
+        "cap": "Le hash dit « envoyé ». Le reçu dit si c’est réussi.",
+        "alt": "Une enveloppe entre dans une fente de laiton ; un ticket sort avec un identifiant « 0x… » et le mot « Envoyée ». Après l’attente, deux reçus possibles : « Confirmée » ou « Échouée ». Le ticket seul ne dit pas lequel."
+      },
+      "key-register": {
+        "cap": "Le portefeuille garde vos clés. Il ne contient pas les pièces : elles restent dans le registre.",
+        "alt": "Un registre public au mur, une rangée de pièces dans une colonne. Sous la lampe, une clé de laiton tourne et la rangée avance d’une colonne : les pièces ne quittent jamais le registre. Une bulle rouge « support » tend vers la clé ; une cloche la recouvre, avec l’étiquette « à personne ».",
+        "t": {
+          "0": "« support »",
+          "1": "à personne"
+        }
+      },
+      "last-seat": {
+        "alt": "Deux demandes arrivent en même temps par le fil de cuivre jusqu’au relais de laiton. Le relais abaisse sa barrière : une main reçoit la dernière place, l’autre une carte « complet ».",
+        "t": {
+          "0": "complet"
+        }
+      },
+      "loyalty-cards": {
+        "cap": "Le même effort, mais on a déjà commencé : c’est l’effet de progression offerte.",
+        "alt": "Deux cartes de fidélité : l’une a huit cases vides, l’autre dix cases dont deux déjà tamponnées en laiton, offertes. Chaque coup de tampon remplit une case sur chacune ; au huitième, les deux cartes sont pleines.",
+        "next": "Tamponner",
+        "t": {
+          "0": "8",
+          "1": "10"
+        }
+      },
+      "months-jar": {
+        "cap": "Un client paie à 60 jours : de quoi tenir au moins ces deux mois.",
+        "alt": "Un bocal de pièces au-dessus d’un calendrier de trois mois : le premier mois, une pile de pièces part ; le deuxième, une autre ; au 60e jour, le paiement du client arrive et remplit le bocal. Une accolade rouge marque les deux mois à tenir.",
+        "t": {
+          "0": "1",
+          "1": "2",
+          "2": "3",
+          "3": "60"
+        }
+      },
+      "one-writer": {
+        "cap": "Un seul qui écrit : l’arbre propose une base de données.",
+        "alt": "Sur un comptoir, un seul carnet et une seule main qui écrit : l’étiquette dit « une base de données ». Avec le second bouton, le carnet se copie sur quatre tables où quatre mains écrivent : l’étiquette devient « plusieurs organisations ? ».",
+        "t": {
+          "0": "une base de données",
+          "1": "plusieurs organisations ?"
+        },
+        "b": {
+          "0": "Une seule salle écrit",
+          "1": "Plusieurs organisations écrivent"
+        },
+        "cap2": "Plusieurs qui écrivent : la question se pose (pas une réponse automatique)."
+      },
+      "promise-proof": {
+        "cap": "Un délai se vérifie. « Meilleur » ne se vérifie pas.",
+        "alt": "Deux bons de commande épinglés : « la meilleure qualité » reçoit un tampon gris « slogan » ; « prêt à l’heure promise » reçoit une horloge et une photo de la commande, puis une coche.",
+        "t": {
+          "0": "la meilleure qualité",
+          "1": "prêt à l’heure promise",
+          "2": "slogan"
+        }
+      },
+      "schengen-window": {
+        "cap": "On compte 180 jours en arrière depuis chaque jour du séjour : sortir une journée n’efface rien.",
+        "alt": "Une bande de jours : un séjour de 50 jours, une journée de sortie, puis 30 jours de retour. Un cadre de laiton large de 180 jours glisse avec le jour choisi ; le compte des jours de séjour qu’il contient ne repart pas de zéro après la sortie. Plus loin, les premiers jours sortent du cadre et le compte baisse.",
+        "ctl": "Avancer le jour",
+        "out": "Jours de séjour dans les 180 derniers : {n} sur 90",
+        "t": {
+          "0": "0",
+          "1": "50",
+          "2": "80"
+        }
+      },
+      "seal-ring": {
+        "cap": "Elle prouve quelle clé a signé et que rien n’a changé, mais elle ne cache rien.",
+        "alt": "Une bague à cacheter, gardée en main, scelle une lettre ouverte qu’on peut toujours lire. N’importe qui compare l’empreinte publique au sceau : elle correspond. Une virgule ajoutée à la lettre, et l’empreinte change entièrement : la correspondance tombe."
+      },
+      "spare-key": {
+        "cap": "Une autorisation illimitée reste valable tant que vous ne la révoquez pas, même après « déconnexion ».",
+        "alt": "Une clé de secours, au ruban rouge « autorisation illimitée », passe la porte et entre dans la serrure de la caisse. La porte se ferme sur « déconnexion », mais la clé tourne encore et le tiroir s’ouvre. Une étiquette rouge pend à la clé : la révoquer coûte des frais.",
+        "t": {
+          "0": "autorisation illimitée",
+          "1": "déconnexion",
+          "2": "révoquer : des frais"
+        }
+      },
+      "three-copies": {
+        "cap": "C’est le « 1 » de 3-2-1 : une copie hors du sac, en ligne ou chez quelqu’un de confiance.",
+        "alt": "Trois fiches de fichiers : deux tombent dans le sac ouvert, sur l’ordinateur et le disque ; la troisième se pose sur une étagère, ailleurs. Une main d’ombre emporte le sac ; la copie de l’étagère reste, cochée.",
+        "t": {
+          "0": "1",
+          "1": "2",
+          "2": "3"
+        }
+      },
+      "two-days": {
+        "cap": "16 h chez vous, c’est 10 h chez votre client : l’heure tombe dans les deux journées.",
+        "alt": "Deux journées de travail sur une même règle de 24 heures : celle de Selma de 9 h à 18 h, celle du client décalée de six heures. Leur part commune, de 15 h à 18 h chez Selma, s’allume ; un téléphone se pose à 16 h.",
+        "t": {
+          "0": "UTC+1",
+          "1": "UTC−5",
+          "2": "0",
+          "3": "6",
+          "4": "12",
+          "5": "18",
+          "6": "24"
+        }
+      },
+      "wallet-seams": {
+        "cap": "Ce qui coûte n’est presque jamais l’ouverture : ce sont trois frais.",
+        "alt": "Un portefeuille en cuir s’ouvre sur trois poches de billets ; trois pinces de laiton marquent où se cache le coût : le change entre les poches, le transfert à la fermeture, la carte et le retrait à la fente de la carte. L’étiquette « 0 frais » se décolle.",
+        "t": {
+          "0": "0 frais"
+        }
+      },
+      "rate-gap": {
+        "t": {
+          "0": "marché",
+          "1": "offert",
+          "2": "votre vrai prix"
+        },
+        "alt": "Deux tableaux de change, « marché » et « offert », reçoivent la même pile de pièces. Pas à pas : chacun rend une barre, celle de l’offre plus courte ; une accolade rouge mesure l’écart entre les deux, « votre vrai prix », et l’autocollant « 0 frais » se décolle."
+      },
+      "net-path": {
+        "t": {
+          "0": "réseau non maîtrisé",
+          "1": "réseau mobile"
+        },
+        "b": {
+          "0": "Wi-Fi de l’aéroport",
+          "1": "Partage de connexion"
+        },
+        "alt": "Un ordinateur portable et deux chemins. Le premier, en pointillés rouges, va à l’antenne Wi-Fi de l’aéroport, « réseau non maîtrisé », et une main d’ombre attrape la ligne. Avec le second bouton, la ligne passe par le téléphone, « réseau mobile », et une coche verte s’allume."
+      },
+      "margin-block": {
+        "t": {
+          "0": "jours estimés",
+          "1": "marge",
+          "2": "prix ferme",
+          "3": "périmètre",
+          "4": "nouveau devis"
+        },
+        "alt": "Une barre de jours estimés suivie d’un bloc de laiton, la marge ; au-dessus, l’étiquette « prix ferme » couvre les deux. Pas à pas : deux jours de plus, en rouge, entrent dans la marge, et l’étiquette ne bouge pas ; puis le périmètre grandit d’un bloc en pointillés, et une fiche « nouveau devis » sort à part."
+      }
+    },
+    "panel": {
+      "bank-routes": {
+        "alt": "Kūro hésite entre trois petits objets : une banque à colonnes, un ordinateur ouvert sur un tableau de bord, un téléphone."
+      },
+      "bank-id": {
+        "alt": "Kūro tient une carte d’identité verte à côté d’un téléphone dont l’écran attend un selfie dans un cadre en pointillés.",
+        "cap": "Pour ouvrir, le service vérifiera qui vous êtes. Demandez-lui d’abord : accepte-t-il les résidents de mon pays ?"
+      },
+      "bank-balance": {
+        "alt": "Kūro examine à la loupe un téléphone : deux barres de longueurs différentes et un sablier pâli.",
+        "cap": "Ce qu’on a de côté, ce qui part chaque mois : la trésorerie se compte en mois."
+      },
+      "bank-bell": {
+        "alt": "Kūro dresse les oreilles : le téléphone vibre sous une petite cloche dorée.",
+        "cap": "À vérifier avant le départ : mon numéro recevra-t-il là-bas les codes de ma banque ?"
+      },
+      "bank-hooks": {
+        "alt": "Kūro se tapit devant une enveloppe, une bulle de message et un combiné de téléphone, chacun pendu à un hameçon rouge.",
+        "cap": "Une lettre, un message, un appel : le même hameçon, l’urgence et le lien qui ressemble au vrai."
+      },
+      "bank-calm": {
+        "alt": "Kūro reste assis, impassible, entre un réveil qui sonne et un gyrophare rouge.",
+        "cap": "L’urgence n’est pas une information."
+      },
+      "bank-mask": {
+        "alt": "Kūro soulève un masque en carton au sourire peint : derrière, une main d’ombre se tend vers un portefeuille.",
+        "cap": "Le faux « support » porte un masque aimable. Qui lit la phrase de récupération prend tout."
+      },
+      "bank-hangup": {
+        "alt": "D’une patte, Kūro appuie sur le bouton rouge pour raccrocher ; de l’autre, il tient une carte bancaire.",
+        "cap": "Le signal reconnu, on raccroche."
+      },
+      "bank-judge": {
+        "alt": "Kūro en juge, un marteau à ses pieds, entre deux téléphones : une bulle verte cochée, une bulle rouge barrée.",
+        "cap": "Arnaque, ou rien d’anormal ? Triez les six messages."
+      },
+      "bank-key": {
+        "alt": "Kūro tourne une grande clé de laiton dans un cadenas posé sur un téléphone ; à côté, une petite clé de sécurité sur un anneau.",
+        "cap": "Une deuxième serrure : la double validation garde les voleurs dehors même s’ils connaissent votre mot de passe."
+      },
+      "bank-fridge": {
+        "alt": "Dans la cuisine, en plein jour, Yasser fixe une petite note sur le frigo avec un aimant ; sur la table, un téléphone et une liste cochée ; Kūro porte une petite médaille dorée.",
+        "cap": "Le carnet est rempli, la liste est cochée."
+      },
+      "devis-folders": {
+        "alt": "Yasser, la main sur le front, à côté d’une tour de classeurs et de dossiers hérissée de notes ; Kūro assis sur le clavier de l’ordinateur.",
+        "cap": "Sans la ligne des retouches au devis, un projet ne finit jamais."
+      },
+      "night-platform": {
+        "alt": "La nuit, sur un quai de gare, Yasser lit une carte qui luit, la bandoulière d’un sac en travers du torse ; Kūro attend à ses pieds.",
+        "cap": "Votre bureau tient dans un sac : tout ce qui casse, se perd ou se coupe vous arrête net."
       }
     }
   }

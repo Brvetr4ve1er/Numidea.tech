@@ -1,0 +1,7 @@
+/* billed-days · steps (3). Default markup = step 3 (the teaching frame): 10 of 22 days grey, 12 billed, as the calculator's default (fix round 1); the controller adds .is-off by step. */
+.lp-billed-days .lp-billed-days-ts{transform-box:fill-box;transform-origin:50% 100%;transition:transform var(--m-reveal) var(--m-ease-move)}
+.lp-billed-days .lp-billed-days-tall.is-off .lp-billed-days-ts{transform:scaleY(.5)}
+@media (prefers-reduced-motion:reduce){.lp-billed-days *{transition:none!important}}
+/* the drawing's own line weights (2026-11-24: moved out of style="", which carries custom properties only; one class each, unscoped, so a <use> copy keeps it) */
+.lo-billed-days-s0{stroke-width:1.2}
+.lo-billed-days-s1{stroke-width:1}

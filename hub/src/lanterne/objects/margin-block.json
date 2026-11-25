@@ -1,0 +1,7 @@
+{
+  "kind": "steps",
+  "n": 3,
+  "atlas": "route",
+  "stop": "n2",
+  "cap": "lant.at.route.d.n2.decision"
+}

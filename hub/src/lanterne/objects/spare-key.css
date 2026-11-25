@@ -1,0 +1,29 @@
+/* spare-key (web3-modules · m34): disconnecting shuts the door; an unlimited approval still opens the till. Play 4500 ms, once.
+   Default frame (no JS, reduced motion, after the play): door shut on « déconnexion », key turned, drawer open, red tag hanging. */
+.lo--spare-key .sk-tx{font-size:11.5px}
+.lo--spare-key .sk-ft{fill:var(--cream);color:var(--cream);font-size:11px}
+.lo--spare-key .sk-rb{stroke:var(--red);stroke-width:3}
+.lo--spare-key .sk-hand{opacity:0}
+.lo--spare-key .sk-dr{transform:translateX(22px)}
+.lo--spare-key .sk-bow{transform-box:view-box;transform-origin:258px 100px;transform:rotate(90deg)}
+.lo--spare-key .sk-door{transform-box:fill-box;transform-origin:0 50%}
+.lo--spare-key .sk-sign{transform-box:fill-box;transform-origin:center}
+.lo--spare-key .sk-fee{transform-box:view-box;transform-origin:270px 98px}
+@media (prefers-reduced-motion:no-preference){
+html:not(.motion-off) .lo--spare-key.is-playing .sk-key{animation:lo-spare-key-k 4500ms both}
+html:not(.motion-off) .lo--spare-key.is-playing .sk-hand{animation:lo-spare-key-h 4500ms both}
+html:not(.motion-off) .lo--spare-key.is-playing .sk-door{animation:lo-spare-key-d 4500ms both}
+html:not(.motion-off) .lo--spare-key.is-playing .sk-sign{animation:lo-spare-key-s 4500ms both}
+html:not(.motion-off) .lo--spare-key.is-playing .sk-bow{animation:lo-spare-key-b 4500ms both}
+html:not(.motion-off) .lo--spare-key.is-playing .sk-dr{animation:lo-spare-key-r 4500ms both}
+html:not(.motion-off) .lo--spare-key.is-playing .sk-fee{animation:lo-spare-key-f 4500ms both}
+}
+/* 0-1000 the key goes through the open door into the lock; 1000-2000 the door shuts, its sign flips to « déconnexion »;
+   2000-3500 the key still turns, the drawer opens; 3500-4500 the red tag drops onto the key, one swing */
+@keyframes lo-spare-key-k{0%{transform:translate(-220px,-6px);animation-timing-function:cubic-bezier(.87,0,.13,1)}22.2%,100%{transform:none}}
+@keyframes lo-spare-key-h{0%{opacity:1;transform:translate(-220px,-6px);animation-timing-function:cubic-bezier(.87,0,.13,1)}22.2%{opacity:1;transform:none;animation-timing-function:cubic-bezier(.16,1,.3,1)}30%,100%{opacity:0;transform:translateX(-60px)}}
+@keyframes lo-spare-key-d{0%,22.2%{transform:scaleX(.15);animation-timing-function:cubic-bezier(.87,0,.13,1)}40%,100%{transform:none}}
+@keyframes lo-spare-key-s{0%,33.3%{opacity:0;transform:scaleX(0);animation-timing-function:cubic-bezier(.16,1,.3,1)}44.4%,100%{opacity:1;transform:none}}
+@keyframes lo-spare-key-b{0%,44.4%{transform:none;animation-timing-function:cubic-bezier(.87,0,.13,1)}60%,100%{transform:rotate(90deg)}}
+@keyframes lo-spare-key-r{0%,55.6%{transform:none;animation-timing-function:cubic-bezier(.16,1,.3,1)}77.8%,100%{transform:translateX(22px)}}
+@keyframes lo-spare-key-f{0%,77.8%{opacity:0;transform:translateY(-12px) rotate(10deg);animation-timing-function:cubic-bezier(.16,1,.3,1)}88%{opacity:1;transform:rotate(-4deg);animation-timing-function:cubic-bezier(.33,1,.68,1)}100%{opacity:1;transform:none}}

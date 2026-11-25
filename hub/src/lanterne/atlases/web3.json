@@ -1,5 +1,5 @@
 {
-  "_note": "« Le web3, sans fumée. » vol. 1 · Le parcours acheteur (SPEC §4.3): eight districts in three acts, ending in the web3 fiche. Copy under lant.at.web3.* or the course's existing keys (f: the course's line per answer). course = the fiche's set (hub/app.js 13b). Volume 2 (the nine modules, web3-modules.json) is published (2026-11-22): each district's « Pour comprendre » line (web3c.deeper.<i>, more) opens the module district that explains it, and vol. 2's bridges come back here. Case: Samia, an invented example. Ratman stands here (no plate paints a rat, L4). Keepsakes: ls-web3 (w1) and the stops' tab drawings. Reward: the wallpaper (_sac). money.note1/note2 under the hero (_hero).",
+  "_note": "« Le web3, sans fumée. » vol. 1 · Le parcours acheteur (SPEC §4.3): eight districts in three acts, ending in the web3 fiche. Copy under lant.at.web3.* or the course's existing keys (f: the course's line per answer). course = the fiche's set (hub/app.js 13b). Volume 2 (the nine modules, web3-modules.json) is published (2026-11-22): each district's « Pour comprendre » line (web3c.deeper.<i>, more) opens the module district that explains it, and vol. 2's bridges come back here. Case: Samia, an invented example. Ratman stands here (no plate paints a rat, L4). Keepsakes: ls-web3 (w1) and the stops' tab drawings. Reward: the wallpaper (_sac). money.note1/note2 under the hero (_hero). 2026-11-24 (lb2 fix round 1): w5's lead cut-out is the rat-man, not Kūro, so the plate's Kūro does not stand beside the banking panel's Kūro (an owner-drawn variant).",
   "slug": "web3",
   "key": "web3",
   "store": "numidea-lanterne-web3",
@@ -79,7 +79,7 @@
       "guide": "raven",
       "lead": "pigeonStand",
       "companion": "raven",
-      "prop": "ring",
+      "prop": "notebook",
       "right": 1,
       "ex": "flow",
       "done": "text:[data-flow-v]|vis:[data-show-if=\"fork:1\"]",
@@ -105,7 +105,8 @@
         "k": "web3c.deeper.1",
         "to": "web3-modules",
         "at": "m13"
-      }
+      },
+      "object": "one-writer"
     },
     "w3": {
       "guide": "pigeon",
@@ -169,7 +170,8 @@
         "k": "web3c.deeper.7",
         "to": "web3-modules",
         "at": "m61"
-      }
+      },
+      "object": "hash-receipt"
     },
     "w4": {
       "guide": "ratman",
@@ -205,7 +207,7 @@
     },
     "w5": {
       "guide": "kuro",
-      "lead": "kuro",
+      "lead": "ratman",
       "companion": "raven",
       "prop": "recorder",
       "right": 1,
@@ -233,7 +235,9 @@
         "k": "web3c.deeper.4",
         "to": "web3-modules",
         "at": "m34"
-      }
+      },
+      "panel": "bank-hooks",
+      "panelEx": "bank-judge"
     },
     "w6": {
       "guide": "raven",

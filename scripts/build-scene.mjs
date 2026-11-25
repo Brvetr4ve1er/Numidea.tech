@@ -72,6 +72,13 @@ const DICT = { fr: {}, en: {}, ar: {} };
 const put = (key, byLang) => { for (const l of LANGS) DICT[l][key] = byLang[l]; return byLang.fr; };
 const ui = (k) => put('ui.' + k, Object.fromEntries(LANGS.map((l) => [l, UI[l][k]])));
 const T = (key, attr = '') => `data-i18n${attr}="${key}"`;
+/* A sheet's heading: the project's own name, left to right. A project whose
+   Arabic pages name it in Arabic (nameT, the annuaire: the Arabic home and the
+   Studio say الدليل الصناعي الجزائري) gets a key, and then follows the page's
+   direction, so it is one name per language across the site. */
+const heading = (p, k) => p.nameT
+  ? `<h2 id="h-${p.slug}" ${T(`${k}.name`)}>${esc(put(`${k}.name`, p.nameT))}</h2>`
+  : `<h2 id="h-${p.slug}" dir="ltr">${esc(p.name)}</h2>`;
 const AR_LANG = { FR: 'الفرنسية', EN: 'الإنجليزية', AR: 'العربية' };
 
 const files = (slug, sub, exts = ['.webp', '.png', '.jpg', '.jpeg', '.svg']) => {
@@ -252,7 +259,7 @@ function sheet(p, i) {
       <span class="tick bl" aria-hidden="true"></span><span class="tick br" aria-hidden="true"></span>
       <header class="sh-head">
         <span class="sh-no"><span ${T('ui.sheet')}>${esc(ui('sheet'))}</span> ${n}</span>
-        <h2 id="h-${p.slug}" dir="ltr">${esc(p.name)}</h2>
+        ${heading(p, k)}
         <span class="chip is-${p.status}" ${T(`${k}.status`)}>${esc(statusTxt)}</span>${p.status === 'live' ? `
         <span class="sh-done"><span class="sh-done__k" aria-hidden="true">済</span><span ${T('ui.delivered')}>${esc(put('ui.delivered', DELIVERED))}</span></span>` : ''}
         <a class="visit" href="${esc(p.url)}" title="${esc(fullHref(p.url))}"${ext ? ' target="_blank" rel="noopener"' : ''}><span ${T('ui.visit')}>${esc(visit)}</span> ${ext ? ARROW.ne : ARROW.e}</a>
@@ -337,7 +344,7 @@ function card(p, i) {
         <span class="tick bl" aria-hidden="true"></span><span class="tick br" aria-hidden="true"></span>
         <header class="sh-head">
           <span class="sh-no"><span ${T('ui.sheet')}>${esc(ui('sheet'))}</span> ${pad(i + 1)}</span>
-          <h2 id="h-${p.slug}" dir="ltr">${esc(p.name)}</h2>
+          ${heading(p, k)}
           <span class="chip is-${p.status}" ${T(`${k}.status`)}>${esc(statusTxt)}</span>
         </header>
         <p class="sh-sum" ${T(`${k}.summary`)}>${esc(sum)}</p>

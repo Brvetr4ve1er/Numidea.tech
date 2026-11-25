@@ -1,0 +1,6 @@
+{
+  "kind": "play",
+  "ms": 4000,
+  "atlas": "route",
+  "stop": "n5"
+}

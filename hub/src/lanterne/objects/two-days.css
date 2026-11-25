@@ -1,0 +1,21 @@
+/* two-days · play 4000 ms once on entering view; default markup = the final teaching frame. */
+.lp-two-days .lp-two-days-a{transform-box:fill-box;transform-origin:0 50%}
+.lp-two-days .l-t{font-size:12.5px}
+/* the hour numbers, larger where the drawing is narrower than 340 px (fix round 1); the zone labels repeat under the drawing there */
+@container (max-width:339px){.lp-two-days .lp-two-days-n{font-size:18px}}
+@media (prefers-reduced-motion:no-preference){
+html:not(.motion-off) .lp-two-days.is-playing :is(.lp-two-days-a,.lp-two-days-b,.lp-two-days-band,.lp-two-days-ph){animation:4000ms cubic-bezier(.87,0,.13,1) both}
+html:not(.motion-off) .lp-two-days.is-playing .lp-two-days-a{animation-name:lp-two-days-a}
+@keyframes lp-two-days-a{0%{transform:scaleX(0)}25%,100%{transform:none}}
+html:not(.motion-off) .lp-two-days.is-playing .lp-two-days-b{animation-name:lp-two-days-b}
+@keyframes lp-two-days-b{0%,25%{transform:translateX(-75px);opacity:0}32.5%,40%{transform:translateX(-75px);opacity:1}62.5%,100%{transform:none;opacity:1}}
+html:not(.motion-off) .lp-two-days.is-playing .lp-two-days-band{animation-name:lp-two-days-band}
+@keyframes lp-two-days-band{0%,62.5%{opacity:0}82.5%,100%{opacity:1}}
+html:not(.motion-off) .lp-two-days.is-playing .lp-two-days-ph{animation-name:lp-two-days-ph}
+@keyframes lp-two-days-ph{0%,82.5%{transform:translateY(-16px);opacity:0}100%{transform:none;opacity:1}}
+}
+@media (prefers-reduced-motion:reduce){.lp-two-days *{animation:none!important}}
+/* the drawing's own line weights (2026-11-24: moved out of style="", which carries custom properties only; one class each, unscoped, so a <use> copy keeps it) */
+.lo-two-days-s0{stroke-width:1}
+.lo-two-days-s1{stroke-width:2}
+.lo-two-days-s2{stroke-width:3}

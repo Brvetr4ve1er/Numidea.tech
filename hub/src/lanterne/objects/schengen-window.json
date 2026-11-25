@@ -1,0 +1,12 @@
+{
+  "kind": "slide",
+  "range": {
+    "min": 40,
+    "max": 240,
+    "value": 80,
+    "win": 180,
+    "runs": "0-49,51-80"
+  },
+  "atlas": "route",
+  "stop": "n8"
+}

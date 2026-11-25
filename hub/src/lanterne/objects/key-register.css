@@ -1,0 +1,23 @@
+/* key-register · play 4500 ms once on entering view; default markup = the final teaching frame. */
+.lp-key-register .lp-key-register-bub{opacity:.5}
+.lp-key-register .lp-key-register-key{transform-box:view-box;transform-origin:0 0}
+.lp-key-register .lp-key-register-tag{transform-box:fill-box;transform-origin:50% 50%}
+@media (prefers-reduced-motion:no-preference){
+html:not(.motion-off) .lp-key-register.is-playing :is(.lp-key-register-key,.lp-key-register-coins,.lp-key-register-bub,.lp-key-register-cover,.lp-key-register-tag){animation:4500ms cubic-bezier(.87,0,.13,1) both}
+html:not(.motion-off) .lp-key-register.is-playing .lp-key-register-key{animation-name:lp-key-register-key}
+@keyframes lp-key-register-key{0%{transform:rotate(90deg)}17.78%,100%{transform:none}}
+html:not(.motion-off) .lp-key-register.is-playing .lp-key-register-coins{animation-name:lp-key-register-coins}
+@keyframes lp-key-register-coins{0%,17.78%{transform:translateX(-44px)}48.89%,100%{transform:none}}
+html:not(.motion-off) .lp-key-register.is-playing .lp-key-register-bub{animation-name:lp-key-register-bub}
+@keyframes lp-key-register-bub{0%,48.89%{transform:none;opacity:1}71.11%{transform:translate(-60px,40px);opacity:1}84.44%,100%{transform:none;opacity:.5}}
+html:not(.motion-off) .lp-key-register.is-playing .lp-key-register-cover{animation-name:lp-key-register-cover}
+@keyframes lp-key-register-cover{0%,71.11%{transform:translateY(-70px);opacity:0}73.33%{opacity:1}84.44%,100%{transform:none;opacity:1}}
+html:not(.motion-off) .lp-key-register.is-playing .lp-key-register-tag{animation-name:lp-key-register-tag}
+@keyframes lp-key-register-tag{0%,84.44%{transform:scale(1.3);opacity:0}100%{transform:none;opacity:1}}
+}
+@media (prefers-reduced-motion:reduce){.lp-key-register *{animation:none!important}}
+/* the drawing's own line weights (2026-11-24: moved out of style="", which carries custom properties only; one class each, unscoped, so a <use> copy keeps it) */
+.lo-key-register-s0{stroke-width:1.2}
+.lo-key-register-s1{stroke-width:1}
+.lo-key-register-s2{stroke-width:1.8}
+.lo-key-register-s3{stroke-width:2}
