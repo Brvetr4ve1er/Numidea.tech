@@ -261,7 +261,7 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
       case 'mascotte': return `
         <div class="o sh lineup" style="${P(4, 4, 92)};--h:74%">
           <div class="lineup__h"><span data-i18n="carte.mock.sheet"></span><span data-i18n="carte.mock.poses"></span></div>
-          <div class="lineup__row">${['sil-0', 'sil-2', 'sil-3', 'sil-5'].map((k) => img(`bible/art/${k}.webp`)).join('')}</div>
+          <div class="lineup__row">${['turn-front', 'turn-34', 'turn-side', 'turn-back'].map((k) => img(`bible/art/${k}.webp`)).join('')}</div>
         </div>
         <div class="o" style="${P(5, 66, 22)}">${img('bible/art/kuro-smug.webp', 'die')}</div>`;
       case 'landing': return `

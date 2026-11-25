@@ -9,6 +9,8 @@
  * not fur: the amber eyes, the red collar and tag, the pink of the ears and
  * the pads, the whites. Nothing is redrawn.
  *
+ * `node scripts/kuro-canon.mjs <file.webp>…` runs it on those files only.
+ *
  * Run it after `npm run hub:art` (which cuts kuro-sit and kuro-paw again
  * from the masters, brown). It is not idempotent: a second pass on its own
  * output darkens the fur a little more, so it refuses a file whose fur is
@@ -19,7 +21,9 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT } from './site.mjs';
 
-const FILES = ['hub/img/studio/kuro-sit.webp', 'hub/img/studio/kuro-paw.webp', 'hub/img/lanterne/cast/kuro.webp'];
+// with paths on the command line it works on those instead (a new Kūro cut-out, before it ships)
+const FILES = process.argv.length > 2 ? process.argv.slice(2)
+  : ['hub/img/studio/kuro-sit.webp', 'hub/img/studio/kuro-paw.webp', 'hub/img/lanterne/cast/kuro.webp'];
 const FUR_DONE = 0.03;
 
 for (const rel of FILES) {

@@ -2,6 +2,7 @@
    VOIDSPLUNKER.std — hub interactions (vanilla, no deps)
    1 · the rig: Yasser and Kūro, twenty drawn frames, one loop that ends
    2 · the pose actors: six two-frame figures (section 04b)
+   2b · the turn: five drawn views, dragged or picked (section 02)
    3 · loops: a still swapped for its animation once, on screen
    4 · year
    The rule of the page: nothing moves for longer than five seconds on its
@@ -390,6 +391,94 @@
         [].forEach.call(grid.querySelectorAll('.actor img'), function (im) { im.loading = 'eager'; });
       }, { rootMargin: '100% 0px' });
       eio.observe(grid);
+    }
+  }
+
+  /* ---------------- 2b · the turn (section 02) ----------------
+     Five drawn views of one session, stacked (.turn-f, one .is-on): a view
+     change is a hard cut, never a tween, because the drawings are not in
+     between each other. The order is the order he turns in (front,
+     three-quarter, profile, back, three-quarter back, and round to the front
+     again), so dragging the stage reads as one way round: a view every 28 px.
+     The five ink figures under him are a radio group (arrows, Home, End);
+     each mark's number shows him from the side that mark is seen best.
+     Once, the first time half the stage is on screen, he turns round one
+     time, a view every quarter beat (167 ms, 5 cuts, under a second), and
+     stops on his front; any touch of the controls stops it. With reduced
+     motion he never turns by himself; every control still cuts. */
+  var turn = document.getElementById('turn');
+  if (turn) {
+    var tStage = turn.querySelector('[data-turn-stage]');
+    var tViews = [].slice.call(turn.querySelectorAll('.turn-f'));
+    var tRadios = [].slice.call(turn.querySelectorAll('.turn-r'));
+    var tName = turn.querySelector('[data-turn-name]');
+    var tInk = turn.querySelector('.turn-ink');
+    var tMarks = [].slice.call(document.querySelectorAll('.marks li[data-v]'));
+    var tN = tViews.length, tCur = 0, tTimer = 0;
+    var tSet = function (v, fromKey) {
+      v = ((v % tN) + tN) % tN;
+      if (v === tCur) return;
+      tCur = v;
+      tViews.forEach(function (im, i) { im.classList.toggle('is-on', i === v); });
+      tRadios.forEach(function (r, i) {
+        r.setAttribute('aria-checked', i === v ? 'true' : 'false');
+        r.tabIndex = i === v ? 0 : -1;
+      });
+      if (fromKey) tRadios[v].focus();
+      tName.textContent = tRadios[v].getAttribute('aria-label');
+      tMarks.forEach(function (li) { li.classList.toggle('is-shown', +li.getAttribute('data-v') === v); });
+    };
+    var tStop = function () { if (tTimer) { clearTimeout(tTimer); tTimer = 0; } };
+    tRadios.forEach(function (r, i) {
+      r.addEventListener('click', function () { tStop(); tSet(i); });
+      r.addEventListener('keydown', function (e) {
+        var k = e.key, to = k === 'ArrowRight' || k === 'ArrowDown' ? tCur + 1 : k === 'ArrowLeft' || k === 'ArrowUp' ? tCur - 1
+          : k === 'Home' ? 0 : k === 'End' ? tN - 1 : null;
+        if (to === null) return;
+        e.preventDefault(); tStop(); tSet(to, true);
+      });
+    });
+    tMarks.forEach(function (li) {
+      var v = +li.getAttribute('data-v');
+      li.querySelector('.n').addEventListener('click', function () { tStop(); tSet(v); });
+      if (finePointer) li.addEventListener('pointerenter', function () { tStop(); tSet(v); });
+    });
+    tInk.addEventListener('click', function () {
+      var on = tInk.getAttribute('aria-pressed') !== 'true';
+      tInk.setAttribute('aria-pressed', on ? 'true' : 'false');
+      tStage.classList.toggle('is-ink', on);
+    });
+    // drag: a view every 28 px, the way the pointer goes
+    var tX = null, tFrom = 0, tPid = null;
+    tStage.addEventListener('pointerdown', function (e) {
+      if (e.button) return;
+      tStop(); tX = e.clientX; tFrom = tCur; tPid = e.pointerId;
+      tStage.setPointerCapture(tPid); tStage.classList.add('is-drag');
+    });
+    tStage.addEventListener('pointermove', function (e) {
+      if (tX === null || e.pointerId !== tPid) return;
+      tSet(tFrom + Math.round((e.clientX - tX) / 28));
+    });
+    var tUp = function () { tX = null; tStage.classList.remove('is-drag'); };
+    tStage.addEventListener('pointerup', tUp);
+    tStage.addEventListener('pointercancel', tUp);
+    // once, on arrival: one turn round, then still
+    if (!reduce && 'IntersectionObserver' in window) {
+      var tio = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        tio.disconnect();
+        var dec = tViews.map(function (im) { return im.decode ? im.decode().catch(function () {}) : null; });
+        Promise.all(dec).then(function () {
+          if (tCur !== 0) return;            // he was already turned by hand
+          var step = 1;
+          var next = function () {
+            tSet(step % tN);
+            tTimer = ++step <= tN ? setTimeout(next, M(2)) : 0;
+          };
+          tTimer = setTimeout(next, M(2));
+        });
+      }, { threshold: 0.5 });
+      tio.observe(tStage);
     }
   }
 
