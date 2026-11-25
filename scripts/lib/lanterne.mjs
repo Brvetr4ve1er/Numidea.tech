@@ -347,9 +347,10 @@ export function lanterne(ctx) {
       const data = k === 'play' ? ` data-lo-ms="${o.ms}"` : k === 'slide' ? ` data-lo-win="${o.range.win}" data-lo-runs="${o.range.runs}" data-lo-fmt="lant.lo.${oid}.out" style="--lo-v:${o.range.value}"` : ` data-lo-n="${o.n}"${k === 'steps' ? ' data-lo-fmt="lant.ui.lo.step"' : ''}`;
       return `<figure class="lo lo--${oid} lp-${oid}" data-lo="${oid}" data-lo-kind="${k}"${data}>
               <div class="lo__stage" dir="ltr" role="img" data-i18n-aria="lant.lo.${oid}.alt">${o.css ? o.svg.replace(/^(<svg\b[^>]*>)/, `$1<style>${o.css}</style>`) : o.svg}</div>
-              ${legend}${capEl}
+              ${legend}
               <div class="lo__bar js-only">${ctl}</div>${k === 'play' ? '' : '<p class="sr" aria-live="polite" data-lo-now></p>'}
-            </figure>`;
+              ${capEl}
+            </figure>`; /* the caption closes the figure (HTML allows it first or last only); the stylesheet shows it above the controls */
     };
     /* an owner's panel on its cream mat (lb2 SPEC §4.2): rises once when it first comes into view (hub/lanterne-objects.js) */
     const panelFig = (pid, where) => {

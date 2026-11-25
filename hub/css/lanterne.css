@@ -703,13 +703,13 @@ html.motion-off .lt-panel--wait{opacity:1;translate:none}
 /* fix round 1 (2026-11-24): the drawing's word labels again under it where it is narrower than 340 px (an 11 px label in a
    360-unit drawing reads at 6.5 px at 280); a toggle's caption per state; the exercise's panel or object in a column beside
    the board on a wide screen, the reading's panel beside its list (.lt-panel-row); the route reward's picture above its line */
-.lo{container-type:inline-size}
+.lo{container-type:inline-size;display:flex;flex-direction:column}.lo>.lo__bar,.lo>[data-lo-now]{order:2}
 .lo__keys{display:none}
 @container (max-width:339px){
   .lo__keys{display:flex;flex-wrap:wrap;gap:4px 6px;margin:0;padding:10px 12px 0;background:var(--cream);border-top:2px solid var(--ink)}
   .lo__keys span{padding:2px 6px;border:1px solid var(--ink);font:700 12px/1.35 var(--f-mono);color:var(--ink)}
   :lang(ar) .lo__keys span{font-family:var(--f-body);font-size:13px}
-  .lo__keys+.lo__cap{border-top:0;padding-top:8px}
+  .lo:has(>.lo__keys) .lo__cap{border-top:0;padding-top:8px}
 }
 .lo__cap [hidden]{display:none}
 .lo--terrain{margin-block:16px 0}
