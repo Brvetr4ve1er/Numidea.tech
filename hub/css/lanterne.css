@@ -666,6 +666,58 @@ html.motion-off{scroll-behavior:auto}
 .lt-tools-in{display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px 18px}
 .lt-tools-in__art{grid-row:1/span 3;width:96px;height:auto;align-self:center}
 .lt-tools-in .st-btn{justify-self:start}
+
+/* ---- the tree of knowledge (aesthetics megathread, 2026-11-24): the passport as a talent tree, drawn in the shop's
+   one language (2px ink, paper, a hard shadow); a branch in its atlas's spine colour up to its share of leaves won, a
+   leaf won filled and ringed in amber. The pointer names a leaf in the caption and dims the other branches. Nothing
+   loops; the lit ink draws once when the shelf paints, and under reduced motion it is in place at once. ---- */
+.tree__scroll:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.tree{margin:0 0 28px;padding:clamp(12px,2vw,24px) clamp(8px,2vw,24px) 16px;background:var(--cream) radial-gradient(ellipse at 50% 62%,color-mix(in srgb,var(--amber) 14%,transparent),transparent 62%);border:2px solid var(--ink);box-shadow:var(--shadow)}
+.tree__svg{display:block;width:100%;height:auto;max-height:640px;overflow:visible}
+/* the drawing: one ink, paper inside the limbs, the atlas's spine colour poured in up to its share */
+.tr__trunk{fill:var(--cream);stroke:var(--ink);stroke-width:2.4;stroke-linejoin:round}
+.tr__hatch,.tr__bark{fill:none;stroke:var(--ink);stroke-width:1.2;stroke-linecap:round;opacity:.55}
+.tr__knot{fill:none;stroke:var(--ink);stroke-width:1.6}
+.tr__root{fill:var(--cream);stroke:var(--ink);stroke-width:1.8;stroke-linejoin:round}
+.tr__ground{fill:none;stroke:var(--ink);stroke-width:2;stroke-dasharray:2 6;stroke-linecap:round}
+.tr__tuft{fill:none;stroke:var(--ink);stroke-width:1.4;stroke-linecap:round}
+.tr__branch{fill:var(--cream)}
+.tr__edge{fill:none;stroke:var(--ink);stroke-width:2;stroke-linejoin:round}
+.tr__lit{fill:none;stroke:var(--spine);stroke-width:22;stroke-linecap:butt;stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--p,0))}
+.tr__twig{fill:var(--cream);stroke:var(--ink);stroke-width:1.4;stroke-linejoin:round}
+.tr__twig[data-earned]{fill:var(--spine)}
+.tr__leaf{cursor:pointer}.tr__hit{fill:transparent}
+.tr__dot{transform-box:fill-box;transform-origin:50% 100%}
+.tr__blade{fill:var(--cream);stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round}
+.tr__rib{fill:none;stroke:var(--ink);stroke-width:1;stroke-linecap:round;opacity:.6}
+.tr__leaf[data-earned] .tr__blade{fill:var(--spine);stroke-width:2}
+.tr__leaf[data-earned] .tr__rib{stroke:var(--cream);opacity:.9}
+.tr__leaf[data-earned] .tr__dot{filter:drop-shadow(0 0 3px var(--amber))}
+.tr__string{fill:none;stroke:var(--ink);stroke-width:1.4}
+.tr__cap{fill:var(--ink)}.tr__frame{fill:none;stroke:var(--ink);stroke-width:1.2}
+.tr__glass{fill:var(--cream);stroke:var(--ink);stroke-width:2}
+.tree[data-lit] .tr__glass{fill:var(--amber);filter:drop-shadow(0 0 6px var(--amber))}
+/* the atlas names: Latin and Arabic each read from their own side, the anchor follows (an Arabic full stop sat on the wrong end) */
+.tr__name{font-family:var(--f-mono);font-size:15px;font-weight:700;letter-spacing:.04em;fill:var(--ink);paint-order:stroke;stroke:var(--cream);stroke-width:5px;stroke-linejoin:round;direction:ltr}
+.tr__name--r{text-anchor:start}.tr__name--l{text-anchor:end}
+:lang(ar) .tr__name{font-family:var(--f-ar,inherit);letter-spacing:0;font-size:17px;direction:rtl}
+:lang(ar) .tr__name--r{text-anchor:end}:lang(ar) .tr__name--l{text-anchor:start}
+.tree__cap{display:flex;align-items:center;justify-content:center;gap:10px;min-height:44px;margin-top:8px;text-align:center}
+.tree__ks{flex:none;display:inline-grid;place-items:center;width:44px;height:44px;padding:2px;background:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow-s,2px 2px 0 var(--ink))}
+.tree__ks[hidden]{display:none}.tree__ks img{display:block;width:100%;height:100%;object-fit:contain}
+.tree[data-focus] .tr__book{opacity:.35}
+.tree[data-focus="marque"] [data-lt-tree-b="marque"],.tree[data-focus="web3"] [data-lt-tree-b="web3"],.tree[data-focus="web3-modules"] [data-lt-tree-b="web3-modules"],
+.tree[data-focus="cours-du-soir"] [data-lt-tree-b="cours-du-soir"],.tree[data-focus="argent"] [data-lt-tree-b="argent"],.tree[data-focus="route"] [data-lt-tree-b="route"],
+.tree[data-focus="jeu"] [data-lt-tree-b="jeu"]{opacity:1}
+@media (hover:hover){.tr__leaf:hover .tr__dot{transform:scale(1.45)}}
+@media (prefers-reduced-motion:no-preference){
+  .tr__book{transition:opacity var(--m-quick) linear}
+  .tr__dot{transition:transform var(--m-quick) var(--m-ease-enter,ease-out)}
+  .tree:not([hidden]) .tr__lit{animation:tr-grow var(--m-draw,1000ms) var(--m-ease-enter,ease-out) both}
+}
+@keyframes tr-grow{from{stroke-dashoffset:1}}
+@media (max-width:760px){.tree__scroll{overflow-x:auto;overscroll-behavior-x:contain}.tree__svg{width:960px;max-width:none}}
+
 /* the Lantern objects (2026-11-24, lb2 SPEC §4.4): a code-drawn teaching machine after a district's rule, one idea each; the
    drawing on navy, its caption and its control on cream. The kit's classes are the same for every drawing; each drawing's own
    moves ride in its <style>, only under no-preference and without html.motion-off, once, and stop on the teaching frame */

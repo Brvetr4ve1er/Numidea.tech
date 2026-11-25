@@ -6345,6 +6345,9 @@
       "passK": "/ LE PASSEPORT",
       "passH": "Le passeport de la Librairie",
       "passLead": "Les souvenirs gagnés dans chaque atlas, réunis ici. Ils restent dans ce navigateur.",
+      "treeHint": "L’arbre du savoir : chaque feuille est un quartier, elle s’allume quand vous en finissez l’exercice.",
+      "treeGot": "{q} · {b} · souvenir gagné",
+      "treeTodo": "{q} · {b} · à gagner",
       "passZero": "{N} souvenirs à gagner dans {A} atlas",
       "passRow": "{n} sur {N}",
       "passTotal": {

@@ -4757,3 +4757,64 @@ html[dir="rtl"] .proj .thumb:is(*,:has(.shot)){background-position:calc(100% - 1
 @media (min-width:1100px){
   html[dir="rtl"] .hero-h{font-size:clamp(48px,4.4vw,76px)}
 }
+
+/* ============================================================
+   AESTHETICS B2 + B4 (2026-11-24): one device system for the hero
+   and the work. Every capture sits in a browser's bar, and the sites
+   that have a phone capture show it beside the desktop one, in a
+   drawn phone: the studio's craft is the pair, not the client's
+   headline. The hero's swash gets one engraved stroke that draws
+   itself once.
+   ============================================================ */
+/* the phone: a bezel in ink, a brass hairline, the capture at 416/900 */
+.dev-ph{--ph-w:clamp(64px,22%,150px);position:absolute;z-index:5;inset-block-end:calc(-1 * var(--s-4));inset-inline-end:calc(-1 * var(--s-3));
+  width:var(--ph-w);aspect-ratio:416/900;box-sizing:content-box;padding:5px;border-radius:calc(var(--ph-w) * .16);
+  background:var(--nsp-ink);border:1px solid color-mix(in srgb,var(--crimson) 55%,var(--hairline-2));
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--void) 60%,transparent),0 24px 40px -18px rgb(var(--shade) / calc(.9 * var(--shade-k)));
+  pointer-events:none;overflow:hidden}
+.dev-ph::before{content:"";position:absolute;z-index:2;top:9px;left:50%;width:26%;height:4px;border-radius:4px;transform:translateX(-50%);background:var(--nsp-ink)}
+.dev-ph .ph-shot{display:block;width:100%;height:100%;object-fit:cover;object-position:top center;border-radius:calc(var(--ph-w) * .12)}
+/* the hero's phone: one capture per client, the one on the plate shows */
+.plate-link{position:relative;display:block}
+.dev-ph--hero{--ph-w:clamp(70px,19%,168px);inset-block-end:calc(-1 * var(--s-3))}
+.dev-ph--hero .ph-shot{position:absolute;inset:5px;width:calc(100% - 10px);height:calc(100% - 10px);opacity:0}
+.dev-ph--hero .ph-shot[data-client="bordjsteel"]{opacity:1}
+.plate-link:has(.pl.on[data-client="alliance"]) .ph-shot,
+.plate-link:has(.pl.on[data-client="almaflow"]) .ph-shot{opacity:0}
+.plate-link:has(.pl.on[data-client="alliance"]) .ph-shot[data-client="alliance"],
+.plate-link:has(.pl.on[data-client="almaflow"]) .ph-shot[data-client="almaflow"]{opacity:1}
+.plate-link:has(.pl.on[data-client="nomara"]) .dev-ph--hero{opacity:0;transform:translateY(12px)}
+@media (prefers-reduced-motion:no-preference){
+  .dev-ph--hero{transition:opacity var(--m-reveal) var(--m-ease-enter),transform var(--m-reveal) var(--m-ease-enter)}
+  .dev-ph--hero .ph-shot{transition:opacity var(--m-quick) linear var(--m-quick)}
+}
+/* the plate in the work's browser bar: one frame for every capture */
+.plate{--bar:22px;--dot:color-mix(in srgb,var(--muted) 60%,transparent);box-sizing:border-box;border-top:var(--bar) solid transparent;aspect-ratio:auto;height:auto;padding:0;
+  background:
+    radial-gradient(circle,var(--dot) 0 3px,transparent 3.5px) 10px calc((var(--bar) - 8px) / 2)/8px 8px no-repeat border-box,
+    radial-gradient(circle,var(--dot) 0 3px,transparent 3.5px) 24px calc((var(--bar) - 8px) / 2)/8px 8px no-repeat border-box,
+    radial-gradient(circle,var(--dot) 0 3px,transparent 3.5px) 38px calc((var(--bar) - 8px) / 2)/8px 8px no-repeat border-box,
+    linear-gradient(var(--plum),var(--plum)) 0 0/100% var(--bar) no-repeat border-box,
+    var(--navy)}
+html[dir="rtl"] .plate{background-position:calc(100% - 10px) calc((var(--bar) - 8px) / 2),calc(100% - 24px) calc((var(--bar) - 8px) / 2),calc(100% - 38px) calc((var(--bar) - 8px) / 2),0 0,0 0}
+.plate::before{content:"";display:block;aspect-ratio:16/10}   /* the capture's box under the bar */
+.plate .pk.tl,.plate .pk.tr{top:calc(-1px - var(--bar))}
+/* on a phone the device stays inside the column (the plate gate: nothing past the screen) */
+@media (max-width:959px){
+  .dev-ph{--ph-w:clamp(58px,20%,120px);inset-inline-end:var(--s-2);inset-block-end:var(--s-2)}
+  .dev-ph--hero{--ph-w:clamp(62px,21%,130px)}
+}
+/* the work: the phone straddles the capture's corner on a wide screen; on a phone it stays inside (the rule above) */
+@media (min-width:960px){.proj .thumb .dev-ph{inset-block-end:calc(-1 * var(--s-3))}}
+.proj--lead .thumb .dev-ph{--ph-w:clamp(70px,20%,160px)}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .proj .thumb .dev-ph{transition:transform var(--m-hover) var(--m-ease-enter)}
+  .proj:hover .thumb .dev-ph{transform:translateY(-6px)}
+}
+/* the swash, engraved: a brass stroke under «avant de payer.», drawn once */
+.hero-h .swash{background:linear-gradient(var(--crimson),var(--crimson)) 0 100%/100% 2px no-repeat;padding-bottom:.04em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+html[dir="rtl"] .hero-h .swash{background-position:100% 100%}
+@media (prefers-reduced-motion:no-preference){
+  .hero-h .swash{animation:swash-draw var(--m-draw) var(--m-ease-enter) var(--m-reveal) both}
+}
+@keyframes swash-draw{from{background-size:0 2px}to{background-size:100% 2px}}
