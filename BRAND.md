@@ -1452,8 +1452,8 @@ French, English and Arabic.
 leave no diff.
 - `hub/src/page.html`: the head, the nav, the screens and the footer, with
   French baked in so the page reads whole with scripts off.
-- `hub/src/cases/<slug>.html` (+ `<slug>.i18n.json`): the five cases of 09
-  Proof (`bordjsteel`, `alliance`, `almaflow`, `traveler`, `heetch`), each
+- `hub/src/cases/<slug>.html` (+ `<slug>.i18n.json`): the six cases of 09
+  Proof (`bordjsteel`, `alliance`, `almaflow`, `nomara`, `traveler`, `heetch`), each
   inlined at its `<!-- CASE:<slug> -->` marker; the case's own sheet is
   `hub/css/case-<slug>.css`, scoped to `.case-<slug>`.
 - `hub/src/i18n/{fr,en,ar}.json`: the copy, flattened to the dotted keys the
@@ -1892,7 +1892,7 @@ Source: the creative audit of 2026-11-15 and the owner's approval of its moves.
 
 **The home's night band `#atelier`** (after `#work`, before `#services`): the Studio's workbench diorama at web size (`assets/illus/workbench-night.webp` 1000w and `-560`), a brass kicker with the place, the Archivo title, the premise, the red link into the Studio (`hub/`, `?lang=` added by build-lang). It is 465 px at 390 and 523 px in two columns at 768; the home's height ceilings in `design-check.mjs` were raised for it (390: 8,800 to 9,050; 768: 8,300 to 8,480; measured 8,950 and 8,381). Its type uses the scale tokens (`--t-h2-xl`, `--t-lead`, `--t-label`).
 
-**The founder card.** (Replaced on 2026-11-19 by the night plate `founder-night`: see "The visual pass" below.) The Roman-arch plate is replaced by `assets/illus/yasser-coffee.webp` (the coffee pose) in a scene panel with shadow and ground line and a caption (`founder.sceneAlt`, `founder.sceneCap`); phones and tablets up to 1099 px show a compact row (small portrait and caption). The commented photograph slot stays: a real photograph replaces the drawing there. `pl.arch` and the `.fdp-*` rules are unused and may be deleted.
+**The founder card.** (Replaced on 2026-11-19 by the night plate `founder-night`: see "The visual pass" below.) The Roman-arch plate is replaced by `assets/illus/yasser-coffee.webp` (the coffee pose) in a scene panel with shadow and ground line and a caption (`founder.sceneAlt`, `founder.sceneCap`); phones and tablets up to 1099 px show a compact row (small portrait and caption). The commented photograph slot is gone since 2026-11-24 (owner, wave 3: no photo; the drawing is the face). `pl.arch` and the `.fdp-*` rules are unused and may be deleted.
 
 **The Studio's doors and "Start here".** (The two doors below were replaced on 2026-11-19 by "one street, three doors": see "The visual pass" below. `#world` moved to the world's page on 2026-11-18.) `#doors` after the hero: "Je veux un site" (a red day panel with Yasser, links to the Aperçu, the prices, the work and the contact, its main button to #contact) and "Le monde" (a navy night panel with Kūro and the brass coordinates, links to #world, VOIDSPLUNKER.std, MERCURY, the traveler case and the bible). The nav carries a red "Le monde" link from 1240 px up (at 1160 px it overflowed the bar); the phone menu sheet has the two groups; a second skip link goes to `#world`. `#world` ("Start here"), a night plate before dossiers 06 and 07, states three layers in one paragraph: Day (Yasser, Numidea Labs, clients, the real city), Night (the 2 a.m. workshop, Kūro as gate and quality check), Reality (tr4veler.exe, MERCURY, VOIDSPLUNKER.std as the bible project). No biography is invented. "Voir aussi" lines cross-link the dossiers.
 
@@ -1920,7 +1920,7 @@ Source: the plan of 2026-11-18 (empty areas, crops, weak sections, transitions, 
 
 **The Studio's founder plate.** From 1100 px the heading sits in the plate's empty paper on the physical left (also in Arabic) and unmasks after the plate's entrance; the floor group is a framed panel with an ink mono label (`founder.floor`). The phone photo crop is 4:3 at 78% 50%.
 
-**The home's founder** (`assets/illus/founder-night-{960,480}`): a framed 4:5 night plate with a red hard shadow filling the right column from 1100 px, a full-width 4:3 crop at 50% 28% on a phone; the commented photo slot stays (a real photograph replaces it). `founder.sceneAlt` updated. `yasser-coffee.webp` and `yasser-facepalm.webp` are no longer named by the home or the 404.
+**The home's founder** (`assets/illus/founder-night-{960,480}`): a framed 4:5 night plate with a red hard shadow filling the right column from 1100 px, a full-width 4:3 crop at 50% 28% on a phone. It is the founder's face on the home: there is no photograph (owner, wave 3, 2026-11-24), and the photo slot is gone. `founder.sceneAlt` updated. `yasser-coffee.webp` and `yasser-facepalm.webp` are no longer named by the home or the 404.
 
 **The home's services** (`assets/illus/svc-{sites,identity,auto,market,strategy}-400`, 400x300): five spot drawings of workshop objects between each row's title and category, from 1100 px only (lazy and hidden below, so a phone fetches none). The band above OFFRE SIGNATURE is gone.
 
@@ -2085,8 +2085,9 @@ A lesson is one idea, one gesture and one question, in that order: two or three 
 
 ## Founder section — the CV is the source of truth
 
-Every date, title and one-liner in the founder card comes from
-`assets/cv_yasser_hamisse_2026.pdf`. The PDF is vector text over an empty
+Every date, title and one-liner in the founder card's career panel comes from
+`assets/cv_yasser_hamisse_2026.pdf` (since wave 3 the PDF is linked from the
+Studio only, not from the home). The PDF is vector text over an empty
 image overlay, so extract it with pdf.js (`pdfjs-dist`, legacy build);
 pypdf breaks on this machine's cryptography binding. Edit the CV and the site
 together.
@@ -3061,8 +3062,8 @@ Client material appears without code changes:
   a before/after pair
 - `assets/work/<slug>/brand/<name>.webp|png|jpg|svg` → delivered brand assets
 
-The file name is the caption. Slugs: bordjsteel, alliance, glaive,
-workspacehq, almaflow. Run `npm run scene` after adding files.
+The file name is the caption. Slugs: bordjsteel, alliance, almaflow, nomara,
+annuaire, glaive, workspacehq, numidea. Run `npm run scene` after adding files.
 
 Every statement on the sheets was read off the live sites on 2026-10-06.
 Glaive is labelled a portfolio demo because its own site says so; it was never
@@ -3082,7 +3083,8 @@ home cards' one-line versions (`proj*.gain`, keys after `proj7.desc`). Each
 client card links its line to its sheet's block (`scene/#gv-<slug>`), and a
 visually hidden `work.gainMore` ("— le détail sur la planche") ends the
 link's name, so a screen reader hears where it goes (the arrow is CSS with an
-empty alt); Nomara has no sheet, so its line is plain text.
+empty alt); since wave 3 Nomara has its sheet too, so all four lines are links
+(a card without a sheet would carry a plain `<p class="gain">`).
 
 Two claims went while doing this. AlmaFlowClim's /realisations is nine
 text cards (trade, town, what was done): its filter buttons do nothing on the
@@ -3391,12 +3393,13 @@ Nothing on the page claims content it does not have.
   and `consentRef`). Only the four delivered clients can carry one, never the
   Glaive demo or WorkspaceHQ. `scripts/build-voices.mjs` fills the
   `<!-- SLOT:voices -->` region in `#work`, and the client's project sheet
-  shows the same quotes (Nomara Voyages has no sheet). With no voices nothing
+  shows the same quotes (each of the four has a sheet since wave 3). With no voices nothing
   renders: no heading, no placeholder.
   Each quote stays in the language it was given in.
-- **Photos.** The founder card and the team grid carry commented-out `<img>`
-  slots in `index.html`. Until a real photo is added (for the founder, never
-  a generated one), the monogram and the initials stay.
+- **No photos.** The founder's face is the drawn Yasser (the night plate on
+  the home, the rig on the Studio), never a photograph (owner, wave 3,
+  2026-11-24: "animated ones or artworks instead"); there is no team to show.
+  No photo slot is left in `index.html`, and none should come back.
 
 ## Client logo strip
 
@@ -3962,7 +3965,7 @@ The whole-site audit's fix plan, by page. Each line is a rule the page keeps now
 - The carte's sources sit in a closed « Sources · 11 » (`carte.srcSum`); a source number opens it first. The design tiers are « Maquette · landing / site 5 écrans / app 10 écrans », and the card's first line is « Design seul · le site codé : dès 90 000 DA » from `PRICE_MODEL.vitrine`. `carte.k` has no section number.
 - The phone menu opens on « ← Accueil » (`nav.accueil`, `../`); its marks are section seals from the JP subset (技 見 証 価 人 問 道), the world links 夜 書 速; the links scroll inside the sheet while the language switch, Aperçu and WhatsApp stay pinned at its foot. The menu CSS is shared, so monde and fabrique do the same.
 - From 1024 px the five process steps sit in one row beside the card; the FAQ starts on the page's left edge.
-- Case headers no longer draw « Livrables débloqués n/9 ». The WorkspaceHQ ticket is a plain link beside Glaive (`proof.whq`); its arcade font no longer loads on the Studio. « Fiche projet → » (`case.sheet`) links three cases to their sheet on `/scene/`.
+- Case headers no longer draw « Livrables débloqués n/9 ». The WorkspaceHQ ticket is a plain link beside Glaive (`proof.whq`); its arcade font no longer loads on the Studio. « Fiche projet → » (`case.sheet`) links the four client cases to their sheet on `/scene/` (Nomara since wave 3, 2026-11-24).
 - The `#tech` ranking mock carries an « exemple » tag, and its stat says « 3 réglages sur chaque site : une structure claire, la vitesse, le SEO de base » (no « 1re page » promise).
 - 44 px targets on every visible tappable element at 390; `aria-hidden` duplicates take no pointer. Any `.st-rv` block, and every part of the doors' street, shows at once on keyboard focus. Arabic services bars are translated and the English motto is hidden on `/ar/`.
 - The carte's packaging label uses the system Arabic face outside `/ar/` (the four IBM Plex Sans Arabic files no longer load on the French page).
@@ -3973,3 +3976,82 @@ The whole-site audit's fix plan, by page. Each line is a rule the page keeps now
 - WorkspaceHQ: the hero shows a still of the booted console (`workspacehq/console-still*.webp`); the players are inert under their PRESS PLAY card; INSERT COIN fits a phone; the pressed MOTION OFF is a gold outline; below 1100 px the section links are a strip under the bar; the strip reads « GET YOUR FREE PREVIEW » to `../en/#apercu`.
 - The brand books: AlmaFlow and tr4veler end on a closing band (« Le même livre pour votre marque. », the free Aperçu, « Demander mon Aperçu gratuit → »); Numidea's waits for the owner. Numidea no longer says « Paid so far ». AlmaFlow's version D sits on a night veil. Under 560 px feed grids, landscape posts and AlmaFlow's photographs are rows that slide sideways; under 640 px the floating Plates/Sections chip shows its number only. tr4veler's breadcrumb and back links go to the world page.
 - The bible: the kit's rules are in a closed `<details>` at every width; WhatsApp beside the mailto; the Librairie in the closing links and the footer; feed posts and stories held to about 300 px from 980 px (the 3x4 grid unchanged).
+
+## Wave 3: the work (2026-11-24)
+
+- **Four live sheets, then the other finished work.** /scene/ carries the four
+  delivered client sites (Bordj Steel, Alliance Travel, AlmaFlowClim, Nomara
+  Voyages, status `live`), then one heading over the rest (`UI.group`,
+  « Autres projets terminés ») in this order: the industrial directory
+  (`finished`, chip « Projet terminé »: a finished project under the site's
+  own name, not counted among the delivered sites), the Glaive demo
+  (`concept`), WorkspaceHQ (`product`) and the studio's own site (`own`,
+  chip « Notre propre site »). A new status needs its three strings in each
+  language of `UI` (`status`, `gain`, `ctxL`) and a chip rule in
+  `scene/style.css` (`finished` wears the live teal, `own` the product's ink).
+- **The home's grid stays a lead row and three, client sites only.** The
+  other finished work is one muted line each in `.work-foot`, under the
+  clients: Glaive, the directory (`work.annuaire`, its link `data-client`
+  like Glaive's, so check 5 and `scripts/shots.mjs` pair it; `line: true`
+  there means no preview file), and this site (`work.own`, its sheet only).
+- **The studio's own site is captured from this repository**
+  (`scripts/work-capture.mjs numidea`, lib/serve.mjs), never from the live
+  host: the home and the price guide in the night look, the Studio in its
+  cream day, the Librairie. Its link is `../` (relative, like WorkspaceHQ's):
+  the sheet's browser bar shows the published host.
+- **The Studio's cases are six**: the four delivered clients, then the
+  founder's two. Nomara's (`hub/src/cases/nomara.html`, `hub/css/case-nomara.css`,
+  prefix `cn-`) is built from the site alone: its pictures are the sheet's
+  captures (`../assets/work/nomara/`, not copies), no client price, the
+  site's light-ink logo on the bar's teal. Its faces are the Studio's, with
+  Space Mono (the client's own mono) as its lazy face; Changa and Readex Pro
+  are named on its palette tile. The second « Terminé aussi » line under
+  « Aussi, faits maison » carries the directory.
+  Integration fixes (2026-11-24, vbugs, audit and sweep): the services take
+  two columns at every width (they fill the cell above the palette), and on a
+  tablet (600 to 1199px) the trips and the Istanbul page do too, because one
+  cell held two of the five destinations. The services sit on the deeper teal
+  `--cn-teal-2` with a gold label (5.6:1). The teal swatch's code sits on a
+  night chip, since no ink reaches 4.5:1 on `#1F8A7A`. Unseen scope lines are
+  mint, not half opacity, as on Alliance. The site tile's scrim holds at .94
+  to 55% of its width, under the labels.
+- **Alliance Travel's address is `https://alliancetravel.app/`** (its own
+  domain), everywhere, its capture source included.
+
+## Wave 3: the founder, the services and AlmaFlow's book (2026-11-24)
+
+- **The founder card lists deliveries, not job titles** (drafted,
+  reversible). Under « En ligne aujourd'hui » (`founder.recent`) each line is
+  a site live today, linked to its sheet: the name, what it is in its sheet's
+  own scope words (`fd.*`), and a date only where the site already gives one
+  (the CV periods `fx3.when`, `fx4.when`; no other date is on record). The four
+  clients, dated first, then the directory, whose line says « projet
+  terminé » like its sheet. A new delivery joins the list only with a sheet;
+  a date only with a source.
+- **The home's founder block carries no CV download and no link to the
+  character bible**: both stay on the Studio (`hub/src/page.html`). The career
+  panel stays; its two client names link to their sheets, so the open panel
+  keeps a focusable link (keys.mjs `cvPanel`).
+- **No photograph, no rig on the home.** The night plate is the founder's
+  face and holds still; the animated Yasser (the rig) is another drawing and
+  stays on the Studio, under its own motion rule. On a phone the plate is not
+  shown (unchanged: its weight).
+- **The services say what the visitor gets, with no figure**: `svc.lead`
+  (what you get, one contact from the first message to launch) and
+  `f1.promise` (« Un site qui transforme la visite en message. ») replace the
+  count of services and « Le choix évident. » (drafted, reversible). The tool
+  tags (React, Next.js, Tailwind, Python, Playwright…) and the other tag rows
+  left the five home cards with their CSS and keys (`tag.*`); the tools stay
+  on the project sheets (/scene/). Any new tool line belongs on a sheet, not
+  on the home's services.
+- **AlmaFlow's book shows no phone number and no email** (owner: "leave them
+  empty"). The three mock-ups that had them baked in (`m-cards`, `m-van`,
+  `m-hanger`, both sizes, in `hub/img/clients/almaflow/`) were retouched from
+  their `.full.webp`: the card's back is plain night, the van's side has no
+  number, the door hanger's white band has neither number nor phone icon;
+  the rest of each picture is untouched, re-encoded at the photo setting
+  (q78, effort 6), the thumbs resized from the retouched full. The two social
+  posts' buttons read « Rendez-vous » and « Devis » alone (the sample number
+  and its `.tel` rule are gone), and the captions say the contact details are
+  left empty. The masters (HUB_STUDIO_DIR) still carry the number: retouch
+  them the same way before `build-hub-img.mjs` runs again.

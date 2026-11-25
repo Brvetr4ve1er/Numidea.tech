@@ -1,0 +1,241 @@
+/* ============================================================
+   Case 04 · Nomara Voyages (hub/src/cases/nomara.html), everything under
+   .case-nomara. Wave 3 (2026-11-24). The client's own look, read off its
+   stylesheet: a deep teal ground, its teal and coral, its sand page and its
+   gold; Space Mono, the site's own mono, for the labels (hub/fonts/
+   lazy-nomara.css), the Studio's faces for the rest (Changa and Readex Pro
+   are named on the palette tile, not loaded). The shell (hub/style.css 09:
+   the bar, the track, its spans, the foot, the badges, the viewer) is the
+   page's; this sheet sets the palette on the scope and draws the tiles.
+   Every colour is a token of the scope block below.
+   Measured as painted: the sand on the deep teal 12.0:1, the gold on it
+   7.7:1, the mint on it 6.0:1; the ink on the coral 4.9:1 (white on it would
+   be 3.4, so it is never white); the slate labels on the pale teal 5.9:1,
+   the dark teal on it 5.8:1. Labels never go under 12px.
+   Motion: the hover zoom of the pictures answers an input; with reduced
+   motion nothing moves.
+   ============================================================ */
+
+.case-nomara{
+  --c-bg:#FCFAF6;
+  --c-dark:#0C3A35;
+  --c-fg:#14211E;
+  --c-muted:#51635E;
+  --c-line:#D9EDE8;
+  --c-tile:#EFF7F5;
+  --c-accent:#E8602C;
+  --c-accent-2:#F07B4A;
+  --c-on-accent:#14211E;
+  --c-on-dark:#FCFAF6;
+  --cn-teal:#176C60;
+  --cn-teal-2:#11514A;
+  --cn-mint:#7DC0B0;
+  --cn-gold:#E2C972;
+  --cn-white:#FFFFFF;
+  --cn-chrome:#E7F1EE;
+  --cn-dot:#B0DACF;
+  --cn-sw-teal:#1F8A7A;
+  --cn-sw-coral:#E8602C;
+  --cn-sw-sand:#FCFAF6;
+  --cn-sw-night:#061A17;
+  --cn-scrim:rgba(12,58,53,.94);
+  --cn-scrim-2:rgba(12,58,53,.72);
+  --cn-scrim-3:rgba(12,58,53,.06);
+  --cn-cover-a:rgba(12,58,53,.6);
+  --cn-cover-b:rgba(12,58,53,.96);
+  --cn-hair:rgba(252,250,246,.3);
+  --cn-mono:"Space Mono",var(--f-mono);
+}
+
+/* ---------------- the bar ---------------- */
+.case-nomara .cn-id{flex:1 1 300px}
+.case-nomara .cn-id__txt{display:flex;flex-direction:column;gap:3px;min-width:0}
+.case-nomara .cn-hud{color:var(--cn-gold);opacity:1;font-family:var(--cn-mono);letter-spacing:.14em}
+/* the site's own light-ink logo, on the bar's teal (the shell's white box would hide it) */
+.case-nomara .st-case__logo{width:auto;height:44px;padding:4px 6px;background:transparent}
+.case-nomara .st-case__logo img{width:auto;height:34px;max-width:none}
+.case-nomara .st-case__name{letter-spacing:0;line-height:1.1;font-weight:700}
+.case-nomara .cn-sector{color:var(--cn-mint);font-weight:600}
+.case-nomara .cn-progress{min-width:180px;font-family:var(--cn-mono)}
+.case-nomara .cn-muted-d{color:var(--cn-mint);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.case-nomara .cn-pips{height:8px;background:var(--cn-teal-2);border-radius:4px;overflow:hidden}
+.case-nomara .cn-pips i{background:transparent;opacity:1}
+.case-nomara .cn-pips i.is-seen{background:var(--c-accent)}
+.case-nomara .cn-end{display:flex;align-items:center;gap:8px}
+.case-nomara .cn-tag{padding:8px 12px;border-radius:999px;font-weight:700;font-size:13px;letter-spacing:.02em}
+:lang(ar) .case-nomara .cn-tag{letter-spacing:0}
+.case-nomara .cn-nav button{border:1px solid var(--cn-teal);border-radius:999px}
+@media (hover:hover){.case-nomara .cn-nav button:hover{background:var(--cn-teal-2);border-color:var(--cn-teal);color:var(--c-on-dark)}}
+.case-nomara .st-case__bar :focus-visible,.case-nomara .cn-scope :focus-visible,.case-nomara .cn-cover :focus-visible,.case-nomara .cn-site__view :focus-visible{outline-color:var(--c-on-dark)}
+.case-nomara .st-case__track:focus-visible{outline-color:var(--c-accent)}
+.case-nomara .st-case__foot{color:var(--c-muted)}
+
+/* ---------------- shared tile pieces ---------------- */
+/* the tiles follow the page's direction; the track itself stays ltr (the shell) */
+:root[dir="rtl"] .case-nomara .cn-t{direction:rtl}
+.case-nomara .st-case__track > .cn-t{border-radius:16px}
+.case-nomara .cn-t img{display:block}
+.case-nomara .cn-k{font-family:var(--cn-mono);font-size:var(--t-label);line-height:1.35;letter-spacing:.12em;color:var(--c-muted)}
+:lang(ar) .case-nomara .cn-k{font-family:var(--f-mono);letter-spacing:0}
+.case-nomara .cn-k--gold{color:var(--cn-gold)}
+.case-nomara .cn-k--mint{color:var(--cn-mint)}
+.case-nomara .cn-note{font-size:13px;line-height:1.4;color:var(--c-muted)}
+.case-nomara .st-badge{top:8px;inset-inline-end:8px;border-radius:999px;padding:3px 8px;line-height:1.2}
+.case-nomara .cn-badge--site{top:46px;inset-inline-end:10px}
+.case-nomara .cn-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 20px;border-radius:999px;background:var(--c-accent);color:var(--c-on-accent);font-weight:700;font-size:13px;letter-spacing:.02em;text-decoration:none;white-space:nowrap;transition:background-color var(--m-hover) var(--m-ease-enter)}
+@media (hover:hover){.case-nomara .cn-btn:hover{background:var(--c-accent-2)}}
+.case-nomara .cn-btn--block{display:flex;width:100%;font-size:14px}
+.case-nomara .cn-chip{padding:4px 10px;border-radius:999px;font-family:var(--cn-mono);font-size:var(--t-label);line-height:1.3;letter-spacing:.1em}
+.case-nomara .cn-chip--line{border:1px solid var(--cn-hair);color:var(--c-on-dark)}
+.case-nomara .cn-plab{position:absolute;bottom:8px;inset-inline-start:8px;z-index:2;padding:3px 8px;border-radius:999px;background:var(--c-dark);color:var(--c-on-dark);font-family:var(--cn-mono);font-size:var(--t-label);letter-spacing:.1em;pointer-events:none}
+:lang(ar) .case-nomara .cn-plab{font-family:var(--f-mono);letter-spacing:0}
+
+/* ---------------- NV-00 the cover ---------------- */
+.case-nomara .cn-cover{display:flex;flex-direction:column;justify-content:space-between;gap:16px;padding:20px;background:var(--c-dark);color:var(--c-on-dark)}
+.case-nomara .cn-cover__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 60%;opacity:.55}
+.case-nomara .cn-cover::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,var(--cn-cover-a) 0%,var(--cn-cover-b) 62%)}
+.case-nomara .cn-cover__top,.case-nomara .cn-cover__txt{position:relative;z-index:2}
+.case-nomara .cn-cover__top{display:flex;justify-content:flex-start}
+.case-nomara .cn-cover__txt{display:flex;flex-direction:column;gap:10px}
+.case-nomara .cn-cover__h{font-family:var(--f-disp);font-weight:800;font-size:clamp(22px,2.3vw,32px);line-height:1.06;text-wrap:balance}
+.case-nomara .cn-cover__s{font-size:14px;line-height:1.5;color:var(--c-on-dark);max-width:30em}
+.case-nomara .cn-chips{display:flex;flex-wrap:wrap;gap:6px}
+.case-nomara .cn-chips li{padding:4px 10px;background:var(--c-accent);color:var(--c-on-accent);border-radius:999px;font-weight:700;font-size:var(--t-label);line-height:1.35;white-space:nowrap}
+@media (max-width:599px){
+  .case-nomara .cn-cover{padding:16px;gap:12px}
+  .case-nomara .cn-cover__s{font-size:13.5px;line-height:1.45}
+}
+
+/* ---------------- NV-01 the site ---------------- */
+.case-nomara .cn-site{display:flex;flex-direction:column;background:var(--cn-white);border:1px solid var(--c-line)}
+.case-nomara .cn-site__bar{height:38px;flex:none;display:flex;align-items:center;gap:10px;padding:0 12px;background:var(--cn-chrome);border-bottom:1px solid var(--c-line)}
+.case-nomara .cn-site__dots{display:flex;gap:6px}
+.case-nomara .cn-site__dots i{width:10px;height:10px;border-radius:50%;background:var(--cn-dot)}
+.case-nomara .cn-site__dots i:first-child{background:var(--c-accent)}
+.case-nomara .cn-site__url{flex:1;min-width:0;padding:5px 10px;background:var(--cn-white);border-radius:999px;font-family:var(--cn-mono);font-size:var(--t-label);color:var(--c-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-nomara .cn-site__open{position:relative;font-family:var(--cn-mono);font-size:var(--t-label);color:var(--cn-teal);text-decoration:none;white-space:nowrap}
+@media (max-width:599px){.case-nomara .cn-site__open{display:none}}
+.case-nomara .cn-site__view{position:relative;flex:1;min-height:0;overflow:hidden}
+.case-nomara .cn-site__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right top}
+/* the scrim holds at .94 under the labels (they end by 49% of the view at 768px): mint on it over a white page is 5.0:1, on .77 it was 3.9 (2026-11-24, the integration's sweep) */
+.case-nomara .cn-site__view::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--cn-scrim) 0%,var(--cn-scrim) 55%,var(--cn-scrim-2) 80%,var(--cn-scrim-3) 100%)}
+:root[dir="rtl"] .case-nomara .cn-site__view::before{background:linear-gradient(270deg,var(--cn-scrim) 0%,var(--cn-scrim) 55%,var(--cn-scrim-2) 80%,var(--cn-scrim-3) 100%)}
+.case-nomara .cn-site__txt{position:relative;z-index:2;height:100%;max-width:560px;display:flex;flex-direction:column;justify-content:center;gap:clamp(8px,1.2vw,14px);padding:clamp(14px,2.6vw,36px);color:var(--c-on-dark)}
+.case-nomara .cn-site__h{font-family:var(--f-disp);font-weight:800;font-size:clamp(21px,2.5vw,38px);line-height:1.05;text-wrap:balance}
+.case-nomara .cn-figs{display:flex;flex-wrap:wrap;gap:10px 22px;margin:0;padding-top:12px;border-top:1px solid var(--cn-hair)}
+.case-nomara .cn-figs div{display:flex;flex-direction:column-reverse}
+.case-nomara .cn-figs dt{font-family:var(--cn-mono);font-size:var(--t-label);letter-spacing:.1em;color:var(--cn-mint)}
+:lang(ar) .case-nomara .cn-figs dt{font-family:var(--f-mono);letter-spacing:0}
+.case-nomara .cn-figs dd{margin:0;font-weight:800;font-size:clamp(17px,1.7vw,22px);line-height:1.2;white-space:nowrap}
+.case-nomara .cn-site .cn-btn{align-self:flex-start}
+
+/* ---------------- NV-02 Omra and Hajj: the page, under what it compares ---------------- */
+.case-nomara .cn-omra{background:var(--c-dark);color:var(--c-on-dark)}
+.case-nomara .cn-omra .cn-zoom{position:absolute;inset:0}
+.case-nomara .cn-omra .cn-zoom img{object-position:right top;opacity:.5}
+.case-nomara .cn-omra__txt{position:absolute;inset:auto 0 0;z-index:1;display:flex;flex-direction:column;gap:8px;padding:18px;background:linear-gradient(180deg,transparent 0%,var(--cn-scrim) 34%);pointer-events:none}
+.case-nomara .cn-omra__h{font-family:var(--f-disp);font-weight:800;font-size:clamp(19px,1.9vw,26px);line-height:1.1;text-wrap:balance}
+.case-nomara .cn-list{display:flex;flex-direction:column;gap:6px;font-size:13.5px;line-height:1.4}
+.case-nomara .cn-list li{display:flex;gap:8px}
+.case-nomara .cn-list li::before{content:"";flex:none;width:6px;height:6px;margin-top:.5em;border-radius:50%;background:var(--cn-gold)}
+
+/* ---------------- NV-03 the package tours ---------------- */
+.case-nomara .cn-trips{display:flex;flex-direction:column;gap:10px;padding:16px;background:var(--cn-white);border:1px solid var(--c-line)}
+.case-nomara .cn-trips__h{font-family:var(--f-disp);font-weight:800;font-size:clamp(17px,1.6vw,21px);line-height:1.15;color:var(--cn-teal);text-wrap:balance}
+.case-nomara .cn-dests{display:flex;flex-wrap:wrap;gap:6px}
+.case-nomara .cn-dests li{padding:4px 10px;border-radius:999px;background:var(--c-tile);border:1px solid var(--c-line);font-weight:600;font-size:13px;line-height:1.3}
+.case-nomara .cn-trips .cn-note{margin-top:auto}
+.case-nomara .cn-shot{background:var(--c-dark)}
+.case-nomara .cn-shot .cn-zoom img{object-position:right top}
+
+/* ---------------- NV-05 on a phone ---------------- */
+.case-nomara .cn-phone{padding:12px;background:var(--c-dark)}
+.case-nomara .cn-phone .cn-zoom{border-radius:14px;overflow:hidden}
+.case-nomara .cn-phone .cn-zoom img{object-position:top}
+
+/* ---------------- NV-04 the services ---------------- */
+/* on the deeper teal (the bar's pips): gold 5.6:1, the sand 8.8:1; on the lighter teal the mint label was 3.0 and the gold numbers 3.8 */
+.case-nomara .cn-svc{display:flex;flex-direction:column;gap:12px;padding:16px;background:var(--cn-teal-2);color:var(--c-on-dark)}
+.case-nomara .cn-svc .cn-k{color:var(--cn-gold)}
+.case-nomara .cn-svc__list{display:flex;flex-direction:column;gap:8px;counter-reset:svc}
+.case-nomara .cn-svc__list li{counter-increment:svc;display:flex;gap:10px;align-items:baseline;font-weight:700;font-size:15px;line-height:1.25}
+.case-nomara .cn-svc__list li::before{content:counter(svc,decimal-leading-zero);font-family:var(--cn-mono);font-weight:400;font-size:var(--t-label);color:var(--cn-gold)}
+/* the list and its note sit together at the tile's foot, under the kicker (the note alone at the foot left about 130px of empty teal between them at 1440) */
+.case-nomara .cn-svc__list{margin-top:auto}
+.case-nomara .cn-svc .cn-note{color:var(--c-on-dark)}
+@media (min-width:1200px){
+  .case-nomara .cn-svc__list{gap:12px}
+  .case-nomara .cn-svc__list li{font-size:clamp(18px,1.5vw,22px)}
+  .case-nomara .cn-svc .cn-note{font-size:14px}
+}
+
+/* ---------------- sizes the shell's one-cell tiles cannot hold ----------------
+   (2026-11-24, the integration's vbugs pass) The services take two columns at
+   every width, so they also fill the cell above the palette that stood empty.
+   On a tablet (600 to 1199px, cells 150 to 232px) the trips' text and the
+   Istanbul page take two columns as well: one cell held two of the five
+   destinations and none of the note (it ran 178px past its tile at 768).
+   On a phone (under 600px, cells of about 150px) the same two columns: at 390
+   one cell held 239px of a 456px tile (three destinations and the note cut,
+   the heading broken before its comma). The kickers of the tiles that carry
+   a badge keep its width clear, so in Arabic the badge no longer sits on the
+   kicker (as the other cases do; NV-06 too, whose kicker ran under it in French). */
+.case-nomara .st-case__track > .cn-svc{grid-column:span 2}
+/* up to 1299px: the cells only reach their 232px cap at about 1290 (18vw),
+   and at 1200 one 216 x 270 cell held 304px of the trips (the note cut) */
+@media (max-width:1299px){
+  .case-nomara .st-case__track > .cn-trips,.case-nomara .st-case__track > .cn-shot{grid-column:span 2}
+}
+/* a small tablet (600 to 767px) has the shell's smallest cells (150 x 188px):
+   two of them held 230px of the trips' 188 (the note cut), three hold it;
+   the Istanbul page under it takes three too, so no cell stays empty */
+@media (min-width:600px) and (max-width:767px){
+  .case-nomara .st-case__track > .cn-trips,.case-nomara .st-case__track > .cn-shot{grid-column:span 3}
+}
+/* a 360px phone: 8px gaps keep the note off the tile's bottom padding */
+@media (max-width:599px){.case-nomara .cn-trips{gap:8px}}
+/* the clearance is a float on the kicker's first line only, so a kicker that
+   wraps in a one-cell tile (NV-03 at 1440) keeps its later lines full width */
+.case-nomara .cn-trips > .cn-k:first-child::before,.case-nomara .cn-svc > .cn-k:first-child::before,.case-nomara .cn-pal > .cn-k:first-child::before{content:"";float:right;width:72px;height:1px}
+:root[dir="rtl"] .case-nomara .cn-trips > .cn-k:first-child::before,:root[dir="rtl"] .case-nomara .cn-svc > .cn-k:first-child::before,:root[dir="rtl"] .case-nomara .cn-pal > .cn-k:first-child::before{float:left}
+
+/* ---------------- NV-06 colour and type ---------------- */
+.case-nomara .cn-card{display:flex;flex-direction:column;gap:12px;padding:16px;background:var(--cn-white);border:1px solid var(--c-line)}
+.case-nomara .cn-pal__sw{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;flex:1;min-height:0}
+.case-nomara .cn-pal__sw li{display:flex;align-items:flex-end;padding:8px;border-radius:10px;font-family:var(--cn-mono);font-size:var(--t-label);letter-spacing:.04em}
+.case-nomara .cn-sw--teal{background:var(--cn-sw-teal);color:var(--cn-white)}
+/* no ink reaches 4.5:1 on the mid teal (white 4.2, the night 4.3): its code sits on a night chip, 17:1 */
+.case-nomara .cn-sw__chip{padding:1px 4px;margin-inline-start:-4px;border-radius:4px;background:var(--cn-sw-night);color:var(--c-on-dark)}
+.case-nomara .cn-sw--coral{background:var(--cn-sw-coral);color:var(--c-fg)}
+.case-nomara .cn-sw--sand{background:var(--cn-sw-sand);color:var(--c-fg);border:1px solid var(--c-line)}
+.case-nomara .cn-sw--night{background:var(--cn-sw-night);color:var(--c-on-dark)}
+.case-nomara .cn-pal__type{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.case-nomara .cn-pal__aa{font-family:var(--f-disp);font-weight:800;font-size:28px;line-height:1;color:var(--cn-teal)}
+.case-nomara .cn-pal__name{font-weight:700;font-size:15px}
+.case-nomara .cn-pal__note{flex-basis:100%;font-size:13px;color:var(--c-muted)}
+
+/* ---------------- the scope ---------------- */
+.case-nomara .cn-scope{display:flex;flex-direction:column;gap:12px;padding:18px;background:var(--c-dark);color:var(--c-on-dark)}
+.case-nomara .cn-scope__head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.case-nomara .cn-scope__chip{padding:3px 8px;border-radius:999px;background:var(--c-bg);color:var(--c-dark);font-family:var(--cn-mono);font-weight:700;font-size:var(--t-label);line-height:1.2;letter-spacing:.1em;white-space:nowrap;transition:background-color var(--m-hover) var(--m-ease-enter)}
+:lang(ar) .case-nomara .cn-scope__chip{font-family:var(--f-mono);letter-spacing:0}
+/* every kind seen: the chip turns coral */
+.case-nomara .cn-scope:not(:has([data-scope]:not(.is-seen))) .cn-scope__chip{background:var(--c-accent)}
+.case-nomara .cn-scope__h{font-family:var(--f-disp);font-weight:800;font-size:clamp(17px,1.8vw,22px);line-height:1.15;text-wrap:balance}
+.case-nomara .cn-scope__note{font-size:13px;line-height:1.4;color:var(--cn-mint)}
+.case-nomara .cn-scope__list{flex:1;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:7px 14px;padding-top:10px;border-top:1px solid var(--cn-teal-2)}
+.case-nomara .cn-scope__list li{display:flex;gap:8px;align-items:center;font-size:13px;line-height:1.25;transition:color var(--m-hover) var(--m-ease-enter)}
+.case-nomara .cn-scope__list li::before{content:"";width:14px;height:14px;flex:none;border:1.5px solid var(--c-accent);border-radius:50%;transition:background-color var(--m-hover) var(--m-ease-enter)}
+/* a line not seen yet is the mint (6.0:1), not faded (.5 opacity gave 4.2:1), as on the Alliance case */
+html.js .case-nomara .cn-scope__list li{color:var(--cn-mint)}
+html.js .case-nomara .cn-scope__list li.is-seen{color:var(--c-on-dark)}
+.case-nomara .cn-scope__list li.is-seen::before{background:var(--c-accent)}
+@media (min-width:1111px){
+  .case-nomara .cn-scope__h{font-size:clamp(24px,2.4vw,34px)}
+  .case-nomara .cn-scope__note{font-size:14px}
+  /* the six lines stay together with the rule above them, centred between the heading and the button (spread evenly they ran over about 300px) */
+  .case-nomara .cn-scope__list{flex:none;margin-block:auto;align-content:start;gap:20px 24px;padding-top:22px}
+  .case-nomara .cn-scope__list li{font-size:17px;gap:10px}
+  .case-nomara .cn-scope__list li::before{width:16px;height:16px}
+}
+@media (max-width:599px){.case-nomara .cn-scope__list{grid-template-columns:1fr}}

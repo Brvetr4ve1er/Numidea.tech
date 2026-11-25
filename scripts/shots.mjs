@@ -24,7 +24,9 @@
  *
  * The Glaive demo has no preview any more (`demo: true`): it is a made-up
  * brand, one muted line under the four clients on the home page, not a card
- * with a capture.
+ * with a capture. The industrial directory (wave 3, 2026-11-24) is the same
+ * (`line: true`): a finished project on one line under the clients, its
+ * captures the sheet's (scripts/work-capture.mjs).
  *
  * Usage:
  *   npm install
@@ -51,12 +53,12 @@ const OUT = join(ROOT, 'assets', 'previews');
 // preview file → { capture: URL screenshotted, client: data-client slug on the
 // main page (the plate and card links carry it; check.mjs keeps them in step),
 // sheet: the work frame (assets/work/<sheet>.webp) of the same page, or null
-// where no sheet shows it (Nomara has no sheet), dark: the client's own dark
+// where no sheet frame shows the same window, dark: the client's own dark
 // scheme, as work-capture.mjs takes it for Alliance's trip pages }.
 // Alliance's home hero is a WebGL globe that draws black in headless Chromium
 // even on software GL (its sheet opens on #voyages for the same reason): its
 // preview is the Istanbul page, the sheet's d2, in French under a French nav.
-// capture stays on the netlify build even if a card links a production domain.
+// Alliance's capture follows its link to the agency's own domain (2026-11-24).
 export const PROJECTS = {
   bordjsteel:            { capture: 'https://bordjsteelb2b.netlify.app',          client: 'bordjsteel', sheet: 'bordjsteel/d1' },
   // the first card's: the references page (a steelwork under a crane, four
@@ -79,12 +81,14 @@ export const PROJECTS = {
   // Fleet 7 round 2: the home's destinations band, not a trip page (a black slab of 6 px text): the heading
   // is scrolled off and the first photographic cards fill the frame (#voyages, 230 px lower, the fixed nav and
   // the chat bubble out: bare 'all'). The hero is the WebGL globe that draws black headless; the card photos are the client's own.
-  alliancetravel:        { capture: 'https://alliancetravel34.netlify.app/#voyages', client: 'alliance', sheet: null, scroll: 230, align: ['a.trip-card', 301], bare: 'all', soft: 0.8 },
+  alliancetravel:        { capture: 'https://alliancetravel.app/#voyages', client: 'alliance', sheet: null, scroll: 230, align: ['a.trip-card', 301], bare: 'all', soft: 0.8 },
   // Fleet 7 round 4: the client's fixed nav hidden (bare 'all'): the nav's cut Arabic item and white strip were the one edge that differed
   nomara:                { capture: 'https://nomaravoyages.netlify.app',          client: 'nomara',     sheet: null, bare: 'all' },
   // the portfolio demo: its link on the home page carries data-client (check.mjs 5 pairs the slugs), but it has no
   // preview file: the home shows it as one line under the clients, not as a card with a capture
   glaive:                { capture: 'https://glaivestore.netlify.app',            client: 'glaive',     sheet: 'glaive/d1', demo: true },
+  // a finished project (wave 3): its link on the home page carries data-client too, and it has no preview file either
+  annuaire:              { capture: 'https://annuaire-dz.vercel.app/fr',          client: 'annuaire',   sheet: 'annuaire/d1', line: true },
 };
 
 /* The 16:10 window of each capture that keeps the client's h1, its lede and
@@ -241,7 +245,7 @@ async function capture(browser, file, { capture: url, dark, vp, bare, soft, scro
 
 async function run() {
   await mkdir(OUT, { recursive: true });
-  const targets = Object.entries(PROJECTS).filter(([file, p]) => !p.demo && (!only || file === only));
+  const targets = Object.entries(PROJECTS).filter(([file, p]) => !p.demo && !p.line && (!only || file === only));
   if (!targets.length) { console.log('Nothing to capture (no file matches).'); return; }
 
   if (!checkOnly) {

@@ -191,7 +191,7 @@ const ready = async () => {
 };
 const sceneCache = new Map(), mockCache = new Map();
 // the address shown in a browser frame: the live build each capture comes from
-const HOSTS = { bordjsteel: 'bordjsteelb2b.netlify.app', alliance: 'alliancetravel34.netlify.app', glaive: 'glaivestore.netlify.app' };
+const HOSTS = { bordjsteel: 'bordjsteelb2b.netlify.app', alliance: 'alliancetravel.app', glaive: 'glaivestore.netlify.app' };
 let made = 0;
 try {
   for (const ad of ads) {

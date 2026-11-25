@@ -209,10 +209,12 @@ html[dir="rtl"] .intro h1{font-family:var(--ar);font-weight:700;line-height:1.25
 .sh-no{font:500 12px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
 .sh-head h2{font:700 clamp(26px,3.2vw,40px)/1.1 var(--display);letter-spacing:.01em}
 .chip{font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:999px;border:1px solid}
-.chip.is-live{color:var(--teal);border-color:color-mix(in srgb,var(--teal) 55%,transparent)}
+/* a finished project that is not counted among the delivered clients (wave 3: the industrial directory) wears the
+   live site's teal; the studio's own site, the product's plain ink */
+.chip.is-live,.chip.is-finished{color:var(--teal);border-color:color-mix(in srgb,var(--teal) 55%,transparent)}
 .chip.is-concept{color:var(--gold);border-color:color-mix(in srgb,var(--gold) 55%,transparent)}
 /* our product's chip: the plain ink (the themes have no third accent; it was a violet of its own) */
-.chip.is-product{color:var(--ink);border-color:color-mix(in srgb,var(--ink) 55%,transparent)}
+.chip.is-product,.chip.is-own{color:var(--ink);border-color:color-mix(in srgb,var(--ink) 55%,transparent)}
 .visit{margin-inline-start:auto;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;
   border-radius:8px;border:1px solid var(--line-2);text-decoration:none;font:500 14px var(--body);transition:border-color var(--t-hover),background-color var(--t-hover)}
 @media (hover:hover){.visit:hover{border-color:var(--gold);background:var(--panel)}}
