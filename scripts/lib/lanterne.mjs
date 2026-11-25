@@ -657,6 +657,9 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...
     };
     need('lant.shelf.minutes', 'the shelf'); need('lant.shelf.start', 'the shelf');
     const minT = (slug) => { const n = minutes(slug); return `<span class="book__min" data-lt-tpl="lant.shelf.minutes" data-lt-n="${n}">${esc(fr('lant.shelf.minutes').replace('{n}', n))}</span>`; };
+    /* the atlas as an object (2026-11-25): a hardcover lying on the night table, its page block under the cover, a ribbon
+       whose length is the progress (--p, set by hub/lanterne.js); the cover lifts on its spine on hover. CSS only. */
+    const atlas = (cover) => `<span class="book__obj"><span class="book__pages"></span>${cover}<span class="book__rib"></span></span>`;
     const book = (b) => {
       const A = ATLAS[b.slug], ids = A ? A.acts.flatMap((a) => a.districts) : b.ids;
       let coverHtml;
@@ -670,7 +673,7 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...
       const n = ids.length;
       return `
         <li class="book" data-lt-book="${b.slug}" style="--spine:${b.accent}">
-          ${A ? `<a class="book__link" href="${b.slug}.html" tabindex="-1" aria-hidden="true">${coverHtml}</a>` : coverHtml}
+          ${A ? `<a class="book__link" href="${b.slug}.html" tabindex="-1" aria-hidden="true">${atlas(coverHtml)}</a>` : `<div class="book__link" aria-hidden="true">${atlas(coverHtml)}</div>`}
           <div class="book__body">${b.start && A ? `
             <a class="book__start" href="${b.slug}.html" data-i18n="lant.shelf.start"></a>` : ''}
             <p class="book__kind" data-i18n="lant.book.${b.slug}.kind"></p>

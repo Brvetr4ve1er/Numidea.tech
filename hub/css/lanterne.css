@@ -358,12 +358,18 @@ html:not(.js) .ks img,html:not(.js) .ks__d,html:not(.js) .ks__n{display:none}
 .books{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:22px;align-items:start;padding-inline:6px}
 @media (min-width:900px){
   .book:only-child{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
-  .book:only-child .book__link,.book:only-child>.book__cover{height:100%}
-  .book:only-child .book__cover{height:100%;min-height:100%;aspect-ratio:auto;border-bottom:0;border-inline-end:2px solid var(--ink)}
+  .book:only-child .book__link{display:flex;align-items:center;height:100%;border-bottom:0;border-inline-end:2px solid var(--ink)}
+  .book:only-child .book__obj{flex:1}
 }
-.book{display:flex;flex-direction:column;background:var(--cream);border:2px solid var(--ink);border-inline-start:14px solid var(--spine);box-shadow:var(--shadow);min-width:0}
-.book__cover{display:block;aspect-ratio:16/9;overflow:hidden;border-bottom:2px solid var(--ink);background:var(--navy);position:relative;box-shadow:inset 0 0 0 6px var(--navy)}
-.book__cover::after{content:"";position:absolute;inset-inline:0;bottom:0;height:8px;background:var(--spine);border-top:2px solid var(--ink)}
+.book{display:flex;flex-direction:column;background:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow);min-width:0}
+.book__cover{display:block;aspect-ratio:16/9;overflow:hidden;background:var(--navy);position:relative;border:2px solid var(--ink);border-inline-start:16px solid var(--spine);box-shadow:inset 0 0 0 5px var(--navy)}
+/* the spine's two raised bands and the brass corners at the fore-edge */
+.book__cover::before{content:"";position:absolute;inset-block:0;inset-inline-start:0;width:3px;background:rgba(33,30,27,.35);z-index:1}
+.book__cover::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to bottom left,var(--amber) 0 14px,var(--ink) 14px 16px,transparent 16px) top right/28px 28px no-repeat,
+    linear-gradient(to top left,var(--amber) 0 14px,var(--ink) 14px 16px,transparent 16px) bottom right/28px 28px no-repeat,
+    linear-gradient(170deg,rgba(255,226,184,.14),transparent 38%)}
+.book__cover:dir(rtl)::after{transform:scaleX(-1)}
 .book__cover>img:first-child{width:100%;height:100%;object-fit:cover}
 /* « Le cours du soir »: the owner's composition, contained */
 .book__comp{position:relative;display:block;height:100%;aspect-ratio:3/2;margin-inline:auto;max-width:100%}
@@ -511,7 +517,27 @@ html:not(.js) .ks img,html:not(.js) .ks__d,html:not(.js) .ks__n{display:none}
 .hero__art--scene{margin:0;aspect-ratio:16/9}
 .hero__art--scene .hero__back{object-fit:contain}
 /* the shelf's books */
-.book__link{display:block;text-decoration:none}
+/* the atlas on the night table (2026-11-25): navy lamp-lit stage, the table's front edge, a hardcover in perspective */
+.book__link{display:block;text-decoration:none;position:relative;padding:24px 30px 38px;background:radial-gradient(120% 95% at 50% 0,var(--navy-2),var(--navy) 66%);border-bottom:2px solid var(--ink);perspective:1100px;overflow:hidden}
+.book__link::after{content:"";position:absolute;inset-inline:0;bottom:0;height:16px;background:linear-gradient(var(--wood) 0 55%,var(--wood-2) 55%);border-top:2px solid var(--ink)}
+.book__obj{--dx:1px;display:block;position:relative;z-index:1;transform:rotateX(8deg);transform-origin:50% 100%;perspective:900px}
+.book__obj:dir(rtl){--dx:-1px}
+.book__pages,.book__obj>.book__cover{--stack:calc(var(--dx)*1) 1px 0 #F3E6CC,calc(var(--dx)*2) 2px 0 #C9B48E,calc(var(--dx)*3) 3px 0 #F3E6CC,calc(var(--dx)*4) 4px 0 #C9B48E,calc(var(--dx)*5) 5px 0 #F3E6CC,calc(var(--dx)*6) 6px 0 #C9B48E,calc(var(--dx)*7) 7px 0 #F3E6CC,calc(var(--dx)*9) 9px 0 var(--ink),calc(var(--dx)*14) 16px 18px rgba(0,0,0,.5);box-shadow:var(--stack)}
+.book__obj>.book__cover{box-shadow:inset 0 0 0 5px var(--navy),var(--stack)}
+/* the first page under the cover: parchment, a few ruled lines */
+.book__pages{position:absolute;inset:0;background:repeating-linear-gradient(transparent 0 15px,rgba(110,75,51,.22) 15px 16px) 0 22%/100% 60% no-repeat,#F3E6CC;border:2px solid var(--ink);border-inline-start:16px solid var(--wood-2)}
+.book__obj>.book__cover{transform-origin:0 50%;backface-visibility:hidden}
+.book__obj:dir(rtl)>.book__cover{transform-origin:100% 50%}
+/* the ribbon: a stub before the first district, longer with each one won */
+.book__rib{position:absolute;inset-inline-end:20%;top:100%;width:14px;height:calc(16px + var(--p,0) * 22px);margin-top:-2px;background:linear-gradient(90deg,#D2603F 0 60%,#A8442E 60%);border:2px solid var(--ink);border-top:0;clip-path:polygon(0 0,100% 0,100% 100%,50% calc(100% - 6px),0 100%)}
+.book[style*="--p: 1"] .book__rib,.book[style*="--p:1"] .book__rib{background:linear-gradient(90deg,var(--amber) 0 60%,#C98A3A 60%)}
+@media (prefers-reduced-motion:no-preference){
+  html:not(.motion-off) .book__obj,html:not(.motion-off) .book__obj>.book__cover{transition:transform var(--m-hover) var(--m-ease-enter)}
+  html:not(.motion-off) .book:is(:hover,:focus-within) .book__obj{transform:rotateX(3deg) translateY(-3px)}
+  html:not(.motion-off) .book:is(:hover,:focus-within) .book__obj>.book__cover{transform:rotateY(-38deg) scale(.9)}
+  html:not(.motion-off) .book:is(:hover,:focus-within) .book__obj:dir(rtl)>.book__cover{transform:rotateY(38deg) scale(.9)}
+}
+@media (max-width:520px){.book__link{padding:18px 22px 34px}}
 .book__note{font-size:13px;line-height:1.45;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
 /* the shop's Studio blocks after the books */
 .lt-shelf .st-radio{margin-top:72px}

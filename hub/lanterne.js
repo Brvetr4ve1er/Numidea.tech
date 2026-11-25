@@ -696,6 +696,7 @@
       if (card && b.live) {
         var cnt = $('[data-lt-count]', card); if (cnt) cnt.textContent = tp('lant.shelf.count', b.ids.length, { n: got.length, N: b.ids.length });
         $$('[data-lt-with]', card).forEach(function (n) { n.textContent = t('lant.shelf.with', { g: t('lant.cast.' + n.getAttribute('data-lt-with')) }); });
+        card.style.setProperty('--p', String(got.length / b.ids.length));
         var bar = $('[data-lt-bar]', card); if (bar) bar.style.setProperty('--p', String(got.length / b.ids.length));
         var r = resumeOf(S, b.acts), ga = $('[data-lt-book-go]', card);
         if (r && ga) { ga.firstElementChild.textContent = t('lant.shelf.resume', { q: t(b.d[r].name) }); ga.setAttribute('href', b.slug + '.html#' + r); }
