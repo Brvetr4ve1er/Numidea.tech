@@ -345,9 +345,11 @@ export function lanterne(ctx) {
       const cap2 = k === 'toggle' && fr(`lant.lo.${oid}.cap2`) != null;
       const capEl = cap2 ? `<figcaption class="lo__cap"><span data-lo-cap="1" data-i18n="${o.cap}"></span><span data-lo-cap="2" hidden data-i18n="lant.lo.${oid}.cap2"></span></figcaption>` : `<figcaption class="lo__cap" data-i18n="${o.cap}"></figcaption>`;
       const data = k === 'play' ? ` data-lo-ms="${o.ms}"` : k === 'slide' ? ` data-lo-win="${o.range.win}" data-lo-runs="${o.range.runs}" data-lo-fmt="lant.lo.${oid}.out" style="--lo-v:${o.range.value}"` : ` data-lo-n="${o.n}"${k === 'steps' ? ' data-lo-fmt="lant.ui.lo.step"' : ''}`;
+      /* the figcaption is the figure's first child (HTML wants it first or last); the stylesheet orders the band below the drawing */
       return `<figure class="lo lo--${oid} lp-${oid}" data-lo="${oid}" data-lo-kind="${k}"${data}>
+              ${capEl}
               <div class="lo__stage" dir="ltr" role="img" data-i18n-aria="lant.lo.${oid}.alt">${o.css ? o.svg.replace(/^(<svg\b[^>]*>)/, `$1<style>${o.css}</style>`) : o.svg}</div>
-              ${legend}${capEl}
+              ${legend}
               <div class="lo__bar js-only">${ctl}</div>${k === 'play' ? '' : '<p class="sr" aria-live="polite" data-lo-now></p>'}
             </figure>`;
     };
