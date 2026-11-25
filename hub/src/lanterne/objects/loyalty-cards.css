@@ -1,0 +1,10 @@
+/* loyalty-cards · steps (9). Default markup = step 9 (both cards full); the two gifted boxes on the 10-card stay brass, so the head start still reads in the final frame (fix round 1). Each press: the next circle fills (167 ms) and the stamp dips once. */
+.lp-loyalty-cards [data-s]{transition-duration:var(--m-quick)}
+.lp-loyalty-cards .lp-loyalty-cards-num{font-size:15px}
+@media (prefers-reduced-motion:no-preference){
+html:not(.motion-off) .lp-loyalty-cards.is-step .lp-loyalty-cards-st{animation:lp-loyalty-cards-dip var(--m-quick) cubic-bezier(.16,1,.3,1) 1}
+@keyframes lp-loyalty-cards-dip{50%{transform:translateY(6px)}}
+}
+@media (prefers-reduced-motion:reduce){.lp-loyalty-cards *{animation:none!important;transition:none!important}}
+/* the drawing's own line weights (2026-11-24: moved out of style="", which carries custom properties only; one class each, unscoped, so a <use> copy keeps it) */
+.lo-loyalty-cards-s0{stroke-width:1}

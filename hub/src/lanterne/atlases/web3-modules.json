@@ -260,7 +260,8 @@
         "keep": "lant.at.w3m.keep",
         "ex.t": "lant.at.w3m.ex.t",
         "ex.brief": "lant.at.w3m.ex.brief"
-      }
+      },
+      "object": "seal-ring"
     },
     "m21": {
       "guide": "ratman",
@@ -289,7 +290,8 @@
         "keep": "lant.at.w3m.keep",
         "ex.t": "lant.at.w3m.ex.t",
         "ex.brief": "lant.at.w3m.ex.brief"
-      }
+      },
+      "object": "block-chain"
     },
     "m22": {
       "guide": "raven",
@@ -500,7 +502,8 @@
       "tools": {
         "k": "lant.tools.in.w3",
         "at": "tl-crypto"
-      }
+      },
+      "object": "spare-key"
     },
     "m41": {
       "guide": "ratman",

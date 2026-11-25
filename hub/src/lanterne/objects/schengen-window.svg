@@ -1,0 +1,14 @@
+<svg viewBox="0 0 360 240" class="lo-svg lp-schengen-window-svg" aria-hidden="true" focusable="false">
+<path class="l-k1 l-so" opacity=".35" d="M0 200H360"/>
+<path class="l-k1 l-so lo-schengen-window-s0" opacity=".5" d="M48 30h.1M120 18h.1M210 34h.1M300 22h.1M336 52h.1"/>
+<path class="l-p l-k1" d="M30 124L330 124L330 136L30 136L30 124Z"/>
+<path class="l-k1 lo-schengen-window-s1" d="M41 136v6M52 136v3M63 136v3M74 136v3M85 136v3M96 136v6M107 136v3M118 136v3M129 136v3M140 136v3M151 136v6M162 136v3M173 136v3M184 136v3M195 136v3M206 136v6M217 136v3M228 136v3M239 136v3M250 136v3M261 136v6M272 136v3M283 136v3M294 136v3M305 136v3M316 136v6M327 136v3"/>
+<path class="l-a l-k1" d="M41 121H96V139H41ZM97 121H130V139H97Z"/>
+<path class="l-k1 l-so" d="M45 125h20"/>
+<text class="l-t" x="41" y="168" text-anchor="middle" data-i18n="lant.lo.schengen-window.t.0"></text>
+<text class="l-t" x="96" y="180" text-anchor="middle" data-i18n="lant.lo.schengen-window.t.1"></text>
+<text class="l-t" x="130" y="168" text-anchor="middle" data-i18n="lant.lo.schengen-window.t.2"></text>
+<g transform="translate(41 100) rotate(18)"><path class="l-c l-k1" d="M-11-6L11 0L-11 6L-7 0Z"/></g>
+<path class="l-c l-k1" d="M87 66H105V92H87Z"/><path class="l-n2" d="M90 69H102V92H90Z"/><path class="l-p l-k1" d="M102 69L111 73V96L102 92Z"/><circle class="l-i" cx="104" cy="82" r="1.2"/><path class="l-k1" stroke-dasharray="2 2" d="M96 96V118"/>
+<defs><path id="lp-schengen-window-w" d="M-68 108H130V152H-68Z"/></defs><g class="lp-schengen-window-win"><use href="#lp-schengen-window-w" class="l-k lo-schengen-window-s2"/><use href="#lp-schengen-window-w" class="l-k l-sa lo-schengen-window-s3"/><path class="l-a l-k1" d="M130 98l-6-8h12z"/></g>
+</svg>

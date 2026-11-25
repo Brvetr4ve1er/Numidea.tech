@@ -151,6 +151,76 @@ export function lanterne(ctx) {
     if (/^(012)+0?1?$/.test(ids.map((id) => A.districts[id] && A.districts[id].right).join(''))) fail(`${at}: the right answers follow the 0,1,2 cycle`);
   }
 
+  /* ---------------- the Lantern objects and the owner's panels (2026-11-24, lb2 SPEC §4) ----------------
+     objects/<id>.svg (+ <id>.css, its own sheet, inlined as the drawing's <style>) and objects/<id>.json (kind, ms or n or
+     range, atlas, stop, an optional caption key): a code-drawn teaching machine, one idea, set in a district's dossier after
+     its rule ("object"); its strings are lant.lo.<id>.* in the dictionaries. art.json's "panels": the owner's pictures on a
+     cream mat, in the dossier ("panel") or in the exercise ("panelEx", at the partial's <!--lt:panel--> or before the board).
+     Refused: an unknown id, a missing file, an object and a panel in one dossier, one object or one panel used twice, a play
+     over 5 s, more than 9 steps, a drawing over 5,000 bytes or a sheet over 3,000 (minified), anything a drawing must not
+     carry (script, handlers, an outside href, foreignObject, image, @import, filter, gradient, a hex or rgb colour, a loop) */
+  const OD = join(LS, 'objects'), OBJ = {};
+  const minSvg = (s) => s.replace(/<!--[\s\S]*?-->/g, '').replace(/>\s+</g, '><').replace(/\s+/g, ' ').trim();
+  const minCss = (s) => s.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s+/g, ' ').replace(/\s*([{};,>])\s*/g, '$1').replace(/;}/g, '}').trim();
+  for (const f of existsSync(OD) ? readdirSync(OD).filter((x) => x.endsWith('.json')).sort() : []) {
+    const id = f.slice(0, -5), at = `hub/src/lanterne/objects/${id}`, m = json(join(OD, f));
+    if (!m) continue;
+    if (!/^[a-z][a-z0-9-]*$/.test(id)) fail(`${at}.json: an object's id is lower case, digits and hyphens`);
+    if (!existsSync(join(OD, `${id}.svg`))) { fail(`${at}.svg: missing`); continue; }
+    const svg = minSvg(readFileSync(join(OD, `${id}.svg`), 'utf8')).replace(/(<text\b[^>]*\sdata-i18n="[^"]+"[^>]*>)[^<]*(<\/text>)/g, '$1$2');
+    const css = existsSync(join(OD, `${id}.css`)) ? minCss(readFileSync(join(OD, `${id}.css`), 'utf8')) : '';
+    if (!/^<svg\b[^>]*\sviewBox="0 0 360 240"[^>]*\saria-hidden="true"[^>]*>/.test(svg) || !/\bclass="lo-svg\b/.test(svg)) fail(`${at}.svg: the root is <svg viewBox="0 0 360 240" class="lo-svg …" aria-hidden="true">`);
+    if (Buffer.byteLength(svg) > 5000) fail(`${at}.svg: ${Buffer.byteLength(svg)} bytes minified, over 5,000`);
+    if (Buffer.byteLength(css) > 3000) fail(`${at}.css: ${Buffer.byteLength(css)} bytes minified, over 3,000`);
+    for (const [re, what] of [[/<script|<foreignObject|<image\b|\son[a-z]+=|@import|<filter|filter:|Gradient|blur\(/i, 'a script, a handler, foreignObject, image, @import, a filter, a gradient or a blur'],
+      [/#[0-9a-f]{3,8}\b(?![-\w])|rgba?\(|hsla?\(/i, 'a typed colour (hex, rgb, hsl): the kit\'s classes or var(--token) only'], [/infinite|iteration-count:\s*(?!1\b)/i, 'a loop (infinite, or an iteration count other than 1)']])
+      if (re.test(svg.replace(/\s(?:href|id)="#?lo?p?-[a-z0-9-]+"/g, '')) || re.test(css)) fail(`${at}: carries ${what}`);
+    for (const h of svg.matchAll(/\shref="([^"]*)"/g)) if (!/^#l[op]-/.test(h[1])) fail(`${at}.svg: href="${h[1]}" (only a local #lo-<id>-… or #lp-<id>-… fragment)`);
+    if (!['play', 'steps', 'toggle', 'slide'].includes(m.kind)) fail(`${at}.json: kind "${m.kind}" (play, steps, toggle or slide)`);
+    if (m.kind === 'play' && !(m.ms > 0 && m.ms <= 5000)) fail(`${at}.json: a play runs at most 5,000 ms (${m.ms})`);
+    if ((m.kind === 'steps' || m.kind === 'toggle') && !(m.n >= 2 && m.n <= 9)) fail(`${at}.json: 2 to 9 steps (${m.n})`);
+    if (m.kind === 'slide' && !(m.range && m.range.min < m.range.max && m.range.value >= m.range.min && m.range.value <= m.range.max && m.range.win > 0 && /^(-?\d+--?\d+)(,-?\d+--?\d+)*$/.test(m.range.runs || ''))) fail(`${at}.json: a slide needs range {min, max, value, win, runs}`);
+    const cap = m.cap || `lant.lo.${id}.cap`;
+    need(cap, at); need(`lant.lo.${id}.alt`, at);
+    for (const k of [...svg.matchAll(/\sdata-i18n="([^"]+)"/g)].map((x) => x[1])) need(k, `${at}.svg`);
+    if (m.kind === 'toggle') { need(`lant.lo.${id}.b.0`, at); need(`lant.lo.${id}.b.1`, at); }
+    /* a toggle's second state may carry its own caption (lant.lo.<id>.cap2, fix round 1: the caption never contradicts the frame) */
+    if (fr(`lant.lo.${id}.cap2`) != null && m.kind !== 'toggle') fail(`${at}: cap2 is a toggle's second caption (${m.kind})`);
+    if (m.kind === 'slide') { need(`lant.lo.${id}.ctl`, at); need(`lant.lo.${id}.out`, at); }
+    for (const l of LANGS) for (const k of Object.keys(DICT.fr).filter((x) => x.startsWith(`lant.lo.${id}.`))) if (DICT[l][k] == null) fail(`${at}: ${k} has no ${l} line`);
+    OBJ[id] = { ...m, svg, css, cap, used: null };
+  }
+  const PANELS = ART.panels || {}, panelUse = new Map();
+  for (const [id, p] of Object.entries(PANELS)) {
+    for (const s of [p.src, p.small && p.small.src]) if (s && !existsSync(join(HUB, s))) fail(`hub/src/lanterne/art.json panels.${id}: ${s} is not a file under hub/`);
+    if (p.cap) need(p.cap, `art.json panels.${id}`);
+    need(p.alt, `art.json panels.${id}`);
+  }
+  const usePanel = (id, where) => { if (!PANELS[id]) { fail(`${where}: unknown panel "${id}" (art.json panels)`); return false; } if (panelUse.has(id)) fail(`${where}: the panel ${id} is already shown in ${panelUse.get(id)} (one place each)`); panelUse.set(id, where); return true; };
+  for (const b of live) {
+    const A = ATLAS[b.slug];
+    for (const id of A.acts.flatMap((a) => a.districts)) {
+      const d = A.districts[id], where = `hub/src/lanterne/atlases/${b.slug}.json ${id}`;
+      if (!d) continue;
+      if (d.object && d.panel) fail(`${where}: an object and a panel in one dossier (one or the other)`);
+      for (const [oid, w] of [[d.object, where], [d.objectEx, `${where} (exercise)`]]) {
+        if (!oid) continue;
+        const o = OBJ[oid];
+        if (!o) fail(`${w}: unknown object "${oid}" (hub/src/lanterne/objects/)`);
+        else if (o.used) fail(`${w}: the object ${oid} is already in ${o.used} (one place each)`);
+        else { o.used = w; if (o.atlas !== b.slug || o.stop !== id) fail(`${w}: objects/${oid}.json names ${o.atlas} ${o.stop}`); }
+      }
+      if (d.panel) usePanel(d.panel, where);
+      if (d.panelEx) usePanel(d.panelEx, `${where} (exercise)`);
+    }
+    for (const f of existsSync(join(LS, 'ex', b.slug)) ? readdirSync(join(LS, 'ex', b.slug)) : []) {
+      const h = readFileSync(join(LS, 'ex', b.slug, f), 'utf8');
+      for (const m of h.matchAll(/\ssrc="[^"]*img\/lanterne\/panels\/([a-z0-9-]+)\.webp"/g)) usePanel(m[1], `hub/src/lanterne/ex/${b.slug}/${f}`);
+    }
+  }
+  for (const [id, o] of Object.entries(OBJ)) if (!o.used) notes.push(`the Librairie: the object ${id} is in no district yet`);
+  for (const id of Object.keys(PANELS)) if (!panelUse.has(id)) notes.push(`the Librairie: the panel ${id} is shown nowhere yet`);
+
   /* ---------------- derived keys, in every language (never typed) ----------------
      a book's kind without its slash form, its line as the lead's first sentence; a page's title and description;
      the Studio's third door counts the published atlases and the counter's services */
@@ -259,6 +329,34 @@ export function lanterne(ctx) {
     /* a long rule (the nine modules: 126 to 178 words) reads in the body weight, its first sentence bold (L-05): hub/lanterne.js
        sets the first sentence apart in the page's language (two derived keys would have put 100 kB more in hub/i18n.js) */
     const ruleT = (id) => `<p class="rule__t${A.ruleLead ? ' rule__t--long' : ''}" data-i18n="${dk(A, id, 'rule')}"></p>`;
+    /* a Lantern object after the rule (lb2 SPEC §4.2): the drawing on its navy ground (left to right whatever the page's
+       direction, like the course's calculators), its caption, its control; the markup is the final teaching frame */
+    const loFig = (oid) => {
+      const o = OBJ[oid], k = o.kind, L = (l, key, hid) => `<span data-lo-l="${l}"${hid ? ' hidden' : ''} data-i18n="${key}"></span>`;
+      const ctl = k === 'play' ? `<button type="button" class="lo__btn" data-lo-btn>${L('play', 'lant.ui.lo.play')}${L('replay', 'lant.ui.lo.replay', 1)}</button>`
+        : k === 'steps' ? `<button type="button" class="lo__btn" data-lo-btn>${L('steps', 'lant.ui.lo.steps')}${L('next', fr(`lant.lo.${oid}.next`) != null ? `lant.lo.${oid}.next` : 'lant.ui.lo.next', 1)}${L('restart', 'lant.ui.lo.restart', 1)}</button>`
+        : k === 'toggle' ? `<button type="button" class="lo__btn" data-lo-b="1" aria-pressed="true" data-i18n="lant.lo.${oid}.b.0"></button><button type="button" class="lo__btn" data-lo-b="2" aria-pressed="false" data-i18n="lant.lo.${oid}.b.1"></button>`
+        : `<label class="lo__ctl"><span data-i18n="lant.lo.${oid}.ctl"></span><input type="range" min="${o.range.min}" max="${o.range.max}" step="1" value="${o.range.value}" dir="ltr" data-lo-range></label><output class="lo__out" data-lo-out></output>`;
+      /* a line with a {count} is the controller's to fill, from the page's dictionary (never typed into the markup) */
+      /* the drawing's word labels again, in the cream band under it, shown only where the drawing is narrower than 340 px
+         (fix round 1: an 11 px label in a 360-unit drawing reads at 6.5 px at 280); numbers stay in the drawing */
+      const keys = [...new Set([...o.svg.matchAll(/<text\b[^>]*\bclass="[^"]*\bl-ti?\b[^"]*"[^>]*\sdata-i18n="([^"]+)"/g)].map((x) => x[1]).filter((x) => /\p{L}/u.test(fr(x) || '')))];
+      const legend = keys.length ? `<p class="lo__keys" aria-hidden="true">${keys.map((x) => `<span data-i18n="${x}"></span>`).join('')}</p>` : '';
+      const cap2 = k === 'toggle' && fr(`lant.lo.${oid}.cap2`) != null;
+      const capEl = cap2 ? `<figcaption class="lo__cap"><span data-lo-cap="1" data-i18n="${o.cap}"></span><span data-lo-cap="2" hidden data-i18n="lant.lo.${oid}.cap2"></span></figcaption>` : `<figcaption class="lo__cap" data-i18n="${o.cap}"></figcaption>`;
+      const data = k === 'play' ? ` data-lo-ms="${o.ms}"` : k === 'slide' ? ` data-lo-win="${o.range.win}" data-lo-runs="${o.range.runs}" data-lo-fmt="lant.lo.${oid}.out" style="--lo-v:${o.range.value}"` : ` data-lo-n="${o.n}"${k === 'steps' ? ' data-lo-fmt="lant.ui.lo.step"' : ''}`;
+      return `<figure class="lo lo--${oid} lp-${oid}" data-lo="${oid}" data-lo-kind="${k}"${data}>
+              <div class="lo__stage" dir="ltr" role="img" data-i18n-aria="lant.lo.${oid}.alt">${o.css ? o.svg.replace(/^(<svg\b[^>]*>)/, `$1<style>${o.css}</style>`) : o.svg}</div>
+              ${legend}
+              <div class="lo__bar js-only">${ctl}</div>${k === 'play' ? '' : '<p class="sr" aria-live="polite" data-lo-now></p>'}
+              ${capEl}
+            </figure>`; /* the caption closes the figure (HTML allows it first or last only); the stylesheet shows it above the controls */
+    };
+    /* an owner's panel on its cream mat (lb2 SPEC §4.2): rises once when it first comes into view (hub/lanterne-objects.js) */
+    const panelFig = (pid, where) => {
+      const p = PANELS[pid], sz = where === 'dossier' ? '(max-width:400px) 78vw, 304px' : '(max-width:400px) 78vw, 304px';
+      return `<figure class="lt-panel lt-panel--${where}" data-lo-enter><img src="${up(p.src)}"${p.small ? ` srcset="${up(p.small.src)} ${p.small.w}w, ${up(p.src)} ${p.w}w" sizes="${p.w > p.h * 1.2 ? '(max-width:400px) 78vw, 344px' : sz}"` : ''} width="${p.w}" height="${p.h}" alt="" data-i18n-alt="${p.alt}" loading="lazy" decoding="async">${p.cap ? `<figcaption data-i18n="${p.cap}"></figcaption>` : ''}</figure>`;
+    };
     const district = (id, i) => {
       const d = A.districts[id], act = actOf(id), pl = ART.plates[plateOf(A, id)], after = d.ask === 'after', wide = !!pl.wide;
       const hasCut = !!(d.lead || d.companion || d.prop);
@@ -266,7 +364,13 @@ export function lanterne(ctx) {
       const prevId = ids[i - 1], strip = !!prevId && actOf(prevId) === act && plateOf(A, prevId) === plateOf(A, id);
       /* « read each explanation » is a reading, not the quarter's exercise: the district is done by its situation (L-07) */
       const read = d.ex === 'pick';
-      const board = part(id);
+      /* the exercise's panel: where the partial holds <!--lt:panel-->, else just before the board */
+      const exPanel = d.panelEx && PANELS[d.panelEx] ? panelFig(d.panelEx, 'terrain') : '';
+      /* the exercise's object (fix round 1, "objectEx"): just before the board, in the column beside it on a wide screen */
+      const exObj = d.objectEx && OBJ[d.objectEx] ? loFig(d.objectEx).replace('<figure class="lo ', '<figure class="lo lo--terrain ') : '';
+      let board = part(id);
+      if (exPanel && board.includes('<!--lt:panel-->')) board = board.replace('<!--lt:panel-->', exPanel);
+      const exBefore = exPanel && !part(id).includes('<!--lt:panel-->') ? exPanel : '';
       /* a wide plate (a module header, house art: SPEC §3.3, §4.4) is shown alone in its frame, without parallax; the
          district's guide and companion stand beside it, on the paper, never on it */
       const frame = wide ? `<div class="dio__frame">
@@ -274,7 +378,7 @@ export function lanterne(ctx) {
               </div>
               ${hasCut ? `<div class="dio__paper">${d.companion ? cutImg(d.companion, 'dio__comp', '0', i === 0) : ''}${d.lead ? cutImg(d.lead, 'dio__lead', '0', i === 0) : ''}</div>` : ''}` : `<div class="dio__frame"${hasCut ? ' data-lt-parallax' : ''}>
                 ${plateImg(pl, i === 0, 'dio__plate', hasCut ? '.36' : '0')}
-                ${d.prop ? cutImg(d.prop, 'dio__prop', '-.52', i === 0) : ''}
+                ${d.prop ? cutImg(d.prop, `dio__prop${d.propAt === 'left' ? ' dio__prop--left' : ''}`, '-.52', i === 0) : ''}
                 ${d.companion ? cutImg(d.companion, 'dio__comp', '-.72', i === 0) : ''}
                 ${d.lead ? cutImg(d.lead, 'dio__lead', '1.05', i === 0) : ''}
               </div>`;
@@ -298,7 +402,9 @@ export function lanterne(ctx) {
             <h3 class="dossier__h" id="${id}-h" tabindex="-1" data-i18n="${dk(A, id, 'name')}"></h3>
             <p class="dossier__sub"><span data-i18n="${dk(A, id, 'sub')}"></span> · <span data-lt-with="${d.guide}">${esc(fr('lant.ui.with').replace('{g}', fr(castName(d.guide))))}</span></p>
             <p class="dossier__lore" data-i18n="${dk(A, id, 'lore')}"></p>
-            <div class="rule"><p class="k" data-i18n="lant.ui.rule"></p>${ruleT(id)}</div>
+            <div class="rule"><p class="k" data-i18n="lant.ui.rule"></p>${ruleT(id)}</div>${d.object && OBJ[d.object] ? `
+            ${loFig(d.object)}` : ''}${d.panel && PANELS[d.panel] ? `
+            ${panelFig(d.panel, 'dossier')}` : ''}
             ${more}${toolsLine}
             ${after ? '' : sit(id)}
             <p class="keep" hidden>${ksImg(A, id, 48)}<span data-lt-keep></span></p>
@@ -311,7 +417,9 @@ export function lanterne(ctx) {
             <div><p class="k" data-i18n="${read ? 'lant.ui.readK' : 'lant.ui.exK'}"></p><h3 class="terrain__h" id="${id}-ex-h" data-i18n="${dk(A, id, 'ex.t')}"></h3></div>
             ${read ? '' : `<p class="badge-wrap js-only"><span class="badge" data-lt-badge data-i18n="lant.ui.badgeOpen"></span>${d.ex === 'bins' ? '<span class="badge__score" data-lt-score hidden></span><button type="button" class="lnk lnk--btn badge__redo" data-lt-redo hidden><span data-i18n="lant.ui.redo"></span></button>' : ''}</p>`}
           </div>
-          <p class="terrain__brief" data-i18n="${dk(A, id, 'ex.brief')}"></p>
+          <p class="terrain__brief" data-i18n="${dk(A, id, 'ex.brief')}"></p>${exBefore ? `
+          ${exBefore}` : ''}${exObj ? `
+          ${exObj}` : ''}
           <div class="board" data-lt-ex="${esc(d.ex)}" data-lt-id="${id}">${board || '<p class="board__nojs" data-i18n="lant.ui.noJs"></p>'}</div>
           <p class="result" role="status" data-lt-result></p>
           ${after ? sit(id) : ''}
@@ -392,6 +500,7 @@ export function lanterne(ctx) {
       cut: { kuro: up(ART.cut.kuro.src) },
     };
     const page = P;
+    const loPage = ids.some((id) => A.districts[id].object || A.districts[id].objectEx || A.districts[id].panel || A.districts[id].panelEx) || /img\/lanterne\/panels\//.test(['_sac', '_end', '_hero', '_journal'].map(part).join(''));
     const title = fr(ak(A, 'title1')) + ' ' + fr(ak(A, 'title2'));
     const html = `${headFor(`${P}.html`, `lant.page.${P}`, page, [['La Librairie Lanterne', ''], [title.replace(/\.$/, ''), `${P}.html`]])}
 <body class="lt lt-atlas" data-lt-atlas="${P}">
@@ -498,7 +607,7 @@ ${stFoot(`
 <dialog class="zoom" data-lt-zoom-dialog><form method="dialog"><button type="submit" class="btn"><span data-i18n="lant.ui.close"></span></button></form><img alt="" src="${up(ART.plates[plateOf(A, ids[0])].src)}" loading="lazy" data-lt-zoom-img></dialog>
 <script type="application/json" id="hub-radio">${radioJson}</script>
 ${dataBlock(client)}
-${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '../../assets/carry.js'])}
+${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...(loPage ? ['../lanterne-objects.js'] : []), '../../assets/carry.js'])}
 </body>
 </html>
 `;
@@ -509,7 +618,8 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
     const extra = (A.keys ? Object.values(A.keys) : []).concat(ids.flatMap((id) => Object.entries(A.districts[id].keys || {}).filter(([f]) => !A.labs || JSK.includes(f)).map(([, v]) => v).flat()));
     const own = A.runtime ? new RegExp(A.runtime) : null;
     // (the nine modules' lab and shell lines are RUNTIME for the old manual's sake: an atlas that is not the modules' leaves them out)
-    runtime[page] = lantRuntime((k) => k.startsWith(`lant.at.${A.key}.`) || extra.some((e) => k === e || k.startsWith(e + '.')) || /^radio\.(play|pause|onair|idle|paused|title|chip)$|^radio\.tracks\./.test(k) || (A.app && ctx.RUNTIME.test(k) && !W3M_KEYS.test(k)) || (own && own.test(k)));
+    const loOut = new Set(ids.filter((id) => A.districts[id].object).map((id) => `lant.lo.${A.districts[id].object}.out`));
+    runtime[page] = lantRuntime((k) => loOut.has(k) || k.startsWith(`lant.at.${A.key}.`) || extra.some((e) => k === e || k.startsWith(e + '.')) || /^radio\.(play|pause|onair|idle|paused|title|chip)$|^radio\.tracks\./.test(k) || (A.app && ctx.RUNTIME.test(k) && !W3M_KEYS.test(k)) || (own && own.test(k)));
     /* the labs' French lines (web3 vol. 2: hub/web3x.js writes them) ride with the labs, fetched when they load, not in
        the page's #hub-fr block: i18n/<page>.fr.js (window.LANT_XFR) */
     if (A.lazyFr) { const lz = new RegExp(A.lazyFr); lazyFr[page] = Object.fromEntries([...runtime[page]].filter((k) => lz.test(k)).sort().map((k) => [k, DICT.fr[k]])); }
@@ -827,7 +937,7 @@ ${scripts(['../lanterne.js', '../../assets/carry.js'])}
   for (const [k, v] of Object.entries(lives)) if (v.size > 1) notes.push(`the stub: the old id #${k} lives in ${v.size} places now (${[...v].join(', ')}): it lands on the shelf`);
   const router = `(function(){var P=${JSON.stringify(pub)},M=${JSON.stringify(M)},s=location.search,h=location.hash.slice(1),q=new URLSearchParams(s),ls=q.get('ls')||'',l=q.get('lang');
 var V=P['web3-modules']?'web3-modules':'',F=${JSON.stringify(firstOf)};
-var of=function(id){return /^b[1-9]$/.test(id)?'marque':/^w[1-8]$/.test(id)?'web3':/^n[1-8]$/.test(id)?'route':/^g[1-8]$/.test(id)?'jeu':/^(pay|bank|rate|treso|crypto)$/.test(id)?'argent':/^m[1-9][0-9]$/.test(id)?(V||'web3'):'';},mm=function(id){return /^m/.test(id)&&!V?'':id;};
+var of=function(id){return /^b[1-9]$/.test(id)?'marque':/^w[1-8]$/.test(id)?'web3':/^n[1-8]$/.test(id)?'route':/^g[1-8]$/.test(id)?'jeu':/^(pay|bank|rate|treso|crypto|appel)$/.test(id)?'argent':/^m[1-9][0-9]$/.test(id)?(V||'web3'):'';},mm=function(id){return /^m/.test(id)&&!V?'':id;};
 var S={lessons:'argent',marque:'marque',web3:'web3',nomade:'route',jeu:'jeu'},R={radio:'#radio','hub-radio':'#radio',game:'#ronde',services:'#comptoir'},to='',at='',k=h.replace(/^ls-[tp]-/,''),H=h.replace(/-h$/,'');
 if(ls&&of(ls)){to=of(ls);at=mm(ls);}
 else if(M[h]){to=M[h].split('#')[0];at=M[h].split('#')[1];}

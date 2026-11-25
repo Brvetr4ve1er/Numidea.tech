@@ -1,0 +1,12 @@
+/* one-writer (web3 · w2): one writer, a database is enough. Toggle, 2 states, 500 ms tweens. Default = state 1 (markup). */
+.lo--one-writer .ow-pen{stroke-width:3}
+.lo--one-writer .ow-tx{font-size:12px}
+.lo--one-writer .ow-qm{font:700 20px/1 var(--f-body);fill:var(--ink)}
+.lo--one-writer .ow-one{transform-box:fill-box;transform-origin:50% 100%}
+.lo--one-writer .ow-one.is-off{transform:scale(.94)}
+.lo--one-writer :is(.ow-c0,.ow-c1,.ow-c2,.ow-c3,.ow-q){transition:transform var(--m-reveal) var(--m-ease-move)}
+.lo--one-writer .ow-many.is-off .ow-c0{transform:translateX(128px)}
+.lo--one-writer .ow-many.is-off .ow-c1{transform:translateX(44px)}
+.lo--one-writer .ow-many.is-off .ow-c2{transform:translateX(-44px)}
+.lo--one-writer .ow-many.is-off .ow-c3{transform:translateX(-128px)}
+.lo--one-writer .ow-many.is-off .ow-q{transform:translateY(8px)}

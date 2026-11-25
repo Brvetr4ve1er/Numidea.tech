@@ -530,7 +530,8 @@ for (const m of html.matchAll(/\s(src|srcset|href|data-zoom|data-anim|poster)="(
 for (const m of html.matchAll(/\sstyle="([^"]*)"/g))
   if (m[1] !== 'fill:var(--teal-text,currentColor)' && !/^\s*(--[a-z0-9-]+\s*:\s*[^;"]+;?\s*)+$/i.test(m[1])) fail(`style="${m[1]}": only custom properties (style="--i:3"), the rest is the stylesheet's`);
 for (const m of html.matchAll(/<[a-z][^>]*\s(on[a-z]+)=/gi)) fail(`an inline ${m[1]}= handler: attach it from hub/app.js`);
-for (const m of html.matchAll(/url\((['"]?)([^)'"]+)\1\)/g)) if (!/^data:/.test(m[2]) && !existsSync(localFile(m[2]))) fail(`url(${m[2]}): no such file`);
+// (a drawing's own url(#fragment), the Lantern objects' clip-paths, names no file)
+for (const m of html.matchAll(/url\((['"]?)([^)'"]+)\1\)/g)) if (!/^(data:|#)/.test(m[2]) && !existsSync(localFile(m[2]))) fail(`url(${m[2]}): no such file`);
 return html;
 }
 html = rules(html);

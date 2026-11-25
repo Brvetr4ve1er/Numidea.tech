@@ -65,7 +65,8 @@
         "ex.t": "lant.ui.ex.bins.t",
         "ex.brief": "lant.ui.ex.bins.brief",
         "alt": "lant.at.marque.plate.a1"
-      }
+      },
+      "object": "four-layers"
     },
     "b2": {
       "guide": "pigeon",
@@ -119,13 +120,14 @@
         "ex.t": "lant.ui.ex.fiche.t",
         "ex.brief": "lant.ui.ex.fiche.brief",
         "alt": "lant.at.marque.plate.a1"
-      }
+      },
+      "object": "promise-proof"
     },
     "b4": {
       "guide": "kuro",
       "lead": "kuro",
       "companion": "pigeon",
-      "prop": "feather",
+      "prop": "stylus",
       "right": 1,
       "ex": "fiche",
       "done": "touch",
@@ -179,7 +181,7 @@
       "guide": "pigeon",
       "lead": "pigeon",
       "companion": "kuro",
-      "prop": "paper",
+      "prop": "laptop",
       "right": 1,
       "ex": "pick",
       "ask": "after",
@@ -199,7 +201,8 @@
         "ex.t": "lant.ui.ex.pick.t",
         "ex.brief": "lant.ui.ex.pick.brief",
         "alt": "lant.at.marque.plate.a2"
-      }
+      },
+      "object": "banner-vector"
     },
     "b6": {
       "guide": "raven",
@@ -232,7 +235,7 @@
       "guide": "raven",
       "lead": "ratman",
       "companion": "raven",
-      "prop": "ring",
+      "prop": "collar",
       "right": 1,
       "ex": "fiche",
       "done": "touch",

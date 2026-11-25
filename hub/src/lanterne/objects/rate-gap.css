@@ -1,0 +1,10 @@
+/* rate-gap · steps (3). Default markup = step 3 (the teaching frame): the two bars, the gap measured, the « 0 frais » sticker peeled off. */
+.lp-rate-gap .lp-rate-gap-h{font-size:12px}
+.lp-rate-gap .lp-rate-gap-z{font-size:10px;letter-spacing:0}
+.lp-rate-gap .lp-rate-gap-bar.is-off{transform:translateY(10px)}
+.lp-rate-gap .lp-rate-gap-gap.is-off{transform:translateX(-10px)}
+.lp-rate-gap .lp-rate-gap-st{transform-box:view-box;transform-origin:232px 96px;transform:translate(-36px,98px) rotate(-28deg);transition:transform var(--m-reveal) var(--m-ease-move)}
+.lp-rate-gap[data-lo-step="1"] .lp-rate-gap-st,.lp-rate-gap[data-lo-step="2"] .lp-rate-gap-st{transform:none}
+@media (prefers-reduced-motion:reduce){.lp-rate-gap *{transition:none!important}}
+.lo-rate-gap-s0{stroke-width:1;opacity:.5}
+.lo-rate-gap-s1{stroke-width:2}

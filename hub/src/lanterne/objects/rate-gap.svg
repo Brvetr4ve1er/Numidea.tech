@@ -1,0 +1,17 @@
+<svg viewBox="0 0 360 240" class="lo-svg lp-rate-gap-svg" aria-hidden="true" focusable="false">
+<defs><ellipse id="lp-rate-gap-c" class="l-a l-k1" rx="12" ry="4"/>
+<g id="lp-rate-gap-s"><use href="#lp-rate-gap-c"/><use href="#lp-rate-gap-c" y="-7"/><use href="#lp-rate-gap-c" y="-14"/><use href="#lp-rate-gap-c" y="-21"/></g>
+<path id="lp-rate-gap-b" d="M4 0Q70 -2 136 0L140 4Q138 76 140 148L136 152Q70 150 4 152L0 148Q2 76 0 4Z"/></defs>
+<path class="l-k1 l-so" opacity=".35" d="M0 200H360"/>
+<use href="#lp-rate-gap-b" class="l-c l-k" x="22" y="38"/><use href="#lp-rate-gap-b" class="l-c l-k" x="198" y="38"/>
+<path class="l-p" d="M24 40H160V62H24ZM200 40H336V62H200Z"/><path class="l-k1" d="M24 62Q92 61 160 62M200 62Q268 63 336 62"/>
+<text class="l-ti lp-rate-gap-h" x="92" y="56" text-anchor="middle" data-i18n="lant.lo.rate-gap.t.0"></text>
+<text class="l-ti lp-rate-gap-h" x="268" y="56" text-anchor="middle" data-i18n="lant.lo.rate-gap.t.1"></text>
+<use href="#lp-rate-gap-s" x="56" y="170"/><use href="#lp-rate-gap-s" x="232" y="170"/>
+<path class="l-k1" d="M76 150h22m-5-5l5 5-5 5M252 150h22m-5-5l5 5-5 5"/>
+<path class="l-w2" d="M108 180H156V186H108ZM284 180H332V186H284Z"/>
+<g class="lp-rate-gap-bar" data-s="2"><path class="l-a l-k" d="M112 96H152V182H112Z"/><path class="l-a l-k" d="M288 120H328V182H288Z"/><path class="l-k1 lo-rate-gap-s0" d="M118 104v70M294 128v46"/></g>
+<g class="lp-rate-gap-st"><circle class="l-c l-k l-sr" cx="232" cy="96" r="22"/><text class="l-ti lp-rate-gap-z" x="232" y="100" text-anchor="middle" data-i18n="lant.lo.wallet-seams.t.0"></text></g>
+<g class="lp-rate-gap-gap" data-s="3"><path class="l-k1 l-sr lo-rate-gap-s1" stroke-dasharray="5 4" d="M152 96H338"/><path class="l-k l-sr" d="M334 96h8v24h-8"/><path class="l-k1 l-sr" d="M342 108h6V204"/>
+<path class="l-c l-k1" d="M226 204Q290 202 352 204L352 224Q290 226 226 224Z"/><text class="l-ti" x="289" y="218" text-anchor="middle" data-i18n="lant.lo.rate-gap.t.2"></text></g>
+</svg>
