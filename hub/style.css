@@ -81,7 +81,26 @@
 }
 /* Arabic: its own display, body and hand faces (Reem Kufi, IBM Plex Sans
    Arabic, Aref Ruqaa); labels in the body face, no capitals, no tracking */
+/* ---------------- the type system (2026-11-26): four roles, one scale ----------------
+   DISPLAY  Archivo Condensed 900, caps, tight: titles and section heads (--f-cond, --fs-h1..h3, --lh-disp)
+   UI       Archivo Expanded 800, caps: buttons, tapes, chips (--f-wide, --tr-ui)
+   LABEL    Geist Mono, caps, tracked: kickers, stats, indexes (--f-mono, --fs-micro/--fs-label, --tr-label)
+   BODY     Geist 400: reading text only, max 60ch (--f-body, --fs-body/--fs-small, --lh-body)
+   Index numerals (01, 02) are DISPLAY, outlined. Arabic: Reem Kufi for DISPLAY and UI, Plex Arabic for the rest, no caps, no tracking.
+   Sizes in rem from this scale only; fluid steps keep max/min under 2.5 (200% zoom). */
+:root{
+  --f-cond:"Archivo Condensed","Archivo","Arial Narrow",sans-serif;
+  --f-wide:"Archivo Expanded","Archivo","Arial Black",sans-serif;
+  --fs-micro:.6875rem;--fs-label:.75rem;--fs-small:.875rem;--fs-body:1rem;--fs-lead:1.25rem;--fs-h4:1.5rem;
+  --fs-h3:clamp(1.75rem,1.45rem + .9vw,2.375rem);--fs-h2:clamp(2.5rem,1.7rem + 2.8vw,4.25rem);--fs-h1:clamp(3.5rem,2.2rem + 5vw,7rem);
+  --fs-index:clamp(3.5rem,2.4rem + 4vw,6.5rem);
+  --lh-disp:.9;--lh-head:1;--lh-ui:1.2;--lh-body:1.55;
+  --tr-disp:0;--tr-ui:.04em;--tr-label:.14em;
+}
 :root:lang(ar){
+  --f-cond:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;
+  --f-wide:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;
+  --lh-disp:1.25;--tr-ui:0;--tr-label:0;
   --t-label:13px;
   --t-mono:14px;
   --f-disp:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;

@@ -293,7 +293,7 @@ export function lanterne(ctx) {
     h = swap(h, "'../assets/fonts/ibm-plex-sans-arabic-600", "'../../assets/fonts/ibm-plex-sans-arabic-600", 1, 'the Arabic preloads');
     h = swap(h, "i.src='bible/art/rig-'", "i.src='../bible/art/rig-'", 1, "the sting's pictures");
     h = h.replace(/(\s(?:href|src)=")(?!https?:|#|\{\{)([^"]+)"/g, (all, a, u) => `${a}../${u}"`);
-    h = swap(h, '<link rel="stylesheet" href="../style.css?v={{stamp}}">', '<link rel="stylesheet" href="../style.css?v={{stamp}}">\n<link rel="stylesheet" href="../css/lanterne.css?v={{stamp}}">', 1, 'the sheet');
+    h = swap(h, '<link rel="stylesheet" href="../style.css?v={{stamp}}">', '<link rel="stylesheet" href="../fonts/hud.css?v={{stamp}}">\n<link rel="stylesheet" href="../style.css?v={{stamp}}">\n<link rel="stylesheet" href="../css/lanterne.css?v={{stamp}}">', 1, 'the sheet');
     h = swap(h, '{{fr}}', `{{lantFr.${page.replace(/[^a-z]/g, '')}}}`, 1, "the runtime French block");
     return h;
   };
@@ -690,14 +690,16 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...
           </div>
         </li>`;
     };
-    const rayons = SHELF.shelves.map((s) => `
+    /* a shelf is a row of three slots (2026-11-26, the type system's shelf): its head (index, title) beside the books, and the
+       slots a shelf does not fill drawn empty, as an inventory, so every book keeps one size whatever its shelf holds */
+    const rayons = SHELF.shelves.map((s, i) => { const shown = s.books.filter((b) => !b.in); return `
     <div class="rayon">
-      <h2 class="rayon__h" data-i18n="lant.shelf.${s.id}"></h2>
-      <ul class="books">${s.books.filter((b) => !b.in).map(book).join('')}
+      <div class="rayon__head"><span class="rayon__n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><h2 class="rayon__h" data-i18n="lant.shelf.${s.id}"></h2></div>
+      <ul class="books">${shown.map(book).join('')}${'<li class="book book--slot" aria-hidden="true"></li>'.repeat(Math.max(0, 3 - shown.length))}
       </ul>
       <div class="plank" aria-hidden="true"></div>
       ${s.notes ? `<div class="legal">${s.notes.map((k) => `<p data-i18n="${need(k, `shelf.json ${s.id}`)}"></p>`).join('')}</div>` : ''}
-    </div>`).join('');
+    </div>`; }).join('');
     const total = books.reduce((a, b) => a + (ATLAS[b.slug] ? ATLAS[b.slug].acts.flatMap((x) => x.districts) : b.ids).length, 0);
     const passRow = (b) => {
       const A = ATLAS[b.slug], ids = A ? A.acts.flatMap((a) => a.districts) : b.ids;
