@@ -13,7 +13,7 @@ Snapshot 2026-11-25 23:45 UTC. [V] = verified here, [R] = reported by a thread.
 | [#20](https://github.com/Brvetr4ve1er/Numidea.tech/pull/20) | `claude/project-thread-vm2rxf` @ 17b86e3 | Characters C1–C3 | 03 characters |
 | [#18](https://github.com/Brvetr4ve1er/Numidea.tech/pull/18) | `claude/project-thread-j3qmb0` @ f328fdc | Alliance Travel case + brand book | 04 Alliance |
 | [#14](https://github.com/Brvetr4ve1er/Numidea.tech/pull/14) | `claude/project-thread-a0zy0f` @ dc26b39 | Online banking course, slice 1 | none (older project) |
-| this handoff | `claude/project-thread-n0kxe1` | docs only, under `audit/handoff-2026-11-25/` | 00 |
+| [#27](https://github.com/Brvetr4ve1er/Numidea.tech/pull/27) | `claude/project-thread-n0kxe1` @ ae7247e | docs only, under `audit/handoff-2026-11-25/` | 00 |
 
 ### Merged or closed in this project [R]
 

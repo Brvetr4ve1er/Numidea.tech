@@ -8,6 +8,8 @@ Tags used throughout:
 - **[V]**: verified by this thread against GitHub or Vercel at the snapshot time.
 - **[R]**: reported by a worker thread and not re-checked here. Re-verify before you act on it.
 
+Also in the repo: draft PR [#27](https://github.com/Brvetr4ve1er/Numidea.tech/pull/27), folder `audit/handoff-2026-11-25/` (same content, frozen at this snapshot).
+
 Files in this folder:
 - `HANDOFF.md`: this file. Read it first.
 - `INDEX.md`: every PR, branch, preview, canvas, doc and asset folder, with links.
