@@ -129,6 +129,9 @@
         </button>
         <div class="bubble" data-ybubble aria-hidden="true"><span data-ytext></span><i></i></div>
         <div class="state"><span>State</span><b id="rigState">Idle · coffee no.1</b></div>
+        <!-- the game layer (app.js, "talk"): an emote over his head, and the cut-in band that carries a pose for a beat -->
+        <span class="rig-emote" data-emote aria-hidden="true"></span>
+        <div class="cutin" data-cutin aria-hidden="true"></div>
       </div>
       <template id="rigFrames">
         <img data-yf="half" src="art/rig-y-half.webp" width="501" height="565" alt="">
@@ -150,6 +153,23 @@
         <img data-kf="yawn" src="art/rig-k-yawn.webp" width="360" height="294" alt="">
         <img data-kf="ear" src="art/rig-k-ear.webp" width="360" height="294" alt="">
       </template>
+      <!-- Talk to him: a reply is one line, one face (03's twelve), one gesture (04's poses and actors, the
+           turnaround), and Kūro's answer (05's cards). Free text goes to /api/yasser (an AI voice, a short JSON
+           reply); the three choices are written lines and cost nothing. -->
+      <form class="chat" id="chat" autocomplete="off" novalidate>
+        <div class="chat-cast" aria-hidden="true">
+          <figure class="chat-face"><img data-cface src="art/face-deadpan.webp" width="427" height="368" alt="" loading="lazy" decoding="async"><figcaption>Yasser <b data-cmood>listening</b></figcaption></figure>
+          <figure class="chat-kuro" data-ckuro><img data-ckimg src="art/kuro-peek.webp" width="240" height="165" alt="" loading="lazy" decoding="async"><figcaption>Ku&#x304;ro</figcaption></figure>
+        </div>
+        <div class="chat-box">
+          <div class="chat-choices" role="group" aria-label="Quick lines, written in advance (no AI)" data-cchoices lang="fr"></div>
+          <label class="chat-l" for="chatIn">Or say anything <small>AI voice, not Yasser typing live</small></label>
+          <div class="chat-row">
+            <input id="chatIn" name="q" type="text" maxlength="280" placeholder="Écris-lui…" lang="fr" enterkeyhint="send">
+            <button type="submit" class="chat-go">Send</button>
+          </div>
+        </div>
+      </form>
       <p class="rig-said" id="rigSaid" aria-live="polite"></p>
     </div>
     <div class="live-side">
@@ -218,22 +238,41 @@
 <!-- ============================= 02 · THE SILHOUETTE ============================= -->
 <section class="sec" id="silhouette" aria-labelledby="sil-h">
   <div class="sh"><span class="num">02 /</span><h2 id="sil-h">The silhouette</h2><span class="note">readable at 24 px or it's not him</span></div>
-  <p class="lede">The seven marks that make the character readable, and the six colours he is drawn in.</p>
+  <p class="lede">The seven marks that make the character readable, seen from every side, and the six colours he is drawn in.</p>
   <div class="sil">
-    <div class="sil-row">
-      <img src="art/sil-0.webp" width="268" height="737" alt="Pixel Yasser standing, arms crossed." loading="lazy" decoding="async">
-      <img src="art/sil-2.webp" width="289" height="742" alt="Pixel Yasser standing, a hand in his coat pocket." loading="lazy" decoding="async">
-      <img src="art/sil-3.webp" width="252" height="726" alt="Pixel Yasser standing, holding his coffee." loading="lazy" decoding="async">
-      <img src="art/sil-5.webp" width="258" height="716" alt="Pixel Yasser standing, pushing his glasses up." loading="lazy" decoding="async">
-    </div>
+    <figure class="turn" id="turn">
+      <!-- five drawn views of one drawing session (front, three-quarter, profile, back, three-quarter back),
+           stacked on one floor and one body axis: a view change is a hard cut, nothing tweens between drawings.
+           Kūro stands beside him at his true height (a third of Yasser's, the size line-up's own ratio). -->
+      <div class="turn-stage" data-turn-stage aria-hidden="true">
+        <span class="turn-floor"></span>
+        <img class="turn-f is-on" data-v="0" src="art/turn-front.webp" width="172" height="402" alt="" loading="lazy" decoding="async">
+        <img class="turn-f" data-v="1" src="art/turn-34.webp" width="172" height="402" alt="" loading="lazy" decoding="async">
+        <img class="turn-f" data-v="2" src="art/turn-side.webp" width="172" height="402" alt="" loading="lazy" decoding="async">
+        <img class="turn-f" data-v="3" src="art/turn-back.webp" width="172" height="402" alt="" loading="lazy" decoding="async">
+        <img class="turn-f" data-v="4" src="art/turn-34back.webp" width="172" height="402" alt="" loading="lazy" decoding="async">
+        <img class="turn-k" src="art/kuro-scale.webp" width="192" height="186" alt="" loading="lazy" decoding="async">
+      </div>
+      <figcaption class="turn-cap">
+        <div class="turn-pick" role="radiogroup" aria-label="Turn him: five drawn views, in ink at 24 px">
+          <button type="button" role="radio" class="turn-r" data-v="0" aria-checked="true" tabindex="0" aria-label="Front"><img src="art/turn-front.webp" width="172" height="402" alt="" loading="lazy" decoding="async"></button>
+          <button type="button" role="radio" class="turn-r" data-v="1" aria-checked="false" tabindex="-1" aria-label="Three-quarter"><img src="art/turn-34.webp" width="172" height="402" alt="" loading="lazy" decoding="async"></button>
+          <button type="button" role="radio" class="turn-r" data-v="2" aria-checked="false" tabindex="-1" aria-label="Profile"><img src="art/turn-side.webp" width="172" height="402" alt="" loading="lazy" decoding="async"></button>
+          <button type="button" role="radio" class="turn-r" data-v="3" aria-checked="false" tabindex="-1" aria-label="Back"><img src="art/turn-back.webp" width="172" height="402" alt="" loading="lazy" decoding="async"></button>
+          <button type="button" role="radio" class="turn-r" data-v="4" aria-checked="false" tabindex="-1" aria-label="Three-quarter back"><img src="art/turn-34back.webp" width="172" height="402" alt="" loading="lazy" decoding="async"></button>
+        </div>
+        <button type="button" class="turn-ink" aria-pressed="false">Ink only</button>
+        <p class="turn-said" aria-live="polite"><b data-turn-name>Front</b> <span>Drag him, or pick a view. Each little ink figure is the same drawing at 24 px.</span></p>
+      </figcaption>
+    </figure>
     <ol class="marks">
-      <li><span class="n">01</span><span><strong>High ponytail + two hair sticks</strong> — the crossed sticks are his crown; never drop them, even in pixel.</span></li>
-      <li><span class="n">02</span><span><strong>Round thin glasses</strong> — pushed up when thinking, slid down when tired.</span></li>
-      <li><span class="n">03</span><span><strong>Oversized cream coat</strong> — sumi-red lining, NUMIDEA patch on the left sleeve, hood always down.</span></li>
-      <li><span class="n">04</span><span><strong>Black turtleneck + ring pendant</strong> — the ring is the "O" — it catches light in every frame.</span></li>
-      <li><span class="n">05</span><span><strong>Wide black cargo + straps</strong> — utility, not costume; one strap crosses the chest.</span></li>
-      <li><span class="n">06</span><span><strong>Cream sneakers, red heel tab</strong> — the red tab is the only red below the waist.</span></li>
-      <li><span class="n">07</span><span><strong>Tired eyes, under-eye line</strong> — never fully wide-awake except in "shocked".</span></li>
+      <li data-v="3"><button type="button" class="n" data-v="3" aria-controls="turn" aria-label="01: show the back">01</button><span><strong>High ponytail + two hair sticks</strong> — the crossed sticks are his crown; never drop them, even in pixel.</span></li>
+      <li data-v="2"><button type="button" class="n" data-v="2" aria-controls="turn" aria-label="02: show the profile">02</button><span><strong>Round thin glasses</strong> — pushed up when thinking, slid down when tired.</span></li>
+      <li data-v="4"><button type="button" class="n" data-v="4" aria-controls="turn" aria-label="03: show the three-quarter back">03</button><span><strong>Oversized cream coat</strong> — sumi-red lining, NUMIDEA patch on the left sleeve, hood always down.</span></li>
+      <li data-v="0"><button type="button" class="n" data-v="0" aria-controls="turn" aria-label="04: show the front">04</button><span><strong>Black turtleneck + ring pendant</strong> — the ring is the "O" — it catches light in every frame.</span></li>
+      <li data-v="1"><button type="button" class="n" data-v="1" aria-controls="turn" aria-label="05: show the three-quarter view">05</button><span><strong>Wide black cargo + straps</strong> — utility, not costume; one strap crosses the chest.</span></li>
+      <li data-v="3"><button type="button" class="n" data-v="3" aria-controls="turn" aria-label="06: show the back">06</button><span><strong>Cream sneakers, red heel tab</strong> — the red tab is the only red below the waist.</span></li>
+      <li data-v="0"><button type="button" class="n" data-v="0" aria-controls="turn" aria-label="07: show the front">07</button><span><strong>Tired eyes, under-eye line</strong> — never fully wide-awake except in "shocked".</span></li>
     </ol>
   </div>
   <ul class="swatches" aria-label="His six colours">

@@ -1,7 +1,9 @@
 /* ============================================================
    VOIDSPLUNKER.std — hub interactions (vanilla, no deps)
    1 · the rig: Yasser and Kūro, twenty drawn frames, one loop that ends
+   1b · talk to him: a reply is a face, a beat of acting, an emote, a cut-in and Kūro's card
    2 · the pose actors: six two-frame figures (section 04b)
+   2b · the turn: five drawn views, dragged or picked (section 02)
    3 · loops: a still swapped for its animation once, on screen
    4 · year
    The rule of the page: nothing moves for longer than five seconds on its
@@ -251,6 +253,8 @@
       },
       pokeKuro: function () { var n = now(); wake(); S.ksquash = n + M(1); S.khold = { name: Math.random() < .5 ? 'wide' : 'ear', until: n + M(10) }; },
       say: function () { wake(); if (S.say) endSay(); startSay(LINES[S.lineIx++ % LINES.length]); },
+      speak: function (text, delay) { wake(); if (S.say) endSay(); startSay(text, now() + (delay || 0)); },
+      squash: function () { wake(); S.squash = now() + M(1); },
       hold: function (name, ms) { wake(); S.hold = { name: name, until: now() + (ms || M(16)) }; },
       kHold: function (name, ms) { keep(WINDOW); S.khold = { name: name, until: now() + (ms || M(11)) }; },
       blink: function () { keep(M(12)); S.hold = null; S.blinkAt = now(); },
@@ -322,6 +326,177 @@
         }
       });
     });
+
+    /* ---------------- 1b · talk to him (the game layer) ----------------
+       A reply is four things, and each has its picture already on this page:
+       · emotion: one of twelve, each with its face (section 03's twelve, the
+         portrait in the talk box), a beat of acting on the rig before he
+         speaks (laugh, look up, glasses, sip, yawn, a squash…) and an emote
+         over his head (! ? ♪ … z, the sweat drop, the anger mark);
+       · act: a gesture, played as a cut-in band for two beats (section 04's
+         poses and actors, two-frame actors cut on the eighth; "turn" plays
+         section 02's five views once round);
+       · kuro: Kūro's answer, his card in the talk box (section 05's ten)
+         while the rig's Kūro goes wide, flicks an ear or yawns;
+       · line: typed in the bubble, the mouth on the existing flaps.
+       The three choices are written here and never leave the page. Free text
+       goes to /api/yasser (an AI voice, model named in that file; one short JSON reply,
+       the last six turns at most); if it cannot answer he says so in
+       character. Nothing loops: a cut-in is two beats, an emote three. */
+    var chat = document.getElementById('chat');
+    if (chat) {
+      var cFace = chat.querySelector('[data-cface]'), cMood = chat.querySelector('[data-cmood]');
+      var cKuro = chat.querySelector('[data-ckuro]'), cKimg = chat.querySelector('[data-ckimg]');
+      var cChoices = chat.querySelector('[data-cchoices]'), cIn = document.getElementById('chatIn');
+      var emoteEl = panel.querySelector('[data-emote]'), cutEl = panel.querySelector('[data-cutin]');
+      var SWEAT = '<svg viewBox="0 0 20 20"><path d="M10 2C7 7 5 10 5 13a5 5 0 0 0 10 0c0-3-2-6-5-11z" fill="#9fd3e8" stroke="#211E1B" stroke-width="1.6"/></svg>';
+      var VEIN = '<svg viewBox="0 0 20 20" fill="none" stroke="#A34135" stroke-width="2.6" stroke-linecap="round"><path d="M3 8c3 0 4-1 4-5M12 3c0 4 1 5 5 5M17 12c-4 0-5 1-5 5M7 17c0-4-1-5-4-5"/></svg>';
+      // emotion -> face file and size, the rig's beat of acting, the emote
+      var EMO = {
+        neutral:     { face: ['deadpan', 427, 368], act: null,     emote: '…',   label: 'listening' },
+        joy:         { face: ['laugh', 427, 354],   act: 'laugh',  emote: '♪',   label: 'laughing' },
+        smug:        { face: ['smirk', 460, 358],   act: 'smirk',  emote: '✦',   label: 'pleased' },
+        thinking:    { face: ['think', 410, 363],   act: 'up',     emote: '?',   label: 'thinking' },
+        focus:       { face: ['focus', 464, 369],   act: 'glasses', emote: '!',  label: 'ok, watch this' },
+        surprised:   { face: ['shocked', 439, 369], act: 'squash', emote: '!!',  label: 'surprised' },
+        annoyed:     { face: ['sideeye', 430, 377], act: 'glance', emote: VEIN,  label: 'side-eye' },
+        angry:       { face: ['angry', 415, 371],   act: 'squash', emote: VEIN,  label: 'not having it' },
+        tired:       { face: ['tired', 436, 376],   act: 'sip',    emote: SWEAT, label: 'tired' },
+        sleepy:      { face: ['sleep', 417, 372],   act: 'yawn',   emote: 'z',   label: 'half asleep' },
+        embarrassed: { face: ['facepalm', 434, 361], act: 'half',  emote: SWEAT, label: 'facepalm' },
+        decisive:    { face: ['pointyou', 432, 368], act: 'glasses', emote: '!', label: 'pointing at you' }
+      };
+      var RIGMS = { laugh: M(12), smirk: M(10), up: M(8), glasses: M(9), glance: M(8), sip: M(16), yawn: M(14), half: M(10) };
+      // act -> the cut-in's frames (a list plays once, a frame an eighth; pairs are the actors' two frames)
+      var A = function (n, w, h) { return ['art/' + n + '.webp', w, h]; };
+      var ACT = {
+        wave: [[A('actor-wave-a', 238, 540), A('actor-wave-b', 238, 540)]],
+        build: [[A('pose-laptop', 495, 440)]],
+        sketch: [[A('actor-sketch-a', 257, 540), A('actor-sketch-b', 257, 540)]],
+        price: [[A('pose-invoice', 520, 440)], [A('pose-receipt', 412, 440)]],
+        deliver: [[A('pose-handover', 560, 435)]],
+        show: [[A('pose-sign', 519, 440)]],
+        inspect: [[A('pose-inspect', 560, 416)]],
+        celebrate: [[A('actor-win-a', 252, 540), A('actor-win-b', 252, 540)], [A('pose-flagstack', 560, 427)]],
+        shrug: [[A('pose-shrug', 560, 422)], [A('yasser-lost-still', 480, 442)]],
+        phone: [[A('actor-phone-a', 241, 540), A('actor-phone-b', 241, 540)]],
+        coffee: [[A('pose-coffee', 385, 440)]],
+        nap: [[A('pose-nap', 560, 233)]],
+        turn: [[A('turn-front', 172, 402), A('turn-34', 172, 402), A('turn-side', 172, 402), A('turn-back', 172, 402), A('turn-34back', 172, 402), A('turn-front', 172, 402)]],
+        // no gesture asked, but the emotion has one of its own
+        _focus: [[A('actor-pointup-a', 249, 540), A('actor-pointup-b', 249, 540)]],
+        _decisive: [[A('pose-point', 498, 440)]],
+        _embarrassed: [[A('pose-facepalm', 509, 440)]],
+        _love: [[A('actor-duo-a', 673, 520), A('actor-duo-b', 673, 520)]]
+      };
+      var KCARD = { judge: [194, 'ear'], loaf: [111, 'yawn'], smug: [172, 'right'], stamp: [185, 'ear'], peek: [165, 'left'], shook: [175, 'wide'], hiss: [189, 'wide'], love: [242, 'blink'], leave: [209, 'left'], mug: [192, 'yawn'] };
+      // the written choices: free, instant, and the same four parts as an AI reply
+      var CHOICES = [
+        ['Salut !', 'Salut. Kūro t’a vu arriver avant moi.', 'joy', 'wave', 'peek'],
+        ['Tu fais quoi, exactement ?', 'Des sites, des marques, des mascottes. Du début jusqu’à la mise en ligne.', 'focus', 'build', 'none'],
+        ['C’est combien ?', 'Prix fixe, écrit avant. Le menu est dans le Studio.', 'decisive', 'price', 'stamp'],
+        ['Tourne-toi.', 'D’accord, un tour. Pas deux.', 'smug', 'turn', 'judge'],
+        ['Tu dors quand ?', 'Après la mise en ligne. Donc rarement.', 'sleepy', 'coffee', 'mug'],
+        ['Kūro est gentil ?', 'Gentil, non. Juste. Il valide, ou il s’en va.', 'smug', 'none', 'smug'],
+        ['On travaille ensemble ?', 'Écris-moi sur WhatsApp. Je réponds, même à 2 h.', 'decisive', 'phone', 'stamp'],
+        ['Un intermédiaire m’a dit…', 'Pas d’intermédiaire ici. Tu parles à celui qui code.', 'angry', 'none', 'hiss'],
+        ['Montre-moi un truc.', 'Ok, regarde. Une démo d’abord, le prix après.', 'focus', 'show', 'peek'],
+        ['Tu as raté quelque chose ?', 'Une fois. On n’en parle pas.', 'embarrassed', 'none', 'judge']
+      ];
+      var OFFLINE = ['Le réseau dort. Écris-moi sur WhatsApp, c’est plus sûr.', 'tired', 'phone', 'loaf'];
+      var SLOW = ['Doucement. Kūro compte les messages.', 'annoyed', 'none', 'judge'];
+      var history = [], busy = false, chipAt = 0, cutT = [], emoteT = 0;
+      var preload = function (src) { var im = new Image(); im.src = src; return im; };
+      var warmed = false;
+      var warm = function () {
+        if (warmed) return; warmed = true;
+        Object.keys(EMO).forEach(function (k) { preload('art/face-' + EMO[k].face[0] + '.webp'); });
+      };
+      var setFace = function (emo) {
+        var f = EMO[emo].face;
+        cFace.src = 'art/face-' + f[0] + '.webp'; cFace.width = f[1]; cFace.height = f[2];
+        cMood.textContent = EMO[emo].label;
+      };
+      var setKuro = function (k) {
+        if (!k || k === 'none' || !KCARD[k]) { cKuro.classList.remove('on'); return; }
+        cKimg.src = 'art/kuro-' + k + '.webp'; cKimg.height = KCARD[k][0];
+        cKuro.classList.add('on');
+        rig.kHold(KCARD[k][1], k === 'shook' || k === 'hiss' ? M(10) : M(6));
+      };
+      var showEmote = function (e) {
+        clearTimeout(emoteT);
+        emoteEl.innerHTML = e.charAt(0) === '<' ? e : '';
+        if (e.charAt(0) !== '<') emoteEl.textContent = e;
+        emoteEl.classList.remove('on'); void emoteEl.offsetWidth; emoteEl.classList.add('on');
+        emoteT = setTimeout(function () { emoteEl.classList.remove('on'); }, M(24));
+      };
+      // the cut-in: in on half a beat, the frames an eighth each (a still holds), out after two beats
+      var cutIn = function (frames) {
+        cutT.forEach(clearTimeout); cutT = [];
+        cutEl.classList.remove('on', 'out'); cutEl.textContent = '';
+        var ims = frames.map(function (f) { var im = document.createElement('img'); im.alt = ''; im.width = f[1]; im.height = f[2]; im.src = f[0]; im.decoding = 'async'; return im; });
+        var all = ims.map(function (im) { return im.decode ? im.decode().catch(function () {}) : null; });
+        Promise.all(all).then(function () {
+          cutEl.appendChild(ims[0]); void cutEl.offsetWidth; cutEl.classList.add('on');
+          var step = ims.length > 2 ? M(2) : M(1), last = 0;
+          for (var i = 1; i < ims.length * (ims.length === 2 ? 4 : 1); i++) {
+            (function (k) { cutT.push(setTimeout(function () { cutEl.replaceChild(ims[k % ims.length], cutEl.firstChild); }, M(4) + k * step)); })(i);
+            last = M(4) + i * step;
+          }
+          var hold = Math.max(M(16), last + M(4));
+          cutT.push(setTimeout(function () { cutEl.classList.add('out'); }, hold));
+          cutT.push(setTimeout(function () { cutEl.classList.remove('on', 'out'); cutEl.textContent = ''; }, hold + M(4)));
+        });
+      };
+      // a reply, staged: the face and the emote at once, the beat of acting, then the line
+      var play = function (line, emo, act, kuro) {
+        if (!EMO[emo]) emo = 'neutral';
+        warm(); setFace(emo); showEmote(EMO[emo].emote); setKuro(kuro);
+        var e = EMO[emo], lead = 0;
+        if (e.act === 'squash') { rig.squash(); lead = M(3); }
+        else if (e.act) { rig.hold(e.act, RIGMS[e.act]); lead = Math.min(RIGMS[e.act], M(8)); }
+        var key = act && act !== 'none' ? act : kuro === 'love' ? '_love' : '_' + emo;
+        if (ACT[key]) { var opts = ACT[key]; cutIn(opts[Math.floor(Math.random() * opts.length)]); }
+        rig.speak(line, lead);
+        history.push({ role: 'assistant', content: line });
+      };
+      var dealChoices = function () {
+        cChoices.textContent = '';
+        var pool = CHOICES.slice(), picks = [];
+        for (var i = chipAt; picks.length < 3; i++) picks.push(pool[i % pool.length]);
+        chipAt = (chipAt + 3) % pool.length;
+        picks.forEach(function (c) {
+          var b = document.createElement('button'); b.type = 'button';
+          var sp = document.createElement('span'); sp.textContent = c[0]; b.appendChild(sp);
+          b.addEventListener('click', function () {
+            if (busy) return;
+            history.push({ role: 'user', content: c[0] });
+            play(c[1], c[2], c[3], c[4]); dealChoices();
+          });
+          cChoices.appendChild(b);
+        });
+      };
+      dealChoices();
+      chat.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var q = cIn.value.replace(/\s+/g, ' ').trim().slice(0, 280);
+        if (!q || busy) return;
+        busy = true; chat.setAttribute('aria-busy', 'true'); cIn.value = '';
+        history.push({ role: 'user', content: q });
+        warm(); setFace('thinking'); showEmote('…'); rig.hold('up', M(24));
+        fetch('/api/yasser', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ history: history.slice(-12) }) })
+          .then(function (r) {
+            if (r.status === 429) return { line: SLOW[0], emotion: SLOW[1], act: SLOW[2], kuro: SLOW[3] };
+            if (!r.ok) throw new Error(r.status);
+            return r.json();
+          })
+          .catch(function () { return { line: OFFLINE[0], emotion: OFFLINE[1], act: OFFLINE[2], kuro: OFFLINE[3] }; })
+          .then(function (d) {
+            busy = false; chat.removeAttribute('aria-busy');
+            play(String(d.line || '…'), d.emotion, d.act, d.kuro);
+          });
+      });
+    }
   }
 
   /* ---------------- 2 · the pose actors ----------------
@@ -390,6 +565,94 @@
         [].forEach.call(grid.querySelectorAll('.actor img'), function (im) { im.loading = 'eager'; });
       }, { rootMargin: '100% 0px' });
       eio.observe(grid);
+    }
+  }
+
+  /* ---------------- 2b · the turn (section 02) ----------------
+     Five drawn views of one session, stacked (.turn-f, one .is-on): a view
+     change is a hard cut, never a tween, because the drawings are not in
+     between each other. The order is the order he turns in (front,
+     three-quarter, profile, back, three-quarter back, and round to the front
+     again), so dragging the stage reads as one way round: a view every 28 px.
+     The five ink figures under him are a radio group (arrows, Home, End);
+     each mark's number shows him from the side that mark is seen best.
+     Once, the first time half the stage is on screen, he turns round one
+     time, a view every quarter beat (167 ms, 5 cuts, under a second), and
+     stops on his front; any touch of the controls stops it. With reduced
+     motion he never turns by himself; every control still cuts. */
+  var turn = document.getElementById('turn');
+  if (turn) {
+    var tStage = turn.querySelector('[data-turn-stage]');
+    var tViews = [].slice.call(turn.querySelectorAll('.turn-f'));
+    var tRadios = [].slice.call(turn.querySelectorAll('.turn-r'));
+    var tName = turn.querySelector('[data-turn-name]');
+    var tInk = turn.querySelector('.turn-ink');
+    var tMarks = [].slice.call(document.querySelectorAll('.marks li[data-v]'));
+    var tN = tViews.length, tCur = 0, tTimer = 0;
+    var tSet = function (v, fromKey) {
+      v = ((v % tN) + tN) % tN;
+      if (v === tCur) return;
+      tCur = v;
+      tViews.forEach(function (im, i) { im.classList.toggle('is-on', i === v); });
+      tRadios.forEach(function (r, i) {
+        r.setAttribute('aria-checked', i === v ? 'true' : 'false');
+        r.tabIndex = i === v ? 0 : -1;
+      });
+      if (fromKey) tRadios[v].focus();
+      tName.textContent = tRadios[v].getAttribute('aria-label');
+      tMarks.forEach(function (li) { li.classList.toggle('is-shown', +li.getAttribute('data-v') === v); });
+    };
+    var tStop = function () { if (tTimer) { clearTimeout(tTimer); tTimer = 0; } };
+    tRadios.forEach(function (r, i) {
+      r.addEventListener('click', function () { tStop(); tSet(i); });
+      r.addEventListener('keydown', function (e) {
+        var k = e.key, to = k === 'ArrowRight' || k === 'ArrowDown' ? tCur + 1 : k === 'ArrowLeft' || k === 'ArrowUp' ? tCur - 1
+          : k === 'Home' ? 0 : k === 'End' ? tN - 1 : null;
+        if (to === null) return;
+        e.preventDefault(); tStop(); tSet(to, true);
+      });
+    });
+    tMarks.forEach(function (li) {
+      var v = +li.getAttribute('data-v');
+      li.querySelector('.n').addEventListener('click', function () { tStop(); tSet(v); });
+      if (finePointer) li.addEventListener('pointerenter', function () { tStop(); tSet(v); });
+    });
+    tInk.addEventListener('click', function () {
+      var on = tInk.getAttribute('aria-pressed') !== 'true';
+      tInk.setAttribute('aria-pressed', on ? 'true' : 'false');
+      tStage.classList.toggle('is-ink', on);
+    });
+    // drag: a view every 28 px, the way the pointer goes
+    var tX = null, tFrom = 0, tPid = null;
+    tStage.addEventListener('pointerdown', function (e) {
+      if (e.button) return;
+      tStop(); tX = e.clientX; tFrom = tCur; tPid = e.pointerId;
+      tStage.setPointerCapture(tPid); tStage.classList.add('is-drag');
+    });
+    tStage.addEventListener('pointermove', function (e) {
+      if (tX === null || e.pointerId !== tPid) return;
+      tSet(tFrom + Math.round((e.clientX - tX) / 28));
+    });
+    var tUp = function () { tX = null; tStage.classList.remove('is-drag'); };
+    tStage.addEventListener('pointerup', tUp);
+    tStage.addEventListener('pointercancel', tUp);
+    // once, on arrival: one turn round, then still
+    if (!reduce && 'IntersectionObserver' in window) {
+      var tio = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        tio.disconnect();
+        var dec = tViews.map(function (im) { return im.decode ? im.decode().catch(function () {}) : null; });
+        Promise.all(dec).then(function () {
+          if (tCur !== 0) return;            // he was already turned by hand
+          var step = 1;
+          var next = function () {
+            tSet(step % tN);
+            tTimer = ++step <= tN ? setTimeout(next, M(2)) : 0;
+          };
+          tTimer = setTimeout(next, M(2));
+        });
+      }, { threshold: 0.5 });
+      tio.observe(tStage);
     }
   }
 

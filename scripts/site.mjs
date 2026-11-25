@@ -70,4 +70,6 @@ export const NOT_DEPLOYED = ['.git', '.github', '.claude', '.tmp', '.netlify', '
   // hub/lanterne/web3-modules.html, its labs (hub/web3x.js), art and strings moved back; only the verbatim cut (chapters.html) and its README stay
   'lanterne-later', 'campaign', 'knowledge-base', 'scripts', 'shop', 'social',
   'legal-preview', 'legal', 'BRAND.md', 'README.md', 'RELEASE.md', 'IMPROVEMENTS.md', 'LICENSE', 'NOTICE.md', 'OWNER-CONTENT.md', 'package.json', 'package-lock.json',
+  // api/: Vercel serverless functions (api/yasser.js, the bible's « talk to him »), built by Vercel from the repo root, never copied to _site
+  'api',
   'netlify.toml', 'vercel.json', '.gitattributes', '.gitignore', '.nvmrc', '.graphifyignore', 'graphify-out'];
