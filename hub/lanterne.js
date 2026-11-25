@@ -726,12 +726,18 @@
     var fig = $('[data-lt-tree-fig]');
     if (fig) {
       fig.hidden = false;
-      var cap = $('[data-lt-tree-cap]', fig), hint = cap.innerHTML;
+      /* on a phone the drawing scrolls: open it on the trunk, not on its first atlas name */
+      var sc = $('.tree__scroll', fig); if (sc.scrollWidth > sc.clientWidth) sc.scrollLeft = (root.dir === 'rtl' ? -1 : 1) * (sc.scrollWidth - sc.clientWidth) / 2;
+      var cap = $('[data-lt-tree-say]', fig), kq = $('[data-lt-tree-ks]', fig), hint = cap.innerHTML;
+      if (earned) fig.setAttribute('data-lit', 'true');
+      /* a leaf under the pointer: its quarter named, and the keepsake it gave, when won */
       var say = function (lf) {
+        kq.textContent = ''; kq.hidden = true;
         if (!lf) { cap.innerHTML = hint; fig.removeAttribute('data-focus'); return; }
         var bk = DATA.books.filter(function (x) { return x.slug === lf.getAttribute('data-lt-tree-book'); })[0], id = lf.getAttribute('data-lt-tree');
-        var q = bk && bk.d[id] ? t(bk.d[id].name) : '', bn = $('[data-lt-tree-b="' + bk.slug + '"] .tr__name', fig);
-        cap.textContent = t(lf.getAttribute('data-earned') ? 'lant.shelf.treeGot' : 'lant.shelf.treeTodo', { q: q, b: bn ? bn.textContent : '' });
+        var q = bk && bk.d[id] ? t(bk.d[id].name) : '', bn = $('[data-lt-tree-b="' + bk.slug + '"] .tr__name', fig), won = lf.getAttribute('data-earned');
+        cap.textContent = t(won ? 'lant.shelf.treeGot' : 'lant.shelf.treeTodo', { q: q, b: bn ? bn.textContent : '' });
+        if (won && bk.d[id] && (bk.d[id].ks || bk.d[id].seal)) { var im = ksNode(bk.d[id], ''); if (im.tagName === 'IMG') { im.width = 40; im.height = 40; } kq.appendChild(im); kq.hidden = false; }
         fig.setAttribute('data-focus', bk.slug);
       };
       fig.addEventListener('pointerover', function (e) { say(e.target.closest && e.target.closest('[data-lt-tree]')); });

@@ -4832,8 +4832,8 @@ html[dir="rtl"] .plate{background-position:calc(100% - 10px) calc((var(--bar) - 
   .dev-ph{--ph-w:clamp(58px,20%,120px);inset-inline-end:var(--s-2);inset-block-end:var(--s-2)}
   .dev-ph--hero{--ph-w:clamp(62px,21%,130px)}
 }
-/* the work: the phone straddles the capture's corner */
-.proj .thumb .dev-ph{inset-block-end:calc(-1 * var(--s-3))}
+/* the work: the phone straddles the capture's corner on a wide screen; on a phone it stays inside (the rule above) */
+@media (min-width:960px){.proj .thumb .dev-ph{inset-block-end:calc(-1 * var(--s-3))}}
 .proj--lead .thumb .dev-ph{--ph-w:clamp(70px,20%,160px)}
 @media (hover:hover) and (prefers-reduced-motion:no-preference){
   .proj .thumb .dev-ph{transition:transform var(--m-hover) var(--m-ease-enter)}

@@ -602,44 +602,91 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
        branch off one trunk, each act a twig, each district a leaf; lanterne.js lights the leaves already won (the same
        progress the passport reads) and the branch's ink up to its share. A drawing beside the list, never instead of it:
        the passport rows stay the text version, so the svg is aria-hidden and a leaf is a pointer-only way in
-       (data-href, lanterne.js), not a link: 81 dots under 24 px would be 81 small tap targets. Positions are computed here, once, in a 1000 x 640 box. */
+       (data-href, lanterne.js), not a link: 81 dots under 24 px would be 81 small tap targets. Positions are computed here, once, in a 1000 x 660 box, the view 150 wider each side for the atlas names. */
     const TW = 1000, TH = 660, SX = 500, SY = 400;
     const f1 = (n) => Math.round(n * 10) / 10;
     const qpt = (a, c, b, t) => [(1 - t) ** 2 * a[0] + 2 * (1 - t) * t * c[0] + t * t * b[0], (1 - t) ** 2 * a[1] + 2 * (1 - t) * t * c[1] + t * t * b[1]];
+    /* drawn by hand, in code: a seeded wobble (the same tree every build), branches as tapered ink shapes, leaves as
+       almonds with a midrib, the trunk hatched as bark. No image, no credits. */
+    let seed = 7;
+    const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+    const jit = (a) => (rnd() - .5) * 2 * a;
+    const P = (p) => `${f1(p[0])} ${f1(p[1])}`;
+    /* a tapered limb along a quadratic: w0 wide at its start, w1 at its end, its edges a little unsteady */
+    const limb = (a, c, b, w0, w1, n = 14, wob = .7) => {
+      const L = [], R = [];
+      for (let k = 0; k <= n; k++) {
+        const t = k / n, p = qpt(a, c, b, t), q = qpt(a, c, b, Math.min(1, t + .01)), r = qpt(a, c, b, Math.max(0, t - .01));
+        const dx = q[0] - r[0], dy = q[1] - r[1], m = Math.hypot(dx, dy) || 1, nx = -dy / m, ny = dx / m;
+        const w = (w0 + (w1 - w0) * t) / 2, e = k && k < n ? wob : 0;
+        L.push([p[0] + nx * (w + jit(e)), p[1] + ny * (w + jit(e))]); R.push([p[0] - nx * (w + jit(e)), p[1] - ny * (w + jit(e))]);
+      }
+      return `M${L.map(P).join('L')}L${R.reverse().map(P).join('L')}Z`;
+    };
+    const leafD = (s) => `M0 0C${f1(-s * .55)} ${f1(-s * .3)} ${f1(-s * .5)} ${f1(-s * .82)} 0 ${f1(-s)}C${f1(s * .5)} ${f1(-s * .82)} ${f1(s * .55)} ${f1(-s * .3)} 0 0Z`;
+    const deg = (r) => f1(r * 180 / Math.PI);
+    let hangAt = null;
     const treeBook = (b, i) => {
       const A = ATLAS[b.slug], acts = A ? A.acts.map((a) => a.districts) : [b.ids];
       const nb = books.length, c = (nb - 1) / 2, th = (-80 + 160 * (i / (nb - 1))) * Math.PI / 180;
       /* the outer branches leave the trunk lower, as a tree's do */
       const o = [SX, SY + 120 * (Math.abs(i - c) / c)];
       const tip = [SX + 440 * Math.sin(th), SY - 360 * Math.cos(th) + 40 * (Math.abs(i - c) / c)];
-      const ctl = [o[0] + 150 * Math.sin(th * .5), o[1] - 230 * Math.cos(th * .5)];
-      const branch = `M${f1(o[0])} ${f1(o[1])}Q${f1(ctl[0])} ${f1(ctl[1])} ${f1(tip[0])} ${f1(tip[1])}`;
+      const ctl = [o[0] + 150 * Math.sin(th * .5) + jit(12), o[1] - 230 * Math.cos(th * .5) + jit(12)];
+      const centre = `M${P(o)}Q${P(ctl)} ${P(tip)}`, shape = limb(o, ctl, tip, 17, 3);
       const qpt2 = (t) => qpt(o, ctl, tip, t);
+      if (!i) hangAt = qpt2(.3);
+      /* bark along the limb: a few short strokes on its back */
+      let bark = '';
+      for (let t = .08; t < .6; t += .13) { const p = qpt2(t), q = qpt2(t + .05); bark += `M${P([p[0] + jit(2), p[1] + jit(2)])}L${P(q)}`; }
       let twigs = '', leaves = '';
+      const s = acts.length > 4 ? 13 : 17, step = acts.length > 4 ? 15 : 19;
       acts.forEach((ds, k) => {
         const t = .34 + .58 * ((k + .5) / acts.length), base = qpt2(t);
-        const side = k % 2 ? 1 : -1, ta = th + side * .5, step = acts.length > 4 ? 15 : 19;
-        const end = [base[0] + Math.sin(ta) * step * (ds.length + .4), base[1] - Math.cos(ta) * step * (ds.length + .4)];
-        twigs += `<path class="tr__twig" data-lt-twig="${b.slug}-${k}" d="M${f1(base[0])} ${f1(base[1])}L${f1(end[0])} ${f1(end[1])}"/>`;
+        const side = k % 2 ? 1 : -1, ta = th + side * .5;
+        const len = step * (ds.length + .3), end = [base[0] + Math.sin(ta) * len, base[1] - Math.cos(ta) * len];
+        const bend = side * (6 + jit(3)), mid = [(base[0] + end[0]) / 2 + Math.cos(ta) * bend, (base[1] + end[1]) / 2 + Math.sin(ta) * bend];
+        twigs += `<path class="tr__twig" data-lt-twig="${b.slug}-${k}" d="${limb(base, mid, end, 4.5, 1.2, 6, .3)}"/>`;
         ds.forEach((id, j) => {
-          const x = base[0] + Math.sin(ta) * step * (j + 1), y = base[1] - Math.cos(ta) * step * (j + 1);
-          leaves += `<g class="tr__leaf" data-href="${A ? `${b.slug}.html#${id}` : `${b.slug}.html`}" data-lt-tree="${id}" data-lt-tree-book="${b.slug}"><circle class="tr__hit" cx="${f1(x)}" cy="${f1(y)}" r="10"/><circle class="tr__dot" cx="${f1(x)}" cy="${f1(y)}" r="${acts.length > 4 ? 5.5 : 7}"/></g>`;
+          const tt = (j + 1) / (ds.length + .3), p = qpt(base, mid, end, tt);
+          /* the leaves alternate along the twig, the last one at its tip points on */
+          const last = j === ds.length - 1, rot = ta + (last ? 0 : (j % 2 ? .75 : -.75)) + jit(.12);
+          leaves += `<g class="tr__leaf" data-href="${A ? `${b.slug}.html#${id}` : `${b.slug}.html`}" data-lt-tree="${id}" data-lt-tree-book="${b.slug}"><circle class="tr__hit" cx="${f1(p[0] + Math.sin(rot) * s * .5)}" cy="${f1(p[1] - Math.cos(rot) * s * .5)}" r="11"/><g transform="translate(${P(p)}) rotate(${deg(rot)})"><g class="tr__dot"><path class="tr__blade" d="${leafD(s)}"/><path class="tr__rib" d="M0 -1.5L0 ${f1(-s * .78)}"/></g></g></g>`;
         });
       });
-      const right = Math.sin(th) >= 0, lx = tip[0] + (right ? 10 : -10), ly = tip[1] - 10;
+      const right = Math.sin(th) >= 0, lx = tip[0] + (right ? 12 : -12), ly = tip[1] - 8;
       return `<g class="tr__book" data-lt-tree-b="${b.slug}" style="--spine:${b.accent}">
-        <path class="tr__branch" d="${branch}"/><path class="tr__lit" d="${branch}" pathLength="1" data-lt-tree-lit/>${twigs}${leaves}
-        <text class="tr__name" x="${f1(lx)}" y="${f1(ly)}" text-anchor="${right ? 'start' : 'end'}" data-i18n="${b.title}"></text></g>`;
+        <clipPath id="tr-c-${b.slug}"><path d="${shape}"/></clipPath>
+        <path class="tr__branch" d="${shape}"/><path class="tr__lit" d="${centre}" pathLength="1" clip-path="url(#tr-c-${b.slug})" data-lt-tree-lit/><path class="tr__edge" d="${shape}"/><path class="tr__bark" d="${bark}"/>${twigs}${leaves}
+        <text class="tr__name tr__name--${right ? 'r' : 'l'}" x="${f1(lx)}" y="${f1(ly)}" data-i18n="${b.title}"></text></g>`;
     };
-    const roots = [-60, -32, -12, 12, 32, 60].map((d) => `<path class="tr__root" d="M${SX} ${TH - 40}q${d * .6} 14 ${d * 2} 26"/>`).join('');
+    /* the trunk: a wobbled outline, hatched as bark, two knots; the roots tapered like the limbs */
+    const trunkL = [], trunkR = [];
+    for (let k = 0; k <= 10; k++) {
+      const t = k / 10, y = TH - 40 - t * (TH - 40 - SY + 40), w = 40 - 37 * Math.pow(t, .8) + (k < 2 ? (2 - k) * 9 : 0);
+      trunkL.push([SX - w + jit(k && k < 10 ? 1.4 : 0), y]); trunkR.push([SX + w + jit(k && k < 10 ? 1.4 : 0), y]);
+    }
+    const trunk = `M${trunkL.map(P).join('L')}L${trunkR.reverse().map(P).join('L')}Z`;
+    let hatch = '';
+    for (let k = -3; k <= 3; k++) {
+      const x0 = SX + k * 7 + jit(1.5), y0 = TH - 52 - Math.abs(k) * 4 + jit(4), y1 = SY + 40 + Math.abs(k) * 22 + jit(10);
+      hatch += `M${f1(x0)} ${f1(y0)}Q${f1(x0 + k * -1.6 + jit(3))} ${f1((y0 + y1) / 2)} ${f1(SX + k * 3.2)} ${f1(y1)}`;
+    }
+    const knots = [[SX - 15, TH - 92], [SX + 6, SY + 74]].map((p) => `<ellipse class="tr__knot" cx="${f1(p[0])}" cy="${f1(p[1])}" rx="4.5" ry="7"/>`).join('');
+    const roots = [-70, -40, -16, 14, 38, 66].map((d) => { const a = [SX + d * .3, TH - 44], e = [SX + d * 2.3 + jit(6), TH - 14 + jit(5)]; return `<path class="tr__root" d="${limb(a, [SX + d * 1.1, TH - 32 + jit(4)], e, 9, 1.5, 6, .3)}"/>`; }).join('');
+    const tufts = [-300, -240, -170, -110, 120, 190, 250, 310].map((d) => { const x = SX + d + jit(10), y = TH - 40 - (1 - Math.abs(d) / 330) * 22; return `M${f1(x - 3)} ${f1(y)}q-1 -6 -5 -10M${f1(x)} ${f1(y)}q1 -7 0 -14M${f1(x + 3)} ${f1(y)}q2 -5 6 -9`; }).join('');
+    const limbs = books.map(treeBook).join('');
+    /* the lantern of the shop, hanging off the first branch: lit (amber) once anything is won, a lanterne.js attribute */
+    const lantern = `<g class="tr__lantern" transform="translate(${P(hangAt)})"><path class="tr__string" d="M0 0L0 34"/><path class="tr__cap" d="M-9 40L0 32L9 40Z"/><rect class="tr__glass" x="-8" y="40" width="16" height="22" rx="3"/><path class="tr__frame" d="M-8 47H8M-8 55H8M0 40V62"/><path class="tr__cap" d="M-10 62H10L7 67H-7Z"/></g>`;
     const tree = `<div class="tree js-only" data-lt-tree-fig hidden>
       <div class="tree__scroll" tabindex="0" role="img" data-i18n-aria="lant.shelf.treeHint">
-      <svg class="tree__svg" viewBox="0 0 ${TW} ${TH}" dir="ltr" aria-hidden="true" focusable="false">
-        <path class="tr__ground" d="M${SX - 330} ${TH - 40}Q${SX} ${TH - 64} ${SX + 330} ${TH - 40}"/>
-        ${books.map(treeBook).join('')}
-        <path class="tr__trunk" d="M${SX - 30} ${TH - 40}C${SX - 14} ${TH - 110} ${SX - 16} ${SY + 90} ${SX - 6} ${SY}L${SX + 6} ${SY}C${SX + 16} ${SY + 90} ${SX + 14} ${TH - 110} ${SX + 30} ${TH - 40}Z"/>${roots}
+      <svg class="tree__svg" viewBox="-150 0 ${TW + 300} ${TH}" dir="ltr" aria-hidden="true" focusable="false">
+        <path class="tr__ground" d="M${SX - 340} ${TH - 40}Q${SX} ${TH - 66} ${SX + 340} ${TH - 40}"/><path class="tr__tuft" d="${tufts}"/>
+        ${limbs}
+        ${roots}<path class="tr__trunk" d="${trunk}"/><path class="tr__hatch" d="${hatch}"/>${knots}
+        ${lantern}
       </svg></div>
-      <p class="tree__cap hud" data-lt-tree-cap aria-hidden="true"><span data-i18n="${need('lant.shelf.treeHint', 'the shelf')}"></span></p>
+      <p class="tree__cap hud" data-lt-tree-cap aria-hidden="true"><span class="tree__ks" data-lt-tree-ks hidden></span><span data-lt-tree-say><span data-i18n="${need('lant.shelf.treeHint', 'the shelf')}"></span></span></p>
     </div>`;
     const pt = (n) => fr(need('lant.shelf.passZero', 'the shelf')).replace('{N}', n).replace('{A}', books.length);
     const k1 = ART.keys['lanterne-nuit'];
