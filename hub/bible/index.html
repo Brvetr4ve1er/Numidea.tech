@@ -129,6 +129,9 @@
         </button>
         <div class="bubble" data-ybubble aria-hidden="true"><span data-ytext></span><i></i></div>
         <div class="state"><span>State</span><b id="rigState">Idle · coffee no.1</b></div>
+        <!-- the game layer (app.js, "talk"): an emote over his head, and the cut-in band that carries a pose for a beat -->
+        <span class="rig-emote" data-emote aria-hidden="true"></span>
+        <div class="cutin" data-cutin aria-hidden="true"></div>
       </div>
       <template id="rigFrames">
         <img data-yf="half" src="art/rig-y-half.webp" width="501" height="565" alt="">
@@ -150,6 +153,23 @@
         <img data-kf="yawn" src="art/rig-k-yawn.webp" width="360" height="294" alt="">
         <img data-kf="ear" src="art/rig-k-ear.webp" width="360" height="294" alt="">
       </template>
+      <!-- Talk to him: a reply is one line, one face (03's twelve), one gesture (04's poses and actors, the
+           turnaround), and Kūro's answer (05's cards). Free text goes to /api/yasser (an AI voice, a short JSON
+           reply); the three choices are written lines and cost nothing. -->
+      <form class="chat" id="chat" autocomplete="off" novalidate>
+        <div class="chat-cast" aria-hidden="true">
+          <figure class="chat-face"><img data-cface src="art/face-deadpan.webp" width="427" height="368" alt="" loading="lazy" decoding="async"><figcaption>Yasser <b data-cmood>listening</b></figcaption></figure>
+          <figure class="chat-kuro" data-ckuro><img data-ckimg src="art/kuro-peek.webp" width="240" height="165" alt="" loading="lazy" decoding="async"><figcaption>Ku&#x304;ro</figcaption></figure>
+        </div>
+        <div class="chat-box">
+          <div class="chat-choices" role="group" aria-label="Quick lines, written in advance (no AI)" data-cchoices lang="fr"></div>
+          <label class="chat-l" for="chatIn">Or say anything <small>AI voice, not Yasser typing live</small></label>
+          <div class="chat-row">
+            <input id="chatIn" name="q" type="text" maxlength="280" placeholder="Écris-lui…" lang="fr" enterkeyhint="send">
+            <button type="submit" class="chat-go">Send</button>
+          </div>
+        </div>
+      </form>
       <p class="rig-said" id="rigSaid" aria-live="polite"></p>
     </div>
     <div class="live-side">
