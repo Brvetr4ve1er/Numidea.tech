@@ -283,3 +283,34 @@ html.js .case-alliance .ca-scope__list li.is-seen{color:var(--c-on-dark)}
 
 /* a phone: the browser bar's address may break rather than run out of its tile (hub/style.css, the cases on a phone) */
 @media (max-width:599px){.case-alliance .ca-site__bar{height:auto;min-height:38px;padding-block:6px}.case-alliance .ca-site__url{white-space:normal;overflow-wrap:anywhere;line-height:1.2;border-radius:12px}}
+
+/* ---------------- the five chapters (2026-11-24) ----------------
+   A narrow navy tile opens each chapter: its number in mint, its name,
+   one line on what follows. It is not a deliverable (no data-kind). */
+.case-alliance .ca-ch{display:flex;flex-direction:column;justify-content:space-between;gap:12px;padding:16px 14px;background:var(--c-dark);color:var(--c-on-dark);border:1px solid var(--ca-rule)}
+.case-alliance .ca-ch__n{font-family:var(--c-font-disp);font-weight:800;font-size:clamp(44px,5vw,64px);line-height:.9;color:var(--c-accent)}
+.case-alliance .ca-ch__t{font-family:var(--c-font-disp);font-weight:800;font-size:clamp(18px,1.8vw,24px);line-height:1.05;text-wrap:balance;overflow-wrap:anywhere}
+.case-alliance .ca-ch__s{font-size:13px;line-height:1.45;color:var(--ca-mist)}
+
+/* AT-12 · the voice */
+.case-alliance .ca-voice__t{font-family:var(--c-font-disp);font-weight:800;font-size:clamp(17px,1.6vw,21px);line-height:1.1;color:var(--c-dark)}
+.case-alliance .ca-voice__l{display:flex;flex-direction:column;gap:4px}
+.case-alliance .ca-voice__l li{padding-inline-start:10px;border-inline-start:3px solid var(--c-accent);font-size:13px;line-height:1.35;color:var(--c-fg)}
+@media (max-width:1110px){.case-alliance .ca-voice__l li:nth-child(3){display:none}}
+
+/* AT-13 · the way into the brand book */
+.case-alliance .ca-book{display:flex;flex-direction:column;justify-content:flex-end;background:var(--c-dark);color:var(--c-on-dark)}
+.case-alliance .ca-book__bg{position:absolute;inset:0 0 auto;width:100%;height:46%;object-fit:cover}
+.case-alliance .ca-book__txt{position:relative;z-index:1;display:flex;flex-direction:column;gap:8px;padding:14px}
+.case-alliance .ca-book__t{font-family:var(--c-font-disp);font-weight:800;font-size:clamp(18px,1.8vw,24px);line-height:1.05;text-wrap:balance}
+.case-alliance .ca-book__s{font-size:13px;line-height:1.4;color:var(--ca-mist)}
+.case-alliance .ca-book .ca-btn{padding-inline:10px;white-space:normal;text-align:center;line-height:1.15}
+
+/* the campaign line */
+.case-alliance .ca-camp{display:flex;flex-direction:column;justify-content:space-between;gap:6px;padding:14px;background:var(--c-accent);color:var(--c-dark)}
+.case-alliance .ca-camp__t{font-family:var(--c-font-disp);font-weight:800;font-size:clamp(17px,1.7vw,22px);line-height:1.05;text-wrap:balance}
+.case-alliance .ca-camp__s{font-size:var(--t-label);font-weight:600;line-height:1.35}
+@media (max-width:1110px){.case-alliance .ca-camp__s{display:none}}
+
+/* the new mises en situation fill their tile */
+.case-alliance .ca-x .ca-zoom img{object-fit:cover}
