@@ -13,12 +13,12 @@ what the Studio page changed from your design).
 |---|---|---|---|
 | 1 | Legal notice + privacy details | **Missing (16 fields; 5 in three languages)**; "later" (owner, 2026-10-30): the pages stay unpublished, the slots stay empty | `scripts/legal-data.mjs` |
 | 2 | Client quotes, with consent | None yet | `scripts/voices-data.mjs` |
-| 3 | Founder photo | Still open: none yet (checked 2026-11-24). No monogram or stand-in face shows: since 2026-11-08 the card's right column holds the engraved Arch of Trajan plate, which stays; the photo goes beside the name in the `.fd-photo` slot, commented out in `index.html` until the file exists | `assets/founder.webp` |
+| 3 | Founder photo | Closed 2026-11-24 (wave 3): no photo ("thats me and id like to use animated ones or artworks instead"). The drawn Yasser is the founder's face: the night plate on the home's founder card, the rig on the Studio. The `.fd-photo` slot, its CSS and the "photo awaited" notes are gone | `index.html` #founder (nothing to supply) |
 | 4 | Team names and photos; the team-size claim | Answered 2026-10-30 and applied on 2026-11-03: one founder, with freelancers when a project calls for them (section 17). The page shows one team row, no initials and no photos | `index.html` #founder, `assets/i18n/*.js` (`team.*`) |
-| 5 | A studio email on its own domain | Personal Gmail in use; it stays for now (owner, 2026-10-30) | everywhere one address appears |
+| 5 | A studio email on its own domain | Personal Gmail in use; it stays for now (owner, 2026-10-30; no answer again on 2026-11-24, so it stays) | everywhere one address appears |
 | 6 | Clients' permission to appear in paid ads | Not asked yet | campaign kit (not in this repo) |
-| 7 | Nomara Voyages: client or not? | Unconfirmed | `index.html` work grid, client logo strip |
-| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03, 2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14, 2026-11-19 and 2026-11-21 (the recovery's new Studio, brand-book and home keys; the theme toggle's two labels; the Studio page and its five cases above all; on 2026-11-19 the two client courses, la fabrique and the alt texts of the owner's placed artworks, §38 to §41; on 2026-11-21 the courses' critique fixes and the web3 course's nine modules, 1,770 strings, §42; on 2026-11-22 and 2026-11-23 the Librairie's volume 2, toolbox and night cases; on 2026-11-24 the audit fix pass, 95 strings) is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
+| 7 | Nomara Voyages: client or not? | Answered 2026-11-24 (wave 3): a delivered client site. The fourth everywhere: the home, its sheet on /scene/ (sheet 04), its case on the Studio (client file 04) | `index.html`, `scripts/scene-data.mjs`, `hub/src/cases/nomara.html` |
+| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03, 2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14, 2026-11-19 and 2026-11-21 (the recovery's new Studio, brand-book and home keys; the theme toggle's two labels; the Studio page and its five cases above all; on 2026-11-19 the two client courses, la fabrique and the alt texts of the owner's placed artworks, §38 to §41; on 2026-11-21 the courses' critique fixes and the web3 course's nine modules, 1,770 strings, §42; on 2026-11-22 and 2026-11-23 the Librairie's volume 2, toolbox and night cases; on 2026-11-24 the audit fix pass, 95 strings, then wave 3's work, founder and services strings, listed at the end of this file) is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
 | 9 | Clients' own domains | None verifies | `scripts/verify-domains.mjs` |
 | 10 | Hub fan art | No fan art on the site since 2026-10-28 (still in git history). Not live: nothing has deployed since 2026-10-25, GitHub Actions being blocked on billing (RELEASE.md, "Outage and fallback") | git history of `hub/` |
 | 11 | Supabase lead store | Off on purpose | `index.html`, `scripts/legal-data.mjs` |
@@ -89,13 +89,20 @@ WorkspaceHQ). Only Bordj Steel, Alliance Travel, AlmaFlowClim and Nomara
 Voyages can be quoted. Get written agreement to the exact text.
 
 ## 3. Founder photo
-A real photo, never a generated face: square, at least 400 px, saved as
-`assets/founder.webp`. In `index.html` (#founder, `.fd-photo`), uncomment the
-`<img>` line; the monogram steps aside. Run `npm run bump`. Still open on 2026-11-06.
-No stand-in face or monogram stands in the card meanwhile (the old 'Y' mark is gone). Since
-2026-11-08 (Fleet 6 round 2) the card's right column holds an engraved plate instead, the Arch of
-Trajan at Timgad (`assets/illus/arch.webp`, the studio's own atlas, Pl. III), with crop marks and a
-caption, and it stays when the photo arrives: the photo goes beside the name (`.fd-photo`).
+**Closed on 2026-11-24 (wave 3), your answer: "thats me and id like to use
+animated ones or artworks instead".** There is no photograph to send. The
+founder's face is the drawn Yasser: on the home, the painted night plate in
+the founder card's right column (`assets/illus/founder-night-*`, since
+2026-11-19); on the Studio, the animated Yasser (the rig). The commented
+photo slot (`.fd-photo`) left `index.html`, with its CSS, its line in
+`assets/app.js` and the notes that waited for a photo (here, BRAND.md,
+README.md, RELEASE.md). The home's plate holds still: the rig is another
+drawing, with its own motion rule, and stays on the Studio; say if you want an
+animated Yasser on the home card too, and it is a new piece to draw within the
+motion rules (nothing loops, at most 5 s, nothing under reduced motion).
+
+Before 2026-11-24 the slot waited for a square photo of at least 400 px
+(`assets/founder.webp`), beside the name.
 
 ## 4. Team
 **Answered on 2026-10-30: one founder, with freelancers when needed** (section
@@ -121,6 +128,15 @@ written permission before they run in paid ads. An email or WhatsApp message
 is enough; keep it.
 
 ## 7. Nomara Voyages
+**Answered 2026-11-24 (wave 3): a delivered client site.** Nomara is the
+fourth delivered client everywhere: the home (plate, logo strip, its card,
+which now leads to its sheet), /scene/ (sheet 04, read off its live pages
+that day) and the Studio (client file 04, `hub/src/cases/nomara.html`, built
+from what the site shows: no charter or posters were made for it, so the
+case holds the site's own pieces). Its live address stays
+`nomaravoyages.netlify.app` until you send its Vercel address (section 3 of
+wave 3). The text below is the question as it stood.
+
 Shown as delivered work. Confirm it is a real client with permission to show
 the site; otherwise it comes off the work grid, the hero plate, the counts and
 the client logo strip (its `<li>` in index.html, `assets/clients/nomara.webp`,
@@ -646,8 +662,8 @@ detached alpha speck (`face-smirk.webp` 90 px, `rig-y-glasses.webp` 49 px,
 they are intended or have them cut.
 The Studio has no contact form (WhatsApp, the Aperçu and e-mail only), so the
 sent-form seal exists on the home's form only; the estimator seal is on the
-home, the price guide and the Studio. The real photograph of Yasser (section 3)
-still replaces the drawn portrait where the home's founder card keeps its slot.
+home, the price guide and the Studio. (Section 3 is closed since 2026-11-24:
+no photograph; the drawn portrait is the founder's face.)
 
 Written or changed on 2026-11-19 (the manual's two client courses, §38; none
 read by a native speaker; every string is **AR: native review**). In
@@ -1160,8 +1176,8 @@ answer.
   OS preference (Daylight if it asks for light, Arcanum otherwise, nothing
   stored until they press the toggle). Decision 32 (heading faces) is moot:
   both themes set Cinzel.
-- **Founder photo** (section 3): the monogram is a 64 px mark meanwhile; the
-  slot takes the file as it is.
+- **Founder photo** (section 3): closed on 2026-11-24, no photograph; the
+  drawn Yasser is the founder's face.
 - **Hero lede** (decision 33): the reviewers want it cut to two lines, the
   founder sentence moved to the founder section or the Aperçu card. That
   reverses your decision 21 (the founder named in the lede). The other way:
@@ -1448,7 +1464,9 @@ CV)**
 - permission to show Bordj Steel's figures and logos, the clients' work, and
   Heetch's posters on a portfolio; "Chez Heetch depuis mai 2026" (the CV);
   "temps plein" and "Heetch Pro" were left out;
-- the AlmaFlow mockups show a phone number (07 55 01 60 13) and "Intervention
+- (answered 2026-11-24, "leave them empty": the number and the email are gone
+  from the pictures and the posts; the 24 h promise stays as drawn) the
+  AlmaFlow mockups show a phone number (07 55 01 60 13) and "Intervention
   sous 24h" and "Devis gratuit" in the pictures themselves, and the cards show
   contact@almaflowclim.fr; they are tagged MAQUETTE. Re-render without the
   number and the 24 h promise, or keep them?
@@ -2298,7 +2316,7 @@ session's notes (2026-11-18); this is what landed. Nothing is committed yet.
   "2,7 s · à chaque visite").
 
 **What changed on the home and its pages**: the founder's painted night
-plate (the photo slot stays for your real photograph), five small drawings
+plate (no photograph since 2026-11-24: the drawing is the face, section 3), five small drawings
 for the services on wide screens, the 404's road at night, Kūro's window by
 the FAQ, better crops of the hero plate and the atelier scene on phones; the
 price guide's ranges on a receipt with a "Prix publié" seal and a panel
@@ -11221,7 +11239,7 @@ Nothing below was decided for you; each item stays as it is until you answer.
   (short « Aperçu gratuit » in the nav and docks, long « Demander mon Aperçu gratuit » on the buttons) is on every page.
 - **Wording you approved, left alone:** the doors' premise (`doors.premise`) is unchanged; on the world page it now
   sits under the new lead (`world.note`), which says dossier 08 includes client work.
-- **Waiting on you (the plan's owner questions):** the founder photo (Q-02, item 3); Nomara Voyages (Q-01, item 7).
+- **Waiting on you (the plan's owner questions):** the founder photo (Q-02, item 3); Nomara Voyages (Q-01, item 7). Both answered on 2026-11-24 (wave 3).
   The draft Numidea brand book (Q-04) and the Marvel-logo piece A01 (Q-05) were settled by default on 2026-11-24
   (§49): the book is unlinked until you sign it off, A01 is off the Lab wall and its order measured again.
 - **Flagged, not changed:** `workspacehq/index.html` names the AI model behind WorkspaceHQ's features in its meta
@@ -11274,15 +11292,18 @@ The two strings removed with Q-04 (`brand.more`, `brandc.items.3.spec.go[2]`) ne
 
 **Still waiting on you** (facts, art or accounts; nothing changes until you answer):
 - **Q-01** Is Nomara Voyages a client? The home says « 4 sites livrés » and shows Nomara; the Studio and /scene/ say three (item 7).
-- **Q-02** A real founder photo for the home's `#founder` (item 3).
+- **Q-02** A real founder photo for the home's `#founder` (item 3). *Answered 2026-11-24: no photo, the drawings instead (wave 3).*
 - **Q-03** Ask Bordj Steel, Alliance Travel and AlmaFlow to point their domains at the builds (item 9).
 - **Q-05, the other half: the robot drawing.** The companion « Le robot » in the tr4veler codex is a *The Matrix*
   poster (`hub/brand/traveler/img/matrix.webp`, plates 08 and 14). It stays until you send an original drawing.
 - **Q-13** The home's founder block: confirm each delivery line (what was delivered, when) before the CV download and
-  the notebook link go and the Alliance Travel line is rewritten as deliveries.
+  the notebook link go and the Alliance Travel line is rewritten as deliveries. *Answered 2026-11-24 ("make it good"):
+  done in wave 3, the lines drafted from the site's own facts (section « Wave 3, the founder… » below).*
 - **Q-14** The home's services lead and « Le choix évident. » around a result: send or approve the outcome sentence.
+  *No answer; drafted on 2026-11-24 (wave 3), reversible (section « Wave 3, the founder… » below).*
 - **Q-19** AlmaFlow's mock-ups show 07 55 01 60 13 and contact@almaflowclim.fr: real, or replace with the reserved
-  01 99 00 12 34?
+  01 99 00 12 34? *Answered 2026-11-24: "leave them empty". Done in wave 3: no number and no email in the book's
+  mock-ups or posts (section « Wave 3, the founder… » below).*
 - **Q-20** The contact address: the personal Gmail, or an address on numedialab.dev (item 5).
 
 ## Wave 2, the Studio and the world (2026-11-24): taken by default while you were away
@@ -11473,3 +11494,345 @@ Arabic written for these (**AR: native review**, none read by a native speaker; 
 - `lant.at.jeu.d.g8.sort.rows.3.why` « لا مكافأة هنا تُبادَل بعنوانك أو بعملية شراء. » (French: « Aucune récompense ici ne s’échange contre votre adresse ou contre un achat. »)
 - `lant.at.jeu.d.g8.sort.rows.4.k` « لوحة ترتيب بين الزوار » (French: « Un classement entre visiteurs »)
 - `lant.at.jeu.d.g8.sort.rows.4.why` « الطوابع والأختام والملصقات تبقى في متصفحك: لا حساب ولا لوحة ترتيب. » (French: « Tampons, sceaux et stickers restent dans votre navigateur : il n’y a ni compte ni classement. »)
+
+## Wave 3, the work (2026-11-24): Nomara, Alliance's domain, the directory, our own site
+Your answers (WAVE3.md items 1 and 3), applied:
+
+- **Alliance Travel** links to `https://alliancetravel.app/` everywhere it
+  linked `alliancetravel34.netlify.app`: the home's plate and card (and so
+  /en/ and /ar/), its sheet on /scene/, its Studio case (the browser bar and
+  both links), and the capture and logo scripts (`scripts/shots.mjs`,
+  `scripts/work-capture.mjs`, `scripts/client-logos.mjs`,
+  `scripts/build-creative.mjs`). Its committed captures were not retaken:
+  they show the same site.
+- **Nomara Voyages** is the fourth delivered client everywhere (item 7
+  above): « 4 » on the home, « quatre » / "four" / « أربع » on /scene/'s
+  lead and the Studio's proof lead.
+- **Annuaire industriel algérien** (`https://annuaire-dz.vercel.app/fr`) is
+  a finished project under the site's own name: a sheet on /scene/ (sheet
+  05, chip « Projet terminé »), one line under the four clients on the home
+  (the grid stays a lead row and three: client sites only) and one line in
+  the Studio's work section. Every sentence comes from its own pages (the
+  directory, two company pages, its legal notice), read on 2026-11-24. It
+  is **not** counted among the delivered sites, and nothing says whose order
+  it was: tell us if it should be counted as a client, and it moves up.
+- **Our own site** is a finished project too: sheet 08 on /scene/, chip
+  « Notre propre site », captured from this repository (the home and the
+  price guide at night, the Studio in its cream day, the Librairie); one
+  line on the home, one link in the Studio's « Aussi, faits maison ».
+- Captures: `assets/work/nomara/`, `assets/work/annuaire/`,
+  `assets/work/numidea/` (`npm run work:capture <slug>`). The directory has
+  no home preview file (`line: true` in `scripts/shots.mjs`), like Glaive.
+
+**Arabic for native review** (wave 3, all new): the home's three lines, the
+Studio's four, the three new sheets and the scene's new interface strings,
+and the Nomara case.
+- `work.annuaire` « وأُنجز أيضاً: الدليل الصناعي الجزائري، كفاءات المؤسسات الصناعية الجزائرية وشهاداتها واحتياجاتها، بثلاث لغات. » (French: « Terminé aussi : l’Annuaire industriel algérien, les savoir-faire, certifications et besoins des entreprises industrielles algériennes, en trois langues. »)
+- `work.annuaireLive` « زيارة الدليل ↗ » (French: « Voir l’annuaire ↗ »)
+- `work.own` « وهذا الموقع، موقعنا: ثلاث لغات، ودليل للأسعار، والاستوديو، والمكتبة، وتحقيقات الليل. » (French: « Et ce site, le nôtre : trois langues, un guide des prix, le Studio, la Librairie et les enquêtes de nuit. »)
+- `proof.lead` (Studio, changed) « أربعة عملاء سُلّمت أعمالهم، وعملان للمؤسّس. كل ملف يقول ما الذي صُنع، ولمن، وأين تتحقق منه. » (French: « Quatre clients livrés et deux travaux du fondateur. … »)
+- `proof.site` « هذا الموقع، موقعنا: بطاقته » (French: « ce site, le nôtre : sa fiche »)
+- `proof.done` « وأُنجز أيضًا: » (French: « Terminé aussi : »)
+- `proof.annuaire` « الدليل الصناعي الجزائري » (French: « l’Annuaire industriel algérien »)
+- `p.nomara.ctx` « وكالة سياحة وعمرة من عين مليلة، تُسفّر المسافرين من شرق الجزائر انطلاقاً من مطار قسنطينة، ويحجز عملاؤها عبر واتساب أو بالهاتف. » (French: « Une agence de voyages et d’Omra d’Aïn M’lila, qui fait partir les voyageurs de l’Est algérien depuis l’aéroport de Constantine ; on y réserve sur WhatsApp ou par téléphone. »)
+- `p.nomara.g0` « يقارن المعتمر باقات العمرة لكل موسم حسب الفندق والمسافة من الحرم والسعر للشخص، ويقرأ ما يشمله السعر، بما فيه التأشيرة. » (French: « Un pèlerin compare les forfaits Omra de chaque saison par hôtel, distance du Haram et prix par personne, et lit ce que le prix comprend, visa compris. »)
+- `p.nomara.g1` (changed 2026-11-24, the review: Egypt’s price is on request) « يتصفّح المسافر في صفحة واحدة الوجهات المنطلقة من قسنطينة مع السعر للشخص أو عند الطلب، ويفتح من كل وجهة تفاصيلها أو واتساب. » (French: « Un voyageur parcourt sur une seule page les destinations au départ de Constantine, prix par personne à l’appui, ou sur demande, et ouvre de chacune le détail ou WhatsApp. »)
+- `p.nomara.g2` « وفي صفحة كل وجهة، يقرأ البرنامج وما يشمله السعر، وما لا يشمله مكتوباً بوضوح. » (French: « Sur la page d’une destination, il lit le programme, ce que le prix comprend et, écrit en clair, ce qu’il ne comprend pas. »)
+- `p.nomara.g3` « ولتأشيرة أو فندق أو تذكرة طيران، يقرأ كيف تعمل الوكالة خطوة بخطوة، ثم يبدأ طلبه عبر واتساب. » (French: « Pour un visa, un hôtel ou un billet d’avion, il lit comment l’agence procède, étape par étape, puis lance sa demande sur WhatsApp. »)
+- `p.nomara.g4` « يقرأ الموقع بالعربية أو بالفرنسية، بالوضع الفاتح أو الداكن. » (French: « Il lit le site en arabe ou en français, en mode clair ou en mode sombre. »)
+- `p.nomara.sector` « سياحة وعمرة · عين مليلة » (French: « Voyages et Omra · Aïn M’lila »)
+- `p.nomara.scope` « موقع تعريفي ثنائي اللغة وحجز عبر واتساب » (French: « Site vitrine bilingue et réservation WhatsApp »)
+- `p.nomara.summary` (changed 2026-11-24, the review: one destination’s price is on request) « وكالة سياحة وعمرة في شرق الجزائر: باقات العمرة حسب الفندق والمسافة من الحرم، وصفحة لكل وجهة ببرنامجها وما يشمله السعر، والخدمات (الفنادق والتذاكر والتأشيرة)، والحجز عبر واتساب. بالعربية والفرنسية، بوضعين فاتح وداكن. » (French: « Une agence de voyages et d’Omra de l’Est algérien : les forfaits Omra par hôtel et distance du Haram, une page par destination avec son programme et ce que le prix comprend, les services (hôtels, billets, visa) et la réservation sur WhatsApp. En arabe et en français, en mode clair et sombre. »)
+- `p.nomara.d0` « موقع ثنائي اللغة (العربية والفرنسية)، والعربية من اليمين إلى اليسار » (French: « Site bilingue AR · FR, arabe en RTL »)
+- `p.nomara.d1` « صفحة العمرة والحج » (French: « Page Omra et Hajj »)
+- `p.nomara.d2` « 5 صفحات للوجهات » (French: « 5 pages destination »)
+- `p.nomara.d3` « 3 صفحات للخدمات » (French: « 3 pages de services »)
+- `p.nomara.d4` « الحجز عبر واتساب » (French: « Réservation sur WhatsApp »)
+- `p.nomara.d5` « وضع فاتح ووضع داكن » (French: « Mode clair et mode sombre »)
+- `p.nomara.pg0` « الرئيسية » (French: « Accueil »)
+- `p.nomara.pg1` « العمرة والحج » (French: « Omra et Hajj »)
+- `p.nomara.pg2` « الرحلات المنظمة » (French: « Voyages organisés »)
+- `p.nomara.pg3` « إسطنبول » (French: « Istanbul »)
+- `p.nomara.ph0` « الرئيسية » (French: « Accueil »)
+- `p.nomara.ph1` « العمرة والحج » (French: « Omra et Hajj »)
+- `p.annuaire.ctx` « دليل عمومي للمؤسسات الصناعية الجزائرية: ما تتقنه وما تبحث عنه، ليجد المشترون والمستثمرون والشركاء المؤسسات التي يحتاجونها. » (French: « Un annuaire public des entreprises industrielles algériennes : ce qu’elles savent faire et ce qu’elles recherchent, pour que les acheteurs, les investisseurs et les partenaires trouvent celles qu’il leur faut. »)
+- `p.annuaire.g0` « يبحث المشتري عن مؤسسة أو نشاط، ثم يصفّي القائمة حسب الولاية ونوع المؤسسة. » (French: « Un acheteur cherche une entreprise ou une activité, puis filtre la liste par wilaya et par type d’entreprise. »)
+- `p.annuaire.g1` « في صفحة كل مؤسسة، يقرأ ما تتقنه وشهاداتها واحتياجاتها، مع ولايتها وفئة عدد عمّالها ورابط موقعها. » (French: « Sur la fiche d’une entreprise, il lit ce qu’elle sait faire, ses certifications et ses besoins, avec sa wilaya, sa tranche d’effectif et un lien vers son site. »)
+- `p.annuaire.g2` « ومن هناك، ينتقل إلى مؤسسات مشابهة. » (French: « De là, il passe à des entreprises similaires. »)
+- `p.annuaire.g3` « ويعرف ما يُنشر وما لا يُنشر أبداً: لا بيانات اتصال الأشخاص، ولا أرقام المؤسسات، ولا تمويلاتها. » (French: « Il sait ce qui est publié et ce qui ne l’est jamais : ni les coordonnées des personnes, ni les chiffres des entreprises, ni leurs financements. »)
+- `p.annuaire.g4` « يقرأ الدليل بالفرنسية أو العربية أو الإنجليزية. » (French: « Il lit l’annuaire en français, en arabe ou en anglais. »)
+- `p.annuaire.sector` « دليل صناعي · الجزائر » (French: « Annuaire industriel · Algérie »)
+- `p.annuaire.scope` « دليل إلكتروني ثلاثي اللغة » (French: « Annuaire en ligne trilingue »)
+- `p.annuaire.summary` « دليل المؤسسات الصناعية الجزائرية: الكفاءات والشهادات والاحتياجات. بحث مع تصفية حسب الولاية والنوع، وصفحة لكل مؤسسة مع مؤسسات مشابهة، بالفرنسية والعربية والإنجليزية. » (French: « L’annuaire des entreprises industrielles algériennes : savoir-faire, certifications et besoins. Une recherche filtrée par wilaya et par type, une fiche par entreprise avec ses entreprises similaires, en français, en arabe et en anglais. »)
+- `p.annuaire.d0` « دليل ثلاثي اللغة (الفرنسية والعربية والإنجليزية)، والعربية من اليمين إلى اليسار » (French: « Annuaire trilingue FR · AR · EN, arabe en RTL »)
+- `p.annuaire.d1` « بحث وتصفية حسب الولاية والنوع » (French: « Recherche et filtres par wilaya et par type »)
+- `p.annuaire.d2` « صفحة لكل مؤسسة » (French: « Une fiche par entreprise »)
+- `p.annuaire.d3` « مؤسسات مشابهة » (French: « Entreprises similaires »)
+- `p.annuaire.d4` « فضاء الإدارة » (French: « Espace d’administration »)
+- `p.annuaire.d5` « الإشعار القانوني والخصوصية » (French: « Mentions légales et confidentialité »)
+- `p.annuaire.pg0` « الدليل » (French: « L’annuaire »)
+- `p.annuaire.pg1` « صفحة مؤسسة، جيجل » (French: « Fiche entreprise, Jijel »)
+- `p.annuaire.pg2` « صفحة مؤسسة، برج بوعريريج » (French: « Fiche entreprise, Bordj Bou Arréridj »)
+- `p.annuaire.pg3` (changed 2026-11-24, the review: the fourth capture is now the directory in Arabic) « الدليل بالعربية » (French: « L’annuaire en arabe »)
+- `p.annuaire.ph0` « الدليل » (French: « L’annuaire »)
+- `p.annuaire.ph1` « صفحة مؤسسة » (French: « Fiche entreprise »)
+- `p.numidea.ctx` « موقعنا الخاص، الذي تقرؤه الآن: فيه يعرض الاستوديو أسعاره وأعماله، وفيه دروسه المجانية. » (French: « Notre propre site, celui que vous lisez : le studio y présente ses prix et ses travaux, et y tient ses leçons gratuites. »)
+- `p.numidea.g0` « يقرأ الزائر الموقع بالفرنسية أو الإنجليزية أو العربية، ويطلب معاينة مجانية لصفحته الرئيسية قبل أن يدفع. » (French: « Un visiteur lit le site en français, en anglais ou en arabe, et demande un Aperçu gratuit de sa page d’accueil avant de payer. »)
+- `p.numidea.g1` « يقرأ الأسعار المنشورة بالدينار، وما تشمله كل باقة، قبل أن يراسل. » (French: « Il lit les prix publiés, en dinars, et ce que chaque formule comprend, avant d’écrire. »)
+- `p.numidea.g2` « وفي الاستوديو، يفتح ملف كل عميل سُلِّم عمله، قطعة بقطعة، ويقدّر كلفة مشروعه. » (French: « Au Studio, il ouvre le dossier de chaque client livré, pièce par pièce, et estime son propre projet. »)
+- `p.numidea.g3` « وفي المكتبة، يتابع دروساً مجانية، كلّ منها أطلس يُلعب حيّاً بحيّ. » (French: « À la Librairie Lanterne, il suit des leçons gratuites, chacune un atlas qu’on joue quartier par quartier. »)
+- `p.numidea.g4` « وفي تحقيقات الليل، يقرأ ادّعاءً رائجاً ويشير إلى الدليل على شاشة وهمية، مجاناً، في متصفّحه. » (French: « Aux enquêtes de nuit, il lit une affirmation en vogue et pointe la preuve sur un écran factice, gratuitement, dans son navigateur. »)
+- `p.numidea.sector` « استوديو ويب · برج بوعريريج » (French: « Studio web · Bordj Bou Arréridj »)
+- `p.numidea.scope` « موقعنا الخاص، بثلاث لغات » (French: « Notre propre site, en trois langues »)
+- `p.numidea.summary` « موقعنا الخاص، الذي تقرؤه الآن: بالفرنسية والإنجليزية والعربية، مع دليل لأسعارنا المنشورة، والاستوديو وملفات العملاء، والمكتبة ودروسها المجانية، وتحقيقات الليل، وهي لعبة. » (French: « Notre propre site, celui que vous lisez : en français, en anglais et en arabe, avec un guide des prix publiés, le Studio et les dossiers des clients, la Librairie Lanterne et ses leçons gratuites, et les enquêtes de nuit, un jeu. »)
+- `p.numidea.d0` « موقع ثلاثي اللغة (الفرنسية والإنجليزية والعربية)، والعربية من اليمين إلى اليسار » (French: « Site trilingue FR · EN · AR, arabe en RTL »)
+- `p.numidea.d1` « دليل الأسعار » (French: « Guide des prix »)
+- `p.numidea.d2` « الاستوديو وملفات العملاء » (French: « Le Studio et les dossiers clients »)
+- `p.numidea.d3` « المكتبة » (French: « La Librairie Lanterne »)
+- `p.numidea.d4` « تحقيقات الليل، لعبة » (French: « Les enquêtes de nuit, un jeu »)
+- `p.numidea.d5` « مظهران، ليلي ونهاري » (French: « Deux thèmes, nuit et jour »)
+- `p.numidea.pg0` « الرئيسية » (French: « Accueil »)
+- `p.numidea.pg1` « دليل الأسعار » (French: « Guide des prix »)
+- `p.numidea.pg2` « الاستوديو » (French: « Le Studio »)
+- `p.numidea.pg3` « المكتبة » (French: « La Librairie Lanterne »)
+- `p.numidea.ph0` « الرئيسية » (French: « Accueil »)
+- `p.numidea.ph1` « الاستوديو » (French: « Le Studio »)
+- `ui.lead` « اللوحات الأربع الأولى مواقع سُلِّمت لعملاء، كما هي على الإنترنت اليوم؛ ثم مشاريعنا المنجزة الأخرى: دليل صناعي، وعرض تجريبي ضمن الأعمال، وأداتنا الخاصة، وهذا الموقع. » (French: « Les quatre premières planches sont des sites livrés à des clients, tels qu’ils sont en ligne ; puis nos autres projets terminés : un annuaire industriel, une démo de portfolio, notre propre outil et ce site. »)
+- `ui.group` « مشاريع منجزة أخرى: دليل، وعرض تجريبي، وأداتنا، وهذا الموقع » (French: « Autres projets terminés : un annuaire, une démo, notre outil et ce site »)
+- `ui.status.finished` « مشروع منجز » (French: « Projet terminé »)
+- `ui.gain.finished` « ما يقدّمه الموقع لزوّاره » (French: « Ce que le site apporte à ses visiteurs »)
+- `ui.ctxL.finished` « المشروع » (French: « Le projet »)
+- `ui.status.own` « موقعنا الخاص » (French: « Notre propre site »)
+- `ui.gain.own` « ما يقدّمه الموقع لزوّاره » (French: « Ce que le site apporte à ses visiteurs »)
+- `ui.ctxL.own` « الإطار » (French: « Le cadre »)
+- `cases.nomara.hud` « ملف العميل 04 » (French: « DOSSIER CLIENT 04 »)
+- `cases.nomara.sector` « سياحة وعمرة » (French: « Voyages et Omra »)
+- `cases.nomara.tag` « موقع ثنائي اللغة » (French: « Site bilingue »)
+- `cases.nomara.track` « نومارا للسياحة والأسفار: قطع الملف » (French: « Nomara Voyages : les pièces du dossier »)
+- `cases.nomara.cover.k` « الموقع · العربية · الفرنسية » (French: « SITE · AR · FR »)
+- `cases.nomara.cover.t` « العمرة والرحلات المنظمة، انطلاقاً من قسنطينة » (French: « Omra et voyages organisés, au départ de Constantine »)
+- `cases.nomara.cover.s` « وكالة سياحة وعمرة · عين مليلة. موقع بالعربية والفرنسية، والحجز عبر واتساب. » (French: « Agence de voyages et d’Omra · Aïn M’lila. Un site en arabe et en français, et la réservation sur WhatsApp. »)
+- `cases.nomara.cover.chips.0` « العمرة والحج » (French: « Omra et Hajj »)
+- `cases.nomara.cover.chips.1` « الرحلات المنظمة » (French: « Voyages organisés »)
+- `cases.nomara.cover.chips.2` « الفنادق · التذاكر · التأشيرة » (French: « Hôtels · billets · visa »)
+- `cases.nomara.cover.chips.3` « واتساب » (French: « WhatsApp »)
+- `cases.nomara.site.k` « الموقع · على الإنترنت » (French: « SITE · EN LIGNE »)
+- `cases.nomara.site.h` « اختر رحلتك، ثم راسلنا على واتساب » (French: « Choisir son voyage, puis écrire sur WhatsApp »)
+- `cases.nomara.site.open` « فتح ↗ » (French: « Ouvrir ↗ »)
+- `cases.nomara.site.fl.0` « الصفحات » (French: « PAGES »)
+- `cases.nomara.site.fl.1` « اللغات » (French: « LANGUES »)
+- `cases.nomara.site.fl.2` « الحجز » (French: « RÉSERVATION »)
+- `cases.nomara.omra.k` « NV-02 · العمرة والحج » (French: « NV-02 · OMRA ET HAJJ »)
+- `cases.nomara.omra.h` « موسمان، وثلاثة فنادق للاختيار » (French: « Deux saisons, trois hôtels au choix »)
+- `cases.nomara.omra.items.0` « عمرة شوّال وعمرة جوان » (French: « L’Omra de Chawwal et l’Omra de juin »)
+- `cases.nomara.omra.items.1` « لكلّ منهما ثلاثة فنادق على ثلاث مسافات من الحرم » (French: « Pour chacune, trois hôtels à trois distances du Haram »)
+- `cases.nomara.omra.items.2` « يشمل السعر الطيران المباشر من قسنطينة والفندق والمرافقة والتأشيرة » (French: « Le prix comprend le vol direct depuis Constantine, l’hôtel, l’accompagnement et le visa »)
+- `cases.nomara.omra.alt` « صفحة العمرة والحج في موقع نومارا للسياحة والأسفار: «نرافقك في رحلة العمر» على خلفية خضراء » (French: « La page Omra et Hajj du site de Nomara Voyages, en arabe : « نرافقك في رحلة العمر », sur fond vert »)
+- `cases.nomara.trips.k` « NV-03 · الرحلات المنظمة » (French: « NV-03 · VOYAGES ORGANISÉS »)
+- `cases.nomara.trips.h` « خمس وجهات، لكلّ منها صفحتها » (French: « Cinq destinations, une page chacune »)
+- `cases.nomara.trips.items.0` « تونس » (French: « Tunisie »)
+- `cases.nomara.trips.items.1` « تركيا » (French: « Turquie »)
+- `cases.nomara.trips.items.2` « أذربيجان » (French: « Azerbaïdjan »)
+- `cases.nomara.trips.items.3` « ماليزيا » (French: « Malaisie »)
+- `cases.nomara.trips.items.4` « مصر » (French: « Égypte »)
+- `cases.nomara.trips.note` « في كل صفحة: البرنامج، وما يشمله السعر، وما لا يشمله. » (French: « Sur chaque page : le programme, ce que le prix comprend et ce qu’il ne comprend pas. »)
+- `cases.nomara.trips.lab` « إسطنبول · الصفحة » (French: « ISTANBUL · LA PAGE »)
+- `cases.nomara.trips.alt` « صفحة إسطنبول في موقع نومارا للسياحة والأسفار: المسجد الأزرق خلف عنوان «إسطنبول — تركيا» » (French: « La page Istanbul du site de Nomara Voyages, en arabe : la Mosquée bleue derrière le titre « إسطنبول — تركيا » »)
+- `cases.nomara.services.k` « NV-04 · الخدمات » (French: « NV-04 · SERVICES »)
+- `cases.nomara.services.items.0` « حجز الفنادق » (French: « Réservation d’hôtels »)
+- `cases.nomara.services.items.1` « تذاكر الطيران » (French: « Billets d’avion »)
+- `cases.nomara.services.items.2` « المساعدة في ملف التأشيرة » (French: « Aide au dossier de visa »)
+- `cases.nomara.services.note` « لكلّ خدمة خطواتها واحدة بواحدة، ثم واتساب. » (French: « Pour chacun, la marche à suivre étape par étape, puis WhatsApp. »)
+- `cases.nomara.mobile.k` « على الهاتف » (French: « SUR MOBILE »)
+- `cases.nomara.mobile.alt` « الصفحة الرئيسية لموقع نومارا للسياحة والأسفار على هاتف » (French: « L’accueil du site de Nomara Voyages sur un téléphone, en arabe »)
+- `cases.nomara.system.k` « الألوان والخطوط » (French: « COULEURS ET TYPE »)
+- `cases.nomara.system.note` « وضع فاتح ووضع داكن » (French: « Mode clair et mode sombre »)
+- `cases.nomara.scope.k` « سُلِّم · نومارا للسياحة والأسفار » (French: « LIVRÉ · NOMARA VOYAGES »)
+- `cases.nomara.scope.n` « 6 مُخرَجات » (French: « 6 LIVRABLES »)
+- `cases.nomara.scope.t` « وكالة سفر، من اختيار الرحلة إلى رسالة واتساب » (French: « Agence de voyages, du choix du voyage au message WhatsApp »)
+- `cases.nomara.scope.note` « تُعلَّم كل خانة عندما ترى القطعة في الملف. » (French: « Chaque case se coche quand vous avez vu la pièce dans le dossier. »)
+- `cases.nomara.scope.items.0` « موقع ثنائي اللغة (العربية والفرنسية) » (French: « Site bilingue AR · FR »)
+- `cases.nomara.scope.items.1` « صفحة العمرة والحج » (French: « Page Omra et Hajj »)
+- `cases.nomara.scope.items.2` « 5 صفحات للوجهات » (French: « 5 pages destination »)
+- `cases.nomara.scope.items.3` « 3 صفحات للخدمات » (French: « 3 pages de services »)
+- `cases.nomara.scope.items.4` « نسخة الهاتف » (French: « Version mobile »)
+- `cases.nomara.scope.items.5` « وضع فاتح ووضع داكن » (French: « Mode clair et mode sombre »)
+- `cases.nomara.scope.cta` « مشروع مثل هذا ← » (French: « Un projet comme celui-ci → »)
+
+## Wave 3, the founder, the services copy and AlmaFlow's book (2026-11-24)
+Your answers (WAVE3.md items 2, 5, 6 and 7), applied. Items 5 and 6 are
+**drafted**: each is reversible, and the way back is given.
+
+- **No founder photo** (item 2, section 3 closed). The drawn Yasser stays the
+  founder's face: the night plate on the home's card. The commented photo
+  slot, its CSS (`.fd-photo`), its line in `assets/app.js` and the notes that
+  waited for a photo are gone. The plate holds still: the animated Yasser (the
+  rig) is another drawing and stays on the Studio, where its motion rule
+  lives; an animated version of the home's plate does not exist, so none was
+  put on the card. Say if you want one drawn.
+- **The founder card's lines are deliveries** (item 5, drafted). The block
+  « Livré récemment », which gave two job titles, is now « En ligne
+  aujourd'hui »: each site live today, linked to its sheet, what it is in its
+  sheet's own words, and a date only where the site already gave one (the CV
+  periods):
+  - Alliance Travel · identité, site et parcours de réservation · Fév. – mai 2026
+  - SPA Bordj Steel · identité et site corporate B2B · Août 2025 – fév. 2026
+  - Nomara Voyages · site bilingue et réservation WhatsApp (no date on record)
+  - AlmaFlowClim · site vitrine et demande de devis (no date on record)
+  - Annuaire industriel algérien · annuaire en ligne en trois langues, projet terminé (no date on record)
+  Send a month for Nomara, AlmaFlowClim or the directory and it joins its line.
+  Undo: the two old lines (`fx3`, `fx3.when`; `fx4`, `fx4.when`) under
+  `founder.recent` « Livré récemment » in `index.html`; the new keys are
+  `fd.*` in `assets/i18n/*.js`.
+- **The CV download and the character-notebook link left the home's founder
+  block** (item 5, Q-13). Both stay on the Studio (its founder block links the
+  bible and the PDF). The career panel (« Voir le parcours ») stays; its two
+  client names now lead to their sheets. Undo: the `.cv-dl` link and the
+  `.fd-bible` link in `index.html`, their keys `founder.download` and
+  `founder.bible` and their CSS (git history, 2026-11-24).
+- **The home's services say what you get** (item 6, drafted, no figure):
+  - `svc.lead` « Ce que vous en retirez : un site qui donne envie de vous écrire, une image qui inspire confiance, des heures rendues à votre métier. Un seul interlocuteur, du premier message à la mise en ligne. » (was « Cinq services principaux, et cinq autres juste en dessous. Un seul interlocuteur pour tous. »)
+  - `f1.promise` « Un site qui transforme la visite en message. » (was « Le choix évident. »)
+  - English: "What you walk away with: a site that makes people want to write to you, an image that earns trust, hours handed back to your trade. One contact, from the first message to launch." and "A site that turns a visit into a message."
+  The stack tags (React, Next.js, Tailwind, Python, Playwright…) and the
+  other tag rows left the five home cards; the tools stay on the project
+  sheets (/scene/). Undo: the two keys in `assets/i18n/*.js`, the `.tags`
+  rows and their CSS and `tag.*` keys from git history.
+- **AlmaFlow's brand book shows no phone number and no email** (item 7). The
+  three mock-ups that had them in the picture were retouched (`m-cards`: the
+  back of the card is plain night; `m-van`: no number on the side; `m-hanger`:
+  no number and no phone icon in the white band; « Intervention sous 24h » and
+  « Devis gratuit » stay as drawn). The two social posts' buttons now read
+  « Rendez-vous » and « Devis » with no number (the sample 01 99 00 12 34 is
+  gone), and the captions say the details are left empty. The same pictures
+  show on the Studio's AlmaFlow case, so it is empty there too. The design
+  export's masters still carry the number: if the pictures are cut again
+  from them (`scripts/build-hub-img.mjs`), retouch the masters first.
+
+**Arabic for native review** (wave 3, new or changed; AR: native review):
+- `founder.recent` « على الإنترنت اليوم » (French: « En ligne aujourd’hui »)
+- `fd.alliance` « الهوية والموقع ومسار الحجز » (French: « identité, site et parcours de réservation »)
+- `fd.bordjsteel` « الهوية وموقع مؤسسي B2B » (French: « identité et site corporate B2B »)
+- `fd.nomara` « موقع ثنائي اللغة وحجز عبر واتساب » (French: « site bilingue et réservation WhatsApp »)
+- `fd.almaflow` « موقع تعريفي وطلب عرض سعر » (French: « site vitrine et demande de devis »)
+- `fd.annuaireName` « الدليل الصناعي الجزائري » (French: « Annuaire industriel algérien »)
+- `fd.annuaire` « دليل إلكتروني بثلاث لغات، مشروع منجز » (French: « annuaire en ligne en trois langues, projet terminé »)
+- `svc.lead` « ما تخرج به: موقع يدفع زوّاره إلى مراسلتك، وصورة تبعث على الثقة، وساعات تعود إلى عملك. ومحاور واحد، من أول رسالة إلى الإطلاق. » (French: as above)
+- `f1.promise` « موقع يحوّل الزيارة إلى رسالة. » (French: « Un site qui transforme la visite en message. »)
+The removed keys (`founder.download`, `founder.bible`, `tag.*`) need no review.
+
+## Your answers, applied (2026-11-24)
+Your eight answers of 2026-11-24, in your words, and what each changed. The two
+sections just above give the detail, the way back for each drafted change, and
+the full Arabic lists.
+
+1. **Nomara Voyages.** « yes a client … the website was made already ». Nomara
+   is the fourth delivered client everywhere: « 4 » on the home, « quatre » on
+   /scene/'s lead and on the Studio's proof lead (and in English and Arabic).
+   It has a sheet on /scene/ (sheet 04) and a full case on the Studio (client
+   file 04), written only from what its own live pages show. Row 7 and
+   section 7 are closed.
+2. **Founder photo.** « thats me and id like to use animated ones or artworks
+   instead ». No photo: the commented slot, its CSS and every "photo awaited"
+   note are gone (row 3 and section 3 closed). The drawn night plate stays the
+   face on the home's founder card. The animated Yasser (the rig) is a
+   different drawing and stays on the Studio, so the home's plate holds still.
+   Say if you want an animated version of the plate drawn.
+3. **Domains.** « the real sites are available on vercel for alliance travel
+   and hiba and workspace hq and all the others are on github and vercel also
+   numidea itself should be among the finished projects ».
+   - Alliance Travel links to `https://alliancetravel.app/` everywhere, the
+     capture and logo scripts included. No `alliancetravel34.netlify.app` link
+     is left on the site.
+   - The industrial directory (`https://annuaire-dz.vercel.app/fr`) is a new
+     finished project under its own name, « Annuaire industriel algérien »:
+     sheet 05 on /scene/ (chip « Projet terminé »), a line under the four
+     clients on the home, a « Terminé aussi » line on the Studio. It is not
+     counted among the delivered sites. The person's name is printed nowhere.
+   - Our own site is a finished project, honestly labelled « Notre propre
+     site »: sheet 08 on /scene/, a line on the home, a link in the Studio's
+     « Aussi, faits maison ». It was captured from this repository, not from
+     the live host.
+   - WorkspaceHQ, Bordj Steel, AlmaFlowClim and Nomara keep their current links
+     (see "Still waiting" below).
+4. **The Matrix robot.** « not sure yet ». Unchanged: the poster stays in the
+   tr4veler codex until you send an original drawing.
+5. **Founder card delivery lines.** « we will work on that later make it good
+   thats all ». Drafted: « Livré récemment » is now « En ligne aujourd'hui »,
+   five lines (the four clients and the directory), each linked to its sheet
+   and described in that sheet's own words. Dates appear only where the site
+   already gave one (the CV periods of Alliance Travel and Bordj Steel). The
+   CV download and the character-notebook link left the home's founder block.
+   Both stay on the Studio.
+6. **Home services intro.** No answer. Drafted: the services lead and « Le
+   choix évident. » now say what the visitor gets, with no figure, and the
+   stack tags left the home's cards (they stay on /scene/). Reversible.
+7. **AlmaFlow phone numbers.** « leave them empty ». No phone number and no
+   email in AlmaFlow's brand book: three mock-up pictures retouched (both
+   sizes), and the sample number left the two social posts.
+8. **Contact address on numedialab.dev.** No answer: the Gmail address stays.
+
+**Still waiting on you**
+- **Vercel addresses** for WorkspaceHQ, Bordj Steel, AlmaFlowClim and Nomara.
+  None of them was found in the Vercel team this site can see, so each keeps
+  its current live link (`bordjsteelb2b.netlify.app`, `almaflowclim.netlify.app`,
+  `nomaravoyages.netlify.app`; WorkspaceHQ's own page on this site). Send each
+  Vercel address and the link changes.
+- **The robot drawing** for the tr4veler codex (Q-05's other half).
+- **A contact address** on the studio's own domain (row 5). The Gmail address
+  stays until then.
+- A month for Nomara, AlmaFlowClim or the directory, if you want a date on its
+  founder-card line. Without one, the line has no date.
+- Whether the directory should count as a delivered client. Until you say so,
+  it stays under "other finished projects".
+
+**New Arabic strings for native review** (wave 3, 140, all flagged): the home's
+`work.annuaire`, `work.annuaireLive`, `work.own`, `founder.recent`, `fd.*`,
+`svc.lead` and `f1.promise`; the Studio's `proof.lead`, `proof.site`,
+`proof.done` and `proof.annuaire`; the three new sheets (`p.nomara.*`,
+`p.annuaire.*`, `p.numidea.*`) and /scene/'s `ui.lead`, `ui.group`,
+`ui.status`, `ui.gain` and `ui.ctxL` for `finished` and `own`; the Nomara case
+(`cases.nomara.*`). Each one is listed beside its French source in the two
+sections above. In `scripts/scene-data.mjs` the same strings carry an
+`// AR review` marker.
+
+## Wave 3, the review's fixes (2026-11-24)
+What the review of wave 3 changed, and what it leaves with you.
+
+- **The directory's company pages, on the live site.** On every company page of
+  `annuaire-dz.vercel.app` the company's initials badge (« AS », « BE ») sits
+  half under the blue banner: the banner is drawn over it. The fix belongs to
+  the live site (the badge needs to stack above the banner, a `z-index` or
+  `position: relative` on it), not to this repository. Until then the /scene/
+  captures of the two company pages (`assets/work/annuaire/d2`, `d3`, `m2`)
+  open at the company's name, so the half-hidden badge is not their subject.
+  Say when the live site is fixed and they can be taken again from the top.
+- **The directory's fourth capture** is now the directory in Arabic
+  (`https://annuaire-dz.vercel.app/ar`), not the legal notice, whose editor
+  line still reads « seront publiés prochainement ». The legal notice stays a
+  deliverable line on the sheet.
+- **Nomara's prices.** The sheet no longer says every destination has an
+  all-inclusive price: the Egypt page and its tile read « السعر عند الطلب »
+  (price on request). The summary now says « son programme et ce que le prix
+  comprend », and the destinations line « prix par personne à l'appui, ou sur
+  demande ».
+- **WorkspaceHQ names a model, for you to decide.** WorkspaceHQ's own page
+  (`workspacehq/index.html`, lines 10, 103, 143 and 180) and so its /scene/
+  capture name the AI model the console runs on (in its tagline and its « Ask
+  … » button). That is the product's own copy, so it is left as it is; the site's rule elsewhere is
+  to name no AI model or generator. Say whether the rule applies to the
+  product's page: if it does, the copy is reworded and its captures retaken
+  (`npm run work:capture workspacehq`).
+
+**Arabic for native review** (AR: native review, new or changed in this pass):
+- `p.annuaire.name` (new, the sheet's heading in Arabic, as the Arabic home and
+  the Studio name the project) « الدليل الصناعي الجزائري » (French: « Annuaire
+  industriel algérien »)
+- `p.annuaire.pg3` (changed) « الدليل بالعربية » (French: « L’annuaire en arabe »)
+- `p.nomara.summary` (changed) « … وصفحة لكل وجهة ببرنامجها وما يشمله السعر … »
+  (French: « … une page par destination avec son programme et ce que le prix
+  comprend … »)
+- `p.nomara.g1` (changed) « … الوجهات المنطلقة من قسنطينة مع السعر للشخص أو عند
+  الطلب … » (French: « … prix par personne à l’appui, ou sur demande … »)
+- `atelier.kicker` (markup only: the coordinates in a left-to-right `<bdi>`, so
+  they no longer read « N 4°46′E′04°36 ») « برج بوعريريج · 36°04′N 4°46′E »

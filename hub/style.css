@@ -1180,6 +1180,10 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 /* each link is one run of words that wraps as a sentence (S-21: an inline-flex link laid « WorkspaceHQ, » and its
    description out as two boxes side by side); 10 + 24 + 10 keeps the 44 px target */
 .st-own a{display:block;padding-block:10px;line-height:24px}
+/* wave 3 (2026-11-24): a second line under it, the other finished work (the industrial directory, its sheet): the two
+   lines read as one block, so the first gives up its gap */
+.st-own:has(+ .st-own){margin-bottom:0}
+.st-own + .st-own{margin-top:0}
 
 /* the viewer */
 .st-lb{max-width:min(92vw,760px);max-height:88vh;max-height:88dvh;padding:0;border:2px solid var(--ink);background:var(--ink);overflow:visible}

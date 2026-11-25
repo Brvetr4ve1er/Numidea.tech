@@ -1919,7 +1919,7 @@
           b.addEventListener('click', function (e) { e.stopPropagation(); flip(); });
           // a tap on the title or the tagline does the same (a pointer's reach; the button is the keyboard's)
           row.addEventListener('click', function (e) {
-            if (e.target.closest('a, button, .brief, .tags, .fam')) return;
+            if (e.target.closest('a, button, .brief, .fam')) return;
             if (window.matchMedia('(max-width: 960px)').matches) flip();
           });
         });
@@ -2505,8 +2505,8 @@
     var skio = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
       es.forEach(function (e) { e.target.classList.toggle('sk-run', e.isIntersecting && !e.target.classList.contains('sk-done')); });
     }) : null;
-    [].forEach.call(document.querySelectorAll('.proj .thumb img.shot, .plate img.pl, .fd-photo img'), function (img) {
-      var box = img.closest('.thumb, .plate, .fd-photo'); if (!box || (img.complete && img.naturalWidth)) return;
+    [].forEach.call(document.querySelectorAll('.proj .thumb img.shot, .plate img.pl'), function (img) {
+      var box = img.closest('.thumb, .plate'); if (!box || (img.complete && img.naturalWidth)) return;
       box.classList.add('sk');
       if (skio) skio.observe(box); else box.classList.add('sk-run');
       var done = function () {
