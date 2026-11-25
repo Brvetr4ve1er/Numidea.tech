@@ -111,6 +111,9 @@ function plateOrder(html, lang) {
     let k = 0;
     html = html.replace(re, (all, indent) => indent + set(by[order[k]], k++ === 0));
   }
+  // the hero phone: only the first slide's screen loads at once, and none when that slide hides the phone (Nomara has no capture)
+  html = html.replace(/<img class="ph-shot" data-client="([a-z0-9-]+)"([^>]*)>/g, (all, c, rest) =>
+    `<img class="ph-shot" data-client="${c}"${rest.replace(/ loading="lazy"/g, '')}${c === order[0] ? '' : ' loading="lazy"'}>`);
   // the plate's link follows its first slide: its sheet, else its card
   const lead = (new RegExp(`<a class="pm-item on" data-client="${order[0]}"(?: data-sheet="([a-z0-9-]+)")?`).exec(html) || [])[1];
   return once(html, /(<a class="plate-link" href=")[^"]*(")/, `$1${lead ? 'scene/#' + lead : '#w-' + order[0]}$2`, 'the plate link');
