@@ -1241,6 +1241,8 @@
            wireWA (§13) leaves it in place. */
         var waAlt = document.getElementById('form-wa');
         if (waAlt && WA) { waAlt.waText = body; waAlt.href = waUrl(body); }
+        // counted as a contact (assets/carry.js), like a click on a mail link
+        if (window.numideaGo) window.numideaGo('form');
         window.location.href = 'mailto:hamissemohamedyasser@gmail.com'
           + '?subject=' + encodeURIComponent(subject)
           + '&body=' + encodeURIComponent(body);
