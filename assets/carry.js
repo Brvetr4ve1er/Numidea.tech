@@ -46,6 +46,39 @@
   document.addEventListener('click', carry, true);
   document.addEventListener('auxclick', carry, true);
 
+  /* Audience measurement: Vercel Web Analytics, cookieless (no banner
+     needed, nothing stored on the visitor's device), first-party: the
+     script and its beacons are same-origin, so the Content-Security-Policy
+     ('self') needs nothing new. Loaded on the canonical host only, so the
+     Pages mirror, previews and a local server neither 404 on it nor count.
+     A contact click (WhatsApp, email, phone) is counted as a view of
+     /go/<channel>/<page it came from>, e.g. /go/whatsapp/tarifs/: Web
+     Analytics' custom events need a paid plan, a virtual view does not.
+     window.numideaGo(channel) lets assets/app.js count a contact form
+     that hands off by script rather than by a link. */
+  var LIVE = location.hostname === 'www.numedialab.dev';
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  if (LIVE && !document.querySelector('script[src="/_vercel/insights/script.js"]')) {
+    var vs = document.createElement('script');
+    vs.defer = true;
+    vs.src = '/_vercel/insights/script.js';
+    document.head.appendChild(vs);
+  }
+  var went = 0;
+  window.numideaGo = function (channel) {
+    if (!LIVE || Date.now() - went < 1000) return;   // one count per gesture
+    went = Date.now();
+    window.va('pageview', { route: '/go/' + channel, path: '/go/' + channel + location.pathname });
+  };
+  var CHANNEL = [[/^https:\/\/(wa\.me|api\.whatsapp\.com)\//, 'whatsapp'], [/^mailto:/i, 'email'], [/^tel:/i, 'phone']];
+  function contact(e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    for (var i = 0; i < CHANNEL.length; i++) if (CHANNEL[i][0].test(a.href)) { window.numideaGo(CHANNEL[i][1]); return; }
+  }
+  document.addEventListener('click', contact, true);
+  document.addEventListener('auxclick', contact, true);
+
   /* Prefetch on intent. A page change lifts the leaving page off over the
      arriving one (the stylesheets' view transition); fetched while a mouse
      or pen rests on the link (one eighth of a beat, 83 ms), as the button
