@@ -1,0 +1,10 @@
+/* schengen-window · slide, days 40 to 240 (fix round 1: past day 179 the first days leave the frame and the count falls), 1.1 units a day. The window follows --lo-v (set by the controller on input): direct manipulation, no transition. */
+.lp-schengen-window .l-t{font-size:13px}
+/* the day numbers, larger where the drawing is narrower than 340 px (fix round 1) */
+@container (max-width:339px){.lp-schengen-window .l-t{font-size:18px}}
+.lp-schengen-window .lp-schengen-window-win{transform:translateX(calc((var(--lo-v, 80) - 80) * 1.1px))}
+/* the drawing's own line weights (2026-11-24: moved out of style="", which carries custom properties only; one class each, unscoped, so a <use> copy keeps it) */
+.lo-schengen-window-s0{stroke-width:2}
+.lo-schengen-window-s1{stroke-width:1}
+.lo-schengen-window-s2{stroke-width:6}
+.lo-schengen-window-s3{stroke-width:3}

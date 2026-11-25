@@ -1,0 +1,25 @@
+/* last-seat (cours-du-soir · architecture): one ticket window, two windows, two hands reaching for the last seat at the same
+   moment; the counter stamps one ticket (the tick) and hangs « complet » in front of the other. Play 4000 ms, once.
+   Default frame (= reduced motion, no JS): the stamped ticket in the left hand, the « complet » board on the right window. */
+.lp-last-seat .ls-tx{fill:var(--red);color:var(--red);font-size:12.5px}
+.lp-last-seat .ls-sw{stroke-width:2.2}
+.lp-last-seat .ls-fw{stroke-width:1.9}
+.lp-last-seat .ls-st{opacity:0}
+.lp-last-seat .ls-ok{transform-box:fill-box;transform-origin:50% 50%}
+@media (prefers-reduced-motion:no-preference){
+html:not(.motion-off) .lp-last-seat.is-playing :is(.ls-hl,.ls-hr,.ls-tk,.ls-ok,.ls-st,.ls-full){animation:4000ms both}
+html:not(.motion-off) .lp-last-seat.is-playing .ls-hl{animation-name:lp-last-seat-hl}
+html:not(.motion-off) .lp-last-seat.is-playing .ls-hr{animation-name:lp-last-seat-hr}
+html:not(.motion-off) .lp-last-seat.is-playing .ls-tk{animation-name:lp-last-seat-tk}
+html:not(.motion-off) .lp-last-seat.is-playing .ls-ok{animation-name:lp-last-seat-ok}
+html:not(.motion-off) .lp-last-seat.is-playing .ls-st{animation-name:lp-last-seat-st}
+html:not(.motion-off) .lp-last-seat.is-playing .ls-full{animation-name:lp-last-seat-fu}
+}
+/* 0-900 both hands reach in together, the ticket waits on the counter; 900-1500 the counter stamps it (tick);
+   1500-2600 it slides into the left hand; 2600-3500 « complet » drops on the right window, the right hand draws back */
+@keyframes lp-last-seat-hl{0%{transform:translateX(-50px);animation-timing-function:cubic-bezier(.16,1,.3,1)}22.5%,37.5%{transform:translateX(84px);animation-timing-function:cubic-bezier(.87,0,.13,1)}65%,100%{transform:none}}
+@keyframes lp-last-seat-hr{0%{transform:translateX(50px);animation-timing-function:cubic-bezier(.16,1,.3,1)}22.5%,65%{transform:translateX(-52px);animation-timing-function:cubic-bezier(.87,0,.13,1)}87.5%,100%{transform:none}}
+@keyframes lp-last-seat-tk{0%,37.5%{transform:translate(86px,10px);animation-timing-function:cubic-bezier(.87,0,.13,1)}65%,100%{transform:none}}
+@keyframes lp-last-seat-ok{0%,28%{opacity:0;transform:scale(1.6)}31%{opacity:1;transform:scale(.92)}35%,100%{opacity:1;transform:none}}
+@keyframes lp-last-seat-st{0%,20%{opacity:0;transform:translate(84px,-12px)}24%{opacity:1;transform:translate(84px,0);animation-timing-function:cubic-bezier(.87,0,.13,1)}29%{opacity:1;transform:translate(84px,16px)}37.5%{opacity:0;transform:translate(84px,-6px)}100%{opacity:0}}
+@keyframes lp-last-seat-fu{0%,65%{opacity:0;transform:translateY(-22px);animation-timing-function:cubic-bezier(.16,1,.3,1)}82%,100%{opacity:1;transform:none}}

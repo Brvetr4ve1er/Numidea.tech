@@ -88,7 +88,7 @@
       "guide": "raven",
       "lead": "raven",
       "companion": "kuro",
-      "prop": "recorder",
+      "prop": "glasses",
       "right": 1,
       "ex": "bins",
       "done": "match:[data-bin-row]",
@@ -122,7 +122,8 @@
         "ex.brief": "lant.ui.ex.sort.brief",
         "keep": "jeu.st.3",
         "alt": "lant.at.jeu.plate.j2"
-      }
+      },
+      "object": "loyalty-cards"
     },
     "g5": {
       "guide": "kuro",

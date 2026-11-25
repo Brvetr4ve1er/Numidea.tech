@@ -1,0 +1,14 @@
+<svg viewBox="0 0 360 240" class="lo-svg lp-net-path-svg" aria-hidden="true" focusable="false">
+<path class="l-k1 l-so" opacity=".35" d="M0 200H360"/>
+<path class="l-c l-k" d="M30 102Q68 100 106 102L108 152Q68 153 28 152Z"/><path class="l-n2" d="M36 108H100V146H36Z"/><path class="l-k1 l-so" d="M42 116h30M42 124h40M42 132h22" opacity=".7"/>
+<path class="l-w l-k" d="M22 152H114L122 164Q68 166 14 164Z"/><path class="l-k1" d="M58 158h20"/>
+<path class="l-c l-k" d="M285 76H295L298 118H282Z"/><path class="l-w2 l-k" d="M272 118H308V126H272Z"/><circle class="l-a l-k1" cx="290" cy="72" r="5"/>
+<path class="l-k l-so" d="M276 58a20 20 0 0 1 28 0M269 50a30 30 0 0 1 42 0"/>
+<text class="l-t" x="284" y="30" text-anchor="middle" data-i18n="lant.lo.net-path.t.0"></text>
+<path class="l-c l-k" d="M279 144Q290 142 302 144L304 194Q291 196 278 194Z"/><path class="l-n2" d="M283 150H299V186H283Z"/><path class="l-k1" d="M287 190h8"/>
+<text class="l-t" x="290" y="220" text-anchor="middle" data-i18n="lant.lo.net-path.t.1"></text>
+<g class="lp-net-path-wifi" data-s-until="1"><path class="l-k l-sr lo-net-path-s0" stroke-dasharray="7 5" d="M110 116Q190 84 270 92"/>
+<g class="lp-net-path-hand"><path class="l-i l-k1 l-so" d="M174 200Q178 160 184 118L179 108Q180 101 186 106L188 98Q191 93 194 100L196 95Q200 92 201 100L204 98Q209 98 206 108L200 122Q196 160 198 200Z"/><path class="l-k1 l-so" opacity=".6" d="M186 106l3 7M194 100l1 8M201 100l-1 9"/></g></g>
+<g class="lp-net-path-mob is-off" data-s="2"><path class="l-k l-sa lo-net-path-s0" d="M110 140Q196 176 270 168"/>
+<circle class="l-g l-k1" cx="322" cy="146" r="11"/><path class="l-k" d="M316 146l4 5 8-9"/></g>
+</svg>

@@ -685,6 +685,13 @@
     DATA.books.forEach(function (b) {
       var S = b.live ? progress(b) : null, got = S ? b.ids.filter(function (id) { return isDone(S, id); }) : [];
       total += b.ids.length; earned += got.length;
+      /* the tree of knowledge: the leaves won, the twigs that hold one, the branch's ink up to its share */
+      got.forEach(function (id) { var lf = $('[data-lt-tree="' + id + '"]'); if (lf) lf.setAttribute('data-earned', 'true'); });
+      var tb = $('[data-lt-tree-b="' + b.slug + '"]');
+      if (tb) {
+        tb.style.setProperty('--p', String(got.length / b.ids.length));
+        b.acts.forEach(function (a, k) { var tw = $('[data-lt-twig="' + b.slug + '-' + k + '"]', tb); if (tw && a.districts.some(function (id) { return got.indexOf(id) > -1; })) tw.setAttribute('data-earned', 'true'); });
+      }
       var card = $('[data-lt-book="' + b.slug + '"]');
       if (card && b.live) {
         var cnt = $('[data-lt-count]', card); if (cnt) cnt.textContent = tp('lant.shelf.count', b.ids.length, { n: got.length, N: b.ids.length });
@@ -715,6 +722,28 @@
         var nm = t(b.d[id].keep); f.title = nm; f.appendChild(el('span', 'sr', nm));
       });
     });
+    /* the tree shows once scripts run; a leaf named under the pointer, in the caption */
+    var fig = $('[data-lt-tree-fig]');
+    if (fig) {
+      fig.hidden = false;
+      /* on a phone the drawing scrolls: open it on the trunk, not on its first atlas name */
+      var sc = $('.tree__scroll', fig); if (sc.scrollWidth > sc.clientWidth) sc.scrollLeft = (root.dir === 'rtl' ? -1 : 1) * (sc.scrollWidth - sc.clientWidth) / 2;
+      var cap = $('[data-lt-tree-say]', fig), kq = $('[data-lt-tree-ks]', fig), hint = cap.innerHTML;
+      if (earned) fig.setAttribute('data-lit', 'true');
+      /* a leaf under the pointer: its quarter named, and the keepsake it gave, when won */
+      var say = function (lf) {
+        kq.textContent = ''; kq.hidden = true;
+        if (!lf) { cap.innerHTML = hint; fig.removeAttribute('data-focus'); return; }
+        var bk = DATA.books.filter(function (x) { return x.slug === lf.getAttribute('data-lt-tree-book'); })[0], id = lf.getAttribute('data-lt-tree');
+        var q = bk && bk.d[id] ? t(bk.d[id].name) : '', bn = $('[data-lt-tree-b="' + bk.slug + '"] .tr__name', fig), won = lf.getAttribute('data-earned');
+        cap.textContent = t(won ? 'lant.shelf.treeGot' : 'lant.shelf.treeTodo', { q: q, b: bn ? bn.textContent : '' });
+        if (won && bk.d[id] && (bk.d[id].ks || bk.d[id].seal)) { var im = ksNode(bk.d[id], ''); if (im.tagName === 'IMG') { im.width = 40; im.height = 40; } kq.appendChild(im); kq.hidden = false; }
+        fig.setAttribute('data-focus', bk.slug);
+      };
+      fig.addEventListener('pointerover', function (e) { say(e.target.closest && e.target.closest('[data-lt-tree]')); });
+      fig.addEventListener('pointerleave', function () { say(null); });
+      fig.addEventListener('click', function (e) { var lf = e.target.closest && e.target.closest('[data-lt-tree]'); if (lf) location.href = lf.getAttribute('data-href'); });
+    }
     var tot = $('[data-lt-pass-total]'); if (tot) tot.textContent = earned ? tp('lant.shelf.passTotal', earned, { n: earned, N: total }) : t('lant.shelf.passZero', { N: total, A: tot.getAttribute('data-lt-books') });
     /* nothing won: one line; the rows and the print come with the first keepsake */
     $$('[data-lt-pass-list],[data-lt-pass-print]').forEach(function (n) { n.hidden = !earned; });

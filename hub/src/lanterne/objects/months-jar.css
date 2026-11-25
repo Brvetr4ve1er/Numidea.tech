@@ -1,0 +1,24 @@
+/* months-jar · play 4500 ms once on entering view. Default markup = the final teaching frame; keyframes only under no-preference. */
+.lp-months-jar .lp-months-jar-brk{transform-box:fill-box;transform-origin:0 50%}
+@media (prefers-reduced-motion:no-preference){
+html:not(.motion-off) .lp-months-jar.is-playing :is(.lp-months-jar-st1,.lp-months-jar-st2,.lp-months-jar-sh1,.lp-months-jar-sh2,.lp-months-jar-env,.lp-months-jar-brk){animation:4500ms cubic-bezier(.87,0,.13,1) both}
+html:not(.motion-off) .lp-months-jar.is-playing .lp-months-jar-st1{animation-name:lp-months-jar-st1}
+html:not(.motion-off) .lp-months-jar.is-playing .lp-months-jar-st2{animation-name:lp-months-jar-st2}
+html:not(.motion-off) .lp-months-jar.is-playing .lp-months-jar-sh1{animation-name:lp-months-jar-sh1}
+html:not(.motion-off) .lp-months-jar.is-playing .lp-months-jar-sh2{animation-name:lp-months-jar-sh2}
+html:not(.motion-off) .lp-months-jar.is-playing .lp-months-jar-env{animation-name:lp-months-jar-env}
+html:not(.motion-off) .lp-months-jar.is-playing .lp-months-jar-brk{animation-name:lp-months-jar-brk}
+@keyframes lp-months-jar-st1{0%,8.89%{transform:none;opacity:1}33.33%{transform:translate(126px,-52px);opacity:0}62.22%{transform:translateY(-20px);opacity:0}84.44%,100%{transform:none;opacity:1}}
+@keyframes lp-months-jar-st2{0%,35.56%{transform:none;opacity:1}60%{transform:translate(163px,-52px);opacity:0}64.44%{transform:translateY(-20px);opacity:0}84.44%,100%{transform:none;opacity:1}}
+@keyframes lp-months-jar-sh1{0%,26.67%{opacity:0}35.56%,100%{opacity:1}}
+@keyframes lp-months-jar-sh2{0%,53.33%{opacity:0}62.22%,100%{opacity:1}}
+@keyframes lp-months-jar-env{0%,62.22%{transform:translateX(120px);opacity:0}66.67%{opacity:1}84.44%,100%{transform:none;opacity:1}}
+@keyframes lp-months-jar-brk{0%,84.44%{transform:scaleX(0)}100%{transform:none}}
+}
+@media (prefers-reduced-motion:reduce){.lp-months-jar *{animation:none!important}}
+/* the drawing's own line weights (2026-11-24: moved out of style="", which carries custom properties only; one class each, unscoped, so a <use> copy keeps it) */
+.lo-months-jar-s0{stroke-width:2.4}
+.lo-months-jar-s1{stroke-width:1.6}
+.lo-months-jar-s2{stroke-width:2}
+.lo-months-jar-s3{stroke-width:1}
+.lo-months-jar-s4{stroke-width:3}

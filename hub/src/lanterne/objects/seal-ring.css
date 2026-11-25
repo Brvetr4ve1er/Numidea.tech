@@ -1,0 +1,18 @@
+/* seal-ring (web3-modules · m14): a private ring seals, anyone checks with the public imprint, the letter stays readable;
+   one comma changes the fingerprint. Steps, n=3. No data-lo-step = step 3 (is-off classes in the markup). */
+.lo--seal-ring .sr-dot{stroke:var(--wood-2);stroke-width:2.5}
+.lo--seal-ring .sr-tx{font-size:13px}
+.lo--seal-ring .sr-ok{stroke:var(--right-line);stroke-width:3}
+.lo--seal-ring .sr-no{stroke:var(--retry-line);stroke-width:3}
+.lo--seal-ring .sr-cs.is-off{transform:translate(92px,-96px)}
+.lo--seal-ring :is(.sr-f1,.sr-f2,.sr-seal,.sr-ring){transform-box:fill-box;transform-origin:center}
+.lo--seal-ring :is(.sr-f1,.sr-f2){transition-duration:var(--m-quick)}
+.lo--seal-ring .sr-f2{transition-delay:var(--m-quick)}
+.lo--seal-ring :is(.sr-f1,.sr-f2).is-off{transform:scaleY(0);transition-delay:0s}
+@media (prefers-reduced-motion:no-preference){
+html:not(.motion-off) .lo--seal-ring[data-lo-step="1"] .sr-ring{animation:lo-seal-ring-r var(--m-reveal) both}
+html:not(.motion-off) .lo--seal-ring[data-lo-step="1"] .sr-seal{animation:lo-seal-ring-s var(--m-reveal) both}
+}
+/* step 1: the ring presses down onto the wax, the seal appears; it stops on the resting frame */
+@keyframes lo-seal-ring-r{0%{transform:none;animation-timing-function:cubic-bezier(.87,0,.13,1)}45%{transform:translate(-40px,58px)}100%{transform:none}}
+@keyframes lo-seal-ring-s{0%,40%{opacity:0;transform:scale(1.2)}70%,100%{opacity:1;transform:none}}

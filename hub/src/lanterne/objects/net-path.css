@@ -1,0 +1,6 @@
+/* net-path (route · n6): which network for an important account. Toggle, 2 states. Default = state 1 (markup): the airport Wi-Fi and the shadow hand. */
+.lp-net-path .lp-net-path-hand{transform-box:view-box;transition:transform var(--m-reveal) var(--m-ease-move)}
+.lp-net-path .lp-net-path-wifi.is-off .lp-net-path-hand{transform:translateY(24px)}
+.lp-net-path .lp-net-path-mob.is-off{transform:translateY(6px)}
+@media (prefers-reduced-motion:reduce){.lp-net-path *{transition:none!important}}
+.lo-net-path-s0{stroke-width:3.5}

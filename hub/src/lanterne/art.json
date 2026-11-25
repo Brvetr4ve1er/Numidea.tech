@@ -1,5 +1,5 @@
 {
-  "_note": "The Librairie Lanterne art registry (SPEC §3.3, §5): one file per drawing, its natural size, and the cast each plate paints (the no-doubles rule for new pairings is checked against it by scripts/lib/lanterne.mjs). Paths are relative to hub/. The owner plates are shown at most at their natural size (L6). Act plates paint no one (lb/art README): any cut-out may stand on them.",
+  "_note": "The Librairie Lanterne art registry (SPEC §3.3, §5): one file per drawing, its natural size, and the cast each plate paints (the no-doubles rule for new pairings is checked against it by scripts/lib/lanterne.mjs). Paths are relative to hub/. The owner plates are shown at most at their natural size (L6). Act plates paint no one (lb/art README): any cut-out may stand on them. Panels (2026-11-24, lb2): the owner's banking-course panels and two owner scenes, shown on a cream mat in a district's dossier (\"panel\") or its exercise (\"panelEx\"), each once site-wide; cap and alt name keys under lant.panel.* (or an existing course key).",
   "plates": {
     "home": {
       "src": "img/lanterne/plates/home.webp",
@@ -397,6 +397,69 @@
         "w": 640,
         "h": 277
       }
+    },
+    "bank-desk": {
+      "src": "img/lanterne/plates/bank-desk.webp",
+      "w": 1200,
+      "h": 640,
+      "paints": [
+        "yasser",
+        "kuro"
+      ],
+      "wide": true,
+      "owner": true,
+      "small": {
+        "src": "img/lanterne/plates/bank-desk-600.webp",
+        "w": 600,
+        "h": 320
+      }
+    },
+    "bank-post": {
+      "src": "img/lanterne/plates/bank-post.webp",
+      "w": 1200,
+      "h": 670,
+      "paints": [
+        "yasser",
+        "kuro"
+      ],
+      "wide": true,
+      "owner": true,
+      "small": {
+        "src": "img/lanterne/plates/bank-post-600.webp",
+        "w": 600,
+        "h": 335
+      }
+    },
+    "bank-call": {
+      "src": "img/lanterne/plates/bank-call.webp",
+      "w": 1200,
+      "h": 666,
+      "paints": [
+        "yasser",
+        "kuro"
+      ],
+      "wide": true,
+      "owner": true,
+      "small": {
+        "src": "img/lanterne/plates/bank-call-600.webp",
+        "w": 600,
+        "h": 333
+      }
+    },
+    "bank-desk-close": {
+      "src": "img/lanterne/plates/bank-desk-close.webp",
+      "w": 1152,
+      "h": 1536,
+      "paints": [
+        "yasser",
+        "kuro"
+      ],
+      "owner": true,
+      "small": {
+        "src": "img/lanterne/plates/bank-desk-close-600.webp",
+        "w": 600,
+        "h": 800
+      }
     }
   },
   "keys": {
@@ -500,6 +563,218 @@
       "w": 280,
       "h": 225,
       "who": "cup"
+    },
+    "bag": {
+      "src": "img/lanterne/props/bag.webp",
+      "w": 280,
+      "h": 186,
+      "who": "bag"
+    },
+    "keys": {
+      "src": "img/lanterne/props/keys.webp",
+      "w": 280,
+      "h": 231,
+      "who": "keys"
+    },
+    "headphones": {
+      "src": "img/lanterne/props/headphones.webp",
+      "w": 267,
+      "h": 245,
+      "who": "headphones"
+    },
+    "pencil": {
+      "src": "img/lanterne/props/pencil.webp",
+      "w": 280,
+      "h": 172,
+      "who": "pencil"
+    },
+    "laptop": {
+      "src": "img/lanterne/props/laptop.webp",
+      "w": 280,
+      "h": 150,
+      "who": "laptop"
+    },
+    "stylus": {
+      "src": "img/lanterne/props/stylus.webp",
+      "w": 280,
+      "h": 162,
+      "who": "stylus"
+    },
+    "collar": {
+      "src": "img/lanterne/props/collar.webp",
+      "w": 280,
+      "h": 222,
+      "who": "collar"
+    },
+    "notebook": {
+      "src": "img/lanterne/props/notebook.webp",
+      "w": 280,
+      "h": 200,
+      "who": "notebook"
+    },
+    "glasses": {
+      "src": "img/lanterne/props/glasses.webp",
+      "w": 280,
+      "h": 131,
+      "who": "glasses"
+    }
+  },
+  "panels": {
+    "bank-routes": {
+      "src": "img/lanterne/panels/bank-routes.webp",
+      "w": 640,
+      "h": 640,
+      "small": {
+        "src": "img/lanterne/panels/bank-routes-320.webp",
+        "w": 320,
+        "h": 320
+      },
+      "cap": "lant.at.argent.d.pay.decision",
+      "alt": "lant.panel.bank-routes.alt"
+    },
+    "bank-id": {
+      "src": "img/lanterne/panels/bank-id.webp",
+      "w": 640,
+      "h": 640,
+      "small": {
+        "src": "img/lanterne/panels/bank-id-320.webp",
+        "w": 320,
+        "h": 320
+      },
+      "cap": "lant.panel.bank-id.cap",
+      "alt": "lant.panel.bank-id.alt"
+    },
+    "bank-balance": {
+      "src": "img/lanterne/panels/bank-balance.webp",
+      "w": 640,
+      "h": 640,
+      "small": {
+        "src": "img/lanterne/panels/bank-balance-320.webp",
+        "w": 320,
+        "h": 320
+      },
+      "cap": "lant.panel.bank-balance.cap",
+      "alt": "lant.panel.bank-balance.alt"
+    },
+    "bank-bell": {
+      "src": "img/lanterne/panels/bank-bell.webp",
+      "w": 640,
+      "h": 640,
+      "small": {
+        "src": "img/lanterne/panels/bank-bell-320.webp",
+        "w": 320,
+        "h": 320
+      },
+      "cap": "lant.panel.bank-bell.cap",
+      "alt": "lant.panel.bank-bell.alt"
+    },
+    "bank-hooks": {
+      "src": "img/lanterne/panels/bank-hooks.webp",
+      "w": 640,
+      "h": 640,
+      "small": {
+        "src": "img/lanterne/panels/bank-hooks-320.webp",
+        "w": 320,
+        "h": 320
+      },
+      "cap": "lant.panel.bank-hooks.cap",
+      "alt": "lant.panel.bank-hooks.alt"
+    },
+    "bank-calm": {
+      "src": "img/lanterne/panels/bank-calm.webp",
+      "w": 640,
+      "h": 640,
+      "small": {
+        "src": "img/lanterne/panels/bank-calm-320.webp",
+        "w": 320,
+        "h": 320
+      },
+      "cap": "lant.panel.bank-calm.cap",
+      "alt": "lant.panel.bank-calm.alt"
+    },
+    "bank-mask": {
+      "src": "img/lanterne/panels/bank-mask.webp",
+      "w": 640,
+      "h": 640,
+      "small": {
+        "src": "img/lanterne/panels/bank-mask-320.webp",
+        "w": 320,
+        "h": 320
+      },
+      "cap": "lant.panel.bank-mask.cap",
+      "alt": "lant.panel.bank-mask.alt"
+    },
+    "bank-hangup": {
+      "src": "img/lanterne/panels/bank-hangup.webp",
+      "w": 640,
+      "h": 640,
+      "small": {
+        "src": "img/lanterne/panels/bank-hangup-320.webp",
+        "w": 320,
+        "h": 320
+      },
+      "cap": "lant.panel.bank-hangup.cap",
+      "alt": "lant.panel.bank-hangup.alt"
+    },
+    "bank-judge": {
+      "src": "img/lanterne/panels/bank-judge.webp",
+      "w": 640,
+      "h": 640,
+      "small": {
+        "src": "img/lanterne/panels/bank-judge-320.webp",
+        "w": 320,
+        "h": 320
+      },
+      "cap": "lant.panel.bank-judge.cap",
+      "alt": "lant.panel.bank-judge.alt"
+    },
+    "bank-key": {
+      "src": "img/lanterne/panels/bank-key.webp",
+      "w": 640,
+      "h": 640,
+      "small": {
+        "src": "img/lanterne/panels/bank-key-320.webp",
+        "w": 320,
+        "h": 320
+      },
+      "cap": "lant.panel.bank-key.cap",
+      "alt": "lant.panel.bank-key.alt"
+    },
+    "bank-fridge": {
+      "src": "img/lanterne/panels/bank-fridge.webp",
+      "w": 960,
+      "h": 536,
+      "small": {
+        "src": "img/lanterne/panels/bank-fridge-480.webp",
+        "w": 480,
+        "h": 268
+      },
+      "cap": "lant.panel.bank-fridge.cap",
+      "alt": "lant.panel.bank-fridge.alt"
+    },
+    "devis-folders": {
+      "src": "img/lanterne/panels/devis-folders.webp",
+      "w": 960,
+      "h": 644,
+      "small": {
+        "src": "img/lanterne/panels/devis-folders-480.webp",
+        "w": 480,
+        "h": 322
+      },
+      "cap": "lant.panel.devis-folders.cap",
+      "alt": "lant.panel.devis-folders.alt"
+    },
+    "night-platform": {
+      "src": "img/lanterne/panels/night-platform.webp",
+      "w": 560,
+      "h": 770,
+      "small": {
+        "src": "img/lanterne/panels/night-platform-280.webp",
+        "w": 280,
+        "h": 385
+      },
+      "cap": "lant.panel.night-platform.cap",
+      "alt": "lant.panel.night-platform.alt"
     }
   }
 }

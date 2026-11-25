@@ -1,5 +1,5 @@
 {
-  "_note": "« Gagner sa vie de loin » (SPEC §4.5): the money set, five districts in two acts. Structure and art slots only; copy is under lant.at.argent.* or names the course's existing keys (keys map). right = the right answer's index as the course authored it (data-ls-a=\"ok\"). Case: Selma, an invented example (L5). Keepsakes: the stops' own tab drawings. Leads: pay stands the standing pigeon (hub/img/studio/atelier/pigeon-stand.webp, by path), bank the flying one (SPEC §4.5, §5.1). Props: the owner's cut-out objects (the tab drawings are square opaque pictures and stay keepsakes). No set reward (L10). Template order (2026-11-24, L-08): every district asks its situation first, then its exercise or reading.",
+  "_note": "« Gagner sa vie de loin » (SPEC §4.5): the money set, five districts in two acts. Structure and art slots only; copy is under lant.at.argent.* or names the course's existing keys (keys map). right = the right answer's index as the course authored it (data-ls-a=\"ok\"). Case: Selma, an invented example (L5). Keepsakes: the stops' own tab drawings. Leads: pay stands the standing pigeon (hub/img/studio/atelier/pigeon-stand.webp, by path), bank the flying one (SPEC §4.5, §5.1). Props: the owner's cut-out objects (the tab drawings are square opaque pictures and stay keepsakes). No set reward (L10). Template order (2026-11-24, L-08): every district asks its situation first, then its exercise or reading. 2026-11-24 (lb2, the owner's banking-course panels): the side act a3 « L’appel » (one stop, not counted in the five lessons), the owner's plates on bank, crypto and appel (full painted scenes: no cut-out on them or beside them, fix round 1), the Lantern objects (\"object\" in the dossier, \"objectEx\" in the exercise) and the owner's panels (\"panel\" in the dossier, \"panelEx\" in the exercise).",
   "slug": "argent",
   "key": "argent",
   "store": "numidea-lanterne-argent",
@@ -31,6 +31,14 @@
         "treso",
         "crypto"
       ]
+    },
+    {
+      "id": "a3",
+      "side": true,
+      "plate": "bank-call",
+      "districts": [
+        "appel"
+      ]
     }
   ],
   "districts": {
@@ -54,13 +62,11 @@
       "tools": {
         "k": "lant.tools.in.pay",
         "at": "tl-pay"
-      }
+      },
+      "panelEx": "bank-routes"
     },
     "bank": {
       "guide": "pigeon",
-      "lead": "pigeon",
-      "companion": "raven",
-      "prop": "ring",
       "right": 0,
       "ex": "pick",
       "keep": "img/studio/money/ls-bank.webp",
@@ -71,12 +77,16 @@
         "scene": "money.ls.items.1.t",
         "ex.t": "lant.ui.ex.pick.t",
         "ex.brief": "lant.ui.ex.pick.brief",
-        "alt": "lant.at.argent.plate.a1"
+        "alt": "lant.at.argent.plate.post"
       },
       "tools": {
         "k": "lant.tools.in.bank",
         "at": "tl-pay"
-      }
+      },
+      "plate": "bank-post",
+      "object": "wallet-seams",
+      "panelEx": "bank-id",
+      "objectEx": "rate-gap"
     },
     "rate": {
       "guide": "ratman",
@@ -95,7 +105,8 @@
         "ex.t": "lant.ui.ex.calc.t",
         "ex.brief": "lant.ui.ex.calc.brief",
         "alt": "lant.at.argent.plate.a2"
-      }
+      },
+      "object": "billed-days"
     },
     "treso": {
       "guide": "ratman",
@@ -114,13 +125,12 @@
         "ex.t": "lant.ui.ex.calc.t",
         "ex.brief": "lant.ui.ex.calc.brief",
         "alt": "lant.at.argent.plate.a2"
-      }
+      },
+      "object": "months-jar",
+      "panelEx": "bank-balance"
     },
     "crypto": {
       "guide": "raven",
-      "lead": "raven",
-      "companion": "kuro",
-      "prop": "eyeflower",
       "right": 1,
       "ex": "pick",
       "ask": "brief",
@@ -132,7 +142,24 @@
         "scene": "money.ls.items.4.t",
         "ex.t": "lant.ui.ex.pick.t",
         "ex.brief": "lant.ui.ex.pick.brief",
-        "alt": "lant.at.argent.plate.a2"
+        "alt": "lant.at.argent.plate.desk"
+      },
+      "plate": "bank-desk",
+      "object": "key-register",
+      "panelEx": "bank-mask"
+    },
+    "appel": {
+      "guide": "pigeon",
+      "right": 1,
+      "ex": "pick",
+      "ask": "brief",
+      "keep": "img/lanterne/panels/bank-card.webp",
+      "panel": "bank-calm",
+      "panelEx": "bank-hangup",
+      "keys": {
+        "ex.t": "lant.ui.ex.pick.t",
+        "ex.brief": "lant.ui.ex.pick.brief",
+        "alt": "lant.at.argent.plate.call"
       }
     }
   }

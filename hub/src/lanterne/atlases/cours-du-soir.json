@@ -18,7 +18,7 @@
     "fields":       { "guide": "pigeon", "plate": "fields",       "lead": "pigeon", "companion": "ratman", "prop": "paper",     "right": 2, "ex": "observe",       "keep": "recorder",  "accent": "#cfb572" },
     "audience":     { "guide": "kuro",   "plate": "audience",     "lead": "kuro",   "companion": "pigeon", "prop": "recorder",  "right": 0, "ex": "focus",         "keep": "plate",     "accent": "#b7ce9b" },
     "identity":     { "guide": "yasser", "plate": "identity",     "lead": "yasser", "companion": "kuro",   "prop": "paper",     "right": 2, "ex": "scrub",         "keep": "plate",     "accent": "#e4a46d" },
-    "architecture": { "guide": "ratman", "plate": "architecture", "lead": "ratman", "companion": "pigeon", "prop": "ring",      "right": 1, "ex": "ab",            "keep": "plate",     "accent": "#89c8c3" },
+    "architecture": { "guide": "ratman", "plate": "architecture", "lead": "ratman", "companion": "pigeon", "prop": "ring",      "right": 1, "ex": "ab",            "keep": "plate",     "accent": "#89c8c3", "object": "last-seat" },
     "launch":       { "guide": "pigeon", "plate": "launch",       "lead": "pigeon", "companion": "yasser", "prop": "star",      "right": 0, "ex": "machineLaunch", "keep": "star",      "accent": "#f0b45f" },
     "growth":       { "guide": "raven",  "plate": "growth",       "lead": "raven",  "companion": "kuro",   "prop": "recorder",  "right": 0, "ex": "funnel",        "keep": "plate",     "accent": "#a5c486" },
     "observer":     { "guide": "raven",  "plate": "observer",     "lead": "raven",  "companion": "pigeon", "prop": "eyeflower", "right": 2, "ex": "toggles",       "keep": "eyeflower", "accent": "#88dfd4" },

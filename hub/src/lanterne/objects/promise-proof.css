@@ -1,0 +1,20 @@
+/* promise-proof (marque · b3): a slogan cannot be checked; a promise comes with its proof. Play 3500 ms, once. */
+.lo--promise-proof .pp-dot{stroke:var(--wood-2);stroke-width:2.5}
+.lo--promise-proof .pp-tx{font-size:12px}
+.lo--promise-proof .pp-sm{stroke:var(--muted)}
+.lo--promise-proof .pp-stt{fill:var(--muted);color:var(--muted);font-size:14px}
+.lo--promise-proof .pp-ck2{stroke:var(--right-line);stroke-width:3}
+.lo--promise-proof :is(.pp-st,.pp-tk){transform-box:fill-box;transform-origin:center}
+@media (prefers-reduced-motion:no-preference){
+html:not(.motion-off) .lo--promise-proof.is-playing :is(.pp-t1,.pp-t2){animation:lo-promise-proof-t 3500ms both}
+html:not(.motion-off) .lo--promise-proof.is-playing .pp-st{animation:lo-promise-proof-s 3500ms both}
+html:not(.motion-off) .lo--promise-proof.is-playing .pp-ck{animation:lo-promise-proof-c 3500ms both}
+html:not(.motion-off) .lo--promise-proof.is-playing .pp-ph{animation:lo-promise-proof-p 3500ms both}
+html:not(.motion-off) .lo--promise-proof.is-playing .pp-tk{animation:lo-promise-proof-k 3500ms both}
+}
+/* 0-500 pinned; 500-1200 the grey stamp falls on ticket 1; 1500-2600 the clock, then the photo, clip onto ticket 2; 2600-3500 the tick */
+@keyframes lo-promise-proof-t{0%{opacity:0;transform:translateY(-8px);animation-timing-function:cubic-bezier(.16,1,.3,1)}14%,100%{opacity:1;transform:none}}
+@keyframes lo-promise-proof-s{0%,14.3%{opacity:0;transform:scale(1.4);animation-timing-function:cubic-bezier(.87,0,.13,1)}28%{opacity:1;transform:scale(.96);animation-timing-function:cubic-bezier(.16,1,.3,1)}34.3%,100%{opacity:1;transform:none}}
+@keyframes lo-promise-proof-c{0%,42.9%{opacity:0;transform:translateY(-20px);animation-timing-function:cubic-bezier(.16,1,.3,1)}54%,100%{opacity:1;transform:none}}
+@keyframes lo-promise-proof-p{0%,51.4%{opacity:0;transform:translateY(-20px);animation-timing-function:cubic-bezier(.16,1,.3,1)}63%,100%{opacity:1;transform:none}}
+@keyframes lo-promise-proof-k{0%,74.3%{opacity:0;transform:scale(.6);animation-timing-function:cubic-bezier(.16,1,.3,1)}86%,100%{opacity:1;transform:none}}

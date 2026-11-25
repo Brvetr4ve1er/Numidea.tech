@@ -1,0 +1,24 @@
+/* four-layers (marque · b1): the logo is the smallest of four layers. Play 4000 ms, once. */
+.lo--four-layers .lf-t{fill:var(--teal)}
+.lo--four-layers .l-t{font-size:13px}
+.lo--four-layers .lf-aa{font:700 26px/1 var(--f-body);fill:var(--ink)}
+.lo--four-layers :is(.c-m,.c-s,.c-i,.c-l){transform-box:fill-box;transform-origin:center}
+@media (prefers-reduced-motion:no-preference){
+html:not(.motion-off) .lo--four-layers.is-playing .c-m{animation:lo-four-layers-m 4000ms both}
+html:not(.motion-off) .lo--four-layers.is-playing .c-s{animation:lo-four-layers-s 4000ms both}
+html:not(.motion-off) .lo--four-layers.is-playing .c-i{animation:lo-four-layers-i 4000ms both}
+html:not(.motion-off) .lo--four-layers.is-playing .c-l{animation:lo-four-layers-l 4000ms both}
+html:not(.motion-off) .lo--four-layers.is-playing .lf-l0{animation:lo-four-layers-t0 4000ms both}
+html:not(.motion-off) .lo--four-layers.is-playing .lf-l1{animation:lo-four-layers-t1 4000ms both}
+html:not(.motion-off) .lo--four-layers.is-playing .lf-l2{animation:lo-four-layers-t2 4000ms both}
+html:not(.motion-off) .lo--four-layers.is-playing .lf-l3{animation:lo-four-layers-t3 4000ms both}
+}
+/* 0-500 closed pile at the centre; 500-2500 fan out 330 ms apart; 2500-4000 the logo settles, smallest, in front */
+@keyframes lo-four-layers-m{0%,12.5%{transform:translate(89px,5px) rotate(8deg);animation-timing-function:cubic-bezier(.16,1,.3,1)}27.5%,100%{transform:none}}
+@keyframes lo-four-layers-s{0%,20.75%{transform:translate(29px,.5px) rotate(3deg);animation-timing-function:cubic-bezier(.16,1,.3,1)}35.75%,100%{transform:none}}
+@keyframes lo-four-layers-i{0%,29%{transform:translate(-33px,-8px) rotate(-3deg);animation-timing-function:cubic-bezier(.16,1,.3,1)}44%,100%{transform:none}}
+@keyframes lo-four-layers-l{0%,62.5%{transform:translate(-117px,-17.5px) scale(1.1);animation-timing-function:cubic-bezier(.87,0,.13,1)}80%{transform:scale(1.1);animation-timing-function:cubic-bezier(.16,1,.3,1)}100%{transform:none}}
+@keyframes lo-four-layers-t0{0%,27.5%{opacity:0}33%,100%{opacity:1}}
+@keyframes lo-four-layers-t1{0%,35.75%{opacity:0}41%,100%{opacity:1}}
+@keyframes lo-four-layers-t2{0%,44%{opacity:0}49%,100%{opacity:1}}
+@keyframes lo-four-layers-t3{0%,80%{opacity:0}88%,100%{opacity:1}}

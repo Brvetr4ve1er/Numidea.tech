@@ -1,0 +1,36 @@
+<svg viewBox="0 0 360 240" class="lo-svg lp-key-register-svg" aria-hidden="true" focusable="false">
+<defs><g id="lp-key-register-c"><circle r="5.5" class="l-a l-k1 lo-key-register-s0"/><path class="l-a2" d="M-4.6 2.4A5.5 5.5 0 0 0 4.6 2.4A5 3.4 0 0 1-4.6 2.4Z"/></g>
+<path id="lp-key-register-w" d="M0 0q3-3.5 6 0t6 0t6 0t6 0t6 0"/><g id="lp-key-register-r"><use href="#lp-key-register-c"/><use class="l-k1 lo-key-register-s1" href="#lp-key-register-w" x="10" y="2"/></g></defs>
+<path class="l-k1 l-so" opacity=".35" d="M0 200H360"/>
+<path class="l-k1" d="M88 47L96 35M152 47L144 35"/>
+<path class="l-a l-k" d="M64 20Q120 18 176 20L177 36Q120 38 63 36Z"/><path class="l-a2" d="M64 31Q120 33 176 31L177 36Q120 38 63 36Z"/>
+<text class="l-ti" x="120" y="31" text-anchor="middle" data-i18n="lant.lo.key-register.t.2"></text>
+<path class="l-w l-k" d="M10 50Q120 42 230 50L232 192Q120 186 8 192Z"/><path class="l-w2" d="M10 178Q120 172 230 178L231 190Q120 185 9 190Z"/>
+<path class="l-k1 lo-key-register-s1" d="M16 189l7-9M25 189l7-9M34 188l7-9M206 188l7-9M215 188l7-9"/>
+<path class="l-p l-k" d="M15 60Q68 50 120 62Q172 50 225 60L225 187Q172 177 120 189Q68 177 15 187Z"/>
+<path class="l-c" d="M18 56Q68 46 119 58L119 180Q68 170 18 180ZM121 58Q172 46 222 56L222 180Q172 170 121 180Z"/>
+<path class="l-p" d="M103 53Q112 55 119 58V180Q112 176 103 174ZM121 58Q128 55 137 53V174Q128 176 121 180Z"/>
+<path class="l-k" d="M18 56Q68 46 119 58L119 180Q68 170 18 180ZM121 58Q172 46 222 56L222 180Q172 170 121 180Z"/>
+<path class="l-k1 lo-key-register-s1" d="M16 183Q68 173 120 185Q172 173 224 183"/>
+<path class="l-k1 lo-key-register-s2" opacity=".45" d="M26 82H112M26 104H112M26 126H112M26 148H112M26 170H112M128 82H214M128 104H214M128 126H214M128 148H214M128 170H214"/>
+<use href="#lp-key-register-r" x="32" y="74"/><use href="#lp-key-register-r" x="32" y="96"/><use href="#lp-key-register-r" x="32" y="118"/><use href="#lp-key-register-r" x="32" y="140"/><use href="#lp-key-register-r" x="32" y="162"/><use href="#lp-key-register-r" x="134" y="74"/><use href="#lp-key-register-r" x="134" y="96"/>
+<path class="l-k1" d="M90 76h16M90 98h12M90 120h16M90 142h10M90 164h14M188 76h18M188 98h12"/>
+<g class="lp-key-register-old" opacity=".4"><use href="#lp-key-register-r" x="134" y="118"/><path class="l-k1" d="M188 120h16"/></g>
+<path class="lp-key-register-st l-k1 lo-key-register-s3" d="M128 119Q166 117 208 119"/>
+<g class="lp-key-register-nw"><use href="#lp-key-register-c" x="134" y="140"/><path class="l-k1 lo-key-register-s1" d="M144 142q3-3.5 6 0t6 0t6 0"/></g>
+<path class="lp-key-register-sg l-k1 lo-key-register-s3" d="M166 144q4-12 7-3q2 6 5-3q2 8 5 0q3 6 7 1q2-2 5 0"/>
+<g class="lp-key-register-ln"><circle class="l-a" opacity=".3" cx="210" cy="140" r="12"/><path class="l-k1 l-sa lo-key-register-s3" stroke-dasharray="3 4" d="M247 128Q236 114 222 132"/><path class="l-k1 l-sa lo-key-register-s3" d="M219 125L221 133L228 129"/></g>
+<circle class="l-a l-k1" cx="210" cy="140" r="7"/><path class="l-i" d="M208.2 141.5L207.4 145.5H212.6L211.8 141.5A2.4 2.4 0 1 0 208.2 141.5Z"/>
+<circle class="l-k" cx="331" cy="143" r="5.5"/><circle class="l-k1 l-sa lo-key-register-s3" cx="331" cy="143" r="5.5"/>
+<path class="l-n2 l-k" d="M240 151Q296 147 352 151Q355 174 352 196Q296 199 240 196Q237 174 240 151Z"/>
+<path class="l-n" d="M242 187Q296 190 350 187L350 194Q296 197 242 194Z"/>
+<path class="l-k1" d="M241 163Q296 167 351 163"/><path class="l-k1 l-so lo-key-register-s1" stroke-dasharray="3 3" d="M246 158Q296 161 346 158"/><path class="l-k1 l-so" d="M245 175Q244 163 248 157"/>
+<path class="l-c l-k1" d="M248 169Q296 167 344 169L344 186Q296 187 248 186Z"/>
+<text class="l-ti" x="296" y="182" text-anchor="middle" data-i18n="lant.lo.key-register.t.3"></text>
+<g class="lp-key-register-key"><path class="l-a l-k1 lo-key-register-s4" d="M313 124.5H252V140H258V135H262V140H268V131.5H313Z"/><path class="l-a2" d="M268 128.5H313V131.5H268Z"/><path class="l-k1 l-so" d="M258 127H290"/>
+<circle class="l-a l-k" cx="322" cy="128" r="10"/><path class="l-a2" d="M313 131A10 10 0 0 0 331 131A11 7 0 0 1 313 131Z"/><circle class="l-n l-k1" cx="324" cy="126" r="3.5"/></g>
+<g transform="translate(0 30)"><g class="lp-key-register-bub"><path class="l-c l-k" d="M244 14Q298 12 352 14L353 44Q336 45 322 44Q318 58 314 76Q308 58 300 44Q262 45 244 44Q242 29 244 14Z"/>
+<path class="lp-key-register-no l-k l-sr lo-key-register-s5" d="M252 30Q298 26 346 29"/>
+<text class="l-ti" x="298" y="33" text-anchor="middle" data-i18n="lant.lo.key-register.t.0"></text></g></g>
+<g transform="rotate(-2 264 220)"><g class="lp-key-register-tag"><path class="l-k1 l-so" d="M180 219Q200 200 244 195"/><path class="l-r l-k" d="M168 220L179 208L356 208L356 232L179 232Z"/><circle class="l-n l-k1" cx="179" cy="220" r="2.5"/><text class="l-t lp-key-register-t1" x="273" y="223.5" text-anchor="middle" data-i18n="lant.lo.key-register.t.1"></text></g></g>
+</svg>

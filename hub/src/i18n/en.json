@@ -409,7 +409,7 @@
   "proof": {
     "kicker": "/ 04 · THE RECEIPTS · WITH THE EVIDENCE",
     "title": "Everything below exists.",
-    "lead": "Three delivered clients and two pieces of the founder’s own work. Each file says what was made, for whom, and where to check it.",
+    "lead": "Four delivered clients and two pieces of the founder’s own work. Each file says what was made, for whom, and where to check it.",
     "actor": "Yasser celebrates a launch",
     "own": "Also, made in-house:",
     "glaive": "Glaive, the studio’s demo",
@@ -511,7 +511,10 @@
         }
       ]
     },
-    "whq": "an arcade cabinet for your codebase"
+    "whq": "an arcade cabinet for your codebase",
+    "site": "this site, our own: its sheet",
+    "done": "Also finished:",
+    "annuaire": "the Algerian industrial directory"
   },
   "lab": {
     "kicker": "/ THE LAB · UNCOMMISSIONED",
@@ -6278,6 +6281,14 @@
       "journalCountMain": {
         "one": "{n}/{N} case note",
         "other": "{n}/{N} case notes"
+      },
+      "lo": {
+        "play": "Show",
+        "replay": "Replay",
+        "steps": "Step by step",
+        "next": "Next",
+        "restart": "Start again",
+        "step": "Step {i} of {n}"
       }
     },
     "cast": {
@@ -6334,6 +6345,9 @@
       "passK": "/ THE PASSPORT",
       "passH": "The Bookshop passport",
       "passLead": "The keepsakes earned in every atlas, together. They stay in this browser.",
+      "treeHint": "The tree of knowledge: every leaf is a quarter, and it lights up when you finish its exercise.",
+      "treeGot": "{q} · {b} · keepsake earned",
+      "treeTodo": "{q} · {b} · still to earn",
       "passZero": "{N} keepsakes to win across {A} atlases",
       "passRow": "{n} of {N}",
       "passTotal": {
@@ -6845,15 +6859,20 @@
         "conclusion": "Selma knows which way the money comes, what it costs her, what to charge and how much to keep aside.",
         "act": {
           "a1": "Act I · Getting paid",
-          "a2": "Act II · Keeping the books"
+          "a2": "Act II · Keeping the books",
+          "a3": "Side path · The call"
         },
         "actShort": {
           "a1": "Act I",
-          "a2": "Act II"
+          "a2": "Act II",
+          "a3": "Side path"
         },
         "plate": {
           "a1": "A post-office arcade at dusk: a long wooden counter with sealed envelopes and string-tied parcels, a brass letter scale, empty pigeon lofts on the roof.",
-          "a2": "A counting room at night: a wooden desk with closed ledgers and an open notebook of blank lines, a small iron strongbox, a calendar of empty squares, a lit lantern and the towers through the window."
+          "a2": "A counting room at night: a wooden desk with closed ledgers and an open notebook of blank lines, a small iron strongbox, a calendar of empty squares, a lit lantern and the towers through the window.",
+          "desk": "At night, at his desk in front of the rooftops, Yasser holds a phone open on an app marked with a shield; Kūro swats away a red bubble shaped like a fishing hook. On the desk: a yellow passbook, a bank card, a padlock and a notebook.",
+          "post": "At the post office a long queue waits at the counter; against the wall, Yasser does the same errand on his phone, Kūro on his shoulder.",
+          "call": "In the evening on the sofa, Yasser looks at a phone buzzing in his hand; above it, a shadow figure in a halo and red hooks; Kūro arches his back and hisses."
         },
         "toComptoir": "To talk it through one to one, the fixed-price services are at the Bookshop’s counter.",
         "toComptoirGo": "Go to the counter",
@@ -6922,6 +6941,45 @@
             "handoff": "Selma keeps her phrase to herself, and her books in order.",
             "decision": "My recovery phrase goes to no one.",
             "keep": "The “Keys” stamp"
+          },
+          "appel": {
+            "name": "The call",
+            "sub": "The fake adviser",
+            "lore": "One evening Selma’s phone rings: an “adviser” says her account will be blocked if she does not act right now.",
+            "rule": "Urgency is not information, it is a sign of a scam: you hang up.",
+            "q": "The “adviser” insists: everything must happen now. What is the signal?",
+            "a": {
+              "0": "The polite tone",
+              "1": "The urgency: it is a sign of a scam",
+              "2": "The time of the call"
+            },
+            "f": {
+              "0": "Politeness proves nothing. The signal is the urgency: the authorities list it among the signs of a scam.",
+              "1": "Yes. Urgency is not information: it is a sign of a scam.",
+              "2": "The time says nothing. The signal is the urgency."
+            },
+            "keep": "The “Call” stamp",
+            "scene": "The fake adviser",
+            "handoff": "Selma hangs up; her accounts stay in order.",
+            "decision": "Urgency is a signal: I hang up.",
+            "pick": {
+              "0": {
+                "k": "Urgency",
+                "v": "Urgency is not information; it is a sign of a scam."
+              },
+              "1": {
+                "k": "The fake support",
+                "v": "Impersonation. The recovery phrase: no support asks for it. Ever."
+              },
+              "2": {
+                "k": "What goes to a scammer",
+                "v": "It cannot be recalled: recovery is nearly impossible (Europol)."
+              },
+              "3": {
+                "k": "2-step verification",
+                "v": "It keeps criminals out even if they know your password, as long as its code never leaves your phone: you read it to no one on a call."
+              }
+            }
           }
         }
       },
@@ -6945,7 +7003,8 @@
         "plate": {
           "r1": "A rooftop café terrace at dusk: a small table with an open notebook of blank pages, a phone and a glass of tea, string lights, the sea and white houses below.",
           "r2": "A railway station hall at night: two round clocks without numerals showing different times, a bench, a luggage trolley with a backpack, a wall socket with its cable, tall arched windows.",
-          "r3": "A guesthouse room at dawn: an arched window onto the sea, a closed booklet and a plant on the ledge, a calendar of empty squares on the wall, a packed backpack by the door."
+          "r3": "A guesthouse room at dawn: an arched window onto the sea, a closed booklet and a plant on the ledge, a calendar of empty squares on the wall, a packed backpack by the door.",
+          "desk": "Yasser looks at his phone, a shield on the screen; Kūro raises a paw at a red bubble marked with a fishing hook."
         },
         "toKit": "The Nomad kit and the fixed-price services are at the Bookshop’s counter.",
         "d": {
@@ -8210,6 +8269,231 @@
             "0": "No flame tonight. The case still closed."
           }
         }
+      }
+    },
+    "lo": {
+      "banner-vector": {
+        "cap": "A vector stays sharp at any size; a pixel image does not.",
+        "alt": "A banner unrolls from a roller and the same mark grows eight times: on the left, as a JPEG, it breaks into squares; on the right, as SVG or PDF, it stays sharp."
+      },
+      "billed-days": {
+        "cap": "Not all 22: some days go to prospecting, quotes, admin and time off. Divide by the days billed.",
+        "alt": "A heap of coins and a month of 22 tiles. Ten tiles turn grey, marked with a magnifier, a quote, a stamp or a sun; the same heap is shared over the twelve tiles left, and each stack grows taller."
+      },
+      "block-chain": {
+        "cap": "Change an old operation and the next link no longer matches.",
+        "alt": "Four cream blocks joined by brass rings; under each ring hangs the previous block's fingerprint: 9c1e, 47ab, d203. A hand rewrites a line in the second block: its fingerprint becomes e5f0, while the third block still holds 47ab. The two no longer match: the ring between them snaps in red, and the rest of the chain goes dark."
+      },
+      "four-layers": {
+        "cap": "Around the logo: the identity, the system, and the brand, what people say about you when you are not in the room.",
+        "alt": "Four cards fanned out, largest to smallest: the brand (a speech bubble), the system (a sheet of rules), the identity (colours and letters) and, in front, the logo, the smallest."
+      },
+      "funnel-planes": {
+        "cap": "One signature per 40 messages, so 120 messages for 3 clients.",
+        "alt": "Ten paper planes, standing for 40 messages, fly into a brass funnel; four envelopes come out and only one gets the red seal. On the right: « ×3 », then 120 and three sealed envelopes.",
+        "t": {
+          "0": "40",
+          "1": "4",
+          "2": "1",
+          "3": "×3",
+          "4": "120"
+        }
+      },
+      "hash-receipt": {
+        "cap": "The hash says “sent”. The receipt says whether it worked.",
+        "alt": "An envelope goes into a brass slot; a ticket comes out with an « 0x… » identifier and the word « Sent ». After the wait, two possible receipts: « Confirmed » or « Failed ». The ticket alone does not say which."
+      },
+      "key-register": {
+        "cap": "The wallet keeps your keys. It does not contain the coins: they stay in the ledger.",
+        "alt": "A big open public ledger: each coin is a written line in it. Beside it, a small wallet holds only a brass key. The key turns, and its line leads to the lock on one line of the ledger: it signs, and the coin moves from one line to the next, never leaving the ledger. A « support? » bubble asks for the key; it is crossed out in red, with the tag « never give it to anyone ».",
+        "t": {
+          "0": "support?",
+          "1": "never give it to anyone",
+          "2": "public ledger",
+          "3": "wallet"
+        }
+      },
+      "last-seat": {
+        "alt": "A ticket booth with two windows and a single ticket on the counter. Two hands reach for it at the same moment; the booth stamps the ticket with a tick and gives it to one hand, then hangs « full » in front of the other window.",
+        "t": {
+          "0": "full"
+        }
+      },
+      "loyalty-cards": {
+        "cap": "The same effort, but you have already started: that is the endowed progress effect.",
+        "alt": "Two loyalty cards: one has eight empty boxes, the other ten boxes with two already stamped in brass, as a gift. Each stamp fills one box on each; at the eighth, both cards are full.",
+        "next": "Stamp",
+        "t": {
+          "0": "8",
+          "1": "10"
+        }
+      },
+      "months-jar": {
+        "cap": "A client pays at 60 days: enough to last at least those two months.",
+        "alt": "A jar of coins above a three-month calendar: in month one a stack of coins leaves; in month two, another; on day 60 the client’s payment arrives and refills the jar. A red bracket marks the two months to get through.",
+        "t": {
+          "0": "1",
+          "1": "2",
+          "2": "3",
+          "3": "60"
+        }
+      },
+      "one-writer": {
+        "cap": "One writer: the flowchart suggests a database.",
+        "alt": "On a counter, one notebook and one writing hand: the tag says « a database ». With the second button the notebook is copied onto four tables where four hands write: the tag becomes « several organisations? ».",
+        "t": {
+          "0": "a database",
+          "1": "several organisations?"
+        },
+        "b": {
+          "0": "Only the gym writes",
+          "1": "Several organisations write"
+        },
+        "cap2": "Several writers: the question arises (not an automatic answer)."
+      },
+      "promise-proof": {
+        "cap": "A deadline can be checked. “Best” cannot.",
+        "alt": "Two order tickets pinned up: « the best quality » gets a grey « slogan » stamp; « ready at the promised time » gets a clock and a photo of the order, then a tick.",
+        "t": {
+          "0": "the best quality",
+          "1": "ready at the promised time",
+          "2": "slogan"
+        }
+      },
+      "schengen-window": {
+        "cap": "You count back 180 days from each day of your stay: leaving for a day erases nothing.",
+        "alt": "A strip of days: a 50-day stay, one day out, then 30 days back. A brass frame 180 days wide slides with the chosen day; the count of stay days inside it does not restart after the day out. Further on, the first days slide out of the frame and the count falls.",
+        "ctl": "Move the day",
+        "out": "Days of stay in the last 180: {n} of 90",
+        "t": {
+          "0": "0",
+          "1": "50",
+          "2": "80"
+        }
+      },
+      "seal-ring": {
+        "cap": "It proves which key signed and that nothing has changed, but it hides nothing.",
+        "alt": "A signet ring, kept in hand, seals an open letter that anyone can still read. Anyone compares the public imprint with the seal: it matches. Add one comma to the letter and the fingerprint changes entirely: the match fails."
+      },
+      "spare-key": {
+        "cap": "An unlimited approval stays valid until you revoke it, even after “disconnecting”.",
+        "alt": "A spare key on a red ribbon, « unlimited approval », goes through the door into the till's lock. The door shuts on « disconnect », but the key still turns and the drawer opens. A red tag hangs from the key: revoking it costs fees.",
+        "t": {
+          "0": "unlimited approval",
+          "1": "disconnect",
+          "2": "revoking: fees"
+        }
+      },
+      "three-copies": {
+        "cap": "That is the “1” in 3-2-1: one copy outside the bag, online or with someone you trust.",
+        "alt": "A brown canvas messenger bag with two buckled straps holds two copies of the files: card 1 on the laptop, card 2 on an external drive, two different kinds of storage. Card 3 leaves the bag for a small house somewhere else. A shadow hand grabs the handle and carries the bag off; card 3, safe in the house, is ticked. Below, three counters: 3 copies, 2 kinds of storage, 1 outside the bag.",
+        "t": {
+          "0": "1",
+          "1": "2",
+          "2": "3"
+        }
+      },
+      "two-days": {
+        "cap": "16:00 for you is 10:00 for your client: the hour falls inside both days.",
+        "alt": "Two working days on one 24-hour ruler: Selma’s from 9 to 18, the client’s shifted by six hours. Their shared part, 15 to 18 on Selma’s clock, lights up; a phone lands at 16.",
+        "t": {
+          "0": "UTC+1",
+          "1": "UTC−5",
+          "2": "0",
+          "3": "6",
+          "4": "12",
+          "5": "18",
+          "6": "24"
+        }
+      },
+      "wallet-seams": {
+        "cap": "What costs is almost never the opening: it is three fees.",
+        "alt": "A leather wallet opens on three pockets of notes; three brass clips mark where the cost hides: the exchange between the pockets, the transfer at the zip, the card and the withdrawal at the card slot. The « 0 fees » sticker peels off.",
+        "t": {
+          "0": "0 fees"
+        }
+      },
+      "rate-gap": {
+        "t": {
+          "0": "market",
+          "1": "offered",
+          "2": "your real price"
+        },
+        "alt": "Two exchange boards, “market” and “offered”, take the same stack of coins. Step by step: each gives back a bar, the offered one shorter; a red bracket measures the gap between them, “your real price”, and the “0 fees” sticker peels off."
+      },
+      "net-path": {
+        "t": {
+          "0": "uncontrolled network",
+          "1": "mobile network"
+        },
+        "b": {
+          "0": "Airport Wi-Fi",
+          "1": "Phone hotspot"
+        },
+        "alt": "A laptop and two paths. The first, dashed in red, goes to the airport’s Wi-Fi antenna, “uncontrolled network”, and a shadow hand grabs the line. With the second button the line goes through the phone, “mobile network”, and a green tick lights up."
+      },
+      "margin-block": {
+        "t": {
+          "0": "estimated days",
+          "1": "margin",
+          "2": "fixed price",
+          "3": "scope",
+          "4": "new quote"
+        },
+        "alt": "A bar of estimated days followed by a brass block, the margin; above, the “fixed price” tag covers both. Step by step: two extra days, in red, go into the margin, and the tag does not move; then the scope grows by a dashed block, and a “new quote” card comes out on its own."
+      }
+    },
+    "panel": {
+      "bank-routes": {
+        "alt": "Kūro hesitates between three small objects: a bank with columns, a laptop open on a dashboard, a phone."
+      },
+      "bank-id": {
+        "alt": "Kūro holds up a green ID card next to a phone whose screen waits for a selfie in a dotted frame.",
+        "cap": "To open an account, the service will check who you are. Ask it first: does it accept residents of my country?"
+      },
+      "bank-balance": {
+        "alt": "Kūro studies a phone through a magnifying glass: two bars of different lengths and a faded hourglass.",
+        "cap": "What you have set aside, what goes out each month: cash in hand is counted in months."
+      },
+      "bank-bell": {
+        "alt": "Kūro pricks up his ears: the phone buzzes under a small golden bell.",
+        "cap": "To check before you go: will my number receive my bank’s codes there?"
+      },
+      "bank-hooks": {
+        "alt": "Kūro crouches before an envelope, a message bubble and a phone handset, each hanging from a red fishing hook.",
+        "cap": "A letter, a message, a call: the same hook, urgency and a link that looks like the real one."
+      },
+      "bank-calm": {
+        "alt": "Kūro sits unmoved between a ringing alarm clock and a flashing red siren.",
+        "cap": "Urgency is not information."
+      },
+      "bank-mask": {
+        "alt": "Kūro lifts a cardboard mask with a painted smile: behind it, a shadow hand reaches for a wallet.",
+        "cap": "The fake “support” wears a friendly mask. Whoever reads the recovery phrase takes everything."
+      },
+      "bank-hangup": {
+        "alt": "With one paw Kūro presses the red button to hang up; with the other he holds a bank card.",
+        "cap": "Signal spotted: you hang up."
+      },
+      "bank-judge": {
+        "alt": "Kūro as a judge, a gavel at his feet, between two phones: a green bubble with a tick, a red bubble with a cross.",
+        "cap": "Scam, or nothing wrong? Sort the six messages."
+      },
+      "bank-key": {
+        "alt": "Kūro turns a big brass key in a padlock lying on a phone; beside it, a small security key on a ring.",
+        "cap": "A second lock: 2-step verification keeps criminals out even if they know your password."
+      },
+      "bank-fridge": {
+        "alt": "In the kitchen, in daylight, Yasser fixes a small note to the fridge with a magnet; on the table, a phone and a ticked list; Kūro wears a small gold medal.",
+        "cap": "The road book is full, the list is ticked."
+      },
+      "devis-folders": {
+        "alt": "Yasser, hand on his forehead, beside a tower of binders and folders bristling with notes; Kūro sits on the laptop keyboard.",
+        "cap": "Without the revisions line in the quote, a project never ends."
+      },
+      "night-platform": {
+        "alt": "At night on a station platform, Yasser reads a glowing map, a bag strap across his chest; Kūro waits at his feet.",
+        "cap": "Your office fits in a bag: anything that breaks, gets lost or cuts out stops you dead."
       }
     }
   }

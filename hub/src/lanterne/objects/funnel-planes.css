@@ -1,0 +1,26 @@
+/* funnel-planes · play 4500 ms once on entering view; default markup = the final teaching frame. */
+.lp-funnel-planes .lp-funnel-planes-big{font-size:22px}.lp-funnel-planes .lp-funnel-planes-mid{font-size:15px}.lp-funnel-planes .lp-funnel-planes-amb{fill:var(--amber);color:var(--amber)}
+.lp-funnel-planes .lp-funnel-planes-seal{transform-box:fill-box;transform-origin:50% 50%}
+@media (prefers-reduced-motion:no-preference){html:not(.motion-off) .lp-funnel-planes.is-playing .lp-funnel-planes-pl{animation:lp-funnel-planes-pl 400ms cubic-bezier(.16,1,.3,1) calc(var(--d) * 110ms) both}
+@keyframes lp-funnel-planes-pl{from{transform:translateX(-150px);opacity:0}30%{opacity:1}to{transform:none;opacity:1}}}
+@media (prefers-reduced-motion:no-preference){
+html:not(.motion-off) .lp-funnel-planes.is-playing :is(.lp-funnel-planes-n40,.lp-funnel-planes-env,.lp-funnel-planes-n4,.lp-funnel-planes-seal,.lp-funnel-planes-n1,.lp-funnel-planes-x3,.lp-funnel-planes-stack){animation:4500ms cubic-bezier(.87,0,.13,1) both}
+html:not(.motion-off) .lp-funnel-planes.is-playing .lp-funnel-planes-n40{animation-name:lp-funnel-planes-n40}
+@keyframes lp-funnel-planes-n40{0%,24.44%{opacity:0}33.33%,100%{opacity:1}}
+html:not(.motion-off) .lp-funnel-planes.is-playing .lp-funnel-planes-env{animation-name:lp-funnel-planes-env}
+@keyframes lp-funnel-planes-env{0%,33.33%{transform:translateY(-20px);opacity:0}37.78%{opacity:1}51.11%,100%{transform:none;opacity:1}}
+html:not(.motion-off) .lp-funnel-planes.is-playing .lp-funnel-planes-n4{animation-name:lp-funnel-planes-n4}
+@keyframes lp-funnel-planes-n4{0%,46.67%{opacity:0}55.56%,100%{opacity:1}}
+html:not(.motion-off) .lp-funnel-planes.is-playing .lp-funnel-planes-seal{animation-name:lp-funnel-planes-seal}
+@keyframes lp-funnel-planes-seal{0%,55.56%{transform:scale(1.3);opacity:0}58.89%{opacity:1}66.67%,100%{transform:none;opacity:1}}
+html:not(.motion-off) .lp-funnel-planes.is-playing .lp-funnel-planes-n1{animation-name:lp-funnel-planes-n1}
+@keyframes lp-funnel-planes-n1{0%,60%{opacity:0}66.67%,100%{opacity:1}}
+html:not(.motion-off) .lp-funnel-planes.is-playing .lp-funnel-planes-x3{animation-name:lp-funnel-planes-x3}
+@keyframes lp-funnel-planes-x3{0%,66.67%{opacity:0}75.56%,100%{opacity:1}}
+html:not(.motion-off) .lp-funnel-planes.is-playing .lp-funnel-planes-stack{animation-name:lp-funnel-planes-stack}
+@keyframes lp-funnel-planes-stack{0%,77.78%{transform:translateY(10px);opacity:0}95.56%,100%{transform:none;opacity:1}}
+}
+@media (prefers-reduced-motion:reduce){.lp-funnel-planes *{animation:none!important}}
+/* the drawing's own line weights (2026-11-24: moved out of style="", which carries custom properties only; one class each, unscoped, so a <use> copy keeps it) */
+.lo-funnel-planes-s0{stroke-width:1}
+.lo-funnel-planes-s1{stroke-width:.8}

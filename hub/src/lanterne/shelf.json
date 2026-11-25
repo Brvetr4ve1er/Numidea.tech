@@ -23,7 +23,7 @@
       { "slug": "argent", "key": "argent", "title": "money.title", "kind": "lant.at.argent.kind", "line": "money.lead", "guide": "pigeon",
         "cover": { "src": "img/studio/money/scene-640.webp" }, "accent": "#C98A2E",
         "store": "numidea-lanterne-argent", "migrate": "numidea-lessons",
-        "ids": ["pay", "bank", "rate", "treso", "crypto"] },
+        "ids": ["pay", "bank", "rate", "treso", "crypto", "appel"] },
       { "slug": "route", "key": "route", "title": "nomade.title", "kind": "nomade.kicker", "line": "nomade.lead", "guide": "pigeon",
         "cover": { "src": "img/studio/nomade/scene-800.webp" }, "accent": "#3F6E8C",
         "store": "numidea-lanterne-route", "migrate": "numidea-lessons-nomade",

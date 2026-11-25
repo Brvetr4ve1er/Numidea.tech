@@ -1,0 +1,7 @@
+{
+  "kind": "toggle",
+  "n": 2,
+  "atlas": "route",
+  "stop": "n6",
+  "cap": "lant.at.route.d.n6.decision"
+}

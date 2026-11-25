@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-11-06
+updated: 2026-11-24
 sources: [BRAND.md, OWNER-CONTENT.md, index.html, assets/app.js, scene/app.js, scene/style.css, scripts/scene-data.mjs, scripts/build-scene.mjs, scripts/work-capture.mjs, scripts/voices-data.mjs, scripts/check.mjs, package.json]
 ---
 
@@ -23,7 +23,7 @@ sources: [BRAND.md, OWNER-CONTENT.md, index.html, assets/app.js, scene/app.js, s
 
 Graph: [[scene-data.mjs]], [[build-scene.mjs]], [[PROJECTS]], [[sheet()]], [[shot()]], [[work-capture.mjs]], [[_COMMUNITY_Project Sheets Generator]], [[_COMMUNITY_Project Screenshot Capture]], wiki [[Project_Sheets_Generator]], [[Project_Screenshot_Capture]].
 
-## The five sheets
+## The eight sheets
 
 Sheet numbers follow the order of `PROJECTS` (scripts/build-scene.mjs › sheet(), pad).
 
@@ -31,9 +31,12 @@ Sheet numbers follow the order of `PROJECTS` (scripts/build-scene.mjs › sheet(
 |---|---|---|---|---|---|---|---|---|
 | 01 | `bordjsteel` | Bordj Steel | live | bordjsteelb2b.netlify.app | 12 | FR | Montserrat | 5 |
 | 02 | `alliance` | Alliance Travel | live | alliancetravel.app | 9 | FR · EN · AR | DM Sans, Tajawal | 5 |
-| 03 | `glaive` | Glaive Store | concept | glaivestore.netlify.app | not given | EN | Archivo, Inter | 4 |
-| 04 | `workspacehq` | WorkspaceHQ v3 | product | `../workspacehq/` | not given | EN | Press Start 2P, VT323 | 5 |
-| 05 | `almaflow` | AlmaFlowClim | live | almaflowclim.netlify.app | 7 | FR | Roboto | 5 |
+| 03 | `almaflow` | AlmaFlowClim | live | almaflowclim.netlify.app | 7 | FR | Roboto | 5 |
+| 04 | `nomara` | Nomara Voyages | live | nomaravoyages.netlify.app | 15 | AR · FR | Changa, Readex Pro | 5 |
+| 05 | `annuaire` | Annuaire industriel algérien | finished | annuaire-dz.vercel.app/fr | not given | FR · AR · EN | Plus Jakarta Sans | 5 |
+| 06 | `glaive` | Glaive Store | concept | glaivestore.netlify.app | not given | EN | Archivo, Inter | 4 |
+| 07 | `workspacehq` | WorkspaceHQ v3 | product | `../workspacehq/` | not given | EN | Press Start 2P, VT323 | 5 |
+| 08 | `numidea` | Numidea Labs | own | `../` (this site) | not given | FR · EN · AR | Cinzel, Geist, IBM Plex Sans Arabic | 5 |
 
 Source for every row: scripts/scene-data.mjs › PROJECTS. The sheets' own scopes (English text):
 
@@ -41,9 +44,12 @@ Source for every row: scripts/scene-data.mjs › PROJECTS. The sheets' own scope
 |---|---|---|
 | [[Bordj Steel B2B corporate site (sheet 01, 12 pages, FR)\|Bordj Steel]] | Structural steel · B2B · Algeria | B2B corporate site |
 | [[Alliance Travel agency site (sheet 02, 9 pages, FRENAR)\|Alliance Travel]] | Travel agency · Bordj Bou Arréridj | Identity, site and booking journey |
-| [[Glaive Store gaming-gear shop (sheet 03, portfolio demo)\|Glaive Store]] | E-commerce · Gaming gear | Fictional brand and full store |
-| [[WorkspaceHQ v3 sheet (sheet 04, in-house product)\|WorkspaceHQ v3]] | Developer tool | Product, launch site and character |
-| [[AlmaFlowClim HVAC and plumbing showcase site (sheet 05, 7 pages, FR)\|AlmaFlowClim]] | Air conditioning, heating, plumbing · Île-de-France | Showcase site and quote request |
+| [[AlmaFlowClim HVAC and plumbing showcase site (sheet 05, 7 pages, FR)\|AlmaFlowClim]] (now sheet 03) | Air conditioning, heating, plumbing · Île-de-France | Showcase site and quote request |
+| Nomara Voyages (sheet 04) | Travel and Umrah · Aïn M'lila | Bilingual showcase site and WhatsApp booking |
+| Annuaire industriel algérien (sheet 05) | Industrial directory · Algeria | Trilingual online directory |
+| [[Glaive Store gaming-gear shop (sheet 03, portfolio demo)\|Glaive Store]] (now sheet 06) | E-commerce · Gaming gear | Fictional brand and full store |
+| [[WorkspaceHQ v3 sheet (sheet 04, in-house product)\|WorkspaceHQ v3]] (now sheet 07) | Developer tool | Product, launch site and character |
+| Numidea Labs (sheet 08) | Web studio · Bordj Bou Arréridj | Our own site, in three languages |
 
 Source: scripts/scene-data.mjs › PROJECTS (each project's `t.en`).
 
@@ -54,6 +60,8 @@ Source: scripts/scene-data.mjs › PROJECTS (each project's `t.en`).
 | `live` | En ligne | Live | What the site gives the client |
 | `concept` | Démo de portfolio | Portfolio demo | What the demo shows |
 | `product` | Produit maison | Our product | What the tool gives its users |
+| `finished` | Projet terminé | Finished project | What the site gives its visitors |
+| `own` | Notre propre site | Our own site | What the site gives its visitors |
 
 Source: scripts/scene-data.mjs › UI (status, gain). Glaive is labelled a portfolio demo because its own site says so; it was never a client (BRAND.md › Project sheets (scene/)).
 
@@ -80,8 +88,8 @@ Graph: [[Project sheet (planche) structure]], [[What the site brings the client 
 
 ## Links into the sheets
 
-- Each delivered client's card that has a sheet (Bordj Steel, Alliance Travel, AlmaFlowClim) links its benefit line to `scene/#gv-<slug>`, and a visually hidden "— le détail sur la planche" (`work.gainMore`) ends the link's name so a screen reader hears where it goes (BRAND.md › Project sheets (scene/); index.html › SELECTED WORK; scripts/check.mjs › block 5c).
-- On a card with a sheet the title is the link to `scene/#<slug>` (`.proj h3 a`, stretched over the card; the "Voir la planche" button went on 2026-11-05, commit 721fe91); Nomara Voyages has no sheet, so its benefit line is plain text (index.html › SELECTED WORK; BRAND.md › The design pass of 2026-11-06).
+- Each delivered client's card that has a sheet (Bordj Steel, Alliance Travel, AlmaFlowClim, and Nomara Voyages since 2026-11-24) links its benefit line to `scene/#gv-<slug>`, and a visually hidden "— le détail sur la planche" (`work.gainMore`) ends the link's name so a screen reader hears where it goes (BRAND.md › Project sheets (scene/); index.html › SELECTED WORK; scripts/check.mjs › block 5c).
+- On a card with a sheet the title is the link to `scene/#<slug>` (`.proj h3 a`, stretched over the card; the "Voir la planche" button went on 2026-11-05, commit 721fe91); since 2026-11-24 (wave 3) Nomara Voyages has sheet 04, so its title links to `scene/#nomara` and its benefit line to `scene/#gv-nomara` like the other three (index.html › SELECTED WORK).
 - The work section ends on the planches banner, "Ouvrir les planches →" (index.html › 538). See [[Project Plates Banner (Planches)]].
 - Old `#/work/<slug>` links from the retired project explorer are redirected to the matching sheet through the `SHEET` map: `bordj-steel` → `bordjsteel`, `alliance-travel` → `alliance`, `almaflowclim` → `almaflow`, `glaive-store` → `glaive`, keeping the query string (assets/app.js › DOM ready, legacy deep links).
 - The sheet page's footer links back to `../#contact` and `../#work` (scripts/build-scene.mjs › 295).
