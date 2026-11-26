@@ -1,0 +1,518 @@
+{
+  "v": 1,
+  "id": "ep01-dernier-depart",
+  "n": 1,
+  "title": {
+    "fr": "Le dernier départ",
+    "en": "The Last Run",
+    "ar": "الرحلة الأخيرة"
+  },
+  "kicker": {
+    "fr": "Épisode 1 · Après la fermeture",
+    "en": "Episode 1 · After closing time",
+    "ar": "الحلقة ١ · بعد الإغلاق"
+  },
+  "reward": {
+    "encre": 100,
+    "world": {
+      "kuro_in_bag": true
+    }
+  },
+  "start": {
+    "pose": "shrug",
+    "face": "deadpan",
+    "mark": "?",
+    "line": {
+      "fr": "Le scooter est prêt. Le colis est emballé. Et Kūro a disparu. Il ne rate jamais un départ… alors il est forcément dans l'atelier.",
+      "en": "The scooter's ready. The parcel's packed. And Kūro has vanished. He never misses a run… so he has to be somewhere in the studio.",
+      "ar": "السكوتر جاهز. الطرد مغلَّف. وكورو اختفى. لا يفوّت أي رحلة أبداً… إذن هو حتماً في مكان ما داخل الورشة."
+    }
+  },
+  "hotspots": [
+    {
+      "id": "laptop",
+      "art": "laptop-closed",
+      "name": {
+        "fr": "Le laptop fermé",
+        "en": "The closed laptop",
+        "ar": "الحاسوب المغلق"
+      },
+      "at": {
+        "x": 4,
+        "y": 60,
+        "w": 20
+      },
+      "atNarrow": {
+        "x": 4,
+        "y": 35,
+        "w": 42
+      },
+      "actions": [
+        {
+          "id": "touch",
+          "label": {
+            "fr": "Toucher le capot",
+            "en": "Touch the lid",
+            "ar": "المس الغطاء"
+          },
+          "set": [
+            "warm"
+          ],
+          "face": "focus",
+          "mark": "!",
+          "lesson": "last-known",
+          "line": {
+            "fr": "Encore tiède. Il dormait dessus il y a cinq minutes. Et il y a des poils noirs sur le bureau… qui partent vers la sacoche.",
+            "en": "Still warm. He was asleep on it five minutes ago. And there's black fur on the desk… leading toward the bag.",
+            "ar": "ما زال دافئاً. كان نائماً عليه قبل خمس دقائق. وهناك شعر أسود على المكتب… يتّجه نحو الحقيبة."
+          }
+        },
+        {
+          "id": "open",
+          "label": {
+            "fr": "L'ouvrir pour chercher",
+            "en": "Open it and search",
+            "ar": "افتحه وابحث"
+          },
+          "face": "sideeye",
+          "mark": "✱",
+          "line": {
+            "fr": "Il n'est pas dans le laptop. Il dort *dessus*, nuance. Touche plutôt le capot.",
+            "en": "He's not *in* the laptop. He sleeps *on* it. Try touching the lid.",
+            "ar": "ليس داخل الحاسوب. إنه ينام *فوقه*، هناك فرق. المس الغطاء بدلاً من ذلك."
+          },
+          "wrong": true
+        }
+      ]
+    },
+    {
+      "id": "sketchbook",
+      "art": "sketchbook",
+      "name": {
+        "fr": "Le carnet de croquis",
+        "en": "The sketchbook",
+        "ar": "دفتر الرسم"
+      },
+      "at": {
+        "x": 27,
+        "y": 63,
+        "w": 15
+      },
+      "atNarrow": {
+        "x": 56,
+        "y": 31,
+        "w": 32
+      },
+      "actions": [
+        {
+          "id": "read",
+          "label": {
+            "fr": "Lire la page cornée",
+            "en": "Read the dog-eared page",
+            "ar": "اقرأ الصفحة المطويّة"
+          },
+          "set": [
+            "plan"
+          ],
+          "face": "think",
+          "mark": "?",
+          "lesson": "user-height",
+          "line": {
+            "fr": "Page 12 : « Sacoche v2. Hublot découpé à hauteur de moustaches. Testé par l'utilisateur. » L'utilisateur, évidemment, c'est Kūro.",
+            "en": "Page 12: “Bag v2. Porthole cut at whisker height. Tested by the user.” The user, of course, is Kūro.",
+            "ar": "الصفحة ١٢: «الحقيبة، النسخة الثانية. نافذة مستديرة بارتفاع الشوارب. جرّبها المستخدم». والمستخدم، طبعاً، هو كورو."
+          }
+        }
+      ]
+    },
+    {
+      "id": "parcel",
+      "art": "box-closed",
+      "name": {
+        "fr": "Le colis emballé",
+        "en": "The packed parcel",
+        "ar": "الطرد المغلَّف"
+      },
+      "at": {
+        "x": 43,
+        "y": 54,
+        "w": 14
+      },
+      "atNarrow": {
+        "x": 6,
+        "y": 63,
+        "w": 32
+      },
+      "actions": [
+        {
+          "id": "label",
+          "label": {
+            "fr": "Vérifier l'étiquette",
+            "en": "Check the label",
+            "ar": "تحقّق من الملصق"
+          },
+          "face": "smirk",
+          "mark": "✦",
+          "lesson": "check-before",
+          "line": {
+            "fr": "Adresse, téléphone, scotch en H dessus et dessous. Tout a été vérifié *avant* de fermer. Et non, Kūro n'est pas dedans : il déteste le scotch.",
+            "en": "Address, phone, H-taped top and bottom. All checked *before* it was sealed. And no, Kūro isn't inside: he hates tape.",
+            "ar": "العنوان، الهاتف، شريط لاصق على شكل H من الأعلى والأسفل. كل شيء فُحص *قبل* الإغلاق. ولا، كورو ليس بداخله: إنه يكره الشريط اللاصق."
+          }
+        },
+        {
+          "id": "open",
+          "label": {
+            "fr": "Rouvrir le colis",
+            "en": "Open the parcel again",
+            "ar": "أعد فتح الطرد"
+          },
+          "face": "angry",
+          "mark": "✱✱",
+          "lesson": "check-before",
+          "line": {
+            "fr": "Stop ! Je viens de le sceller. Rouvrir un colis pour vérifier, c'est le refermer pour rien. On vérifie avant de fermer, pas après.",
+            "en": "Stop! I just sealed that. Reopening a parcel to check it means sealing it twice. You check before you close, not after.",
+            "ar": "توقّف! لقد أغلقته للتوّ. فتح الطرد للتحقّق يعني إغلاقه مرّتين. نتحقّق قبل الإغلاق، لا بعده."
+          },
+          "wrong": true
+        }
+      ]
+    },
+    {
+      "id": "bag",
+      "art": "satchel",
+      "name": {
+        "fr": "La sacoche de livraison",
+        "en": "The delivery bag",
+        "ar": "حقيبة التوصيل"
+      },
+      "at": {
+        "x": 56,
+        "y": 52,
+        "w": 17
+      },
+      "atNarrow": {
+        "x": 50,
+        "y": 64,
+        "w": 40
+      },
+      "actions": [
+        {
+          "id": "look",
+          "label": {
+            "fr": "Examiner",
+            "en": "Look at it",
+            "ar": "تفحّصها"
+          },
+          "unless": [
+            "plan",
+            "warm"
+          ],
+          "face": "think",
+          "mark": "…",
+          "line": {
+            "fr": "La sacoche du soir. Un peu plus lourde que d'habitude… d'environ quatre kilos. Bizarre.",
+            "en": "The evening bag. A little heavier than usual… by about four kilos. Odd.",
+            "ar": "حقيبة المساء. أثقل قليلاً من المعتاد… بحوالي أربعة كيلوغرامات. غريب."
+          }
+        },
+        {
+          "id": "lift",
+          "label": {
+            "fr": "La soulever",
+            "en": "Lift it",
+            "ar": "ارفعها"
+          },
+          "when": [
+            "warm"
+          ],
+          "unless": [
+            "plan",
+            "found"
+          ],
+          "face": "shocked",
+          "mark": "!",
+          "line": {
+            "fr": "Quatre kilos de trop, et ça ronronne. Il y a sûrement un moyen de voir dedans sans l'ouvrir… le carnet en parle peut-être.",
+            "en": "Four kilos too heavy, and it's purring. There must be a way to see inside without opening it… maybe the sketchbook says.",
+            "ar": "أربعة كيلوغرامات زائدة، وهي تخرخر. لا بدّ من طريقة للنظر داخلها دون فتحها… ربما يذكرها دفتر الرسم."
+          }
+        },
+        {
+          "id": "porthole",
+          "label": {
+            "fr": "Regarder par le hublot",
+            "en": "Look through the porthole",
+            "ar": "انظر من النافذة المستديرة"
+          },
+          "when": [
+            "plan"
+          ],
+          "unless": [
+            "found"
+          ],
+          "set": [
+            "found"
+          ],
+          "face": "shocked",
+          "kuro": "judge",
+          "mark": "!!",
+          "line": {
+            "fr": "Le voilà. Installé en première classe, hublot inclus. Mais… sa queue est coincée dans la boucle du rabat.",
+            "en": "There he is. Flying first class, porthole included. But… his tail is caught in the flap's buckle.",
+            "ar": "ها هو. يسافر في الدرجة الأولى، مع النافذة. لكن… ذيله عالق في إبزيم الغطاء."
+          }
+        },
+        {
+          "id": "pull",
+          "label": {
+            "fr": "Tirer doucement la queue",
+            "en": "Gently pull the tail",
+            "ar": "اسحب الذيل برفق"
+          },
+          "when": [
+            "found"
+          ],
+          "unless": [
+            "freed"
+          ],
+          "face": "angry",
+          "kuro": "hiss",
+          "mark": "✱✱",
+          "line": {
+            "fr": "Non, non, non ! Quand ça coince, on ne tire jamais. On desserre d'abord.",
+            "en": "No, no, no! When something's stuck, you never pull. You loosen it first.",
+            "ar": "لا، لا، لا! عندما يعلق شيء، لا نسحب أبداً. نرخيه أولاً."
+          },
+          "wrong": true
+        },
+        {
+          "id": "buckle",
+          "label": {
+            "fr": "Défaire la boucle",
+            "en": "Undo the buckle",
+            "ar": "افتح الإبزيم"
+          },
+          "when": [
+            "found"
+          ],
+          "unless": [
+            "freed"
+          ],
+          "set": [
+            "freed"
+          ],
+          "swap": "satchel-open",
+          "face": "laugh",
+          "kuro": "love",
+          "mark": "♪",
+          "lesson": "loosen-first",
+          "line": {
+            "fr": "Boucle ouverte, queue libérée, boucle refermée un cran plus lâche. Il ne bouge pas : c'est sa place.",
+            "en": "Buckle open, tail free, buckle closed one notch looser. He's not moving: that's his seat.",
+            "ar": "فُتح الإبزيم، تحرّر الذيل، وأُغلق الإبزيم بدرجة أوسع. لا يتحرّك: هذا مقعده."
+          }
+        },
+        {
+          "id": "pet",
+          "label": {
+            "fr": "Dire bonsoir à Kūro",
+            "en": "Say goodnight to Kūro",
+            "ar": "قل مساء الخير لكورو"
+          },
+          "when": [
+            "freed"
+          ],
+          "face": "smirk",
+          "kuro": "love",
+          "mark": "♪",
+          "line": {
+            "fr": "Il cligne lentement des yeux. Chez les chats, c'est un merci.",
+            "en": "He blinks slowly at you. In cat, that's a thank-you.",
+            "ar": "يرمش ببطء. في لغة القطط، هذا يعني شكراً."
+          }
+        }
+      ]
+    },
+    {
+      "id": "scooter",
+      "art": "scooter",
+      "name": {
+        "fr": "Le scooter",
+        "en": "The scooter",
+        "ar": "السكوتر"
+      },
+      "at": {
+        "x": 3,
+        "y": 8,
+        "w": 22
+      },
+      "atNarrow": {
+        "x": 4,
+        "y": 4,
+        "w": 44
+      },
+      "actions": [
+        {
+          "id": "check",
+          "label": {
+            "fr": "Faire le tour",
+            "en": "Walk around it",
+            "ar": "تفقّده"
+          },
+          "face": "focus",
+          "mark": "…",
+          "line": {
+            "fr": "Plein fait, rétro réglé, casque sur la selle. Il ne manque que le passager.",
+            "en": "Tank full, mirror set, helmet on the seat. Only the passenger is missing.",
+            "ar": "الخزّان ممتلئ، المرآة مضبوطة، الخوذة على المقعد. لا ينقص إلا الراكب."
+          }
+        }
+      ]
+    },
+    {
+      "id": "yasser",
+      "art": null,
+      "name": {
+        "fr": "Yasser",
+        "en": "Yasser",
+        "ar": "ياسر"
+      },
+      "actions": [
+        {
+          "id": "call",
+          "label": {
+            "fr": "Appeler Kūro",
+            "en": "Call Kūro",
+            "ar": "نادِ كورو"
+          },
+          "unless": [
+            "found"
+          ],
+          "pose": "shrug",
+          "face": "deadpan",
+          "mark": "…",
+          "line": {
+            "fr": "« Kūro ! »… Rien. Quand il est bien installé quelque part, il ne répond jamais. Il faut le trouver, pas l'appeler.",
+            "en": "“Kūro!”… Nothing. When he's comfortable somewhere, he never answers. You have to find him, not call him.",
+            "ar": "«كورو!»… لا شيء. عندما يرتاح في مكان ما، لا يجيب أبداً. يجب أن نجده، لا أن نناديه."
+          }
+        },
+        {
+          "id": "keys-early",
+          "label": {
+            "fr": "Lui donner les clés",
+            "en": "Hand him the keys",
+            "ar": "أعطه المفاتيح"
+          },
+          "unless": [
+            "freed"
+          ],
+          "pose": "facepalm",
+          "face": "deadpan",
+          "mark": "…",
+          "wrong": true,
+          "line": {
+            "fr": "On part sans le chat ? Garde-les encore une minute.",
+            "en": "We're leaving without the cat? Hold on to those a minute.",
+            "ar": "سنغادر من دون القطّ؟ احتفظ بها دقيقة أخرى."
+          }
+        },
+        {
+          "id": "keys",
+          "label": {
+            "fr": "Lui donner les clés",
+            "en": "Hand him the keys",
+            "ar": "أعطه المفاتيح"
+          },
+          "when": [
+            "freed"
+          ],
+          "pose": "handover",
+          "face": "laugh",
+          "kuro": "love",
+          "mark": "♪",
+          "end": true,
+          "line": {
+            "fr": "Colis, chat, clés. Dans cet ordre. Merci. Tu fermes l'atelier en partant ?",
+            "en": "Parcel, cat, keys. In that order. Thanks. Lock up the studio on your way out?",
+            "ar": "الطرد، القطّ، المفاتيح. بهذا الترتيب. شكراً. هل تغلق الورشة وأنت خارج؟"
+          }
+        }
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "last-known",
+      "tag": {
+        "fr": "Débogage",
+        "en": "Debugging",
+        "ar": "تصحيح الأخطاء"
+      },
+      "text": {
+        "fr": "Avant de fouiller partout, regarde où ça marchait en dernier. Le dernier état connu vaut dix suppositions.",
+        "en": "Before you search everywhere, look where it last worked. The last known state beats ten guesses.",
+        "ar": "قبل أن تبحث في كل مكان، انظر أين كان يعمل آخر مرة. آخر حالة معروفة أفضل من عشر تخمينات."
+      }
+    },
+    {
+      "id": "user-height",
+      "tag": {
+        "fr": "Design",
+        "en": "Design",
+        "ar": "التصميم"
+      },
+      "text": {
+        "fr": "On dessine à la hauteur du vrai utilisateur, pas à la sienne. Ici, c'était des moustaches.",
+        "en": "Design at your real user's eye level, not your own. Here, that was whisker height.",
+        "ar": "صمّم على مستوى نظر المستخدم الحقيقي، لا على مستواك أنت. هنا، كان ذلك بارتفاع الشوارب."
+      }
+    },
+    {
+      "id": "check-before",
+      "tag": {
+        "fr": "Livraison",
+        "en": "Delivery",
+        "ar": "التسليم"
+      },
+      "text": {
+        "fr": "On vérifie avant de fermer. Rouvrir un livrable coûte plus cher que de le vérifier.",
+        "en": "Check before you close. Reopening a delivery costs more than checking it.",
+        "ar": "تحقّق قبل الإغلاق. إعادة فتح ما سُلِّم تكلّف أكثر من التحقّق منه."
+      }
+    },
+    {
+      "id": "loosen-first",
+      "tag": {
+        "fr": "Réparation",
+        "en": "Fixing",
+        "ar": "الإصلاح"
+      },
+      "text": {
+        "fr": "Quand ça coince, on desserre avant de tirer. Un retour en arrière propre bat un passage en force.",
+        "en": "When it's stuck, loosen before you pull. A clean step back beats forcing it.",
+        "ar": "عندما يعلق الأمر، أرخِه قبل أن تسحب. التراجع النظيف أفضل من الفرض بالقوة."
+      }
+    }
+  ],
+  "end": {
+    "pose": "handover",
+    "title": {
+      "fr": "Départ réussi",
+      "en": "Run complete",
+      "ar": "انطلاقة ناجحة"
+    },
+    "line": {
+      "fr": "Le scooter s'éloigne. Dans le hublot, deux yeux ambre regardent la ville défiler.",
+      "en": "The scooter pulls away. In the porthole, two amber eyes watch the city go by.",
+      "ar": "يبتعد السكوتر. ومن النافذة المستديرة، عينان كهرمانيّتان تراقبان المدينة وهي تمرّ."
+    },
+    "hub": {
+      "fr": "De retour à l'atelier, Kūro dort désormais dans la sacoche, le nez au hublot.",
+      "en": "Back at the studio, Kūro now sleeps in the bag, nose to the porthole.",
+      "ar": "في الورشة، صار كورو ينام في الحقيبة، وأنفه على النافذة المستديرة."
+    }
+  }
+}
