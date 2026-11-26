@@ -28,6 +28,7 @@ html.js .note-nojs,html.js .board__nojs{display:none}
 :where(.lt-wrap) :where(h1,h2,h3){font-family:var(--f-cond);font-weight:900;letter-spacing:var(--tr-disp);word-spacing:.08em;line-height:var(--lh-disp);text-transform:uppercase}
 /* the Lanterne's calls to action speak in the UI role (2026-11-26) */
 .lt-wrap .btn--amber{font:800 var(--fs-label)/1.2 var(--f-wide);letter-spacing:var(--tr-ui);text-transform:uppercase}
+:lang(ar) .lt-wrap .btn--amber{font-size:var(--fs-body);letter-spacing:0;text-transform:none}
 :where(:lang(ar) .lt-wrap) :where(h1,h2,h3){font-weight:700;letter-spacing:0;line-height:1.25}
 
 /* chrome */
