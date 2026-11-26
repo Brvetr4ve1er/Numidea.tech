@@ -5,7 +5,7 @@
 (() => {
   const T = {
     fr: {
-      title: 'Le comptoir · Numidea Labs', home: '← Numidea Labs', kicker: 'Boutique · prix fixes', h: 'Le comptoir',
+      title: 'Le comptoir · Numidea Labs', skip: 'Aller aux articles', home: '← Numidea Labs', kicker: 'Boutique · prix fixes', h: 'Le comptoir',
       say0: 'Choisis ton butin. Kūro tient la caisse.', sayAdd: 'Bon choix. Dans le sac.', sayCombo: 'COMBO ! −5 000 DA, Kūro offre la remise.',
       sayLvl: 'Niveau atteint : l’acompte 40\u00a0% est débloqué.', sayEmpty: 'Sac vidé. On recommence ?', sayPaid: 'Le sceau est posé. Merci !',
       pick: 'Rayons', all: 'Tout', cats: { services: 'Services', cours: 'Cours', produits: 'Produits' },
@@ -33,7 +33,7 @@
       da: 'DA',
     },
     en: {
-      title: 'The counter · Numidea Labs', home: '← Numidea Labs', kicker: 'Shop · fixed prices', h: 'The counter',
+      title: 'The counter · Numidea Labs', skip: 'Skip to the items', home: '← Numidea Labs', kicker: 'Shop · fixed prices', h: 'The counter',
       say0: 'Pick your loot. Kūro runs the till.', sayAdd: 'Good pick. In the bag.', sayCombo: 'COMBO! −5,000 DA, on Kūro.',
       sayLvl: 'Level up: the 40% deposit is unlocked.', sayEmpty: 'Bag emptied. Again?', sayPaid: 'Seal stamped. Thank you!',
       pick: 'Aisles', all: 'All', cats: { services: 'Services', cours: 'Lessons', produits: 'Products' },
@@ -61,7 +61,7 @@
       da: 'DA',
     },
     ar: {
-      title: 'الكونتوار · Numidea Labs', home: 'Numidea Labs →', kicker: 'متجر · أسعار ثابتة', h: 'الكونتوار',
+      title: 'الكونتوار · Numidea Labs', skip: 'انتقل إلى المنتجات', home: 'Numidea Labs →', kicker: 'متجر · أسعار ثابتة', h: 'الكونتوار',
       say0: 'اختر غنيمتك. كورو على الصندوق.', sayAdd: 'اختيار موفّق. في الحقيبة.', sayCombo: 'كومبو! ⁦−5 000 DA⁩ هدية من كورو.',
       sayLvl: 'مستوى جديد: العربون ⁦40\u00a0%⁩ متاح الآن.', sayEmpty: 'أُفرغت الحقيبة. نبدأ من جديد؟', sayPaid: 'خُتم العقد. شكرًا لك!',
       pick: 'الأقسام', all: 'الكل', cats: { services: 'خدمات', cours: 'دروس', produits: 'منتجات' },
@@ -143,6 +143,7 @@
   /* ---------- a signed quote ---------- */
   function quoteMode(f) {
     $('c-quote').hidden = false;
+    document.querySelector('.c-skip').setAttribute('href', '#c-h-quote');
     $('c-qref').textContent = f.ref;
     $('c-qpart').textContent = t[`p_${f.part}`];
     $('c-qamt').textContent = new Intl.NumberFormat(locale, { style: 'currency', currency: f.cur }).format(+f.amt);
@@ -165,6 +166,7 @@
       draw(s.catalog, s);
     }).catch(() => {
       msg(t.down, true);
+      document.querySelector('.c-skip').setAttribute('href', '#c-msg');
       $('c-say').textContent = t.down;
       track('down');
     });

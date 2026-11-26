@@ -24,11 +24,14 @@
 html{background:var(--navy)}
 body{margin:0;min-height:100vh;background:var(--navy);color:var(--on-navy);font:400 var(--fs-body)/var(--lh-body) var(--f-body)}
 .c-wrap{max-width:1160px;margin:0 auto;padding:16px 16px 112px;display:grid;gap:24px}
+.c-skip{position:fixed;top:8px;inset-inline-start:8px;z-index:10;padding:10px 14px;background:var(--amber);color:var(--ink);border:2px solid var(--ink);font:700 var(--fs-small)/1.2 var(--f-body);text-decoration:none;transform:translateY(-200%)}
+.c-skip:focus{transform:none;outline:3px solid var(--cream);outline-offset:2px}
 .c-home{color:var(--on-navy);font:500 var(--fs-small)/1.2 var(--f-mono);text-decoration:none;min-height:44px;display:inline-flex;align-items:center;justify-self:start}
 .c-home:hover,.c-home:focus-visible{text-decoration:underline}
 .c-label{margin:0;padding:0;font:500 var(--fs-micro)/1.2 var(--f-mono);letter-spacing:var(--tr-label);text-transform:uppercase;color:var(--amber)}
 .c-label--dim{color:var(--muted)}
 :lang(ar) .c-label{text-transform:none}
+.c-board h2:focus,.c-quote h2:focus,.c-msg:focus{outline:none}
 .c-num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
 .c-noscript{margin:0;font-size:var(--fs-small)}
 .c-noscript a{color:var(--amber)}

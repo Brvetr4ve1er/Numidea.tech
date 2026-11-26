@@ -20,6 +20,7 @@
 <script src="comptoir.js?v=202611261606" defer></script>
 </head>
 <body>
+<a class="c-skip" href="#c-h-board" data-t="skip">Aller aux articles</a>
 <main class="c-wrap" id="main">
   <a class="c-home" href="/" data-t="home">← Numidea Labs</a>
 
@@ -36,7 +37,7 @@
   <!-- shop: drawn from the catalog /api/pay serves -->
   <div class="c-shop" id="c-shop" hidden>
     <section class="c-board" aria-labelledby="c-h-board">
-      <h2 class="c-label c-label--dim" id="c-h-board" data-t="pick">Rayons</h2>
+      <h2 class="c-label c-label--dim" id="c-h-board" tabindex="-1" data-t="pick">Rayons</h2>
       <div class="c-tabs" id="c-tabs" role="radiogroup" aria-labelledby="c-h-board"></div>
       <ul class="c-grid" id="c-grid"></ul>
     </section>
@@ -88,7 +89,7 @@
 
   <!-- a signed quote (?ref=Q-…&sig=…): the bag is the contract -->
   <section class="c-quote" id="c-quote" hidden aria-labelledby="c-h-quote">
-    <h2 class="c-label" id="c-h-quote" data-t="qk">Contrat · paiement</h2>
+    <h2 class="c-label" id="c-h-quote" tabindex="-1" data-t="qk">Contrat · paiement</h2>
     <dl class="c-qsum">
       <div><dt class="c-label c-label--dim" data-t="ref">Devis</dt><dd class="c-num" id="c-qref"></dd></div>
       <div><dt class="c-label c-label--dim" data-t="stage">Étape</dt><dd id="c-qpart"></dd></div>
@@ -102,7 +103,7 @@
     </div>
   </section>
 
-  <p class="c-msg" id="c-msg" hidden></p>
+  <p class="c-msg" id="c-msg" tabindex="-1" hidden></p>
 
   <!-- the seal, once PayPal says paid -->
   <section class="c-done" id="c-done" hidden>
