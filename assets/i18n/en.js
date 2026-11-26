@@ -289,7 +289,7 @@ var I18N = {
   'menu.travaux.sub': 'Sites I shipped',
   'menu.travaux.say': 'Real sites, live. Click and see.',
   'menu.travaux.kuro': 'approves',
-  'menu.atelier.label': 'The Workshop',
+  'menu.atelier.label': 'Workshop',
   'menu.atelier.sub': 'Tools, demos, backstage',
   'menu.atelier.say': 'Where I build things. Come in, just don’t touch the keyboard.',
   'menu.atelier.kuro': 'keeps watch',
