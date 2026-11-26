@@ -34,6 +34,12 @@
  *             getPlatformFontsForNode), no rendered "+" in front of a number
  *             in a right-to-left run (it flips to the number's end)
  *
+ *   scale     every font size written in the three sheets is a step of the type
+ *             system (var(--fs-*), or a clamp() whose two ends are scale
+ *             endpoints in rem, for a container-fit display size); counted per
+ *             sheet and held at SCALE_CEIL (a ratchet: hub/css/lanterne.css is
+ *             at 0; the Studio and the home are counted as they stand)
+ *
  * STRICT by default: exits 1 on any failure. DESIGN_REPORT=1 prints the same
  * and exits 0. Every check has its target (above); a figure the page does not
  * meet yet is held at its measured value in CEIL below (a ratchet: it may
@@ -41,7 +47,7 @@
  * Pages: the main site (home in three languages, the price guide, the
  * Arabic 404); hub/ has its own gates (check.mjs 17b, keys, vbugs).
  */
-import { readdirSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import sharp from 'sharp';
 import { serve, launch } from './lib/serve.mjs';
@@ -313,6 +319,34 @@ const above = [];
 const srv = await serve(undefined, { fallback404: true });
 const br = await launch();
 console.log(`design-check (${STRICT ? 'strict' : 'report-only: DESIGN_REPORT=1'})`);
+
+
+/* ---- scale: font sizes written off the type scale, per sheet (2026-11-26; spec
+   https://claude.ai/artifact/BrvX62HC49TTPheF3Yiwhw). A font-size, or the size in a font shorthand, is on the scale
+   when it is var(--fs-*), inherit/0/1em/100% (relative to an on-scale parent), or a clamp() whose min and max are
+   rem endpoints of the scale. Measured 2026-11-26 before the roll-out: lanterne 137, Studio 691, home 253. ---- */
+const SCALE_REM = new Set([0.75, 0.875, 1, 1.25, 1.5, 1.75, 2.375, 2.5, 3.5, 4.25, 7, 8]);
+const SCALE_CEIL = { 'hub/css/lanterne.css': 0, 'hub/style.css': 423, 'assets/styles.css': 253 };
+const SIZE_RE = String.raw`(?:var\(--[\w-]+\)|clamp\([^()]*(?:\([^()]*\)[^()]*)*\)|calc\([^()]*(?:\([^()]*\)[^()]*)*\)|[\d.]+(?:px|rem|em|%|vw))`;
+const onScale = (v) => {
+  v = v.trim();
+  if (v.startsWith('var(--fs-') || ['inherit', '0', '1em', '100%'].includes(v)) return true;
+  const m = /^clamp\(\s*([\d.]+)rem\s*,[^,]+,\s*([\d.]+)rem\s*\)$/.exec(v);
+  return !!(m && SCALE_REM.has(+m[1]) && SCALE_REM.has(+m[2]));
+};
+const offScale = (css) => {
+  css = css.replace(/\/\*[\s\S]*?\*\//g, '');
+  const off = [];
+  for (const m of css.matchAll(new RegExp(`font-size\\s*:\\s*(${SIZE_RE})`, 'g'))) if (!onScale(m[1])) off.push(m[1]);
+  for (const m of css.matchAll(new RegExp(`(?<![-\\w])font\\s*:\\s*(?:(?:italic|normal|[1-9]00|bold|small-caps)\\s+)*(${SIZE_RE})(?:\\s*/|\\s+['"\\w])`, 'g'))) if (!onScale(m[1])) off.push(m[1]);
+  return off;
+};
+for (const [sheet, ceil] of Object.entries(SCALE_CEIL)) {
+  const off = offScale(readFileSync(join(ROOT, sheet), 'utf8'));
+  if (off.length > ceil) fails.push(`scale: ${sheet} writes ${off.length} font sizes off the type scale (ceiling ${ceil}): ${[...new Set(off)].slice(0, 8).join(', ')}`);
+  else if (off.length) above.push(`scale: ${sheet} ${off.length} off-scale sizes (target 0)`);
+  else console.log(`  ✓ scale: ${sheet} on the type scale`);
+}
 
 /* ---- type, space, button, cards, gutter, paint, labels, hover ---- */
 const hoverSeen = new Set();

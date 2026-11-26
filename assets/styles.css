@@ -7,6 +7,21 @@
    <html data-theme="arcanum">), so every rule that reads var(--token)
    reskins for free and this sheet never names a theme.
    ============================================================ */
+/* ---- the type system's tokens (2026-11-26; spec https://claude.ai/artifact/BrvX62HC49TTPheF3Yiwhw), the same
+   values as hub/style.css, here so the new home menu and every home rule can name the roles and the scale.
+   The faces: Archivo Condensed (DISPLAY) and Archivo Expanded (UI) ship in hub/fonts/hud.css; a page that sets
+   either links that sheet (the home does not yet: until then the stacks fall back to Archivo / Arial). ---- */
+html[lang="ar"]{--fs-micro:.8125rem}
+:root{
+  --f-cond:"Archivo Condensed","Archivo","Arial Narrow",sans-serif;
+  --f-wide:"Archivo Expanded","Archivo","Arial Black",sans-serif;
+  --fs-micro:.75rem;--fs-label:.75rem;--fs-small:.875rem;--fs-body:1rem;--fs-lead:1.25rem;--fs-h4:1.5rem;
+  --fs-h3:clamp(1.75rem,1.45rem + .9vw,2.375rem);--fs-h2:clamp(2.5rem,1.7rem + 2.8vw,4.25rem);--fs-h1:clamp(3.5rem,2.2rem + 5vw,7rem);
+  --fs-index:clamp(3.5rem,2rem + 6vw,8rem);
+  --lh-disp:.9;--lh-head:1;--lh-ui:1.2;--lh-body:1.55;
+  --tr-disp:0;--tr-ui:.04em;--tr-label:.14em;
+}
+:root:lang(ar){--f-cond:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;--f-wide:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;--lh-disp:1.25;--tr-ui:0;--tr-label:0}
 :root{
   /* motion: one tempo for the whole site, 90 BPM, the pulse the radio's
      four tracks share (85 to 92 BPM). A beat is 667 ms; every duration,
