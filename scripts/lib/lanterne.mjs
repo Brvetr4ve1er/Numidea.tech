@@ -294,6 +294,8 @@ export function lanterne(ctx) {
     h = swap(h, "i.src='bible/art/rig-'", "i.src='../bible/art/rig-'", 1, "the sting's pictures");
     h = h.replace(/(\s(?:href|src)=")(?!https?:|#|\{\{)([^"]+)"/g, (all, a, u) => `${a}../${u}"`);
     h = swap(h, '<link rel="stylesheet" href="../style.css?v={{stamp}}">', '<link rel="stylesheet" href="../fonts/hud.css?v={{stamp}}">\n<link rel="stylesheet" href="../style.css?v={{stamp}}">\n<link rel="stylesheet" href="../css/lanterne.css?v={{stamp}}">', 1, 'the sheet');
+    /* the display face of the type system: the atlas and shelf titles are set in it above the fold, so it loads with the page (unpreloaded, its swap shifted the French atlases past the CLS budget) */
+    h = swap(h, '<link rel="preload" as="font" type="font/woff2" crossorigin href="../fonts/archivo-800-900-latin.woff2">', '<link rel="preload" as="font" type="font/woff2" crossorigin href="../fonts/archivo-800-900-latin.woff2">\n<link rel="preload" as="font" type="font/woff2" crossorigin href="../fonts/archivo-cond-900-latin.woff2">', 1, 'the display preload');
     h = swap(h, '{{fr}}', `{{lantFr.${page.replace(/[^a-z]/g, '')}}}`, 1, "the runtime French block");
     return h;
   };
