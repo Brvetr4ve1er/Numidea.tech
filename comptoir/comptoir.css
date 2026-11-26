@@ -1,0 +1,184 @@
+/* /comptoir/: the counter. The price estimator's bones (chips, option cards with a tick, a receipt that adds up
+   line by line) in the game skin of hub/style.css (type system, 2026-11-26): cream cards, ink borders, hard
+   shadows, a seal. Motion: one slam when a card lands in the bag, one roll of the total, one stamp when paid;
+   none under reduced motion. No infinite animation. */
+:root{
+  --f-cond:"Archivo Condensed","Archivo","Arial Narrow",sans-serif;
+  --f-wide:"Archivo Expanded","Archivo","Arial Black",sans-serif;
+  --f-mono:"Geist Mono",ui-monospace,monospace;
+  --f-body:"Geist",system-ui,sans-serif;
+  --fs-micro:.75rem;--fs-small:.875rem;--fs-body:1rem;--fs-lead:1.25rem;--fs-h4:1.5rem;
+  --fs-h2:clamp(2.5rem,1.8rem + 3vw,4.25rem);
+  --lh-disp:.92;--lh-body:1.55;--tr-ui:.04em;--tr-label:.14em;
+  --ink:#211E1B;--cream:#F3ECE1;--paper:#D8CBB8;--muted:#4F4238;--red:#A34135;--amber:#F0B05A;--navy:#0F1E30;--navy-2:#16293F;--on-navy:#FFE2B8;--teal:#0E6E78;
+  --shadow:6px 6px 0 var(--ink);--shadow-s:4px 4px 0 var(--ink);
+  --m-slam:240ms;--m-ease:cubic-bezier(.2,1.4,.4,1);
+}
+:root:lang(ar){
+  --f-cond:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;--f-wide:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;
+  --f-mono:"IBM Plex Sans Arabic","Geist Mono",sans-serif;--f-body:"IBM Plex Sans Arabic","Geist",sans-serif;
+  --fs-micro:.8125rem;--lh-disp:1.3;--tr-ui:0;--tr-label:0;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:var(--navy)}
+body{margin:0;min-height:100vh;background:var(--navy);color:var(--on-navy);font:400 var(--fs-body)/var(--lh-body) var(--f-body)}
+.c-wrap{max-width:1160px;margin:0 auto;padding:16px 16px 112px;display:grid;gap:24px}
+.c-home{color:var(--on-navy);font:500 var(--fs-small)/1.2 var(--f-mono);text-decoration:none;min-height:44px;display:inline-flex;align-items:center;justify-self:start}
+.c-home:hover,.c-home:focus-visible{text-decoration:underline}
+.c-label{margin:0;padding:0;font:500 var(--fs-micro)/1.2 var(--f-mono);letter-spacing:var(--tr-label);text-transform:uppercase;color:var(--amber)}
+.c-label--dim{color:var(--muted)}
+:lang(ar) .c-label{text-transform:none}
+.c-num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+.c-noscript{margin:0;font-size:var(--fs-small)}
+.c-noscript a{color:var(--amber)}
+
+/* ---- the sign ---- */
+.c-sign{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:end}
+.c-kuro{width:96px;height:auto;filter:drop-shadow(4px 4px 0 var(--ink))}
+.c-sign__t{display:grid;gap:8px;min-width:0}
+.c-h{margin:0;font:900 var(--fs-h2)/var(--lh-disp) var(--f-cond);text-transform:uppercase;letter-spacing:.005em;color:var(--cream)}
+:lang(ar) .c-h{text-transform:none}
+/* Kūro's line: a speech bubble with its tail toward the cat */
+.c-bubble{position:relative;margin:4px 0 0;justify-self:start;max-width:34em;padding:8px 12px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:var(--shadow-s);font:600 var(--fs-small)/1.35 var(--f-body)}
+.c-bubble::before{content:"";position:absolute;bottom:8px;inset-inline-start:-9px;width:14px;height:14px;background:var(--cream);border-inline-start:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg)}
+[dir="rtl"] .c-bubble::before{transform:rotate(-45deg)}
+.c-bubble.is-new{animation:c-pop var(--m-slam) var(--m-ease)}
+
+/* ---- the shop: board left, bag right (the estimator's two columns) ---- */
+.c-shop{display:grid;gap:24px;align-items:start}
+.c-board{background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:var(--shadow);padding:16px;display:grid;gap:16px;min-width:0}
+
+/* category chips, the estimator's .echip */
+.c-tabs,.c-chips{display:flex;flex-wrap:wrap;gap:8px}
+.c-chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 14px;border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;font:700 var(--fs-small)/1.2 var(--f-wide);letter-spacing:var(--tr-ui);text-transform:uppercase}
+:lang(ar) .c-chip{text-transform:none;font-size:var(--fs-body)}
+.c-chip[aria-checked="true"]{background:var(--ink);color:var(--amber);box-shadow:3px 3px 0 var(--red)}
+.c-chip:focus-visible,.c-card button:focus-visible,.c-btn:focus-visible,.c-dock__go:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+@media (hover:hover){.c-chip:hover{background:var(--paper)}.c-chip[aria-checked="true"]:hover{background:var(--ink)}}
+.c-chip__n{font:500 var(--fs-micro)/1 var(--f-mono);opacity:.75}
+
+/* ---- loot cards ---- */
+.c-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr));gap:14px}
+.c-card{position:relative;display:grid;grid-template-rows:auto 1fr auto;background:#FBF7F0;border:2px solid var(--ink);box-shadow:var(--shadow-s);min-height:170px;transition:transform .12s,box-shadow .12s}
+/* the rarity strip: common, rare, epic, by price */
+.c-card::before{content:"";height:8px;background:var(--paper);border-bottom:2px solid var(--ink)}
+.c-card[data-r="rare"]::before{background:var(--teal)}
+.c-card[data-r="epic"]::before{background:linear-gradient(90deg,var(--red),var(--amber))}
+.c-card__b{padding:12px 14px 0;display:grid;gap:6px;align-content:start}
+.c-rar{font:500 var(--fs-micro)/1.2 var(--f-mono);letter-spacing:var(--tr-label);text-transform:uppercase;color:var(--muted)}
+.c-card[data-r="rare"] .c-rar{color:var(--teal)}
+.c-card[data-r="epic"] .c-rar{color:var(--red)}
+:lang(ar) .c-rar{text-transform:none}
+.c-name{margin:0;font:800 var(--fs-body)/1.25 var(--f-body);color:var(--ink)}
+.c-price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.c-da{font:900 var(--fs-h4)/1 var(--f-cond);color:var(--ink)}
+.c-fx{font:500 var(--fs-micro)/1 var(--f-mono);color:var(--muted)}
+.c-card__f{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px 14px}
+.c-add{min-height:44px;padding:8px 14px;border:2px solid var(--ink);background:var(--ink);color:var(--cream);cursor:pointer;font:800 var(--fs-micro)/1.1 var(--f-wide);letter-spacing:var(--tr-ui);text-transform:uppercase}
+:lang(ar) .c-add{text-transform:none;font-size:var(--fs-small)}
+@media (hover:hover){.c-add:hover{background:var(--red)}}
+/* the stepper, for what can be taken more than once */
+.c-step{display:inline-flex;align-items:center;border:2px solid var(--ink);background:var(--cream)}
+.c-step button{width:44px;height:44px;border:0;background:transparent;color:var(--ink);cursor:pointer;font:800 1.25rem/1 var(--f-mono)}
+.c-step button:disabled{opacity:.3;cursor:default}
+.c-step output{min-width:2ch;text-align:center;font:800 var(--fs-body)/1 var(--f-mono)}
+/* in the bag: red frame, the seal stamped on the corner */
+.c-card.is-in{border-color:var(--red);box-shadow:var(--shadow-s),inset 0 0 0 2px var(--red)}
+.c-stamp{position:absolute;bottom:22px;inset-inline-end:14px;padding:4px 8px;border:2px solid var(--red);color:var(--red);font:800 var(--fs-micro)/1 var(--f-wide);letter-spacing:var(--tr-ui);text-transform:uppercase;transform:rotate(-8deg);background:color-mix(in srgb,var(--cream) 85%,transparent);pointer-events:none}
+:lang(ar) .c-stamp{text-transform:none;font-size:var(--fs-small)}
+.c-card.is-new .c-stamp{animation:c-slam var(--m-slam) var(--m-ease) both}
+
+/* ---- the bag: the estimator's receipt, as an inventory panel ---- */
+.c-bag{background:var(--ink);color:var(--on-navy);border:2px solid var(--amber);box-shadow:6px 6px 0 var(--red);padding:16px;display:grid;gap:14px;scroll-margin-top:16px}
+.c-bag .c-label--dim{color:var(--paper)}
+.c-bag__head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.c-count{min-width:32px;height:32px;display:grid;place-items:center;padding:0 8px;background:var(--amber);color:var(--ink);font:900 var(--fs-body)/1 var(--f-cond);clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%)}
+.c-lvl{display:grid;gap:6px}
+.c-lvl__bar{height:12px;border:2px solid var(--paper);background:var(--navy);overflow:hidden}
+.c-lvl__bar span{display:block;height:100%;width:0;background:repeating-linear-gradient(90deg,var(--amber) 0 10px,#E39C3F 10px 12px);transition:width .3s var(--m-ease)}
+.c-lvl.is-max .c-lvl__bar span{background:var(--amber)}
+.c-lvl__t{margin:0;font:500 var(--fs-micro)/1.35 var(--f-mono);color:var(--paper)}
+.c-lvl.is-max .c-lvl__t{color:var(--amber)}
+.c-empty{margin:0;font-size:var(--fs-small);color:var(--paper)}
+.c-sum{list-style:none;margin:0;padding:0;display:grid}
+.c-sum li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:8px 0;border-bottom:1px dashed color-mix(in srgb,var(--paper) 40%,transparent);font:500 var(--fs-small)/1.3 var(--f-mono)}
+.c-sum .c-v{white-space:nowrap;text-align:end}
+.c-sum .is-combo{color:var(--amber);font-weight:700}
+.c-hint{margin:0;padding:8px 10px;border:2px dashed var(--amber);color:var(--amber);font:600 var(--fs-small)/1.35 var(--f-body)}
+.c-tot{display:grid;gap:4px;padding-top:4px}
+.c-big{font:900 clamp(2rem,1.6rem + 1.6vw,2.75rem)/1 var(--f-cond);color:var(--cream)}
+.c-due{font:500 var(--fs-small)/1.3 var(--f-mono);color:var(--amber)}
+.c-field{border:0;margin:0;padding:0;display:grid;gap:8px;min-width:0}
+.c-bag .c-chip{border-color:var(--paper);color:var(--on-navy);min-height:40px;padding:6px 12px}
+.c-bag .c-chip[aria-checked="true"]{background:var(--amber);color:var(--ink);border-color:var(--amber);box-shadow:3px 3px 0 var(--red)}
+@media (hover:hover){.c-bag .c-chip:hover{background:var(--navy-2)}.c-bag .c-chip[aria-checked="true"]:hover{background:var(--amber)}}
+
+/* the buttons: stamped seals, not PayPal's yellow pill; PayPal is named in words */
+.c-act{display:grid;gap:10px}
+.c-btn{display:flex;align-items:center;gap:14px;width:100%;min-height:56px;padding:6px 18px 6px 6px;border:2px solid var(--ink);background:var(--red);color:var(--cream);box-shadow:4px 4px 0 var(--amber);cursor:pointer;font:800 var(--fs-body)/1.2 var(--f-wide);letter-spacing:var(--tr-ui);text-transform:uppercase;text-align:start;text-decoration:none;transition:transform .12s,box-shadow .12s}
+:lang(ar) .c-btn{text-transform:none;font-size:var(--fs-lead)}
+[dir="rtl"] .c-btn{padding:6px 6px 6px 18px}
+.c-btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--amber)}
+@media (hover:hover){.c-btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--amber)}}
+.c-btn[aria-busy="true"]{opacity:.7;cursor:progress}
+.c-btn--alt{background:transparent;color:var(--on-navy);border-color:var(--paper);box-shadow:none;font-size:var(--fs-small)}
+@media (hover:hover){.c-btn--alt:hover{box-shadow:4px 4px 0 var(--paper)}}
+.c-btn__seal{display:grid;place-items:center;flex:none;width:44px;height:44px;background:var(--ink);color:var(--amber);font:900 1.25rem/1 "Noto Sans JP",sans-serif;clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%)}
+.c-btn__seal--alt{background:var(--paper);color:var(--ink);font:900 var(--fs-small)/1 var(--f-cond)}
+.c-fine{margin:0;font-size:var(--fs-micro);line-height:1.5;color:var(--paper)}
+
+/* ---- a signed quote ---- */
+.c-quote{max-width:560px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:var(--shadow);padding:24px 20px;display:grid;gap:16px}
+.c-quote .c-label{color:var(--red)}
+.c-quote .c-btn{box-shadow:var(--shadow-s)}
+.c-qsum{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;padding:16px 0;border-block:2px dashed var(--muted)}
+.c-qsum dd{margin:4px 0 0;font:600 var(--fs-lead)/1.2 var(--f-body)}
+.c-qamt{grid-column:1/-1}
+.c-qamt dd{font:900 var(--fs-h2)/1 var(--f-cond)}
+
+.c-msg{margin:0;max-width:560px;padding:10px 12px;border-inline-start:4px solid var(--amber);background:var(--navy-2);font-size:var(--fs-small)}
+.c-msg.is-err{border-color:var(--red);background:var(--paper);color:var(--ink)}
+
+.c-done{max-width:560px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:var(--shadow);padding:20px}
+.c-done .c-label{color:var(--red)}
+.c-done__t{margin:6px 0 0;font-size:var(--fs-lead);line-height:1.4}
+.c-paw{width:72px;height:auto}
+
+/* ---- phone dock ---- */
+.c-dock{position:fixed;inset:auto 0 0 0;z-index:5;display:flex;align-items:center;gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:var(--ink);border-top:2px solid var(--amber)}
+.c-dock__n{min-width:28px;height:28px;display:grid;place-items:center;background:var(--amber);color:var(--ink);font:900 var(--fs-small)/1 var(--f-cond);clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%)}
+.c-dock__t{flex:1;font:900 var(--fs-lead)/1 var(--f-cond);color:var(--cream)}
+.c-dock__go{min-height:44px;display:inline-flex;align-items:center;padding:0 14px;background:var(--red);color:var(--cream);border:2px solid var(--cream);text-decoration:none;font:800 var(--fs-micro)/1 var(--f-wide);letter-spacing:var(--tr-ui);text-transform:uppercase}
+:lang(ar) .c-dock__go{text-transform:none;font-size:var(--fs-small)}
+
+@media (min-width:900px){
+  .c-wrap{padding:32px 24px 64px}
+  .c-kuro{width:140px}
+  .c-shop{grid-template-columns:minmax(0,1fr) 360px}
+  .c-board{padding:24px}
+  .c-bag{position:sticky;top:16px}
+  .c-dock{display:none!important}
+}
+
+@media (prefers-reduced-motion:no-preference){
+  .c-done:not([hidden]) .c-paw{animation:c-seal var(--m-slam) var(--m-ease) both}
+  .c-big.is-roll{animation:c-pop var(--m-slam) var(--m-ease)}
+}
+@media (prefers-reduced-motion:reduce){
+  .c-card,.c-btn,.c-lvl__bar span{transition:none}
+  .c-bubble.is-new,.c-card.is-new .c-stamp{animation:none}
+}
+@keyframes c-slam{from{transform:scale(1.8) rotate(-14deg);opacity:0}to{transform:rotate(-8deg);opacity:1}}
+@keyframes c-pop{from{transform:scale(.94)}to{transform:none}}
+@keyframes c-seal{from{transform:scale(1.8) rotate(-8deg);opacity:0}to{transform:none;opacity:1}}
+/* phone: a card is one row (name and price, then the button beside them), so 18 cards are not 18 screens */
+@media (max-width:599px){
+  .c-card{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto 1fr;min-height:0}
+  .c-card::before{grid-column:1/-1;height:6px}
+  .c-card__b{padding:10px 12px 12px}
+  .c-card__f{padding:10px 12px 12px 0;align-items:end}
+  [dir="rtl"] .c-card__f{padding:10px 0 12px 12px}
+  .c-stamp{top:14px;bottom:auto;inset-inline-end:12px}
+  .c-da{font-size:var(--fs-lead)}
+}
