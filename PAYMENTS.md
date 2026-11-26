@@ -46,3 +46,9 @@ Thread: "Add PayPal payments across the site". This file is the living plan; eac
 2. Maintenance subscription on Tarifs.
 3. Commissions with fixed-price packs (after game slice 3 and owner prices).
 4. Revisit: Lanterne support, premium content.
+
+## Status (2026-11-26)
+
+- Increment 1 (PR #32): `api/pay.js` (GET probe `{ready, env}`; POST `create` / `capture`), `scripts/pay-link.mjs`, `npm run pay:test`.
+- Increment 2 (PR #32): `/payer/` (FR, `?lang=en`, `?lang=ar`), noindex, linked from nowhere on the site. The button appears only when the GET probe says the route works, and the fine print says "sandbox" in test mode.
+- Vercel env for this branch's previews only (Preview, git branch `claude/project-thread-5s5wmf`): `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`, `PAY_LINK_SECRET`, `PAYPAL_ENV=sandbox`. Production has none of them: the publishing session adds them when the owner says go.
