@@ -869,3 +869,33 @@ html.motion-off .lt-panel--wait{opacity:1;translate:none}
 .book__body:has(>.book__start){padding-top:34px}
 :lang(ar) :is(.book__go,.book__start,.tape span){font-size:var(--fs-small)}
 :lang(ar) .book__vol b{font-size:var(--fs-lead);line-height:1.3}
+
+/* ---------------- the game layer (hub/game.js, 2026-11-26) ----------------
+   The rank chip in the atlas bar, and the card that lands on a finish: one slam on the beat (a quick scale down with one
+   shake, --m-reveal long), nothing that loops; under reduced motion or « Mouvement » off it is simply there. The card
+   never takes the focus and never covers the bar: it sits at the foot of the screen, inline-end, and closes on its button
+   or Escape. Words in the type system's roles: DISPLAY for the gain, UI for the buttons, LABEL for the rank and counts. */
+.gm-chip{font-family:var(--f-mono);font-size:var(--fs-label);letter-spacing:var(--tr-label,.08em);text-transform:uppercase;border:2px solid currentColor;margin-inline-start:4px}
+.gm-card{position:fixed;z-index:60;inset-block-end:16px;inset-inline-end:16px;inline-size:min(360px,calc(100vw - 32px));max-block-size:calc(100vh - 32px);overflow:auto;background:var(--cream);color:var(--ink);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--red)}
+.gm-card[hidden]{display:none}
+.gm-card__in{display:grid;gap:8px;padding:16px}
+.gm-card__gain{font-family:var(--f-cond);font-weight:900;font-size:var(--fs-h4);line-height:1;text-transform:uppercase;color:var(--red-text,#8A3127)}
+.gm-card__rank,.gm-card__next{font-family:var(--f-mono);font-size:var(--fs-label);letter-spacing:var(--tr-label,.08em);text-transform:uppercase}
+.gm-card__next{opacity:.85}
+.gm-bar{block-size:10px;border:2px solid currentColor;background:transparent}
+.gm-bar__fill{display:block;block-size:100%;inline-size:calc(var(--p,0) * 100%);background:var(--red,#A34135)}
+.gm-card__unlock{display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:center}
+.gm-card__unlock img{inline-size:96px;block-size:auto;max-block-size:120px;object-fit:contain}
+.gm-card__unlock figcaption{font-size:var(--fs-small);font-weight:700}
+.gm-card__code{font-size:var(--fs-small);border-block-start:2px dashed currentColor;padding-block-start:8px}
+.gm-com{display:grid;gap:8px;border-block-start:3px solid currentColor;padding-block-start:8px}
+.gm-com__k{font-family:var(--f-mono);font-size:var(--fs-label);letter-spacing:var(--tr-label,.08em);text-transform:uppercase;color:var(--red-text,#8A3127)}
+.gm-com__t{font-size:var(--fs-small)}
+.gm-com__go{justify-self:start}
+.gm-card__x{justify-self:end;min-block-size:44px;padding:0 12px;font-family:var(--f-wide);font-size:var(--fs-label);text-transform:uppercase;background:transparent;border:2px solid currentColor;color:inherit;cursor:pointer}
+.gm-card :focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.gm-reset{margin-block-start:8px}
+:root:lang(ar) :is(.gm-chip,.gm-card__gain,.gm-card__rank,.gm-card__next,.gm-com__k,.gm-card__x){text-transform:none;letter-spacing:0}
+@keyframes gm-slam{0%{transform:scale(1.18);opacity:0}40%{transform:scale(.98);opacity:1}55%{transform:translateX(-4px)}70%{transform:translateX(3px)}100%{transform:none}}
+html:not(.motion-off) .gm-card.is-in{animation:gm-slam var(--m-reveal) var(--m-ease-enter) 1 both}
+@media (prefers-reduced-motion:reduce){html .gm-card.is-in{animation:none}}

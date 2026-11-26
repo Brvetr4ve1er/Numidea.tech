@@ -275,6 +275,27 @@ export function lanterne(ctx) {
   const radioJson = JSON.stringify(RADIO.map((tr) => ({ id: tr.id, src: '../' + tr.src, dur: tr.dur }))).replace(/</g, '\\u003c');
   const dataBlock = (o) => `<script type="application/json" id="lant-data">${JSON.stringify(o).replace(/</g, '\\u003c')}</script>`;
 
+  /* the game layer (hub/game.js, 2026-11-26): hub/src/lanterne/game.json + every live book's acts, as #game-data on the atlases
+     and the shelf. Encre is added up by the page from the keys it already keeps; the build only says what counts and how much. */
+  const GAME = existsSync(join(LS, 'game.json')) ? json(join(LS, 'game.json')) : null;
+  const gameTitles = new Set();
+  let gameBlock = () => '';
+  if (GAME) {
+    GAME.ranks.forEach((r, i) => {
+      if (!(i === 0 ? r.at === 0 : r.at > GAME.ranks[i - 1].at)) fail(`hub/src/lanterne/game.json: rank ${i + 1}'s "at" must be 0 for the first rank, then rise`);
+      if (!existsSync(join(HUB, 'bible', 'art', r.art))) fail(`hub/src/lanterne/game.json: rank ${i + 1}'s art hub/bible/art/${r.art} is not a file`);
+      if (!(r.w > 0 && r.h > 0)) fail(`hub/src/lanterne/game.json: rank ${i + 1} needs the art's true w and h`);
+      need(`lant.ui.game.r.${i + 1}`, 'the game'); need(`lant.ui.game.u.${i + 1}`, 'the game');
+    });
+    for (const b of live) { if (!GAME.service[b.slug]) fail(`hub/src/lanterne/game.json: no service for the book « ${b.slug} »`); gameTitles.add(b.title); }
+    const enq = ENQ ? json(join(LS, 'enquetes.json')).store : null;
+    const G0 = { pts: GAME.pts, seals: GAME.seals, discount: GAME.discount, ranks: GAME.ranks.map((r) => ({ at: r.at, art: r.art, w: r.w, h: r.h })), service: GAME.service, wa: GAME.wa,
+      enq: enq ? { store: enq } : null, art: '../bible/art/', root: '../../',
+      titles: Object.fromEntries(live.map((b) => [b.slug, b.title])),
+      books: live.map((b) => ({ slug: b.slug, store: b.store, migrate: b.migrate || null, acts: ATLAS[b.slug].acts.map((a) => ({ side: !!a.side, d: a.districts })) })) };
+    gameBlock = (passport) => `\n<script type="application/json" id="game-data">${JSON.stringify({ ...G0, passport }).replace(/</g, '\\u003c')}</script>`;
+  }
+
   /* the Studio's head, a level down: its own address, title and description, its dictionary per page */
   const headFor = (file, ui, page, crumbs) => {
     let h = pageSrc.slice(0, headEnd);
@@ -608,8 +629,8 @@ ${stFoot(`
   </div>`)}
 <dialog class="zoom" data-lt-zoom-dialog><form method="dialog"><button type="submit" class="btn"><span data-i18n="lant.ui.close"></span></button></form><img alt="" src="${up(ART.plates[plateOf(A, ids[0])].src)}" loading="lazy" data-lt-zoom-img></dialog>
 <script type="application/json" id="hub-radio">${radioJson}</script>
-${dataBlock(client)}
-${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...(loPage ? ['../lanterne-objects.js'] : []), '../../assets/carry.js'])}
+${dataBlock(client)}${gameBlock('./#passeport')}
+${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...(loPage ? ['../lanterne-objects.js'] : []), ...(GAME ? ['../game.js'] : []), '../../assets/carry.js'])}
 </body>
 </html>
 `;
@@ -621,7 +642,7 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...
     const own = A.runtime ? new RegExp(A.runtime) : null;
     // (the nine modules' lab and shell lines are RUNTIME for the old manual's sake: an atlas that is not the modules' leaves them out)
     const loOut = new Set(ids.filter((id) => A.districts[id].object).map((id) => `lant.lo.${A.districts[id].object}.out`));
-    runtime[page] = lantRuntime((k) => loOut.has(k) || k.startsWith(`lant.at.${A.key}.`) || extra.some((e) => k === e || k.startsWith(e + '.')) || /^radio\.(play|pause|onair|idle|paused|title|chip)$|^radio\.tracks\./.test(k) || (A.app && ctx.RUNTIME.test(k) && !W3M_KEYS.test(k)) || (own && own.test(k)));
+    runtime[page] = lantRuntime((k) => gameTitles.has(k) || loOut.has(k) || k.startsWith(`lant.at.${A.key}.`) || extra.some((e) => k === e || k.startsWith(e + '.')) || /^radio\.(play|pause|onair|idle|paused|title|chip)$|^radio\.tracks\./.test(k) || (A.app && ctx.RUNTIME.test(k) && !W3M_KEYS.test(k)) || (own && own.test(k)));
     /* the labs' French lines (web3 vol. 2: hub/web3x.js writes them) ride with the labs, fetched when they load, not in
        the page's #hub-fr block: i18n/<page>.fr.js (window.LANT_XFR) */
     if (A.lazyFr) { const lz = new RegExp(A.lazyFr); lazyFr[page] = Object.fromEntries([...runtime[page]].filter((k) => lz.test(k)).sort().map((k) => [k, DICT.fr[k]])); }
@@ -839,17 +860,17 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...
     holes['lant.shelf.heroStart'] = first ? `<a class="hero__start" href="${first.slug}.html" data-i18n="${need('lant.shelf.heroStart', 'the shelf')}"></a>` : '';
     holes['lant.shelf.rayons'] = rayons;
     holes['lant.shelf.passport'] = tree + passport;
-    holes['lant.shelf.passTotal'] = `<p class="hud" data-lt-pass-total="${total}" data-lt-books="${books.length}">${esc(pt(total))}</p>`;
+    holes['lant.shelf.passTotal'] = `<p class="hud" data-lt-pass-total="${total}" data-lt-books="${books.length}">${esc(pt(total))}</p>` + (GAME ? '\n<p class="gm-reset js-only" data-gm-reset></p>' : '');
     holes['lant.radio'] = radioJson;
     const client = { books: books.map((b) => { const A = ATLAS[b.slug]; const ids = A ? A.acts.flatMap((a) => a.districts) : b.ids;
       return { slug: b.slug, key: b.key, live: !!A, store: b.store, migrate: b.migrate || null, ids, ...(b.in ? { in: b.in } : {}),
         acts: A ? A.acts.map((a) => ({ id: a.id, side: !!a.side, districts: a.districts })) : [{ id: 'all', side: false, districts: ids }],
         d: A ? Object.fromEntries(ids.map((id) => [id, { ks: ksOf(A, id) ? up(ksSmall(ksOf(A, id)) || ksOf(A, id)) : null, ...(sealOf(A, id) ? { seal: sealOf(A, id) } : {}), name: dk(A, id, 'name'), keep: dk(A, id, 'keep') }])) : {} }; }) };
-    holes['lant.shelf.data'] = dataBlock(client);
+    holes['lant.shelf.data'] = dataBlock(client) + gameBlock('#passeport');
     let html = headFor('', 'lant.shelf', page, [['La Librairie Lanterne', '']]) + readFileSync(join(LS, 'shelf.html'), 'utf8');
     out.push({ file: 'hub/lanterne/index.html', name: 'lanterne/index.html', page, html });
     const named = new Set(client.books.flatMap((b) => Object.values(b.d).flatMap((x) => [x.name, x.keep])));
-    runtime[page] = lantRuntime((k) => k.startsWith('lant.shelf.') || named.has(k) || RUNTIME_OLD.test(k));
+    runtime[page] = lantRuntime((k) => gameTitles.has(k) || k.startsWith('lant.shelf.') || named.has(k) || RUNTIME_OLD.test(k));
   }
   /* ================= la boîte à outils (2026-11-22, scratchpad courses-biz/PLAN.md §6.6, addendum A1, A2) =================
      one card per app, on its shelf (a category), alphabetical within it (never by what a link earns, §2.5): its name as a

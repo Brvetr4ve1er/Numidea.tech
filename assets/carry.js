@@ -70,6 +70,12 @@
     went = Date.now();
     window.va('pageview', { route: '/go/' + channel, path: '/go/' + channel + location.pathname });
   };
+  /* game moments (hub/game.js, 2026-11-26) counted the same way: a virtual view of /go/game/<what>/<page>
+     (district, book, commission, rank-2 … rank-10); one count per moment, on the canonical host only */
+  window.numideaGame = function (what) {
+    if (!LIVE || !/^[a-z0-9-]{1,24}$/.test(String(what))) return;
+    window.va('pageview', { route: '/go/game/' + what, path: '/go/game/' + what + location.pathname });
+  };
   var CHANNEL = [[/^https:\/\/(wa\.me|api\.whatsapp\.com)\//, 'whatsapp'], [/^mailto:/i, 'email'], [/^tel:/i, 'phone']];
   function contact(e) {
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;

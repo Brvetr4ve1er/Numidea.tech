@@ -294,7 +294,7 @@ const RUNTIME_OLD = /^(rig\.|sting\.|case\.|hero\.(live|still)$|pricing\.(units\
 /* the phase-1 labs of modules 1–9 (2026-11-21, web3x/SPEC.md §4.9): hub/web3x.js writes their lines itself (results,
    counts, templates, a label that flips), so the whole lab subtree of those modules is runtime, and x.reset */
 const RUNTIME_W3X_M123 = /^web3c\.(mods\.[0-8]\.items\.\d+\.lab\.|x\.reset$)/;
-const RUNTIME = { test: (k) => RUNTIME_OLD.test(k) || RUNTIME_CRS.test(k) || RUNTIME_W3X.test(k) || RUNTIME_W3X_M123.test(k) };
+const RUNTIME = { test: (k) => RUNTIME_OLD.test(k) || RUNTIME_CRS.test(k) || RUNTIME_W3X.test(k) || RUNTIME_W3X_M123.test(k) || /^lant\.ui\.game\./.test(k) };   // the game layer's words: hub/game.js writes them
 const sorted = (o) => Object.fromEntries(Object.keys(o).sort().map((k) => [k, o[k]]));
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const attr = (s) => esc(s).replace(/"/g, '&quot;');
