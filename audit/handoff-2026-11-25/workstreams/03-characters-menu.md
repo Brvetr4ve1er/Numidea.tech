@@ -3,7 +3,7 @@
 Thread: "Improve artworks, characters and mascot animations".
 Its own, newer notes: `/mnt/project-files/characters/STATE.md`. **Read that first; it wins over this file.**
 
-## A. Code: draft PR #20 (`claude/project-thread-vm2rxf` @ 17b86e3) — not live
+## A. Code: PR #20 (`claude/project-thread-vm2rxf` @ 17b86e3). **MERGED into the trunk 2026-11-26 00:14 UTC [V]** (merge ccb6e80, gate fixes a827417). Not live yet.
 - **C1 continuity:** skin recolor on workbench/diorama + Studio "make" trio; Kūro canon black (`scripts/kuro-canon.mjs`); orphan art deleted; Librairie traveller back to canon; model sheet in BRAND.md.
 - **C2 bible §02:** drawn 5-view turnaround (hard cuts, drag) + Kūro at scale; sil-0/2/3 deleted.
 - **C3 bible §00 "Talk to Yasser":** `api/yasser.js` Vercel function on Haiku, returns JSON `{line, emotion, act, kuro}`, cached system prompt; written choice chips cost nothing. `api/` is in NOT_DEPLOYED for static staging.

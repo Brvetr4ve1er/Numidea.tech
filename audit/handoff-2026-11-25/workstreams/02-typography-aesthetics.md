@@ -4,6 +4,9 @@ Thread: "Rebuild typography for a gaming anime look" (started as the aesthetics 
 Its own, newer notes: `/mnt/project-files/aesthetics/HANDOFF.md`. **Read that first; it wins over this file.**
 
 ## State
+
+**00:20 UTC [V]: PR #24 (3D books + type system) is MERGED into the trunk** (44e082a, along with its stamp and CSP conflict fixes). It isn't live yet. The owner hasn't given a verdict on the type-system shelf, so get one before the trunk is published.
+
 | Work | Where | Status |
 |---|---|---|
 | B1/B2/B4: device-framed hero and work cards, phones on work cards; hand-drawn Tree of Knowledge | PR #19 → 20686fb | **Live** [V in f32a749 history] |

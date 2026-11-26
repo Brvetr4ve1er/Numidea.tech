@@ -1,6 +1,6 @@
 # Numidea Labs: handoff to the publishing session
 
-Snapshot: **2026-11-25 23:45 UTC (00:45 Paris, 26 Nov)**, refreshed **23:55 UTC** (site-ready menu package, Alliance flock request) **00:00 UTC 26 Nov** (owner decisions, below) and **00:15 UTC** (character kit, game loop spec, PR 18 art, flock demo). Written by the "Package project handoff" thread of the Claude project "Numidea Labs landing page".
+Snapshot: **2026-11-25 23:45 UTC (00:45 Paris, 26 Nov)**, refreshed **23:55 UTC** (site-ready menu package, Alliance flock request) **00:00 UTC 26 Nov** (owner decisions, below) **00:15 UTC** (character kit, game loop spec, PR 18 art, flock demo) and **00:20 UTC** (PRs 20, 24 and 26 merged into the trunk, see section 1b). Written by the "Package project handoff" thread of the Claude project "Numidea Labs landing page".
 
 **The rule that created this file:** the owner (Br4ve, GitHub `Brvetr4ve1er`) decided that the project does not publish. It produces drafts, previews, canvases and files. **You, the publishing session, do all merging, deploying, repo cleanup and settings changes.** Nothing below has been published unless it says "live".
 
@@ -45,7 +45,22 @@ Rollback candidates [V]: `dpl_AfqYsxoFHQYQosjqJwKwu6ecosDY` (20686fb, PR 19 merg
 
 ---
 
-## 2. Ready or nearly ready to publish, in recommended order
+## 1b. Update 00:20 UTC: the trunk moved [V]
+
+- **PRs #20, #24 and #26 all show merged at 2026-11-26 00:14:02 UTC.** The merges were done by session `session_01TKjpKS8z4yQPZgiqdcfyuF`, the original site session (very likely the publishing session itself). GitHub marked the PRs merged when the trunk push contained their heads.
+- **Trunk head is now 44e082a**, not 17b86e3. Its last commits:
+  - `ccb6e80`: merge of PR #20; the conflicts were generated files, rebuilt.
+  - `a827417`: "Bible (PR #20): pass its gates". This fixed html-validate, CLS 0.026→0, a contrast issue, tab order and 44 px touch targets.
+  - `44e082a`: merge of PR #24's type system; the conflicts were stamps and CSP hashes; the size ceiling was re-measured.
+- The trunk preview `dpl_EU3DSYhoQZHjPBQQBN168AXYgf3W` (https://numidea-tech-k8ucxpo9i-br4vetravelers-projects.vercel.app) is **READY**.
+- **Production is still f32a749.** The trunk is ahead of live by PRs 20, 24 and 26.
+- Flags for whoever publishes:
+  1. **PR #24's type-system shelf went into the trunk before the owner gave a verdict on it.** Get that verdict before publishing the trunk.
+  2. **The PR #20 talk box needs `ANTHROPIC_API_KEY` and a spend cap in Vercel.** Without them it plays its offline line, which is safe but not the feature.
+  3. Nobody here has seen a full `npm run verify` on 44e082a. Run it before publishing.
+- In section 2 below, rows #26, #24 and #20 are now **done (merged)**. What's left open: #18, #14 (parked), #27 (this handoff).
+
+## 2. Ready or nearly ready to publish, in recommended order (table as of 23:45 UTC; see 1b for merges)
 
 Open PRs [V] (all drafts, all based on the trunk):
 

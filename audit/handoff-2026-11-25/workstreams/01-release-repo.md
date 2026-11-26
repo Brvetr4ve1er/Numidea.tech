@@ -11,7 +11,7 @@ Full source: `/mnt/project-files/ops/release-audit-2026-11-25.md` (read its sect
 ## Left for you, in this order
 1. Owner (or you, if you have dashboard access): Vercel → Settings → Environments → Production → Branch Tracking = `claude/numidea-labs-landing-c4jokc`. Recommended: keep auto-publish to domains off so publishing stays manual. Not settable via MCP.
 2. Run `ops/delete-dead-branches.sh` from a full clone. Cloud sessions get 403 on deletes/tags, so this may need the owner's machine.
-3. Merge PR #26.
+3. ~~Merge PR #26.~~ Done: merged 2026-11-26 00:14 UTC [V].
 4. Owner decides PR #14 (revive or close).
 5. Optional later: rename the trunk to `main` once no session is mid-push (breaks every running branch reference; not urgent).
 

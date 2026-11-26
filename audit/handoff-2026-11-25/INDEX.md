@@ -4,7 +4,7 @@ Snapshot 2026-11-25 23:45 UTC. [V] = verified here, [R] = reported by a thread.
 
 ## Repo: Brvetr4ve1er/Numidea.tech
 
-### Open PRs [V]
+### PRs [V] (00:20 UTC: #26, #24 and #20 are MERGED into the trunk, head 44e082a; open: #18, #14, #27)
 
 | PR | Branch @ head | Title | Workstream |
 |---|---|---|---|
@@ -22,7 +22,7 @@ Snapshot 2026-11-25 23:45 UTC. [V] = verified here, [R] = reported by a thread.
 
 ### Branches
 
-- Trunk: `claude/numidea-labs-landing-c4jokc` @ f32a749 = live [V].
+- Trunk: `claude/numidea-labs-landing-c4jokc` @ **44e082a** (00:14 UTC) [V]. Live is still f32a749. Trunk preview: https://numidea-tech-k8ucxpo9i-br4vetravelers-projects.vercel.app
 - Keep: the PR branches above, `claude/project-thread-3x5f4n` (social files), `social-media-cmf2a` (Postiz media).
 - Delete via script (after the Vercel setting): `main`, `master`, `claude/fix-fleets-wip`, `claude/wave2-release`, `claude/alliance-release`, `claude/alliance-real-domain`, `claude/project-thread-5rclm4`, `claude/project-thread-yirj4x`, `vercel/install-vercel-web-analytics-i-uj1ar9`, the dependabot dev-dependencies branch. Per-branch unmerged counts are in the script header.
 
