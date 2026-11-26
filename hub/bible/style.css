@@ -297,6 +297,8 @@ html:not(.js) .ctrls{display:none}
 .rules>div{display:grid;grid-template-columns:1fr;gap:4px 12px;padding:10px 0;border-bottom:1px solid var(--ink);font-size:14px;line-height:1.4}
 .rules dt{font:500 12px/1.3 var(--mono);letter-spacing:.14em;color:var(--red-text);text-transform:uppercase;padding-top:2px}
 @media (min-width:480px){.rules>div{grid-template-columns:110px 1fr}}
+/* phones (one column): the talk box shows right under the rig, before the acts and rules (owner, 2026-11-26); Tab order stays rig, acts, talk */
+@media (max-width:899px){.live-side{order:1}}
 @media (min-width:900px){
   .live{grid-template-columns:repeat(2,minmax(0,1fr))}
   /* the talk box follows the acts in the markup (Tab order) but sits under the rig: the side spans both rows */
