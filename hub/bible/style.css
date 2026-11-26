@@ -255,19 +255,21 @@ strong,b{font-weight:600}
 .cutin img{position:absolute;right:8%;bottom:0;height:96%;width:auto;max-width:70%;object-fit:contain;object-position:right bottom}
 .cutin.on{transform:none;transition:transform var(--m-enter) var(--m-ease-enter)}
 .cutin.out{transform:translateX(102%);transition:transform var(--m-hover) var(--m-ease-exit)}
-.chat{display:grid;grid-template-columns:1fr;margin-top:16px;border:3px solid var(--ink);background:var(--ink);box-shadow:var(--shadow-s)}
+.chat{display:grid;grid-template-columns:1fr;border:3px solid var(--ink);background:var(--ink);box-shadow:var(--shadow-s)}
 .chat-cast{display:flex;align-items:flex-end;gap:10px;padding:12px 12px 0}
 .chat-face,.chat-kuro{position:relative;margin:0;overflow:hidden;transform:skewX(-8deg);border:2px solid var(--cream)}
 .chat-face{width:132px;aspect-ratio:1/1;background:var(--red)}
-.chat-kuro{width:84px;aspect-ratio:1/1;background:var(--cream);opacity:.45;filter:grayscale(1)}
-.chat-kuro.on{opacity:1;filter:none}
+/* Kūro waits greyed until he answers: the drawing fades, never his name (a faded caption failed contrast) */
+.chat-kuro{width:84px;aspect-ratio:1/1;background:var(--cream)}
+.chat-kuro img{opacity:.45;filter:grayscale(1)}
+.chat-kuro.on img{opacity:1;filter:none}
 .chat-face img,.chat-kuro img{position:absolute;inset:4% 4% 0;width:92%;height:96%;object-fit:contain;object-position:center bottom;transform:skewX(8deg)}
 .chat-face figcaption,.chat-kuro figcaption{position:absolute;left:0;bottom:0;padding:3px 8px;background:var(--ink);color:var(--cream);
   font:700 11px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase}
 .chat-face figcaption b{display:block;font-weight:500;color:var(--paper);letter-spacing:.08em}
 .chat-box{display:flex;flex-direction:column;gap:10px;padding:12px}
 .chat-choices{display:flex;flex-wrap:wrap;gap:8px}
-.chat-choices button{min-height:40px;padding:6px 12px;border:2px solid var(--cream);background:var(--ink);color:var(--cream);font:500 14px/1.2 var(--sans);cursor:pointer;transform:skewX(-8deg)}
+.chat-choices button{min-height:44px;padding:6px 12px;border:2px solid var(--cream);background:var(--ink);color:var(--cream);font:500 14px/1.2 var(--sans);cursor:pointer;transform:skewX(-8deg)}
 .chat-choices button > span{display:inline-block;transform:skewX(8deg)}
 .chat-l{color:var(--paper);font:600 12px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase}
 .chat-l small{display:block;font-weight:400;letter-spacing:.06em;text-transform:none;font-size:12px;color:var(--paper)}
@@ -297,6 +299,9 @@ html:not(.js) .ctrls{display:none}
 @media (min-width:480px){.rules>div{grid-template-columns:110px 1fr}}
 @media (min-width:900px){
   .live{grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* the talk box follows the acts in the markup (Tab order) but sits under the rig: the side spans both rows */
+  .live-side{grid-column:2;grid-row:1 / span 2}
+  .chat{grid-column:1;grid-row:2}
   /* not sticky since the talk box sits under the rig: the two columns are about one screen each */
   .bubble{left:5%;top:72px}
 }
@@ -341,15 +346,17 @@ html:not(.js) .ctrls{display:none}
 /* the pickers are the readability test: the same drawing, in ink, 24 px tall */
 .turn-r{display:grid;place-items:center;width:44px;height:44px;padding:0;border:2px solid transparent;background:none;cursor:pointer}
 .turn-r img{height:24px;width:auto;filter:brightness(0)}
-.turn-r[aria-checked="true"]{border-color:var(--ink);background:var(--cream)}
+.turn-r[aria-pressed="true"]{border-color:var(--ink);background:var(--cream)}
 .turn-ink{min-height:44px;padding:0 12px;border:2px solid var(--ink);background:var(--cream);color:var(--ink);font:600 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
 .turn-ink[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
 .turn-said{flex-basis:100%;margin:0;font-size:14px;line-height:1.4}
-.turn-said b{font:600 12px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--red-text);margin-inline-end:6px}
+/* the view's name on its own line: names run from "Back" to "Three-quarter back", and inline they rewrapped the line under them as he turned (a layout shift) */
+.turn-said b{display:block;margin-block-end:2px;font:600 12px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--red-text)}
 @media (hover:hover){.turn-r:hover{border-color:var(--ink)}.turn-ink:hover{box-shadow:var(--shadow-s)}}
 .marks{border-top:2px solid var(--ink)}
 .marks li{display:grid;grid-template-columns:44px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid var(--ink);font-size:15px;line-height:1.4}
-.marks .n{min-height:32px;align-self:start;padding:6px 0;border:0;background:none;font:500 12px/1.3 var(--mono);color:var(--red-text);text-align:start;cursor:pointer}
+/* a 44 px hit box (the touch-target floor) that takes the 32 px it always did: it reaches 6 px into the row's padding above and below */
+.marks .n{min-height:44px;margin-block:-6px;align-self:start;padding:6px 0;border:0;background:none;font:500 12px/1.3 var(--mono);color:var(--red-text);text-align:start;cursor:pointer}
 .marks li.is-shown .n{color:var(--ink);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
 @media (min-width:860px){.sil{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .swatches{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid var(--ink);background:var(--ink);gap:2px}

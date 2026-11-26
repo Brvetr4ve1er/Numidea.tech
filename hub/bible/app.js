@@ -574,7 +574,8 @@
      between each other. The order is the order he turns in (front,
      three-quarter, profile, back, three-quarter back, and round to the front
      again), so dragging the stage reads as one way round: a view every 28 px.
-     The five ink figures under him are a radio group (arrows, Home, End);
+     The five ink figures under him are a group of buttons, the shown view's
+     pressed (aria-pressed), one Tab stop, arrows, Home and End between them;
      each mark's number shows him from the side that mark is seen best.
      Once, the first time half the stage is on screen, he turns round one
      time, a view every quarter beat (167 ms, 5 cuts, under a second), and
@@ -595,7 +596,7 @@
       tCur = v;
       tViews.forEach(function (im, i) { im.classList.toggle('is-on', i === v); });
       tRadios.forEach(function (r, i) {
-        r.setAttribute('aria-checked', i === v ? 'true' : 'false');
+        r.setAttribute('aria-pressed', i === v ? 'true' : 'false');
         r.tabIndex = i === v ? 0 : -1;
       });
       if (fromKey) tRadios[v].focus();

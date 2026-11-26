@@ -153,23 +153,6 @@
         <img data-kf="yawn" src="art/rig-k-yawn.webp" width="360" height="294" alt="">
         <img data-kf="ear" src="art/rig-k-ear.webp" width="360" height="294" alt="">
       </template>
-      <!-- Talk to him: a reply is one line, one face (03's twelve), one gesture (04's poses and actors, the
-           turnaround), and Kūro's answer (05's cards). Free text goes to /api/yasser (an AI voice, a short JSON
-           reply); the three choices are written lines and cost nothing. -->
-      <form class="chat" id="chat" autocomplete="off" novalidate>
-        <div class="chat-cast" aria-hidden="true">
-          <figure class="chat-face"><img data-cface src="art/face-deadpan.webp" width="427" height="368" alt="" loading="lazy" decoding="async"><figcaption>Yasser <b data-cmood>listening</b></figcaption></figure>
-          <figure class="chat-kuro" data-ckuro><img data-ckimg src="art/kuro-peek.webp" width="240" height="165" alt="" loading="lazy" decoding="async"><figcaption>Ku&#x304;ro</figcaption></figure>
-        </div>
-        <div class="chat-box">
-          <div class="chat-choices" role="group" aria-label="Quick lines, written in advance (no AI)" data-cchoices lang="fr"></div>
-          <label class="chat-l" for="chatIn">Or say anything <small>AI voice, not Yasser typing live</small></label>
-          <div class="chat-row">
-            <input id="chatIn" name="q" type="text" maxlength="280" placeholder="Écris-lui…" lang="fr" enterkeyhint="send">
-            <button type="submit" class="chat-go">Send</button>
-          </div>
-        </div>
-      </form>
       <p class="rig-said" id="rigSaid" aria-live="polite"></p>
     </div>
     <div class="live-side">
@@ -199,6 +182,24 @@
         <div><dt>Ku&#x304;ro</dt><dd>Follows your cursor 320 ms late, watches Yasser while he talks, flicks an ear, goes wide-eyed on a fast scroll.</dd></div>
       </dl>
     </div>
+    <!-- Talk to him: a reply is one line, one face (03's twelve), one gesture (04's poses and actors, the
+         turnaround), and Kūro's answer (05's cards). Free text goes to /api/yasser (an AI voice, a short JSON
+         reply); the three choices are written lines and cost nothing. It comes after the acts in the reading
+         and Tab order (Yasser, Kūro, the acts, then the talk), and sits under the rig on a wide screen (style.css). -->
+    <form class="chat" id="chat" autocomplete="off" novalidate>
+      <div class="chat-cast" aria-hidden="true">
+        <figure class="chat-face"><img data-cface src="art/face-deadpan.webp" width="427" height="368" alt="" loading="lazy" decoding="async"><figcaption>Yasser <b data-cmood>listening</b></figcaption></figure>
+        <figure class="chat-kuro" data-ckuro><img data-ckimg src="art/kuro-peek.webp" width="240" height="165" alt="" loading="lazy" decoding="async"><figcaption>Ku&#x304;ro</figcaption></figure>
+      </div>
+      <div class="chat-box">
+        <div class="chat-choices" role="group" aria-label="Quick lines, written in advance (no AI)" data-cchoices lang="fr"></div>
+        <label class="chat-l" for="chatIn">Or say anything <small>AI voice, not Yasser typing live</small></label>
+        <div class="chat-row">
+          <input id="chatIn" name="q" type="text" maxlength="280" placeholder="Écris-lui…" lang="fr" enterkeyhint="send">
+          <button type="submit" class="chat-go">Send</button>
+        </div>
+      </div>
+    </form>
   </div>
 </section>
 
@@ -254,12 +255,12 @@
         <img class="turn-k" src="art/kuro-scale.webp" width="192" height="186" alt="" loading="lazy" decoding="async">
       </div>
       <figcaption class="turn-cap">
-        <div class="turn-pick" role="radiogroup" aria-label="Turn him: five drawn views, in ink at 24 px">
-          <button type="button" role="radio" class="turn-r" data-v="0" aria-checked="true" tabindex="0" aria-label="Front"><img src="art/turn-front.webp" width="172" height="402" alt="" loading="lazy" decoding="async"></button>
-          <button type="button" role="radio" class="turn-r" data-v="1" aria-checked="false" tabindex="-1" aria-label="Three-quarter"><img src="art/turn-34.webp" width="172" height="402" alt="" loading="lazy" decoding="async"></button>
-          <button type="button" role="radio" class="turn-r" data-v="2" aria-checked="false" tabindex="-1" aria-label="Profile"><img src="art/turn-side.webp" width="172" height="402" alt="" loading="lazy" decoding="async"></button>
-          <button type="button" role="radio" class="turn-r" data-v="3" aria-checked="false" tabindex="-1" aria-label="Back"><img src="art/turn-back.webp" width="172" height="402" alt="" loading="lazy" decoding="async"></button>
-          <button type="button" role="radio" class="turn-r" data-v="4" aria-checked="false" tabindex="-1" aria-label="Three-quarter back"><img src="art/turn-34back.webp" width="172" height="402" alt="" loading="lazy" decoding="async"></button>
+        <div class="turn-pick" role="group" aria-label="Turn him: five drawn views, in ink at 24 px">
+          <button type="button" class="turn-r" data-v="0" aria-pressed="true" tabindex="0" aria-label="Front"><img src="art/turn-front.webp" width="172" height="402" alt="" loading="lazy" decoding="async"></button>
+          <button type="button" class="turn-r" data-v="1" aria-pressed="false" tabindex="-1" aria-label="Three-quarter"><img src="art/turn-34.webp" width="172" height="402" alt="" loading="lazy" decoding="async"></button>
+          <button type="button" class="turn-r" data-v="2" aria-pressed="false" tabindex="-1" aria-label="Profile"><img src="art/turn-side.webp" width="172" height="402" alt="" loading="lazy" decoding="async"></button>
+          <button type="button" class="turn-r" data-v="3" aria-pressed="false" tabindex="-1" aria-label="Back"><img src="art/turn-back.webp" width="172" height="402" alt="" loading="lazy" decoding="async"></button>
+          <button type="button" class="turn-r" data-v="4" aria-pressed="false" tabindex="-1" aria-label="Three-quarter back"><img src="art/turn-34back.webp" width="172" height="402" alt="" loading="lazy" decoding="async"></button>
         </div>
         <button type="button" class="turn-ink" aria-pressed="false">Ink only</button>
         <p class="turn-said" aria-live="polite"><b data-turn-name>Front</b> <span>Drag him, or pick a view. Each little ink figure is the same drawing at 24 px.</span></p>
