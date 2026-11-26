@@ -34,7 +34,9 @@
     "metrics": "node scripts/metrics.mjs",
     "enquetes:lint": "node scripts/enquetes-lint.mjs",
     "enquetes:play": "node scripts/enquetes-play.mjs",
-    "game:sim": "node scripts/game-sim.mjs"
+    "game:sim": "node scripts/game-sim.mjs",
+    "pay:test": "node scripts/pay-test.mjs",
+    "pay:link": "node scripts/pay-link.mjs"
   },
   "devDependencies": {
     "axe-core": "^4.13.0",
