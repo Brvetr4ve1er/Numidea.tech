@@ -353,7 +353,11 @@ html:not(.js) .ks img,html:not(.js) .ks__d,html:not(.js) .ks__n{display:none}
 /* ---------- the shelf ---------- */
 .rayons>.k{margin-bottom:6px}
 .rayon{margin-top:34px}
-.rayon__h{font-size:clamp(32px,4.2vw,58px);margin-bottom:18px}
+.rayon__head{display:flex;align-items:flex-end;gap:14px;margin-bottom:22px}
+.rayon__n{font:900 var(--fs-index)/.8 var(--f-cond);color:transparent;-webkit-text-stroke:2px var(--ink);flex:none}
+:lang(ar) .rayon__n{font-family:"Archivo Condensed","Archivo",sans-serif}
+.rayon__h{font:900 var(--fs-h2)/var(--lh-disp) var(--f-cond);text-transform:uppercase;letter-spacing:var(--tr-disp);margin:0;text-wrap:balance}
+.rayon__head::after{content:"";flex:1;align-self:center;height:2px;margin-top:.6em;background:repeating-linear-gradient(90deg,var(--ink) 0 8px,transparent 8px 12px)}
 /* books of their own heights stand on the plank (align-items:start, review 2026-11-22) */
 .books{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:22px;align-items:start;padding-inline:6px}
 @media (min-width:900px){
@@ -377,15 +381,19 @@ html:not(.js) .ks img,html:not(.js) .ks__d,html:not(.js) .ks__n{display:none}
 .book__y{position:absolute;right:4%;bottom:0;height:80%;width:auto;max-width:none;filter:drop-shadow(4px 4px 0 rgba(33,30,27,.55))}
 .book__k{position:absolute;right:44%;bottom:1%;height:32%;width:auto;filter:drop-shadow(3px 3px 0 rgba(33,30,27,.55))}
 .book__body{display:flex;flex-direction:column;gap:8px;padding:16px 18px 18px;flex:1}
-.book__kind{font:700 12px/1.4 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--red-text)}
+.book__kind{font:500 var(--fs-micro)/1.4 var(--f-mono);letter-spacing:var(--tr-label);text-transform:uppercase;color:var(--muted);display:flex;gap:8px;align-items:center}
+.book__kind::before{content:"";width:18px;height:4px;background:var(--spine);flex:none}
 :lang(ar) .book__kind{letter-spacing:0;text-transform:none;font-family:var(--f-body);font-size:13px}
-.book__t{font-size:clamp(28px,2.6vw,38px)}
-.book__line{color:var(--muted);line-height:1.45;font-size:15px}
-.book__start{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;padding:0 12px;margin-bottom:2px;background:var(--ink);color:var(--cream);font:700 13px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+.book__t{font:900 var(--fs-h3)/var(--lh-disp) var(--f-cond);text-transform:uppercase;letter-spacing:var(--tr-disp);text-wrap:balance}
+.book__line{color:var(--ink-2);line-height:var(--lh-body);font-size:var(--fs-small);max-width:60ch}
+.book__start{position:absolute;inset-block-start:-22px;inset-inline-end:14px;z-index:3;display:inline-flex;align-items:center;min-height:44px;padding:0 14px;background:var(--red);color:var(--cream);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font:800 var(--fs-label) var(--f-wide);letter-spacing:var(--tr-ui);text-transform:uppercase;text-decoration:none;transform:rotate(-3deg)}
 .book__start::after{content:"→";margin-inline-start:8px}.book__start:dir(rtl)::after{content:"←"}
 :lang(ar) .book__start{letter-spacing:0;font-family:var(--f-body);font-size:14px}
 .book__min{white-space:nowrap}
-.book__meta{font:700 12.5px/1.4 var(--f-mono);color:var(--ink-2)}
+/* the stats: three chips in one row, the text's « · » separators set to nothing */
+.book__meta{display:flex;flex-wrap:wrap;font-size:0;color:var(--ink-2)}
+.book__meta>span{font:600 var(--fs-micro)/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:7px 8px;border:1.5px solid var(--ink);margin-inline-end:-1.5px;margin-bottom:-1.5px;background:var(--paper)}
+.book__meta>span:first-child{background:var(--ink);color:var(--cream)}
 :lang(ar) .book__meta{font-family:var(--f-body);font-size:14px}
 .bar{display:block;height:8px;border:1px solid var(--ink);background:rgba(33,30,27,.06);overflow:hidden}
 .bar__fill{display:block;height:100%;background:var(--spine);transform:scaleX(var(--p,0));transform-origin:left}
@@ -804,3 +812,32 @@ html.motion-off .lt-panel--wait{opacity:1;translate:none}
 .lt-panel-row>.lt-panel{margin-block:4px 14px}
 .lt-all__pic{flex:1 1 100%}
 .lt-all__pic .lt-panel{margin:0}
+
+/* ---------------- the shelf in the type system (2026-11-26) ----------------
+   One book size everywhere: a shelf is three slots, the empty ones drawn as inventory; the middle book stands lower (a
+   staggered grid, not a row); the atlas leaves its card at the top; the tape crosses the section once. */
+.book__body{position:relative}
+.book__go{font:800 var(--fs-label)/1 var(--f-wide);letter-spacing:var(--tr-ui);text-transform:uppercase}
+.book__body{padding:18px 20px 20px;gap:10px}
+.book--slot{display:none}
+.book__path{font:500 var(--fs-micro)/1.4 var(--f-mono);letter-spacing:var(--tr-label)}
+.book__vol b{font:900 1.125rem/1 var(--f-cond);text-transform:uppercase}
+.book__vol span{font:500 var(--fs-micro)/1.4 var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+.tape{position:relative;margin:4px calc(var(--gut) * -1) 34px;padding:9px 0;background:var(--amber);border-block:2px solid var(--ink);overflow:hidden;transform:rotate(-1.6deg);white-space:nowrap}
+.tape span{display:block;font:800 var(--fs-label)/1 var(--f-wide);letter-spacing:.12em;color:var(--ink)}
+@media (min-width:1100px){
+  .rayon{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);column-gap:32px;align-items:start}
+  .rayon__head{grid-column:1;flex-direction:column;align-items:flex-start;gap:6px;position:sticky;top:110px;margin:28px 0 0}
+  .rayon__head::after{width:100%;flex:none}
+  .rayon>.books{grid-column:2;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;padding-top:34px}
+  .rayon>.plank,.rayon>.legal{grid-column:1/-1}
+  .books>.book:nth-child(3n+2){margin-top:56px}
+  .book--slot{display:block;align-self:stretch;min-height:360px;border:2px dashed rgba(33,30,27,.35);background:repeating-linear-gradient(-45deg,transparent 0 12px,rgba(33,30,27,.05) 12px 24px);box-shadow:none}
+  .book:not(.book--slot) .book__link{overflow:visible;margin-top:-34px;background:none;border-bottom:0;padding:0 16px 30px}
+  .book:not(.book--slot) .book__link::after{inset-inline:0;bottom:0;height:30px;background:radial-gradient(120% 90% at 50% 0,var(--navy-2),var(--navy) 70%);border-block:2px solid var(--ink);border-bottom:0}
+  .books>.book:nth-child(even) .book__obj{transform:rotateX(8deg) rotateZ(1.2deg)}
+  .books>.book:nth-child(odd) .book__obj{transform:rotateX(8deg) rotateZ(-1deg)}
+}
+.book__body:has(>.book__start){padding-top:34px}
+:lang(ar) :is(.book__go,.book__start,.tape span){font-size:var(--fs-small)}
+:lang(ar) .book__vol b{font-size:1.25rem;line-height:1.3}
