@@ -50,5 +50,9 @@
   {
     "prefix": "brand HCLIP-DECOR p18 div.nshot",
     "reason": "2026-11-14: the Numidea social kit (plate 18) shows a capture of the live site inside a post; the capture is wider than the frame and is cropped by it on purpose (nothing cut off carries text)"
+  },
+  {
+    "prefix": "index HCLIP-DECOR nl-menu section.nl-menu",
+    "reason": "2026-11-26: the home's game menu (assets/menu/) clips its own decoration (starburst, slab, shards, the off-stage parts of the 1280x800 stage) with overflow:hidden, as the hero does. HCLIP-DECOR means nothing cut off carries text, so a clipped label in the menu still fails."
   }
 ]

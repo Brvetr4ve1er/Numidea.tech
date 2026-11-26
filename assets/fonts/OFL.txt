@@ -1,6 +1,9 @@
 The font families served from this folder, each with the copyright line its
 own name table carries:
 
+Archivo (archivo-900-*.woff2)
+Copyright 2019 The Archivo Project Authors (https://github.com/Omnibus-Type/Archivo)
+
 Cinzel (cinzel-700-*.woff2)
 Copyright 2020 The Cinzel Project Authors (https://github.com/NDISCOVER/Cinzel)
 
@@ -15,6 +18,9 @@ Copyright 2024 The Geist Project Authors (https://github.com/vercel/geist-font.g
 
 IBM Plex Sans Arabic (ibm-plex-sans-arabic-*.woff2, plex-arabic-404.woff2)
 Copyright 2019 IBM Corp. All rights reserved.
+
+Noto Sans JP (noto-jp-900-mark.woff2, a subset holding only ヌミデア)
+Copyright 2014-2021 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'
 
 Syne (syne-*.woff2)
 Copyright 2019 The Syne Project Authors (https://gitlab.com/bonjour-monde/fonderie/syne-typeface)
