@@ -392,6 +392,8 @@ html:not(.js) .ks img,html:not(.js) .ks__d,html:not(.js) .ks__n{display:none}
 .book__min{white-space:nowrap}
 /* the stats: three chips in one row, the text's « · » separators set to nothing */
 .book__meta{display:flex;flex-wrap:wrap;font-size:0;color:var(--ink-2)}
+.book__meta::before{content:"";order:1;flex-basis:100%}
+.book__meta>span~span{order:2}
 .book__meta>span{font:600 var(--fs-micro)/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:7px 8px;border:1.5px solid var(--ink);margin-inline-end:-1.5px;margin-bottom:-1.5px;background:var(--paper)}
 .book__meta>span:first-child{background:var(--ink);color:var(--cream)}
 :lang(ar) .book__meta{font-family:var(--f-body);font-size:14px}
