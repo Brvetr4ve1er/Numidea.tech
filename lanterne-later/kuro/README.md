@@ -75,7 +75,7 @@ Everything below comes from `/mnt/project-files/characters/kit/art`. Zero credit
 ## 4. Wiring it into the site (for the publishing session, after slice 1)
 
 1. **Copy files.** Copy `episode/` to `hub/lanterne/kuro/`. Put the art in `hub/img/kuro/`, or point `data-art` at the kit's `assets/kit/art/` once the kit ships. Rename the art paths, or keep the flat names.
-2. **Add the page.** Add the page to `scripts/site.mjs` PAGES so `build-csp.mjs` writes its policy. The page has no inline script, so the policy needs no hashes beyond the gtag one.
+2. **Add the page.** Add the page to `scripts/site.mjs` PAGES so `build-csp.mjs` writes its policy. The page has no inline script, so the policy needs no hashes beyond the gtag one. Load the game loop's `hub/lanterne/game.js` (PR #30) on this page with `defer`, before `episode.js`, so completion goes through `NUMIDEA_GAME.episodeDone(id, world)`; without it the episode writes the same `numidea-save` shape itself. World keys must match `/^[a-z0-9_]{1,40}$/` (`kuro_in_bag` does).
 3. **Strings.**
    - UI strings sit in `UI` at the top of `episode.js`. Move them to `hub/lanterne/i18n/` if the lint wants them there.
    - Arabic needs a pass through the Arabic linting the enquêtes use: `<bdi>` for "Kūro", numerals.
