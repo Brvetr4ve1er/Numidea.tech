@@ -27,5 +27,5 @@ const fields = { ref, part, amt, cur, exp };
 const sig = sign(fields, secret);
 if (!verify({ ...fields, sig }, secret)) die('the link does not verify: check the reference (Q-YYYY-NNN) and the amount.');
 
-const base = lang === 'fr' ? '' : `/${lang}`;
-console.log(`${host}${base}/payer/?${new URLSearchParams({ ...fields, sig })}`);
+const q = new URLSearchParams({ ...(lang === 'fr' ? {} : { lang }), ...fields, sig });
+console.log(`${host}/payer/?${q}`);

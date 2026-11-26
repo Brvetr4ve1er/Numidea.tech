@@ -7,7 +7,8 @@
  * The page posts those fields here with op "create"; this file re-checks the
  * HMAC (the browser is never trusted with an amount), creates the order and
  * answers the PayPal approval URL; the page sends the visitor there. PayPal
- * returns them to /payer/merci/?token=<order id>, which posts op "capture".
+ * returns them to /payer/?…&done=1&token=<order id>, which posts op "capture".
+ * GET answers {ready, env} so the page shows the button only when it works.
  *
  * Environment (Vercel project settings, never git):
  *   PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET  the REST app's pair
@@ -70,10 +71,17 @@ const LABEL = { deposit: 'Acompte 40 %', balance: 'Solde 60 %', full: 'Paiement'
 
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
-  if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return res.status(405).json({ error: 'method' }); }
-  if (!allowedOrigin(req.headers.origin)) return res.status(403).json({ error: 'origin' });
   const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PAY_LINK_SECRET } = process.env;
-  if (!PAYPAL_CLIENT_ID || !PAYPAL_CLIENT_SECRET || !PAY_LINK_SECRET) return res.status(503).json({ error: 'offline' });
+  const configured = Boolean(PAYPAL_CLIENT_ID && PAYPAL_CLIENT_SECRET && PAY_LINK_SECRET);
+  // GET: is the button worth showing? Says only the mode, never a key.
+  if (req.method === 'GET') {
+    if (!configured) return res.status(200).json({ ready: false });
+    try { await token(); return res.status(200).json({ ready: true, env: process.env.PAYPAL_ENV === 'live' ? 'live' : 'sandbox' }); }
+    catch { return res.status(200).json({ ready: false, env: process.env.PAYPAL_ENV === 'live' ? 'live' : 'sandbox', error: 'auth' }); }
+  }
+  if (req.method !== 'POST') { res.setHeader('Allow', 'GET, POST'); return res.status(405).json({ error: 'method' }); }
+  if (!allowedOrigin(req.headers.origin)) return res.status(403).json({ error: 'origin' });
+  if (!configured) return res.status(503).json({ error: 'offline' });
   let body;
   try { body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body; } catch { return res.status(400).json({ error: 'json' }); }
   if (!body || JSON.stringify(body).length > 600) return res.status(413).json({ error: 'size' });
@@ -87,7 +95,8 @@ export default async function handler(req, res) {
       const f = verify(body, PAY_LINK_SECRET);
       if (!f) return res.status(400).json({ error: 'link' });
       const lang = ['fr', 'en', 'ar'].includes(body.lang) ? body.lang : 'fr';
-      const base = lang === 'fr' ? '' : `/${lang}`;
+      // the page reads the signed fields again on return, so a cancel lands back on the same contract
+      const back = new URLSearchParams({ lang, ref: f.ref, part: f.part, amt: f.amt, cur: f.cur, exp: f.exp, sig: body.sig });
       const r = await fetch(`${api()}/v2/checkout/orders`, {
         method: 'POST',
         // one order per link and part: a double click or a reload reuses it
@@ -106,8 +115,8 @@ export default async function handler(req, res) {
             user_action: 'PAY_NOW',
             shipping_preference: 'NO_SHIPPING',
             locale: lang === 'fr' ? 'fr-FR' : lang === 'ar' ? 'ar-EG' : 'en-US',
-            return_url: `${origin}${base}/payer/merci/`,
-            cancel_url: `${origin}${base}/payer/?ref=${encodeURIComponent(f.ref)}&cancel=1`,
+            return_url: `${origin}/payer/?${back}&done=1`,
+            cancel_url: `${origin}/payer/?${back}&cancel=1`,
           } } },
         }),
         signal: AbortSignal.timeout(8000),

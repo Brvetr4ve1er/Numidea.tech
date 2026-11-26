@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',functionality_storage:'denied',personalization_storage:'denied',security_storage:'granted'});gtag('js',new Date());</script>
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Régler votre devis · Numidea Labs</title>
+<meta name="description" content="Page de paiement privée des devis signés de Numidea Labs : acompte et solde.">
+<link rel="canonical" href="https://www.numedialab.dev/payer/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/fonts.css?v=202611261606">
+<link rel="stylesheet" href="../hub/fonts/fonts.css?v=202611261606">
+<link rel="stylesheet" href="../hub/fonts/hud.css?v=202611261606">
+<link rel="stylesheet" href="payer.css?v=202611261606">
+<script src="../assets/carry.js?v=202611261606" defer></script>
+<script src="payer.js?v=202611261606" defer></script>
+</head>
+<body>
+<main class="p-wrap" id="main">
+  <a class="p-home" href="/" data-t="home">← Numidea Labs</a>
+
+  <section class="p-card" aria-labelledby="p-h">
+    <p class="p-label" data-t="kicker">Contrat · paiement</p>
+    <h1 class="p-h" id="p-h" data-t="h">Régler votre devis</h1>
+
+    <!-- filled from the signed link; hidden until a valid one is read -->
+    <dl class="p-sum" id="p-sum" hidden>
+      <div><dt class="p-label" data-t="ref">Devis</dt><dd class="p-num" id="p-ref"></dd></div>
+      <div><dt class="p-label" data-t="part">Étape</dt><dd id="p-part"></dd></div>
+      <div class="p-amt"><dt class="p-label" data-t="amount">Montant</dt><dd class="p-num" id="p-amt"></dd></div>
+    </dl>
+
+    <p class="p-lead" id="p-msg" data-t="nolink">Cette page sert à régler un devis signé. Le lien de paiement vous est envoyé avec le devis : ouvrez-le depuis votre message, ou écrivez-nous.</p>
+
+    <div class="p-act" id="p-act" hidden>
+      <button type="button" class="p-btn" id="p-pay">
+        <span class="p-btn__seal" aria-hidden="true">夜</span>
+        <span class="p-btn__t" data-t="pay">Payer avec PayPal</span>
+      </button>
+      <p class="p-fine" id="p-fine" data-t="fine">Carte bancaire ou compte PayPal. Vous validez le paiement chez PayPal ; nous ne voyons jamais vos données de carte.</p>
+    </div>
+
+    <div class="p-done" id="p-done" hidden>
+      <img src="../hub/img/studio/kuro-paw.webp" width="120" height="170" alt="" class="p-paw">
+      <p class="p-lead" id="p-done-t" data-t="paid">Paiement reçu. Kūro a posé le sceau : le travail continue.</p>
+    </div>
+  </section>
+
+  <section class="p-alt" aria-labelledby="p-alt-h">
+    <h2 class="p-label" id="p-alt-h" data-t="altH">Autres moyens</h2>
+    <p data-t="alt">Virement ou CCP en Algérie, virement en euros ou en dollars depuis l’étranger : les coordonnées figurent sur votre devis.</p>
+    <a class="p-wa" href="https://wa.me/213672412578" rel="noopener" data-t="wa">Une question ? WhatsApp</a>
+  </section>
+</main>
+</body>
+</html>
