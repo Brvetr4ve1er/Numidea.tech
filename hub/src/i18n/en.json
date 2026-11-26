@@ -6333,7 +6333,12 @@
           "8": "Yasser hands you the keys to the workshop.",
           "9": "Yasser naps on his desk.",
           "10": "Yasser throws his arms up: you’ve won."
-        }
+        },
+        "tape": "District done",
+        "tapeBook": "Book done",
+        "unit": "Encre",
+        "rankOf": "Rank {n} / {N}",
+        "comH": "The studio does it for you."
       }
     },
     "cast": {

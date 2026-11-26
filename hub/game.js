@@ -123,7 +123,10 @@
       chip = el('a', 'gm-chip'); chip.href = D.passport; chip.setAttribute('data-gm-chip', '');
       nav.appendChild(chip);
     }
-    chip.textContent = t('lant.ui.game.chip', { rank: rankName(P.rank), n: num(P.encre) });
+    chip.textContent = '';
+    var cs = el('span', 'gm-rank__seal'); cs.setAttribute('aria-hidden', 'true'); cs.appendChild(el('span', 'gm-num', String(P.rank)));
+    chip.appendChild(cs); chip.appendChild(el('span', 'gm-chip__t', num(P.encre) + ' ' + t('lant.ui.game.unit')));
+    chip.setAttribute('aria-label', t('lant.ui.game.chip', { rank: rankName(P.rank), n: num(P.encre) })); chip.title = chip.getAttribute('aria-label');
     chip.hidden = false;
     if (mast.offsetHeight > mastH + 1) chip.hidden = true;
   }
@@ -137,7 +140,6 @@
     card = el('aside', 'gm-card'); card.hidden = true; card.setAttribute('data-gm-card', ''); card.setAttribute('aria-labelledby', 'gm-card-h');
     d.body.appendChild(card);
     card.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(true); });
-    card.addEventListener('animationend', function () { card.classList.remove('is-in'); });
   }
   function close(back) { if (!card || card.hidden) return; var had = card.contains(d.activeElement); card.hidden = true; if (back && had && last && last.focus) last.focus(); }
   var last = null;
@@ -145,40 +147,57 @@
   function show(o) {
     shell(); last = d.activeElement;
     card.textContent = '';
+    card.classList.toggle('gm-card--com', !!o.book);
     var box = el('div', 'gm-card__in');
-    var h = el('p', 'gm-card__gain', o.gain > 0 ? t('lant.ui.game.gain', { n: num(o.gain) }) : t('lant.ui.game.upK')); h.id = 'gm-card-h';
+    var summary = [];
+    /* the tape across the card's head: a district done, or (navy card) a whole book done and the studio's offer */
+    box.appendChild(el('p', 'gm-card__tape', t(o.book ? 'lant.ui.game.tapeBook' : 'lant.ui.game.tape')));
+    if (o.book) {
+      box.appendChild(el('p', 'gm-card__where gm-label', bookName(o.book)));
+      box.appendChild(el('p', 'gm-card__h', t('lant.ui.game.comH')));
+    }
+    /* the gain, huge (DISPLAY numerals, Latin in every language), its unit as a LABEL */
+    var h = el('p', 'gm-card__gain'); h.id = 'gm-card-h';
+    if (o.gain > 0) { h.appendChild(el('span', 'gm-num', '+' + num(o.gain))); h.appendChild(d.createTextNode(' ')); h.appendChild(el('span', 'gm-label', t('lant.ui.game.unit'))); summary.push(t('lant.ui.game.gain', { n: num(o.gain) })); }
+    else { h.appendChild(el('span', 'gm-card__upk', t('lant.ui.game.upK'))); summary.push(t('lant.ui.game.upK')); }
     box.appendChild(h);
-    box.appendChild(el('p', 'gm-card__rank', t('lant.ui.game.rank', { n: P.rank, name: rankName(P.rank) })));
-    var bar = el('div', 'gm-bar'); bar.setAttribute('role', 'progressbar'); bar.setAttribute('aria-valuemin', '0'); bar.setAttribute('aria-valuemax', '100');
+    /* the rank badge: the seal with its number, the name, the road to the next */
+    var rk = el('div', 'gm-rank'); rk.style.setProperty('--p', String(P.p));
+    var seal = el('span', 'gm-rank__seal'); seal.setAttribute('aria-hidden', 'true'); seal.appendChild(el('span', 'gm-num', String(P.rank)));
+    rk.appendChild(seal);
+    rk.appendChild(el('span', 'gm-rank__k gm-label', t('lant.ui.game.rankOf', { n: P.rank, N: D.ranks.length })));
+    rk.appendChild(el('p', 'gm-rank__name', rankName(P.rank)));
+    var bar = el('span', 'gm-bar'); bar.setAttribute('role', 'progressbar'); bar.setAttribute('aria-valuemin', '0'); bar.setAttribute('aria-valuemax', '100');
     bar.setAttribute('aria-valuenow', String(Math.round(P.p * 100))); bar.setAttribute('aria-label', t('lant.ui.game.barLabel'));
-    bar.style.setProperty('--p', String(P.p)); bar.appendChild(el('span', 'gm-bar__fill'));
-    box.appendChild(bar);
-    box.appendChild(el('p', 'gm-card__next', P.next ? t('lant.ui.game.next', { n: num(P.next.left), name: rankName(P.next.rank) }) : t('lant.ui.game.max')));
-    var summary = [h.textContent, t('lant.ui.game.rank', { n: P.rank, name: rankName(P.rank) })];
+    bar.appendChild(el('i', 'gm-bar__fill')); rk.appendChild(bar);
+    rk.appendChild(el('p', 'gm-rank__next gm-label', P.next ? t('lant.ui.game.next', { n: num(P.next.left), name: rankName(P.next.rank) }) : t('lant.ui.game.max')));
+    box.appendChild(rk);
+    summary.push(t('lant.ui.game.rank', { n: P.rank, name: rankName(P.rank) }));
+    /* a rank reached: the red stamp on the corner, and its drawing breaking the card's edge (else the current rank's, as decoration) */
+    var r = o.up.length ? o.up[o.up.length - 1] : P.rank, R = D.ranks[r - 1];
+    var fig = el('figure', 'gm-card__unlock');
+    var im = el('img', 'gm-card__art'); im.src = D.art + R.art; im.width = R.w; im.height = R.h; im.decoding = 'async';
     if (o.up.length) {
-      var r = o.up[o.up.length - 1], R = D.ranks[r - 1];
-      var fig = el('figure', 'gm-card__unlock');
-      var im = el('img'); im.src = D.art + R.art; im.width = R.w; im.height = R.h; im.alt = t('lant.ui.game.u.' + r); im.decoding = 'async';
-      fig.appendChild(im);
-      fig.appendChild(el('figcaption', null, t('lant.ui.game.up', { name: rankName(r) })));
-      box.insertBefore(fig, box.firstChild);
+      box.appendChild(el('p', 'gm-card__stamp', t('lant.ui.game.upK')));
+      im.alt = t('lant.ui.game.u.' + r);
+      fig.appendChild(im); fig.appendChild(el('figcaption', o.book ? 'sr' : 'gm-card__echo', t('lant.ui.game.up', { name: rankName(r) })));
       summary.push(t('lant.ui.game.up', { name: rankName(r) }));
       card.setAttribute('data-gm-up', String(r));
-    } else card.removeAttribute('data-gm-up');
+    } else { im.alt = ''; fig.setAttribute('aria-hidden', 'true'); fig.appendChild(im); card.removeAttribute('data-gm-up'); }
+    box.appendChild(fig);
     if (P.rank >= D.discount.rank) box.appendChild(el('p', 'gm-card__code', t('lant.ui.game.code', { code: D.discount.code })));
+    var go = el('div', 'gm-card__go');
     if (o.book) {
-      var com = el('div', 'gm-com');
-      com.appendChild(el('p', 'gm-com__k', t('lant.ui.game.comK')));
-      com.appendChild(el('p', 'gm-com__t', t('lant.ui.game.comT', { b: bookName(o.book) })));
-      var go = el('a', 'btn gm-com__go', t('lant.ui.game.comPrice')); go.href = D.root + (D.service[o.book] || 'tarifs/');
-      var wa = el('a', 'lnk gm-com__wa', t('lant.ui.game.comTalk')); wa.href = D.wa + '?text=' + encodeURIComponent(t('lant.ui.game.comWa', { b: bookName(o.book) })); wa.rel = 'noopener';
-      com.appendChild(go); com.appendChild(wa);
-      box.appendChild(com);
+      box.appendChild(el('p', 'gm-card__echo', t('lant.ui.game.comT', { b: bookName(o.book) })));
+      var price = el('a', 'gm-btn gm-btn--amber', t('lant.ui.game.comPrice')); price.href = D.root + (D.service[o.book] || 'tarifs/');
+      var wa = el('a', 'gm-btn', t('lant.ui.game.comTalk')); wa.href = D.wa + '?text=' + encodeURIComponent(t('lant.ui.game.comWa', { b: bookName(o.book) })); wa.rel = 'noopener';
+      go.appendChild(price); go.appendChild(wa);
       summary.push(t('lant.ui.game.comK'));
     }
-    var x = el('button', 'gm-card__x', t('lant.ui.game.close')); x.type = 'button';
+    var x = el('button', 'gm-btn gm-card__x', t('lant.ui.game.close')); x.type = 'button';
     x.addEventListener('click', function () { close(true); });
-    box.appendChild(x);
+    go.appendChild(x);
+    box.appendChild(go);
     card.appendChild(box);
     card.hidden = false;
     card.classList.remove('is-in');
@@ -248,7 +267,7 @@
   var start = function () {
     paintChip(); reset();
     /* a rank earned elsewhere (a night case, a seal) since the last page: its card, once */
-    if (!L.fresh && !L.bad && P.earned > s.rank) settle(null);
+    if (!L.fresh && !L.bad && !L.future && P.earned > s.rank) settle(null);
   };
   if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', start); else start();
 })(typeof window !== 'undefined' ? window : globalThis);

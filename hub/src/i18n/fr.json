@@ -6333,7 +6333,12 @@
           "8": "Yasser vous tend les clés de l’atelier.",
           "9": "Yasser fait une sieste sur son bureau.",
           "10": "Yasser lève les bras : c’est gagné."
-        }
+        },
+        "tape": "Quartier terminé",
+        "tapeBook": "Livre terminé",
+        "unit": "Encre",
+        "rankOf": "Rang {n} / {N}",
+        "comH": "Le studio le fait pour vous."
       }
     },
     "cast": {
