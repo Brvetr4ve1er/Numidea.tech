@@ -1,0 +1,119 @@
+{
+ "space": "NUMIDEA BASE",
+ "space_id": "a32d1daa-62ef-4d1d-a7a1-db10f46f700f",
+ "page": "CHARACTER BIBLE v2 · Yasser, Kūro & the World",
+ "page_id": "5dc1b4b5-1c39-4f48-86f4-a7e3ff584d95",
+ "rig_page": "Rig frames · Yasser & Kūro",
+ "rig_page_id": "62198ba0-672b-4676-bb50-f7e65cb68487",
+ "status": "queued, not run",
+ "generators": [
+  {
+   "rank": 1,
+   "gap": "menu poses",
+   "name": "J01 — Yasser UI states 1–6",
+   "id": "dd7dea3a-7f46-44ff-97d5-b2de0d7343bd"
+  },
+  {
+   "rank": 1,
+   "gap": "menu poses",
+   "name": "J02 — Yasser UI states 7–11",
+   "id": "38ab4f6f-cf1b-43ca-aff9-637572d4dada"
+  },
+  {
+   "rank": 1,
+   "gap": "menu poses (fallback)",
+   "name": "B03 — Body language sheet",
+   "id": "0aca7798-1d7b-4752-b32c-299e4eef692f"
+  },
+  {
+   "rank": 2,
+   "gap": "second frames",
+   "name": "J08 — Idle layers: Yasser head/eyes/glasses",
+   "id": "a1bebec4-e6eb-4779-8c3f-d707b2210b35"
+  },
+  {
+   "rank": 3,
+   "gap": "Kūro in scene",
+   "name": "J03 — Kūro UI states 1–11",
+   "id": "5f96cf6e-6dff-491c-a865-5a99fda4b83b"
+  },
+  {
+   "rank": 3,
+   "gap": "Kūro in scene",
+   "name": "J09 — Idle layers: Kūro ears/tail/eyes",
+   "id": "b5b6286a-8252-4a7e-bb03-84f151f58a0f"
+  },
+  {
+   "rank": 3,
+   "gap": "Kūro in scene",
+   "name": "C04 — Kūro walk cycle + tail language",
+   "id": "06f0c38b-3a4b-42c8-8b5a-21fa66d2ceb7"
+  },
+  {
+   "rank": 3,
+   "gap": "Kūro in scene",
+   "name": "C05 — Kūro emoji / sticker pack",
+   "id": "7e42f420-2d45-410a-9f90-45736897c055"
+  },
+  {
+   "rank": 4,
+   "gap": "locomotion",
+   "name": "J04 — Sprite strip: Yasser walk (8f)",
+   "id": "e0e95675-784f-46de-9b14-df54d108c722"
+  },
+  {
+   "rank": 4,
+   "gap": "locomotion",
+   "name": "J05 — Sprite strip: Kūro trot (8f)",
+   "id": "0884631b-433c-43a3-8bdc-c51c0ad62734"
+  },
+  {
+   "rank": 4,
+   "gap": "locomotion",
+   "name": "J06 — Sprite strip: Kūro pounce (8f)",
+   "id": "c4a27dce-32a1-4026-be91-8e5f2d7509ce"
+  },
+  {
+   "rank": 4,
+   "gap": "locomotion",
+   "name": "B01 — Locomotion sheet (walk, run, jump)",
+   "id": "ae3e752e-55eb-4514-ae79-cde2bdcf5c54"
+  },
+  {
+   "rank": 5,
+   "gap": "loading loop",
+   "name": "J07 — Sprite strip: Yasser scribble loop (8f)",
+   "id": "913da495-ac2c-48a6-a995-3417b00751fa"
+  },
+  {
+   "rank": 5,
+   "gap": "loading loop",
+   "name": "J12 — Micro-interactions sheet",
+   "id": "5f9058af-eb2b-4627-8428-776333bf2666"
+  },
+  {
+   "rank": 6,
+   "gap": "transitions",
+   "name": "J10 — Transition: torn-paper page change",
+   "id": "221f89aa-e2f1-43b7-9353-b4971b369b35"
+  },
+  {
+   "rank": 6,
+   "gap": "transitions",
+   "name": "J11 — Transition: day → night lamp cord",
+   "id": "9cca2364-ba0c-40f8-8f4e-2e8bc8e4edeb"
+  },
+  {
+   "rank": 7,
+   "gap": "turn consistency",
+   "name": "B05 — Hero portrait, three-quarter",
+   "id": "a2d3e249-c1ed-49cc-8c7d-9d6ea831976a"
+  },
+  {
+   "rank": 7,
+   "gap": "turn consistency",
+   "name": "I11 — Transparent cutouts sheet (web assets)",
+   "id": "47c3c701-65f5-4195-9d6d-9705aaa28e23"
+  }
+ ]
+}

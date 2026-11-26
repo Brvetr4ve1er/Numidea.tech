@@ -1,6 +1,6 @@
 # Numidea Labs: handoff to the publishing session
 
-Snapshot: **2026-11-25 23:45 UTC (00:45 Paris, 26 Nov)**, refreshed **23:55 UTC** (site-ready menu package, Alliance flock request) and **00:00 UTC 26 Nov** (owner decisions, below). Written by the "Package project handoff" thread of the Claude project "Numidea Labs landing page".
+Snapshot: **2026-11-25 23:45 UTC (00:45 Paris, 26 Nov)**, refreshed **23:55 UTC** (site-ready menu package, Alliance flock request) **00:00 UTC 26 Nov** (owner decisions, below) and **00:15 UTC** (character kit, game loop spec, PR 18 art, flock demo). Written by the "Package project handoff" thread of the Claude project "Numidea Labs landing page".
 
 **The rule that created this file:** the owner (Br4ve, GitHub `Brvetr4ve1er`) decided that the project does not publish. It produces drafts, previews, canvases and files. **You, the publishing session, do all merging, deploying, repo cleanup and settings changes.** Nothing below has been published unless it says "live".
 
@@ -53,7 +53,7 @@ Open PRs [V] (all drafts, all based on the trunk):
 |---|---|---|---|---|
 | 1 | [#26](https://github.com/Brvetr4ve1er/Numidea.tech/pull/26) `claude/project-thread-r84igh` @ cbe6e8b | RELEASE.md section 0: the one-trunk rule | Docs only, on f32a749. [R] check passes, preview ready | Merge first. It changes no published file (RELEASE.md is in NOT_DEPLOYED). |
 | 2 | [#24](https://github.com/Brvetr4ve1er/Numidea.tech/pull/24) `claude/project-thread-ogl5jr` @ 5ecaa7b | 3D atlas books on the Lanterne shelf, plus the new type system and the shelf rebuilt on it | On f32a749. [R] gates passed on f9ce984; the 5ecaa7b type commit was pushed at 23:39 UTC and its gates were still running | **Thread still active.** Wait for the owner's verdict on the type-system shelf, then run gates on the final head. See `workstreams/02`. |
-| 3 | [#18](https://github.com/Brvetr4ve1er/Numidea.tech/pull/18) `claude/project-thread-j3qmb0` @ f328fdc | Alliance Travel case in five chapters, six mockups, 14-plate brand book, social kit | Retargeted to the trunk on 11-25 [V base]. [R] its first commit 2c50a22 is now redundant. Audit was 139/141 on 11-24, with the 2 failures in WorkspaceHQ (since fixed by PR 23) | Merge the trunk in, rerun verify, owner looks at the preview, publish. The owner said yes to adding the 2D and 3D assets, and the thread is adding them now. Wait for that push. |
+| 3 | [#18](https://github.com/Brvetr4ve1er/Numidea.tech/pull/18) `claude/project-thread-j3qmb0` @ 8874067 | Alliance Travel case in five chapters, six mockups, brand book (now **15 plates**: plate 15 adds the 2D drawings and 3D renders), social kit | [V] head 8874067, base f32a749, mergeable clean. [R] the trunk was merged in and the 2D/3D art added; **full verify not re-run since that merge**. Preview: https://numidea-tech-git-claude-project-0caf1a-br4vetravelers-projects.vercel.app/hub/brand/alliance/#p15. The PR body is stale (it still says it's stacked on #17). | Run `npm run verify` on 8874067, have the owner look at plate 15, then publish. Fix the PR body. |
 | 4 | [#20](https://github.com/Brvetr4ve1er/Numidea.tech/pull/20) `claude/project-thread-vm2rxf` @ 17b86e3 | Characters C1 to C3: canon Yasser and Kūro, drawn turnaround, "Talk to Yasser" box with `api/yasser.js` | **Stale base** (702b008, about 24 commits behind), mergeable state dirty [R] | Merge or rebase the trunk in, rerun verify. The talk box needs the owner's `ANTHROPIC_API_KEY` in Vercel plus a spend cap before it does anything live. See `workstreams/03`. |
 | parked | [#14](https://github.com/Brvetr4ve1er/Numidea.tech/pull/14) `claude/project-thread-a0zy0f` @ dc26b39 | Online banking course slice 1 (hub/banque.html), from an older project | Untouched since 2026-11-22, very stale base | **Parked by the owner (2026-11-26)** until the RPG game loop spec exists. Leave it open. |
 
@@ -70,9 +70,12 @@ Never publish from a side branch. The safe path is: PR into the trunk, Vercel pr
    - EN and AR copy and the mirrored Arabic (RTL) layout aren't written.
    - **Decided: it replaces the home hero.**
    - It ships its own `<h1>`; resolve that against the home's.
-3. **Alliance Travel: "murmuration wordmark" flock animation** (thread "Upgrade Alliance Travel brand package"). The owner just asked for a flock-of-birds wordmark animation adapted for Alliance. It had just started at the refresh, so there's no output yet. Watch `/mnt/project-files/alliance-brand/` for it.
+3. **Alliance Travel: "murmuration wordmark" flock animation** (update 00:15 UTC: a vanilla JS port is done in `/mnt/project-files/alliance-brand/murmuration/`, with `murmuration.js` ~9 KB, `demo.html`, previews and a README of options. It's **not wired into any site**. Original note:) (thread "Upgrade Alliance Travel brand package"). The owner just asked for a flock-of-birds wordmark animation adapted for Alliance. It had just started at the refresh, so there's no output yet. Watch `/mnt/project-files/alliance-brand/` for it.
 
-Re-read `aesthetics/HANDOFF.md`, `characters/STATE.md` and `characters/site-menu/README.md` when you start. They will be newer than this one.
+4. **Character kit** (characters thread), `/mnt/project-files/characters/kit/`, ready to integrate but not integrated. It holds 95 cleaned drawings (~2.7 MB) with a `manifest.json`, and `kit.json` with 24 actions, 12 reactions and 24 scenes on the 90 BPM clock. The player is `kit.js` + `kit.css`, 2.8 KB gzip, with no dependencies and CSP-safe. Wiring steps are in `README.md`. `MISSING.md` ranks the missing drawings (one pose per menu section first) against the **unrun** Magnific generators (J01, J02, … in the owner's NUMIDEA BASE space, "CHARACTER BIBLE v2" page). Don't ship `index.html` or `preview/`.
+5. **RPG game loop spec** (thread "Design the RPG game loop"), a Claude Doc at https://claude.ai/artifact/QqmYWdH7JKc2BG7oF7xt8M. It covers the **Encre** currency, 10 ranks, a reward card and commissions. [R] It has **three open questions for the owner**; read them in the doc. Nothing is built yet, and PR #14 waits on it.
+
+Re-read `aesthetics/HANDOFF.md`, `characters/STATE.md`, `characters/site-menu/README.md`, `characters/kit/README.md` and the game loop spec when you start. They will be newer than this one.
 
 ---
 
@@ -84,8 +87,8 @@ Re-read `aesthetics/HANDOFF.md`, `characters/STATE.md` and `characters/site-menu
 | 2 | Run `ops/delete-dead-branches.sh` | `/mnt/project-files/handoff/files/delete-dead-branches.sh` (copy) | Cloud sessions get 403 on branch deletes and tag pushes. The script tags every branch `archive/<name>` first, then deletes. Fully reversible. |
 | 3 | `ANTHROPIC_API_KEY` in Vercel env + a Console spend limit | Vercel project env | Only needed if the PR #20 talk box ships. Without it the box plays an offline line. Never handle the key yourself. |
 | 4 | Search Console: add a **Domain** property for `numedialab.dev`, resubmit the sitemap | Google Search Console | Current property is URL-prefix non-www, so it shows 0 impressions. |
-| 5 | Verdict on the type-system shelf (PR 24). The menu placement, PR 14 and PR 18 were decided on 2026-11-26 (section 0). | the owner | Gates the order in section 2. |
-| 6 | Magnific: 28 rig-frame generators queued in the owner's "Numidea" space, not run | Magnific app (runs free there; via MCP it costs credits) | Feeds missing poses (second pose per gesture, one pose per menu section, side/back views). |
+| 5 | Verdict on the type-system shelf (PR 24), the three open questions in the game loop spec, and a look at PR 18 plate 15. The menu placement, PR 14 and PR 18's scope were decided on 2026-11-26 (section 0). | the owner | Gates the order in section 2. |
+| 6 | Magnific: the J01, J02… generators on the "CHARACTER BIBLE v2" page (ranked in `characters/kit/MISSING.md`) and 28 rig-frame generators queued in the owner's "Numidea" space, not run | Magnific app (runs free there; via MCP it costs credits) | Feeds missing poses (second pose per gesture, one pose per menu section, side/back views). |
 
 ---
 

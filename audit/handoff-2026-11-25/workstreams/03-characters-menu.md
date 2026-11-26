@@ -36,6 +36,22 @@ Owner feedback trail: v1 "don't like the way the cards are laid out", "missing t
   4. There's one still pose only. The six per-section drawings don't exist; they could come from the 28 queued Magnific generators, which the owner runs free in the app.
 - No React, Tailwind or shadcn. CSP is `'self'`.
 
+## C2. Character kit: `/mnt/project-files/characters/kit/` (00:12 UTC, not integrated)
+- 95 cleaned drawings: Yasser has 12 full poses, 12 action frames (6 two-frame gestures), 12 faces, 13 head-rig frames on a shared 501×565 canvas, the 5-view turn and 2 hero masters. Kūro has 12 reactions and 7 rig frames on a shared 360×294 canvas. There are also 20 props.
+- Ids follow `owner:kind:name` (e.g. `yasser:face:smirk`, `kuro:react:judge`), and short forms are accepted.
+- `kit.json` holds the clock, easings, 24 actions, 12 reactions, motions and 24 scenes. `kit.js` (no dependencies, CSP-safe) and `kit.css` add up to 2.8 KB gzip.
+- Wiring steps are in its README. Don't ship `index.html` or `preview/`. To test: `node qa/test.cjs`.
+- **MISSING.md, ranked:**
+  1. One pose per menu section (J01/J02).
+  2. A second frame for the 12 single poses (the rig-frames page and J08).
+  3. Kūro reacting in the scene (J03/J09/C04/C05).
+  4. Locomotion (J04–J06/B01).
+  5. A busy loop for the talk box (J07/J12).
+  6. Page transitions (J10/J11).
+  7. Matching side and back views (B05/I11).
+- All of those are **unrun** generators in the owner's Magnific space. Through the API they cost about 50 credits each and the owner chose zero, so the owner runs them in the app. Each new sheet takes about 10 minutes to cut in with `tools/`.
+- Excluded as off-model: `sil-5`, `yasser-lost`, and the expression sets 2–4 imports.
+
 ## D. Tools and how to check work
 - Always render a board before publishing it to the canvas: `node characters/tools/board-render.cjs BOARD.dc.html map.json OUTDIR` (map = blob id → local file). Menu: `menu-render-gen.cjs`.
 - Matting: rembg `birefnet-general-lite` works on objects; `isnet-anime` does not. `dehalo.py` removes paper trapped in hair.

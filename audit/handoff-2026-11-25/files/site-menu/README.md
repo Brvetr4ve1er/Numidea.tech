@@ -24,7 +24,9 @@
    - `fonts/*` goes to `assets/fonts/`.
    - Update the relative `url(fonts/…)` paths in `menu.css` and the `img/…` paths in the markup to match.
 2. **Place the markup.** Paste `menu.html` where the home intro should be. Load `menu.css` in `<head>` and `menu.js` with `defer`. The JS contains no inline script, so it fits the site's CSP (`script-src 'self'`). Inline `style=""` attributes are used for per-card custom properties, which `style-src 'unsafe-inline'` already allows.
-3. **Decide what it replaces.** This is a full-height intro plus nav. The owner has not said whether it replaces the current hero or sits above it. **Ask the owner.**
+3. **Placement: it replaces the home hero.**
+   - Source: the project coordinator reported on 2026-11-26 that the owner chose this on a decision card in the project chat, over "above the hero" and "hub only". This thread did not see the card itself, so check the project chat before swapping.
+   - The swap: remove the current hero section on `/` and put this section first in `<main>`. Keep the rest of the home below it.
 4. **`<h1>`.** The menu ships an `<h1>Numidea Labs</h1>`. If the page already has an h1, change this one to a `<p>` or remove the other.
 5. **Languages.**
    - All copy is French.
@@ -51,6 +53,27 @@
 - **Reduced motion:** no intro, no wipe and no breath. The mesh is drawn once. Colour changes stay.
 - **No JS:** the menu renders at rest and every card is a plain link.
 - **Not tested:** Safari and Firefox, a real phone, and how the animation feels to watch in real time. Screenshots only prove the frames.
+
+## Layout grid (v2, 2026-11-26)
+
+The owner called v1 "misaligned and sloppy" and said that on the phone "nothing is centered". v2 replaced the free placement with a grid, so keep to it. The card copy, links and positions live in `gen.py`. Edit them there and run `python3 gen.py`, instead of hand-editing the HTML.
+
+**Desktop:**
+- The stage is 1280×800 with 48 px margins, mirrored around x = 640.
+- The name sits top-left at 48/36. The language buttons and the replay button share the same top line on the right.
+- The mood grid is on the left at 48/150. Kūro and the tarot card sit on the same row, at the right margin.
+- There are six cards, all 420×84 with one shape. The hard shadow is the same shape offset by 8 px.
+- The rows are at y = 330, 438 and 546. Each row steps 24 px toward him.
+- The left column is at x = 48, 72 and 96, tilted -5°, -3° and -1°. The right column is its exact mirror.
+- Props sit on the card corner that faces him.
+- The speech banner is at the bottom centre: 600 px wide, starting at x = 340, so its centre is x = 640.
+- The figure, slab and burst are centred on x = 640.
+
+**Phone (< 760 px):**
+- One centred column, at most 360 px wide.
+- Layers from back to front: slab, burst, figure, name, speech banner, cards.
+- Cards are full width and 64 px tall, alternating ±2°.
+- The replay button is centred at the bottom.
 
 ## Motion spec
 

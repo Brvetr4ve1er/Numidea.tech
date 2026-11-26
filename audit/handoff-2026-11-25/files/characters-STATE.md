@@ -1,4 +1,4 @@
-# Characters thread: current state (2026-11-26 00:45 Paris)
+# Characters thread: current state (2026-11-26, updated after the character kit)
 
 Thread: "Improve artworks, characters and mascot animations".
 Project rule from the owner (2026-11-26): **this project does not publish.**
@@ -36,9 +36,28 @@ Menu v2 details:
 - **Cursor mesh background:** the owner pasted a React "constellation grid" snippet. It is ported to plain canvas in Numidea colours, linking neighbours only, and it stops under reduced motion. The site has no React, Tailwind or shadcn, so don't add them for this.
 - **Owner feedback so far:**
   - v1: "don't like the card layout", "missing the other 50% of the style". v2 answers that with a dense collage.
-  - v2: no verdict yet.
-- **Open questions for the owner:** which cards still feel wrong, and whether the mesh should be more visible.
-- **Site-ready package:** `/mnt/project-files/characters/site-menu/` holds plain HTML/CSS/JS, fonts, images, QA shots, a motion spec and integration steps. It is not integrated: the publishing session places it, and the owner decides what it replaces on the home.
+  - v2: approved ("i like it more like this now"). The owner asked for motion and publish-readiness.
+  - Site package v1: "everything is misaligned and sloppy", "nothing is centered, not layered properly". It was rebuilt on a strict grid (package layout v2), and the owner hasn't re-checked it yet.
+- **Site-ready package:** `/mnt/project-files/characters/site-menu/` holds plain HTML/CSS/JS, fonts, images, QA shots, a motion spec, the layout grid and integration steps. **The package is now the source of truth.** The canvas board still shows the older free layout.
+  - **Not integrated.**
+  - **Placement:** it replaces the home hero. The coordinator reported that the owner picked this on a decision card in the project chat on 2026-11-26. Check that card before swapping.
+
+## 2b. Character kit (handoff package, not integrated)
+
+- **Folder:** `/mnt/project-files/characters/kit/`. Start with its `README.md`.
+- **What it holds:**
+  - 95 cleaned assets with `manifest.json`.
+  - `kit.json`, which defines:
+    - 24 actions
+    - 12 reactions, matching the `emotion` enum in `api/yasser.js`
+    - 18 `talk.*` scenes, covering every `act` and chip
+    - 6 `menu.*` scenes
+  - `kit.js`, the player (2.8 KB gzip), and `kit.css`.
+  - A preview page (`index.html`) and Playwright QA.
+- **What it lacks:** the drawings listed in `MISSING.md` and `generators.json`, ranked.
+  - #1 is one pose per menu section, from J01/J02.
+  - All of them are queued in Magnific and none has run. Running them is the owner's call because of credits.
+- **The package is the source of truth.** It supersedes the per-board data on the canvas.
 
 ## 3. Docs
 

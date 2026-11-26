@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kit personnages · Numidea</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="preview/preview.css">
+<script src="kit.js" defer></script>
+<script src="preview/preview.js" defer></script>
+</head>
+<body>
+<header class="top">
+  <h1>Kit personnages <span>Yasser &amp; Kūro</span></h1>
+  <p id="stats">Chargement…</p>
+  <nav><a href="#scenes">Scènes</a><a href="#reactions">Réactions</a><a href="#actions">Actions</a><a href="#library">Bibliothèque</a></nav>
+</header>
+
+<section id="scenes">
+  <h2>Scènes <small>réaction + corps + mot + accessoire + carte</small></h2>
+  <div class="stage" id="sceneStage" data-kit-stage>
+    <div class="st-bg"></div>
+    <div class="st-body" data-kit="body"><div class="kit-slot"><img data-base alt=""><img data-over alt=""></div></div>
+    <div class="st-word" data-kit="word"></div>
+    <img class="st-prop" data-kit="prop" alt="">
+    <div class="st-card"><b data-kit="card-name"></b><span data-kit="card-line"></span></div>
+    <div class="st-box">
+      <div class="st-face" data-kit="shake"><img data-kit="face" alt=""><span class="st-mark" data-kit="mark"></span></div>
+      <p data-kit="line"></p>
+      <img class="st-kuro" data-kit="kuro" alt="">
+    </div>
+  </div>
+  <div class="chips" id="sceneChips"></div>
+</section>
+
+<section id="reactions">
+  <h2>Réactions <small>visage + Kūro + signe + mouvement</small></h2>
+  <div class="react" id="reactStage">
+    <div class="r-face" data-kit="shake"><img data-kit="face" alt=""><span class="st-mark" data-kit="mark"></span></div>
+    <div class="r-head kit-slot" data-kit="head"><img data-base alt=""><img data-over alt=""></div>
+    <img class="r-kuro" data-kit="kuro" alt="">
+  </div>
+  <div class="chips" id="reactChips"></div>
+</section>
+
+<section id="actions">
+  <h2>Actions <small>séquences d’images, tenues en croches (83 ms)</small></h2>
+  <div class="grid" id="actionGrid"></div>
+</section>
+
+<section id="library">
+  <h2>Bibliothèque <small>chaque fichier, par type</small></h2>
+  <div id="libGroups"></div>
+</section>
+</body>
+</html>
