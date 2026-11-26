@@ -492,7 +492,8 @@ html:not(.js) .ks img,html:not(.js) .ks__d,html:not(.js) .ks__n{display:none}
   .dio{margin-inline:auto}
   .dio__zoom{align-self:flex-start}
   .mast{gap:6px 10px;min-height:60px}
-  .mast .st-wm__t{font-size:var(--fs-lead)}
+  /* the wordmark gives way to the language switch (3 x 44px targets) and the menu button so the masthead stays one row down to 360px: width per px of type is ~8.3 */
+  .mast .st-wm__t{font-size:clamp(.875rem,calc((100vw - 234px) / 8.3),1.25rem)}
   .mast>.mast__back,.mast__motion{display:none}.mast .lang{margin-inline-start:auto}
   .mast__title,.mast__nav,.mast__cta{display:none}
   /* the Menu: its icon, its name for assistive tech */
