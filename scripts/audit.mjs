@@ -189,7 +189,10 @@ const run=async(label,path,o={})=>{
       return R.some((b,j)=>j!==i&&(dist(cx,cy,b)<12||((b.width<24||b.height<24)&&Math.hypot(cx-(b.left+b.width/2),cy-(b.top+b.height/2))<24)))}).length;
     const imgs=[...document.images].filter(i=>i.complete&&i.naturalWidth===0&&(i.getAttribute('src')||i.currentSrc)).length;   // an <img> with no src yet (a viewer's, filled on open) is not a broken one
     // the first screen must reach the offer: the hero's lede starts inside the first viewport (a short landscape phone or a laptop at 150% put it below the fold)
-    const L=document.querySelector('.lede');
+    // 2026-11-26: when the game menu is the home's first screen (assets/menu/), the offer it must reach is its
+    // Tarifs slab (always a link, never dimmed or locked), so the slab is what has to start inside the first viewport.
+    // The old hero's .lede is still measured on any page without the menu.
+    const L=document.querySelector('.nl-menu .nl-item.big[data-id="tarifs"]')||document.querySelector('.lede');
     return {cls:window.__cls,of:[...new Set(of)],hidden,small,imgs,hscroll:document.documentElement.scrollWidth>dw+1,ledeTop:L?Math.round(L.getBoundingClientRect().top+scrollY):null,
       // the webfont files this page fetched, as the browser counted them (the Arabic page carries its own faces)
       fontBytes:performance.getEntriesByType('resource').filter(r=>/\.woff2(\?|$)/.test(r.name)).reduce((a,r)=>a+(r.encodedBodySize||0),0)};});

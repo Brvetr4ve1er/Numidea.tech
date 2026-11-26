@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alliance Travel · Murmuration</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#002C51; --mint:#9CE8B2; --sand:#EFE8DF; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--sand); color:var(--navy); font-family:'DM Sans',sans-serif; }
+  .over { position:relative; z-index:1; height:100%; pointer-events:none; display:flex; flex-direction:column; justify-content:space-between; padding:clamp(20px,4vw,56px); }
+  .over a { pointer-events:auto; }
+  .eyebrow { font-weight:700; letter-spacing:.18em; text-transform:uppercase; font-size:14px; }
+  .bottom { display:flex; justify-content:space-between; align-items:end; gap:24px; flex-wrap:wrap; }
+  .lede { max-width:30ch; font-size:clamp(17px,1.6vw,22px); line-height:1.4; margin:0; }
+  .cta { display:inline-flex; gap:10px; align-items:center; background:var(--mint); color:var(--navy); font-weight:700; padding:16px 26px; border-radius:999px; text-decoration:none; }
+  .cta.navy { background:var(--navy); color:var(--sand); }
+  #hero { height:86svh; color:var(--sand); }
+  #hero .eyebrow { color:var(--mint); }
+  #band { height:56svh; }
+  .now { font-family:Sora,sans-serif; font-weight:600; font-size:14px; letter-spacing:.1em; text-transform:uppercase; opacity:.8; }
+</style>
+</head>
+<body>
+  <!-- 1. Hero: the flock spells each destination in turn. -->
+  <section id="hero">
+    <div class="over">
+      <div class="eyebrow">Alliance Travel · Circuits 2027</div>
+      <div class="bottom">
+        <p class="lede">Des milliers d'oiseaux, une seule direction. Choisissez la vôtre.</p>
+        <div style="display:flex;gap:18px;align-items:center">
+          <span class="now" id="now">Bali</span>
+          <a class="cta" href="#">Demandez votre devis →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Closing band on sand: one word, then the call to action. -->
+  <section id="band">
+    <div class="over">
+      <div class="eyebrow">Prêt ?</div>
+      <div class="bottom">
+        <p class="lede">On s'occupe du vol, de l'hôtel et du reste. Vous, partez.</p>
+        <a class="cta navy" href="#">Parler à un conseiller →</a>
+      </div>
+    </div>
+  </section>
+
+<script src="murmuration.js"></script>
+<script>
+  var now = document.getElementById('now');
+  window.hero = AllianceMurmuration.mount(document.getElementById('hero'), {
+    words: ['Bali', 'Vietnam', 'Istanbul', 'Tunisie'], preset: 'navy', wordY: 0.42,
+    onWord: function (w) { now.textContent = w; }
+  });
+  window.band = AllianceMurmuration.mount(document.getElementById('band'), {
+    words: ['Partez.'], preset: 'sand', birds: 3000, route: false, flyFor: 5, wordY: 0.45
+  });
+</script>
+</body>
+</html>

@@ -196,10 +196,11 @@
      in the stylesheet alone it was not yet read when a fast arrival showed its
      first frame ("opt-in disabled"), and the lift was skipped, a hard cut. -->
 <style>@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto;types:page}}</style>
-<link rel="stylesheet" href="../assets/fonts.css?v=202611261606">
+<link rel="stylesheet" href="../assets/fonts.css?v=202611261618">
 <!-- themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them -->
-<link rel="stylesheet" href="../assets/themes.css?v=202611261606">
-<link rel="stylesheet" href="../assets/styles.css?v=202611261606">
+<link rel="stylesheet" href="../assets/themes.css?v=202611261618">
+<link rel="stylesheet" href="../assets/styles.css?v=202611261618">
+<link rel="stylesheet" href="../assets/menu/menu.css?v=202611261618">
 <noscript><style>
   /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */
   .reveal{opacity:1!important;transform:none!important}
@@ -309,6 +310,86 @@
 
 
 <span id="top"></span>
+<!-- ================= MENU (characters thread, 2026-11-26) =================
+     The intro and navigation menu: the first screen of the home page. Its copy is
+     in assets/i18n/*.js (menu.*); its markup, styles and motion come from
+     /mnt/project-files/characters/site-menu (gen.py writes this block).
+     The old hero still follows inside <main>: see the draft PR for why. -->
+<section class="nl-menu p4" aria-label="Numidea Labs، القائمة" data-i18n-aria="menu.aria">
+<div class="nl-stage">
+ <div class="nl-abs nl-stripes" aria-hidden="true"></div>
+ <div class="nl-abs nl-dots" aria-hidden="true"></div>
+ <canvas class="nl-abs nl-mesh" aria-hidden="true"></canvas>
+ <div class="nl-abs nl-shake" aria-hidden="true">
+  <div class="nl-abs nl-slab"></div>
+  <div class="nl-abs nl-shard s1"></div><div class="nl-abs nl-shard s2"></div><div class="nl-abs nl-shard s3"></div>
+  <div class="nl-abs nl-burst"></div>
+  <div class="nl-abs nl-mark" aria-hidden="true" data-decorative>ヌミデア</div>
+  <div class="nl-abs nl-echo"><img src="../assets/menu/yasser-full.webp" alt="" width="564" height="1278" decoding="async"></div>
+  <img class="nl-abs nl-fig" src="../assets/menu/yasser-full.webp" alt="" width="564" height="1278" fetchpriority="high" decoding="async">
+ </div>
+ <p class="nl-abs nl-line" data-text="Numidea Labs · le studio de nuit" aria-hidden="true" data-i18n="menu.line">Numidea Labs · استوديو الليل</p>
+ <p class="nl-abs nl-name" dir="ltr"><span aria-hidden="true"><span class="nl-ch j1">N</span><span class="nl-ch j2">u</span><span class="nl-ch j3">m</span><span class="nl-ch j4">i</span><span class="nl-ch j5">d</span><span class="nl-ch j0">e</span><span class="nl-ch j1">a</span><br><span class="nl-ch j4">L</span><span class="nl-ch j5">a</span><span class="nl-ch j0">b</span><span class="nl-ch j1">s</span></span><span class="nl-sr sr-only">Numidea Labs</span></p>
+
+ <div class="nl-abs nl-hud nl-cut" aria-hidden="true"><div class="nl-cut-band"></div>
+  <img class="nl-cut-prop" data-kit="prop" src="../assets/kit/art/props/fineliner.webp" alt="" width="240" height="240" decoding="async">
+  <div class="nl-cut-slot" data-kit="body"><div class="kit-slot"><img data-base src="../assets/kit/art/yasser/pose/receipt.webp" alt="" decoding="async"><img data-over src="../assets/kit/art/yasser/pose/receipt.webp" alt="" decoding="async"></div></div>
+  <span class="nl-tag nl-cut-tag" data-i18n="menu.cut">على المسرح</span></div>
+ <div class="nl-abs nl-hud nl-kuro" aria-hidden="true"><div class="nl-tarot"><img class="nl-tarot-frame" src="../assets/menu/tarot.webp" alt="" width="141" height="240" decoding="async"><img class="nl-cat" data-kit="kuro" src="../assets/kit/art/kuro/react/judge.webp" alt="" decoding="async"></div><span class="nl-tag"><span data-i18n="menu.kuroName">كورو</span> : <span class="nl-kuro-say">juge</span></span></div>
+
+ <nav aria-label="قائمة الاستوديو" data-i18n-aria="menu.nav"><ul class="nl-nav">
+<li><a class="nl-item l big on" href="tarifs/" data-id="tarifs" data-kuro="judge" data-pose="yasser/pose/receipt" data-prop="fineliner">
+ <span class="nl-pr"><span class="nl-sh"></span><span class="nl-face"></span>
+  <span class="nl-tx"><span class="nl-lab" data-i18n="menu.tarifs.label">الأسعار</span></span>
+  <span class="nl-sub" data-i18n="menu.tarifs.sub">سعر ثابت، مكتوب مسبقًا</span>
+ </span>
+ <span class="nl-d" data-k="say" hidden data-i18n="menu.tarifs.say">السعر مكتوب قبل أن نبدأ. لا مفاجآت.</span><span class="nl-d" data-k="kuro" hidden data-i18n="menu.tarifs.kuro">يدقّق</span>
+</a></li>
+<li><a class="nl-item r big wa-link" data-wa-text="wa.hello" data-id="contact" data-kuro="smug" data-pose="yasser/action/phone-a" data-prop="scooter" href="https://wa.me/213672412578?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20Numidea%20Labs%20%E2%80%94%20%D8%A3%D9%88%D8%AF%D9%91%20%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%B9%D9%86%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9." target="_blank" rel="noopener">
+ <span class="nl-pr"><span class="nl-sh"></span><span class="nl-face"></span>
+  <span class="nl-tx"><span class="nl-lab" data-i18n="menu.contact.label">تواصل</span></span>
+  <span class="nl-sub" data-i18n="menu.contact.sub">واتساب، معي مباشرة</span>
+ </span>
+ <span class="nl-d" data-k="say" hidden data-i18n="menu.contact.say">لا وسيط. تكتب أنت، وأنا من يردّ.</span><span class="nl-d" data-k="kuro" hidden data-i18n="menu.contact.kuro">موافق</span>
+</a></li>
+<li><a class="nl-item l small" href="../scene/?lang=ar" data-id="travaux" data-kuro="stamp" data-pose="yasser/action/win-a" data-prop="box-open">
+ <span class="nl-pr"><span class="nl-sh"></span><span class="nl-face"></span>
+  <span class="nl-tx"><span class="nl-lab" data-i18n="menu.travaux.label">الأعمال</span></span>
+  <span class="nl-sub" data-i18n="menu.travaux.sub">مواقع منشورة</span>
+ </span>
+ <span class="nl-d" data-k="say" hidden data-i18n="menu.travaux.say">مواقع حقيقية، على الإنترنت. اضغط وسترى.</span><span class="nl-d" data-k="kuro" hidden data-i18n="menu.travaux.kuro">يوافق</span>
+</a></li>
+<li><a class="nl-item l small" href="../hub/?lang=ar" data-id="atelier" data-kuro="peek" data-pose="yasser/action/sketch-a" data-prop="laptop">
+ <span class="nl-pr"><span class="nl-sh"></span><span class="nl-face"></span>
+  <span class="nl-tx"><span class="nl-lab" data-i18n="menu.atelier.label">الورشة</span></span>
+  <span class="nl-sub" data-i18n="menu.atelier.sub">أدوات، عروض، كواليس</span>
+ </span>
+ <span class="nl-d" data-k="say" hidden data-i18n="menu.atelier.say">هنا أصنع. ادخل، لكن لا تلمس لوحة المفاتيح.</span><span class="nl-d" data-k="kuro" hidden data-i18n="menu.atelier.kuro">يراقب</span>
+</a></li>
+<li><a class="nl-item r small" href="../hub/lanterne/?lang=ar" data-id="lanterne" data-kuro="loaf" data-pose="yasser/action/pointup-a" data-prop="sketchbook">
+ <span class="nl-pr"><span class="nl-sh"></span><span class="nl-face"></span>
+  <span class="nl-tx"><span class="nl-lab" data-i18n="menu.lanterne.label">الفانوس</span></span>
+  <span class="nl-sub" data-i18n="menu.lanterne.sub">المكتبة</span>
+ </span>
+ <span class="nl-d" data-k="say" hidden data-i18n="menu.lanterne.say">ما تعلّمته، مرتّبًا لتتعلّمه أسرع.</span><span class="nl-d" data-k="kuro" hidden data-i18n="menu.lanterne.kuro">يستريح</span>
+</a></li>
+<li><a class="nl-item r small" href="../hub/bible/" data-id="bible" data-kuro="love" data-pose="yasser/turn/front" data-prop="fountain-pen">
+ <span class="nl-pr"><span class="nl-sh"></span><span class="nl-face"></span>
+  <span class="nl-tx"><span class="nl-lab" data-i18n="menu.bible.label">الدليل</span></span>
+  <span class="nl-sub" data-i18n="menu.bible.sub">من أنا، والقط</span>
+ </span>
+ <span class="nl-d" data-k="say" hidden data-i18n="menu.bible.say">أنا، وكورو، وقواعد الرسم. يمكنك حتى أن تحدّثني.</span><span class="nl-d" data-k="kuro" hidden data-i18n="menu.bible.kuro">يحبّك</span>
+</a></li>
+ </ul></nav>
+
+ <div class="nl-abs nl-hud nl-say"><div class="nl-say-in"><span class="nl-say-dest">Tarifs · Prix fixe, écrit avant</span><p class="nl-say-box">Le prix est écrit avant qu’on commence. Pas de surprise.</p></div></div>
+
+ <div class="nl-abs nl-hud nl-topright"><button class="nl-replay" type="button" data-i18n="menu.replay">أعد المقدّمة</button></div>
+ <button class="nl-abs nl-skip" type="button" data-i18n="menu.skip">تخطَّ المقدّمة</button>
+ <div class="nl-abs nl-go" aria-hidden="true"></div>
+ <div class="nl-abs nl-gotxt" aria-hidden="true"><span class="nl-golab"></span><span class="nl-godest"></span></div>
+</div>
+</section>
 <main id="main" class="wrap" tabindex="-1">
 
   <!-- ================= HERO ================= -->
@@ -1358,9 +1439,11 @@
 
 <!-- this page's dictionary (one language), then the script that reads it;
      both deferred, so they run in this order -->
-<script src="../assets/i18n/ar.js?v=202611261606" defer></script>
-<script src="../assets/app.js?v=202611261606" defer></script>
-<script src="../assets/carry.js?v=202611261606" defer></script>
+<script src="../assets/i18n/ar.js?v=202611261618" defer></script>
+<script src="../assets/kit/kit.js?v=202611261618" defer></script>
+<script src="../assets/menu/menu.js?v=202611261618" defer></script>
+<script src="../assets/app.js?v=202611261618" defer></script>
+<script src="../assets/carry.js?v=202611261618" defer></script>
 <!-- FAQ structured data, written from the page's dictionary by
      scripts/build-lang.mjs; applyLang() writes it again on load. -->
 <script type="application/ld+json" id="ld-faq">

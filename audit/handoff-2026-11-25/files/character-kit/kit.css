@@ -1,0 +1,15 @@
+/* Numidea character kit · the three classes kit.js toggles, on the 90 BPM ladder.
+   Copy these into the site CSS as-is. Transform and opacity only; nothing loops. */
+:root{--e8:83ms;--d2:167ms;--d3:250ms;--d4:333ms;--d5:420ms;
+  --out:cubic-bezier(.16,1,.3,1);--in:cubic-bezier(.7,0,.84,0);--snap:cubic-bezier(.34,1.56,.64,1)}
+@keyframes kit-pop{0%{transform:scale(.6);opacity:0}100%{transform:none;opacity:1}}
+@keyframes kit-stamp{0%{transform:scale(1.6) rotate(-6deg);opacity:0}100%{transform:rotate(-3deg);opacity:1}}
+@keyframes kit-slam{0%{transform:translateY(-60px) scaleY(1.08);opacity:0}55%{transform:translateY(0) scale(1.04,.94);opacity:1}80%{transform:translateY(-6px) scale(.99,1.02)}100%{transform:none}}
+.kit-pop{animation:kit-pop var(--d3) var(--snap) both}
+.kit-stamp{animation:kit-stamp var(--d3) var(--snap) both}
+.kit-slam{animation:kit-slam var(--d5) var(--out) both}
+@media (prefers-reduced-motion:reduce){.kit-pop,.kit-stamp,.kit-slam{animation:none}}
+/* a rig slot: base and overlay share one box, so frames register pixel-for-pixel */
+.kit-slot{position:relative;display:inline-block}
+.kit-slot>img{display:block;width:100%;height:auto}
+.kit-slot>[data-over]{position:absolute;inset:0;opacity:0}

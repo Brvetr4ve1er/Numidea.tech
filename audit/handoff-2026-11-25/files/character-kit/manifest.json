@@ -1,0 +1,1159 @@
+{
+ "generated": "2026-11-26",
+ "count": 95,
+ "bytes": 2690170,
+ "assets": [
+  {
+   "id": "yasser:pose:coffee",
+   "file": "art/yasser/pose/coffee.webp",
+   "w": 385,
+   "h": 440,
+   "kind": "pose",
+   "tags": [
+    "tired",
+    "break"
+   ],
+   "origin": "bible-clean",
+   "bytes": 36578
+  },
+  {
+   "id": "yasser:pose:facepalm",
+   "file": "art/yasser/pose/facepalm.webp",
+   "w": 509,
+   "h": 440,
+   "kind": "pose",
+   "tags": [
+    "embarrassed",
+    "oops"
+   ],
+   "origin": "bible-clean",
+   "bytes": 38562
+  },
+  {
+   "id": "yasser:pose:flagstack",
+   "file": "art/yasser/pose/flagstack.webp",
+   "w": 560,
+   "h": 427,
+   "kind": "pose",
+   "tags": [
+    "launch",
+    "proud"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 45216
+  },
+  {
+   "id": "yasser:pose:handover",
+   "file": "art/yasser/pose/handover.webp",
+   "w": 560,
+   "h": 435,
+   "kind": "pose",
+   "tags": [
+    "deliver"
+   ],
+   "origin": "bible-clean",
+   "bytes": 41468
+  },
+  {
+   "id": "yasser:pose:inspect",
+   "file": "art/yasser/pose/inspect.webp",
+   "w": 560,
+   "h": 416,
+   "kind": "pose",
+   "tags": [
+    "detail",
+    "focus"
+   ],
+   "origin": "bible-clean",
+   "bytes": 51134
+  },
+  {
+   "id": "yasser:pose:invoice",
+   "file": "art/yasser/pose/invoice.webp",
+   "w": 520,
+   "h": 440,
+   "kind": "pose",
+   "tags": [
+    "price"
+   ],
+   "origin": "bible-clean",
+   "bytes": 44132
+  },
+  {
+   "id": "yasser:pose:laptop",
+   "file": "art/yasser/pose/laptop.webp",
+   "w": 495,
+   "h": 440,
+   "kind": "pose",
+   "tags": [
+    "build",
+    "code"
+   ],
+   "origin": "bible-clean",
+   "bytes": 35962
+  },
+  {
+   "id": "yasser:pose:nap",
+   "file": "art/yasser/pose/nap.webp",
+   "w": 560,
+   "h": 233,
+   "kind": "pose",
+   "tags": [
+    "sleep",
+    "break"
+   ],
+   "origin": "bible-clean",
+   "bytes": 22016
+  },
+  {
+   "id": "yasser:pose:point",
+   "file": "art/yasser/pose/point.webp",
+   "w": 498,
+   "h": 440,
+   "kind": "pose",
+   "tags": [
+    "decisive",
+    "you"
+   ],
+   "origin": "bible-clean",
+   "bytes": 42954
+  },
+  {
+   "id": "yasser:pose:receipt",
+   "file": "art/yasser/pose/receipt.webp",
+   "w": 412,
+   "h": 440,
+   "kind": "pose",
+   "tags": [
+    "price",
+    "paid"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 28716
+  },
+  {
+   "id": "yasser:pose:shrug",
+   "file": "art/yasser/pose/shrug.webp",
+   "w": 560,
+   "h": 422,
+   "kind": "pose",
+   "tags": [
+    "depends"
+   ],
+   "origin": "bible-clean",
+   "bytes": 42386
+  },
+  {
+   "id": "yasser:pose:sign",
+   "file": "art/yasser/pose/sign.webp",
+   "w": 519,
+   "h": 440,
+   "kind": "pose",
+   "tags": [
+    "show",
+    "present"
+   ],
+   "origin": "bible-clean",
+   "bytes": 39938
+  },
+  {
+   "id": "yasser:action:phone-a",
+   "file": "art/yasser/action/phone-a.webp",
+   "w": 241,
+   "h": 540,
+   "kind": "action-frame",
+   "tags": [
+    "phone"
+   ],
+   "origin": "bible-clean",
+   "bytes": 31214
+  },
+  {
+   "id": "yasser:action:phone-b",
+   "file": "art/yasser/action/phone-b.webp",
+   "w": 241,
+   "h": 540,
+   "kind": "action-frame",
+   "tags": [
+    "phone"
+   ],
+   "origin": "bible-clean",
+   "bytes": 31322
+  },
+  {
+   "id": "yasser:action:pointup-a",
+   "file": "art/yasser/action/pointup-a.webp",
+   "w": 249,
+   "h": 540,
+   "kind": "action-frame",
+   "tags": [
+    "pointup"
+   ],
+   "origin": "bible-clean",
+   "bytes": 32036
+  },
+  {
+   "id": "yasser:action:pointup-b",
+   "file": "art/yasser/action/pointup-b.webp",
+   "w": 249,
+   "h": 540,
+   "kind": "action-frame",
+   "tags": [
+    "pointup"
+   ],
+   "origin": "bible-clean",
+   "bytes": 31872
+  },
+  {
+   "id": "yasser:action:sketch-a",
+   "file": "art/yasser/action/sketch-a.webp",
+   "w": 257,
+   "h": 540,
+   "kind": "action-frame",
+   "tags": [
+    "sketch"
+   ],
+   "origin": "bible-clean",
+   "bytes": 32274
+  },
+  {
+   "id": "yasser:action:sketch-b",
+   "file": "art/yasser/action/sketch-b.webp",
+   "w": 257,
+   "h": 540,
+   "kind": "action-frame",
+   "tags": [
+    "sketch"
+   ],
+   "origin": "bible-clean",
+   "bytes": 32142
+  },
+  {
+   "id": "yasser:action:wave-a",
+   "file": "art/yasser/action/wave-a.webp",
+   "w": 238,
+   "h": 540,
+   "kind": "action-frame",
+   "tags": [
+    "wave"
+   ],
+   "origin": "bible-clean",
+   "bytes": 31124
+  },
+  {
+   "id": "yasser:action:wave-b",
+   "file": "art/yasser/action/wave-b.webp",
+   "w": 238,
+   "h": 540,
+   "kind": "action-frame",
+   "tags": [
+    "wave"
+   ],
+   "origin": "bible-clean",
+   "bytes": 30750
+  },
+  {
+   "id": "yasser:action:win-a",
+   "file": "art/yasser/action/win-a.webp",
+   "w": 252,
+   "h": 540,
+   "kind": "action-frame",
+   "tags": [
+    "win"
+   ],
+   "origin": "bible-clean",
+   "bytes": 31884
+  },
+  {
+   "id": "yasser:action:win-b",
+   "file": "art/yasser/action/win-b.webp",
+   "w": 252,
+   "h": 540,
+   "kind": "action-frame",
+   "tags": [
+    "win"
+   ],
+   "origin": "bible-clean",
+   "bytes": 32304
+  },
+  {
+   "id": "yasser:action:duo-a",
+   "file": "art/yasser/action/duo-a.webp",
+   "w": 673,
+   "h": 520,
+   "kind": "action-frame",
+   "tags": [
+    "duo"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 44112
+  },
+  {
+   "id": "yasser:action:duo-b",
+   "file": "art/yasser/action/duo-b.webp",
+   "w": 673,
+   "h": 520,
+   "kind": "action-frame",
+   "tags": [
+    "duo"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 43130
+  },
+  {
+   "id": "yasser:face:angry",
+   "file": "art/yasser/face/angry.webp",
+   "w": 415,
+   "h": 371,
+   "kind": "face",
+   "tags": [
+    "angry"
+   ],
+   "origin": "bible-clean",
+   "bytes": 25040
+  },
+  {
+   "id": "yasser:face:deadpan",
+   "file": "art/yasser/face/deadpan.webp",
+   "w": 427,
+   "h": 368,
+   "kind": "face",
+   "tags": [
+    "deadpan"
+   ],
+   "origin": "bible-clean",
+   "bytes": 24142
+  },
+  {
+   "id": "yasser:face:facepalm",
+   "file": "art/yasser/face/facepalm.webp",
+   "w": 434,
+   "h": 361,
+   "kind": "face",
+   "tags": [
+    "facepalm"
+   ],
+   "origin": "bible-clean",
+   "bytes": 22872
+  },
+  {
+   "id": "yasser:face:focus",
+   "file": "art/yasser/face/focus.webp",
+   "w": 464,
+   "h": 369,
+   "kind": "face",
+   "tags": [
+    "focus"
+   ],
+   "origin": "bible-clean",
+   "bytes": 25318
+  },
+  {
+   "id": "yasser:face:laugh",
+   "file": "art/yasser/face/laugh.webp",
+   "w": 427,
+   "h": 354,
+   "kind": "face",
+   "tags": [
+    "laugh"
+   ],
+   "origin": "bible-clean",
+   "bytes": 23108
+  },
+  {
+   "id": "yasser:face:pointyou",
+   "file": "art/yasser/face/pointyou.webp",
+   "w": 432,
+   "h": 368,
+   "kind": "face",
+   "tags": [
+    "pointyou"
+   ],
+   "origin": "bible-clean",
+   "bytes": 25624
+  },
+  {
+   "id": "yasser:face:shocked",
+   "file": "art/yasser/face/shocked.webp",
+   "w": 439,
+   "h": 369,
+   "kind": "face",
+   "tags": [
+    "shocked"
+   ],
+   "origin": "bible-clean",
+   "bytes": 24138
+  },
+  {
+   "id": "yasser:face:sideeye",
+   "file": "art/yasser/face/sideeye.webp",
+   "w": 430,
+   "h": 377,
+   "kind": "face",
+   "tags": [
+    "sideeye"
+   ],
+   "origin": "bible-clean",
+   "bytes": 23460
+  },
+  {
+   "id": "yasser:face:sleep",
+   "file": "art/yasser/face/sleep.webp",
+   "w": 417,
+   "h": 372,
+   "kind": "face",
+   "tags": [
+    "sleep"
+   ],
+   "origin": "bible-clean",
+   "bytes": 24168
+  },
+  {
+   "id": "yasser:face:smirk",
+   "file": "art/yasser/face/smirk.webp",
+   "w": 460,
+   "h": 358,
+   "kind": "face",
+   "tags": [
+    "smirk"
+   ],
+   "origin": "bible-clean",
+   "bytes": 23064
+  },
+  {
+   "id": "yasser:face:think",
+   "file": "art/yasser/face/think.webp",
+   "w": 410,
+   "h": 363,
+   "kind": "face",
+   "tags": [
+    "think"
+   ],
+   "origin": "bible-clean",
+   "bytes": 23342
+  },
+  {
+   "id": "yasser:face:tired",
+   "file": "art/yasser/face/tired.webp",
+   "w": 436,
+   "h": 376,
+   "kind": "face",
+   "tags": [
+    "tired"
+   ],
+   "origin": "bible-clean",
+   "bytes": 24902
+  },
+  {
+   "id": "yasser:rig:base",
+   "file": "art/yasser/rig/base.webp",
+   "w": 501,
+   "h": 565,
+   "kind": "rig-frame",
+   "tags": [
+    "head"
+   ],
+   "origin": "bible-clean",
+   "bytes": 39962
+  },
+  {
+   "id": "yasser:rig:blink",
+   "file": "art/yasser/rig/blink.webp",
+   "w": 501,
+   "h": 565,
+   "kind": "rig-frame",
+   "tags": [
+    "head"
+   ],
+   "origin": "bible-clean",
+   "bytes": 39884
+  },
+  {
+   "id": "yasser:rig:glance",
+   "file": "art/yasser/rig/glance.webp",
+   "w": 501,
+   "h": 565,
+   "kind": "rig-frame",
+   "tags": [
+    "head"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 39770
+  },
+  {
+   "id": "yasser:rig:glance-r",
+   "file": "art/yasser/rig/glance-r.webp",
+   "w": 501,
+   "h": 565,
+   "kind": "rig-frame",
+   "tags": [
+    "head"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 40066
+  },
+  {
+   "id": "yasser:rig:glasses",
+   "file": "art/yasser/rig/glasses.webp",
+   "w": 501,
+   "h": 565,
+   "kind": "rig-frame",
+   "tags": [
+    "head"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 42566
+  },
+  {
+   "id": "yasser:rig:half",
+   "file": "art/yasser/rig/half.webp",
+   "w": 501,
+   "h": 565,
+   "kind": "rig-frame",
+   "tags": [
+    "head"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 39840
+  },
+  {
+   "id": "yasser:rig:laugh",
+   "file": "art/yasser/rig/laugh.webp",
+   "w": 501,
+   "h": 565,
+   "kind": "rig-frame",
+   "tags": [
+    "head"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 40414
+  },
+  {
+   "id": "yasser:rig:sip",
+   "file": "art/yasser/rig/sip.webp",
+   "w": 501,
+   "h": 565,
+   "kind": "rig-frame",
+   "tags": [
+    "head"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 39464
+  },
+  {
+   "id": "yasser:rig:smirk",
+   "file": "art/yasser/rig/smirk.webp",
+   "w": 501,
+   "h": 565,
+   "kind": "rig-frame",
+   "tags": [
+    "head"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 39802
+  },
+  {
+   "id": "yasser:rig:talk-a",
+   "file": "art/yasser/rig/talk-a.webp",
+   "w": 501,
+   "h": 565,
+   "kind": "rig-frame",
+   "tags": [
+    "head"
+   ],
+   "origin": "bible-clean",
+   "bytes": 40032
+  },
+  {
+   "id": "yasser:rig:talk-b",
+   "file": "art/yasser/rig/talk-b.webp",
+   "w": 501,
+   "h": 565,
+   "kind": "rig-frame",
+   "tags": [
+    "head"
+   ],
+   "origin": "bible-clean",
+   "bytes": 40066
+  },
+  {
+   "id": "yasser:rig:up",
+   "file": "art/yasser/rig/up.webp",
+   "w": 501,
+   "h": 565,
+   "kind": "rig-frame",
+   "tags": [
+    "head"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 39970
+  },
+  {
+   "id": "yasser:rig:yawn",
+   "file": "art/yasser/rig/yawn.webp",
+   "w": 501,
+   "h": 565,
+   "kind": "rig-frame",
+   "tags": [
+    "head"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 40072
+  },
+  {
+   "id": "yasser:turn:front",
+   "file": "art/yasser/turn/front.webp",
+   "w": 172,
+   "h": 402,
+   "kind": "turn",
+   "tags": [
+    "turnaround"
+   ],
+   "origin": "bible-clean",
+   "bytes": 19468
+  },
+  {
+   "id": "yasser:turn:34",
+   "file": "art/yasser/turn/34.webp",
+   "w": 172,
+   "h": 402,
+   "kind": "turn",
+   "tags": [
+    "turnaround"
+   ],
+   "origin": "bible-clean",
+   "bytes": 18032
+  },
+  {
+   "id": "yasser:turn:side",
+   "file": "art/yasser/turn/side.webp",
+   "w": 172,
+   "h": 402,
+   "kind": "turn",
+   "tags": [
+    "turnaround"
+   ],
+   "origin": "bible-clean",
+   "bytes": 13368
+  },
+  {
+   "id": "yasser:turn:34back",
+   "file": "art/yasser/turn/34back.webp",
+   "w": 172,
+   "h": 402,
+   "kind": "turn",
+   "tags": [
+    "turnaround"
+   ],
+   "origin": "bible-clean",
+   "bytes": 15538
+  },
+  {
+   "id": "yasser:turn:back",
+   "file": "art/yasser/turn/back.webp",
+   "w": 172,
+   "h": 402,
+   "kind": "turn",
+   "tags": [
+    "turnaround"
+   ],
+   "origin": "bible-clean",
+   "bytes": 17316
+  },
+  {
+   "id": "kuro:react:hiss",
+   "file": "art/kuro/react/hiss.webp",
+   "w": 240,
+   "h": 189,
+   "kind": "kuro",
+   "tags": [
+    "hiss"
+   ],
+   "origin": "bible-clean",
+   "bytes": 9754
+  },
+  {
+   "id": "kuro:react:judge",
+   "file": "art/kuro/react/judge.webp",
+   "w": 240,
+   "h": 194,
+   "kind": "kuro",
+   "tags": [
+    "judge"
+   ],
+   "origin": "bible-clean",
+   "bytes": 10394
+  },
+  {
+   "id": "kuro:react:leave",
+   "file": "art/kuro/react/leave.webp",
+   "w": 240,
+   "h": 209,
+   "kind": "kuro",
+   "tags": [
+    "leave"
+   ],
+   "origin": "bible-clean",
+   "bytes": 10252
+  },
+  {
+   "id": "kuro:react:loaf",
+   "file": "art/kuro/react/loaf.webp",
+   "w": 240,
+   "h": 111,
+   "kind": "kuro",
+   "tags": [
+    "loaf"
+   ],
+   "origin": "bible-clean",
+   "bytes": 6636
+  },
+  {
+   "id": "kuro:react:love",
+   "file": "art/kuro/react/love.webp",
+   "w": 240,
+   "h": 242,
+   "kind": "kuro",
+   "tags": [
+    "love"
+   ],
+   "origin": "bible-clean",
+   "bytes": 12466
+  },
+  {
+   "id": "kuro:react:mug",
+   "file": "art/kuro/react/mug.webp",
+   "w": 240,
+   "h": 192,
+   "kind": "kuro",
+   "tags": [
+    "mug"
+   ],
+   "origin": "bible-clean",
+   "bytes": 11568
+  },
+  {
+   "id": "kuro:react:peek",
+   "file": "art/kuro/react/peek.webp",
+   "w": 240,
+   "h": 165,
+   "kind": "kuro",
+   "tags": [
+    "peek"
+   ],
+   "origin": "bible-clean",
+   "bytes": 9590
+  },
+  {
+   "id": "kuro:react:shook",
+   "file": "art/kuro/react/shook.webp",
+   "w": 240,
+   "h": 175,
+   "kind": "kuro",
+   "tags": [
+    "shook"
+   ],
+   "origin": "bible-clean",
+   "bytes": 11130
+  },
+  {
+   "id": "kuro:react:smug",
+   "file": "art/kuro/react/smug.webp",
+   "w": 240,
+   "h": 172,
+   "kind": "kuro",
+   "tags": [
+    "smug"
+   ],
+   "origin": "bible-clean",
+   "bytes": 9734
+  },
+  {
+   "id": "kuro:react:stamp",
+   "file": "art/kuro/react/stamp.webp",
+   "w": 240,
+   "h": 185,
+   "kind": "kuro",
+   "tags": [
+    "stamp"
+   ],
+   "origin": "bible-clean",
+   "bytes": 11680
+  },
+  {
+   "id": "kuro:react:scale",
+   "file": "art/kuro/react/scale.webp",
+   "w": 192,
+   "h": 186,
+   "kind": "kuro",
+   "tags": [
+    "scale"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 6620
+  },
+  {
+   "id": "kuro:rig:base",
+   "file": "art/kuro/rig/base.webp",
+   "w": 360,
+   "h": 294,
+   "kind": "rig-frame",
+   "tags": [
+    "kuro"
+   ],
+   "origin": "bible-clean",
+   "bytes": 10564
+  },
+  {
+   "id": "kuro:rig:blink",
+   "file": "art/kuro/rig/blink.webp",
+   "w": 360,
+   "h": 294,
+   "kind": "rig-frame",
+   "tags": [
+    "kuro"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 9580
+  },
+  {
+   "id": "kuro:rig:ear",
+   "file": "art/kuro/rig/ear.webp",
+   "w": 360,
+   "h": 294,
+   "kind": "rig-frame",
+   "tags": [
+    "kuro"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 10138
+  },
+  {
+   "id": "kuro:rig:left",
+   "file": "art/kuro/rig/left.webp",
+   "w": 360,
+   "h": 294,
+   "kind": "rig-frame",
+   "tags": [
+    "kuro"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 10358
+  },
+  {
+   "id": "kuro:rig:right",
+   "file": "art/kuro/rig/right.webp",
+   "w": 360,
+   "h": 294,
+   "kind": "rig-frame",
+   "tags": [
+    "kuro"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 10540
+  },
+  {
+   "id": "kuro:rig:wide",
+   "file": "art/kuro/rig/wide.webp",
+   "w": 360,
+   "h": 294,
+   "kind": "rig-frame",
+   "tags": [
+    "kuro"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 11474
+  },
+  {
+   "id": "kuro:rig:yawn",
+   "file": "art/kuro/rig/yawn.webp",
+   "w": 360,
+   "h": 294,
+   "kind": "rig-frame",
+   "tags": [
+    "kuro"
+   ],
+   "origin": "bible (dehaloed here)",
+   "bytes": 10082
+  },
+  {
+   "id": "props:satchel",
+   "file": "art/props/satchel.webp",
+   "w": 480,
+   "h": 322,
+   "kind": "prop",
+   "tags": [
+    "satchel"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 27908
+  },
+  {
+   "id": "props:satchel-open",
+   "file": "art/props/satchel-open.webp",
+   "w": 480,
+   "h": 367,
+   "kind": "prop",
+   "tags": [
+    "satchel-open"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 28796
+  },
+  {
+   "id": "props:laptop",
+   "file": "art/props/laptop.webp",
+   "w": 480,
+   "h": 405,
+   "kind": "prop",
+   "tags": [
+    "laptop"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 24852
+  },
+  {
+   "id": "props:laptop-closed",
+   "file": "art/props/laptop-closed.webp",
+   "w": 480,
+   "h": 239,
+   "kind": "prop",
+   "tags": [
+    "laptop-closed"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 12660
+  },
+  {
+   "id": "props:sketchbook",
+   "file": "art/props/sketchbook.webp",
+   "w": 480,
+   "h": 381,
+   "kind": "prop",
+   "tags": [
+    "sketchbook"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 27890
+  },
+  {
+   "id": "props:fineliner",
+   "file": "art/props/fineliner.webp",
+   "w": 480,
+   "h": 300,
+   "kind": "prop",
+   "tags": [
+    "fineliner"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 11356
+  },
+  {
+   "id": "props:fountain-pen",
+   "file": "art/props/fountain-pen.webp",
+   "w": 480,
+   "h": 308,
+   "kind": "prop",
+   "tags": [
+    "fountain-pen"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 12396
+  },
+  {
+   "id": "props:marker",
+   "file": "art/props/marker.webp",
+   "w": 480,
+   "h": 345,
+   "kind": "prop",
+   "tags": [
+    "marker"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 15526
+  },
+  {
+   "id": "props:box-closed",
+   "file": "art/props/box-closed.webp",
+   "w": 480,
+   "h": 407,
+   "kind": "prop",
+   "tags": [
+    "box-closed"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 24470
+  },
+  {
+   "id": "props:box-open",
+   "file": "art/props/box-open.webp",
+   "w": 480,
+   "h": 332,
+   "kind": "prop",
+   "tags": [
+    "box-open"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 21926
+  },
+  {
+   "id": "props:headphones",
+   "file": "art/props/headphones.webp",
+   "w": 426,
+   "h": 480,
+   "kind": "prop",
+   "tags": [
+    "headphones"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 36012
+  },
+  {
+   "id": "props:headphones-flat",
+   "file": "art/props/headphones-flat.webp",
+   "w": 480,
+   "h": 279,
+   "kind": "prop",
+   "tags": [
+    "headphones-flat"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 23974
+  },
+  {
+   "id": "props:scooter",
+   "file": "art/props/scooter.webp",
+   "w": 480,
+   "h": 356,
+   "kind": "prop",
+   "tags": [
+    "scooter"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 28794
+  },
+  {
+   "id": "props:scooter-front",
+   "file": "art/props/scooter-front.webp",
+   "w": 454,
+   "h": 480,
+   "kind": "prop",
+   "tags": [
+    "scooter-front"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 39154
+  },
+  {
+   "id": "props:server",
+   "file": "art/props/server.webp",
+   "w": 174,
+   "h": 480,
+   "kind": "prop",
+   "tags": [
+    "server"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 30998
+  },
+  {
+   "id": "props:server-side",
+   "file": "art/props/server-side.webp",
+   "w": 260,
+   "h": 480,
+   "kind": "prop",
+   "tags": [
+    "server-side"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 31436
+  },
+  {
+   "id": "props:server-boom",
+   "file": "art/props/server-boom.webp",
+   "w": 415,
+   "h": 480,
+   "kind": "prop",
+   "tags": [
+    "server-boom"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 49550
+  },
+  {
+   "id": "props:hairsticks",
+   "file": "art/props/hairsticks.webp",
+   "w": 480,
+   "h": 430,
+   "kind": "prop",
+   "tags": [
+    "hairsticks"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 19204
+  },
+  {
+   "id": "props:tarot",
+   "file": "art/props/tarot.webp",
+   "w": 283,
+   "h": 480,
+   "kind": "prop",
+   "tags": [
+    "tarot",
+    "kuro"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 25394
+  },
+  {
+   "id": "props:tarot-back",
+   "file": "art/props/tarot-back.webp",
+   "w": 281,
+   "h": 480,
+   "kind": "prop",
+   "tags": [
+    "tarot"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 50496
+  },
+  {
+   "id": "yasser:scene:master-full",
+   "file": "art/yasser/scene/master-full.webp",
+   "w": 397,
+   "h": 900,
+   "kind": "hero",
+   "tags": [
+    "full body",
+    "menu"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 68990
+  },
+  {
+   "id": "yasser:scene:master-head",
+   "file": "art/yasser/scene/master-head.webp",
+   "w": 714,
+   "h": 900,
+   "kind": "hero",
+   "tags": [
+    "bust"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 89994
+  },
+  {
+   "id": "kuro:react:sit-master",
+   "file": "art/kuro/react/sit-master.webp",
+   "w": 497,
+   "h": 600,
+   "kind": "kuro",
+   "tags": [
+    "sit",
+    "hero"
+   ],
+   "origin": "props cut-v2",
+   "bytes": 37800
+  }
+ ]
+}
