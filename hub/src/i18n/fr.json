@@ -6289,6 +6289,51 @@
         "next": "Suite",
         "restart": "Recommencer",
         "step": "Étape {i} sur {n}"
+      },
+      "game": {
+        "chip": "{rank} · {n} Encre",
+        "gain": "+{n} Encre",
+        "upK": "Nouveau rang",
+        "rank": "Rang {n} · {name}",
+        "barLabel": "Vers le rang suivant",
+        "next": "Encore {n} Encre avant « {name} »",
+        "max": "Dernier rang atteint. La Lanterne est à vous.",
+        "up": "Rang atteint : {name}. Un dessin rejoint votre carnet.",
+        "close": "Fermer",
+        "code": "Code {code} : −5 % sur un premier projet, une fois par client. À confirmer avec Yasser sur WhatsApp.",
+        "comK": "Commission",
+        "comT": "Vous avez fini « {b} ». Le studio fait la même chose pour de vrai, pour vous.",
+        "comPrice": "Voir les tarifs",
+        "comTalk": "En parler sur WhatsApp",
+        "comWa": "Bonjour Numidea Labs, je viens de finir « {b} » à la Librairie et j’aimerais en parler pour mon projet.",
+        "reset": "Effacer ma partie (rang et épisodes)",
+        "resetAsk": "Effacer le rang et les épisodes ? Les atlas, les enquêtes et les sceaux restent.",
+        "resetYes": "Oui, effacer",
+        "resetNo": "Non",
+        "r": {
+          "1": "Apprenti",
+          "2": "Colporteur",
+          "3": "Copiste",
+          "4": "Lecteur de nuit",
+          "5": "Cartographe",
+          "6": "Relieur",
+          "7": "Gardien des sceaux",
+          "8": "Maître d’atelier",
+          "9": "Veilleur",
+          "10": "Maître de la Lanterne"
+        },
+        "u": {
+          "1": "Kūro passe la tête par le bord de la page.",
+          "2": "Kūro, ravi, des cœurs au-dessus de la tête.",
+          "3": "Yasser signe une page.",
+          "4": "Yasser, un café à la main.",
+          "5": "Yasser montre la suite du chemin.",
+          "6": "Kūro donne un coup de tampon.",
+          "7": "Kūro, très content de lui.",
+          "8": "Yasser vous tend les clés de l’atelier.",
+          "9": "Yasser fait une sieste sur son bureau.",
+          "10": "Yasser lève les bras : c’est gagné."
+        }
       }
     },
     "cast": {

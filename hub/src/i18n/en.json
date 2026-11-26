@@ -6289,6 +6289,51 @@
         "next": "Next",
         "restart": "Start again",
         "step": "Step {i} of {n}"
+      },
+      "game": {
+        "chip": "{rank} · {n} Encre",
+        "gain": "+{n} Encre",
+        "upK": "New rank",
+        "rank": "Rank {n} · {name}",
+        "barLabel": "Towards the next rank",
+        "next": "{n} more Encre to “{name}”",
+        "max": "Top rank reached. The Lantern is yours.",
+        "up": "Rank reached: {name}. A drawing joins your notebook.",
+        "close": "Close",
+        "code": "Code {code}: −5% on a first project, once per client. Confirm it with Yasser on WhatsApp.",
+        "comK": "Commission",
+        "comT": "You finished “{b}”. The studio does the same thing for real, for you.",
+        "comPrice": "See the prices",
+        "comTalk": "Talk about it on WhatsApp",
+        "comWa": "Hello Numidea Labs, I just finished “{b}” at the Library and I’d like to talk about it for my project.",
+        "reset": "Erase my game (rank and episodes)",
+        "resetAsk": "Erase the rank and the episodes? The atlases, the cases and the seals stay.",
+        "resetYes": "Yes, erase",
+        "resetNo": "No",
+        "r": {
+          "1": "Apprentice",
+          "2": "Pedlar",
+          "3": "Copyist",
+          "4": "Night reader",
+          "5": "Cartographer",
+          "6": "Bookbinder",
+          "7": "Keeper of seals",
+          "8": "Workshop master",
+          "9": "Watchman",
+          "10": "Master of the Lantern"
+        },
+        "u": {
+          "1": "Kūro peeks over the edge of the page.",
+          "2": "Kūro, delighted, hearts above his head.",
+          "3": "Yasser signs a page.",
+          "4": "Yasser, coffee in hand.",
+          "5": "Yasser points the way on.",
+          "6": "Kūro brings down a stamp.",
+          "7": "Kūro, very pleased with himself.",
+          "8": "Yasser hands you the keys to the workshop.",
+          "9": "Yasser naps on his desk.",
+          "10": "Yasser throws his arms up: you’ve won."
+        }
       }
     },
     "cast": {
