@@ -94,7 +94,7 @@ html[lang="ar"]{--fs-micro:.8125rem}
   --f-wide:"Archivo Expanded","Archivo","Arial Black",sans-serif;
   --fs-micro:.75rem;--fs-label:.75rem;--fs-small:.875rem;--fs-body:1rem;--fs-lead:1.25rem;--fs-h4:1.5rem;
   --fs-h3:clamp(1.75rem,1.45rem + .9vw,2.375rem);--fs-h2:clamp(2.5rem,1.7rem + 2.8vw,4.25rem);--fs-h1:clamp(3.5rem,2.2rem + 5vw,7rem);
-  --fs-index:clamp(3.5rem,2.4rem + 4vw,6.5rem);
+  --fs-index:clamp(3.5rem,2rem + 6vw,8rem);
   --lh-disp:.9;--lh-head:1;--lh-ui:1.2;--lh-body:1.55;
   /* micro is the site's 12 px floor (13 px in Arabic): 11 px failed the small-text gate on the shelf, 2026-11-26 */
   --tr-disp:0;--tr-ui:.04em;--tr-label:.14em;

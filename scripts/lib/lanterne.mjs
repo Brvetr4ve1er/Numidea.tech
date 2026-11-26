@@ -659,13 +659,23 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...
     const minT = (slug) => { const n = minutes(slug); return `<span class="book__min" data-lt-tpl="lant.shelf.minutes" data-lt-n="${n}">${esc(fr('lant.shelf.minutes').replace('{n}', n))}</span>`; };
     /* the atlas as an object (2026-11-25): a hardcover lying on the night table, its page block under the cover, a ribbon
        whose length is the progress (--p, set by hub/lanterne.js); the cover lifts on its spine on hover. CSS only. */
-    const atlas = (cover) => `<span class="book__obj"><span class="book__pages"></span>${cover}<span class="book__rib"></span></span>`;
+    const atlas = (cover, cast = '') => `<span class="book__obj"><span class="book__pages"></span>${cover}<span class="book__rib"></span>${cast}</span>`;
     const book = (b) => {
       const A = ATLAS[b.slug], ids = A ? A.acts.flatMap((a) => a.districts) : b.ids;
-      let coverHtml;
+      let coverHtml, cast = '';
       if (b.cover === 'composite') {
         const bk = ART.keys.bookstall, ky = ART.cut.kuro, y = ART.cut.yasser;
         coverHtml = `<span class="book__cover book__cover--comp"><span class="book__comp" dir="ltr"><img class="book__bk" src="${up(bk.src)}" alt="" width="${bk.w}" height="${bk.h}" loading="lazy"><img class="book__k" src="${up(ky.src)}" alt="" width="${ky.w}" height="${ky.h}" loading="lazy"><img class="book__y" src="${up(y.src)}" alt="" width="${y.w}" height="${y.h}" loading="lazy"></span></span>`;
+      } else if (b.cover.plate) {
+        /* an atlas plate framed at pos, its cast in front (2026-11-26): the cut-outs stand on the cover's bottom edge and
+           break out of its top, outside the cover so the cover still lifts alone on hover */
+        const pl = ART.plates[b.cover.plate];
+        if (!pl) fail(`hub/src/lanterne/shelf.json ${b.slug}: cover plate "${b.cover.plate}" is not in art.json`);
+        const small = pl.small || pl;
+        coverHtml = `<span class="book__cover"><img src="${up(small.src)}" alt="" width="${small.w}" height="${small.h}" style="--pos:${b.cover.pos || '50% 50%'}" loading="lazy" decoding="async"></span>`;
+        cast = `<span class="book__cast" dir="ltr">${(b.cover.cast || []).map((c) => {
+          if (!existsSync(join(HUB, c.src))) fail(`hub/src/lanterne/shelf.json ${b.slug}: cast ${c.src} is not a file under hub/`);
+          return `<img class="book__c book__c--${c.side === 'start' ? 'start' : 'end'}" style="--s:${c.size}" src="${up(c.src)}" alt="" width="${c.w}" height="${c.h}" loading="lazy" decoding="async">`; }).join('')}</span>`;
       } else {
         if (!existsSync(join(HUB, b.cover.src))) fail(`hub/src/lanterne/shelf.json ${b.slug}: cover ${b.cover.src} is not a file under hub/`);
         coverHtml = `<span class="book__cover"><img src="${up(b.cover.src)}" alt="" loading="lazy" decoding="async"></span>`;
@@ -673,7 +683,7 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...
       const n = ids.length;
       return `
         <li class="book" data-lt-book="${b.slug}" style="--spine:${b.accent}">
-          ${A ? `<a class="book__link" href="${b.slug}.html" tabindex="-1" aria-hidden="true">${atlas(coverHtml)}</a>` : `<div class="book__link" aria-hidden="true">${atlas(coverHtml)}</div>`}
+          ${A ? `<a class="book__link${cast ? ' book__link--cast' : ''}" href="${b.slug}.html" tabindex="-1" aria-hidden="true">${atlas(coverHtml, cast)}</a>` : `<div class="book__link" aria-hidden="true">${atlas(coverHtml, cast)}</div>`}
           <div class="book__body">${b.start && A ? `
             <a class="book__start" href="${b.slug}.html" data-i18n="lant.shelf.start"></a>` : ''}
             <p class="book__kind" data-i18n="lant.book.${b.slug}.kind"></p>
@@ -692,10 +702,13 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...
     };
     /* a shelf is a row of three slots (2026-11-26, the type system's shelf): its head (index, title) beside the books, and the
        slots a shelf does not fill drawn empty, as an inventory, so every book keeps one size whatever its shelf holds */
+    /* an empty slot is a locked card, face down (the kit's tarot back), not a hole (2026-11-26) */
+    const LOCK = { src: 'img/lanterne/kit/props-tarot-back.webp', w: 281, h: 480 };
+    need('lant.shelf.locked', 'the shelf'); need('lant.shelf.lockedSub', 'the shelf');
     const rayons = SHELF.shelves.map((s, i) => { const shown = s.books.filter((b) => !b.in); return `
     <div class="rayon">
-      <div class="rayon__head"><span class="rayon__n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><h2 class="rayon__h" data-i18n="lant.shelf.${s.id}"></h2></div>
-      <ul class="books">${shown.map(book).join('')}${'<li class="book book--slot" aria-hidden="true"></li>'.repeat(Math.max(0, 3 - shown.length))}
+      <div class="rayon__head"><span class="rayon__n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><h2 class="rayon__h" data-i18n="lant.shelf.${s.id}"></h2>${s.host ? `<img class="rayon__host" src="${up(s.host.src)}" alt="" width="${s.host.w}" height="${s.host.h}" loading="lazy" decoding="async">` : ''}</div>
+      <ul class="books">${shown.map(book).join('')}${Array.from({ length: Math.max(0, 3 - shown.length) }, (_, j) => `<li class="book book--slot" aria-hidden="true"><span class="slot__card"><img src="${up(LOCK.src)}" alt="" width="${LOCK.w}" height="${LOCK.h}" loading="lazy" decoding="async"></span><span class="slot__lock"></span><span class="slot__t" data-i18n="lant.shelf.locked"></span><span class="slot__s" data-i18n="lant.shelf.lockedSub"></span>${j === 0 && s.sleeper ? `<img class="slot__cat" src="${up(s.sleeper.src)}" alt="" width="${s.sleeper.w}" height="${s.sleeper.h}" loading="lazy" decoding="async">` : ''}</li>`).join('')}
       </ul>
       <div class="plank" aria-hidden="true"></div>
       ${s.notes ? `<div class="legal">${s.notes.map((k) => `<p data-i18n="${need(k, `shelf.json ${s.id}`)}"></p>`).join('')}</div>` : ''}
