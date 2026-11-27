@@ -300,8 +300,8 @@
 .p4 .nl-skip{visibility:hidden}
 [dir=rtl] .nl-stage{font-family:'NL Arabic',var(--font-ar-body,system-ui),sans-serif}
 [dir=rtl] .nl-menu{--mono:'NL Arabic',var(--font-ar-body,ui-monospace),monospace}
-/* narrow phones (vbugs 360/320): a long small label wraps to two lines instead of leaving its card. The English « The Workshop » became « Workshop » (2026-11-26): at 390 it wrapped in the face and not in the fallback (the audit's fallback-type run, 17 to 33 px) */
-@media (max-width:419.98px){.nl-menu .nl-item.small .nl-lab{white-space:normal;line-height:1;font-size:var(--t-ui,16px)}}
+/* 2em box: same height with or without the webfont */
+@media (max-width:419.98px){.nl-menu .nl-item.small .nl-lab{white-space:normal;line-height:1;font-size:var(--t-ui,16px);display:inline-flex;align-items:center;height:2em}}
 
 /* ===== ON THE HOME PAGE ======================================================
    The site's navbar is fixed and 73 px tall (--nav-h): the menu starts under it. */

@@ -45,7 +45,7 @@ const xhtml = (l, href) => `    <xhtml:link rel="alternate" hreflang="${l}" href
 // the published pages that are noindex, so not in the sitemap: 404.html, the old manual (a stub since 2026-11-21) and
 // the brand exploration, a louder gear kept for the record, not the identity (W-15, 2026-11-24), and the Numidea
 // brand book, a draft (0.1) unlinked until the owner signs it off (Q-04, 2026-11-24: it stays at its address)
-export const NOINDEX_PAGES = ['404.html', 'hub/manuel.html', 'hub/brand/exploration/index.html', 'hub/brand/numidea/index.html'];
+export const NOINDEX_PAGES = ['404.html', 'comptoir/index.html', 'hub/manuel.html', 'hub/brand/exploration/index.html', 'hub/brand/numidea/index.html'];
 export function renderSitemap(pages = PAGES) {
   const rows = pages.filter((p) => !NOINDEX_PAGES.includes(p)).map((p) => {
     const loc = url(p);
