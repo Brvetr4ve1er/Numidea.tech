@@ -113,19 +113,40 @@
 
   /* ---- the chip: rank and Encre in the atlas bar, to the passport ---- */
   var chip = null;
-  /* the chip sits in the masthead only where it fits on the line: measured before any paint (no layout shift);
-     where it would wrap the masthead (the shelf, with its call to action, at some widths) it stays hidden */
-  var mast = null, mastH = 0;
+  /* the chip sits in the masthead only where it fits on the line: shown only if nothing in the masthead changes row
+     for it; where it would push a neighbour down (the shelf's language pill onto its call to action's row at 1280,
+     CLS 0.014 on 2026-11-26: a masthead already on two rows, so its height alone did not tell) it stays hidden.
+     Nor does it cost the page its title: where the atlas's name would be cut short for it (web3-modules at 1440,
+     « Les neuf modules. » under « Journal »), it stays hidden too.
+     The fit is measured again when the web fonts land: a ResizeObserver runs after layout and before paint, so a
+     chip that fitted in the fallback type and not in the face is never drawn pushing; once hidden it stops watching. */
+  var mast = null, nav = null, ro = null;
+  var snap = function () {
+    var o = [mast.offsetHeight], ti = mast.querySelector('.mast__title');
+    if (ti) o.push(ti.scrollWidth > ti.clientWidth + 1 ? 'cut' : 'whole');
+    [].forEach.call(mast.querySelectorAll(':scope > *, .mast__nav > *'), function (e) {
+      if (e === chip || e === nav) return;
+      o.push(Math.round(e.getBoundingClientRect().top));
+    });
+    return o.join(' ');
+  };
+  var fit = function () {
+    chip.hidden = true; var before = snap();
+    chip.hidden = false; if (snap() !== before) chip.hidden = true;
+    return !chip.hidden;
+  };
   function paintChip() {
     if (!chip) {
-      var nav = $('.mast__nav'); if (!nav) return;
-      mast = nav.closest('header') || nav.parentNode; mastH = mast.offsetHeight;
+      nav = $('.mast__nav'); if (!nav) return;
+      mast = nav.closest('header') || nav.parentNode;
       chip = el('a', 'gm-chip'); chip.href = D.passport; chip.setAttribute('data-gm-chip', '');
       nav.appendChild(chip);
     }
     chip.textContent = t('lant.ui.game.chip', { rank: rankName(P.rank), n: num(P.encre) });
-    chip.hidden = false;
-    if (mast.offsetHeight > mastH + 1) chip.hidden = true;
+    if (fit() && !ro && G.ResizeObserver) {
+      ro = new ResizeObserver(function () { if (!fit()) ro.disconnect(); });
+      ro.observe(mast); ro.observe(chip);
+    }
   }
 
   /* ---- the card ---- */
