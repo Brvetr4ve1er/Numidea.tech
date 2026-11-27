@@ -601,7 +601,7 @@ html:not(.js) .ks img,html:not(.js) .ks__d,html:not(.js) .ks__n{display:none}
 .lt-end__t{max-width:72ch;line-height:1.5}
 /* the end line's link keeps one box */
 .lt-end__t .lnk{display:inline-block}
-@media (max-width:650px){.lt-end__t .lnk{display:inline-flex;align-items:center;min-height:44px}}
+@media (max-width:650px){.lt-end__t .lnk{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px}}
 /* the skip link's targets take focus without a ring */
 .world:focus,.rayons:focus{outline:none}
 @media (max-width:480px){.mini{gap:4px;padding-block:6px}.mini__l{padding:0 6px;font-size:var(--fs-small)}.mini__back{padding:0}.mini__back::before{margin:0}.mini__bt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}}
@@ -860,7 +860,7 @@ html.motion-off .lt-panel--wait{opacity:1;translate:none}
   .rayon>.plank,.rayon>.legal{grid-column:1/-1}
   .books>.book:nth-child(3n+2){margin-top:56px}
   .book--slot{display:block;position:relative;align-self:stretch;min-height:360px;border:2px dashed rgba(33,30,27,.45);background:repeating-linear-gradient(-45deg,transparent 0 12px,rgba(33,30,27,.06) 12px 24px);box-shadow:none}
-  .rayon__host{position:static;height:min(300px,24vw);margin:18px 0 -40px;align-self:center}
+  .rayon__host{position:static;height:min(300px,24vw);max-width:100%;object-fit:contain;object-position:50% 100%;margin:18px 0 -40px;align-self:center}/* clamped by its column: keeps its ratio */
   .book:not(.book--slot) .book__link{overflow:visible;margin-top:-34px;background:none;border-bottom:0;padding:0 16px 30px}
   .book:not(.book--slot) .book__link::after{inset-inline:0;bottom:0;height:30px;background:radial-gradient(120% 90% at 50% 0,var(--navy-2),var(--navy) 70%);border-block:2px solid var(--ink);border-bottom:0}
   .books>.book:nth-child(even) .book__obj{transform:rotateX(8deg) rotateZ(1.2deg)}

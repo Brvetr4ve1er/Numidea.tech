@@ -194,7 +194,12 @@ button{font:inherit;color:inherit}
 :root:not([data-ui]) main>.st-sec,:root:not([data-ui]) main>.st-contact{content-visibility:auto;contain-intrinsic-size:auto 1400px}
 :root:not([data-ui]) #services,:root:not([data-ui]) #pricing,:root:not([data-ui]) #studio{contain-intrinsic-size:auto 2800px}
 :root:not([data-ui]) #work{contain-intrinsic-size:auto 4600px}
-:root:not([data-ui]) #brand,:root:not([data-ui]) #tech,:root:not([data-ui]) #contact{contain-intrinsic-size:auto 950px}
+:root:not([data-ui]) #brand,:root:not([data-ui]) #tech{contain-intrinsic-size:auto 950px}
+/* the contact is taller than the others' 950 since the type roll-out (measured 2026-11-26: 797-1102 px on a desk,
+   1055-1177 on a phone, 1239-1331 on a tablet): laid out at 950, its card hung over the footer until it neared the
+   screen (vbugs 360, the aside over the wordmark) */
+:root:not([data-ui]) #contact{contain-intrinsic-size:auto 1200px}
+@media (min-width:600px) and (max-width:1023.98px){:root:not([data-ui]) #contact{contain-intrinsic-size:auto 1340px}}
 /* the doors too: just under the first screen, they are not laid out at the load (2026-11-23) */
 :root:not([data-ui]) main>.st-doors{content-visibility:auto;contain-intrinsic-size:auto 1500px}
 .st-process,.st-founder{border-top:0}
