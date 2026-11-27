@@ -327,7 +327,7 @@ console.log(`design-check (${STRICT ? 'strict' : 'report-only: DESIGN_REPORT=1'}
    when it is var(--fs-*), inherit/0/1em/100% (relative to an on-scale parent), or a clamp() whose min and max are
    rem endpoints of the scale, or a bare rem step of it. Measured 2026-11-26 before the roll-out: lanterne 137, Studio 691, home 253; Studio 423 after PR #28, 92 on 2026-11-27 (aliases snapped), then 0 the same day (headings by eye, art tier --fs-art-* for the watermark glyphs); home 253 -> 6 (only the old hero, which the menu replaces); Le comptoir 0. ---- */
 const SCALE_REM = new Set([0.75, 0.875, 1, 1.25, 1.5, 1.75, 2.375, 2.5, 3.5, 4.25, 7, 8]);
-const SCALE_CEIL = { 'hub/css/lanterne.css': 0, 'hub/style.css': 0, 'assets/styles.css': 0, 'comptoir/comptoir.css': 0, 'assets/menu/menu.css': 9 }   // menu.css added 2026-11-27 at its measured 9 (the menu thread's sheet: 10-14px labels, 40-130px display and art sizes); home 6 -> 0 once the old hero left;
+const SCALE_CEIL = { 'hub/css/lanterne.css': 0, 'hub/style.css': 0, 'assets/styles.css': 0, 'comptoir/comptoir.css': 0, 'assets/menu/menu.css': 0 }   // menu.css: 0 since 2026-11-27 (the two label sizes snapped to the scale's clamp); added the same day at its measured 9 (the menu thread's sheet: 10-14px labels, 40-130px display and art sizes); home 6 -> 0 once the old hero left;
 const SIZE_RE = String.raw`(?:var\(--[\w-]+\)|clamp\([^()]*(?:\([^()]*\)[^()]*)*\)|calc\([^()]*(?:\([^()]*\)[^()]*)*\)|[\d.]+(?:px|rem|em|%|vw))`;
 const onScale = (v) => {
   v = v.trim();
