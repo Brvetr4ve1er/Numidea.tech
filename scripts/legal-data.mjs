@@ -37,15 +37,15 @@ export const LEGAL = {
     number: null,        // the number itself; false if not registered (explain in publisher.legalForm; label is then unused)
   },
   director: null,        // directeur de la publication (a person)
-  /* Where the site is served from. After the A/B/C variants were removed the
-     canonical site is GitHub Pages; add 'netlify' / 'vercel' only if those
-     mirrors are live. Host details are public (each provider's terms); confirm
-     them before publishing. */
-  hosts: ['github'],
+  /* Where the site is served from: Vercel (project numidea-tech, www.numedialab.dev)
+     since 2026-11-16. The GitHub Pages mirror is frozen on its 2026-10-25 build and
+     is not the site; add 'github' back only if it is revived. Vercel's address is
+     the one its own legal pages give (vercel.com/legal); confirm it before publishing. */
+  hosts: ['vercel'],
   hostCatalogue: {
     github: { name: 'GitHub, Inc.', address: null, site: 'https://github.com' },
     netlify: { name: 'Netlify, Inc.', address: null, site: 'https://www.netlify.com' },
-    vercel: { name: 'Vercel Inc.', address: null, site: 'https://vercel.com' },
+    vercel: { name: 'Vercel Inc.', address: '440 N Barranca Ave #4133, Covina, CA 91723, USA', site: 'https://vercel.com' },
   },
   privacy: {
     // how long enquiries are kept, e.g. { fr: '3 ans après le dernier échange', en: '3 years after the last exchange', ar: '3 سنوات بعد آخر تواصل' }

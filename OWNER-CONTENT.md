@@ -11,7 +11,7 @@ what the Studio page changed from your design).
 
 | # | Item | Status | Where it goes |
 |---|---|---|---|
-| 1 | Legal notice + privacy details | **Missing (16 fields; 5 in three languages)**; "later" (owner, 2026-10-30): the pages stay unpublished, the slots stay empty | `scripts/legal-data.mjs` |
+| 1 | Legal notice + privacy details | **Missing: one form for both legal pages, LEGAL-FORM.md (2026-11-27)**; "later" (owner, 2026-10-30): the pages stay unpublished, the slots stay empty | `scripts/legal-data.mjs` |
 | 2 | Client quotes, with consent | None yet | `scripts/voices-data.mjs` |
 | 3 | Founder photo | Closed 2026-11-24 (wave 3): no photo ("thats me and id like to use animated ones or artworks instead"). The drawn Yasser is the founder's face: the night plate on the home's founder card, the rig on the Studio. The `.fd-photo` slot, its CSS and the "photo awaited" notes are gone | `index.html` #founder (nothing to supply) |
 | 4 | Team names and photos; the team-size claim | Answered 2026-10-30 and applied on 2026-11-03: one founder, with freelancers when a project calls for them (section 17). The page shows one team row, no initials and no photos | `index.html` #founder, `assets/i18n/*.js` (`team.*`) |
