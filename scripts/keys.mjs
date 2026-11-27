@@ -1165,8 +1165,9 @@ for (const f of pages) {
     });
     // images still arriving after load mark themselves loaded (a class, no
     // motion with reduced motion on): the watch starts once the network is
-    // idle. The hero deck waits for the visitor's first input before it
-    // turns, so a key wakes the page, and the watch outlasts its 5.2s turn.
+    // idle. A key wakes the page (the home's hero deck waited for the visitor's
+    // first input before it turned, 5.2s later; it left on 2026-11-27, and the
+    // watch still outlasts anything else a first input starts).
     await p.waitForLoadState('networkidle');
     await p.keyboard.press('Shift');
     await p.evaluate(() => { window.__mut = {}; });
