@@ -3097,7 +3097,7 @@ html:not(.js) .st-scale{display:none}
 .st-svc--spec .st-h3{font-size:clamp(.875rem,3.1cqw,1.25rem);line-height:1.05}
 .st-svc--spec .st-plus{gap:5px}
 .st-svc--spec .st-plus li{font-size:clamp(.75rem,2.2cqw,.875rem);line-height:1.3;gap:6px}
-.st-svc--spec:lang(ar) .st-plus li{font-size:clamp(.75rem,2.3cqw,1rem)}
+.st-svc--spec:lang(ar) .st-plus li{font-size:var(--fs-small)}
 /* each copy in its own language's faces, whatever the page's language */
 .st-svc--spec:lang(ar){--f-disp:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;--f-body:"IBM Plex Sans Arabic","Geist",sans-serif;--f-mono:"IBM Plex Sans Arabic","Geist Mono",sans-serif;font-family:var(--f-body)}
 .st-svc--spec:not(:lang(ar)){--f-disp:"Archivo","Arial Black",sans-serif;--f-body:"Geist",system-ui,sans-serif;--f-mono:"Geist Mono",ui-monospace,monospace;font-family:var(--f-body)}

@@ -3823,7 +3823,7 @@ html[dir="rtl"] main:has(>#work)>section:not(.hero,.proof)>.kicker::before{
   #services .svc-grid>.svc-row>div{row-gap:var(--s-2)}
   #services .svc-grid>.svc-row h3{display:flex;align-items:baseline;gap:var(--s-2)}
   #services .svc-grid>.svc-row h3::before{display:inline;flex:none;margin:0}
-  #services .svc-grid>.svc-row h3{font-size:var(--t-lead);line-height:1.25}
+  #services .svc-grid>.svc-row h3{font-size:clamp(1rem,2.4vw,1.25rem);line-height:1.25}
   .preview .ptl{gap:var(--s-3)}
   #services .svc-grid>.svc-row .brief{line-height:1.5}
   #services .svc-grid>.svc-row{--k:color-mix(in srgb,var(--faint) 60%,transparent)}
@@ -4224,7 +4224,7 @@ html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
   #services .svc-grid>.svc-row>div{row-gap:var(--s-1)}
   #services .svc-grid>.svc-row::before{display:none}
   #services .cap::after{content:"";position:absolute;top:-1px;inset-inline-start:0;width:28px;height:2px;background:var(--crimson);pointer-events:none}
-  #services :is(.svc-row h3,.cap h4){display:flex;align-items:baseline;gap:var(--s-2);font-size:var(--t-lead);line-height:1.25;padding-inline-end:40px}
+  #services :is(.svc-row h3,.cap h4){display:flex;align-items:baseline;gap:var(--s-2);font-size:clamp(1rem,2.4vw,1.25rem);line-height:1.25;padding-inline-end:40px}
   #services .cap h4::before{display:inline;flex:none;margin:0}
   #services .svc-grid>.svc-row{padding-inline-start:0}
   #services :is(.svc-row,.cap) .promise{font-size:var(--t-small);line-height:1.4}

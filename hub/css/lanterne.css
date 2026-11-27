@@ -930,10 +930,10 @@ html:not(.motion-off) .gm-card.is-in .gm-card__art{animation:gm-pop 200ms cubic-
 @media (max-width:359px){.mast .st-wm__l{display:none}.mast .st-wm__t{font-size:var(--fs-body)}}
 /* the collage, owned (2026-11-27, zero credits): cel cut-outs on painted plates read as pasted, so they are pasted on purpose.
    Every cut-out gets a cream sticker edge and one hard ink shadow (no blur), the plate and the cast share one warm print grade,
-   and a fine print grain sits over the plate so its flat fills and the cut-outs' fills come from the same paper. */
+   and a fine halftone screen (two dot grids, no image) sits over the plate so its flat fills and the cut-outs' fills come from the same paper. */
 .book__cover>img:first-child{filter:saturate(.9) sepia(.07) contrast(1.03)}
 .book__c{filter:sepia(.08) saturate(.94) contrast(1.03) drop-shadow(2px 0 0 var(--cream)) drop-shadow(-2px 0 0 var(--cream)) drop-shadow(0 2px 0 var(--cream)) drop-shadow(0 -2px 0 var(--cream)) drop-shadow(5px 5px 0 rgba(33,30,27,.72))}
 .book__cover::after{background:linear-gradient(to bottom left,var(--amber) 0 14px,var(--ink) 14px 16px,transparent 16px) top right/28px 28px no-repeat,
     linear-gradient(to top left,var(--amber) 0 14px,var(--ink) 14px 16px,transparent 16px) bottom right/28px 28px no-repeat,
     linear-gradient(170deg,rgba(255,226,184,.14),transparent 38%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .13 0 0 0 0 .12 0 0 0 0 .11 0 0 0 .2 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E") 0 0/160px 160px}
+    radial-gradient(rgba(33,30,27,.13) .55px,transparent .95px) 0 0/3px 3px,radial-gradient(rgba(33,30,27,.08) .55px,transparent .95px) 1px 2px/5px 5px}
