@@ -8,7 +8,7 @@
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-Z+V3d/hfY+7hn4Rpk+h93RTcUfDQnpe7026Mgom4SE0=' 'sha256-jqvmeaJzhI0avE/Byblgel+6lAUwtfzShFKt7DLnhME='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-L26YVmA01ZOoPsrPGggw6HymaVLgwW3rysl3tK3VrCo=' 'sha256-jqvmeaJzhI0avE/Byblgel+6lAUwtfzShFKt7DLnhME='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Website design and development in Algeria | Numidea Labs</title>
 <meta name="description" content="Website design and development in English, French and Arabic, from 90,000 DZD. See your homepage before you pay. A web studio in Bordj Bou Arréridj, Algeria.">
 <meta name="theme-color" content="#0A1420">
@@ -140,8 +140,8 @@
 <script>
   (function () {
     var d = document.documentElement;
-    var HEAD = { arcanum: 'cinzel-700-latin', daylight: 'cinzel-700-latin' };
-    var SWASH = { arcanum: 'cinzel-decorative-700-latin', daylight: 'cinzel-decorative-700-latin' };
+    var HEAD = { arcanum: '../../hub/fonts/archivo-cond-900-latin', daylight: '../../hub/fonts/archivo-cond-900-latin' };
+    var SWASH = {};
     var BAKED = 'en', th = 'arcanum';
     /* each theme's page colour (themes.css --void), for the browser's own
        bar until app.js reads it from the tokens */
@@ -294,7 +294,10 @@
   <span class="menu-sep" aria-hidden="true"></span>
   <a class="menu-far" href="../hub/lanterne/?lang=en" data-i18n="nav.librairie">The Bookshop</a>
   <a class="menu-far" href="../hub/monde.html?lang=en" data-i18n="nav.monde">The world</a>
+  <a class="menu-far" href="../hub/?lang=en" data-i18n="menu.atelier.label">Workshop</a>
+  <a class="menu-far" href="../hub/bible/" data-i18n="menu.bible.label">The Bible</a>
   </nav>
+  <img class="menu-kuro" src="../assets/kit/art/kuro/react/loaf.webp" alt="" width="240" height="240" loading="lazy">
   <!-- the two ways to start, pinned at the foot of the menu (styles.css
        .menu-acts): eight section links and no action left the visitor who
        opened the menu to act with nothing to press. The same two links as
@@ -336,7 +339,7 @@
   <img class="nl-cut-prop" data-kit="prop" src="../assets/kit/art/props/fineliner.webp" alt="" width="240" height="240" loading="lazy" decoding="async">
   <div class="nl-cut-slot" data-kit="body"><div class="kit-slot"><img data-base src="../assets/kit/art/yasser/pose/receipt.webp" alt="" decoding="async"><img data-over src="../assets/kit/art/yasser/pose/receipt.webp" alt="" decoding="async"></div></div>
   <span class="nl-tag nl-cut-tag" data-i18n="menu.cut">On stage</span></div>
- <div class="nl-abs nl-hud nl-kuro" aria-hidden="true"><div class="nl-tarot"><img class="nl-tarot-frame" src="../assets/menu/tarot.webp" alt="" width="141" height="240" decoding="async"><img class="nl-cat" data-kit="kuro" src="../assets/kit/art/kuro/react/judge.webp" alt="" decoding="async"></div><span class="nl-tag"><span data-i18n="menu.kuroName">Kūro</span> : <span class="nl-kuro-say">juge</span></span></div>
+ <div class="nl-abs nl-hud nl-kuro" aria-hidden="true"><div class="nl-tarot"><img class="nl-tarot-frame" src="../assets/menu/tarot.webp" alt="" width="141" height="240" decoding="async"><img class="nl-cat" data-kit="kuro" src="../assets/kit/art/kuro/react/judge.webp" alt="" decoding="async"></div><span class="nl-tag"><span data-i18n="menu.kuroName">Kūro</span> : <span class="nl-kuro-say" data-i18n="menu.tarifs.kuro">judges</span></span></div>
 
  <nav aria-label="Studio menu" data-i18n-aria="menu.nav"><ul class="nl-nav">
 <li><a class="nl-item l big on" href="tarifs/" data-id="tarifs" data-kuro="judge" data-pose="yasser/pose/receipt" data-prop="fineliner">
@@ -383,7 +386,7 @@
 </a></li>
  </ul></nav>
 
- <div class="nl-abs nl-hud nl-say"><div class="nl-say-in"><span class="nl-say-dest">Tarifs · Prix fixe, écrit avant</span><p class="nl-say-box">Le prix est écrit avant qu’on commence. Pas de surprise.</p></div></div>
+ <div class="nl-abs nl-hud nl-say"><div class="nl-say-in"><span class="nl-say-dest"><span data-i18n="menu.tarifs.label">Pricing</span> · <span data-i18n="menu.tarifs.sub">Fixed price, written first</span></span><p class="nl-say-box" data-i18n="menu.tarifs.say">The price is written down before we start. No surprises.</p></div></div>
 
  <div class="nl-abs nl-hud nl-topright"><button class="nl-replay" type="button" data-i18n="menu.replay">Replay intro</button></div>
  <button class="nl-abs nl-skip" type="button" data-i18n="menu.skip">Skip intro</button>

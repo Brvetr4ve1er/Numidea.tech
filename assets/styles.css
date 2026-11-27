@@ -51,8 +51,8 @@ html[lang="ar"]{--fs-micro:.8125rem}
   --font-swash:"Geist", "Geist Fallback", system-ui, sans-serif;
   --font-body:"Geist", "Geist Fallback", system-ui, sans-serif;
   --font-mono:"Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
-  --font-deco:"Cinzel", "Cinzel Fallback", Georgia, serif;
-  --font-deco-dec:"Cinzel Decorative", "Cinzel Decorative Fallback", Georgia, serif;
+  --font-deco:var(--f-cond);
+  --font-deco-dec:var(--f-cond);
   --font-ar-display:"IBM Plex Sans Arabic", "IBM Plex Sans Arabic Fallback", sans-serif;
   --font-ar-body:"IBM Plex Sans Arabic", "IBM Plex Sans Arabic Fallback", sans-serif;
 
@@ -103,7 +103,7 @@ html[lang="ar"]{--fs-micro:.8125rem}
    nothing in this file names a theme.
    ============================================================ */
 html[dir="ltr"] :is(.offer-h,h2.sec,.contact h2,.mobile-menu nav a){
-  font-family:var(--font-head);font-weight:var(--head-weight);letter-spacing:var(--head-tracking)}
+  font-family:var(--font-head);font-weight:var(--head-weight);letter-spacing:var(--head-tracking);text-transform:uppercase}
 html[dir="ltr"] .offer-h{font-size:var(--h1-fs);line-height:var(--h1-lh)}
 html[dir="ltr"] .offer-h em{font-family:var(--font-head-em)}
 .btn-primary{box-shadow:var(--btn-glow)}
@@ -4364,6 +4364,9 @@ html.m-swap *,html.m-swap *::before,html.m-swap *::after{transition:none!importa
 .mobile-menu nav .menu-sep{display:block;height:1px;margin:var(--s-2) 0;background:var(--hairline-2)}
 .mobile-menu nav a.menu-far{font-family:var(--font-mono);font-weight:400;font-size:var(--t-small);letter-spacing:.04em;min-height:40px;color:var(--muted)}
 html[dir="rtl"] .mobile-menu nav a.menu-far{font-family:var(--font-ar-body);letter-spacing:0}
+.mobile-menu .menu-kuro{flex:1 1 0;min-height:0;max-height:150px;width:100%;margin-top:var(--s-4);object-fit:contain;object-position:var(--kuro-x,left) bottom;filter:drop-shadow(0 0 2px var(--ice));pointer-events:none}
+html[dir="rtl"] .mobile-menu .menu-kuro{--kuro-x:right}
+@media (max-height:640px){.mobile-menu .menu-kuro{display:none}}
 
 /* ---- the night band: the link's own line under it, what is behind the door (home-12) ---- */
 .nsp-sub{margin:calc(-1 * var(--s-2)) 0 0;padding-inline:var(--s-1);font-size:var(--t-small);line-height:1.5;color:var(--nsp-mute)}
