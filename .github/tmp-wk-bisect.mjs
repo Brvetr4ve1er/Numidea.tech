@@ -12,21 +12,23 @@ const sections = await (async () => {
   return ids;
 })();
 const css = (c) => ({ css: c });
-const variants = [
+const V = [
   ['baseline', {}],
-  ['no filter/backdrop', css('*,*::before,*::after{filter:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}')],
-  ['no mask/clip', css('*,*::before,*::after{mask:none!important;-webkit-mask:none!important;clip-path:none!important}')],
   ['no animation', css('*,*::before,*::after{animation:none!important}')],
-  ['no will-change/transform3d', css('*,*::before,*::after{will-change:auto!important}')],
-  ['no position:sticky/fixed', css('*{position:static!important}')],
-  ['no mix-blend', css('*,*::before,*::after{mix-blend-mode:normal!important;isolation:auto!important}')],
-  ['no video', { js: 'document.querySelectorAll("video").forEach(v=>v.remove())' }],
-  ['no canvas', { js: 'document.querySelectorAll("canvas").forEach(v=>v.remove())' }],
-  ['no images', { js: 'document.querySelectorAll("img,picture,svg image").forEach(v=>v.remove())' }],
-  ['no box-shadow/text-shadow', css('*,*::before,*::after{box-shadow:none!important;text-shadow:none!important}')],
-  ['no bg images', css('*,*::before,*::after{background-image:none!important}')],
-  ...sections.map((id) => ['minus #' + id, { js: `document.getElementById(${JSON.stringify(id)})?.remove()` }]),
+  ['minus #work', { js: 'document.getElementById("work")?.remove()' }],
+  ['no case tracks', { js: 'document.querySelectorAll(".st-case__track").forEach(e=>e.remove())' }],
+  ['no filter', css('*,*::before,*::after{filter:none!important}')],
 ];
+const variants = []; for (let i = 0; i < 4; i++) for (const v of V) variants.push([v[0] + ' #' + (i + 1), v[1]]);
+// the two WebKit escapes: their boxes, as WebKit lays them out
+for (const [w, lang, path, sel, box] of [[1024, 'ar', '/hub/', '#tech b.st-stat', 'p'], [1440, 'fr', '/hub/bible/', '.says-list li', 'ul']]) {
+  const p = await b.newPage({ viewport: { width: w, height: 900 } });
+  await p.addInitScript((l) => localStorage.setItem('numidea-lang', l), lang);
+  await p.goto(srv.base + path, { waitUntil: 'networkidle' });
+  console.log('BOX', w, lang, path, JSON.stringify(await p.evaluate(([sel, box]) => [...document.querySelectorAll(sel)].map((e) => { const r = e.getBoundingClientRect(), q = e.closest(box).getBoundingClientRect(), c = getComputedStyle(e);
+    return { t: e.textContent.slice(0, 24), e: [r.left, r.top, r.right, r.bottom].map(Math.round), box: [q.left, q.top, q.right, q.bottom].map(Math.round), ff: c.fontFamily.slice(0, 40), lh: c.lineHeight, fs: c.fontSize }; }), [sel, box])));
+  await p.close();
+}
 for (const [w, lang] of [[390, 'ar'], [360, 'fr']]) {
   for (const [name, v] of variants) {
     let p;
