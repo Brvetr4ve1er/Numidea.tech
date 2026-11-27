@@ -3541,14 +3541,35 @@ redirects to it, page for page, since 2026-11-18: `vercel.json`), GitHub Pages
 
 Every page of `scripts/site.mjs` PAGES carries the owner's Google tag, Tag Manager
 container **GTM-PMF7RWVK** (owner decision 2026-11-14), and nothing else of
-Google's. Consent Mode is **denied by design** and there is no cookie bar: the
-inline script pushes `gtag('consent','default', …)` with `ad_storage`,
-`analytics_storage`, `ad_user_data`, `ad_personalization`,
-`functionality_storage` and `personalization_storage` all `denied`
-(`security_storage` granted), then `js`, and only afterwards does the async loader
-start. Consent is never updated to granted anywhere, so Google receives
-cookieless, anonymous pings (page viewed, approximate time, browser type) for
-aggregate audience measurement and sets no cookie. The privacy page
+Google's. The container holds one GA4 property, **G-KBXP8LQJ5K** (Google tag
+plus enhanced measurement: page views, scroll, outbound clicks, forms, downloads).
+Consent Mode starts **denied**: the inline script pushes
+`gtag('consent','default', …)` with `ad_storage`, `analytics_storage`,
+`ad_user_data`, `ad_personalization`, `functionality_storage` and
+`personalization_storage` all `denied` (`security_storage` granted), then `js`,
+and only afterwards does the async loader start. Until the visitor answers,
+Google receives cookieless, anonymous pings only.
+
+**Consent card (owner decision 2026-11-27, replacing "no cookie bar").**
+`assets/consent.js`, loaded by `assets/carry.js` on the pages that carry the tag
+(live host and Vercel previews only), shows the "Registre / Register / السجل"
+card with Kūro on the visitor's second page or after 25 s on the first. Accept
+updates `analytics_storage` to granted and nothing else; the ad signals stay
+denied for good. The answer is kept in localStorage `numidea.consent`, and the
+inline tag reads it so later pages start granted. Refuse is kept too and the
+card never returns. `#consent` in any address reopens it (the privacy page links
+it). check.mjs 16b runs the inline tag with no answer, a refusal and an
+acceptance, and refuses any consent update in `consent.js` other than
+`analytics_storage: 'granted'`.
+
+**Event names** (all through `window.numideaTrack(kind, what)` in carry.js, sent
+both as a Vercel virtual view `/go/<kind>/<what>/<page>` and as GA4 event
+`numidea_<kind>` with parameter `numidea_what`): `menu` (home slab ids),
+`offer` (a package's Aperçu button), `tarifs/estimator` (first move of the
+estimator), `game` (district, district-m2…m30 pacing buckets, book, commission,
+rank-N, shop-…), `consent` (granted / denied). Contact clicks keep their old
+path `/go/<whatsapp|email|phone|form>/<page>` and go to GA4 as
+`numidea_contact`. The privacy page
 (`scripts/build-legal.mjs`, unpublished until the owner fields are in) says so in
 the three languages.
 
