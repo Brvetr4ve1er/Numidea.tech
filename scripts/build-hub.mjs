@@ -459,7 +459,10 @@ const localFile = (u) => { const p = u.split(/[?#]/)[0]; return p ? join(HUB, de
 const CLIENT_HOSTS = [...readFileSync(join(ROOT, 'index.html'), 'utf8').matchAll(/href="https:\/\/([^/"]+)[^"]*"/g)].map((m) => m[1]);
 const ALLOW = new Set([new URL(BASE).host, 'wa.me', 'www.behance.net', 'www.deviantart.com', 'www.instagram.com', 'instagram.com', ...CLIENT_HOSTS]);
 // the hosts a reference list may cite (the gamification course's sources: journals by DOI, a preprint server, a regulator, the companies' own filings, two news pages); a link to one must be marked data-ref
-const REF_HOSTS = new Set(['doi.org', 'arxiv.org', 'www.sec.gov', 's203.q4cdn.com', 'hbr.org', 'www.washington.edu', 'www.aap.com.au', 'digitalnewsasia.com', 'www.ftc.gov', 'www.jesperjuul.net',
+const REF_HOSTS = new Set(['doi.org',
+  // « Ma banque, sans piège » (2026-11-27): PR #14's five sources, read 2026-11-21 (the DGSN's warning, Algérie Poste's, the press on Edahabia and BaridiMob)
+  'observalgerie.com', 'www.algerie360.com', 'www.aps.dz',
+  'arxiv.org', 'www.sec.gov', 's203.q4cdn.com', 'hbr.org', 'www.washington.edu', 'www.aap.com.au', 'digitalnewsasia.com', 'www.ftc.gov', 'www.jesperjuul.net',
   'www.ncsc.gov.uk', 'support.zoom.com', 'support.google.com', 'messervices.cyber.gouv.fr', 'home-affairs.ec.europa.eu', 'data.iana.org',
   // the two client courses' sources (2026-11-19, COURSE.md 3.7): the design council, the trademark offices and texts, the
   // font licence, the W3C and MDN; the Algerian Official Journal, NIST, the regulators and ethereum.org's documentation

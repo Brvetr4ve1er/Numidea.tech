@@ -22,7 +22,7 @@
     "cours-du-soir": "tarifs/#pricing",
     "argent": "tarifs/#models",
     "route": "tarifs/#models",
-    "jeu": "tarifs/#pricing"
+    "jeu": "tarifs/#pricing", "banque": "tarifs/#pricing"
   },
   "wa": "https://wa.me/213672412578"
 }
