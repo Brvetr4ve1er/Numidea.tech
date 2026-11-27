@@ -3039,8 +3039,12 @@
     var wa = function () {
       $$('[data-carte-wa]', root).forEach(function (a) { var v = t(a.getAttribute('data-carte-wa')); if (v) a.href = 'https://wa.me/213672412578?text=' + encodeURIComponent(v); });
     };
-    if (lang !== 'fr') wa();
-    onLang.push(wa);
+    // the counter's links keep the page's language
+    var shop = function () {
+      $$('[data-shop-add]', root).forEach(function (a) { a.href = '../comptoir/?add=' + encodeURIComponent(a.getAttribute('data-shop-add')) + (lang === 'fr' ? '' : '&lang=' + lang); });
+    };
+    if (lang !== 'fr') { wa(); shop(); }
+    onLang.push(wa, shop);
   })();
 
   /* ---------------- 15 · the radio ----------------

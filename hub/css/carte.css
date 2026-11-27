@@ -99,6 +99,9 @@
 .crt .cc__foot{display:flex;flex-direction:column;gap:6px;padding:18px 16px 14px;align-self:start}
 .crt .cc__foot .st-btn{width:100%;padding:0 12px;font-size:12px;letter-spacing:.08em}
 .crt .cc__sec{align-self:flex-start;display:inline-flex;align-items:center;min-height:36px;font:500 12px/1.2 var(--f-mono);letter-spacing:.08em;text-underline-offset:3px}
+/* « Mettre dans le sac » → /comptoir/ (2026-11-27) */
+.crt .cc__bag{color:var(--red-text);font-weight:600;gap:8px}
+.crt .cc__bag::before{content:"";width:12px;height:13px;flex:none;border:2px solid currentColor;border-radius:2px 2px 4px 4px;box-shadow:inset 0 3px 0 -1px currentColor}
 
 .crt .tag{--tilt:-4deg;--z:5px;position:absolute;z-index:4;inset-inline-end:14px;top:calc(100% - 56px);width:150px;transform:rotate(var(--tilt));transform-origin:50% 13px;transition:transform var(--m-quick) var(--m-ease-exit)}
 :dir(rtl) .crt .tag{--tilt:4deg}
@@ -457,5 +460,5 @@
 @media (max-width:699px){
   .crt .cc__ref{min-width:44px;height:44px;border-color:transparent;background:none;position:relative}
   .crt .cc__ref::before{content:"";position:absolute;inset:12px;border:1px solid var(--muted);border-radius:99px;pointer-events:none}
-  .crt .cc__cap .cc__sec{min-height:44px}
+  .crt .cc__cap .cc__sec,.crt .cc__bag{min-height:44px}
 }
