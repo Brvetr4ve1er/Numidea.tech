@@ -936,4 +936,9 @@ html:not(.motion-off) .gm-card.is-in .gm-card__art{animation:gm-pop 200ms cubic-
 .book__cover::after{background:linear-gradient(to bottom left,var(--amber) 0 14px,var(--ink) 14px 16px,transparent 16px) top right/28px 28px no-repeat,
     linear-gradient(to top left,var(--amber) 0 14px,var(--ink) 14px 16px,transparent 16px) bottom right/28px 28px no-repeat,
     linear-gradient(170deg,rgba(255,226,184,.14),transparent 38%),
-    radial-gradient(rgba(33,30,27,.13) .55px,transparent .95px) 0 0/3px 3px,radial-gradient(rgba(33,30,27,.08) .55px,transparent .95px) 1px 2px/5px 5px}
+    radial-gradient(rgba(33,30,27,.09) .55px,transparent .95px) 0 0/3px 3px,radial-gradient(rgba(33,30,27,.05) .55px,transparent .95px) 1px 2px/5px 5px}
+/* the web3 pilot (2026-11-27): a figure inside the cover's picture. It leans in from the bottom-left foreground, its
+   desk cut by the frame, so it touches the scene instead of standing on the book; the print layer (::after: corners,
+   halftone) prints over it like the plate; one soft ink shadow falls away from the plate's sun; no sticker edge */
+.book__cin{position:absolute;inset-inline-start:var(--x,0);bottom:var(--b,0);height:calc(var(--s) * 100%);width:auto;max-width:none;filter:saturate(.9) sepia(.07) contrast(1.03) drop-shadow(-6px 3px 5px rgba(33,30,27,.38))}
+.book__cover:dir(rtl)>.book__cin{inset-inline-start:auto;left:var(--x,0)}

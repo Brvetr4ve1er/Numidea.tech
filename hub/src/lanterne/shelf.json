@@ -7,7 +7,7 @@
         "store": "numidea-lanterne-marque", "migrate": "numidea-lessons-brandc",
         "ids": ["b1", "b2", "b3", "b4", "b9", "b5", "b6", "b7", "b8"] },
       { "slug": "web3", "key": "web3", "title": "web3c.title", "kind": "web3c.kicker", "line": "web3c.lead", "guide": "raven",
-        "cover": {"plate": "web3-a2", "pos": "50% 72%", "cast": [{"src": "img/lanterne/kit/yasser-pose-inspect.webp", "w": 560, "side": "end", "size": 1.3, "h": 416}, {"src": "img/lanterne/kit/props-server-boom.webp", "w": 415, "side": "start", "size": 0.72, "h": 480}]}, "accent": "#236660",
+        "cover": {"plate": "web3-a2", "pos": "50% 72%", "cast": [{"src": "img/lanterne/kit/yasser-pose-inspect-solo.webp", "w": 496, "h": 412, "in": true, "size": 1.04, "x": "-5%", "b": "-13%"}]}, "accent": "#236660",
         "store": "numidea-lanterne-web3", "migrate": "numidea-lessons-web3c",
         "ids": ["w1", "w2", "w3", "w8", "w4", "w5", "w6", "w7"], "vol2": true },
       { "slug": "web3-modules", "key": "w3m", "in": "web3", "title": "lant.at.w3m.book", "kind": "lant.at.w3m.kicker", "line": "lant.at.w3m.pitch", "guide": "raven",
