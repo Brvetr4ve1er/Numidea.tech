@@ -930,6 +930,7 @@
        a starting estimate nobody chose is not put in their mouth). */
     var WA = 'https://wa.me/213672412578';
     var sends = $$('[data-est-send]'), waC = $('[data-est-wa]'), mailC = $('[data-est-mail]');
+    var bagP = $('[data-est-bag]');
     var mailTo = mailC ? mailC.getAttribute('href').split('?')[0] : '';
     var touched = false;
     // (its words are not in #hub-fr: the French ones are read from the page, where the build baked them)
@@ -956,6 +957,12 @@
         // the console's A key is named by its label: it says the new tab as the block button does
         else if (a.hasAttribute('data-i18n-aria')) a.setAttribute('aria-label', tk('pricing.cta') + ' ' + tk('case.newTab'));
       });
+      // the money services sell at fixed prices: the receipt goes to the counter as it stands (its calls and options)
+      if (bagP) {
+        bagP.hidden = m.fam !== 'argent';
+        var ids = ['appel' + (st.n > 1 ? '*' + st.n : '')].concat(picked().filter(function (x) { return ['setup', 'pack', 'guides'].indexOf(x) > -1; }));
+        $('a', bagP).href = '../comptoir/?add=' + ids.join(',') + (lang === 'fr' ? '' : '&lang=' + lang);
+      }
       if (!touched) return;
       if (waC) waC.href = wa;
       if (mailC) mailC.href = mailTo + '?subject=' + encodeURIComponent(bare(fill(tk('pricing.mailSubj'), o))) + '&body=' + encodeURIComponent(msg);

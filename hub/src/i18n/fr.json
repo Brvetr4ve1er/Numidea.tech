@@ -278,6 +278,7 @@
     "note": "@home:price.estFine",
     "running": "Domaine et hébergement en plus, facturés à l’année par l’hébergeur, à votre nom.",
     "cta": "Recevoir mon devis",
+    "bag": "Prix fixe : mettre dans le sac →",
     "waMsg": "Bonjour, je voudrais un devis pour ce projet, estimé sur la console du studio :\n{what}\n{lines}\nDélai : {pace}\nTotal estimé : {total} · {weeks}",
     "mailSubj": "Demande de devis : {what}",
     "sources": "Le marché, sources à l’appui : le guide des prix →",

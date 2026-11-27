@@ -62,3 +62,23 @@ Thread: "Add PayPal payments across the site". This file is the living plan; eac
   - `/comptoir/?add=<item id>` opens the counter with that item in the bag: the link a carte card would use.
 - Proposal, where to link it from (owner decides): **the Studio's carte first** (hub/#carte): each fixed-price card gets a second button « Mettre dans le sac » → `/comptoir/?add=<id>`, beside its WhatsApp button. Then the money services' page for the call, setup, pack and guides. Not the home menu or the tier cards (quotes, not carts), not lessons or Encre (the game rule: Encre buys nothing).
 - Increment 5 (2026-11-27), the owner chose the carte: the 8 Studio carte cards whose lead tier the counter sells at that exact figure (Logo Signature, Mascotte, Landing, Site 5 écrans, Kit animé, Stickers, Deck 12, Audit parcours) carry « Mettre dans le sac → » under the WhatsApp button, to `../comptoir/?add=<id>` (+ `&lang=` in EN/AR). Built by scripts/lib/carte.mjs from api/_shop.js, so a card only links when its lead figure is in the shop list; ranges, quotes and Papeterie (lead tier not sold) get none. Next link spot: the money services' page.
+- Increment 6 (2026-11-27, "advance as far as possible"):
+  - Ground truth: the trunk took PR #32 up to increment 3 at 9647176 (the counter, PayPal through the Orders API only). Increments 4-6 live on this branch, re-synced with the trunk.
+  - **PayPal proof gate** (`gate()` in api/pay.js): no real-money PayPal path until `PAYPAL_PROVEN=yes` is set after a real payment reaches the account. Live keys answer `ready:false` and the PayPal.me link is withheld; sandbox keys still work. Production has no PayPal variable today (checked in Vercel: all four are preview-only, scoped to this branch), and no key is in the git history (scan of all 797 commits).
+  - **Studio console**: when the money services are picked, the receipt shows « Prix fixe : mettre dans le sac → », which opens the counter with the same calls and options (`?add=appel*2,setup,pack`); the starter combo applies there too.
+  - **Carte**: three more single-figure headline tiers in the shop list (Pack papeterie 30 000, Maquette app 10 écrans 120 000, Packaging 1 référence 45 000), so 11 cards link. Papeterie now sells the pack its tag shows.
+  - `?add=` takes a list (`id*n`, comma-separated, at most 8, each within its max).
+
+## Where a visitor is ready to pay (map, 2026-11-27)
+
+| Rank | Place | Decision | Why |
+|---|---|---|---|
+| 1 | Studio carte cards (hub/#carte) | **Placed** (11 cards) | The buyer has read a fixed price and a scope; one tap puts it in the bag. WhatsApp stays the main button. |
+| 2 | Studio console, money services (hub/#pricing) | **Placed** | The receipt is a fixed total the shop sells line for line. |
+| 3 | Signed quote links (deposit / balance) | Already built (increment 1) | Sent by hand with a quote; not a page link. |
+| - | Console, web projects; Tarifs page; home estimator | Left out | Ranges. A cart would sell a figure the studio has not quoted. |
+| - | Formules (Marque, Produit) | Left out | Big bundles; a conversation closes them better. Produit (185 000, fixed) is the first candidate if wanted. |
+| - | Monthly plan, maintenance | Left out | Recurring; needs PayPal subscriptions, not built. |
+| - | Game reward card (rank 8, code LANTERNE-8, −5 % first project) | Left out | Encre buys nothing; the code stays a WhatsApp handshake, confirmed by hand. |
+| - | Book-finish commission card | Left out, candidate | Points to Tarifs today. Next candidate: the money books (argent, route) open the console on the money services. Touches the lessons, so the owner decides. |
+| - | Case pages, home menu, lessons, enquêtes, COD shop | Left out | Proof and play, not a till. |

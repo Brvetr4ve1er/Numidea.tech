@@ -623,6 +623,8 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
         <!-- the message "Recevoir mon devis" sends (hub/app.js 6): its words, in the page's language, filled by the script -->
         <span hidden data-i18n="pricing.waMsg"></span><span hidden data-i18n="pricing.mailSubj"></span>
         <a class="st-btn st-btn--primary st-btn--block" href="#contact" data-est-send><span data-i18n="pricing.cta"></span><span class="st-sr" data-est-tab hidden> <span data-i18n="case.newTab"></span></span></a>
+        <!-- the money services are fixed prices: they can be paid at the counter (hub/app.js 6, payments 2026-11-27) -->
+        <p class="st-est__bag" data-est-bag hidden><a href="../comptoir/?add=appel" data-i18n="pricing.bag"></a></p>
         <p class="st-est__src"><a href="../tarifs/#market" data-i18n="pricing.sources"></a></p>
       </div>
     </div>

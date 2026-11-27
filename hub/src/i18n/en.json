@@ -278,6 +278,7 @@
     "note": "@home:price.estFine",
     "running": "Domain and hosting on top, billed yearly by the host, in your name.",
     "cta": "Get my quote",
+    "bag": "Fixed price: put it in the bag →",
     "waMsg": "Hello, I would like a quote for this project, estimated on the studio console:\n{what}\n{lines}\nTimeline: {pace}\nEstimated total: {total} · {weeks}",
     "mailSubj": "Quote request: {what}",
     "sources": "The market, with sources: the price guide →",

@@ -147,7 +147,8 @@
   document.querySelectorAll('[data-t]').forEach((n) => { if (typeof t[n.dataset.t] === 'string') n.textContent = t[n.dataset.t]; });
   $('c-off').hidden = true;
 
-  const locale = lang === 'fr' ? 'fr-FR' : lang === 'ar' ? 'ar-DZ-u-nu-latn' : 'en-US';
+  // Arabic groups thousands with a space like the Studio's carte (70 000 دج), not ar-DZ's dot, which reads as a decimal
+  const locale = lang === 'en' ? 'en-US' : 'fr-FR';
   const nf = new Intl.NumberFormat(locale);
   // fr-FR groups with a narrow no-break space the condensed display face does not draw
   const sp = (x) => x.replace(/\u202f/g, '\u00a0');
@@ -225,9 +226,15 @@
       if (saved && /^N-\d{8}-[A-Z0-9]{4}$/.test(saved.ref || '')) ref = saved.ref;
     } catch { /* storage may be off */ }
 
-    // a deep link from a carte card (?add=logo-ess): that card lands in the bag, its aisle open
-    const add = byId[q.get('add')];
-    if (add) { if (!bag.has(add.id)) bag.set(add.id, 1); tab = add.cat; }
+    // ?add=<id>[*n][,<id>[*n]…]: a carte card or the console's receipt, put in the bag (an item already there keeps its count)
+    let add = null;
+    for (const part of (q.get('add') || '').split(',').slice(0, 8)) {
+      const [id, k] = part.split('*'), i = byId[id], n = k === undefined ? 1 : Number(k);
+      if (!i || !Number.isInteger(n) || n < 1 || n > i.max) continue;
+      if (!bag.has(i.id)) bag.set(i.id, n);
+      add = add || i;
+    }
+    if (add) tab = add.cat;
     const name = (i) => i.n[lang] || i.n.fr;
     const rarity = (da) => (da > 50000 ? 'epic' : da > 15000 ? 'rare' : 'common');
     const fxOf = (da, c) => Math.max(1, Math.round(da / cat.fx[c]));
