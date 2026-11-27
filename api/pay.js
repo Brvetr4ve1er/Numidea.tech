@@ -14,6 +14,10 @@
  *   PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET  the REST app's pair
  *   PAYPAL_ENV        "live" for real money; anything else is sandbox
  *   PAY_LINK_SECRET   the HMAC key scripts/pay-link.mjs signs links with
+ *   PAYPAL_ME         the owner's PayPal.me name (not a secret), for the pay-link fallback
+ *   PAYPAL_PROVEN     "yes" once a real payment has reached the owner's PayPal account (2026-11-27: not yet proven
+ *                     that an Algerian account can receive). Until then no real-money PayPal path exists: live keys
+ *                     answer ready:false and the PayPal.me link is withheld. Sandbox keys still work (test money).
  * Without them this answers 503 and the page shows the transfer details only.
  *
  * Raw fetch, no SDK: the project deploys with no install step.
@@ -70,16 +74,24 @@ async function token() {
 
 const LABEL = { deposit: 'Acompte 40 %', balance: 'Solde 60 %', full: 'Paiement' };
 
+/* real money moves through PayPal only once the owner has proven the account receives (PAYPAL_PROVEN=yes) */
+export function gate(e = process.env) {
+  const live = e.PAYPAL_ENV === 'live', proven = e.PAYPAL_PROVEN === 'yes';
+  const me = e.PAYPAL_ME || '';
+  return {
+    env: live ? 'live' : 'sandbox',
+    api: Boolean(e.PAYPAL_CLIENT_ID && e.PAYPAL_CLIENT_SECRET && e.PAY_LINK_SECRET) && (!live || proven),
+    paylink: proven && /^[A-Za-z0-9]{1,20}$/.test(me) ? `https://www.paypal.com/paypalme/${me}` : null,
+  };
+}
+
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
-  const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PAY_LINK_SECRET } = process.env;
-  const configured = Boolean(PAYPAL_CLIENT_ID && PAYPAL_CLIENT_SECRET && PAY_LINK_SECRET);
+  const g = gate(), configured = g.api;
   // GET: is the button worth showing? Says only the mode, never a key.
   // The counter's price list comes with it, so the page and the charge read one list.
   if (req.method === 'GET') {
-    const env = process.env.PAYPAL_ENV === 'live' ? 'live' : 'sandbox', catalog = publicCatalog();
-    // the owner's PayPal.me name (PAYPAL_ME, not a secret): a pay link the counter can prefill when the API is off
-    const me = process.env.PAYPAL_ME || '', paylink = /^[A-Za-z0-9]{1,20}$/.test(me) ? `https://www.paypal.com/paypalme/${me}` : null;
+    const { env, paylink } = g, catalog = publicCatalog();
     if (!configured) return res.status(200).json({ ready: false, paylink, catalog });
     try { await token(); return res.status(200).json({ ready: true, env, paylink, catalog }); }
     catch { return res.status(200).json({ ready: false, env, error: 'auth', paylink, catalog }); }

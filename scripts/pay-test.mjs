@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* npm run pay:test — the payment link's signature rules, offline (no PayPal call). */
 import assert from 'node:assert/strict';
-import { sign, verify } from '../api/pay.js';
+import { sign, verify, gate } from '../api/pay.js';
 
 const S = 'test-secret';
 const exp = String(Math.floor(Date.now() / 1000) + 3600);
@@ -57,3 +57,19 @@ t('a bag with a bad line is refused', () => {
   assert.equal(price([]), null);
 });
 t('a small bag cannot take a deposit', () => assert.equal(price([{ id: 'carte', qty: 1 }], 'EUR', 'deposit'), null));
+
+// no real money through PayPal before the owner has proven the account receives (PAYPAL_PROVEN=yes)
+const KEYS = { PAYPAL_CLIENT_ID: 'id', PAYPAL_CLIENT_SECRET: 'x', PAY_LINK_SECRET: 'k' };
+t('live keys stay off until the account is proven', () => {
+  assert.equal(gate({ ...KEYS, PAYPAL_ENV: 'live' }).api, false);
+  assert.equal(gate({ ...KEYS, PAYPAL_ENV: 'live', PAYPAL_PROVEN: 'yes' }).api, true);
+  assert.equal(gate({ ...KEYS }).api, true, 'sandbox keys move test money only');
+});
+t('the PayPal.me link waits for the proof too', () => {
+  assert.equal(gate({ PAYPAL_ME: 'numidea' }).paylink, null);
+  assert.equal(gate({ PAYPAL_ME: 'numidea', PAYPAL_PROVEN: 'yes' }).paylink, 'https://www.paypal.com/paypalme/numidea');
+  assert.equal(gate({ PAYPAL_ME: 'a/b', PAYPAL_PROVEN: 'yes' }).paylink, null);
+});
+t('an empty environment offers no PayPal at all (production today)', () => {
+  const g = gate({}); assert.equal(g.api, false); assert.equal(g.paylink, null);
+});
