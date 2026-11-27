@@ -324,9 +324,9 @@ console.log(`design-check (${STRICT ? 'strict' : 'report-only: DESIGN_REPORT=1'}
 /* ---- scale: font sizes written off the type scale, per sheet (2026-11-26; spec
    https://claude.ai/artifact/BrvX62HC49TTPheF3Yiwhw). A font-size, or the size in a font shorthand, is on the scale
    when it is var(--fs-*), inherit/0/1em/100% (relative to an on-scale parent), or a clamp() whose min and max are
-   rem endpoints of the scale. Measured 2026-11-26 before the roll-out: lanterne 137, Studio 691, home 253. ---- */
+   rem endpoints of the scale. Measured 2026-11-26 before the roll-out: lanterne 137, Studio 691, home 253; Studio 423 after PR #28, 92 on 2026-11-27 (aliases snapped). ---- */
 const SCALE_REM = new Set([0.75, 0.875, 1, 1.25, 1.5, 1.75, 2.375, 2.5, 3.5, 4.25, 7, 8]);
-const SCALE_CEIL = { 'hub/css/lanterne.css': 0, 'hub/style.css': 423, 'assets/styles.css': 253 };
+const SCALE_CEIL = { 'hub/css/lanterne.css': 0, 'hub/style.css': 92, 'assets/styles.css': 253 };
 const SIZE_RE = String.raw`(?:var\(--[\w-]+\)|clamp\([^()]*(?:\([^()]*\)[^()]*)*\)|calc\([^()]*(?:\([^()]*\)[^()]*)*\)|[\d.]+(?:px|rem|em|%|vw))`;
 const onScale = (v) => {
   v = v.trim();
@@ -334,11 +334,19 @@ const onScale = (v) => {
   const m = /^clamp\(\s*([\d.]+)rem\s*,[^,]+,\s*([\d.]+)rem\s*\)$/.exec(v);
   return !!(m && SCALE_REM.has(+m[1]) && SCALE_REM.has(+m[2]));
 };
+/* a sheet's own size alias (the Studio's --t-small, --t-label…) counts as on the scale when every definition of it in that
+   sheet, at every breakpoint and language, is on the scale (added 2026-11-27 with the aliases' definitions snapped) */
+const aliasesOnScale = (css) => {
+  const defs = {};
+  for (const m of css.matchAll(new RegExp(`(--t-[\\w-]+)\\s*:\\s*(${SIZE_RE}|min\\([^;}]*\\))`, 'g'))) (defs[m[1]] = defs[m[1]] || []).push(m[2]);
+  return new Set(Object.entries(defs).filter(([, vs]) => vs.every(onScale)).map(([k]) => k));
+};
 const offScale = (css) => {
   css = css.replace(/\/\*[\s\S]*?\*\//g, '');
+  const ok = aliasesOnScale(css), on = (v) => onScale(v) || ok.has((/^var\((--t-[\w-]+)\)$/.exec(v.trim()) || [])[1]);
   const off = [];
-  for (const m of css.matchAll(new RegExp(`font-size\\s*:\\s*(${SIZE_RE})`, 'g'))) if (!onScale(m[1])) off.push(m[1]);
-  for (const m of css.matchAll(new RegExp(`(?<![-\\w])font\\s*:\\s*(?:(?:italic|normal|[1-9]00|bold|small-caps)\\s+)*(${SIZE_RE})(?:\\s*/|\\s+['"\\w])`, 'g'))) if (!onScale(m[1])) off.push(m[1]);
+  for (const m of css.matchAll(new RegExp(`font-size\\s*:\\s*(${SIZE_RE})`, 'g'))) if (!on(m[1])) off.push(m[1]);
+  for (const m of css.matchAll(new RegExp(`(?<![-\\w])font\\s*:\\s*(?:(?:italic|normal|[1-9]00|bold|small-caps)\\s+)*(${SIZE_RE})(?:\\s*/|\\s+['"\\w])`, 'g'))) if (!on(m[1])) off.push(m[1]);
   return off;
 };
 for (const [sheet, ceil] of Object.entries(SCALE_CEIL)) {

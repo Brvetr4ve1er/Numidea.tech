@@ -65,14 +65,14 @@
   --t-h2:clamp(36px,5.4vw,78px);
   --t-h3l:clamp(30px,4vw,56px);
   --t-h3:clamp(24px,2.2vw,30px);
-  --t-lead:clamp(17px,1.5vw,20px);
-  --t-body:clamp(17px,1.4vw,19px);
+  --t-lead:clamp(1rem,1.5vw,1.25rem);
+  --t-body:clamp(1rem,1.4vw,1.25rem);
   --t-card:var(--fs-body);
-  --t-small:15px;
-  --t-mono:13px;
+  --t-small:var(--fs-small);
+  --t-mono:var(--fs-label);
   --t-label:var(--fs-label);
-  --t-hand:clamp(22px,2.2vw,30px);
-  --t-hand-s:19px;
+  --t-hand:clamp(1.25rem,2.2vw,1.75rem);
+  --t-hand-s:var(--fs-lead);
   --t-stat:48px;
 
   --sec-y:clamp(64px,8vw,120px);
@@ -103,8 +103,8 @@ html[lang="ar"]{--fs-micro:.8125rem}
   --f-cond:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;
   --f-wide:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;
   --lh-disp:1.25;--tr-ui:0;--tr-label:0;
-  --t-label:13px;
-  --t-mono:14px;
+  --t-label:var(--fs-micro);
+  --t-mono:var(--fs-small);
   --f-disp:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;
   --f-body:"IBM Plex Sans Arabic","Geist",sans-serif;
   --f-mono:"IBM Plex Sans Arabic","Geist Mono",sans-serif;
@@ -1979,7 +1979,7 @@ main:focus{outline:none}
 /* ---- phones: the page's rhythm ---- */
 @media (max-width:599px){
   /* S-09 (2026-11-24): the sections' padding 30 px a side (44 before), the heads 20 px over their content */
-  :root{--sec-y:30px;--t-hero:clamp(30px,8.6vw,40px);--t-h2:clamp(29px,7.8vw,36px);--t-mega:clamp(38px,11vw,48px);--t-h3l:clamp(26px,7.4vw,32px);--t-body:16px;--t-lead:16px}
+  :root{--sec-y:30px;--t-hero:clamp(30px,8.6vw,40px);--t-h2:clamp(29px,7.8vw,36px);--t-mega:clamp(38px,11vw,48px);--t-h3l:clamp(26px,7.4vw,32px);--t-body:var(--fs-body);--t-lead:var(--fs-body)}
   .st-head{margin-bottom:20px;gap:12px 24px}
   .st-process .st-head,.st-pricing .st-head,.st-tech .st-head{margin-bottom:20px}
   .st-kick{gap:12px;letter-spacing:.14em}
@@ -2389,7 +2389,7 @@ html .crt .cc__sum,html .crt .cc__p--more{display:none}
 
 /* ---- a phone on its side (under 500px high): the bar is slim, the first screen holds the words and the character ---- */
 @media (orientation:landscape) and (max-height:500px){
-  :root{--sec-y:40px;--t-hero:clamp(26px,8.6vh,40px);--t-h2:clamp(28px,8vh,40px);--t-mega:clamp(34px,10vh,56px);--t-body:16px;--t-lead:16px}
+  :root{--sec-y:40px;--t-hero:clamp(26px,8.6vh,40px);--t-h2:clamp(28px,8vh,40px);--t-mega:clamp(34px,10vh,56px);--t-body:var(--fs-body);--t-lead:var(--fs-body)}
   .st-nav__in{padding-block:4px}
   .st-nav{position:sticky}
   section[id],.st-case,[id^="case-"]{scroll-margin-top:60px}
