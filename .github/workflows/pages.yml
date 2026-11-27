@@ -1,23 +1,23 @@
-name: Deploy to GitHub Pages
+name: GitHub Pages forward
 
-# Publishes the static site to GitHub Pages on every push to the working
-# branch, but only once every gate is green. A push that changes only
-# documentation or the knowledge base (paths-ignore below) publishes nothing
-# new, so it runs nothing here; check.yml, the required status, stays
-# unfiltered.
+# The GitHub Pages address (scripts/site.mjs PAGES_BASE) is no longer a copy
+# of the site. It publishes two small pages (scripts/pages-forward.mjs) that
+# send every path to the same path on the canonical site (BASE) and tell
+# search engines not to index them.
 #
-# gates — read-only. The repository invariants, html-validate, "the build
-#   leaves no change", then the browser gates (audit, sweep, vbugs, keys) on
-#   Playwright's Chromium, and the staged copy (stage-check: the stylesheets
-#   and scripts that lose their comments at staging parse and compile as
-#   their sources do). About twelve minutes. Every gate runs even when an
-#   earlier one failed, so a red run lists everything that is wrong.
-# deploy — runs only when gates passed (needs: gates); any red gate means the
-#   live site stays as it is. It installs no npm package: it stages the
-#   publishable files (scripts/site.mjs DEPLOY, copied by
-#   scripts/stage-site.mjs into _site/, so knowledge-base/, audit/, scripts/,
-#   BRAND.md… are never served) and hands them to Pages. Only this job holds
-#   the Pages and OIDC token permissions.
+# Why: the mirror's deploy ran every gate first (about 27 minutes even with
+# the gates side by side) and has not finished since 2026-10-25 (the billing
+# lock, then cancelled at its 45-minute limit), so Pages kept serving the
+# 25 October build: a public duplicate, months behind, that search engines
+# could index. The gates now run where they belong: check.yml on every push
+# and pull request, all of them nightly, and `npm run verify` before a
+# publish (RELEASE.md). This workflow runs no gate because it publishes
+# nothing of the site.
+#
+# It runs when the forward itself can change (the script, the addresses in
+# site.mjs, this file) and on demand. About a minute. The owner can instead
+# switch Pages off (Settings → Pages → Unpublish site); then this workflow
+# has nothing to deploy to and can be deleted.
 #
 # Every action is pinned to a commit SHA, its version in the comment;
 # Dependabot (.github/dependabot.yml) proposes the updates.
@@ -25,96 +25,21 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: ["claude/numidea-labs-landing-c4jokc"]
-    paths-ignore: ["**.md", "knowledge-base/**", "audit/**"]
+    paths: ["scripts/pages-forward.mjs", "scripts/site.mjs", ".github/workflows/pages.yml"]
   workflow_dispatch:
 
 permissions:
   contents: read
 
-# One deployment at a time. A run already deploying is never cancelled (a
-# Pages deploy cut off mid-flight can fail or leave the release half-done);
-# newer pushes wait, and of those only the latest queued one runs.
+# One deployment at a time; a Pages deploy cut off mid-flight can fail.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  gates:
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: Set up Node
-        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
-        with:
-          node-version: 22
-          package-manager-cache: false
-
-      - name: Check repository invariants
-        run: node scripts/check.mjs && node scripts/themes-check.mjs
-
-      - name: Install
-        id: install
-        if: ${{ !cancelled() }}
-        run: npm ci
-        env:
-          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
-
-      - name: HTML validation
-        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
-        run: npm run validate
-
-      - name: The build leaves no change (npm run build && git diff --exit-code)
-        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
-        run: |
-          npm run build
-          if ! git diff --exit-code --stat; then
-            git --no-pager diff | head -n 200 || true   # a long diff: head closes the pipe early
-            echo "::error::npm run build changed committed files. Run it locally and commit the result."
-            exit 1
-          fi
-          new=$(git ls-files --others --exclude-standard)
-          if [ -n "$new" ]; then
-            echo "$new"
-            echo "::error::npm run build wrote files that are not committed (listed above)."
-            exit 1
-          fi
-
-      # the Chromium build that the locked Playwright version expects, with its
-      # system libraries and fonts (scripts/lib/serve.mjs uses it in CI)
-      - name: Install Chromium
-        id: browser
-        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
-        run: npx playwright install --with-deps chromium
-
-      - name: Browser audit (npm run audit)
-        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
-        run: npm run audit
-
-      - name: Contrast sweep (npm run sweep)
-        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
-        run: npm run sweep
-
-      - name: Visual bug scan (npm run vbugs)
-        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
-        run: npm run vbugs
-
-      - name: Keyboard, motion and RTL paths (npm run keys)
-        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
-        run: npm run keys
-
-      - name: The staged site parses and compiles as the sources do (node scripts/stage-check.mjs)
-        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
-        run: node scripts/stage-check.mjs
-
   deploy:
-    needs: gates
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
     permissions:
       contents: read
       pages: write
@@ -134,10 +59,8 @@ jobs:
           node-version: 22
           package-manager-cache: false
 
-      - name: Stage publishable files into _site/
-        # --pages: _site/404.html gets its JavaScript-off links from the
-        # repository subpath (the path of PAGES_BASE in scripts/site.mjs)
-        run: node scripts/stage-site.mjs --pages
+      - name: Write the forward pages into _site/
+        run: node scripts/pages-forward.mjs _site
 
       - name: Configure Pages (auto-enable with Actions as the source)
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
