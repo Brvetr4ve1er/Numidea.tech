@@ -1,0 +1,791 @@
+{
+ "clock": {
+  "bpm": 90,
+  "beat": 667,
+  "e8": 83,
+  "note": "step holds are in e8 units"
+ },
+ "ease": {
+  "out": "cubic-bezier(.16,1,.3,1)",
+  "in": "cubic-bezier(.7,0,.84,0)",
+  "snap": "cubic-bezier(.34,1.56,.64,1)",
+  "move": "cubic-bezier(.65,0,.35,1)"
+ },
+ "actions": {
+  "y.blink": {
+   "base": "yasser:rig:base",
+   "steps": [
+    [
+     "yasser:rig:blink",
+     1.5
+    ]
+   ],
+   "loop": "idle",
+   "every": [
+    2.2,
+    4.8
+   ],
+   "note": "random gap 2.2–4.8 s"
+  },
+  "y.talk": {
+   "base": "yasser:rig:base",
+   "steps": [
+    [
+     "yasser:rig:talk-a",
+     2
+    ],
+    [
+     "yasser:rig:base",
+     1
+    ],
+    [
+     "yasser:rig:talk-b",
+     2
+    ],
+    [
+     "yasser:rig:base",
+     1
+    ]
+   ],
+   "loop": "while-typing",
+   "note": "tie to text typing: one mouth shape per 2 letters"
+  },
+  "y.glance-left": {
+   "base": "yasser:rig:base",
+   "steps": [
+    [
+     "yasser:rig:glance",
+     8
+    ]
+   ]
+  },
+  "y.glance-right": {
+   "base": "yasser:rig:base",
+   "steps": [
+    [
+     "yasser:rig:glance-r",
+     8
+    ]
+   ]
+  },
+  "y.push-glasses": {
+   "base": "yasser:rig:base",
+   "steps": [
+    [
+     "yasser:rig:glasses",
+     4
+    ],
+    [
+     "yasser:rig:base",
+     0
+    ]
+   ]
+  },
+  "y.half-lid": {
+   "base": "yasser:rig:base",
+   "steps": [
+    [
+     "yasser:rig:half",
+     8
+    ]
+   ]
+  },
+  "y.laugh": {
+   "base": "yasser:rig:base",
+   "steps": [
+    [
+     "yasser:rig:laugh",
+     2
+    ],
+    [
+     "yasser:rig:smirk",
+     1
+    ],
+    [
+     "yasser:rig:laugh",
+     2
+    ],
+    [
+     "yasser:rig:smirk",
+     1
+    ],
+    [
+     "yasser:rig:laugh",
+     4
+    ]
+   ]
+  },
+  "y.sip": {
+   "base": "yasser:rig:base",
+   "steps": [
+    [
+     "yasser:rig:sip",
+     12
+    ]
+   ]
+  },
+  "y.smirk": {
+   "base": "yasser:rig:base",
+   "steps": [
+    [
+     "yasser:rig:smirk",
+     8
+    ]
+   ]
+  },
+  "y.look-up": {
+   "base": "yasser:rig:base",
+   "steps": [
+    [
+     "yasser:rig:up",
+     8
+    ]
+   ]
+  },
+  "y.yawn": {
+   "base": "yasser:rig:base",
+   "steps": [
+    [
+     "yasser:rig:half",
+     2
+    ],
+    [
+     "yasser:rig:yawn",
+     10
+    ],
+    [
+     "yasser:rig:half",
+     3
+    ]
+   ]
+  },
+  "y.wave": {
+   "steps": [
+    [
+     "yasser:action:wave-a",
+     3
+    ],
+    [
+     "yasser:action:wave-b",
+     3
+    ]
+   ],
+   "loop": 3
+  },
+  "y.phone": {
+   "steps": [
+    [
+     "yasser:action:phone-a",
+     4
+    ],
+    [
+     "yasser:action:phone-b",
+     4
+    ]
+   ],
+   "loop": 2
+  },
+  "y.point-up": {
+   "steps": [
+    [
+     "yasser:action:pointup-a",
+     3
+    ],
+    [
+     "yasser:action:pointup-b",
+     5
+    ]
+   ]
+  },
+  "y.sketch": {
+   "steps": [
+    [
+     "yasser:action:sketch-a",
+     2
+    ],
+    [
+     "yasser:action:sketch-b",
+     2
+    ]
+   ],
+   "loop": 4
+  },
+  "y.win": {
+   "steps": [
+    [
+     "yasser:action:win-a",
+     3
+    ],
+    [
+     "yasser:action:win-b",
+     5
+    ]
+   ]
+  },
+  "duo.hug": {
+   "steps": [
+    [
+     "yasser:action:duo-a",
+     6
+    ],
+    [
+     "yasser:action:duo-b",
+     6
+    ]
+   ]
+  },
+  "y.turn": {
+   "steps": [
+    [
+     "yasser:turn:front",
+     2
+    ],
+    [
+     "yasser:turn:34",
+     2
+    ],
+    [
+     "yasser:turn:side",
+     2
+    ],
+    [
+     "yasser:turn:34back",
+     2
+    ],
+    [
+     "yasser:turn:back",
+     3
+    ],
+    [
+     "yasser:turn:34back",
+     2
+    ],
+    [
+     "yasser:turn:side",
+     2
+    ],
+    [
+     "yasser:turn:34",
+     2
+    ],
+    [
+     "yasser:turn:front",
+     2
+    ]
+   ],
+   "note": "hard cuts, no tween: it reads as a turn because each view holds 2 e8"
+  },
+  "k.blink": {
+   "base": "kuro:rig:base",
+   "steps": [
+    [
+     "kuro:rig:blink",
+     1.5
+    ]
+   ],
+   "loop": "idle",
+   "every": [
+    3,
+    6
+   ]
+  },
+  "k.ear": {
+   "base": "kuro:rig:base",
+   "steps": [
+    [
+     "kuro:rig:ear",
+     1
+    ],
+    [
+     "kuro:rig:base",
+     1
+    ],
+    [
+     "kuro:rig:ear",
+     1
+    ]
+   ]
+  },
+  "k.look-left": {
+   "base": "kuro:rig:base",
+   "steps": [
+    [
+     "kuro:rig:left",
+     8
+    ]
+   ]
+  },
+  "k.look-right": {
+   "base": "kuro:rig:base",
+   "steps": [
+    [
+     "kuro:rig:right",
+     8
+    ]
+   ]
+  },
+  "k.startle": {
+   "base": "kuro:rig:base",
+   "steps": [
+    [
+     "kuro:rig:wide",
+     6
+    ]
+   ]
+  },
+  "k.yawn": {
+   "base": "kuro:rig:base",
+   "steps": [
+    [
+     "kuro:rig:yawn",
+     10
+    ]
+   ]
+  }
+ },
+ "reactions": {
+  "neutral": {
+   "face": "deadpan",
+   "kuro": "peek",
+   "mark": "…",
+   "motion": "none",
+   "fr": "à l’écoute"
+  },
+  "joy": {
+   "face": "laugh",
+   "kuro": "love",
+   "mark": "♪",
+   "motion": "pop",
+   "fr": "ravi",
+   "action": "y.laugh"
+  },
+  "smug": {
+   "face": "smirk",
+   "kuro": "smug",
+   "mark": "✦",
+   "motion": "pop",
+   "fr": "content de lui",
+   "action": "y.smirk"
+  },
+  "thinking": {
+   "face": "think",
+   "kuro": "peek",
+   "mark": "?",
+   "motion": "tilt",
+   "fr": "réfléchit",
+   "action": "y.look-up"
+  },
+  "focus": {
+   "face": "focus",
+   "kuro": "stamp",
+   "mark": "!",
+   "motion": "push-in",
+   "fr": "concentré",
+   "action": "y.push-glasses"
+  },
+  "surprised": {
+   "face": "shocked",
+   "kuro": "shook",
+   "mark": "!!",
+   "motion": "shake",
+   "fr": "surpris",
+   "kuroAction": "k.startle"
+  },
+  "annoyed": {
+   "face": "sideeye",
+   "kuro": "judge",
+   "mark": "✱",
+   "motion": "tilt",
+   "fr": "regard en coin",
+   "action": "y.glance-right"
+  },
+  "angry": {
+   "face": "angry",
+   "kuro": "hiss",
+   "mark": "✱✱",
+   "motion": "shake",
+   "fr": "pas d’accord"
+  },
+  "tired": {
+   "face": "tired",
+   "kuro": "mug",
+   "mark": "//",
+   "motion": "droop",
+   "fr": "fatigué",
+   "action": "y.half-lid"
+  },
+  "sleepy": {
+   "face": "sleep",
+   "kuro": "loaf",
+   "mark": "z",
+   "motion": "droop",
+   "fr": "à moitié endormi",
+   "action": "y.yawn",
+   "kuroAction": "k.yawn"
+  },
+  "embarrassed": {
+   "face": "facepalm",
+   "kuro": "judge",
+   "mark": "//",
+   "motion": "droop",
+   "fr": "gêné"
+  },
+  "decisive": {
+   "face": "pointyou",
+   "kuro": "stamp",
+   "mark": "!",
+   "motion": "slam",
+   "fr": "c’est toi qu’il pointe"
+  }
+ },
+ "motions": {
+  "none": {},
+  "pop": {
+   "keyframes": [
+    [
+     0,
+     "scale(.86)"
+    ],
+    [
+     0.6,
+     "scale(1.05)"
+    ],
+    [
+     1,
+     "none"
+    ]
+   ],
+   "ms": 250,
+   "ease": "out"
+  },
+  "tilt": {
+   "keyframes": [
+    [
+     0,
+     "rotate(0)"
+    ],
+    [
+     1,
+     "rotate(-4deg)"
+    ]
+   ],
+   "ms": 333,
+   "ease": "snap"
+  },
+  "push-in": {
+   "keyframes": [
+    [
+     0,
+     "scale(1)"
+    ],
+    [
+     1,
+     "scale(1.06)"
+    ]
+   ],
+   "ms": 333,
+   "ease": "out"
+  },
+  "shake": {
+   "keyframes": [
+    [
+     0,
+     "none"
+    ],
+    [
+     0.2,
+     "translate(-8px,4px)"
+    ],
+    [
+     0.4,
+     "translate(7px,-3px)"
+    ],
+    [
+     0.6,
+     "translate(-4px,2px)"
+    ],
+    [
+     0.8,
+     "translate(2px,-1px)"
+    ],
+    [
+     1,
+     "none"
+    ]
+   ],
+   "ms": 200,
+   "ease": "steps(5,jump-none)"
+  },
+  "droop": {
+   "keyframes": [
+    [
+     0,
+     "none"
+    ],
+    [
+     1,
+     "translateY(10px) rotate(2deg)"
+    ]
+   ],
+   "ms": 420,
+   "ease": "move"
+  },
+  "slam": {
+   "keyframes": [
+    [
+     0,
+     "translateY(60px) scale(1.08,.94)"
+    ],
+    [
+     0.55,
+     "translateY(-10px) scale(.98,1.03)"
+    ],
+    [
+     0.78,
+     "translateY(3px) scale(1.01,.99)"
+    ],
+    [
+     1,
+     "none"
+    ]
+   ],
+   "ms": 420,
+   "ease": "out"
+  }
+ },
+ "scenes": {
+  "talk.wave": {
+   "reaction": "joy",
+   "kuro": "peek",
+   "q": "Salut !",
+   "line": "Salut. Kūro t’a vu arriver avant moi.",
+   "body": "y.wave",
+   "word": "Salut",
+   "prop": "satchel",
+   "card": [
+    "La sacoche",
+    "Hublot inclus. Kūro voyage en première."
+   ]
+  },
+  "talk.build": {
+   "reaction": "focus",
+   "kuro": "none",
+   "q": "Tu fais quoi, exactement ?",
+   "line": "Des sites, des marques, des mascottes. Du début jusqu’à la mise en ligne.",
+   "body": "pose:laptop",
+   "word": "Je code",
+   "prop": "laptop",
+   "card": [
+    "Le portable",
+    "Touches rouges : ses raccourcis."
+   ]
+  },
+  "talk.price": {
+   "reaction": "decisive",
+   "kuro": "stamp",
+   "q": "C’est combien ?",
+   "line": "Prix fixe, écrit avant. Le menu est dans le Studio.",
+   "body": "pose:invoice",
+   "word": "Prix fixe"
+  },
+  "talk.turn": {
+   "reaction": "smug",
+   "kuro": "judge",
+   "q": "Tourne-toi.",
+   "line": "D’accord, un tour. Pas deux.",
+   "body": "y.turn",
+   "word": "Un tour"
+  },
+  "talk.coffee": {
+   "reaction": "sleepy",
+   "kuro": "mug",
+   "q": "Tu dors quand ?",
+   "line": "Après la mise en ligne. Donc rarement.",
+   "body": "pose:coffee",
+   "word": "Café"
+  },
+  "talk.kuro": {
+   "reaction": "smug",
+   "kuro": "smug",
+   "q": "Kūro est gentil ?",
+   "line": "Gentil, non. Juste. Il valide, ou il s’en va."
+  },
+  "talk.phone": {
+   "reaction": "decisive",
+   "kuro": "stamp",
+   "q": "On travaille ensemble ?",
+   "line": "Écris-moi sur WhatsApp. Je réponds, même à 2 h.",
+   "body": "y.phone",
+   "word": "WhatsApp"
+  },
+  "talk.ride": {
+   "reaction": "joy",
+   "kuro": "peek",
+   "q": "Tu peux venir sur place ?",
+   "line": "Bordj Bou Arréridj et autour, oui. Sinon, tout se fait en ligne.",
+   "body": "y.wave",
+   "word": "J’arrive",
+   "prop": "scooter",
+   "card": [
+    "Le scooter",
+    "Plus rapide qu’un devis."
+   ]
+  },
+  "talk.deploy": {
+   "reaction": "focus",
+   "kuro": "stamp",
+   "q": "Et après la livraison ?",
+   "line": "Je mets en ligne, je surveille, je corrige. Le site tient.",
+   "body": "y.point-up",
+   "word": "Déployé",
+   "prop": "server",
+   "card": [
+    "La baie",
+    "Surveillée. Elle tient."
+   ]
+  },
+  "talk.nomiddleman": {
+   "reaction": "angry",
+   "kuro": "hiss",
+   "q": "Un intermédiaire m’a dit…",
+   "line": "Pas d’intermédiaire ici. Tu parles à celui qui code."
+  },
+  "talk.show": {
+   "reaction": "focus",
+   "kuro": "peek",
+   "q": "Montre-moi un truc.",
+   "line": "Ok, regarde. Une démo d’abord, le prix après.",
+   "body": "pose:sign",
+   "word": "Regarde"
+  },
+  "talk.oops": {
+   "reaction": "embarrassed",
+   "kuro": "judge",
+   "q": "Tu as raté quelque chose ?",
+   "line": "Une fois. On n’en parle pas.",
+   "body": "pose:facepalm",
+   "word": "Oups",
+   "prop": "server-boom",
+   "card": [
+    "La baie, avant",
+    "Une fois. On n’en parle pas."
+   ]
+  },
+  "talk.sketch": {
+   "reaction": "focus",
+   "kuro": "peek",
+   "body": "y.sketch",
+   "word": "Je dessine",
+   "prop": "sketchbook",
+   "card": [
+    "Le carnet",
+    "Tout commence ici, avant le code."
+   ]
+  },
+  "talk.deliver": {
+   "reaction": "smug",
+   "kuro": "stamp",
+   "body": "pose:handover",
+   "word": "Livré",
+   "prop": "box-closed",
+   "card": [
+    "Le colis",
+    "Scotché, testé, prêt à partir."
+   ]
+  },
+  "talk.inspect": {
+   "reaction": "thinking",
+   "kuro": "peek",
+   "body": "pose:inspect",
+   "word": "Détails"
+  },
+  "talk.celebrate": {
+   "reaction": "joy",
+   "kuro": "love",
+   "body": "y.win",
+   "word": "En ligne",
+   "prop": "box-open",
+   "card": [
+    "Le colis, ouvert",
+    "C’est en ligne. Tu peux regarder."
+   ]
+  },
+  "talk.shrug": {
+   "reaction": "neutral",
+   "kuro": "judge",
+   "body": "pose:shrug",
+   "word": "Ça dépend"
+  },
+  "talk.nap": {
+   "reaction": "sleepy",
+   "kuro": "loaf",
+   "body": "pose:nap",
+   "word": "Pause",
+   "prop": "headphones",
+   "card": [
+    "Le casque",
+    "Mode ne-pas-déranger."
+   ]
+  },
+  "menu.travaux": {
+   "label": "Travaux",
+   "dest": "/scene/",
+   "face": "smirk",
+   "kuro": "stamp",
+   "prop": "box-open",
+   "line": "Des vrais sites, en ligne. Clique, tu verras.",
+   "body": "yasser:scene:master-full",
+   "wants": "one drawn pose per section (missing)"
+  },
+  "menu.tarifs": {
+   "label": "Tarifs",
+   "dest": "/tarifs/",
+   "face": "focus",
+   "kuro": "judge",
+   "prop": "fineliner",
+   "line": "Le prix est écrit avant qu’on commence. Pas de surprise.",
+   "body": "yasser:scene:master-full",
+   "wants": "one drawn pose per section (missing)"
+  },
+  "menu.atelier": {
+   "label": "L’Atelier",
+   "dest": "/hub/",
+   "face": "think",
+   "kuro": "peek",
+   "prop": "laptop",
+   "line": "Là où je fabrique. Entre, mais ne touche pas au clavier.",
+   "body": "yasser:scene:master-full",
+   "wants": "one drawn pose per section (missing)"
+  },
+  "menu.lanterne": {
+   "label": "La Lanterne",
+   "dest": "/hub/lanterne/",
+   "face": "laugh",
+   "kuro": "loaf",
+   "prop": "sketchbook",
+   "line": "Ce que j’ai appris, rangé pour que tu l’apprennes plus vite.",
+   "body": "yasser:scene:master-full",
+   "wants": "one drawn pose per section (missing)"
+  },
+  "menu.bible": {
+   "label": "La Bible",
+   "dest": "/hub/bible/",
+   "face": "deadpan",
+   "kuro": "love",
+   "prop": "hairsticks",
+   "line": "Moi, Kūro, et les règles du dessin. Tu peux même me parler.",
+   "body": "yasser:scene:master-full",
+   "wants": "one drawn pose per section (missing)"
+  },
+  "menu.contact": {
+   "label": "Contact",
+   "dest": "WhatsApp",
+   "face": "pointyou",
+   "kuro": "smug",
+   "prop": "scooter",
+   "line": "Pas d’intermédiaire. Tu écris, c’est moi qui réponds.",
+   "body": "yasser:scene:master-full",
+   "wants": "one drawn pose per section (missing)"
+  }
+ }
+}

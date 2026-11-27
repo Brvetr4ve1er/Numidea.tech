@@ -598,6 +598,8 @@
           n._got = true; n.classList.add('is-got'); got.push(id);
           try { localStorage.setItem('numidea-seals', JSON.stringify(got)); } catch (e) {}
           paint();
+          // the game layer (hub/game.js) counts it: Encre is added up again, a rank reached gets its card
+          try { d.dispatchEvent(new CustomEvent('numidea:gain', { detail: { source: 'seal', id: id } })); } catch (e) {}
           // gone when its stamp has played (the sheet's three quarters of a beat), or after that time if no stamp plays
           var gone = function () { clearTimeout(n._t); n.removeEventListener('animationend', gone); n.hidden = true; };
           n.addEventListener('animationend', gone); n._t = setTimeout(gone, M(6));

@@ -275,6 +275,27 @@ export function lanterne(ctx) {
   const radioJson = JSON.stringify(RADIO.map((tr) => ({ id: tr.id, src: '../' + tr.src, dur: tr.dur }))).replace(/</g, '\\u003c');
   const dataBlock = (o) => `<script type="application/json" id="lant-data">${JSON.stringify(o).replace(/</g, '\\u003c')}</script>`;
 
+  /* the game layer (hub/game.js, 2026-11-26): hub/src/lanterne/game.json + every live book's acts, as #game-data on the atlases
+     and the shelf. Encre is added up by the page from the keys it already keeps; the build only says what counts and how much. */
+  const GAME = existsSync(join(LS, 'game.json')) ? json(join(LS, 'game.json')) : null;
+  const gameTitles = new Set();
+  let gameBlock = () => '';
+  if (GAME) {
+    GAME.ranks.forEach((r, i) => {
+      if (!(i === 0 ? r.at === 0 : r.at > GAME.ranks[i - 1].at)) fail(`hub/src/lanterne/game.json: rank ${i + 1}'s "at" must be 0 for the first rank, then rise`);
+      if (!existsSync(join(HUB, 'bible', 'art', r.art))) fail(`hub/src/lanterne/game.json: rank ${i + 1}'s art hub/bible/art/${r.art} is not a file`);
+      if (!(r.w > 0 && r.h > 0)) fail(`hub/src/lanterne/game.json: rank ${i + 1} needs the art's true w and h`);
+      need(`lant.ui.game.r.${i + 1}`, 'the game'); need(`lant.ui.game.u.${i + 1}`, 'the game');
+    });
+    for (const b of live) { if (!GAME.service[b.slug]) fail(`hub/src/lanterne/game.json: no service for the book « ${b.slug} »`); gameTitles.add(b.title); }
+    const enq = ENQ ? json(join(LS, 'enquetes.json')).store : null;
+    const G0 = { pts: GAME.pts, seals: GAME.seals, discount: GAME.discount, ranks: GAME.ranks.map((r) => ({ at: r.at, art: r.art, w: r.w, h: r.h })), service: GAME.service, wa: GAME.wa,
+      enq: enq ? { store: enq } : null, art: '../bible/art/', root: '../../',
+      titles: Object.fromEntries(live.map((b) => [b.slug, b.title])),
+      books: live.map((b) => ({ slug: b.slug, store: b.store, migrate: b.migrate || null, acts: ATLAS[b.slug].acts.map((a) => ({ side: !!a.side, d: a.districts })) })) };
+    gameBlock = (passport) => `\n<script type="application/json" id="game-data">${JSON.stringify({ ...G0, passport }).replace(/</g, '\\u003c')}</script>`;
+  }
+
   /* the Studio's head, a level down: its own address, title and description, its dictionary per page */
   const headFor = (file, ui, page, crumbs) => {
     let h = pageSrc.slice(0, headEnd);
@@ -294,6 +315,8 @@ export function lanterne(ctx) {
     h = swap(h, "i.src='bible/art/rig-'", "i.src='../bible/art/rig-'", 1, "the sting's pictures");
     h = h.replace(/(\s(?:href|src)=")(?!https?:|#|\{\{)([^"]+)"/g, (all, a, u) => `${a}../${u}"`);
     h = swap(h, '<link rel="stylesheet" href="../style.css?v={{stamp}}">', '<link rel="stylesheet" href="../fonts/hud.css?v={{stamp}}">\n<link rel="stylesheet" href="../style.css?v={{stamp}}">\n<link rel="stylesheet" href="../css/lanterne.css?v={{stamp}}">', 1, 'the sheet');
+    /* the display face of the type system: the atlas and shelf titles are set in it above the fold, so it loads with the page (unpreloaded, its swap shifted the French atlases past the CLS budget) */
+    h = swap(h, '<link rel="preload" as="font" type="font/woff2" crossorigin href="../fonts/archivo-800-900-latin.woff2">', '<link rel="preload" as="font" type="font/woff2" crossorigin href="../fonts/archivo-800-900-latin.woff2">\n<link rel="preload" as="font" type="font/woff2" crossorigin href="../fonts/archivo-cond-900-latin.woff2">', 1, 'the display preload');
     h = swap(h, '{{fr}}', `{{lantFr.${page.replace(/[^a-z]/g, '')}}}`, 1, "the runtime French block");
     return h;
   };
@@ -606,8 +629,8 @@ ${stFoot(`
   </div>`)}
 <dialog class="zoom" data-lt-zoom-dialog><form method="dialog"><button type="submit" class="btn"><span data-i18n="lant.ui.close"></span></button></form><img alt="" src="${up(ART.plates[plateOf(A, ids[0])].src)}" loading="lazy" data-lt-zoom-img></dialog>
 <script type="application/json" id="hub-radio">${radioJson}</script>
-${dataBlock(client)}
-${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...(loPage ? ['../lanterne-objects.js'] : []), '../../assets/carry.js'])}
+${dataBlock(client)}${gameBlock('./#passeport')}
+${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...(loPage ? ['../lanterne-objects.js'] : []), ...(GAME ? ['../game.js'] : []), '../../assets/carry.js'])}
 </body>
 </html>
 `;
@@ -619,7 +642,7 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...
     const own = A.runtime ? new RegExp(A.runtime) : null;
     // (the nine modules' lab and shell lines are RUNTIME for the old manual's sake: an atlas that is not the modules' leaves them out)
     const loOut = new Set(ids.filter((id) => A.districts[id].object).map((id) => `lant.lo.${A.districts[id].object}.out`));
-    runtime[page] = lantRuntime((k) => loOut.has(k) || k.startsWith(`lant.at.${A.key}.`) || extra.some((e) => k === e || k.startsWith(e + '.')) || /^radio\.(play|pause|onair|idle|paused|title|chip)$|^radio\.tracks\./.test(k) || (A.app && ctx.RUNTIME.test(k) && !W3M_KEYS.test(k)) || (own && own.test(k)));
+    runtime[page] = lantRuntime((k) => gameTitles.has(k) || loOut.has(k) || k.startsWith(`lant.at.${A.key}.`) || extra.some((e) => k === e || k.startsWith(e + '.')) || /^radio\.(play|pause|onair|idle|paused|title|chip)$|^radio\.tracks\./.test(k) || (A.app && ctx.RUNTIME.test(k) && !W3M_KEYS.test(k)) || (own && own.test(k)));
     /* the labs' French lines (web3 vol. 2: hub/web3x.js writes them) ride with the labs, fetched when they load, not in
        the page's #hub-fr block: i18n/<page>.fr.js (window.LANT_XFR) */
     if (A.lazyFr) { const lz = new RegExp(A.lazyFr); lazyFr[page] = Object.fromEntries([...runtime[page]].filter((k) => lz.test(k)).sort().map((k) => [k, DICT.fr[k]])); }
@@ -659,13 +682,23 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...
     const minT = (slug) => { const n = minutes(slug); return `<span class="book__min" data-lt-tpl="lant.shelf.minutes" data-lt-n="${n}">${esc(fr('lant.shelf.minutes').replace('{n}', n))}</span>`; };
     /* the atlas as an object (2026-11-25): a hardcover lying on the night table, its page block under the cover, a ribbon
        whose length is the progress (--p, set by hub/lanterne.js); the cover lifts on its spine on hover. CSS only. */
-    const atlas = (cover) => `<span class="book__obj"><span class="book__pages"></span>${cover}<span class="book__rib"></span></span>`;
+    const atlas = (cover, cast = '') => `<span class="book__obj"><span class="book__pages"></span>${cover}<span class="book__rib"></span>${cast}</span>`;
     const book = (b) => {
       const A = ATLAS[b.slug], ids = A ? A.acts.flatMap((a) => a.districts) : b.ids;
-      let coverHtml;
+      let coverHtml, cast = '';
       if (b.cover === 'composite') {
         const bk = ART.keys.bookstall, ky = ART.cut.kuro, y = ART.cut.yasser;
         coverHtml = `<span class="book__cover book__cover--comp"><span class="book__comp" dir="ltr"><img class="book__bk" src="${up(bk.src)}" alt="" width="${bk.w}" height="${bk.h}" loading="lazy"><img class="book__k" src="${up(ky.src)}" alt="" width="${ky.w}" height="${ky.h}" loading="lazy"><img class="book__y" src="${up(y.src)}" alt="" width="${y.w}" height="${y.h}" loading="lazy"></span></span>`;
+      } else if (b.cover.plate) {
+        /* an atlas plate framed at pos, its cast in front (2026-11-26): the cut-outs stand on the cover's bottom edge and
+           break out of its top, outside the cover so the cover still lifts alone on hover */
+        const pl = ART.plates[b.cover.plate];
+        if (!pl) fail(`hub/src/lanterne/shelf.json ${b.slug}: cover plate "${b.cover.plate}" is not in art.json`);
+        const small = pl.small || pl;
+        coverHtml = `<span class="book__cover"><img src="${up(small.src)}" alt="" width="${small.w}" height="${small.h}" style="--pos:${b.cover.pos || '50% 50%'}" loading="lazy" decoding="async"></span>`;
+        cast = `<span class="book__cast" dir="ltr">${(b.cover.cast || []).map((c) => {
+          if (!existsSync(join(HUB, c.src))) fail(`hub/src/lanterne/shelf.json ${b.slug}: cast ${c.src} is not a file under hub/`);
+          return `<img class="book__c book__c--${c.side === 'start' ? 'start' : 'end'}" style="--s:${c.size}" src="${up(c.src)}" alt="" width="${c.w}" height="${c.h}" loading="lazy" decoding="async">`; }).join('')}</span>`;
       } else {
         if (!existsSync(join(HUB, b.cover.src))) fail(`hub/src/lanterne/shelf.json ${b.slug}: cover ${b.cover.src} is not a file under hub/`);
         coverHtml = `<span class="book__cover"><img src="${up(b.cover.src)}" alt="" loading="lazy" decoding="async"></span>`;
@@ -673,7 +706,7 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...
       const n = ids.length;
       return `
         <li class="book" data-lt-book="${b.slug}" style="--spine:${b.accent}">
-          ${A ? `<a class="book__link" href="${b.slug}.html" tabindex="-1" aria-hidden="true">${atlas(coverHtml)}</a>` : `<div class="book__link" aria-hidden="true">${atlas(coverHtml)}</div>`}
+          ${A ? `<a class="book__link${cast ? ' book__link--cast' : ''}" href="${b.slug}.html" tabindex="-1" aria-hidden="true">${atlas(coverHtml, cast)}</a>` : `<div class="book__link" aria-hidden="true">${atlas(coverHtml, cast)}</div>`}
           <div class="book__body">${b.start && A ? `
             <a class="book__start" href="${b.slug}.html" data-i18n="lant.shelf.start"></a>` : ''}
             <p class="book__kind" data-i18n="lant.book.${b.slug}.kind"></p>
@@ -692,10 +725,13 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...
     };
     /* a shelf is a row of three slots (2026-11-26, the type system's shelf): its head (index, title) beside the books, and the
        slots a shelf does not fill drawn empty, as an inventory, so every book keeps one size whatever its shelf holds */
+    /* an empty slot is a locked card, face down (the kit's tarot back), not a hole (2026-11-26) */
+    const LOCK = { src: 'img/lanterne/kit/props-tarot-back.webp', w: 281, h: 480 };
+    need('lant.shelf.locked', 'the shelf'); need('lant.shelf.lockedSub', 'the shelf');
     const rayons = SHELF.shelves.map((s, i) => { const shown = s.books.filter((b) => !b.in); return `
     <div class="rayon">
-      <div class="rayon__head"><span class="rayon__n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><h2 class="rayon__h" data-i18n="lant.shelf.${s.id}"></h2></div>
-      <ul class="books">${shown.map(book).join('')}${'<li class="book book--slot" aria-hidden="true"></li>'.repeat(Math.max(0, 3 - shown.length))}
+      <div class="rayon__head"><span class="rayon__n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><h2 class="rayon__h" data-i18n="lant.shelf.${s.id}"></h2>${s.host ? `<img class="rayon__host" src="${up(s.host.src)}" alt="" width="${s.host.w}" height="${s.host.h}" loading="lazy" decoding="async">` : ''}</div>
+      <ul class="books">${shown.map(book).join('')}${Array.from({ length: Math.max(0, 3 - shown.length) }, (_, j) => `<li class="book book--slot" aria-hidden="true"><span class="slot__card"><img src="${up(LOCK.src)}" alt="" width="${LOCK.w}" height="${LOCK.h}" loading="lazy" decoding="async"></span><span class="slot__lock"></span><span class="slot__t" data-i18n="lant.shelf.locked"></span><span class="slot__s" data-i18n="lant.shelf.lockedSub"></span>${j === 0 && s.sleeper ? `<img class="slot__cat" src="${up(s.sleeper.src)}" alt="" width="${s.sleeper.w}" height="${s.sleeper.h}" loading="lazy" decoding="async">` : ''}</li>`).join('')}
       </ul>
       <div class="plank" aria-hidden="true"></div>
       ${s.notes ? `<div class="legal">${s.notes.map((k) => `<p data-i18n="${need(k, `shelf.json ${s.id}`)}"></p>`).join('')}</div>` : ''}
@@ -824,17 +860,17 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...
     holes['lant.shelf.heroStart'] = first ? `<a class="hero__start" href="${first.slug}.html" data-i18n="${need('lant.shelf.heroStart', 'the shelf')}"></a>` : '';
     holes['lant.shelf.rayons'] = rayons;
     holes['lant.shelf.passport'] = tree + passport;
-    holes['lant.shelf.passTotal'] = `<p class="hud" data-lt-pass-total="${total}" data-lt-books="${books.length}">${esc(pt(total))}</p>`;
+    holes['lant.shelf.passTotal'] = `<p class="hud" data-lt-pass-total="${total}" data-lt-books="${books.length}">${esc(pt(total))}</p>` + (GAME ? '\n<p class="gm-reset js-only" data-gm-reset></p>' : '');
     holes['lant.radio'] = radioJson;
     const client = { books: books.map((b) => { const A = ATLAS[b.slug]; const ids = A ? A.acts.flatMap((a) => a.districts) : b.ids;
       return { slug: b.slug, key: b.key, live: !!A, store: b.store, migrate: b.migrate || null, ids, ...(b.in ? { in: b.in } : {}),
         acts: A ? A.acts.map((a) => ({ id: a.id, side: !!a.side, districts: a.districts })) : [{ id: 'all', side: false, districts: ids }],
         d: A ? Object.fromEntries(ids.map((id) => [id, { ks: ksOf(A, id) ? up(ksSmall(ksOf(A, id)) || ksOf(A, id)) : null, ...(sealOf(A, id) ? { seal: sealOf(A, id) } : {}), name: dk(A, id, 'name'), keep: dk(A, id, 'keep') }])) : {} }; }) };
-    holes['lant.shelf.data'] = dataBlock(client);
+    holes['lant.shelf.data'] = dataBlock(client) + gameBlock('#passeport');
     let html = headFor('', 'lant.shelf', page, [['La Librairie Lanterne', '']]) + readFileSync(join(LS, 'shelf.html'), 'utf8');
     out.push({ file: 'hub/lanterne/index.html', name: 'lanterne/index.html', page, html });
     const named = new Set(client.books.flatMap((b) => Object.values(b.d).flatMap((x) => [x.name, x.keep])));
-    runtime[page] = lantRuntime((k) => k.startsWith('lant.shelf.') || named.has(k) || RUNTIME_OLD.test(k));
+    runtime[page] = lantRuntime((k) => gameTitles.has(k) || k.startsWith('lant.shelf.') || named.has(k) || RUNTIME_OLD.test(k));
   }
   /* ================= la boîte à outils (2026-11-22, scratchpad courses-biz/PLAN.md §6.6, addendum A1, A2) =================
      one card per app, on its shelf (a category), alphabetical within it (never by what a link earns, §2.5): its name as a
