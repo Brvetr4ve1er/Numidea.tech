@@ -449,6 +449,11 @@ async function themeToggle(p) {
   }, which);
   const focusBtn = () => p.evaluate((which) => document.querySelectorAll('.theme-switch')[which].querySelector('.theme-btn').focus(), which);
   const other = (t) => (t === 'daylight' ? 'arcanum' : 'daylight');
+  // the switch is a view transition (app.js swap): its update runs a frame or
+  // more after the press, so 80ms was a race a busy machine lost (seen with
+  // the gates side by side, 2026-11-27). Wait up to 1.5s for data-theme to
+  // leave what it was, then read the state and judge it as before.
+  const settled = async (was) => { await p.waitForFunction((was) => document.documentElement.getAttribute('data-theme') !== was, was, { timeout: 1500 }).catch(() => {}); await wait(80); return st(); };
   let s = await st();
   const first = s.theme;
   if (s.tag !== 'BUTTON' || s.type !== 'button') bad.push('the toggle is not a <button type="button">');
@@ -462,19 +467,19 @@ async function themeToggle(p) {
   if (s.labels !== 1) bad.push('the toggles on the page do not agree on their label');
   // keyboard: Enter, then Space, each flips it, stores it, keeps focus on the button
   await focusBtn();
-  await p.keyboard.press('Enter'); await wait(80); s = await st();
+  await p.keyboard.press('Enter'); s = await settled(s.theme);
   if (s.theme !== other(first)) bad.push(`Enter does not switch (${first} -> ${s.theme})`);
   if (s.stored !== s.theme) bad.push(`Enter does not store the choice (stored ${s.stored})`);
   if (!s.onBtn) bad.push('focus leaves the button after Enter');
   if (!named(s) || s.labels !== 1) bad.push(`the label does not follow the switch (${s.label})`);
   if (s.iconsShown !== 1) bad.push(`${s.iconsShown} icons shown after the switch, want 1`);
   if (inMenu && !s.menuOpen) bad.push('switching closes the phone menu around the toggle');
-  await p.keyboard.press('Space'); await wait(80); s = await st();
+  await p.keyboard.press('Space'); s = await settled(s.theme);
   if (s.theme !== first || s.stored !== first) bad.push(`Space does not switch back (theme ${s.theme}, stored ${s.stored})`);
   // pointer
   await p.evaluate((which) => document.querySelectorAll('.theme-switch')[which].querySelector('.theme-btn').scrollIntoView({ block: 'center' }), which);
   const box = await p.evaluate((which) => { const r = document.querySelectorAll('.theme-switch')[which].querySelector('.theme-btn').getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; }, which);
-  await p.mouse.click(box.x, box.y); await wait(80); s = await st();
+  await p.mouse.click(box.x, box.y); s = await settled(s.theme);
   const chosen = s.theme;
   if (chosen !== other(first) || s.stored !== chosen) bad.push(`a click does not switch and store (theme ${s.theme}, stored ${s.stored})`);
   // the browser's bar follows the page colour
