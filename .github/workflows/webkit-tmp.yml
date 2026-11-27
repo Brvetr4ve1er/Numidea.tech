@@ -30,9 +30,5 @@ jobs:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
       - name: Install WebKit
         run: npx playwright install --with-deps webkit
-      - name: vbugs on WebKit
-        continue-on-error: true
-        run: node scripts/vbugs.mjs --webkit
-      - name: stage-check on WebKit
-        continue-on-error: true
-        run: node scripts/stage-check.mjs --webkit
+      - name: Bisect the hub crash on WebKit
+        run: PW_BROWSER=webkit node .github/tmp-wk-bisect.mjs
