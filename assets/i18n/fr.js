@@ -296,6 +296,7 @@ var I18N = {
   'menu.atelier.kuro': 'surveille',
   'menu.lanterne.label': 'La Lanterne',
   'menu.lanterne.sub': 'La librairie',
+  'menu.lanterne.back': 'Rang {n} · reprendre',
   'menu.lanterne.say': 'Ce que j’ai appris, rangé pour que tu l’apprennes plus vite.',
   'menu.lanterne.kuro': 'se repose',
   'menu.bible.label': 'La Bible',

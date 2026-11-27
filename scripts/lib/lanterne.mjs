@@ -1029,8 +1029,8 @@ ${scripts(['../lanterne.js', '../../assets/carry.js'])}
      the page, its checks and the strings its engine writes; its sources' hosts join the toolbox's (a source there is a
      plain link to the page that was read, marked data-app like an app's official address) */
   if (ENQ) {
-    ENQG = enquetes({ LS, HUB, DICT, LANGS, fail, notes, esc, json, need, headFor, swap, menu, motionBtn, langSwitch, scripts, radioJson, WA, TOOLS, WM, stFoot });   // WM, stFoot: the Librairie's mark and foot, for E-05; motionBtn: the mast's motion switch goes into the menu under 651 px, as on the atlases
-    if (ENQG) { out.push(ENQG.out); runtime[ENQG.out.page] = ENQG.runtime; for (const hst of ENQG.hosts) appHosts.add(hst); }
+    ENQG = enquetes({ LS, HUB, DICT, LANGS, fail, notes, esc, json, need, headFor, swap, menu, motionBtn, langSwitch, scripts, radioJson, WA, TOOLS, WM, stFoot, gameBlock });   // gameBlock (2026-11-27): the night cases pay Encre with the game's card, as the atlases do   // WM, stFoot: the Librairie's mark and foot, for E-05; motionBtn: the mast's motion switch goes into the menu under 651 px, as on the atlases
+    if (ENQG) { out.push(ENQG.out); runtime[ENQG.out.page] = new Set([...ENQG.runtime, ...Object.keys(DICT.fr).filter((k) => /^lant\.ui\.game\./.test(k))]); for (const hst of ENQG.hosts) appHosts.add(hst); }
   }
 
   /* the French runtime strings each page writes itself (the rest is baked) */

@@ -6338,7 +6338,10 @@
         "tapeBook": "Book done",
         "unit": "Encre",
         "rankOf": "Rank {n} / {N}",
-        "comH": "The studio does it for you."
+        "comH": "The studio does it for you.",
+        "tapeCase": "Case solved",
+        "tapeSeal": "Seal found",
+        "tapeEp": "Episode done"
       }
     },
     "cast": {

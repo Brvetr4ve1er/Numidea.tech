@@ -299,6 +299,7 @@ var I18N = {
   'menu.atelier.kuro': 'يراقب',
   'menu.lanterne.label': 'الفانوس',
   'menu.lanterne.sub': 'المكتبة',
+  'menu.lanterne.back': 'الرتبة {n} · تابِع',
   'menu.lanterne.say': 'ما تعلّمته، مرتّبًا لتتعلّمه أسرع.',
   'menu.lanterne.kuro': 'يستريح',
   'menu.bible.label': 'الدليل',

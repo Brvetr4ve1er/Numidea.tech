@@ -295,6 +295,7 @@ var I18N = {
   'menu.atelier.kuro': 'keeps watch',
   'menu.lanterne.label': 'The Lantern',
   'menu.lanterne.sub': 'The bookshop',
+  'menu.lanterne.back': 'Rank {n} · carry on',
   'menu.lanterne.say': 'What I learned, sorted so you learn it faster.',
   'menu.lanterne.kuro': 'is resting',
   'menu.bible.label': 'The Bible',

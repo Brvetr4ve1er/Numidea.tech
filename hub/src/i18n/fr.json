@@ -6338,7 +6338,10 @@
         "tapeBook": "Livre terminé",
         "unit": "Encre",
         "rankOf": "Rang {n} / {N}",
-        "comH": "Le studio le fait pour vous."
+        "comH": "Le studio le fait pour vous.",
+        "tapeCase": "Enquête résolue",
+        "tapeSeal": "Sceau trouvé",
+        "tapeEp": "Épisode terminé"
       }
     },
     "cast": {
