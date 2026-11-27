@@ -4,8 +4,9 @@
    1b · talk to him: a reply is a face, a beat of acting, an emote, a cut-in and Kūro's card
    2 · the pose actors: six two-frame figures (section 04b)
    2b · the turn: five drawn views, dragged or picked (section 02)
-   3 · loops: a still swapped for its animation once, on screen
-   4 · year
+   3 · year
+   (The one swapped-in animation, section 08's sticker, left on 2026-11-27: the
+   page has no animated file any more.)
    The rule of the page: nothing moves for longer than five seconds on its
    own. The rig's loop runs for seven beats (4.7 s) after the panel is first
    on screen and after every move, click or button, eases out and stops;
@@ -378,7 +379,7 @@
         show: [[A('pose-sign', 519, 440)]],
         inspect: [[A('pose-inspect', 560, 416)]],
         celebrate: [[A('actor-win-a', 252, 540), A('actor-win-b', 252, 540)], [A('pose-flagstack', 560, 427)]],
-        shrug: [[A('pose-shrug', 560, 422)], [A('yasser-lost-still', 480, 442)]],
+        shrug: [[A('pose-shrug', 560, 422)]],
         phone: [[A('actor-phone-a', 241, 540), A('actor-phone-b', 241, 540)]],
         coffee: [[A('pose-coffee', 385, 440)]],
         nap: [[A('pose-nap', 560, 233)]],
@@ -657,26 +658,7 @@
     }
   }
 
-  /* ---------------- 3 · loops ----------------
-     Each loop's <img> holds its still (the poster frame) and names its
-     animated file in data-anim. Once half of it is on screen the src becomes
-     the animation, once: the file plays one time (4 s, under the page's
-     five-second rule, scripts/check.mjs 17b) and stops on the frame it
-     started from, so it settles back into the still. With reduced motion this
-     never observes and never writes; the <picture>'s <source> keeps the still. */
-  var loops = [].slice.call(document.querySelectorAll('img[data-anim]'));
-  if (loops.length && !reduce && 'IntersectionObserver' in window) {
-    var lio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        lio.unobserve(en.target);
-        en.target.src = en.target.getAttribute('data-anim');
-      });
-    }, { threshold: 0.5 });
-    loops.forEach(function (im) { lio.observe(im); });
-  }
-
-  /* ---------------- 4 · year ---------------- */
+  /* ---------------- 3 · year ---------------- */
   var y = document.getElementById('year');
   if (y) y.textContent = String(new Date().getFullYear());
 })();

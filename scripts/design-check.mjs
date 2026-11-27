@@ -573,7 +573,7 @@ const HOME_H = { 390: 10913, 768: 10170 };   // lowered 2026-11-27: the old hero
 /* ---- the hub's art: no debris beside the figure ---- */
 {
   const dir = join(ROOT, 'hub/bible/art');
-  const motion = /^(?:kuro-|rig-k-|motion-|yasser-lost)/;   // the Kūro marks (stars, steam, z's) are parts by design, and so are the question marks over Yasser's map in the bible's yasser-lost loop (restored 2026-11-11)
+  const motion = /^(?:kuro-|rig-k-|motion-)/;   // the Kūro marks (stars, steam, z's) are parts by design (the yasser-lost loop, whose question marks were too, left the bible on 2026-11-27)
   const bad = [], held = [];
   let n = 0;
   for (const f of readdirSync(dir).filter((f) => /\.webp$/.test(f))) {

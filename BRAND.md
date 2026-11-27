@@ -1824,9 +1824,9 @@ sections are numbered as the design numbers them:
   (Kūro then Yasser, under 5 s) and still under reduced motion, with no
   pointer parallax; "What I make" is the founder section's three cards; the
   handle, eyebrow and motto sit on the founder card; the two Kūro die-cuts
-  stand by the founder links and the Behance plate; the three short loops are
-  `yasser-wave` in the contact card, `kuro-sleep` in the footer and
-  `yasser-lost` on the bible (each finite, at most 5 s, a still under reduced
+  stand by the founder links and the Behance plate; the two short loops are
+  `yasser-wave` in the contact card and `kuro-sleep` in the footer (the bible's
+  `yasser-lost` was retired on 2026-11-27; each finite, at most 5 s, a still under reduced
   motion, as check 17b reads them); the WorkspaceHQ cartridge is a ticket
   in the Studio's "Aussi, faits maison" line and a Press Start 2P face used
   only there. `hub/loops/` stays gone as a folder (the loops live in
@@ -1998,8 +1998,8 @@ cut-outs (`assets/illus/yasser-coffee`, `yasser-facepalm`) were deleted. Yasser'
 back to the rig's tone (seeded skin mask, per-channel gain 0.76/0.59/0.55; the tools are kept in the
 project files, `characters/tools/`) on the workbench scene (`hub/img/studio/m/diorama{,.full}`,
 `assets/illus/workbench-night{,-560}`, whose Kūro was taken to canon black too) and on the Studio's
-"What I make" trio (`hub/img/studio/make/*`, the artist's Kūro too). Still off-model and not yet fixed:
-the bible's pixel row (`sil-*`) and the animated `yasser-lost` sticker, both lighter-skinned. The traveller figure (wavy hair,
+"What I make" trio (`hub/img/studio/make/*`, the artist's Kūro too). The last two off-model files, the bible's pixel figure (`sil-5`) and the animated `yasser-lost` sticker, both lighter-skinned,
+were retired on 2026-11-27 (post 8 shows `rig-y-glasses` in ink; section 08 shows a picture from the owner's story book). The traveller figure (wavy hair,
 indigo coat, yellow scarf) was pulled back to canon at the owner's word (2026-11-24): the Librairie's
 `cast/yasser-traveller` and the Fabrique's `atelier/yasser-traveller-sit` now carry the bible's seated
 `pose-laptop`, the Fabrique's `atelier/yasser-traveller{,-300}` the standing `actor-pointup-a`, at the
