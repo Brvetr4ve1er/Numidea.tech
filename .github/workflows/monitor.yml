@@ -1,19 +1,20 @@
 name: Live monitor
 
-# Watches the published site (Vercel, the canonical host, scripts/site.mjs BASE;
-# the GitHub Pages mirror is probed report-only) every six
-# hours and on demand (Actions → Live monitor → Run workflow).
+# Watches the published site (Vercel, the canonical host, scripts/site.mjs BASE)
+# every six hours and on demand (Actions → Live monitor → Run workflow).
 #
 # live — read-only. Four checks, each run even when an earlier one failed:
 #   1. pages and assets: every page in scripts/site.mjs PAGES answers 200, an
 #      unknown path answers 404 with the site's 404 page, sitemap.xml,
-#      robots.txt and assets/og.jpg answer 200, and every page carries the
-#      ?v= stamp of the branch head, as does every stamped asset it loads
-#      (each of those must answer 200 too). And the last finished Pages run
-#      on the default branch (Actions API) must have succeeded: most commits
-#      keep the stamp, so this is what catches a deploy whose gates were red
-#      while the old site stays live. A stale stamp or a failed run is only a
-#      warning while a newer Pages run is queued or running.
+#      robots.txt and assets/og.jpg answer 200, every page carries the live
+#      home's ?v= stamp (one stamp across the site: a page left on another
+#      one is a half-published site), and every stamped asset a page loads
+#      answers 200. Production is published by hand, so a live stamp behind
+#      the branch's is a notice, not a failure, and a page the branch has but
+#      the live site does not yet (404 while the stamps differ) is listed as
+#      "not published yet". A page whose file has no stamp (hub/manuel.html,
+#      a forwarding stub) is held to none. The GitHub Pages address is probed
+#      report-only: it should be the noindex forward page (pages.yml).
 #   2. npm run links: the external links (scripts/links.mjs).
 #   3. Lighthouse, pinned below, on the live index in French and Arabic,
 #      mobile and desktop, three runs each. The median of each metric must
@@ -49,7 +50,6 @@ jobs:
     timeout-minutes: 30
     permissions:
       contents: read
-      actions: read            # the Pages runs: did the last deploy succeed, is one on its way?
     env:
       LIGHTHOUSE: "13.5.0"     # exact version, run with npx
       # medians of three runs. Desktop: the target.
@@ -86,8 +86,6 @@ jobs:
 
       - name: Live pages, assets and stamp
         id: live
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
         run: |
           node --input-type=module <<'EOF'
           import { readFileSync, appendFileSync } from 'node:fs';
@@ -96,13 +94,14 @@ jobs:
           const run = process.env.GITHUB_RUN_ID || String(Date.now());
           // the HTML is fetched past the CDN cache: a deploy from minutes ago counts
           const fresh = (u) => u + (u.includes('?') ? '&' : '?') + 'monitor=' + run;
+          const stampsOf = (html) => [...new Set([...html.matchAll(/\?v=(\d+)/g)].map((m) => m[1]))];
           // check.mjs 4 keeps every stamp in the repository identical
-          const want = (readFileSync('index.html', 'utf8').match(/\?v=(\d+)/) || [])[1];
+          const want = stampsOf(readFileSync('index.html', 'utf8'))[0];
           const rows = [];
-          // info rows (the GitHub Pages mirror) are listed but never fail the run
-          const note = (ok, what, url, detail, stale = false, info = false) => {
-            rows.push({ ok: ok || info, what, url, detail: info && !ok ? 'report-only: ' + detail : detail, stale: stale && !info });
-            console.log(`${ok ? '✓' : info ? 'i' : stale ? '~' : '✗'} ${what} — ${detail}`);   // ~: may only be waiting for a deploy
+          // info rows are listed but never fail the run
+          const note = (ok, what, url, detail, info = false) => {
+            rows.push({ ok: ok || info, what, url, detail: info && !ok ? 'report-only: ' + detail : detail });
+            console.log(`${ok ? '✓' : info ? 'i' : '✗'} ${what} — ${detail}`);
           };
 
           async function get(url, headers = {}) {
@@ -118,19 +117,34 @@ jobs:
             }
           }
 
+          // Production is published by hand from a commit that passed the gates (RELEASE.md), so the live
+          // site is often behind the branch: that is not an outage. What is one: a page or a stamped asset
+          // that does not answer, or pages carrying different stamps (a half-published site). The live
+          // home's stamp is the reference; the branch's is only compared, as a notice.
           const pages = PAGES.map((p) => p === '404.html'
-            ? { what: 'unknown path → 404 page', url: BASE + 'monitor-no-such-page-' + run, status: 404 }
-            : { what: p, url: BASE + p.replace(/index\.html$/, ''), status: 200 });
-          const assets = new Set();   // every stamped stylesheet and script the live pages load
+            ? { file: p, what: 'unknown path → 404 page', url: BASE + 'monitor-no-such-page-' + run, status: 404 }
+            : { file: p, what: p, url: BASE + p.replace(/index\.html$/, ''), status: 200 });
+          const got = [];
           for (const pg of pages) {
             const r = await get(fresh(pg.url));
+            got.push({ pg, r, stamps: stampsOf(r.body.toString('utf8')) });
+          }
+          const live = got[0].stamps.length === 1 ? got[0].stamps[0] : null;
+          const behind = live && want && live !== want;
+          const assets = new Set();   // every stamped stylesheet and script the live pages load
+          for (const { pg, r, stamps } of got) {
             const html = r.body.toString('utf8');
-            const stamps = [...new Set([...html.matchAll(/\?v=(\d+)/g)].map((m) => m[1]))];
+            // a page whose file carries no stamp (hub/manuel.html, a forwarding stub) is held to none
+            const stamped = stampsOf(readFileSync(pg.file, 'utf8')).length > 0;
             const okStatus = r.status === pg.status && r.type.startsWith('text/html');
-            const okStamp = stamps.length === 1 && stamps[0] === want;
-            note(okStatus && okStamp, pg.what, pg.url,
-              `${r.status || r.error} ${r.type.split(';')[0]}, stamp ${stamps.join(' + ') || 'none'} (branch ${want})`,
-              okStatus && !okStamp && stamps.length === 1);
+            const okStamp = stamped ? stamps.length === 1 && stamps[0] === live : stamps.length === 0;
+            const detail = `${r.status || r.error} ${r.type.split(';')[0]}, stamp ${stamps.join(' + ') || 'none'} (live ${live || '?'}, branch ${want})`;
+            if (r.status === 404 && pg.status === 200 && behind) {
+              // in the branch, not published yet (le comptoir until its publish): checked again every run
+              note(false, pg.what, pg.url, `${detail}: not published yet`, true);
+              continue;
+            }
+            note(okStatus && okStamp, pg.what, pg.url, detail);
             for (const m of html.matchAll(/(?:href|src)="([^"]+\?v=\d+)"/g)) assets.add(new URL(m[1], pg.url).href);
           }
           for (const url of assets) {
@@ -147,73 +161,30 @@ jobs:
             note(r.status === 200 && r.type.includes(type) && body(type.startsWith('image') ? r.body : r.body.toString('utf8')),
               p, BASE + p, `${r.status || r.error} ${r.type.split(';')[0]}, ${r.body.length} bytes`);
           }
-          // the GitHub Pages mirror: report-only (a billing lock or a lagging
-          // deploy there is not an outage of the canonical site)
+          // the GitHub Pages address: since 2026-11-27 a noindex page that forwards to BASE (pages.yml), not a
+          // copy of the site. Report-only: it is not the canonical site.
           {
-            const r = await get(fresh(PAGES_BASE));
+            const r = await get(fresh(PAGES_BASE + 'monitor-no-such-page-' + run));
             const html = r.body.toString('utf8');
-            const stamps = [...new Set([...html.matchAll(/\?v=(\d+)/g)].map((m) => m[1]))];
-            note(r.status === 200 && stamps.length === 1 && stamps[0] === want, 'GitHub Pages mirror: home', PAGES_BASE,
-              `${r.status || r.error}, stamp ${stamps.join(' + ') || 'none'} (branch ${want})`, false, true);
+            const ok = /<meta name="robots" content="noindex/.test(html) && html.includes(`<link rel="canonical" href="${BASE}"`);
+            note(ok, 'GitHub Pages address: a noindex forward to the site', PAGES_BASE,
+              `${r.status || r.error}, ${ok ? 'noindex, canonical ' + BASE : 'not the forward page (an old copy of the site is still served?)'}`, true);
           }
 
-          // The Pages workflow's own record, read on every run: the latest
-          // finished run on the default branch, and any newer one still queued
-          // or running. Most commits keep the ?v= stamp, so the stamp alone
-          // cannot tell that the last deploy was refused (a red gate) and the
-          // old site is still live; this row can.
-          let busy = null, why = '';
-          if (process.env.GITHUB_TOKEN && process.env.GITHUB_REPOSITORY) {
-            const API = `${process.env.GITHUB_API_URL || 'https://api.github.com'}/repos/${process.env.GITHUB_REPOSITORY}`;
-            const auth = { authorization: `Bearer ${process.env.GITHUB_TOKEN}`, accept: 'application/vnd.github+json' };
-            const json = async (url) => {
-              const r = await get(url, auth);
-              if (r.status !== 200) throw new Error(`${r.status || r.error} from GET ${url.slice(url.indexOf('/repos/'))}`);
-              return JSON.parse(r.body.toString('utf8'));
-            };
-            const what = 'last Pages deploy (pages.yml)';
-            try {
-              const branch = (await json(API)).default_branch;
-              const list = `${API}/actions/workflows/pages.yml/runs?branch=${encodeURIComponent(branch)}&per_page=20`;
-              const runs = (await json(list)).workflow_runs || [];
-              const k = runs.findIndex((w) => w.status === 'completed');   // newest first
-              const last = runs[k];
-              busy = runs.slice(0, k < 0 ? runs.length : k).find((w) => w.status !== 'completed') || null;
-              if (!last) {
-                console.log(`::warning::no finished Pages run on ${branch} yet${busy ? '; one is ' + busy.status : ''}`);
-              } else {
-                const ok = last.conclusion === 'success';
-                note(ok, what + ' (mirror)', last.html_url,
-                  `run ${last.run_number} on ${branch} (${last.head_sha.slice(0, 7)}, ${last.event}) ended "${last.conclusion}"`
-                    + (ok ? '' : busy ? `; a newer run is ${busy.status}` : '; no newer run is queued or running, so that commit is not live'),
-                  !ok && !!busy, true);
-                // the Pages run is the mirror's: it says nothing about the canonical (Vercel) deploy
-              }
-            } catch (e) {
-              note(false, what, API + '/actions/workflows/pages.yml/runs', `could not be read: ${e.message}`);
-            }
-          } else {
-            console.log('no GITHUB_TOKEN: the Pages deploy check is skipped (it runs in Actions)');
+          if (behind) {
+            const t = (s) => Date.UTC(+s.slice(0, 4), +s.slice(4, 6) - 1, +s.slice(6, 8), +s.slice(8, 10), +s.slice(10, 12));
+            const h = Math.round((t(want) - t(live)) / 36e5);
+            console.log(`::notice::the live site carries stamp ${live}, the branch ${want} (${h} h newer): the branch has changes not published yet. Publishing is by hand (RELEASE.md).`);
           }
-
-          // a stamp behind the branch, or a refused deploy, is expected while
-          // a newer deploy is on its way: when those are the only failures,
-          // they are warnings
           const bad = rows.filter((r) => !r.ok);
-          const stale = bad.filter((r) => r.stale);
-          const waiting = busy && bad.length > 0 && stale.length === bad.length ? busy : null;
-          if (busy || !stale.length) why = '';   // it says that no deploy is on its way
-          for (const r of bad) console.log(`::${waiting ? 'warning' : 'error'}::${r.what} — ${r.detail} (${r.url})`);
-          if (waiting) console.log(`::warning::the live site is behind the branch while a Pages deploy is ${waiting.status} (${waiting.html_url}); not a failure`);
-          else if (why) console.log(`::error::the live site does not carry the branch's stamp.${why}`);
-          const failed = waiting ? 0 : bad.length;
+          for (const r of bad) console.log(`::error::${r.what} — ${r.detail} (${r.url})`);
           const head = ['| | check | URL | result |', '| --- | --- | --- | --- |'];
-          const line = (r) => `| ${r.ok ? '✓' : waiting ? '~' : '✗'} | ${r.what} | ${r.url} | ${r.detail} |`;
+          const line = (r) => `| ${r.ok ? '✓' : '✗'} | ${r.what} | ${r.url} | ${r.detail} |`;
           const table = [...head, ...rows.map(line)].join('\n');
-          if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, `### Live pages and assets\n\n${table}\n\n`);
-          if (failed && process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT, `failures<<LIVE_TABLE\n${[...head, ...bad.map(line)].join('\n')}${why ? '\n\n' + why.trim() : ''}\nLIVE_TABLE\n`);
-          console.log(failed ? `✗ ${failed} live check(s) failed` : `✓ ${rows.length - bad.length} of ${rows.length} live checks passed${waiting ? ' (the rest wait for the running deploy)' : ''}`);
-          process.exit(failed ? 1 : 0);
+          if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, `### Live pages and assets\n\n${behind ? `The live site is at stamp ${live}; the branch is at ${want} (not published yet).\n\n` : ''}${table}\n\n`);
+          if (bad.length && process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT, `failures<<LIVE_TABLE\n${[...head, ...bad.map(line)].join('\n')}\nLIVE_TABLE\n`);
+          console.log(bad.length ? `✗ ${bad.length} live check(s) failed` : `✓ ${rows.length} live checks passed`);
+          process.exit(bad.length ? 1 : 0);
           EOF
 
       - name: Install
