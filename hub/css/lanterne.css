@@ -876,27 +876,53 @@ html.motion-off .lt-panel--wait{opacity:1;translate:none}
    shake, --m-reveal long), nothing that loops; under reduced motion or « Mouvement » off it is simply there. The card
    never takes the focus and never covers the bar: it sits at the foot of the screen, inline-end, and closes on its button
    or Escape. Words in the type system's roles: DISPLAY for the gain, UI for the buttons, LABEL for the rank and counts. */
-.gm-chip{font-family:var(--f-mono);font-size:var(--fs-label);letter-spacing:var(--tr-label,.08em);text-transform:uppercase;border:2px solid currentColor;margin-inline-start:4px}
-.gm-card{position:fixed;z-index:60;inset-block-end:16px;inset-inline-end:16px;inline-size:min(360px,calc(100vw - 32px));max-block-size:calc(100vh - 32px);overflow:auto;background:var(--cream);color:var(--ink);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--red)}
+.gm-chip,.gm-card{--gm-amber:#F0B05A;--gm-navy:#0F1E30;--gm-on-navy:#FFE2B8}
+.gm-num{font-family:"Archivo Condensed","Archivo","Arial Narrow",sans-serif;font-weight:900;font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+.gm-label{font:500 var(--fs-micro)/1.2 var(--f-mono);letter-spacing:var(--tr-label,.14em);text-transform:uppercase}
+.gm-rank__seal{display:grid;place-items:center;inline-size:36px;aspect-ratio:1;background:var(--gm-navy);clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%)}
+.gm-rank__seal .gm-num{font-size:var(--fs-lead);line-height:1;color:var(--gm-amber)}
+.gm-chip{display:inline-flex;align-items:center;gap:8px;min-block-size:44px;padding:4px 12px 4px 4px;margin-inline-start:4px;border:2px solid var(--ink);background:var(--cream);color:var(--ink);font:800 var(--fs-label)/1.2 var(--f-wide);letter-spacing:var(--tr-ui,.04em);text-transform:uppercase;text-decoration:none}
+.gm-chip[hidden]{display:none}
+.gm-card{position:fixed;z-index:60;inset-block-end:24px;inset-inline-end:28px;inline-size:min(380px,calc(100vw - 48px))}
 .gm-card[hidden]{display:none}
-.gm-card__in{display:grid;gap:8px;padding:16px}
-.gm-card__gain{font-family:var(--f-cond);font-weight:900;font-size:var(--fs-h4);line-height:1;text-transform:uppercase;color:var(--red-text,#8A3127)}
-.gm-card__rank,.gm-card__next{font-family:var(--f-mono);font-size:var(--fs-label);letter-spacing:var(--tr-label,.08em);text-transform:uppercase}
-.gm-card__next{opacity:.85}
-.gm-bar{block-size:10px;border:2px solid currentColor;background:transparent}
-.gm-bar__fill{display:block;block-size:100%;inline-size:calc(var(--p,0) * 100%);background:var(--red,#A34135)}
-.gm-card__unlock{display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:center}
-.gm-card__unlock img{inline-size:96px;block-size:auto;max-block-size:120px;object-fit:contain}
-.gm-card__unlock figcaption{font-size:var(--fs-small);font-weight:700}
-.gm-card__code{font-size:var(--fs-small);border-block-start:2px dashed currentColor;padding-block-start:8px}
-.gm-com{display:grid;gap:8px;border-block-start:3px solid currentColor;padding-block-start:8px}
-.gm-com__k{font-family:var(--f-mono);font-size:var(--fs-label);letter-spacing:var(--tr-label,.08em);text-transform:uppercase;color:var(--red-text,#8A3127)}
-.gm-com__t{font-size:var(--fs-small)}
-.gm-com__go{justify-self:start}
-.gm-card__x{justify-self:end;min-block-size:44px;padding:0 12px;font-family:var(--f-wide);font-size:var(--fs-label);text-transform:uppercase;background:transparent;border:2px solid currentColor;color:inherit;cursor:pointer}
+.gm-card__in{position:relative;display:grid;gap:12px;padding:56px 22px 22px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:10px 10px 0 var(--ink);transform:rotate(-1.2deg)}
+.gm-card__tape{position:absolute;inset-block-start:14px;inset-inline:-14px;margin:0;padding:8px 0;background:var(--gm-amber);color:var(--ink);border-block:2px solid var(--ink);transform:rotate(-2.4deg);text-align:center;font:800 var(--fs-label)/1 var(--f-wide);letter-spacing:.12em;text-transform:uppercase}
+.gm-card__gain{display:flex;align-items:baseline;gap:10px;margin:0}
+.gm-card__gain .gm-num{font-size:var(--fs-h2);line-height:.8;color:var(--ink);text-shadow:4px 4px 0 var(--gm-amber)}
+.gm-card__upk{font:900 var(--fs-h3)/var(--lh-disp,.9) var(--f-cond);text-transform:uppercase}
+.gm-rank{display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:12px;row-gap:4px;padding:10px 12px;border:2px solid var(--ink);background:var(--cream);color:var(--ink)}
+.gm-rank .gm-rank__seal{grid-row:1/5;inline-size:60px}
+.gm-rank .gm-rank__seal .gm-num{font-size:var(--fs-h4);color:transparent;-webkit-text-stroke:1.5px var(--gm-amber);text-shadow:3px 3px 0 var(--red)}
+.gm-rank__k,.gm-rank__next{color:var(--muted);margin:0}
+.gm-rank__name{margin:0;font:800 var(--fs-body)/var(--lh-ui,1.2) var(--f-wide);letter-spacing:var(--tr-ui,.04em);text-transform:uppercase}
+.gm-bar{display:block;block-size:8px;border:2px solid var(--ink);background:var(--paper);position:relative}
+.gm-bar__fill{position:absolute;inset-block:0;inset-inline-start:0;inline-size:calc(var(--p,0) * 100%);background:var(--gm-amber)}
+.gm-card__unlock{margin:0}
+.gm-card__art{position:absolute;z-index:2;inset-inline-end:-30px;inset-block-end:-22px;inline-size:auto;block-size:auto;max-inline-size:120px;max-block-size:130px;object-fit:contain;pointer-events:none;filter:drop-shadow(4px 4px 0 rgba(33,30,27,.55))}
+.gm-card__echo{margin:0;max-inline-size:30ch;font-size:var(--fs-small);line-height:var(--lh-body,1.5)}
+.gm-card__stamp{position:absolute;z-index:3;inset-block-start:-24px;inset-inline-end:18px;margin:0;padding:8px 12px;border:3px solid var(--red);color:var(--red-text,#8A3127);background:var(--cream);transform:rotate(8deg);font:900 var(--fs-lead)/1 var(--f-cond);text-transform:uppercase;box-shadow:3px 3px 0 rgba(163,65,53,.3)}
+.gm-card__code{margin:0;font-size:var(--fs-small);border:2px dashed currentColor;padding:8px 10px}
+.gm-card__go{display:flex;flex-wrap:wrap;gap:10px;padding-inline-end:92px}
+.gm-btn{display:inline-flex;align-items:center;justify-content:center;min-block-size:44px;padding:10px 16px;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);background:var(--cream);color:var(--ink);text-decoration:none;font:800 var(--fs-label)/1.2 var(--f-wide);letter-spacing:var(--tr-ui,.04em);text-transform:uppercase;cursor:pointer}
+.gm-btn--amber{background:var(--gm-amber)}
+.gm-card__x{box-shadow:none;background:transparent;color:inherit}
+.gm-card--com .gm-card__in{background:var(--gm-navy);color:var(--gm-on-navy)}
+.gm-card--com .gm-card__where{margin:0;color:var(--gm-on-navy)}
+.gm-card--com .gm-card__h{margin:0;font:900 var(--fs-h3)/var(--lh-disp,.9) var(--f-cond);text-transform:uppercase;color:var(--cream)}
+.gm-card--com .gm-card__gain .gm-num{color:var(--cream);text-shadow:4px 4px 0 var(--red)}
+.gm-card--com .gm-card__echo{color:#E9D9C2}
+.gm-card--com .gm-card__x{border-color:var(--gm-on-navy);color:var(--gm-on-navy)}
+.gm-card--com :focus-visible{outline-color:var(--gm-amber)}
 .gm-card :focus-visible{outline:3px solid var(--teal);outline-offset:3px}
 .gm-reset{margin-block-start:8px}
-:root:lang(ar) :is(.gm-chip,.gm-card__gain,.gm-card__rank,.gm-card__next,.gm-com__k,.gm-card__x){text-transform:none;letter-spacing:0}
-@keyframes gm-slam{0%{transform:scale(1.18);opacity:0}40%{transform:scale(.98);opacity:1}55%{transform:translateX(-4px)}70%{transform:translateX(3px)}100%{transform:none}}
-html:not(.motion-off) .gm-card.is-in{animation:gm-slam var(--m-reveal) var(--m-ease-enter) 1 both}
-@media (prefers-reduced-motion:reduce){html .gm-card.is-in{animation:none}}
+:root:lang(ar) :is(.gm-chip,.gm-label,.gm-card__tape,.gm-card__upk,.gm-rank__name,.gm-card__stamp,.gm-btn,.gm-card__h){text-transform:none;letter-spacing:0}
+:root:lang(ar) :is(.gm-card__tape,.gm-btn){font-size:var(--fs-body)}
+:root:lang(ar) .gm-card__art{scale:-1 1}
+@media (max-width:420px){.gm-card{inset-inline-end:16px;inline-size:calc(100vw - 40px)}.gm-card__in{padding:52px 16px 18px}.gm-card__tape{inset-inline:-8px}.gm-card__art{max-inline-size:88px;max-block-size:100px;inset-inline-end:-10px;inset-block-end:-14px}.gm-card__go{padding-inline-end:64px}}
+@media (max-height:640px){.gm-card{max-block-size:calc(100vh - 32px);overflow:auto;inset-block-end:12px}.gm-card__art{display:none}.gm-card__go{padding-inline-end:0}}
+@keyframes gm-slam{from{transform:scale(1.6) rotate(-6deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes gm-pop{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+html:not(.motion-off) .gm-card.is-in .gm-card__gain{animation:gm-slam 240ms cubic-bezier(.2,1.4,.4,1) 1 both}
+html:not(.motion-off) .gm-card.is-in .gm-card__stamp{animation:gm-slam 240ms cubic-bezier(.2,1.4,.4,1) 120ms 1 both}
+html:not(.motion-off) .gm-card.is-in .gm-card__art{animation:gm-pop 200ms cubic-bezier(.2,1.4,.4,1) 60ms 1 both}
+@media (prefers-reduced-motion:reduce){html .gm-card.is-in :is(.gm-card__gain,.gm-card__stamp,.gm-card__art){animation:none}}
