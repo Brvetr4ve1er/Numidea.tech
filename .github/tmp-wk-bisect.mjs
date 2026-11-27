@@ -12,16 +12,20 @@ const sections = await (async () => {
   return ids;
 })();
 const css = (c) => ({ css: c });
+const nf = (sel) => css(sel + '{filter:none!important}');
 const V = [
   ['baseline', {}],
-  ['no animation', css('*,*::before,*::after{animation:none!important}')],
-  ['minus #work', { js: 'document.getElementById("work")?.remove()' }],
-  ['no case tracks', { js: 'document.querySelectorAll(".st-case__track").forEach(e=>e.remove())' }],
   ['no filter', css('*,*::before,*::after{filter:none!important}')],
+  ['no sting blur', nf('.st-sting__g')],
+  ['no carte fm shadow', nf('#carte article.fm, #carte *')],
+  ['no rig box shadow', nf('.st-rig__box')],
+  ['no track grayscale', nf('.st-case__track li, .st-case__track *')],
+  ['no top blur', nf('#top i, #top *')],
+  ['no die/rcpt shadow', nf('img.die, .rcpt, .o')],
 ];
-const variants = []; for (let i = 0; i < 4; i++) for (const v of V) variants.push([v[0] + ' #' + (i + 1), v[1]]);
+const variants = []; for (let i = 0; i < 3; i++) for (const v of V) variants.push([v[0] + ' #' + (i + 1), v[1]]);
 // the two WebKit escapes: their boxes, as WebKit lays them out
-for (const [w, lang, path, sel, box] of [[1024, 'ar', '/hub/', '#tech b.st-stat', 'p'], [1440, 'fr', '/hub/bible/', '.says-list li', 'ul']]) {
+for (const [w, lang, path, sel, box] of [].concat([[1024, 'ar', '/hub/', '#tech b.st-stat', 'p'], [1440, 'fr', '/hub/bible/', '.says-list li', 'ul']]).slice(0, 0)) {
   const p = await b.newPage({ viewport: { width: w, height: 900 } });
   await p.addInitScript((l) => localStorage.setItem('numidea-lang', l), lang);
   await p.goto(srv.base + path, { waitUntil: 'networkidle' });
