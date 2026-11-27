@@ -57,7 +57,9 @@ export const PAGES = ['index.html', 'en/index.html', 'ar/index.html', 'tarifs/in
   .concat(LEGAL_PUBLISHED ? ['legal/index.html'] : []);
 export const EXTRA_PAGES = ['workspacehq/embed/trailer.html', 'workspacehq/embed/walkthrough.html', 'workspacehq/embed/console.html'];
 
-export const DEPLOY = ['index.html', 'en', 'ar', 'tarifs', 'comptoir', '404.html', 'robots.txt', 'sitemap.xml', 'google35d412133786d0cb.html', 'assets', 'scene', 'hub', 'workspacehq']
+/* .well-known/security.txt (RFC 9116, 2026-11-27): where to report a security problem; check.mjs 16 holds its Expires
+   to within a year and at least 30 days out */
+export const DEPLOY = ['index.html', 'en', 'ar', 'tarifs', 'comptoir', '404.html', 'robots.txt', 'sitemap.xml', 'google35d412133786d0cb.html', '.well-known', 'assets', 'scene', 'hub', 'workspacehq']
   .concat(LEGAL_PUBLISHED ? ['legal'] : []);
 // file names never published even inside a deployed folder: a folder's own
 // notes and the manifest the WorkspaceHQ design-system export ships. Every

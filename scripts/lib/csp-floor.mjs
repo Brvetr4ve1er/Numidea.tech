@@ -57,10 +57,11 @@ const CEILING = {
 // directives that must be there, with exactly this value ('' = any allowed one)
 const REQUIRED = { 'default-src': "'self'", 'script-src': '', 'object-src': "'none'", 'base-uri': "'self'" };
 
-// the policy the mirrors send in a header: the browser enforces it on top of
-// each page's meta, so it holds only what a meta cannot carry and the floor
-const HEADER = { 'frame-ancestors': "'self'", 'base-uri': "'self'", 'object-src': "'none'" };
-const HEADER_OPTIONAL = new Set(['upgrade-insecure-requests', 'report-uri', 'report-to']);
+// the policy the hosts send in a header (scripts/lib/csp-header.mjs): the
+// union of the metas of its kind, so its fetch directives stand on the same
+// floor as a meta's, plus the directives only a header can carry
+const HEADER = { 'frame-ancestors': "'self'" };
+const HEADER_OPTIONAL = { 'upgrade-insecure-requests': /^$/, 'report-uri': /^\/[a-z0-9/_-]+$/ };
 
 /** [{ name, values }] in order, as the browser parses them, repeats kept (so they can be refused). */
 export function parsePolicy(policy) {
@@ -119,12 +120,21 @@ export function policyErrors(policy, { kind = 'page', connect = false } = {}) {
   return errs;
 }
 
-/** Why the mirrors' header policy is wrong ([] when it holds). */
-export function headerPolicyErrors(policy) {
+/**
+ * Why a host's header policy is wrong ([] when it holds).
+ * kind: 'page', 'embed', or 'any' (Netlify, which sends one policy for both:
+ * each value must be allowed on one kind or the other).
+ */
+export function headerPolicyErrors(policy, { kind = 'page' } = {}) {
   const errs = [], list = parsePolicy(policy), map = directiveMap(policy);
   for (const n of repeats(list)) errs.push(`${n} is given more than once (the browser enforces the first and ignores the rest)`);
-  const extra = [...new Set(list.map((d) => d.name))].filter((n) => !Object.hasOwn(HEADER, n) && !HEADER_OPTIONAL.has(n));
-  if (extra.length) errs.push(`it holds ${extra.join(', ')}, enforced on top of each page's meta (keep fetch directives in the meta)`);
   for (const [n, v] of Object.entries(HEADER)) if ((map[n] || []).join(' ') !== v) errs.push(`its ${n} is "${(map[n] || []).join(' ')}" (want ${v})`);
+  for (const { name, values } of list) {
+    if (Object.hasOwn(HEADER_OPTIONAL, name) && !HEADER_OPTIONAL[name].test(values.join(' '))) errs.push(`its ${name} is "${values.join(' ')}" (want a same-site path or a group name; nothing for upgrade-insecure-requests)`);
+  }
+  const fetch = list.filter((d) => !Object.hasOwn(HEADER, d.name) && !Object.hasOwn(HEADER_OPTIONAL, d.name)).map((d) => [d.name, ...d.values].join(' ')).join('; ');
+  const floor = (k) => policyErrors(fetch, { kind: k, connect: true });
+  if (kind === 'any') { const embed = new Set(floor('embed')); errs.push(...floor('page').filter((e) => embed.has(e))); }
+  else errs.push(...floor(kind));
   return errs;
 }
