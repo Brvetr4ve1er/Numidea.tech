@@ -154,7 +154,7 @@ combos.forEach(([page,path,w,init,label],ci)=>{
   return out},w);
  found[ci]=r.map((x)=>[page+' '+x,label]);
  await p.close();
- });
+ },`${page} ${path} ${label}`);
 });
 await P.drain();
 for(const f of found) if(f) for(const [k,label] of f)(agg[k]=agg[k]||[]).push(label);
