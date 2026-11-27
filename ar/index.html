@@ -196,11 +196,11 @@
      in the stylesheet alone it was not yet read when a fast arrival showed its
      first frame ("opt-in disabled"), and the lift was skipped, a hard cut. -->
 <style>@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto;types:page}}</style>
-<link rel="stylesheet" href="../assets/fonts.css?v=202611272050">
+<link rel="stylesheet" href="../assets/fonts.css?v=202611272055">
 <!-- themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them -->
-<link rel="stylesheet" href="../assets/themes.css?v=202611272050">
-<link rel="stylesheet" href="../assets/styles.css?v=202611272050">
-<link rel="stylesheet" href="../assets/menu/menu.css?v=202611272050">
+<link rel="stylesheet" href="../assets/themes.css?v=202611272055">
+<link rel="stylesheet" href="../assets/styles.css?v=202611272055">
+<link rel="stylesheet" href="../assets/menu/menu.css?v=202611272055">
 <noscript><style>
   /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */
   .reveal{opacity:1!important;transform:none!important}
@@ -395,6 +395,52 @@
 </div>
 </section>
 <main id="main" class="wrap" tabindex="-1">
+
+  <!-- ================= PORTALS (world map thread, 2026-11-27) =================
+       The four ways into the Numidea world, right under the menu: one wide
+       primary (La Carte, the HQ: the map the stores sit on) and three store
+       gates. A gate with no real target yet is sealed (no link, "Bientôt"),
+       never a dead link. Plan: the doc "La carte du monde Numidea". The map
+       is a hand-drawn silhouette of Algeria, not survey-accurate. -->
+  <nav class="portals" aria-label="عالم نوميديا: الخريطة والمتاجر" data-i18n-aria="portals.aria">
+    <p class="portals-k kicker" data-i18n="portals.k">عالم نوميديا · 4 بوابات</p>
+    <div class="portal portal-hq is-sealed">
+        <div class="portal-tx">
+          <span class="portal-city" data-i18n="portals.hq.city">المقر · برج بوعريريج</span>
+          <span class="portal-lab" data-i18n="portals.hq.label">الخريطة</span>
+          <span class="portal-sub" data-i18n="portals.hq.sub">الجزائر كلها، متجر في كل مدينة. والاستوديو في الوسط.</span>
+          <span class="portal-chip" data-i18n="portals.soon">قريبًا</span>
+        </div>
+        <svg class="portal-map" viewBox="0 0 430 420" aria-hidden="true" focusable="false">
+          <path class="pm-land" d="M136 53 180 35 240 15 280 15 352 13 348 51 344 77 332 95 370 161 376 209 378 242 386 288 418 308 330 365 296 398 264 405 244 407 242 389 204 370 84 275 6 224 6 194 40 176 80 167 108 145 156 119 152 103 146 70Z"/>
+          <path class="pm-route" d="M275 32 167 40M275 32 253 110 291 324"/>
+          <circle class="pm-pin pm-hq" cx="275" cy="32" r="9"/>
+          <circle class="pm-pin" cx="167" cy="40" r="6"/>
+          <circle class="pm-pin" cx="253" cy="110" r="6"/>
+          <circle class="pm-pin" cx="291" cy="324" r="6"/>
+        </svg>
+    </div>
+    <ul class="portals-grid">
+      <li class="portal is-sealed">
+        <span class="portal-city" data-i18n="portals.wear.city">وهران</span>
+        <span class="portal-lab" data-i18n="portals.wear.label">غرفة الملابس</span>
+        <span class="portal-sub" data-i18n="portals.wear.sub">ملابس نوميديا. قيد التحضير.</span>
+        <span class="portal-chip" data-i18n="portals.soon">قريبًا</span>
+      </li>
+      <li class="portal"><a class="portal-a" href="https://glaivestore.netlify.app" target="_blank" rel="noopener" data-client="glaive">
+        <span class="portal-city" data-i18n="portals.arcade.city">تمنراست</span>
+        <span class="portal-lab" data-i18n="portals.arcade.label">الأركيد</span>
+        <span class="portal-sub" data-i18n="portals.arcade.sub">معدّات الألعاب، نسخة تجريبية: <bdi>Glaive Store</bdi>.<span class="sr-only"> (يفتح في تبويب جديد)</span></span>
+        <span class="portal-chip is-open" data-i18n="portals.arcade.chip">تجريبي</span>
+      </a></li>
+      <li class="portal"><a class="portal-a" href="../workspacehq/">
+        <span class="portal-city" data-i18n="portals.apps.city">غرداية</span>
+        <span class="portal-lab" data-i18n="portals.apps.label">مكتبة التطبيقات</span>
+        <span class="portal-sub" data-i18n="portals.apps.sub">تطبيقاتنا. أوّلها: <bdi>WorkspaceHQ</bdi>.</span>
+        <span class="portal-chip is-open" data-i18n="portals.apps.chip">تطبيق واحد</span>
+      </a></li>
+    </ul>
+  </nav>
 
   <!-- ================= THE OFFER (2026-11-27) =================
        What follows the menu, in place of the old hero (owner order: the menu
@@ -1366,11 +1412,11 @@
 
 <!-- this page's dictionary (one language), then the script that reads it;
      both deferred, so they run in this order -->
-<script src="../assets/i18n/ar.js?v=202611272050" defer></script>
-<script src="../assets/kit/kit.js?v=202611272050" defer></script>
-<script src="../assets/menu/menu.js?v=202611272050" defer></script>
-<script src="../assets/app.js?v=202611272050" defer></script>
-<script src="../assets/carry.js?v=202611272050" defer></script>
+<script src="../assets/i18n/ar.js?v=202611272055" defer></script>
+<script src="../assets/kit/kit.js?v=202611272055" defer></script>
+<script src="../assets/menu/menu.js?v=202611272055" defer></script>
+<script src="../assets/app.js?v=202611272055" defer></script>
+<script src="../assets/carry.js?v=202611272055" defer></script>
 <!-- FAQ structured data, written from the page's dictionary by
      scripts/build-lang.mjs; applyLang() writes it again on load. -->
 <script type="application/ld+json" id="ld-faq">
