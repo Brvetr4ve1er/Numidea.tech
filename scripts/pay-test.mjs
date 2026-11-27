@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* npm run pay:test — the payment link's signature rules, offline (no PayPal call). */
 import assert from 'node:assert/strict';
-import { sign, verify, gate } from '../api/pay.js';
+import { sign, verify, gate, limited, RATE_MAX, RATE_WINDOW, visitor } from '../api/pay.js';
 
 const S = 'test-secret';
 const exp = String(Math.floor(Date.now() / 1000) + 3600);
@@ -69,6 +69,16 @@ t('the PayPal.me link waits for the proof too', () => {
   assert.equal(gate({ PAYPAL_ME: 'numidea' }).paylink, null);
   assert.equal(gate({ PAYPAL_ME: 'numidea', PAYPAL_PROVEN: 'yes' }).paylink, 'https://www.paypal.com/paypalme/numidea');
   assert.equal(gate({ PAYPAL_ME: 'a/b', PAYPAL_PROVEN: 'yes' }).paylink, null);
+});
+// the brake on order creation: RATE_MAX per visitor per window, then 429, and it lifts when the window passes
+t('order creation is braked per visitor', () => {
+  const store = new Map(), now = 1e12;
+  for (let i = 0; i < RATE_MAX; i++) assert.equal(limited('1.2.3.4', now + i, store), false);
+  assert.equal(limited('1.2.3.4', now + RATE_MAX, store), true, 'one over the brake');
+  assert.equal(limited('5.6.7.8', now + RATE_MAX, store), false, 'another visitor is not braked');
+  assert.equal(limited('1.2.3.4', now + RATE_WINDOW + RATE_MAX, store), false, 'the brake lifts after the window');
+  assert.equal(visitor({ headers: { 'x-forwarded-for': '9.9.9.9, 10.0.0.1' } }), '9.9.9.9');
+  assert.equal(visitor({ headers: { 'x-real-ip': '8.8.8.8', 'x-forwarded-for': '9.9.9.9' } }), '8.8.8.8');
 });
 t('an empty environment offers no PayPal at all (production today)', () => {
   const g = gate({}); assert.equal(g.api, false); assert.equal(g.paylink, null);

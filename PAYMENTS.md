@@ -108,3 +108,12 @@ blocks publication, and so does any gap in `scripts/legal-data.mjs` (the page re
 `node scripts/build-terms.mjs` lists the gaps; `--preview` writes `terms-preview/` (git-ignored) with each gap marked;
 once nothing is missing it writes the page and the counter links to it under the pay buttons. The text is a draft, not
 legal advice: `reviewed` stays null until the owner (ideally a lawyer) has read it against Loi 18-05.
+
+## Increment 8 (2026-11-27): a brake on order creation, and a counter that speaks its total
+
+- `op: "create"` on `/api/pay` is braked per visitor address: at most 8 orders in 10 minutes, then 429 with
+  `Retry-After`, before any PayPal call. It lives in the function's memory, so it stops one browser or one script on a
+  warm instance; it is not a wall across all of Vercel. The durable wall, for the owner when PayPal goes live: a Vercel
+  Firewall rate-limit rule on `/api/pay` (dashboard → Firewall → Rate limiting).
+- `/comptoir/`: a polite status line (`#c-live`, visually hidden) says « Sac : 2 articles, total 45 000 DA » once the bag
+  settles, in FR/EN/AR; never on the first paint. The skip link to the shelves was already there.

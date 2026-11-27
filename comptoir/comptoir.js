@@ -11,7 +11,7 @@
       pick: 'Rayons', all: 'Tout', cats: { services: 'Services', cours: 'Cours', produits: 'Produits' },
       rar: { common: 'Commun', rare: 'Rare', epic: 'Épique' },
       add: 'Ajouter', remove: 'Retirer', inBag: 'Dans le sac', less: 'Un de moins', more: 'Un de plus',
-      bag: 'Ton sac', empty: 'Ton sac est vide. Ajoute une carte pour commencer.', total: 'Total',
+      live: (n, tot) => (n ? `Sac : ${n} article${n > 1 ? 's' : ''}, total ${tot}` : 'Ton sac est vide'), bag: 'Ton sac', empty: 'Ton sac est vide. Ajoute une carte pour commencer.', total: 'Total',
       lvl: (n) => `Encore ${n} pour débloquer l’acompte 40\u00a0%`, lvlMax: 'Acompte 40\u00a0% débloqué',
       combo: 'Combo départ', hint: (x, off) => `Ajoute « ${x} » : combo débloqué, −${off}.`,
       route: 'Comment régler', routes: { paypal: 'PayPal · carte', ccp: 'CCP · BaridiMob', wire: 'Virement € / $' },
@@ -53,7 +53,7 @@
       pick: 'Aisles', all: 'All', cats: { services: 'Services', cours: 'Lessons', produits: 'Products' },
       rar: { common: 'Common', rare: 'Rare', epic: 'Epic' },
       add: 'Add', remove: 'Remove', inBag: 'In the bag', less: 'One fewer', more: 'One more',
-      bag: 'Your bag', empty: 'Your bag is empty. Add a card to start.', total: 'Total',
+      live: (n, tot) => (n ? `Bag: ${n} item${n > 1 ? 's' : ''}, total ${tot}` : 'Your bag is empty'), bag: 'Your bag', empty: 'Your bag is empty. Add a card to start.', total: 'Total',
       lvl: (n) => `${n} more to unlock the 40% deposit`, lvlMax: '40% deposit unlocked',
       combo: 'Starter combo', hint: (x, off) => `Add “${x}”: combo unlocked, −${off}.`,
       route: 'How to pay', routes: { paypal: 'PayPal · card', ccp: 'CCP · BaridiMob (DZD)', wire: 'Bank transfer € / $' },
@@ -95,7 +95,7 @@
       pick: 'الأقسام', all: 'الكل', cats: { services: 'خدمات', cours: 'دروس', produits: 'منتجات' },
       rar: { common: 'عادي', rare: 'نادر', epic: 'ملحمي' },
       add: 'أضف', remove: 'أزل', inBag: 'في الحقيبة', less: 'واحد أقل', more: 'واحد أكثر',
-      bag: 'حقيبتك', empty: 'حقيبتك فارغة. أضف بطاقة للبدء.', total: 'المجموع',
+      live: (n, tot) => (n ? `الحقيبة: عدد العناصر ${n}، المجموع ${tot}` : 'حقيبتك فارغة'), bag: 'حقيبتك', empty: 'حقيبتك فارغة. أضف بطاقة للبدء.', total: 'المجموع',
       lvl: (n) => `بقي ⁦${n}⁩ لفتح العربون ⁦40\u00a0%⁩`, lvlMax: 'العربون ⁦40\u00a0%⁩ متاح',
       combo: 'كومبو الانطلاق', hint: (x, off) => `أضف «${x}»: يُفتح الكومبو، ⁦−${off}⁩.`,
       route: 'طريقة الدفع', routes: { paypal: 'PayPal · بطاقة', ccp: 'CCP · بريدي موب', wire: 'تحويل بنكي € / $' },
@@ -344,6 +344,7 @@
       box.setAttribute('role', 'radiogroup');
     };
 
+    let liveT = 0, painted = false;
     function paintBag() {
       const k = quote(), count = [...bag.values()].reduce((s, n) => s + n, 0);
       try { sessionStorage.setItem('comptoir-bag', JSON.stringify({ bag: [...bag], cur, ref })); } catch { /* storage may be off */ }
@@ -393,6 +394,10 @@
         big.classList.remove('is-roll'); void big.offsetWidth; big.classList.add('is-roll');
       } else big.textContent = fmtDA(k.total);
       lastTotal = k.total;
+      // the spoken total: one polite line once the bag settles, never on the first paint
+      clearTimeout(liveT);
+      if (painted) liveT = setTimeout(() => { $('c-live').textContent = t.live(count, fmtDA(k.total)); }, 450);
+      painted = true;
       const dueTxt = route === 'ccp' ? fmtDA(k.dueDA) : fmtCur(k.due, cur);
       $('c-due').textContent = t.due(dueTxt, k.p);
 

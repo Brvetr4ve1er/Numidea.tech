@@ -50,6 +50,22 @@ export function verify(f, secret, now = Date.now()) {
   return { ref, part, amt, cur, exp: String(exp) };
 }
 
+/* A brake on "create" (checklist 2026-11-27): each call opens a PayPal order, so a script hammering it would fill the
+   owner's PayPal account with dead orders. Per visitor address: at most RATE_MAX creates in RATE_WINDOW ms, then 429.
+   It lives in the function's memory, so it holds per warm instance, not across all of Vercel: a brake on one browser or
+   one script, not a wall. The durable wall is a Vercel Firewall rate-limit rule on /api/pay (owner, dashboard). */
+export const RATE_MAX = 8, RATE_WINDOW = 10 * 60 * 1000;
+const hits = new Map();
+export function limited(ip, now = Date.now(), store = hits) {
+  const key = typeof ip === 'string' && ip ? ip.slice(0, 64) : 'unknown';
+  const recent = (store.get(key) || []).filter((t) => now - t < RATE_WINDOW);
+  if (recent.length >= RATE_MAX) { store.set(key, recent); return true; }
+  recent.push(now); store.set(key, recent);
+  if (store.size > 5000) for (const [k, v] of store) if (!v.some((t) => now - t < RATE_WINDOW)) store.delete(k);
+  return false;
+}
+export const visitor = (req) => String(req.headers['x-real-ip'] || (req.headers['x-forwarded-for'] || '').split(',')[0] || '').trim();
+
 const allowedOrigin = (o) => {
   if (!o) return false;
   try {
@@ -126,6 +142,8 @@ export default async function handler(req, res) {
   try { body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body; } catch { return res.status(400).json({ error: 'json' }); }
   if (!body || JSON.stringify(body).length > 2000) return res.status(413).json({ error: 'size' });
 
+  // before any PayPal call: a visitor over the brake costs nothing upstream
+  if (body.op === 'create' && limited(visitor(req))) { trace('create-limited', {}); res.setHeader('Retry-After', '600'); return res.status(429).json({ error: 'busy' }); }
   const origin = new URL(req.headers.origin).origin;
   try {
     const bearer = await token();
