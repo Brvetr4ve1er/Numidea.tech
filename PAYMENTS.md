@@ -79,6 +79,6 @@ Thread: "Add PayPal payments across the site". This file is the living plan; eac
 | - | Console, web projects; Tarifs page; home estimator | Left out | Ranges. A cart would sell a figure the studio has not quoted. |
 | - | Formules (Marque, Produit) | Left out | Big bundles; a conversation closes them better. Produit (185 000, fixed) is the first candidate if wanted. |
 | - | Monthly plan, maintenance | Left out | Recurring; needs PayPal subscriptions, not built. |
-| - | Game reward card (rank 8, code LANTERNE-8, −5 % first project) | Left out | Encre buys nothing; the code stays a WhatsApp handshake, confirmed by hand. |
+| - | Game reward card (the first-project −5 % code; rank and code are `discount` in hub/src/lanterne/game.json, whatever the game thread sets) | Left out | Encre buys nothing; the code stays a WhatsApp handshake, confirmed by hand. |
 | - | Book-finish commission card | Left out, candidate | Points to Tarifs today. Next candidate: the money books (argent, route) open the console on the money services. Touches the lessons, so the owner decides. |
 | - | Case pages, home menu, lessons, enquêtes, COD shop | Left out | Proof and play, not a till. |
