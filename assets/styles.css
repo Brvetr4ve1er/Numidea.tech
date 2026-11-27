@@ -4494,8 +4494,9 @@ html[dir="rtl"] .proj .thumb:is(*,:has(.shot)){background-position:calc(100% - 1
    Under the menu: La Carte (the HQ) is the one wide primary, the three
    store gates sit under it as equals, smaller. Cut corners like the menu's
    plates; a sealed gate (no target yet) is dashed and striped, not a link.
-   Phone: the HQ stays full width, the gates become a swipe strip. */
-.portals{padding-block:var(--s-7) var(--s-6);
+   Phone: the HQ stays full width, the gates become a swipe strip.
+   Opaque like .offer (axe read a menu layer behind the Arabic kicker). */
+.portals{position:relative;background:var(--void);box-shadow:0 0 0 100vmax var(--void);clip-path:inset(0 -100vmax);padding-block:var(--s-7) var(--s-6);
   /* the home's type steps (design-check reads computed sizes against --t-*), named as scale tokens */
   --fs-label:var(--t-label);--fs-small:var(--t-small);--fs-h3:var(--t-feature);--fs-h2:var(--t-h2)}
 .portals-k{margin-bottom:var(--s-4)}
@@ -4529,10 +4530,6 @@ html[dir="rtl"] .proj .thumb:is(*,:has(.shot)){background-position:calc(100% - 1
 .pm-route{fill:none;stroke:var(--hairline-2);stroke-width:2;stroke-dasharray:4 6}
 .pm-pin{fill:var(--teal-text)}
 .pm-hq{fill:var(--crimson-text)}
-@media (prefers-reduced-motion:no-preference){
-  .pm-hq{transform-box:fill-box;transform-origin:center;animation:pm-pulse 2.4s ease-in-out infinite}
-  @keyframes pm-pulse{50%{transform:scale(1.35)}}
-}
 html[dir="rtl"] :is(.portal-lab,.portal-city){font-family:var(--font-ar-display);text-transform:none;letter-spacing:0}
 @media (max-width:719px){
   .portals-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:var(--s-2)}
