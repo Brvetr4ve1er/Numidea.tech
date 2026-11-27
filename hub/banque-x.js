@@ -293,7 +293,6 @@
       var old = store.get();
       if (old && typeof old === 'object') { fields.forEach(function (f) { var k = f.getAttribute('data-f'); if (typeof old[k] === 'string') f.value = old[k].slice(0, 80); }); keep.checked = true; }
       form.addEventListener('input', paint);
-      form.addEventListener('submit', function (e) { e.preventDefault(); });
       keep.addEventListener('change', function () { if (!keep.checked) store.del(); paint(); });
       $('[data-act="forget"]', root).addEventListener('click', function () { fields.forEach(function (f) { f.value = ''; }); keep.checked = false; store.del(); paint(); });
       $('[data-act="print"]', root).addEventListener('click', function () {
