@@ -886,7 +886,7 @@ html.motion-off .lt-panel--wait{opacity:1;translate:none}
 .gm-card{position:fixed;z-index:60;inset-block-end:24px;inset-inline-end:28px;inline-size:min(380px,calc(100vw - 48px))}
 .gm-card[hidden]{display:none}
 .gm-card__in{position:relative;display:grid;gap:12px;padding:56px 22px 22px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:10px 10px 0 var(--ink);transform:rotate(-1.2deg)}
-.gm-card__tape{position:absolute;inset-block-start:14px;inset-inline:-14px;margin:0;padding:8px 0;background:var(--gm-amber);color:var(--ink);border-block:2px solid var(--ink);transform:rotate(-2.4deg);text-align:center;font:800 var(--fs-label)/1 var(--f-wide);letter-spacing:.12em;text-transform:uppercase}
+.gm-card__tape{position:absolute;inset-block-start:14px;inset-inline:-14px;margin:0;padding:8px 0;background:var(--gm-amber);color:var(--ink);border-block:2px solid var(--ink);transform:rotate(-2.4deg);text-align:center;font:800 var(--fs-label)/1 var(--f-wide);letter-spacing:var(--tr-label,.14em);text-transform:uppercase}
 .gm-card__gain{display:flex;align-items:baseline;gap:10px;margin:0}
 .gm-card__gain .gm-num{font-size:var(--fs-h2);line-height:.8;color:var(--ink);text-shadow:4px 4px 0 var(--gm-amber)}
 .gm-card__upk{font:900 var(--fs-h3)/var(--lh-disp,.9) var(--f-cond);text-transform:uppercase}
@@ -928,3 +928,12 @@ html:not(.motion-off) .gm-card.is-in .gm-card__art{animation:gm-pop 200ms cubic-
 @media (prefers-reduced-motion:reduce){html .gm-card.is-in :is(.gm-card__gain,.gm-card__stamp,.gm-card__art){animation:none}}
 /* under 360px the full wordmark, the language switch (3 x 44px) and the menu button can't share a row: "LABS" steps out (the link's name keeps it), the switch stays */
 @media (max-width:359px){.mast .st-wm__l{display:none}.mast .st-wm__t{font-size:var(--fs-body)}}
+/* the collage, owned (2026-11-27, zero credits): cel cut-outs on painted plates read as pasted, so they are pasted on purpose.
+   Every cut-out gets a cream sticker edge and one hard ink shadow (no blur), the plate and the cast share one warm print grade,
+   and a fine print grain sits over the plate so its flat fills and the cut-outs' fills come from the same paper. */
+.book__cover>img:first-child{filter:saturate(.9) sepia(.07) contrast(1.03)}
+.book__c{filter:sepia(.08) saturate(.94) contrast(1.03) drop-shadow(2px 0 0 var(--cream)) drop-shadow(-2px 0 0 var(--cream)) drop-shadow(0 2px 0 var(--cream)) drop-shadow(0 -2px 0 var(--cream)) drop-shadow(5px 5px 0 rgba(33,30,27,.72))}
+.book__cover::after{background:linear-gradient(to bottom left,var(--amber) 0 14px,var(--ink) 14px 16px,transparent 16px) top right/28px 28px no-repeat,
+    linear-gradient(to top left,var(--amber) 0 14px,var(--ink) 14px 16px,transparent 16px) bottom right/28px 28px no-repeat,
+    linear-gradient(170deg,rgba(255,226,184,.14),transparent 38%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .13 0 0 0 0 .12 0 0 0 0 .11 0 0 0 .2 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E") 0 0/160px 160px}

@@ -324,14 +324,15 @@ console.log(`design-check (${STRICT ? 'strict' : 'report-only: DESIGN_REPORT=1'}
 /* ---- scale: font sizes written off the type scale, per sheet (2026-11-26; spec
    https://claude.ai/artifact/BrvX62HC49TTPheF3Yiwhw). A font-size, or the size in a font shorthand, is on the scale
    when it is var(--fs-*), inherit/0/1em/100% (relative to an on-scale parent), or a clamp() whose min and max are
-   rem endpoints of the scale. Measured 2026-11-26 before the roll-out: lanterne 137, Studio 691, home 253; Studio 423 after PR #28, 92 on 2026-11-27 (aliases snapped). ---- */
+   rem endpoints of the scale, or a bare rem step of it. Measured 2026-11-26 before the roll-out: lanterne 137, Studio 691, home 253; Studio 423 after PR #28, 92 on 2026-11-27 (aliases snapped), then 0 the same day (headings by eye, art tier --fs-art-* for the watermark glyphs); home 253 -> 6 (only the old hero, which the menu replaces); Le comptoir 0. ---- */
 const SCALE_REM = new Set([0.75, 0.875, 1, 1.25, 1.5, 1.75, 2.375, 2.5, 3.5, 4.25, 7, 8]);
-const SCALE_CEIL = { 'hub/css/lanterne.css': 0, 'hub/style.css': 92, 'assets/styles.css': 253 };
+const SCALE_CEIL = { 'hub/css/lanterne.css': 0, 'hub/style.css': 0, 'assets/styles.css': 6, 'comptoir/comptoir.css': 0 };
 const SIZE_RE = String.raw`(?:var\(--[\w-]+\)|clamp\([^()]*(?:\([^()]*\)[^()]*)*\)|calc\([^()]*(?:\([^()]*\)[^()]*)*\)|[\d.]+(?:px|rem|em|%|vw))`;
 const onScale = (v) => {
   v = v.trim();
   if (v.startsWith('var(--fs-') || ['inherit', '0', '1em', '100%'].includes(v)) return true;
-  const m = /^clamp\(\s*([\d.]+)rem\s*,[^,]+,\s*([\d.]+)rem\s*\)$/.exec(v);
+  if (/^[\d.]+rem$/.test(v)) return SCALE_REM.has(parseFloat(v));   /* a bare step of the scale, 1.75rem (added 2026-11-27) */
+  const m = /^clamp\(\s*([\d.]+)rem\s*,(?:[^(),]|\([^()]*\))+,\s*([\d.]+)rem\s*\)$/.exec(v);
   return !!(m && SCALE_REM.has(+m[1]) && SCALE_REM.has(+m[2]));
 };
 /* a sheet's own size alias (the Studio's --t-small, --t-label…) counts as on the scale when every definition of it in that
