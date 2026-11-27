@@ -396,6 +396,52 @@
 </section>
 <main id="main" class="wrap" tabindex="-1">
 
+  <!-- ================= PORTALS (world map thread, 2026-11-27) =================
+       The four ways into the Numidea world, right under the menu: one wide
+       primary (La Carte, the HQ: the map the stores sit on) and three store
+       gates. A gate with no real target yet is sealed (no link, "Bientôt"),
+       never a dead link. Plan: the doc "La carte du monde Numidea". The map
+       is a hand-drawn silhouette of Algeria, not survey-accurate. -->
+  <nav class="portals" aria-label="The Numidea world: the map and the stores" data-i18n-aria="portals.aria">
+    <p class="portals-k kicker" data-i18n="portals.k">The Numidea world · 4 portals</p>
+    <div class="portal portal-hq is-sealed">
+        <div class="portal-tx">
+          <span class="portal-city" data-i18n="portals.hq.city">HQ · Bordj Bou Arréridj</span>
+          <span class="portal-lab" data-i18n="portals.hq.label">The Map</span>
+          <span class="portal-sub" data-i18n="portals.hq.sub">All of Algeria, one store per city. The studio sits at the centre.</span>
+          <span class="portal-chip" data-i18n="portals.soon">Soon</span>
+        </div>
+        <svg class="portal-map" viewBox="0 0 430 420" aria-hidden="true" focusable="false">
+          <path class="pm-land" d="M136 53 180 35 240 15 280 15 352 13 348 51 344 77 332 95 370 161 376 209 378 242 386 288 418 308 330 365 296 398 264 405 244 407 242 389 204 370 84 275 6 224 6 194 40 176 80 167 108 145 156 119 152 103 146 70Z"/>
+          <path class="pm-route" d="M275 32 167 40M275 32 253 110 291 324"/>
+          <circle class="pm-pin pm-hq" cx="275" cy="32" r="9"/>
+          <circle class="pm-pin" cx="167" cy="40" r="6"/>
+          <circle class="pm-pin" cx="253" cy="110" r="6"/>
+          <circle class="pm-pin" cx="291" cy="324" r="6"/>
+        </svg>
+    </div>
+    <ul class="portals-grid">
+      <li class="portal is-sealed">
+        <span class="portal-city" data-i18n="portals.wear.city">Oran</span>
+        <span class="portal-lab" data-i18n="portals.wear.label">The Wardrobe</span>
+        <span class="portal-sub" data-i18n="portals.wear.sub">Numidea clothing. In the works.</span>
+        <span class="portal-chip" data-i18n="portals.soon">Soon</span>
+      </li>
+      <li class="portal"><a class="portal-a" href="https://glaivestore.netlify.app" target="_blank" rel="noopener" data-client="glaive">
+        <span class="portal-city" data-i18n="portals.arcade.city">Tamanrasset</span>
+        <span class="portal-lab" data-i18n="portals.arcade.label">The Arcade</span>
+        <span class="portal-sub" data-i18n="portals.arcade.sub">Gaming gear, as a demo: <bdi>Glaive Store</bdi>.<span class="sr-only"> (opens in a new tab)</span></span>
+        <span class="portal-chip is-open" data-i18n="portals.arcade.chip">Demo</span>
+      </a></li>
+      <li class="portal"><a class="portal-a" href="../workspacehq/">
+        <span class="portal-city" data-i18n="portals.apps.city">Ghardaïa</span>
+        <span class="portal-lab" data-i18n="portals.apps.label">The App Shelf</span>
+        <span class="portal-sub" data-i18n="portals.apps.sub">Our apps. The first one: <bdi>WorkspaceHQ</bdi>.</span>
+        <span class="portal-chip is-open" data-i18n="portals.apps.chip">1 app</span>
+      </a></li>
+    </ul>
+  </nav>
+
   <!-- ================= THE OFFER (2026-11-27) =================
        What follows the menu, in place of the old hero (owner order: the menu
        is the home's first screen and replaces the hero). The band keeps what

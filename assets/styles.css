@@ -4489,3 +4489,49 @@ html[dir="rtl"] .proj .thumb:is(*,:has(.shot)){background-position:calc(100% - 1
   .proj .thumb .dev-ph{transition:transform var(--m-hover) var(--m-ease-enter)}
   .proj:hover .thumb .dev-ph{transform:translateY(-6px)}
 }
+
+/* ---------- the portals (world map thread, 2026-11-27) ----------
+   Under the menu: La Carte (the HQ) is the one wide primary, the three
+   store gates sit under it as equals, smaller. Cut corners like the menu's
+   plates; a sealed gate (no target yet) is dashed and striped, not a link.
+   Phone: the HQ stays full width, the gates become a swipe strip. */
+.portals{padding-block:var(--s-7) var(--s-6)}
+.portals-k{margin-bottom:var(--s-4)}
+.portals-grid{list-style:none;margin:0;padding:0;display:grid;gap:var(--s-3);grid-template-columns:repeat(3,minmax(0,1fr))}
+.portal{--cut:18px;position:relative;display:flex;flex-direction:column;gap:var(--s-1);min-height:168px;padding:var(--s-5);
+  background:var(--navy);border:1px solid var(--hairline-2);
+  clip-path:polygon(var(--cut) 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%,0 var(--cut))}
+.portal-a{display:flex;flex-direction:column;gap:var(--s-1);height:100%;padding:var(--s-5);color:inherit;text-decoration:none;
+  transition:background-color var(--t-hover,.2s) ease}
+.portal:has(.portal-a){padding:0}
+.portal-a:hover,.portal-a:focus-visible{background:var(--grad-blood)}
+.portal-a:focus-visible{outline:2px solid var(--crimson-text);outline-offset:-4px}
+.portal-hq{margin-bottom:var(--s-3);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);align-items:center;gap:var(--s-5);min-height:0;--cut:28px;
+  background:var(--grad-noir,var(--navy))}
+.portal-tx{display:flex;flex-direction:column;gap:var(--s-1)}
+.portal-city{font-family:var(--font-mono);font-size:var(--fs-label);letter-spacing:var(--tr-label,.08em);text-transform:uppercase;color:var(--teal-text)}
+.portal-lab{font-family:var(--f-cond);font-weight:900;font-size:var(--fs-h3);line-height:var(--lh-head);text-transform:uppercase;letter-spacing:.01em;color:var(--ice,inherit)}
+.portal-hq .portal-lab{font-size:var(--fs-h2)}
+.portal-sub{font-size:var(--fs-small);line-height:1.45;color:var(--muted);max-width:30em}
+.portal-chip{align-self:flex-start;margin-top:auto;padding:2px var(--s-2);border:1px solid var(--hairline-2);border-radius:999px;
+  font-family:var(--font-mono);font-size:var(--fs-label);text-transform:uppercase;letter-spacing:var(--tr-label,.08em);color:var(--muted)}
+.portal-chip.is-open{border-color:var(--crimson-text);color:var(--crimson-text)}
+.portal-hq .portal-chip{margin-top:var(--s-3)}
+.portal.is-sealed{border-style:dashed;background:repeating-linear-gradient(135deg,transparent 0 10px,var(--hairline) 10px 11px),var(--navy)}
+.portal-hq.is-sealed{background:repeating-linear-gradient(135deg,transparent 0 14px,var(--hairline) 14px 15px),var(--grad-noir,var(--navy))}
+.portal-map{width:100%;max-height:260px}
+.pm-land{fill:var(--void);stroke:var(--teal-text);stroke-width:2;stroke-linejoin:round}
+.pm-route{fill:none;stroke:var(--hairline-2);stroke-width:2;stroke-dasharray:4 6}
+.pm-pin{fill:var(--teal-text)}
+.pm-hq{fill:var(--crimson-text)}
+@media (prefers-reduced-motion:no-preference){
+  .pm-hq{transform-box:fill-box;transform-origin:center;animation:pm-pulse 2.4s ease-in-out infinite}
+  @keyframes pm-pulse{50%{transform:scale(1.35)}}
+}
+html[dir="rtl"] :is(.portal-lab,.portal-city){font-family:var(--font-ar-display);text-transform:none;letter-spacing:0}
+@media (max-width:719px){
+  .portals-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:var(--s-2)}
+  .portal{scroll-snap-align:start;min-height:140px}
+  .portal-hq{grid-template-columns:minmax(0,1fr) 120px;gap:var(--s-3);padding:var(--s-4)}
+  .portal-map{max-height:130px}
+}
