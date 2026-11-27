@@ -86,7 +86,7 @@ jobs:
   # VERIFY_GATE_MIN stops one gate that gives no verdict. fail-fast is off,
   # so a red shard never hides the others' results.
   nightly:
-    if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.browser)
+    if: github.event_name == 'schedule' || github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && inputs.browser)
     name: nightly (${{ matrix.name }})
     runs-on: ubuntu-latest
     timeout-minutes: ${{ matrix.minutes }}
@@ -125,7 +125,7 @@ jobs:
   # A WebKit-only finding goes in scripts/vbugs-allow.json with its reason,
   # or gets fixed, as a Chromium one does.
   webkit:
-    if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.browser)
+    if: github.event_name == 'schedule' || github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && inputs.browser)
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -148,7 +148,7 @@ jobs:
   # the network checks, apart from the gates: their answers depend on other
   # people's servers, so a wall there never hides a gate's result
   links:
-    if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.browser)
+    if: github.event_name == 'schedule' || github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && inputs.browser)
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
