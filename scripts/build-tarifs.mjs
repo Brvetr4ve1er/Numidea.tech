@@ -16,10 +16,10 @@
  *     markers, so the home and the guide cannot quote different figures
  *     (check.mjs 8c reads both against PRICE_MODEL); the estimator is
  *     unfolded here, where the page is about prices (unfold()), and folded
- *     on the home; the hero's three answers are the tier cards' own figures
+ *     on the home; the first block's three answers are the tier cards' own figures
  *     (answers());
  *   - the chrome (the navbar, the menu, the footer, the phone bar, the
- *     hero's WhatsApp button) is the home page's, with its links turned
+ *     offer band's WhatsApp button) is the home page's, with its links turned
  *     towards the home (chrome() below): a change to the home's markup
  *     reaches this page at the next build;
  *   - the FAQ entries about money (FAQ_ON_TARIFS) are copied from the
@@ -497,7 +497,7 @@ ${chrome(menuPricing(element(home, '<div class="mobile-menu"', 'div')), { guide:
 ${answers(tiers, lang, dicts)}
       <p class="sec-lead" data-i18n="tarifs.lead">${toMarkup(fr['tarifs.lead'])}</p>
       <p class="tarifs-next tarifs-top">
-        <a class="btn btn-primary" href="./#contact" data-apercu data-i18n="hero.cta1">${toMarkup(fr['hero.cta1'])}</a>
+        <a class="btn btn-primary" href="./#contact" data-apercu data-i18n="prev.cta">${toMarkup(fr['prev.cta'])}</a>
         ${element(home, '<a class="btn btn-teal wa-link"', 'a').split('\n').map((l, i) => (i ? '      ' + l : l)).join('\n')}
       </p>
     </div>
@@ -537,9 +537,9 @@ ${marketBars(MARKET).replace(/\n$/, '').replace(/@@([\w.]+)@@/g, (m, k) => esc(d
 ${faqCols}
     </div>
 
-    <!-- the way on: the Aperçu and WhatsApp, as the hero offers them -->
+    <!-- the way on: the Aperçu and WhatsApp, as the home's offer band has them -->
     <p class="tarifs-next">
-      <a class="btn btn-primary" href="./#contact" data-apercu data-i18n="hero.cta1">${toMarkup(fr['hero.cta1'])}</a>
+      <a class="btn btn-primary" href="./#contact" data-apercu data-i18n="prev.cta">${toMarkup(fr['prev.cta'])}</a>
       ${element(home, '<a class="btn btn-teal wa-link"', 'a').split('\n').map((l, i) => (i ? '    ' + l : l)).join('\n')}
     </p>
 

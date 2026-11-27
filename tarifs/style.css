@@ -33,7 +33,7 @@ html[dir="rtl"] h1.sec{letter-spacing:0}
    with the title, where the half-width title left the hero empty. */
 .t-hero{display:grid;grid-template-columns:minmax(0,1fr);align-items:start}
 .t-hero>.sec-lead{margin-bottom:0}
-/* The first screen arrives as the home's hero does: each part rises 10px
+/* The first screen arrives as the home's hero did (it left on 2026-11-27): each part rises 10px
    in 500, an eighth of a beat after the one before (transform only, so the
    title is painted, and credited as painted, from the first frame). Arriving
    by a page change, it waits under the page being lifted off, then plays. */
@@ -145,7 +145,7 @@ html[dir="rtl"] .t-jump a{letter-spacing:0;text-transform:none}
 /* a chip lands its part below the navbar and the row */
 #pricing h2.sec,#market,#models{scroll-margin-top:calc(var(--nav-h) + var(--jump-h) + var(--s-4))}
 
-/* the way on: the Aperçu and WhatsApp, as the hero offers them */
+/* the way on: the Aperçu and WhatsApp, as the home's offer band has them */
 .tarifs-next{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4);margin-top:var(--s-8)}
 .tarifs-next .btn{width:100%;justify-content:center}
 .tarifs-top{margin-top:var(--s-6);margin-bottom:0;max-width:640px}

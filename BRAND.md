@@ -868,6 +868,12 @@ ABOVE its copy, or the line strikes through the titles).
 
 ## The hero as a drafting sheet
 
+*Removed on 2026-11-27 (owner decision: the game menu, `assets/menu/`, is the
+home's first screen and replaces the hero); kept as history. What the hero
+alone said (the h1, the lede, the two ways in, the terms) is the band under
+the menu, `section.offer`. The 404 page still wears the frame's brackets and
+the dimension line; the footers wear the line.*
+
 The hero is a **title block** in the `scene/` dialect, not a marketing header:
 a sheet frame with corner L-brackets, a dimension line under the headline
 annotated with the workshop's real coordinates (36°04′N · 4°46′E), and a
@@ -886,6 +892,11 @@ and never seen. The token exists precisely to stop that drift; it only works if
 someone checks it against the rendered box.
 
 ## The hero plate
+
+*Removed on 2026-11-27 with the hero; kept as history. The four client sites
+it turned stand in the proof strip and the work rows (`#work`), each with its
+capture, its sheet and its live link. The deck in `app.js`, its rules in
+`styles.css` and `PLATE_ORDER` in `scripts/build-lang.mjs` are gone.*
 
 The hero used to be the stock template: copy left, three static thumbnails
 fanned right. It showed three of the sites at a size where nothing was
@@ -1332,10 +1343,11 @@ browser test confirmed no range splits at 1280/1024/768/390 in FR/EN/AR.
   48px).
 - **Daylight accent** `#8A5B00` (text 5.30:1 on the paper #F6F3EC), the button's
   `#FFF8EC` on it 5.56:1, hover `#7A4F06`.
-- **The hero plate fits its column.** `.plate-wrap`, `.pm-rot` and the caption
-  rows are `minmax(0,1fr)` tracks with `min-width:0`; the caption truncates
-  (category first, then name). `design-check` fails if `.plate` is wider than
-  `.plate-wrap` at 320, 360, 375, 390 or 414.
+- **The offer band fits the screen.** (Until 2026-11-27 this was the hero
+  plate's rule: `.plate` as wide as `.plate-wrap`.) `design-check` fails if the
+  band's h1, its accent phrase or one of its two buttons leaves the screen at
+  320, 360, 375, 390 or 414, in French, English or Arabic, or if a button
+  leaves its column or meets the h1 from 960 to 1440.
 - **Tier CTAs share a line** at 960+ (the foot is a flex column, the button at
   its bottom). The FAQ's ask row sits at the top of its side column.
 
@@ -1414,9 +1426,10 @@ Values read from `assets/styles.css` (the Fleet 6 blocks at its end).
 - **Phones keep decision C4** (the vista, 416 KB of masks, stays off phones).
   The engraving moment is the dune strip: 104 px, ink at .8, the mask cropped so
   the caravan is a third of the width (`mask-size:205%`, position 81% 57%).
-  The hero lede drops the founder's sentence (`.lede-who`, hidden under 721 px;
-  the founder section says it) and WhatsApp becomes a ruled text link under the
-  primary button; the four contact rows are tighter.
+  The offer's lede drops the founder's sentence (`.offer-who`, hidden under
+  721 px; the founder section says it; it was the hero's `.lede-who` until
+  2026-11-27, when WhatsApp also went back to a full button on a phone); the
+  four contact rows are tighter.
 - **Work captures.** Row 01 is the references page from y 100 with the client's
   own four totals and no nav strip (`CROP['bordjsteel-references']` x 80, y 100,
   w 1280); row 02's window is 1040x650, so the page ends under the buttons.
@@ -1811,9 +1824,9 @@ sections are numbered as the design numbers them:
   (Kūro then Yasser, under 5 s) and still under reduced motion, with no
   pointer parallax; "What I make" is the founder section's three cards; the
   handle, eyebrow and motto sit on the founder card; the two Kūro die-cuts
-  stand by the founder links and the Behance plate; the three short loops are
-  `yasser-wave` in the contact card, `kuro-sleep` in the footer and
-  `yasser-lost` on the bible (each finite, at most 5 s, a still under reduced
+  stand by the founder links and the Behance plate; the two short loops are
+  `yasser-wave` in the contact card and `kuro-sleep` in the footer (the bible's
+  `yasser-lost` was retired on 2026-11-27; each finite, at most 5 s, a still under reduced
   motion, as check 17b reads them); the WorkspaceHQ cartridge is a ticket
   in the Studio's "Aussi, faits maison" line and a Press Start 2P face used
   only there. `hub/loops/` stays gone as a folder (the loops live in
@@ -1985,8 +1998,8 @@ cut-outs (`assets/illus/yasser-coffee`, `yasser-facepalm`) were deleted. Yasser'
 back to the rig's tone (seeded skin mask, per-channel gain 0.76/0.59/0.55; the tools are kept in the
 project files, `characters/tools/`) on the workbench scene (`hub/img/studio/m/diorama{,.full}`,
 `assets/illus/workbench-night{,-560}`, whose Kūro was taken to canon black too) and on the Studio's
-"What I make" trio (`hub/img/studio/make/*`, the artist's Kūro too). Still off-model and not yet fixed:
-the bible's pixel row (`sil-*`) and the animated `yasser-lost` sticker, both lighter-skinned. The traveller figure (wavy hair,
+"What I make" trio (`hub/img/studio/make/*`, the artist's Kūro too). The last two off-model files, the bible's pixel figure (`sil-5`) and the animated `yasser-lost` sticker, both lighter-skinned,
+were retired on 2026-11-27 (post 8 shows `rig-y-glasses` in ink; section 08 shows a picture from the owner's story book). The traveller figure (wavy hair,
 indigo coat, yellow scarf) was pulled back to canon at the owner's word (2026-11-24): the Librairie's
 `cast/yasser-traveller` and the Fabrique's `atelier/yasser-traveller-sit` now carry the bible's seated
 `pose-laptop`, the Fabrique's `atelier/yasser-traveller{,-300}` the standing `actor-pointup-a`, at the

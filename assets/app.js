@@ -13,7 +13,7 @@
   var BEAT = 2000 / 3;
   var M = function (n) { return Math.round(n * BEAT / 8); };
   var Q = function (ms) { var s = BEAT / 16; return Math.round(Math.round(ms / s) * s); };
-  var EASE_ENTER = 'cubic-bezier(.16,1,.3,1)', EASE_EXIT = 'cubic-bezier(.5,0,.75,0)', EASE_MOVE = 'cubic-bezier(.87,0,.13,1)';
+  var EASE_ENTER = 'cubic-bezier(.16,1,.3,1)', EASE_EXIT = 'cubic-bezier(.5,0,.75,0)';
   /* Work the first screen does not need (measuring, arming the pictures,
      fitting the header's action) waits until the browser is idle, a second
      at most, so it never runs inside the hero's entrance. */
@@ -621,7 +621,7 @@
        hidden. Nothing with reduced motion or without an observer. */
     if (!reduceMotion && 'IntersectionObserver' in window) {
       var vhH = window.innerHeight || document.documentElement.clientHeight;
-      var heads = [].slice.call(document.querySelectorAll('main.wrap>section:not(.hero):not(.proof)'))
+      var heads = [].slice.call(document.querySelectorAll('main.wrap>section:not(.offer):not(.proof)'))
         .filter(function (sec) { return sec.querySelector(':scope>.kicker'); });
       var win = document.querySelector('#faq>.faq-win');
       var holds = heads.concat(win ? [win] : []);
@@ -660,243 +660,6 @@
       try { sessionStorage.setItem('vt-case', m[1]); } catch (x) {}
     });
 
-
-    /* ---------- hero plate: four live client sites + the Glaive demo ----------
-       Wipe, don't cross-fade. Two flat UIs dissolving through each other
-       is a smear; a hard edge keeps both razor sharp. The image swaps at
-       the midpoint, hidden behind the wipe bar. */
-    (function () {
-      var wrap = document.querySelector('.plate-wrap');
-      if (!wrap) return;
-      var plate = wrap.querySelector('.plate'),
-          wipe  = wrap.querySelector('.pl-wipe'),
-          slides = [].slice.call(wrap.querySelectorAll('.pl')),
-          more   = wrap.querySelector('#plate-more'),
-          items  = [].slice.call(wrap.querySelectorAll('.pm-item')),
-          tabs   = [].slice.call(wrap.querySelectorAll('.plate-rail button')),
-          idxEl  = wrap.querySelector('.pm-idx b'),
-          // the plate's own link: the slide's sheet (scene/), by the slug its
-          // caption carries (data-sheet), or the card of a client with no
-          // sheet. Its path is read from the baked href, which build-lang.mjs
-          // has moved for en/ and ar/, so the folder is never guessed here.
-          plink  = wrap.querySelector('.plate-link'),
-          sheetBase = plink ? plink.getAttribute('href').replace(/#.*$/, '') : '';
-      if (slides.length < 2 && !more) return;
-      /* Each slide holds two bars (5333 ms) and the deck goes round once:
-         after four turns (every slide shown; back on the first one when no
-         one has picked another) it stays. The rail, a swipe and the keys
-         still turn it; the play button starts another round. */
-      var cur = 0, busy = false, timer = null, HOLD = M(64), turns = 0;
-
-      /* The slides after the first wait in a <template> (index.html): the
-         deck never turns before the visitor has moved (`idle`, below), yet
-         their four images, 138 KB, loaded with the first screen, ahead of
-         what that screen shows. They enter the plate at the first
-         interaction, where wake() runs, and load from there; a rail pick
-         before that cannot happen (its press is the interaction), and go()
-         asks anyway. */
-      function unfold() {
-        if (!more) return;
-        var frag = more.content.cloneNode(true), added = [].slice.call(frag.querySelectorAll('.pl'));
-        plate.insertBefore(frag, wipe || null);
-        slides = slides.concat(added);
-        more.parentNode.removeChild(more); more = null;
-      }
-
-      function paint(n) {
-        slides.forEach(function (e, i) { e.classList.toggle('on', i === n); });
-        items.forEach(function (e, i) { e.classList.toggle('on', i === n); });
-        // the rail is one Tab stop: the shown slide's tab holds it (roving tabindex)
-        tabs.forEach(function (e, i) { if (i === n) e.setAttribute('aria-current', 'true'); else e.removeAttribute('aria-current'); e.tabIndex = i === n ? 0 : -1; });
-        if (idxEl) idxEl.textContent = ('0' + (n + 1)).slice(-2);
-        if (plink) {
-          var it = items[n], slug = it && it.getAttribute('data-sheet');
-          plink.setAttribute('href', slug ? sheetBase + '#' + slug : '#w-' + (it ? it.getAttribute('data-client') : ''));
-        }
-        cur = n;
-      }
-
-      // a slide's image has arrived, has failed for good, or is on its way
-      function ready(i) { return slides[i].complete && slides[i].naturalWidth > 0; }
-      function failed(i) { return slides[i].complete && !slides[i].naturalWidth; }
-
-      /* The latest pick wins. A rail press during a wipe is kept and played
-         when the wipe ends, not dropped (the plate stayed on the earlier
-         slide under someone who had chosen another). A picked slide whose
-         image has not arrived is asked for at once and waited for, so the
-         wipe never uncovers a blank plate; one that failed is shown anyway:
-         the visitor chose it, and the caption still names the client. */
-      var want = -1, waiting = -1;
-      function go(n) {
-        unfold();
-        if (!slides[n]) return;
-        want = n;
-        if (busy) return;
-        if (n === cur) { want = -1; return; }
-        if (!ready(n) && !failed(n)) {
-          // the rail answers at once; the plate follows when the image lands
-          tabs.forEach(function (e, i) { if (i === n) e.setAttribute('aria-current', 'true'); else e.removeAttribute('aria-current'); });
-          if (waiting !== n) {
-            waiting = n;
-            var again = function () { if (waiting !== n) return; waiting = -1; if (want === n) go(n); };
-            slides[n].addEventListener('load', again, { once: true });
-            slides[n].addEventListener('error', again, { once: true });
-            slides[n].loading = 'eager';
-          }
-          return;
-        }
-        want = -1; waiting = -1;
-        if (reduceMotion || !wipe || !wipe.animate) { paint(n); return; }
-        busy = true;
-        /* One beat (667 ms) on the move curve, run by the compositor: the
-           bar sweeps across, covering the plate, and retreats; the slide is
-           swapped behind it at the half (333), and the caption rises from
-           there to land as the plate uncovers. The bright leading edge
-           fades on the same clock. Nothing is written per frame. */
-        var done = false, finish = function () {
-          if (done) return;
-          done = true; clearTimeout(swapT); paint(n); busy = false;
-          if (want > -1) go(want);   // a pick made while this one ran
-        };
-        var a = wipe.animate([{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)', offset: .5 }, { transform: 'scaleX(0)' }], { duration: M(8), easing: EASE_MOVE });
-        // (linear on purpose: the edge holds at full for fifteen sixteenths of the beat, 625 ms, and drops in the last sixteenth, so a curve would change nothing seen)
-        try { wipe.animate([{ opacity: 1 }, { opacity: 1, offset: .9375 }, { opacity: 0 }], { duration: M(8), pseudoElement: '::after' }); } catch (e) {}
-        var swapT = setTimeout(function () { paint(n); }, M(4));   // swap behind the bar
-        a.onfinish = finish; a.oncancel = finish;
-      }
-
-      function next() {
-        // A pick still waiting for its image wins over the rotation.
-        if (waiting > -1) return;
-        // Never wipe onto an image that has not arrived. On a slow link the
-        // low-priority slides land seconds after the first; advancing anyway
-        // showed a blank plate and re-elected LCP onto whichever image came
-        // last. The interval simply tries again next tick. An image that
-        // failed (complete, but no pixels) never arrives: skip that slide,
-        // or one bad request stops the deck for good.
-        for (var k = 1; k < slides.length; k++) {
-          var n = (cur + k) % slides.length;
-          if (failed(n)) continue;
-          if (ready(n)) {
-            go(n);
-            // one round, then it stays
-            if (++turns >= tabs.length) halt();
-          }
-          return;
-        }
-      }
-      /* `held` is a latch, not a timer state. Clicking a rail tab re-arms —
-         but the pointer is already inside the component at that moment, so
-         no fresh pointerenter will ever fire to pause it again, and it
-         would resume rotating under someone who just chose a slide. */
-      // `idle` holds rotation until the visitor has done anything at all. LCP
-      // is finalised at the first interaction, and every rotation before that
-      // re-elected it onto the new slide: measured on Slow 3G, an LCP of 3.6s
-      // reported as 10.8s because the deck turned at 10.8s. A visitor who has
-      // not moved yet sees the first, high-priority slide, which is the point.
-      // `user` is the pause button: a latch only the button releases
-      // `picked` is a rail tap by a finger (below)
-      var held = { hover: false, focus: false, hidden: false, idle: true, user: false, picked: false };
-      var wake = function () {
-        if (!held.idle) return;
-        held.idle = false; unfold(); arm();
-        ['pointermove', 'pointerdown', 'keydown', 'scroll', 'touchstart', 'wheel'].forEach(function (ev) {
-          window.removeEventListener(ev, wake, true);
-        });
-      };
-      ['pointermove', 'pointerdown', 'keydown', 'scroll', 'touchstart', 'wheel'].forEach(function (ev) {
-        window.addEventListener(ev, wake, { capture: true, passive: true });
-      });
-      function halt() { clearInterval(timer); timer = null; }
-      function arm() {
-        clearInterval(timer); timer = null;
-        if (reduceMotion || held.hover || held.focus || held.hidden || held.idle || held.user || held.picked || turns >= tabs.length) return;
-        timer = setInterval(next, HOLD);
-      }
-      function hold(k, v) { held[k] = v; arm(); }
-
-      /* A finger has no hover, and in Safari a tapped button takes no focus,
-         so neither latch held the deck after a rail pick on a phone: with
-         the tap's focus dropped, as Safari does, it moved off the chosen
-         slide 5.2s later. A touch pick holds it until the next touch
-         outside the plate. */
-      var lastPointer = '';
-      wrap.addEventListener('pointerdown', function (e) { lastPointer = e.pointerType; }, { passive: true });
-      wrap.addEventListener('keydown', function () { lastPointer = ''; });   // Enter/Space is not a finger
-      document.addEventListener('pointerdown', function (e) {
-        if (held.picked && !wrap.contains(e.target)) hold('picked', false);
-      }, { passive: true });
-      /* A swipe on the capture turns it (it was a link and nothing else, and
-         its four bars were its only control on a phone); a tap still opens
-         the sheet, a swipe does not. */
-      var plateLink = wrap.querySelector('.plate-link'), sx = 0, sy = 0, swiped = false;
-      if (plateLink) {
-        plateLink.addEventListener('touchstart', function (e) { var t0 = e.touches[0]; sx = t0.clientX; sy = t0.clientY; swiped = false; }, { passive: true });
-        plateLink.addEventListener('touchend', function (e) {
-          var t1 = e.changedTouches[0], dx = t1.clientX - sx, dy = t1.clientY - sy;
-          if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
-          swiped = true;
-          var rtl = document.documentElement.getAttribute('dir') === 'rtl', n = tabs.length;
-          held.picked = true;
-          go((cur + ((dx < 0) !== rtl ? 1 : n - 1)) % n); arm();
-        }, { passive: true });
-        plateLink.addEventListener('click', function (e) { if (swiped) { e.preventDefault(); swiped = false; } });
-      }
-      tabs.forEach(function (b, i) {
-        b.addEventListener('click', function () {
-          if (lastPointer === 'touch') held.picked = true;
-          lastPointer = '';
-          go(i); arm();
-        });
-      });
-      /* One Tab stop (paint() keeps the tabindex on the shown slide's tab):
-         the arrows step through the tabs, Home and End jump to the ends,
-         and each step shows its slide. In Arabic the rail reads right to
-         left, so the arrows turn with it. */
-      var rail = wrap.querySelector('.plate-rail');
-      if (rail) rail.addEventListener('keydown', function (e) {
-        var i = tabs.indexOf(document.activeElement);
-        if (i < 0) return;
-        var rtl = document.documentElement.getAttribute('dir') === 'rtl', n = tabs.length, to = -1;
-        if (e.key === (rtl ? 'ArrowLeft' : 'ArrowRight')) to = (i + 1) % n;
-        else if (e.key === (rtl ? 'ArrowRight' : 'ArrowLeft')) to = (i - 1 + n) % n;
-        else if (e.key === 'Home') to = 0;
-        else if (e.key === 'End') to = n - 1;
-        if (to < 0) return;
-        e.preventDefault();
-        tabs.forEach(function (b, k) { b.tabIndex = k === to ? 0 : -1; });
-        tabs[to].focus();
-        go(to); arm();
-      });
-      // WCAG 2.2.2: anything that moves on its own for more than 5s can be paused
-      var pauseBtn = wrap.querySelector('.pl-pause');
-      if (pauseBtn) {
-        if (reduceMotion) pauseBtn.hidden = true;     // nothing rotates, nothing to pause
-        pauseBtn.addEventListener('click', function () {
-          var on = pauseBtn.getAttribute('aria-pressed') !== 'true';
-          /* A toggle keeps one name and says its state with aria-pressed
-             alone: a label swapped to "Reprendre la rotation" as it was
-             pressed was read "Reprendre la rotation, pressed", the state said
-             twice and the two contradicting. */
-          pauseBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
-          // an explicit pause or play overrides a finger's rail pick: the
-          // button sits inside the plate, so its tap never clears `picked`,
-          // and play would otherwise report a rotation that does not run
-          held.picked = false;
-          if (!on && turns >= tabs.length) turns = 0;   // play after the round: another round
-          hold('user', on);
-        });
-      }
-      // don't rotate under someone reading it, or when the tab is hidden
-      wrap.addEventListener('pointerenter', function () { hold('hover', true); });
-      wrap.addEventListener('pointerleave', function () { hold('hover', false); });
-      // focus on the pause button itself is not reading: it would freeze the
-      // rotation that button just resumed
-      wrap.addEventListener('focusin',  function (e) { hold('focus', e.target !== pauseBtn); });
-      wrap.addEventListener('focusout', function () { hold('focus', false); });
-      document.addEventListener('visibilitychange', function () { hold('hidden', document.hidden); });
-      arm();
-    })();
 
     // mobile menu
     var toggle = document.querySelector('.menu-toggle');
@@ -1134,7 +897,7 @@
       }
     }
 
-    /* L'Aperçu: every link to it (data-apercu: the hero's, the Aperçu
+    /* L'Aperçu: every link to it (data-apercu: the offer's, the Aperçu
        card's, the FAQ's and each tier's) hands its request to the message
        field, then the normal #contact jump happens (carried on to the form
        where it stacks). A tier's names the tier as its card shows it, name
@@ -1596,7 +1359,7 @@
        only (e.g. '213XXXXXXXXX'). Should it ever be empty, every WhatsApp
        control loses its href and is marked disabled rather than linking
        somewhere wrong. scripts/build-lang.mjs bakes the same link, in the
-       page's language (or that guard), into the page, so the hero's button
+       page's language (or that guard), into the page, so the offer's button
        works before this deferred script runs; wireWA() rewrites it with the
        ad's [ref]. */
     var WA = (window.NUMIDEA_WA || '').replace(/[^0-9]/g, '');
@@ -1657,14 +1420,14 @@
 
     /* ---------------- phone contact bar ----------------
        Phones only (the CSS hides it above 720px). On from one screen down,
-       hidden again while the hero's buttons, the estimator's figure (it
+       hidden again while the offer's buttons, the estimator's figure (it
        carries the estimate then, see below), #contact or the footer is on
        screen, and while the menu is open: #contact already offers the same
        two actions, and the footer comes straight after it and is shorter
-       than a phone screen. On the price guide it shows once the hero (which
-       offers the same two ways) has gone, not from load. Its main button goes to
-       the form with the Aperçu's request written in (data-apercu), as the
-       hero's does: it used to jump back up to the explainer card.
+       than a phone screen. On the price guide it shows once its first block
+       (which offers the same two ways) has gone, not from load. Its main button
+       goes to the form with the Aperçu's request written in (data-apercu), as
+       the offer's does: it used to jump back up to the explainer card.
        It steps aside on a long downward run (600px without a pause) and is
        back at the first upward move or 220ms after the last scroll event: a
        flick's momentum is one run, and the bar no longer slides in and out
@@ -1683,7 +1446,7 @@
       // least 480px wide), where the bar would cover a third of the screen
       var mq = window.matchMedia('(max-width: 720px) and (min-height: 561px), (max-width: 479px)');
       var guide = !!document.querySelector('main.tarifs');
-      var inView = { contact: false, footer: false, hero: false, est: false }, menuOpen = false;
+      var inView = { contact: false, footer: false, offer: false, est: false }, menuOpen = false;
       var lastY = scrollPos, run = 0, up = 0, away = false, restT = 0, jumpT = 0, jumping = false;
       var price = bar.querySelector('.m-price'), go = bar.querySelector('.m-estgo');
       var rng = document.getElementById('est-range'), wks = document.getElementById('est-weeks');
@@ -1694,7 +1457,7 @@
         price.querySelector('.mp-w').textContent = wks && wks.parentNode ? clean(wks.parentNode.textContent) : '';
       }
       function update() {
-        var on = mq.matches && !menuOpen && !inView.contact && !inView.footer && !inView.hero
+        var on = mq.matches && !menuOpen && !inView.contact && !inView.footer && !inView.offer
           && (guide ? scrollPos > 0 : scrollPos > viewH) && (!away || bar.contains(document.activeElement));
         bar.classList.toggle('on', on);
         document.documentElement.classList.toggle('mbar-on', on);   // what the toast above the bar reads (styles.css)
@@ -1722,13 +1485,14 @@
         var io = new IntersectionObserver(function (es) {
           es.forEach(function (e) {
             var c = e.target.classList;
-            inView[c.contains('footer') ? 'footer' : c.contains('tarifs-top') || c.contains('hero-cta') ? 'hero' : c.contains('est-grid') ? 'est' : 'contact'] = e.isIntersecting;
+            inView[c.contains('footer') ? 'footer' : c.contains('tarifs-top') || c.contains('offer-cta') ? 'offer' : c.contains('est-grid') ? 'est' : 'contact'] = e.isIntersecting;
           });
           update();
         });
-        /* the guide's hero and the home's offer the same two ways: while they
-           are on screen the bar would show them twice, one half under it */
-        ['#contact', '.footer', '.tarifs-top', '.hero-cta', '#estimator .est-grid'].forEach(function (s) { var el = document.querySelector(s); if (el) io.observe(el); });
+        /* the guide's first block and the home's offer band (.offer-cta, under
+           the menu since 2026-11-27) offer the same two ways: while they are
+           on screen the bar would show them twice, one half under it */
+        ['#contact', '.footer', '.tarifs-top', '.offer-cta', '#estimator .est-grid'].forEach(function (s) { var el = document.querySelector(s); if (el) io.observe(el); });
       }
       if (price && rng && 'MutationObserver' in window) {
         var fr = 0;
@@ -2467,7 +2231,7 @@
           if (e.isIntersecting) { e.target.classList.add('lz-on'); lio.unobserve(e.target); }
         });
       }, { rootMargin: '300px 0px' });
-      /* the landscape plate under the hero is 227 KB of masks on a phone, and
+      /* the landscape plate under the offer is 227 KB of masks on a phone, and
          it sits one screen under the first: it is asked for when it enters
          the screen, not 300px before (its 104px box is kept, so nothing moves) */
       var vio = new IntersectionObserver(function (es) {
@@ -2505,8 +2269,8 @@
     var skio = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
       es.forEach(function (e) { e.target.classList.toggle('sk-run', e.isIntersecting && !e.target.classList.contains('sk-done')); });
     }) : null;
-    [].forEach.call(document.querySelectorAll('.proj .thumb img.shot, .plate img.pl'), function (img) {
-      var box = img.closest('.thumb, .plate'); if (!box || (img.complete && img.naturalWidth)) return;
+    [].forEach.call(document.querySelectorAll('.proj .thumb img.shot'), function (img) {
+      var box = img.closest('.thumb'); if (!box || (img.complete && img.naturalWidth)) return;
       box.classList.add('sk');
       if (skio) skio.observe(box); else box.classList.add('sk-run');
       var done = function () {
