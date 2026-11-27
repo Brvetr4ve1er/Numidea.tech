@@ -5,7 +5,7 @@
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-mj8TfmLglFxhQtU0ovRRl0qAd7PnRa7BZjmQumBxA0c=' 'sha256-jqvmeaJzhI0avE/Byblgel+6lAUwtfzShFKt7DLnhME='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-hh/yE6ItZXVSxYb4L0UmknfQrjhQTLX67Q6WrYPr9js=' 'sha256-jqvmeaJzhI0avE/Byblgel+6lAUwtfzShFKt7DLnhME='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Création de sites web en Algérie | Numidea Labs</title>
 <meta name="description" content="Création de sites web en français, anglais et arabe, dès 90 000 DA. Voyez votre page d'accueil avant de payer. Studio à Bordj Bou Arréridj, Algérie.">
 <meta name="theme-color" content="#0A1420">
@@ -136,8 +136,8 @@
 <script>
   (function () {
     var d = document.documentElement;
-    var HEAD = { arcanum: 'cinzel-700-latin', daylight: 'cinzel-700-latin' };
-    var SWASH = { arcanum: 'cinzel-decorative-700-latin', daylight: 'cinzel-decorative-700-latin' };
+    var HEAD = { arcanum: '../../hub/fonts/archivo-cond-900-latin', daylight: '../../hub/fonts/archivo-cond-900-latin' };
+    var SWASH = {};
     var BAKED = 'fr', th = 'arcanum';
     /* each theme's page colour (themes.css --void), for the browser's own
        bar until app.js reads it from the tokens */
@@ -226,11 +226,11 @@
      in the stylesheet alone it was not yet read when a fast arrival showed its
      first frame ("opt-in disabled"), and the lift was skipped, a hard cut. -->
 <style>@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto;types:page}}</style>
-<link rel="stylesheet" href="assets/fonts.css?v=202611271712">
+<link rel="stylesheet" href="assets/fonts.css?v=202611272055">
 <!-- themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them -->
-<link rel="stylesheet" href="assets/themes.css?v=202611271712">
-<link rel="stylesheet" href="assets/styles.css?v=202611271712">
-<link rel="stylesheet" href="assets/menu/menu.css?v=202611271712">
+<link rel="stylesheet" href="assets/themes.css?v=202611272055">
+<link rel="stylesheet" href="assets/styles.css?v=202611272055">
+<link rel="stylesheet" href="assets/menu/menu.css?v=202611272055">
 <noscript><style>
   /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */
   .reveal{opacity:1!important;transform:none!important}
@@ -324,7 +324,10 @@
   <span class="menu-sep" aria-hidden="true"></span>
   <a class="menu-far" href="hub/lanterne/" data-i18n="nav.librairie">La Librairie</a>
   <a class="menu-far" href="hub/monde.html" data-i18n="nav.monde">Le monde</a>
+  <a class="menu-far" href="hub/" data-i18n="menu.atelier.label">L’Atelier</a>
+  <a class="menu-far" href="hub/bible/" data-i18n="menu.bible.label">La Bible</a>
   </nav>
+  <img class="menu-kuro" src="assets/kit/art/kuro/react/loaf.webp" alt="" width="240" height="240" loading="lazy">
   <!-- the two ways to start, pinned at the foot of the menu (styles.css
        .menu-acts): eight section links and no action left the visitor who
        opened the menu to act with nothing to press. The same two links as
@@ -356,17 +359,17 @@
   <div class="nl-abs nl-shard s1"></div><div class="nl-abs nl-shard s2"></div><div class="nl-abs nl-shard s3"></div>
   <div class="nl-abs nl-burst"></div>
   <div class="nl-abs nl-mark" aria-hidden="true" data-decorative>ヌミデア</div>
-  <div class="nl-abs nl-echo"><img src="assets/menu/yasser-full.webp" alt="" width="564" height="1278" decoding="async"></div>
-  <img class="nl-abs nl-fig" src="assets/menu/yasser-full.webp" alt="" width="564" height="1278" fetchpriority="high" decoding="async">
+  <div class="nl-abs nl-echo"><img src="assets/menu/yasser-full.webp" srcset="assets/menu/yasser-full-440.webp 440w, assets/menu/yasser-full.webp 564w" sizes="(max-width:599.98px) 229px, (max-aspect-ratio:4/5) 283px, (max-width:759.98px) 229px, 564px" alt="" width="564" height="1278" fetchpriority="high" decoding="async"></div>
+  <img class="nl-abs nl-fig" src="assets/menu/yasser-full.webp" srcset="assets/menu/yasser-full-440.webp 440w, assets/menu/yasser-full.webp 564w" sizes="(max-width:599.98px) 229px, (max-aspect-ratio:4/5) 283px, (max-width:759.98px) 229px, 564px" alt="" width="564" height="1278" fetchpriority="high" decoding="async">
  </div>
  <p class="nl-abs nl-line" data-text="Numidea Labs · le studio de nuit" aria-hidden="true" data-i18n="menu.line">Numidea Labs · le studio de nuit</p>
  <p class="nl-abs nl-name" dir="ltr"><span aria-hidden="true"><span class="nl-ch j1">N</span><span class="nl-ch j2">u</span><span class="nl-ch j3">m</span><span class="nl-ch j4">i</span><span class="nl-ch j5">d</span><span class="nl-ch j0">e</span><span class="nl-ch j1">a</span><br><span class="nl-ch j4">L</span><span class="nl-ch j5">a</span><span class="nl-ch j0">b</span><span class="nl-ch j1">s</span></span><span class="nl-sr sr-only">Numidea Labs</span></p>
 
  <div class="nl-abs nl-hud nl-cut" aria-hidden="true"><div class="nl-cut-band"></div>
-  <img class="nl-cut-prop" data-kit="prop" src="assets/kit/art/props/fineliner.webp" alt="" width="240" height="240" decoding="async">
+  <img class="nl-cut-prop" data-kit="prop" src="assets/kit/art/props/fineliner.webp" alt="" width="240" height="240" loading="lazy" decoding="async">
   <div class="nl-cut-slot" data-kit="body"><div class="kit-slot"><img data-base src="assets/kit/art/yasser/pose/receipt.webp" alt="" decoding="async"><img data-over src="assets/kit/art/yasser/pose/receipt.webp" alt="" decoding="async"></div></div>
   <span class="nl-tag nl-cut-tag" data-i18n="menu.cut">En scène</span></div>
- <div class="nl-abs nl-hud nl-kuro" aria-hidden="true"><div class="nl-tarot"><img class="nl-tarot-frame" src="assets/menu/tarot.webp" alt="" width="141" height="240" decoding="async"><img class="nl-cat" data-kit="kuro" src="assets/kit/art/kuro/react/judge.webp" alt="" decoding="async"></div><span class="nl-tag"><span data-i18n="menu.kuroName">Kūro</span> : <span class="nl-kuro-say">juge</span></span></div>
+ <div class="nl-abs nl-hud nl-kuro" aria-hidden="true"><div class="nl-tarot"><img class="nl-tarot-frame" src="assets/menu/tarot.webp" alt="" width="141" height="240" decoding="async"><img class="nl-cat" data-kit="kuro" src="assets/kit/art/kuro/react/judge.webp" alt="" decoding="async"></div><span class="nl-tag"><span data-i18n="menu.kuroName">Kūro</span> : <span class="nl-kuro-say" data-i18n="menu.tarifs.kuro">juge</span></span></div>
 
  <nav aria-label="Menu du studio" data-i18n-aria="menu.nav"><ul class="nl-nav">
 <li><a class="nl-item l big on" href="tarifs/" data-id="tarifs" data-kuro="judge" data-pose="yasser/pose/receipt" data-prop="fineliner">
@@ -413,7 +416,7 @@
 </a></li>
  </ul></nav>
 
- <div class="nl-abs nl-hud nl-say"><div class="nl-say-in"><span class="nl-say-dest">Tarifs · Prix fixe, écrit avant</span><p class="nl-say-box">Le prix est écrit avant qu’on commence. Pas de surprise.</p></div></div>
+ <div class="nl-abs nl-hud nl-say"><div class="nl-say-in"><span class="nl-say-dest"><span data-i18n="menu.tarifs.label">Tarifs</span> · <span data-i18n="menu.tarifs.sub">Prix fixe, écrit avant</span></span><p class="nl-say-box" data-i18n="menu.tarifs.say">Le prix est écrit avant qu’on commence. Pas de surprise.</p></div></div>
 
  <div class="nl-abs nl-hud nl-topright"><button class="nl-replay" type="button" data-i18n="menu.replay">Rejouer l’intro</button></div>
  <button class="nl-abs nl-skip" type="button" data-i18n="menu.skip">Passer l’intro</button>
@@ -422,6 +425,52 @@
 </div>
 </section>
 <main id="main" class="wrap" tabindex="-1">
+
+  <!-- ================= PORTALS (world map thread, 2026-11-27) =================
+       The four ways into the Numidea world, right under the menu: one wide
+       primary (La Carte, the HQ: the map the stores sit on) and three store
+       gates. A gate with no real target yet is sealed (no link, "Bientôt"),
+       never a dead link. Plan: the doc "La carte du monde Numidea". The map
+       is a hand-drawn silhouette of Algeria, not survey-accurate. -->
+  <nav class="portals" aria-label="Le monde Numidea : la carte et les boutiques" data-i18n-aria="portals.aria">
+    <p class="portals-k kicker" data-i18n="portals.k">Le monde Numidea · 4 portails</p>
+    <div class="portal portal-hq is-sealed">
+        <div class="portal-tx">
+          <span class="portal-city" data-i18n="portals.hq.city">QG · Bordj Bou Arréridj</span>
+          <span class="portal-lab" data-i18n="portals.hq.label">La Carte</span>
+          <span class="portal-sub" data-i18n="portals.hq.sub">Toute l’Algérie, une boutique par ville. Le studio est au centre.</span>
+          <span class="portal-chip" data-i18n="portals.soon">Bientôt</span>
+        </div>
+        <svg class="portal-map" viewBox="0 0 430 420" aria-hidden="true" focusable="false">
+          <path class="pm-land" d="M136 53 180 35 240 15 280 15 352 13 348 51 344 77 332 95 370 161 376 209 378 242 386 288 418 308 330 365 296 398 264 405 244 407 242 389 204 370 84 275 6 224 6 194 40 176 80 167 108 145 156 119 152 103 146 70Z"/>
+          <path class="pm-route" d="M275 32 167 40M275 32 253 110 291 324"/>
+          <circle class="pm-pin pm-hq" cx="275" cy="32" r="9"/>
+          <circle class="pm-pin" cx="167" cy="40" r="6"/>
+          <circle class="pm-pin" cx="253" cy="110" r="6"/>
+          <circle class="pm-pin" cx="291" cy="324" r="6"/>
+        </svg>
+    </div>
+    <ul class="portals-grid">
+      <li class="portal is-sealed">
+        <span class="portal-city" data-i18n="portals.wear.city">Oran</span>
+        <span class="portal-lab" data-i18n="portals.wear.label">Le Vestiaire</span>
+        <span class="portal-sub" data-i18n="portals.wear.sub">Les vêtements Numidea. En préparation.</span>
+        <span class="portal-chip" data-i18n="portals.soon">Bientôt</span>
+      </li>
+      <li class="portal"><a class="portal-a" href="https://glaivestore.netlify.app" target="_blank" rel="noopener" data-client="glaive">
+        <span class="portal-city" data-i18n="portals.arcade.city">Tamanrasset</span>
+        <span class="portal-lab" data-i18n="portals.arcade.label">L’Arcade</span>
+        <span class="portal-sub" data-i18n="portals.arcade.sub">Le matériel de jeu, en démo : <bdi>Glaive Store</bdi>.<span class="sr-only"> (nouvel onglet)</span></span>
+        <span class="portal-chip is-open" data-i18n="portals.arcade.chip">Démo</span>
+      </a></li>
+      <li class="portal"><a class="portal-a" href="workspacehq/">
+        <span class="portal-city" data-i18n="portals.apps.city">Ghardaïa</span>
+        <span class="portal-lab" data-i18n="portals.apps.label">La Logithèque</span>
+        <span class="portal-sub" data-i18n="portals.apps.sub">Nos applications. La première : <bdi>WorkspaceHQ</bdi>.</span>
+        <span class="portal-chip is-open" data-i18n="portals.apps.chip">1 app</span>
+      </a></li>
+    </ul>
+  </nav>
 
   <!-- ================= THE OFFER (2026-11-27) =================
        What follows the menu, in place of the old hero (owner order: the menu
@@ -1393,11 +1442,11 @@
 
 <!-- this page's dictionary (one language), then the script that reads it;
      both deferred, so they run in this order -->
-<script src="assets/i18n/fr.js?v=202611271712" defer></script>
-<script src="assets/kit/kit.js?v=202611271712" defer></script>
-<script src="assets/menu/menu.js?v=202611271712" defer></script>
-<script src="assets/app.js?v=202611271712" defer></script>
-<script src="assets/carry.js?v=202611271712" defer></script>
+<script src="assets/i18n/fr.js?v=202611272055" defer></script>
+<script src="assets/kit/kit.js?v=202611272055" defer></script>
+<script src="assets/menu/menu.js?v=202611272055" defer></script>
+<script src="assets/app.js?v=202611272055" defer></script>
+<script src="assets/carry.js?v=202611272055" defer></script>
 <!-- FAQ structured data, written from the page's dictionary by
      scripts/build-lang.mjs; applyLang() writes it again on load. -->
 <script type="application/ld+json" id="ld-faq">

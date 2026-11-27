@@ -51,8 +51,8 @@ html[lang="ar"]{--fs-micro:.8125rem}
   --font-swash:"Geist", "Geist Fallback", system-ui, sans-serif;
   --font-body:"Geist", "Geist Fallback", system-ui, sans-serif;
   --font-mono:"Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
-  --font-deco:"Cinzel", "Cinzel Fallback", Georgia, serif;
-  --font-deco-dec:"Cinzel Decorative", "Cinzel Decorative Fallback", Georgia, serif;
+  --font-deco:var(--f-cond);
+  --font-deco-dec:var(--f-cond);
   --font-ar-display:"IBM Plex Sans Arabic", "IBM Plex Sans Arabic Fallback", sans-serif;
   --font-ar-body:"IBM Plex Sans Arabic", "IBM Plex Sans Arabic Fallback", sans-serif;
 
@@ -103,7 +103,7 @@ html[lang="ar"]{--fs-micro:.8125rem}
    nothing in this file names a theme.
    ============================================================ */
 html[dir="ltr"] :is(.offer-h,h2.sec,.contact h2,.mobile-menu nav a){
-  font-family:var(--font-head);font-weight:var(--head-weight);letter-spacing:var(--head-tracking)}
+  font-family:var(--font-head);font-weight:var(--head-weight);letter-spacing:var(--head-tracking);text-transform:uppercase}
 html[dir="ltr"] .offer-h{font-size:var(--h1-fs);line-height:var(--h1-lh)}
 html[dir="ltr"] .offer-h em{font-family:var(--font-head-em)}
 .btn-primary{box-shadow:var(--btn-glow)}
@@ -236,7 +236,7 @@ html:not(.js) .navbar .nav-inner{border-color:var(--hairline)}
    typed mark had at this font size (.734em, the N's overshoot included), so
    the link keeps a font size and the phone rules below still scale it;
    "idea" keeps its accent. The block after it is the cursor. */
-.logo{font-size:22px;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;color:var(--ice)}
+.logo{font-size:var(--fs-lead);text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;color:var(--ice)}
 .logo .wm{display:block;height:.734em;width:auto;overflow:visible}
 .logo .wm-accent{fill:var(--teal-text);transition:filter var(--t-hover)}
 @media (hover:hover){.logo:hover .wm-accent{filter:hue-rotate(40deg) saturate(1.3)}}
@@ -260,7 +260,7 @@ html:not(.js) .navbar .nav-inner{border-color:var(--hairline)}
 /* the drawn ع (scripts/lib/ayn.mjs): the text's size, on its baseline, in its colour */
 /* 1.2em: at .95em of 12px the letter read as a Greek epsilon */
 .lang .ayn{width:1.2em;height:1.2em;vertical-align:-.2em;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.menu-toggle{display:none;background:transparent;border:1px solid var(--hairline-2);border-radius:var(--r-sm);color:var(--ice);width:44px;height:44px;cursor:pointer;font-size:18px}
+.menu-toggle{display:none;background:transparent;border:1px solid var(--hairline-2);border-radius:var(--r-sm);color:var(--ice);width:44px;height:44px;cursor:pointer;font-size:var(--fs-lead)}
 
 /* mobile full-screen menu */
 /* `justify-content:safe center` + overflow-y, not plain `center`.
@@ -320,8 +320,8 @@ html[dir="rtl"] .mobile-menu nav a{font-family:var(--font-ar-display)}
    "Switch to Daylight (light)", as its visible name */
 .mobile-menu .theme-switch{display:flex;align-items:center;align-self:flex-start}
 .mobile-menu .theme-btn{display:inline-flex;width:auto;max-width:100%;gap:var(--s-2);padding-inline:var(--s-3)}
-.mobile-menu .theme-btn::after{content:attr(aria-label);font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:start}
-.mobile-menu .close{position:absolute;top:20px;inset-inline-end:24px;background:transparent;border:none;color:var(--ice);font-size:34px;cursor:pointer}
+.mobile-menu .theme-btn::after{content:attr(aria-label);font-family:var(--font-mono);font-size:var(--fs-label);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:start}
+.mobile-menu .close{position:absolute;top:20px;inset-inline-end:24px;background:transparent;border:none;color:var(--ice);font-size:var(--fs-h3);cursor:pointer}
 /* The two ways to start (index.html .menu-acts) had no rule: at 390x844 they
    sat 36px under the fold of a 1000px menu, stacked touching in French and
    side by side in English. They are the menu's foot now, the phone bar's
@@ -355,7 +355,7 @@ html[dir="rtl"] .mobile-menu nav a{font-family:var(--font-ar-display)}
    element boxes took them for the ground of the lines just under it (brass
    read as on the shard's paper, 1.4:1, where the page paints --void). */
 .offer{background:var(--void);box-shadow:0 0 0 100vmax var(--void);clip-path:inset(0 -100vmax)}
-.offer-h{font-family:var(--font-display);font-weight:600;font-size:clamp(31px, 13.33px + 4.91vw, 84px);line-height:.96;letter-spacing:-.02em}
+.offer-h{font-family:var(--font-display);font-weight:600;font-size:clamp(1.75rem,.8rem + 4.9vw,4.25rem);line-height:.96;letter-spacing:-.02em}
 /* Solid ink, not a gradient fill (a gradient across the headline measured
    under 4.5:1 and axe skips gradient-filled text). Its second half is the
    page's one emphasis colour, brass. */
@@ -692,7 +692,7 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 .founder-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
   background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--crimson) 70%,transparent),transparent)}
 .fd-top{display:flex;gap:var(--col-gap);align-items:center;margin-bottom:var(--s-5)}
-.fd-id h3{font-family:var(--font-display);font-weight:600;font-size:clamp(16.4px, 11.87px + 1.26vw, 30px);letter-spacing:.01em}
+.fd-id h3{font-family:var(--font-display);font-weight:600;font-size:clamp(1rem,.75rem + 1.26vw,1.75rem);letter-spacing:.01em}
 .fd-role{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--muted);margin:var(--s-2) 0 var(--s-3)}
 .fd-bio{color:var(--body-strong);line-height:1.65;max-width:43.758em;margin-bottom:var(--s-5)}
 .fd-actions{display:flex;flex-wrap:wrap;gap:var(--s-3)}
@@ -763,7 +763,7 @@ html[dir="rtl"] .timeline b{font-family:var(--font-ar-display)}
 .cv-block{margin-bottom:var(--s-5)}
 .cv-block p{color:var(--muted);font-size:var(--t-cv);line-height:1.6}
 .skills{display:grid;gap:var(--s-3);margin-bottom:var(--s-3)}
-.skills dt{font-family:var(--font-display);font-weight:600;font-size:14px;color:var(--ice);margin-bottom:var(--s-1)}
+.skills dt{font-family:var(--font-display);font-weight:600;font-size:var(--fs-small);color:var(--ice);margin-bottom:var(--s-1)}
 html[dir="rtl"] .skills dt{font-family:var(--font-ar-display)}
 .skills dd{margin:0;font-size:var(--t-cv);line-height:1.6;color:var(--muted)}
 .cv-block .cv-note{font-size:var(--t-small);color:var(--faint);margin-top:var(--s-2)}
@@ -834,7 +834,7 @@ html[dir="rtl"] .contact h2 em{font-family:var(--font-ar-display);font-style:nor
    CTA's brass (the button beside it the same gold), so a refused field read
    as more brand emphasis */
 .field .err:not(.hint):not(:empty)::before{content:"!" / "";display:inline-grid;place-items:center;width:14px;height:14px;
-  margin-inline-end:var(--s-2);border-radius:50%;background:var(--error);color:var(--void);font-size:12px;font-weight:700;line-height:1;vertical-align:-2px}
+  margin-inline-end:var(--s-2);border-radius:50%;background:var(--error);color:var(--void);font-size:var(--fs-label);font-weight:700;line-height:1;vertical-align:-2px}
 /* the "copy it yourself" line after a refused copy is a hint, not an error:
    the form's neutral note colour, not the error accent (app.js adds .hint) */
 .field .err.hint{color:var(--muted)}
@@ -893,7 +893,7 @@ html[dir="rtl"] .form-success p{font-family:var(--font-ar-display)}
      across the gutters while the content runs 99-1341 at 1440) */
   background:linear-gradient(var(--hairline),var(--hairline)) 50% 0/calc(100% - 2 * var(--gutter)) 1px no-repeat}
 .footer-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--s-6);margin-bottom:var(--s-7)}
-.footer .logo{font-size:24px}
+.footer .logo{font-size:var(--fs-h4)}
 .footer nav{display:flex;flex-wrap:wrap;gap:var(--s-5)}
 .footer nav{flex-wrap:wrap;max-width:100%;min-width:0}
 .footer nav a{font-family:var(--font-mono);font-size:var(--t-small);color:var(--muted);text-decoration:none;transition:color var(--t-hover);overflow-wrap:anywhere;word-break:break-word}
@@ -944,9 +944,9 @@ html[dir="rtl"] :is(.footer nav a,.footer .meta){font-family:var(--font-ar-body)
 
 
 /* ---------- services index ---------- */
-.svc-lead{font-size:clamp(16px,1.6vw,19px);color:var(--muted);max-width:39.78em;margin:0 0 var(--s-8);line-height:1.6}
+.svc-lead{font-size:var(--t-lead);color:var(--muted);max-width:39.78em;margin:0 0 var(--s-8);line-height:1.6}
 /* shared section intro — gives #work, #founder, #faq the same lead-in cadence as #services */
-.sec-lead{font-size:clamp(16px,1.6vw,19px);color:var(--muted);max-width:39.78em;margin:0 0 var(--s-7);line-height:1.6}
+.sec-lead{font-size:var(--t-lead);color:var(--muted);max-width:39.78em;margin:0 0 var(--s-7);line-height:1.6}
 
 /* services grid — five compact offers; depth lives in the capabilities shelf */
 .svc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--col-gap);align-items:stretch}
@@ -961,13 +961,13 @@ html[dir="rtl"] :is(.footer nav a,.footer .meta){font-family:var(--font-ar-body)
 /* a service card is not a link, so it does not answer the pointer at all:
    its lit edge, its glyph's ring and 1.14x pulse said "click me" to a card
    that does nothing (a tap on a phone left them on). */
-.svc-row h3{font-family:var(--font-display);font-weight:600;font-size:24px;line-height:1.1}
+.svc-row h3{font-family:var(--font-display);font-weight:600;font-size:var(--fs-h4);line-height:1.1}
 html[dir="rtl"] .svc-row h3{font-family:var(--font-ar-display)}
 /* the promise in the body's own colour, one step up: a 21px teal line over
    every title made three text levels before the first sentence (teal is for
    links and labels; the Aperçu card keeps its one accented promise) */
 .svc-row .brief{color:var(--muted);line-height:1.6;margin-bottom:var(--s-4)}
-.svc-row .proof{font-family:var(--font-mono);font-size:12px;color:var(--faint);line-height:1.6;margin-bottom:var(--s-4)}
+.svc-row .proof{font-family:var(--font-mono);font-size:var(--fs-label);color:var(--faint);line-height:1.6;margin-bottom:var(--s-4)}
 .svc-row .proof b{color:var(--muted);font-weight:400;letter-spacing:.12em;text-transform:uppercase;margin-right:var(--s-2)}
 html[dir="rtl"] .svc-row .proof b{margin-right:0;margin-left:var(--s-2)}
 
@@ -976,14 +976,14 @@ html[dir="rtl"] .svc-row .proof b{margin-right:0;margin-left:var(--s-2)}
 .preview .body{position:relative}
 .prev-head{display:contents}
 .preview .tag{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--crimson-text)}
-.preview h3{font-family:var(--font-display);font-weight:600;font-size:clamp(20.3px, 14.4px + 1.64vw, 38px);margin:var(--s-3) 0 var(--s-2);text-align:start}
+.preview h3{font-family:var(--font-display);font-weight:600;font-size:clamp(1.25rem,.9rem + 1.64vw,2.375rem);margin:var(--s-3) 0 var(--s-2);text-align:start}
 html[dir="rtl"] .preview h3{font-family:var(--font-ar-display)}
 .preview .promise{font-family:var(--font-swash);font-style:normal;color:var(--body-strong);margin-bottom:var(--s-4)}
 html[dir="rtl"] .preview .promise{font-family:var(--font-ar-body);font-style:normal;font-weight:700}
 /* the offer's terms and its two ways in: the form, or WhatsApp */
 /* the conditions are the offer, not its fine print: the body face at 14px
    (they were the smallest type on the card, 12px mono) */
-.preview .prev-terms{font-family:var(--font-body);font-size:14px;line-height:1.55;color:var(--body-strong);max-width:52em;margin-bottom:var(--s-5)}
+.preview .prev-terms{font-family:var(--font-body);font-size:var(--fs-small);line-height:1.55;color:var(--body-strong);max-width:52em;margin-bottom:var(--s-5)}
 .preview .prev-actions{margin-bottom:var(--s-5)}
 .preview .prev-wa{font-family:var(--font-mono);font-size:var(--t-small);color:var(--teal-text);text-decoration:underline;text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center}
 .preview .prev-wa[aria-disabled="true"]{color:var(--muted);text-decoration:none}
@@ -995,12 +995,12 @@ html[dir="rtl"] .preview .promise{font-family:var(--font-ar-body);font-style:nor
 .capabilities>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:var(--s-4);padding:var(--card-pad);font-family:var(--font-mono);font-size:var(--t-small);letter-spacing:.1em;text-transform:uppercase;color:var(--ice);transition:background-color var(--t-hover)}
 .capabilities>summary::-webkit-details-marker{display:none}
 @media (hover:hover){.capabilities:has(>summary:hover){border-color:var(--teal)}}
-.capabilities>summary .chev{margin-left:auto;color:var(--teal-text);font-size:18px;line-height:1;transition:transform var(--t-hover)}
+.capabilities>summary .chev{margin-left:auto;color:var(--teal-text);font-size:var(--fs-lead);line-height:1;transition:transform var(--t-hover)}
 html[dir="rtl"] .capabilities>summary .chev{margin-left:0;margin-right:auto}
 .capabilities[open]>summary .chev{transform:rotate(90deg)}
 .capabilities>summary .hint{color:var(--faint);text-transform:none;letter-spacing:.02em;font-size:var(--t-small)}
 /* the career toggle's chevron, the strip's (I2 puts the glyph in a .chev) */
-.fd-actions .btn .chev{font-size:18px;line-height:1;color:currentColor;transition:transform var(--t-hover)}
+.fd-actions .btn .chev{font-size:var(--fs-lead);line-height:1;color:currentColor;transition:transform var(--t-hover)}
 .fd-actions .btn[aria-expanded="true"] .chev{transform:rotate(90deg)}
 html[dir="rtl"] .fd-actions .btn[aria-expanded="true"] .chev{transform:rotate(-90deg)}   /* the glyph is mirrored to ‹ in Arabic: turned the same way it pointed up */
 .cap-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--col-gap);padding:0 var(--card-pad) var(--card-pad)}
@@ -1022,7 +1022,7 @@ html[dir="rtl"] .cap h4{font-family:var(--font-ar-display)}
   transition:border-color var(--t-hover)}
 .faq-item[open]{border-color:var(--hairline-2)}
 .faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:var(--s-4);
-  padding:var(--s-4) 0;font-family:var(--font-display);font-weight:600;font-size:clamp(16px,1.9vw,19px);
+  padding:var(--s-4) 0;font-family:var(--font-display);font-weight:600;font-size:clamp(1rem,1.9vw,1.25rem);
   letter-spacing:-.01em;color:var(--ice);transition:color var(--t-hover)}
 .faq-item summary::-webkit-details-marker{display:none}
 /* hover only where there is a pointer that hovers: a phone keeps :hover on
@@ -1047,7 +1047,7 @@ html[dir="rtl"] .faq-item summary{font-family:var(--font-ar-display)}
 .faq-item[open] .faq-mark::after{transform:translateX(-50%) scaleY(0);opacity:0}
 .faq-item[open] summary{color:var(--teal-text)}
 .faq-item[open] .faq-mark::before{background:var(--teal)}
-.faq-a{padding:0 0 var(--s-5);color:var(--muted);font-size:15px;line-height:1.65;
+.faq-a{padding:0 0 var(--s-5);color:var(--muted);font-size:var(--fs-body);line-height:1.65;
   display:flex;gap:var(--s-5);align-items:flex-start}
 /* Panels that open never animate their height (the browser lays the open
    panel out at once); their content rises 6px into it in 333, the children
@@ -1300,7 +1300,7 @@ main.wrap>section h2.sec em{color:inherit}
   .sec-lead,.svc-lead{margin-bottom:var(--head-gap)}
   .capabilities{margin-top:var(--s-6)}
   /* mobile overlay: bring the language + close controls up to a 44px touch target */
-  .mobile-menu .lang :is(a,button){padding:var(--s-3) var(--s-4);font-size:14px;min-height:44px;display:inline-flex;align-items:center}
+  .mobile-menu .lang :is(a,button){padding:var(--s-3) var(--s-4);font-size:var(--fs-small);min-height:44px;display:inline-flex;align-items:center}
   .mobile-menu .close{width:44px;height:44px;display:grid;place-items:center;top:14px;inset-inline-end:14px;line-height:1}
   /* the wordmark is a tap target too */
   .logo{min-height:44px;display:inline-flex;align-items:center}
@@ -1334,7 +1334,7 @@ main.wrap>section h2.sec em{color:inherit}
 @media (max-height:560px) and (min-width:480px){
   section{padding-block:var(--s-6)}
   .mobile-menu{gap:var(--s-3);justify-content:safe flex-start}
-  .mobile-menu nav a{font-size:clamp(20px,6.4vh,32px)}
+  .mobile-menu nav a{font-size:clamp(1.25rem,6.4vh,1.75rem)}
   .mobile-menu .close{top:10px;inset-inline-end:10px}
 }
 
@@ -1353,8 +1353,8 @@ main.wrap>section h2.sec em{color:inherit}
      118px and the cursor's 14 inside those 126; 12.9px at 340), up to its
      full 22px. The switch's targets stay 44x44 down to 341px and narrow
      to 36px wide only under it. */
-  .logo{font-size:clamp(12.5px,6vw - 7.5px,22px);min-width:0;overflow:hidden}
-  .footer .logo{font-size:20px}
+  .logo{font-size:clamp(.75rem,6vw - 7.5px,1.25rem);min-width:0;overflow:hidden}
+  .footer .logo{font-size:var(--fs-lead)}
   .navbar .bar,.nav-right{gap:8px}
   .nav-right .lang :is(a,button){padding-inline:0;min-width:clamp(36px,72.73vw - 204px,44px)}   /* 44 from 341px, 36 at 330 */
   /* a 96px label column is a third of a 280px screen, and forced
@@ -1418,11 +1418,11 @@ main.wrap>section h2.sec em{color:inherit}
 .tier h3{font-family:var(--font-display);font-weight:600;
   letter-spacing:-.02em;color:var(--ice);margin-bottom:var(--s-2)}
 html[dir="rtl"] .tier h3{font-family:var(--font-ar-display)}
-.t-for{color:var(--body-strong);font-size:14px;line-height:1.55;margin-bottom:var(--s-5)}
-.t-range{font-family:var(--font-display);font-size:clamp(19px,2.2vw,25px);letter-spacing:-.02em;
+.t-for{color:var(--body-strong);font-size:var(--fs-small);line-height:1.55;margin-bottom:var(--s-5)}
+.t-range{font-family:var(--font-display);font-size:clamp(1.25rem,2.2vw,1.5rem);letter-spacing:-.02em;
   color:var(--ice);margin-bottom:var(--s-1)}
 .t-range b{font-weight:700}
-.t-range .cur,.eo-range .cur{font-family:var(--font-mono);font-size:.62em;letter-spacing:.08em;
+.t-range .cur,.eo-range .cur{font-family:var(--font-mono);font-size:var(--fs-small);letter-spacing:.08em;
   color:var(--teal-text);margin-inline-start:var(--s-1)}
 .t-time{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
   color:var(--faint);padding-bottom:var(--s-5);margin-bottom:var(--s-5);border-bottom:1px solid var(--hairline)}
@@ -1430,7 +1430,7 @@ html[dir="rtl"] .tier h3{font-family:var(--font-ar-display)}
 /* the list, then the button at the card's foot: the three CTAs share one line */
 .t-foot{display:flex;flex-direction:column;min-height:0}
 .t-foot .actions-row{margin-top:auto;padding-top:var(--s-6)}
-.t-list li{position:relative;padding-inline-start:var(--s-5);color:var(--body-strong);font-size:14px;line-height:1.55}
+.t-list li{position:relative;padding-inline-start:var(--s-5);color:var(--body-strong);font-size:var(--fs-small);line-height:1.55}
 /* a check, two strokes in teal, the same ✓ in both directions: a check
    mark is not mirrored in Arabic. Physical borders, so the RTL flip of a
    logical border no longer turned it into a backwards check. */
@@ -1438,14 +1438,14 @@ html[dir="rtl"] .tier h3{font-family:var(--font-ar-display)}
   border-right:2px solid var(--teal);border-bottom:2px solid var(--teal);
   transform:rotate(45deg)}
 
-.price-note{color:var(--muted);font-size:14px;line-height:1.6;max-width:52em;margin-bottom:var(--s-8)}
+.price-note{color:var(--muted);font-size:var(--fs-small);line-height:1.6;max-width:52em;margin-bottom:var(--s-8)}
 
 /* ---------- estimator ---------- */
 .estimator{border:1px solid var(--hairline-2);border-radius:var(--r-lg);overflow:hidden;
   background:var(--grad-noir);box-shadow:var(--shadow-rest);
   margin-bottom:var(--s-8)}
 .est-head{padding:var(--s-5);border-bottom:1px solid var(--hairline)}
-.est-head p{color:var(--muted);font-size:14px;line-height:1.6;max-width:56em}
+.est-head p{color:var(--muted);font-size:var(--fs-small);line-height:1.6;max-width:56em}
 .est-grid{display:grid;grid-template-columns:minmax(0,1fr)}
 .est-controls{padding:var(--s-5);display:grid;gap:var(--s-6)}
 .est-field{border:0;padding:0;margin:0;min-width:0}
@@ -1461,7 +1461,7 @@ html[dir="rtl"] .tier h3{font-family:var(--font-ar-display)}
 .est-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:var(--s-3)}
 .echip,.eopt{position:relative;display:inline-flex;align-items:center;gap:10px;cursor:pointer;
   border:1px solid var(--field-border);border-radius:var(--r-sm);background:rgba(255,255,255,.02);
-  color:var(--body-strong);font-size:14px;line-height:1.3;padding:11px 14px;min-height:44px;
+  color:var(--body-strong);font-size:var(--fs-small);line-height:1.3;padding:11px 14px;min-height:44px;
   transition:border-color var(--t-hover),background var(--t-hover),color var(--t-hover)}
 .echip input,.eopt input{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
 /* hover only for a pointer that hovers: a phone keeps :hover on the last
@@ -1516,7 +1516,7 @@ html[dir="rtl"] .est-field input[type="range"]::-moz-range-track{background:line
 .eo-k{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--muted)}
 /* tabular figures, or the range jitters sideways on every slider step */
 .eo-range{font-family:var(--font-display);font-weight:700;font-variant-numeric:tabular-nums;
-  font-size:clamp(23px,2.6vw,31px);letter-spacing:-.025em;color:var(--ice);line-height:1.05}
+  font-size:clamp(1.5rem,2.6vw,1.75rem);letter-spacing:-.025em;color:var(--ice);line-height:1.05}
 .eo-dash{color:var(--faint);margin:0 .22em;font-weight:400}
 .eo-time{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
   color:var(--faint);font-variant-numeric:tabular-nums}
@@ -1867,10 +1867,10 @@ html[dir="rtl"] .mkv-bar{transform-origin:100% 50%}
   background:var(--navy);background-image:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0) 40%);
   box-shadow:var(--shadow-rest);
   margin-bottom:var(--s-8)}
-.mk-head h3{font-family:var(--font-display);font-weight:600;font-size:clamp(19px,2.4vw,26px);
+.mk-head h3{font-family:var(--font-display);font-weight:600;font-size:clamp(1.25rem,2.4vw,1.5rem);
   letter-spacing:-.015em;color:var(--ice);margin-bottom:var(--s-2)}
 html[dir="rtl"] .mk-head h3{font-family:var(--font-ar-display)}
-.mk-head p{color:var(--body-strong);font-size:14px;line-height:1.6;max-width:56em;margin-bottom:var(--s-5)}
+.mk-head p{color:var(--body-strong);font-size:var(--fs-small);line-height:1.6;max-width:56em;margin-bottom:var(--s-5)}
 .mk-cur{margin-bottom:var(--s-5)}
 .mk-cur legend{color:var(--body-strong)}
 /* the price currency switch: the same chips, above the tiers */
@@ -1894,10 +1894,10 @@ html[dir="rtl"] .mk-head h3{font-family:var(--font-ar-display)}
 .mk-table tbody tr:last-child>*{border-bottom:0}
 .mk-table thead th{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
   color:var(--faint);font-weight:500}
-.mk-table tbody th{font-family:var(--font-display);font-weight:600;font-size:14px;color:var(--ice);white-space:nowrap}
+.mk-table tbody th{font-family:var(--font-display);font-weight:600;font-size:var(--fs-small);color:var(--ice);white-space:nowrap}
 html[dir="rtl"] .mk-table tbody th{font-family:var(--font-ar-display)}
-.mk-table td{font-size:14px;color:var(--body-strong);white-space:nowrap}
-.mk-table .cur{font-family:var(--font-mono);font-size:.78em;letter-spacing:.06em;color:var(--faint)}
+.mk-table td{font-size:var(--fs-small);color:var(--body-strong);white-space:nowrap}
+.mk-table .cur{font-family:var(--font-mono);font-size:var(--fs-label);letter-spacing:.06em;color:var(--faint)}
 /* the row label stays put while the figures scroll beneath it */
 .mk-table th:first-child{position:sticky;inset-inline-start:0;z-index:1;background:var(--navy)}
 .mk-table thead th.mk-nl{color:var(--teal-text)}
@@ -1957,7 +1957,7 @@ html[dir="rtl"] .mk-table tbody th{font-family:var(--font-ar-display)}
   color:var(--on-crimson);background:var(--crimson);padding:var(--s-1) var(--s-2);border-radius:var(--r-pill);margin-bottom:var(--s-2)}
 .md-card h4{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;color:var(--ice)}
 html[dir="rtl"] .md-card h4{font-family:var(--font-ar-display)}
-.md-card p{color:var(--body-strong);font-size:14px;line-height:1.6}
+.md-card p{color:var(--body-strong);font-size:var(--fs-small);line-height:1.6}
 .md-card .md-where{margin-top:auto;padding-top:var(--s-3);border-top:1px solid var(--hairline);color:var(--muted);font-size:var(--t-small)}
 .md-sub{font-family:var(--font-mono);text-transform:uppercase;color:var(--faint);
   margin-bottom:var(--s-4)}
@@ -1965,7 +1965,7 @@ html[dir="rtl"] .md-card h4{font-family:var(--font-ar-display)}
 .md-drivers li{display:flex;flex-direction:column;gap:var(--s-1);padding-inline-start:var(--s-4);border-inline-start:2px solid var(--hairline-2)}
 .md-drivers b{font-family:var(--font-display);font-weight:600;font-size:var(--t-body);color:var(--ice)}
 html[dir="rtl"] .md-drivers b{font-family:var(--font-ar-display)}
-.md-drivers span{color:var(--muted);font-size:14px;line-height:1.55}
+.md-drivers span{color:var(--muted);font-size:var(--fs-small);line-height:1.55}
 @media (min-width:721px){
   .md-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .md-drivers{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -2101,7 +2101,7 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
      taller than a page, so the hero went to page 2 and left page 1 blank
      but for the wordmark */
   .proj,.svc-row,.tier,.faq-item{break-inside:avoid}
-  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.85em;color:#555}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:var(--fs-small);color:#555}
   /* not a WhatsApp link or any address with a query: its percent-encoded
      message ran off the page and squeezed the label to a word a line (the
      number prints as text in the contact list) */
@@ -2378,20 +2378,20 @@ html[dir="rtl"] .to-top{inset-inline-end:max(16px,env(safe-area-inset-left))}
    tops the section heading by half again (it measured 61.92 against 61.95
    at 1440, and card titles outranked both on a phone). */
 :root{
-  --t-label:12px;    /* mono caps: kickers, eyebrows, captions, column heads, field labels (11px with .14em tracking was the hardest read on the page) */
-  --t-small:14px;    /* fine print, notes, sources (13px was a step of its own) */
-  --t-ui:16px;       /* buttons and the phone's footer links (Fleet 5: 16, the 15px button was a size of its own) */
-  --t-body:16px;     /* card copy and answers; 17px from 1024px (below) */
-  --t-lead:18px;     /* section intros, promises, the hero's lede, questions (Fleet 5: 18, not 19: one step fewer) */
-  --t-title:24px;    /* every card title; 22px on a phone (below): under the section heading's 24 */
-  --t-feature:clamp(22px,17px + 1.1vw,30px);   /* featured titles and price figures: 22 on a phone, 30 from 1100 (the work rows' title, the Aperçu's, the price) */
-  --t-cv:14px;       /* the founder's timeline and CV, the small step (it was a 15 of its own) */
-  --t-display:32px;  /* the top step: a sub-page's section heading */
+  --t-label:var(--fs-label);    /* mono caps: kickers, eyebrows, captions, column heads, field labels (11px with .14em tracking was the hardest read on the page) */
+  --t-small:var(--fs-small);    /* fine print, notes, sources (13px was a step of its own) */
+  --t-ui:var(--fs-body);       /* buttons and the phone's footer links (Fleet 5: 16, the 15px button was a size of its own) */
+  --t-body:var(--fs-body);     /* card copy and answers; 17px from 1024px (below) */
+  --t-lead:var(--fs-lead);     /* section intros, promises, the hero's lede, questions (Fleet 5: 18, not 19: one step fewer) */
+  --t-title:var(--fs-h4);    /* every card title; 22px on a phone (below): under the section heading's 24 */
+  --t-feature:clamp(1.25rem,1.05rem + 1.1vw,1.75rem);   /* featured titles and price figures: 22 on a phone, 30 from 1100 (the work rows' title, the Aperçu's, the price) */
+  --t-cv:var(--fs-small);       /* the founder's timeline and CV, the small step (it was a 15 of its own) */
+  --t-display:var(--fs-h3);  /* the top step: a sub-page's section heading */
   /* h2.sec and the contact heading, declared once: 24px on a phone, 40 from
      1440, two-thirds of the hero or less (62px in Cinzel, 81 in Geist at
      1440). At 52px the engraved hero had to reach 81 to top it by half, and
      ran five lines with its buttons under the fold of a 1440x900 screen. */
-  --t-h2:clamp(24px,13px + 1.9vw,40px);
+  --t-h2:clamp(1.5rem,.8125rem + 1.9vw,2.5rem);
   --ls-label:.14em;
   --r-lg:var(--r-md);   /* panels share the card radius: 4 / 8 / 14 */
   /* one section rhythm at every width (56px on a phone, 82 at 1440, 144 on
@@ -2404,9 +2404,9 @@ html[dir="rtl"] .to-top{inset-inline-end:max(16px,env(safe-area-inset-left))}
 /* Arabic a step up: Plex Arabic's letters sit lower and smaller than Geist's
    at the same size, so the 11px labels and 13px notes were the hardest read
    on the Arabic page (audit, 2026-10-31) */
-html[dir="rtl"]{--t-label:13px;--t-small:14px;--t-body:16px}
-@media (max-width:599px){:root{--t-title:22px}}
-@media (min-width:961px){:root,html[dir="rtl"]{--t-body:17px}}
+html[dir="rtl"]{--t-label:var(--fs-micro);--t-small:var(--fs-small);--t-body:var(--fs-body)}
+@media (max-width:599px){:root{--t-title:var(--fs-lead)}}
+@media (min-width:961px){:root,html[dir="rtl"]{--t-body:clamp(1rem,.9rem + .25vw,1.25rem)}}
 
 /* labels */
 .kicker,.tag,.t-pop,.md-tag,.md-sub,.eo-k,.est-hint,
@@ -2446,10 +2446,10 @@ html[dir="rtl"]{--t-label:13px;--t-small:14px;--t-body:16px}
    fit three tiers abreast on a tablet, currency included: at 2.2vw the "DA"
    dropped to its own line on two tiers of three and their lists started at
    different heights */
-.eo-range b,.eo-range .eo-dash{font-size:clamp(19px,1.9vw,var(--t-title));font-weight:inherit}
+.eo-range b,.eo-range .eo-dash{font-size:clamp(1.25rem,1.9vw,1.5rem);font-weight:inherit}
 /* the tier's price is its feature (24px up to the feature size) and its name
    the card title */
-.t-range b{font-size:clamp(24px,2.4vw,var(--t-feature))}
+.t-range b{font-size:clamp(1.5rem,2.4vw,1.75rem)}
 /* three abreast (961px up) the figure follows the card's width: untracked
    tabular figures run wider than the old tracked ones, and at 2.4vw the "DA"
    of "450 000 – 1 200 000" fell to its own line at 1024 */
@@ -2685,7 +2685,7 @@ section.band::after,section.band+section.band::after{
    there (5.4% of it, 26-36px); 390x844 and taller keep the 40px list. */
 @media (max-width:479px) and (max-height:719px){
   .mobile-menu{gap:clamp(10px,2.2vh,24px);gap:clamp(10px,2.2svh,24px)}
-  .mobile-menu nav a{font-size:clamp(26px,5.4vh,36px);font-size:clamp(26px,5.4svh,36px);line-height:1.4}
+  .mobile-menu nav a{font-size:clamp(1.5rem,5.4vh,2.375rem);font-size:clamp(1.5rem,5.4svh,2.375rem);line-height:1.4}
 }
 /* A phone on its side: the list ran 477px on a 375px screen (504 on 390),
    so the language switch needed a scroll. Two columns of four rows (DOM and
@@ -2694,7 +2694,7 @@ section.band::after,section.band+section.band::after{
 @media (max-height:560px) and (min-width:480px){
   /* svh: the short-viewport block above sizes this type in vh, the LARGE
      viewport on iOS, taller than the screen while the toolbars show */
-  .mobile-menu nav a{font-size:clamp(20px,6.4svh,32px)}
+  .mobile-menu nav a{font-size:clamp(1.25rem,6.4svh,1.75rem)}
   .mobile-menu nav{display:grid;grid-template-rows:repeat(4,auto);grid-auto-flow:column;justify-content:start;column-gap:clamp(32px,8vw,80px)}
   .mobile-menu .close{top:calc(10px + env(safe-area-inset-top));inset-inline-end:calc(10px + env(safe-area-inset-right))}
   html[dir="rtl"] .mobile-menu .close{inset-inline-end:calc(10px + env(safe-area-inset-left))}
@@ -2721,7 +2721,7 @@ section.band::after,section.band+section.band::after{
    into any field under 16px when it takes focus, and leaves it zoomed after;
    the contact fields were 15px at every width. */
 @media (max-width:960px),(pointer:coarse){
-  .field input,.field textarea{font-size:16px}
+  .field input,.field textarea{font-size:var(--fs-body)}
 }
 
 /* Estimator options. The "already in the plan" tag sat in its own column
@@ -3133,7 +3133,7 @@ html[dir="rtl"] #services .svc-grid>.svc-row h3::before{text-align:right}
 .t-incl>summary{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);min-height:44px;cursor:pointer;list-style:none;
   font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--muted)}
 .t-incl>summary::-webkit-details-marker{display:none}
-.t-incl>summary::after{content:"+";font-size:18px;line-height:1;letter-spacing:0;color:var(--crimson-text)}
+.t-incl>summary::after{content:"+";font-size:var(--fs-lead);line-height:1;letter-spacing:0;color:var(--crimson-text)}
 .t-incl[open]>summary::after{content:"\2212"}
 .t-incl>summary:focus-visible{outline:2px solid var(--crimson);outline-offset:2px}
 .t-incl[open]>summary{margin-bottom:var(--s-2)}
@@ -3166,8 +3166,8 @@ html[dir="rtl"] #services .svc-grid>.svc-row h3::before{text-align:right}
    ═══════════════════════════════════════════════════════════════════════ */
 :root{
   --panel:color-mix(in srgb,var(--navy) 80%,var(--void));   /* the founder's panel: one step off the page, lighter in both themes */
-  --t-h2-xl:clamp(28px,12px + 2.65vw,52px);                /* the Aperçu's «0 DA» figure (it was the two set-piece headings until Fleet 7) */
-  --numeral:clamp(44px,20px + 2.4vw,58px);                   /* Fleet 7: one numeral for all six planche heads: 44 on a phone, 55 at 1440, 58 wide */
+  --t-h2-xl:clamp(1.75rem,.75rem + 2.65vw,3.5rem);                /* the Aperçu's «0 DA» figure (it was the two set-piece headings until Fleet 7) */
+  --t-numeral:clamp(2.5rem,1.25rem + 2.4vw,3.5rem);--numeral:var(--t-numeral);                 /* Fleet 7: one numeral for all six planche heads: 44 on a phone, 55 at 1440, 58 wide */
 }
 
 /* ---- the proof (decision 7: one trust line and the logo strip), on clean ground ----
@@ -3194,7 +3194,7 @@ html[dir="rtl"] #services .svc-grid>.svc-row h3::before{text-align:right}
    LTR pages only (the Arabic page loads no Cinzel and keeps the small figure). */
 html[dir="ltr"] main:has(>#work)>section:not(.offer,.proof)>.kicker{align-items:flex-end;padding-bottom:0}
 html[dir="ltr"] main:has(>#work)>section:not(.offer,.proof)>.kicker::before{
-  font-family:var(--font-deco);font-weight:400;font-size:var(--numeral);line-height:.8;letter-spacing:0;
+  font-family:var(--font-deco);font-weight:400;font-size:var(--t-numeral);line-height:.8;letter-spacing:0;
   padding-inline-end:var(--s-4);border-inline-end:0;margin-block-end:-.02em;
   color:transparent;-webkit-text-stroke:1px color-mix(in srgb,var(--crimson) 80%,transparent)}
 html[dir="ltr"] main:has(>#work)>section:not(.offer,.proof)>.kicker::after{align-self:flex-end;padding-bottom:var(--s-1)}
@@ -3419,7 +3419,7 @@ main.wrap>section.proof::before{content:"";position:absolute;inset:0 0 auto;heig
 
 html[dir="rtl"] main:has(>#work)>section:not(.offer,.proof)>.kicker{align-items:flex-end;padding-bottom:0}
 html[dir="rtl"] main:has(>#work)>section:not(.offer,.proof)>.kicker::before{
-  font-family:var(--font-ar-display);font-weight:600;font-size:var(--numeral);line-height:.8;letter-spacing:0;
+  font-family:var(--font-ar-display);font-weight:600;font-size:var(--t-numeral);line-height:.8;letter-spacing:0;
   padding-inline-end:var(--s-4);border-inline-end:0;margin-block-end:-.02em;
   color:transparent;-webkit-text-stroke:1px color-mix(in srgb,var(--crimson) 80%,transparent)}
 html[dir="rtl"] main:has(>#work)>section:not(.offer,.proof)>.kicker::after{align-self:flex-end;padding-bottom:var(--s-1)}
@@ -3492,7 +3492,7 @@ html[dir="rtl"] main:has(>#work)>section:not(.offer,.proof)>.kicker::after{align
   .faq-ask{margin-top:var(--s-5);gap:0}
   .footer-top{margin-bottom:var(--s-5);gap:var(--s-4)}
   .footer .meta{gap:var(--s-2);padding-top:var(--s-4)}
-  :root{--t-label:12.5px}
+  :root{--t-label:var(--fs-label)}
 }
 @media (max-width:599px){
   .contact .ch dd a{margin-block:-10px}   /* the 44px target stays; the row is the text's height, as the two without a link */
@@ -3562,7 +3562,7 @@ html[dir="rtl"] main:has(>#work)>section:not(.offer,.proof)>.kicker::before{
   #services .svc-grid>.svc-row>div{row-gap:var(--s-2)}
   #services .svc-grid>.svc-row h3{display:flex;align-items:baseline;gap:var(--s-2)}
   #services .svc-grid>.svc-row h3::before{display:inline;flex:none;margin:0}
-  #services .svc-grid>.svc-row h3{font-size:var(--t-lead);line-height:1.25}
+  #services .svc-grid>.svc-row h3{font-size:clamp(1rem,2.4vw,1.25rem);line-height:1.25}
   .preview .ptl{gap:var(--s-3)}
   #services .svc-grid>.svc-row .brief{line-height:1.5}
   #services .svc-grid>.svc-row{--k:color-mix(in srgb,var(--faint) 60%,transparent)}
@@ -3764,13 +3764,13 @@ html[dir="rtl"] .prev-paid .ptl-zero{font-family:var(--font-ar-display);font-wei
 .mobile-menu .theme-btn{width:44px;padding:0;justify-content:center}
 .mobile-menu{justify-content:safe flex-start;gap:var(--s-4);padding-top:calc(var(--s-3) + env(safe-area-inset-top))}
 .mobile-menu nav{gap:0}
-.mobile-menu nav a{font-size:clamp(22px,min(6.6vw,5.2svh),30px);min-height:48px;display:flex;align-items:center;line-height:1.2}
+.mobile-menu nav a{font-size:clamp(1.25rem,min(6.6vw,5.2svh),1.75rem);min-height:48px;display:flex;align-items:center;line-height:1.2}
 .mobile-menu nav a[data-i18n="tarifs.navLink"]{font-family:var(--font-mono);font-weight:400;font-size:var(--t-small);letter-spacing:.04em;min-height:40px;color:var(--muted)}
 html[dir="rtl"] .mobile-menu nav a[data-i18n="tarifs.navLink"]{font-family:var(--font-ar-body);letter-spacing:0}
 html.menu-open{overscroll-behavior:none}   /* (set with the menu, app.js: a :has() on the root restyled the page at every 'open' class) */
 @media (max-height:560px) and (min-width:480px){
   .mobile-menu{gap:var(--s-2)}
-  .mobile-menu nav a{font-size:clamp(20px,6.4svh,26px);min-height:44px}
+  .mobile-menu nav a{font-size:clamp(1.25rem,6.4svh,1.5rem);min-height:44px}
   .mobile-menu nav a[data-i18n="tarifs.navLink"]{min-height:40px}
 }
 
@@ -3801,7 +3801,7 @@ html.menu-open{overscroll-behavior:none}   /* (set with the menu, app.js: a :has
   .m-contact.est .m-main,.m-contact.est .wa-link{display:none}
   /* the figure keeps its width ("180 000–420 000 DA", the unit was cut at 390); the button, its short label, takes what is left (craft-03) */
   .m-contact.est .m-price{display:flex;flex-direction:column;justify-content:center;flex:0 0 auto;margin:0;gap:1px}
-  .m-contact.est .m-estgo{display:inline-flex;flex:1 1 auto;min-width:0;justify-content:center;font-size:14px;padding-inline:var(--s-3);white-space:nowrap}
+  .m-contact.est .m-estgo{display:inline-flex;flex:1 1 auto;min-width:0;justify-content:center;font-size:var(--fs-small);padding-inline:var(--s-3);white-space:nowrap}
   /* the bar's two contents (the ways in; the estimate) swap in place: what
      arrives fades in over 250 (what leaves goes at once, as the two cannot
      share the row while one fades) */
@@ -3809,7 +3809,7 @@ html.menu-open{overscroll-behavior:none}   /* (set with the menu, app.js: a :has
     .m-contact :is(.m-price,.m-estgo,.m-main,.wa-link){transition:opacity var(--m-hover) var(--m-ease-enter)}
     @starting-style{.m-contact :is(.m-price,.m-estgo,.m-main,.wa-link){opacity:0}}
   }
-  .mp-n{font-family:var(--font-display);font-weight:700;font-size:15px;line-height:1.2;color:var(--ice);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .mp-n{font-family:var(--font-display);font-weight:700;font-size:var(--fs-small);line-height:1.2;color:var(--ice);font-variant-numeric:tabular-nums;white-space:nowrap}
   html[dir="rtl"] .mp-n{font-family:var(--font-ar-display)}
   .mp-w{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.04em;line-height:1.2;color:var(--muted);white-space:nowrap}
   html[dir="rtl"] .mp-w{font-family:var(--font-ar-body);letter-spacing:0}
@@ -3917,7 +3917,7 @@ html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
   #services .svc-grid>.svc-row>div{row-gap:var(--s-1)}
   #services .svc-grid>.svc-row::before{display:none}
   #services .cap::after{content:"";position:absolute;top:-1px;inset-inline-start:0;width:28px;height:2px;background:var(--crimson);pointer-events:none}
-  #services :is(.svc-row h3,.cap h4){display:flex;align-items:baseline;gap:var(--s-2);font-size:var(--t-lead);line-height:1.25;padding-inline-end:40px}
+  #services :is(.svc-row h3,.cap h4){display:flex;align-items:baseline;gap:var(--s-2);font-size:clamp(1rem,2.4vw,1.25rem);line-height:1.25;padding-inline-end:40px}
   #services .cap h4::before{display:inline;flex:none;margin:0}
   #services .svc-grid>.svc-row{padding-inline-start:0}
   #services :is(.svc-row,.cap) .promise{font-size:var(--t-small);line-height:1.4}
@@ -4197,9 +4197,9 @@ html[dir="rtl"] .fds-art{box-shadow:-6px 6px 0 var(--nsp-red)}
 /* the red seal stamp: the universal "done" (the estimator's result, the sent form).
    Red is voice; the seal is decoration (aria-hidden), the status lines say the same in words. */
 .seal{position:absolute;inset-block-start:var(--s-4);inset-inline-end:var(--s-4);display:grid;place-items:center;width:76px;height:76px;border-radius:50%;
-  background:var(--nsp-red-fill);box-shadow:inset 0 0 0 3px var(--nsp-red-fill),inset 0 0 0 5px var(--nsp-on-red);color:var(--nsp-on-red);font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;line-height:1.1;text-align:center;
+  background:var(--nsp-red-fill);box-shadow:inset 0 0 0 3px var(--nsp-red-fill),inset 0 0 0 5px var(--nsp-on-red);color:var(--nsp-on-red);font-family:var(--font-mono);font-weight:700;font-size:var(--fs-micro);letter-spacing:.08em;text-transform:uppercase;line-height:1.1;text-align:center;
   transform:rotate(-12deg);opacity:0;pointer-events:none}
-html[dir="rtl"] .seal{font-family:var(--font-ar-body);letter-spacing:0;text-transform:none;font-size:13px}
+html[dir="rtl"] .seal{font-family:var(--font-ar-body);letter-spacing:0;text-transform:none;font-size:var(--fs-micro)}
 :where(.est-out){position:relative}   /* zero specificity: the sticky and static rules above still win (they keep the seal's containing block) */
 .form-success{position:relative}
 /* four frames of 83, one eighth each: the stamp lands in half a beat. A
@@ -4364,6 +4364,9 @@ html.m-swap *,html.m-swap *::before,html.m-swap *::after{transition:none!importa
 .mobile-menu nav .menu-sep{display:block;height:1px;margin:var(--s-2) 0;background:var(--hairline-2)}
 .mobile-menu nav a.menu-far{font-family:var(--font-mono);font-weight:400;font-size:var(--t-small);letter-spacing:.04em;min-height:40px;color:var(--muted)}
 html[dir="rtl"] .mobile-menu nav a.menu-far{font-family:var(--font-ar-body);letter-spacing:0}
+.mobile-menu .menu-kuro{flex:1 1 0;min-height:0;max-height:150px;width:100%;margin-top:var(--s-4);object-fit:contain;object-position:var(--kuro-x,left) bottom;filter:drop-shadow(0 0 2px var(--ice));pointer-events:none}
+html[dir="rtl"] .mobile-menu .menu-kuro{--kuro-x:right}
+@media (max-height:640px){.mobile-menu .menu-kuro{display:none}}
 
 /* ---- the night band: the link's own line under it, what is behind the door (home-12) ---- */
 .nsp-sub{margin:calc(-1 * var(--s-2)) 0 0;padding-inline:var(--s-1);font-size:var(--t-small);line-height:1.5;color:var(--nsp-mute)}
@@ -4457,7 +4460,7 @@ html[dir="rtl"] .proj .thumb:is(*,:has(.shot)){background-position:calc(100% - 1
    taller than the French one. The column is the same; the size is the
    longer line's (from 1100, where the Latin size starts). ---- */
 @media (min-width:1100px){
-  html[dir="rtl"] .offer-h{font-size:clamp(48px,4.4vw,76px)}
+  html[dir="rtl"] .offer-h{font-size:clamp(2.5rem,4.4vw,4.25rem)}
 }
 
 /* ============================================================
@@ -4485,4 +4488,53 @@ html[dir="rtl"] .proj .thumb:is(*,:has(.shot)){background-position:calc(100% - 1
 @media (hover:hover) and (prefers-reduced-motion:no-preference){
   .proj .thumb .dev-ph{transition:transform var(--m-hover) var(--m-ease-enter)}
   .proj:hover .thumb .dev-ph{transform:translateY(-6px)}
+}
+
+/* ---------- the portals (world map thread, 2026-11-27) ----------
+   Under the menu: La Carte (the HQ) is the one wide primary, the three
+   store gates sit under it as equals, smaller. Cut corners like the menu's
+   plates; a sealed gate (no target yet) is dashed and striped, not a link.
+   Phone: the HQ stays full width, the gates become a swipe strip. */
+.portals{padding-block:var(--s-7) var(--s-6);
+  /* the home's type steps (design-check reads computed sizes against --t-*), named as scale tokens */
+  --fs-label:var(--t-label);--fs-small:var(--t-small);--fs-h3:var(--t-feature);--fs-h2:var(--t-h2)}
+.portals-k{margin-bottom:var(--s-4)}
+.portals-grid{list-style:none;margin:0;padding:0;display:grid;gap:var(--s-3);grid-template-columns:repeat(3,minmax(0,1fr))}
+.portal{--cut:18px;position:relative;display:flex;flex-direction:column;gap:var(--s-1);min-height:168px;padding:var(--card-pad);
+  background:var(--navy);border:1px solid var(--hairline-2);
+  clip-path:polygon(var(--cut) 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%,0 var(--cut))}
+.portal-a{display:flex;flex-direction:column;gap:var(--s-1);height:100%;padding:var(--card-pad);color:inherit;text-decoration:none;
+  transition:background-color var(--t-hover,.2s) ease}
+.portal:has(.portal-a){padding:0}
+@media (hover:hover){.portal-a:hover{background:var(--grad-blood)}}
+.portal-a:focus-visible{background:var(--grad-blood)}
+.portal-a:focus-visible{outline:2px solid var(--crimson-text);outline-offset:-4px}
+.portal-hq{margin-bottom:var(--s-3);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);align-items:center;gap:var(--s-5);min-height:0;--cut:28px;
+  background:var(--grad-noir,var(--navy))}
+.portal-tx{display:flex;flex-direction:column;gap:var(--s-1)}
+.portal-city{font-family:var(--font-mono);font-size:var(--fs-label);letter-spacing:var(--tr-label,.08em);text-transform:uppercase;color:var(--teal-text)}
+.portal-lab{font-family:var(--f-cond);font-weight:900;font-size:var(--fs-h3);line-height:var(--lh-head);text-transform:uppercase;letter-spacing:.01em;color:var(--ice,inherit)}
+.portal-hq .portal-lab{font-size:var(--fs-h2)}
+.portal-sub{font-size:var(--fs-small);line-height:1.45;color:var(--muted);max-width:30em}
+.portal-chip{align-self:flex-start;margin-top:auto;padding:2px var(--s-2);border:1px solid var(--hairline-2);border-radius:999px;
+  font-family:var(--font-mono);font-size:var(--fs-label);text-transform:uppercase;letter-spacing:var(--tr-label,.08em);color:var(--muted)}
+.portal-chip.is-open{border-color:var(--crimson-text);color:var(--crimson-text)}
+.portal-hq .portal-chip{margin-top:var(--s-3)}
+.portal.is-sealed{border-style:dashed;background:repeating-linear-gradient(135deg,transparent 0 10px,var(--hairline) 10px 11px),var(--navy)}
+.portal-hq.is-sealed{background:repeating-linear-gradient(135deg,transparent 0 14px,var(--hairline) 14px 15px),var(--grad-noir,var(--navy))}
+.portal-map{width:100%;max-height:260px}
+.pm-land{fill:var(--void);stroke:var(--teal-text);stroke-width:2;stroke-linejoin:round}
+.pm-route{fill:none;stroke:var(--hairline-2);stroke-width:2;stroke-dasharray:4 6}
+.pm-pin{fill:var(--teal-text)}
+.pm-hq{fill:var(--crimson-text)}
+@media (prefers-reduced-motion:no-preference){
+  .pm-hq{transform-box:fill-box;transform-origin:center;animation:pm-pulse 2.4s ease-in-out infinite}
+  @keyframes pm-pulse{50%{transform:scale(1.35)}}
+}
+html[dir="rtl"] :is(.portal-lab,.portal-city){font-family:var(--font-ar-display);text-transform:none;letter-spacing:0}
+@media (max-width:719px){
+  .portals-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:var(--s-2)}
+  .portal{scroll-snap-align:start;min-height:140px}
+  .portal-hq{grid-template-columns:minmax(0,1fr) 120px;gap:var(--s-3)}
+  .portal-map{max-height:130px}
 }

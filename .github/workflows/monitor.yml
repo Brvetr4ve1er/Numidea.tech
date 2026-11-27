@@ -59,9 +59,11 @@ jobs:
       # Mobile: regression ceilings, not the target (still 2.5 s and 200 ms).
       # On 2026-10-24 the mobile medians were LCP 4.99 s (fr) and 5.89 s (ar),
       # TBT 236 and 252 ms, on a machine whose Lighthouse benchmarkIndex was
-      # about 2000. Lower these as the page gets faster; the owner decides
-      # when mobile is held to the target (RELEASE.md §5).
-      LCP_MS_MOBILE: "6500"
+      # about 2000. On 2026-11-27 LCP was 3.51 s (fr) and 4.06 s (ar), so the
+      # ceiling came down from 6.5 s to 5 s (about 1 s over the slower one).
+      # Lower these as the page gets faster; the owner decides when mobile is
+      # held to the target (RELEASE.md §5).
+      LCP_MS_MOBILE: "5000"
       TBT_MS_MOBILE: "350"
     outputs:
       live: ${{ steps.live.outcome }}

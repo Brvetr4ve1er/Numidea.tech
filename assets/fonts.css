@@ -26,6 +26,9 @@
    Fonts are OFL-1.1 (see assets/fonts/OFL.txt). */
 
 /* Cinzel 700 — latin-ext */
+/* home headings: the type system's display face (Cinzel stays the Lanterne's) */
+@font-face { font-family: "Archivo Condensed"; font-style: normal; font-weight: 900; font-display: swap;
+  src: url("../hub/fonts/archivo-cond-900-latin.woff2") format("woff2"); }
 @font-face {
   font-family: 'Cinzel';
   font-style: normal;
