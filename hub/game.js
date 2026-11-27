@@ -148,6 +148,7 @@
     var cs = el('span', 'gm-rank__seal'); cs.setAttribute('aria-hidden', 'true'); cs.appendChild(el('span', 'gm-num', String(P.rank)));
     chip.appendChild(cs); chip.appendChild(el('span', 'gm-chip__t', num(P.encre) + ' ' + t('lant.ui.game.unit')));
     chip.setAttribute('aria-label', t('lant.ui.game.chip', { rank: rankName(P.rank), n: num(P.encre) })); chip.title = chip.getAttribute('aria-label');
+    /* the review's shorter chip (seal + Encre), shown by the trunk's rule: only where it moves nothing else in the masthead and cuts no title, checked again when the faces land */
     if (fit() && !ro && G.ResizeObserver) {
       ro = new ResizeObserver(function () { if (!fit()) ro.disconnect(); });
       ro.observe(mast); ro.observe(chip);

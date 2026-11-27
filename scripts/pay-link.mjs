@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * Mint a payment link for a signed quote (owner only, on his own machine).
+ * Mint a payment link for a signed quote: it opens /comptoir/ in quote mode (owner only, on the owner's own machine).
  *
  *   PAY_LINK_SECRET=… node scripts/pay-link.mjs Q-2026-014 deposit 600 EUR [days=30] [lang=fr]
  *
- * Prints the /payer/ address to paste into the quote or WhatsApp. The secret
+ * Prints the /comptoir/ address to paste into the quote or WhatsApp. The secret
  * must be the same as PAY_LINK_SECRET in the Vercel project; it never goes in
  * git. A link stops working after `days` (default 30). Parts: deposit (40 %),
  * balance (60 %), full.
@@ -27,5 +27,5 @@ const fields = { ref, part, amt, cur, exp };
 const sig = sign(fields, secret);
 if (!verify({ ...fields, sig }, secret)) die('the link does not verify: check the reference (Q-YYYY-NNN) and the amount.');
 
-const base = lang === 'fr' ? '' : `/${lang}`;
-console.log(`${host}${base}/payer/?${new URLSearchParams({ ...fields, sig })}`);
+const q = new URLSearchParams({ ...(lang === 'fr' ? {} : { lang }), ...fields, sig });
+console.log(`${host}/comptoir/?${q}`);
