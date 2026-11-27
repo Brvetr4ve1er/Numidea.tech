@@ -576,6 +576,73 @@ export const PROJECTS = [
     },
   },
   {
+    // 2026-11-27 (owner, world map thread): the owner's store universe joins
+    // the finished projects. Today the domain holds one product page (CMF Buds
+    // 2a, cash on delivery); it grows into the clothing brand, mangas,
+    // stickers, merch and the app and game stores the home's portals open.
+    // Captured from this repository's shop/ (the numidea-shop Vercel project).
+    slug: 'tr4velerz',
+    name: 'Tr4velerz Studio',
+    url: 'https://tr4velerz.studio/',
+    status: 'product',
+    pages: [
+      { file: 'd1', path: '/', label: { fr: 'Fiche produit', en: 'Product page', ar: 'صفحة المنتج' } },
+      { file: 'd2', path: '/ar.html', label: { fr: 'La même, en arabe', en: 'The same, in Arabic', ar: 'الصفحة نفسها بالعربية' } },
+    ],
+    phones: [
+      { file: 'm1', label: { fr: 'Fiche produit', en: 'Product page', ar: 'صفحة المنتج' } },
+      { file: 'm2', label: { fr: 'En arabe', en: 'In Arabic', ar: 'بالعربية' } },
+    ],
+    pageCount: null,
+    langs: 'FR · AR',
+    palette: [
+      { hex: '#E4E6EA', role: 'ground' },
+      { hex: '#16181C', role: 'ink' },
+      { hex: '#FF5A1F', role: 'accent' },
+      { hex: '#FFFFFF', role: 'surface' },
+    ],
+    type: ['Space Grotesk', 'Space Mono'],
+    context: {
+      fr: "Notre propre boutique : elle commence par un produit, payé à la livraison, et deviendra la maison des vêtements, des mangas, des stickers et des boutiques d’applications et de jeux de Numidea.",
+      en: "Our own store: it starts with one product, paid on delivery, and will become the home of Numidea’s clothing, mangas, stickers and app and game stores.",
+      ar: "متجرنا الخاص: يبدأ بمنتج واحد يُدفع ثمنه عند الاستلام، وسيصبح بيت ملابس نوميديا ومانغاتها وملصقاتها ومتاجر تطبيقاتها وألعابها.",
+    },
+    gains: [
+      { at: "/",
+        fr: "Un acheteur choisit sa couleur, voit le prix final en dinars et commande sans carte : il paie à la livraison, après avoir vérifié le colis.",
+        en: "A buyer picks a colour, sees the final price in dinars and orders without a card: they pay on delivery, after checking the parcel.",
+        ar: "يختار المشتري اللون، ويرى السعر النهائي بالدينار، ويطلب دون بطاقة: يدفع عند الاستلام بعد أن يتفقّد الطرد." },
+      { at: "/ar.html",
+        fr: "Il lit la même page en arabe, écrite pour l’Algérie, et confirme sa commande sur WhatsApp.",
+        en: "They read the same page in Arabic, written for Algeria, and confirm the order on WhatsApp.",
+        ar: "يقرأ الصفحة نفسها بالعربية، مكتوبة للجزائر، ويؤكّد طلبه عبر واتساب." },
+      { at: "/",
+        fr: "Avant de commander, il sait ce qu’il reçoit, le délai de livraison selon sa wilaya et ce qui se passe si le produit arrive abîmé.",
+        en: "Before ordering, they know what they get, the delivery time for their wilaya and what happens if the product arrives damaged.",
+        ar: "قبل أن يطلب، يعرف ما سيستلمه، ومدّة التوصيل حسب ولايته، وما يحدث إن وصله المنتج تالفاً." },
+    ],
+    t: {
+      fr: {
+        sector: 'E-⁠commerce · Algérie',
+        scope: 'Notre boutique, en deux langues',
+        summary: "Notre propre boutique, sur tr4velerz.studio : aujourd’hui une fiche produit payée à la livraison, en français et en arabe ; demain les vêtements, les mangas, les stickers et les boutiques d’applications et de jeux.",
+        deliverables: ['Fiche produit FR · AR, arabe en RTL', 'Choix de couleur et stock', 'Paiement à la livraison', 'Commande par WhatsApp', 'Réglages en un seul fichier'],
+      },
+      en: {
+        sector: 'E-⁠commerce · Algeria',
+        scope: 'Our store, in two languages',
+        summary: 'Our own store, on tr4velerz.studio: today one product page paid on delivery, in French and Arabic; next, the clothing, mangas, stickers and the app and game stores.',
+        deliverables: ['Product page FR · AR, with right-to-left Arabic', 'Colour choice and stock', 'Cash on delivery', 'Orders through WhatsApp', 'Settings in a single file'],
+      },
+      ar: {
+        sector: 'تجارة إلكترونية · الجزائر',
+        scope: 'متجرنا، بلغتين',
+        summary: 'متجرنا الخاص على tr4velerz.studio: اليوم صفحة منتج يُدفع ثمنه عند الاستلام، بالفرنسية والعربية؛ وغداً الملابس والمانغا والملصقات ومتاجر التطبيقات والألعاب.',
+        deliverables: ['صفحة منتج بالفرنسية والعربية، والعربية من اليمين إلى اليسار', 'اختيار اللون والمخزون', 'الدفع عند الاستلام', 'الطلب عبر واتساب', 'الإعدادات في ملف واحد'],
+      },
+    },
+  },
+  {
     // wave 3 (2026-11-24, the owner: "numidea itself should be among the
     // finished projects"): the studio's own site, labelled as such (as the
     // Glaive demo is labelled a demo). Captured from this repository (lib/serve.mjs),
@@ -673,7 +740,7 @@ export const UI = {
     desc: "Sites livrés en Algérie et en France, captures à l'appui\u202f: pages, version mobile, système visuel et lien vers le site en ligne.",
     crumb: 'Réalisations', crumbNav: "Fil d’Ariane", langs: 'Langue', kicker: 'En détail',
     h1: 'Nos réalisations, <em>livrable par livrable.</em>',
-    lead: "Les quatre premières planches sont des sites livrés à des clients, tels qu’ils sont en\u00a0ligne\u202f; puis nos autres projets terminés\u202f: un annuaire industriel, une démo de portfolio, notre propre outil et ce site.",
+    lead: "Les quatre premières planches sont des sites livrés à des clients, tels qu’ils sont en\u00a0ligne\u202f; puis nos autres projets terminés\u202f: un annuaire industriel, une démo de portfolio, notre propre outil, notre boutique et ce site.",
     group: 'Autres projets terminés\u202f: un annuaire, une démo, notre outil et ce site',
     act: 'Demander mon Aperçu gratuit →', by: 'Par le fondateur', full: 'Voir la planche complète',
     index: 'Sommaire des réalisations', sheet: 'Planche', visit: 'Voir le site', open: 'Ouvrir',
@@ -694,7 +761,7 @@ export const UI = {
     desc: 'Sites delivered in Algeria and France, screenshots included: pages, mobile version, visual system and a link to the live site.',
     crumb: 'Work', crumbNav: 'Breadcrumb', langs: 'Language', kicker: 'In detail',
     h1: 'Our work, <em>piece by piece.</em>',
-    lead: 'The first four sheets are sites delivered to clients, as they are live today; then our other finished projects: an industrial directory, a portfolio demo, our own tool and this site.',
+    lead: 'The first four sheets are sites delivered to clients, as they are live today; then our other finished projects: an industrial directory, a portfolio demo, our own tool, our store and this site.',
     group: 'Other finished projects: a directory, a demo, our tool and this site',
     act: 'Request my free Preview →', by: 'By the founder', full: 'See the full sheet',
     index: 'Work index', sheet: 'Sheet', visit: 'Visit the site', open: 'Open',
@@ -715,7 +782,7 @@ export const UI = {
     desc: 'مواقع سُلِّمت في الجزائر وفرنسا، مع لقطات شاشة: الصفحات، ونسخة الهاتف، والنظام البصري، ورابط الموقع على الإنترنت.',
     crumb: 'الأعمال', crumbNav: 'مسار التنقّل', langs: 'اللغة', kicker: 'بالتفصيل',
     h1: 'الأعمال، <em>بنداً ببند.</em>',
-    lead: 'اللوحات الأربع الأولى مواقع سُلِّمت لعملاء، كما هي على\u00a0الإنترنت اليوم؛ ثم مشاريعنا المنجزة الأخرى: دليل صناعي، وعرض تجريبي ضمن الأعمال، وأداتنا الخاصة، وهذا الموقع.', // AR review: ui.lead (2026-11-24, wave 3)
+    lead: 'اللوحات الأربع الأولى مواقع سُلِّمت لعملاء، كما هي على\u00a0الإنترنت اليوم؛ ثم مشاريعنا المنجزة الأخرى: دليل صناعي، وعرض تجريبي ضمن الأعمال، وأداتنا الخاصة، ومتجرنا، وهذا الموقع.', // AR review: ui.lead (2026-11-24, wave 3)
     group: 'مشاريع منجزة أخرى: دليل، وعرض تجريبي، وأداتنا، وهذا الموقع', // AR review: ui.group (2026-11-24, wave 3)
     act: 'اطلب معاينتك المجانية ←', by: 'من عمل المؤسّس', full: 'عرض اللوحة كاملة', // AR review: ui.full
     index: 'فهرس الأعمال', sheet: 'لوحة', visit: 'زيارة الموقع', open: 'فتح',

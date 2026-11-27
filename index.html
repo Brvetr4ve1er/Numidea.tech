@@ -429,17 +429,23 @@
   <!-- ================= PORTALS (world map thread, 2026-11-27) =================
        The four ways into the Numidea world, right under the menu: one wide
        primary (La Carte, the HQ: the map the stores sit on) and three store
-       gates. A gate with no real target yet is sealed (no link, "Bientôt"),
-       never a dead link. Plan: the doc "La carte du monde Numidea". The map
+       gates. The three store gates open the owner's store, tr4velerz.studio
+       (shop/ in this repo); each lands on a "Bientôt" page there until it fills.
+       La Carte stays sealed (no link) until the map page exists.
+       Game hooks (game loop spec, slice 4): data-city, the empty
+       data-game-stamp spans, data-game-badge on the HQ chip, ?from=numidea on
+       the store links (not on "Toutes les boutiques": check.mjs pairs it with
+       the showcase's plain URL). Rank never gates a store link. Plan: the doc "La carte du monde Numidea". The map
        is a hand-drawn silhouette of Algeria, not survey-accurate. -->
   <nav class="portals" aria-label="Le monde Numidea : la carte et les boutiques" data-i18n-aria="portals.aria">
     <p class="portals-k kicker" data-i18n="portals.k">Le monde Numidea · 4 portails</p>
-    <div class="portal portal-hq is-sealed">
+    <div class="portal portal-hq is-sealed" data-city="hq">
         <div class="portal-tx">
           <span class="portal-city" data-i18n="portals.hq.city">QG · Bordj Bou Arréridj</span>
           <span class="portal-lab" data-i18n="portals.hq.label">La Carte</span>
           <span class="portal-sub" data-i18n="portals.hq.sub">Toute l’Algérie, une boutique par ville. Le studio est au centre.</span>
-          <span class="portal-chip" data-i18n="portals.soon">Bientôt</span>
+          <span class="portal-stamp" data-game-stamp hidden></span>
+          <span class="portal-chip" data-i18n="portals.soon" data-game-badge>Bientôt</span>
         </div>
         <svg class="portal-map" viewBox="0 0 430 420" aria-hidden="true" focusable="false">
           <path class="pm-land" d="M136 53 180 35 240 15 280 15 352 13 348 51 344 77 332 95 370 161 376 209 378 242 386 288 418 308 330 365 296 398 264 405 244 407 242 389 204 370 84 275 6 224 6 194 40 176 80 167 108 145 156 119 152 103 146 70Z"/>
@@ -451,25 +457,29 @@
         </svg>
     </div>
     <ul class="portals-grid">
-      <li class="portal is-sealed">
+      <li class="portal" data-city="oran"><a class="portal-a" href="https://tr4velerz.studio/vetements/?from=numidea" target="_blank" rel="noopener">
         <span class="portal-city" data-i18n="portals.wear.city">Oran</span>
         <span class="portal-lab" data-i18n="portals.wear.label">Le Vestiaire</span>
-        <span class="portal-sub" data-i18n="portals.wear.sub">Les vêtements Numidea. En préparation.</span>
+        <span class="portal-sub" data-i18n="portals.wear.sub">Vêtements, mangas, stickers : tout le merch, sur <bdi>tr4velerz.studio</bdi>.<span class="sr-only"> (nouvel onglet)</span></span>
+        <span class="portal-stamp" data-game-stamp hidden></span>
         <span class="portal-chip" data-i18n="portals.soon">Bientôt</span>
-      </li>
-      <li class="portal"><a class="portal-a" href="https://glaivestore.netlify.app" target="_blank" rel="noopener" data-client="glaive">
+      </a></li>
+      <li class="portal" data-city="tamanrasset"><a class="portal-a" href="https://tr4velerz.studio/jeux/?from=numidea" target="_blank" rel="noopener">
         <span class="portal-city" data-i18n="portals.arcade.city">Tamanrasset</span>
         <span class="portal-lab" data-i18n="portals.arcade.label">L’Arcade</span>
-        <span class="portal-sub" data-i18n="portals.arcade.sub">Le matériel de jeu, en démo : <bdi>Glaive Store</bdi>.<span class="sr-only"> (nouvel onglet)</span></span>
-        <span class="portal-chip is-open" data-i18n="portals.arcade.chip">Démo</span>
+        <span class="portal-sub" data-i18n="portals.arcade.sub">Nos jeux, en téléchargement, sur <bdi>tr4velerz.studio</bdi>.<span class="sr-only"> (nouvel onglet)</span></span>
+        <span class="portal-stamp" data-game-stamp hidden></span>
+        <span class="portal-chip" data-i18n="portals.arcade.chip">Bientôt</span>
       </a></li>
-      <li class="portal"><a class="portal-a" href="workspacehq/">
+      <li class="portal" data-city="ghardaia"><a class="portal-a" href="https://tr4velerz.studio/apps/?from=numidea" target="_blank" rel="noopener">
         <span class="portal-city" data-i18n="portals.apps.city">Ghardaïa</span>
         <span class="portal-lab" data-i18n="portals.apps.label">La Logithèque</span>
-        <span class="portal-sub" data-i18n="portals.apps.sub">Nos applications. La première : <bdi>WorkspaceHQ</bdi>.</span>
-        <span class="portal-chip is-open" data-i18n="portals.apps.chip">1 app</span>
+        <span class="portal-sub" data-i18n="portals.apps.sub">Nos applications, sur <bdi>tr4velerz.studio</bdi>.<span class="sr-only"> (nouvel onglet)</span></span>
+        <span class="portal-stamp" data-game-stamp hidden></span>
+        <span class="portal-chip" data-i18n="portals.apps.chip">Bientôt</span>
       </a></li>
     </ul>
+    <p class="portals-all"><a href="https://tr4velerz.studio/" data-client="tr4velerz" target="_blank" rel="noopener" data-i18n="portals.all">Toutes les boutiques : <bdi>tr4velerz.studio</bdi> <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span></a></p>
   </nav>
 
   <!-- ================= THE OFFER (2026-11-27) =================

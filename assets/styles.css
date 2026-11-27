@@ -4523,6 +4523,8 @@ html[dir="rtl"] .proj .thumb:is(*,:has(.shot)){background-position:calc(100% - 1
 .portal.is-sealed{border-style:dashed;background:repeating-linear-gradient(135deg,transparent 0 10px,var(--hairline) 10px 11px),var(--navy)}
 .portal-hq.is-sealed{background:repeating-linear-gradient(135deg,transparent 0 14px,var(--hairline) 14px 15px),var(--grad-noir,var(--navy))}
 .portal-map{width:100%;max-height:260px}
+.portals-all{margin-top:var(--s-3);font-size:var(--fs-small)}
+.portals-all a{color:var(--teal-text)}
 .pm-land{fill:var(--void);stroke:var(--teal-text);stroke-width:2;stroke-linejoin:round}
 .pm-route{fill:none;stroke:var(--hairline-2);stroke-width:2;stroke-dasharray:4 6}
 .pm-pin{fill:var(--teal-text)}
