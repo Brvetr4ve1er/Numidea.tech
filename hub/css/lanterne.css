@@ -900,3 +900,5 @@ html.motion-off .lt-panel--wait{opacity:1;translate:none}
 @keyframes gm-slam{0%{transform:scale(1.18);opacity:0}40%{transform:scale(.98);opacity:1}55%{transform:translateX(-4px)}70%{transform:translateX(3px)}100%{transform:none}}
 html:not(.motion-off) .gm-card.is-in{animation:gm-slam var(--m-reveal) var(--m-ease-enter) 1 both}
 @media (prefers-reduced-motion:reduce){html .gm-card.is-in{animation:none}}
+/* under 360px the full wordmark, the language switch (3 x 44px) and the menu button can't share a row: "LABS" steps out (the link's name keeps it), the switch stays */
+@media (max-width:359px){.mast .st-wm__l{display:none}.mast .st-wm__t{font-size:var(--fs-body)}}
