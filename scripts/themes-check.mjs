@@ -39,7 +39,7 @@ export const CONTRACT = [
   'nav-glass', 'glass', 'field-bg', 'field-border',
   // type (the wordmark is drawn, scripts/lib/wordmark.mjs: no logo face)
   'font-head', 'font-head-em', 'head-weight', 'head-tracking',
-  'hero-fs', 'hero-fs-wide', 'hero-lh',
+  'h1-fs', 'h1-fs-wide', 'h1-lh',
   // shape
   'r-sm', 'r-md', 'kicker-node',
 ];

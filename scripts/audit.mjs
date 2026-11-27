@@ -203,11 +203,11 @@ const runNow=async(label,path,o={})=>{
       const cx=a.left+a.width/2,cy=a.top+a.height/2;
       return R.some((b,j)=>j!==i&&(dist(cx,cy,b)<12||((b.width<24||b.height<24)&&Math.hypot(cx-(b.left+b.width/2),cy-(b.top+b.height/2))<24)))}).length;
     const imgs=[...document.images].filter(i=>i.complete&&i.naturalWidth===0&&(i.getAttribute('src')||i.currentSrc)).length;   // an <img> with no src yet (a viewer's, filled on open) is not a broken one
-    // the first screen must reach the offer: the hero's lede starts inside the first viewport (a short landscape phone or a laptop at 150% put it below the fold)
-    // 2026-11-26: when the game menu is the home's first screen (assets/menu/), the offer it must reach is its
+    // the first screen must reach the offer (a short landscape phone or a laptop at 150% put it below the fold)
+    // 2026-11-26: the game menu is the home's first screen (assets/menu/), and the offer it must reach is its
     // Tarifs slab (always a link, never dimmed or locked), so the slab is what has to start inside the first viewport.
-    // The old hero's .lede is still measured on any page without the menu.
-    const L=document.querySelector('.nl-menu .nl-item.big[data-id="tarifs"]')||document.querySelector('.lede');
+    // 2026-11-27: the old hero left the home, and its .lede with it (it was the fallback here): the slab alone is measured.
+    const L=document.querySelector('.nl-menu .nl-item.big[data-id="tarifs"]');
     return {cls:window.__cls,of:[...new Set(of)],hidden,small,imgs,hscroll:document.documentElement.scrollWidth>dw+1,ledeTop:L?Math.round(L.getBoundingClientRect().top+scrollY):null,
       // the webfont files this page fetched, as the browser counted them (the Arabic page carries its own faces)
       fontBytes:performance.getEntriesByType('resource').filter(r=>/\.woff2(\?|$)/.test(r.name)).reduce((a,r)=>a+(r.encodedBodySize||0),0)};});
@@ -215,13 +215,7 @@ const runNow=async(label,path,o={})=>{
   // the hub's loops: each one the scroll brought on screen shows its animation
   const loops=await p.evaluate(loopState),stuck=loops.filter(l=>!l.ok);
   W.off=true;
-  // The plate rail's crossfade (.pm-rot: the hero deck turns once the page
-  // is woken, two slides fading over each other): read mid-fade, axe once
-  // saw a slide's caption at a contrast it never keeps ('index cv open fr',
-  // 2026-11-01, a flake). Wait until nothing animates inside the rail, 8s at
-  // most (a loop that never ends there is the anim count's finding above).
-  await p.waitForFunction(()=>{const r=document.querySelector('.pm-rot');
-    return !r||!document.getAnimations().some(a=>a.playState==='running'&&a.effect&&a.effect.target&&r.contains(a.effect.target))},null,{timeout:8000}).catch(()=>{});
+  // (2026-11-27: the wait for the hero deck's caption crossfade, .pm-rot, left with the deck.)
   // axe in every frame too, so it reads the embeds in their host page
   for(const f of p.frames())try{await f.evaluate(AXE)}catch{/* detached */}
   // The Plate I vista (.vista, aria-hidden scenery in an overflow:hidden box)

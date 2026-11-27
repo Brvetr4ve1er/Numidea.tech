@@ -710,7 +710,8 @@
       "t": "The world",
       "d": "What happens once the workshop shuts its door: the character bible, MERCURY, tr4veler.exe, and the codex that names it all.",
       "go": "Enter the world",
-      "bible": "The bible"
+      "bible": "The bible",
+      "story": "The Last Page"
     },
     "c": {
       "k": "03 · THE BOOKSHOP",
@@ -740,7 +741,8 @@
     },
     "real": {
       "k": "REALITY",
-      "d": "The other worlds: tr4veler.exe, MERCURY, and VOIDSPLUNKER.std, the project that holds the character bible. Every delivered project opens their door."
+      "d": "The other worlds: tr4veler.exe, MERCURY, and VOIDSPLUNKER.std, the project that holds the character bible. Every delivered project opens their door.",
+      "go": "The Last Page, a story in nine pictures"
     },
     "see": "See also",
     "bible": "The bible (in English)",
@@ -1664,16 +1666,78 @@
     },
     "kicker": "/ THE WORLD · PERSONAL PROJECTS",
     "title": "Behind the night door.",
-    "note": "Here, the founder’s own projects. Dossiers 06 and 07 are personal: a character bible and a short film. Dossier 08 gathers the design work published on Behance, client work included. Then posters and a workshop diary. Delivered sites and prices are on the Studio.",
+    "note": "Here, the founder’s own projects. Dossiers 06 and 07 are personal: a character bible and a short film. Dossier 08 gathers the design work published on Behance, client work included. Dossier 09 is a story in nine pictures. Then posters and a workshop diary. Delivered sites and prices are on the Studio.",
     "nav": {
       "aria": "Sections of the world",
       "codex": "Codex",
       "bible": "The bible",
       "design": "Design",
       "lab": "The Lab",
-      "diary": "Diary"
+      "diary": "Diary",
+      "story": "The story"
     },
     "mercuryLant": "MERCURY has two side routes in the Bookshop"
+  },
+  "story": {
+    "kicker": "FILE 09 · A STORY IN PICTURES",
+    "name": "The Last Page",
+    "tag": "9 pictures · 3 acts",
+    "lead": "Nine pictures, three acts, not a line of dialogue. Yasser, Kūro and a card that lights up.",
+    "acts": [
+      {
+        "k": "ACT I",
+        "t": "The workshop, at night",
+        "m": "Quiet, curious."
+      },
+      {
+        "k": "ACT II",
+        "t": "The Casbah, at dawn",
+        "m": "Motion, discovery."
+      },
+      {
+        "k": "ACT III",
+        "t": "The vault, the ship, the cockpit",
+        "m": "Tension, then tenderness."
+      }
+    ],
+    "p": [
+      {
+        "c": "Late at night. One page left to finish.",
+        "a": "The workshop from above at night: Yasser, seen from behind, draws under the lamp; Kūro sleeps on the boxes."
+      },
+      {
+        "c": "The last line: a staircase.",
+        "a": "A hand inks the last line of a staircase sketch."
+      },
+      {
+        "c": "Kūro pushes a card off the box.",
+        "a": "Kūro, on a box, paws a glowing card over the edge; Yasser sits out of focus behind."
+      },
+      {
+        "c": "The route is already in his glasses.",
+        "a": "Extreme close-up: the staircase and a dotted route are reflected in Yasser’s round glasses."
+      },
+      {
+        "c": "At dawn, the staircase from the sketch is real.",
+        "a": "The Casbah at dawn from high above: tiny Yasser with the card and Kūro on a broad stair; the sea beyond."
+      },
+      {
+        "c": "By scooter. Kūro in the satchel, the card glowing beside him.",
+        "a": "Yasser speeds down an alley on the red scooter, coat flying; Kūro peers out of the satchel."
+      },
+      {
+        "c": "Under the city: a vault full of servers.",
+        "a": "An aisle of servers under horseshoe arches; Yasser from behind, Kūro on his shoulder, walks toward a lit screen."
+      },
+      {
+        "c": "The vault opens onto a sea of clouds. The ship was waiting.",
+        "a": "On a ship’s bow Yasser holds up the card; through the brick arch, a sea of sunset clouds; Kūro on the rail."
+      },
+      {
+        "c": "Heading for the horizon. Kūro is already asleep.",
+        "a": "In the cockpit Yasser smiles at the controls, Kūro asleep on his lap; a drawing of the ship is pinned to the dashboard."
+      }
+    ]
   },
   "fiche": {
     "act": {

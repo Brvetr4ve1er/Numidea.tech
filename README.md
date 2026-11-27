@@ -52,7 +52,7 @@ assets/
   i18n/{fr,en,ar}.js  # the dictionaries, one language per file: edit these
   page-i18n.js        # language switch for the pages that still switch in place (scene/, legal/)
   fonts/              # self-hosted faces (no third-party requests)
-  previews/*.webp     # screenshots of the live client sites, 1280 wide and -720 (hero plate, cards)
+  previews/*.webp     # screenshots of the live client sites, 1280 wide and -720 (the work cards)
   clients/            # the four delivered clients' own logos (npm run logos)
   work/<slug>/*.webp  # project-sheet captures, each with its phone-size twin (npm run work:capture)
   og.jpg, og-en.jpg, og-ar.jpg  # link-preview cards, one per language, rendered by scripts/build-og.mjs
@@ -134,7 +134,7 @@ NOTICE.md             # what LICENSE (CC0) covers and what it does not
 | `npm run scene` | Regenerate scene/ only |
 | `npm run og` | Re-render the share images, all drawn from the tokens and faces by `scripts/build-og.mjs` (no screenshot is taken): the home's three cards (assets/og.jpg, og-en.jpg, og-ar.jpg) and the cards of scene/, hub/ and workspacehq/ (`scene/og.jpg`, `hub/og.jpg`, `workspacehq/og.jpg`; since 2026-11-06 the hub's is the character bible's cover, and `npm run og hub` rewrites it byte for byte); `node scripts/build-og.mjs ar` renders one (`fr`, `en`, `ar`, `scene`, `hub`, `workspacehq`). The wordmark on the cards and in the pages is the drawn one in `scripts/lib/wordmark.mjs`. The encoder gives a slightly different JPEG each run, so commit a card only when it changed |
 | `node scripts/build-hub.mjs` | Builds the Studio page, the Librairie Lanterne (`hub/lanterne/`: the shelf and one page per atlas file in `hub/src/lanterne/atlases/`, with per-page EN/AR dictionaries, by `scripts/lib/lanterne.mjs`; la carte by `scripts/lib/carte.mjs`) and `hub/manuel.html`, now a forwarding stub. Before 2026-11-21 it built the manual beside the Studio: `hub/src/page.html` plus the five `hub/src/cases/<slug>.html` fragments at their `<!-- CASE:<slug> -->` markers, `hub/src/manuel.html` (the manual's body; its head is the Studio's, re-addressed), and the `hub/src/i18n/{fr,en,ar}.json` dictionaries (a value `"@home:<key>"` is the home page's own string), into `hub/index.html` and `hub/manuel.html` (French baked in, the CSP applied) and `hub/i18n.js`. Image sizes come from the files; the home's price model is read from `assets/app.js`. Refuses a missing key in any language, an unreferenced `hub/img` file, a third-party resource, an inline handler, a style attribute other than custom properties. `--check` writes nothing and exits 1 on a difference; the build runs it inside `npm run build` and `npm run check` runs `--check` |
-| `npm run design` | Design-intent gate (`scripts/design-check.mjs`; also a step of `npm run verify`): on the home in three languages, the guide and the Arabic guide at 1440 and 390, the type scale, the hero ÷ section-heading ratio, space set, one button geometry, card paddings, one gutter, painted contrast, hover gating, the sticky cover, label destinations, art debris and Arabic rendering. Strict by default; `DESIGN_REPORT=1` prints and exits 0. A figure above its target is held at its measured value in `CEIL` (a ratchet) |
+| `npm run design` | Design-intent gate (`scripts/design-check.mjs`; also a step of `npm run verify`): on the home in three languages, the guide and the Arabic guide at 1440 and 390, the type scale, the h1 ÷ section-heading ratio, space set, one button geometry, card paddings, one gutter, painted contrast, hover gating, the sticky cover, label destinations, art debris and Arabic rendering. Strict by default; `DESIGN_REPORT=1` prints and exits 0. A figure above its target is held at its measured value in `CEIL` (a ratchet) |
 | `npm run hub:rig` | Cut `hub/bible/art` from the owner's character-bible masters (`scripts/build-hub-rig.mjs`, `HUB_BIBLE_DIR` naming the private folder; the bible is at `/hub/bible/` since 2026-11-07): the live rig's 13 Yasser frames (501×565) and 7 Kūro frames (360×294), the twelve faces, the poses, the six head-to-toe pairs, Kūro's ten cards and the four silhouettes, WebP, nothing upscaled. Fails on a rig frame over 60 kB, a rig set over 1.2 MB, any other file over 300 kB, a missing master or a frame not the rig's size; prints each file's size, which the page's `width`/`height` must equal (check block 17b). It rewrites the committed files byte for byte. Needs the masters, so it is not part of `npm run build`: the committed images are its output |
 | `npm run hub:art` | The export of the hub of 2026-10-28 (`hub/loops`, the diary, the Behance covers; `scripts/hub-art-data.mjs`), dead since the character bible replaced that page; kept until it is retired (IMPROVEMENTS F50), and check block 17b still reads its `MOTION_MS` |
 | `npm run shots` / `work:capture` | Re-capture the client-site screenshots, each in two sizes (previews 1280 and 720 wide; sheet captures 1440 and 720, phones 780 and 416) for the pages' `srcset` |
@@ -228,8 +228,8 @@ misses a token, breaks a contrast pair, or if `styles.css` special-cases a theme
   Meta/Google click id ride in the email (and the ref code in the WhatsApp text)
   the visitor sends; links between the site's pages carry them in the URL
   (`assets/carry.js`, on every page). Nothing is stored, no cookies, no analytics.
-- **Accessible** — skip link, visible focus, a modal menu that keeps focus, a
-  pause control on the rotating hero, `prefers-reduced-motion` honoured.
+- **Accessible** — skip link, visible focus, a modal menu that keeps focus,
+  `prefers-reduced-motion` honoured.
 
 ---
 
