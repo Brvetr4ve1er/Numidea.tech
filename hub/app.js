@@ -376,7 +376,9 @@
       [Y, K].forEach(function (m) { Object.keys(m).forEach(function (k) { var el = m[k]; if (el.decode) el.decode().catch(function () {}); }); });
     };
     var ready = function (img) { return img && img.complete && img.naturalWidth > 0; };
-    var lines = function () { var a = []; for (var i = 0; t('rig.lines.' + i); i++) a.push(t('rig.lines.' + i)); return a; };
+    /* Kūro's episode, finished (world.kuro_in_bag in numidea-save, 2026-11-27): Yasser's first line is his thanks */
+    var bag = false; try { var sv = JSON.parse(localStorage.getItem('numidea-save') || 'null'); bag = !!(sv && sv.world && sv.world.kuro_in_bag === true); } catch (e) {}
+    var lines = function () { var a = bag && t('rig.bag') ? [t('rig.bag')] : []; for (var i = 0; t('rig.lines.' + i); i++) a.push(t('rig.lines.' + i)); return a; };
     if (reduce && liveEl) { liveEl.setAttribute('data-i18n', 'hero.still'); liveEl.textContent = t('hero.still'); }
 
     var t0 = now();
