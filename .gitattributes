@@ -8,6 +8,7 @@
 
 # Binary: never converted, diffed or merged as text. check.mjs block 15b fails
 # when a tracked file holds a NUL byte and its type is not listed here.
+*.avif  binary
 *.webp  binary
 *.png   binary
 *.jpg   binary
