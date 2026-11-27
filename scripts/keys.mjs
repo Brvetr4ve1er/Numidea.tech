@@ -158,6 +158,7 @@ import { loopState } from './lib/loop-state.mjs';
 import { loadDicts } from './lib/i18n.mjs';
 import { STATIC_LANG, TARIFS_LANG } from './build-sitemap.mjs';
 import { ROOT, PAGES, LANTERNE_PAGES } from './site.mjs';
+import { publicCatalog } from '../api/_shop.js';
 
 /* langs: the languages a page has (`only`: why it has just one); tests: its
    own keyboard paths; noSkip: why it has no skip link. The home page is one
@@ -193,6 +194,8 @@ const SPEC = {
   'hub/brand/exploration/index.html': { langs: ['en'], tests: [], only: 'English only (a labelled exploration, not adopted, a plate set of the Studio)' },
   'hub/brand/numidea/index.html': { langs: ['en'], tests: [], only: 'English only (the studio identity rulebook, a plate set of the Studio)' },
   'workspacehq/index.html': { langs: ['en'], tests: ['embeds'], only: 'English only (the product page)' },
+  // the counter (2026-11-26): the shop's chips and cards are plain buttons; ?lang= picks the language
+  'comptoir/index.html': { langs: ['fr', 'en', 'ar'], base: 'fr', tests: [] },
   '404.html': { langs: ['fr', 'ar'], tests: [], noSkip: 'one short block: the wordmark and two links (home, the offer)' },
   'legal/index.html': { langs: ['fr', 'ar'], tests: [] },
 };
@@ -247,6 +250,9 @@ const WAIVED = [[/\/workspacehq\/embed\/console\.html$/, /^Error: <\w+> attribut
 async function open(w, h, opts = {}) {
   const touch = w < 600;
   const ctx = await b.newContext({ viewport: { width: w, height: h }, hasTouch: touch, isMobile: touch, ...opts });
+  // the static server has no functions: the counter's GET /api/pay answers as a preview without PayPal keys
+  // (the catalog, payment offline), so its keyboard paths run on the real shop
+  await ctx.route('**/api/pay', (r) => r.fulfill({ contentType: 'application/json', body: JSON.stringify({ ready: false, catalog: publicCatalog() }) }));
   const p = await ctx.newPage();
   const errs = [], csp = [];
   p.on('pageerror', (e) => errs.push(String(e).slice(0, 120)));
@@ -1086,7 +1092,8 @@ for (const f of pages) {
    working until the visitor presses the toggle. */
 console.log('— theme on a first visit —');
 for (const f of pages) {
-  const spec = SPEC[f]; if (!spec || /^hub|^workspacehq/.test(f)) continue;
+  // hub/, workspacehq/ and the counter (comptoir/) wear one fixed game skin and paint no theme
+  const spec = SPEC[f]; if (!spec || /^hub|^workspacehq|^comptoir/.test(f)) continue;
   const lang = spec.langs[0], bad = [];
   const probe = async (label, scheme, stored, want, wantStored) => {
     const { p, errs, csp, close } = await open(1280, 900, { colorScheme: scheme });

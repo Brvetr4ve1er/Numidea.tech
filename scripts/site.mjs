@@ -53,11 +53,11 @@ export const LANTERNE_PAGES = ['hub/lanterne/index.html', ...LANTERNE_ATLASES.ma
    build-tarifs.mjs */
 export const PAGES = ['index.html', 'en/index.html', 'ar/index.html', 'tarifs/index.html', 'en/tarifs/index.html', 'ar/tarifs/index.html',
   '404.html', 'hub/index.html', 'hub/manuel.html', ...LANTERNE_PAGES, 'hub/monde.html', 'hub/fabrique.html', 'hub/bible/index.html', 'hub/brand/almaflow/index.html', 'hub/brand/alliance/index.html', 'hub/brand/traveler/index.html', 'hub/brand/numidea/index.html', 'hub/brand/exploration/index.html',
-  'scene/index.html', 'workspacehq/index.html']
+  'scene/index.html', 'workspacehq/index.html', 'comptoir/index.html']
   .concat(LEGAL_PUBLISHED ? ['legal/index.html'] : []);
 export const EXTRA_PAGES = ['workspacehq/embed/trailer.html', 'workspacehq/embed/walkthrough.html', 'workspacehq/embed/console.html'];
 
-export const DEPLOY = ['index.html', 'en', 'ar', 'tarifs', '404.html', 'robots.txt', 'sitemap.xml', 'google35d412133786d0cb.html', 'assets', 'scene', 'hub', 'workspacehq']
+export const DEPLOY = ['index.html', 'en', 'ar', 'tarifs', 'comptoir', '404.html', 'robots.txt', 'sitemap.xml', 'google35d412133786d0cb.html', 'assets', 'scene', 'hub', 'workspacehq']
   .concat(LEGAL_PUBLISHED ? ['legal'] : []);
 // file names never published even inside a deployed folder: a folder's own
 // notes and the manifest the WorkspaceHQ design-system export ships. Every

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',functionality_storage:'denied',personalization_storage:'denied',security_storage:'granted'});gtag('js',new Date());</script>
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Le comptoir · Numidea Labs</title>
+<meta name="description" content="Le comptoir de Numidea Labs : services du studio, cours et produits à prix fixe, réglés en ligne ou en dinars.">
+<link rel="canonical" href="https://www.numedialab.dev/comptoir/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/fonts.css?v=202611270023">
+<link rel="stylesheet" href="../hub/fonts/fonts.css?v=202611270023">
+<link rel="stylesheet" href="../hub/fonts/hud.css?v=202611270023">
+<link rel="stylesheet" href="comptoir.css?v=202611270023">
+<script src="../assets/carry.js?v=202611270023" defer></script>
+<script src="comptoir.js?v=202611270023" defer></script>
+</head>
+<body>
+<a class="c-skip" href="#c-h-board" data-t="skip">Aller aux articles</a>
+<main class="c-wrap" id="main">
+  <a class="c-home" href="/" data-t="home">← Numidea Labs</a>
+
+  <!-- the sign over the counter: Kūro keeps the shop -->
+  <header class="c-sign">
+    <img class="c-kuro" src="../hub/img/studio/kuro-sit.webp" width="160" height="160" alt="">
+    <div class="c-sign__t">
+      <p class="c-label" data-t="kicker">Boutique · prix fixes</p>
+      <h1 class="c-h" data-t="h">Le comptoir</h1>
+      <p class="c-bubble" id="c-say" aria-live="polite" data-t="say0">Choisis ton butin. Kūro tient la caisse.</p>
+    </div>
+  </header>
+
+  <!-- shop: drawn from the catalog /api/pay serves -->
+  <div class="c-shop" id="c-shop" hidden>
+    <section class="c-board" aria-labelledby="c-h-board">
+      <h2 class="c-label c-label--dim" id="c-h-board" tabindex="-1" data-t="pick">Rayons</h2>
+      <div class="c-tabs" id="c-tabs" role="radiogroup" aria-labelledby="c-h-board"></div>
+      <ul class="c-grid" id="c-grid"></ul>
+    </section>
+
+    <aside class="c-bag" id="c-bag" aria-labelledby="c-h-bag">
+      <div class="c-bag__head">
+        <h2 class="c-label" id="c-h-bag" data-t="bag">Ton sac</h2>
+        <span class="c-count c-num" id="c-count">0</span>
+      </div>
+
+      <!-- the level bar: fills toward the deposit threshold, a real rule (40 % from 40 000 DA) -->
+      <div class="c-lvl" id="c-lvl">
+        <div class="c-lvl__bar"><span id="c-lvl-fill"></span></div>
+        <p class="c-lvl__t" id="c-lvl-t"></p>
+      </div>
+
+      <p class="c-empty" id="c-empty" data-t="empty">Ton sac est vide. Ajoute une carte pour commencer.</p>
+      <ul class="c-sum" id="c-sum"></ul>
+      <p class="c-hint" id="c-hint" hidden></p>
+
+      <div class="c-tot" id="c-tot" hidden>
+        <span class="c-label c-label--dim" data-t="total">Total</span>
+        <span class="c-big c-num" id="c-big">0 DA</span>
+        <span class="c-due c-num" id="c-due"></span>
+      </div>
+
+      <fieldset class="c-field" id="c-cur-f" hidden>
+        <legend class="c-label c-label--dim" data-t="cur">Devise PayPal</legend>
+        <div class="c-chips" id="c-cur"></div>
+      </fieldset>
+      <fieldset class="c-field" id="c-part-f" hidden>
+        <legend class="c-label c-label--dim" data-t="part">Régler</legend>
+        <div class="c-chips" id="c-part"></div>
+      </fieldset>
+
+      <div class="c-act" id="c-act" hidden>
+        <button type="button" class="c-btn" id="c-pay">
+          <span class="c-btn__seal" aria-hidden="true">夜</span>
+          <span class="c-btn__t" id="c-pay-t">Payer avec PayPal</span>
+        </button>
+        <a class="c-btn c-btn--alt" id="c-wa" href="https://wa.me/213672412578" rel="noopener">
+          <span class="c-btn__seal c-btn__seal--alt" aria-hidden="true">DA</span>
+          <span class="c-btn__t" data-t="waDA">Payer en dinars · WhatsApp</span>
+        </a>
+        <p class="c-fine" id="c-fine" data-t="fine">Carte bancaire ou compte PayPal. Vous validez chez PayPal ; nous ne voyons jamais vos données de carte. En dinars : CCP ou BaridiMob, le reçu part sur WhatsApp.</p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- a signed quote (?ref=Q-…&sig=…): the bag is the contract -->
+  <section class="c-quote" id="c-quote" hidden aria-labelledby="c-h-quote">
+    <h2 class="c-label" id="c-h-quote" tabindex="-1" data-t="qk">Contrat · paiement</h2>
+    <dl class="c-qsum">
+      <div><dt class="c-label c-label--dim" data-t="ref">Devis</dt><dd class="c-num" id="c-qref"></dd></div>
+      <div><dt class="c-label c-label--dim" data-t="stage">Étape</dt><dd id="c-qpart"></dd></div>
+      <div class="c-qamt"><dt class="c-label c-label--dim" data-t="amount">Montant</dt><dd class="c-num" id="c-qamt"></dd></div>
+    </dl>
+    <div class="c-act" id="c-qact" hidden>
+      <button type="button" class="c-btn" id="c-qpay">
+        <span class="c-btn__seal" aria-hidden="true">夜</span>
+        <span class="c-btn__t" data-t="pay">Payer avec PayPal</span>
+      </button>
+    </div>
+  </section>
+
+  <p class="c-msg" id="c-msg" tabindex="-1" hidden></p>
+
+  <!-- the seal, once PayPal says paid -->
+  <section class="c-done" id="c-done" hidden>
+    <img src="../hub/img/studio/kuro-paw.webp" width="120" height="170" alt="" class="c-paw">
+    <div>
+      <p class="c-label" data-t="doneK">Butin obtenu</p>
+      <p class="c-done__t" data-t="paid">Paiement reçu. Kūro a posé le sceau : on se met au travail. Un reçu PayPal arrive par e-mail, et on vous écrit sous 24 h.</p>
+    </div>
+  </section>
+
+  <!-- phone: the bag's total stays in reach -->
+  <div class="c-dock" id="c-dock" hidden>
+    <span class="c-dock__n c-num" id="c-dock-n">0</span>
+    <span class="c-dock__t c-num" id="c-dock-t">0 DA</span>
+    <a class="c-dock__go" href="#c-bag" data-t="see">Voir le sac</a>
+  </div>
+
+  <p class="c-noscript" id="c-off" data-t="noscript">Le comptoir a besoin de JavaScript. Pour commander sans, écrivez-nous sur <a href="https://wa.me/213672412578" rel="noopener">WhatsApp</a>.</p>
+</main>
+</body>
+</html>

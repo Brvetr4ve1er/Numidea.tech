@@ -1,13 +1,14 @@
 /**
- * POST /api/pay: the deposit/balance payment for a signed quote, through
+ * POST /api/pay: the counter's checkout (mode "cart", priced from api/_shop.js) and the deposit/balance of a signed quote, through
  * PayPal Orders v2, with no PayPal script on the page (the CSP stays 'self').
  *
  * Flow: the owner mints a link with `node scripts/pay-link.mjs` and sends it
- * with the quote: /payer/?ref=Q-2026-014&part=deposit&amt=600.00&cur=EUR&exp=…&sig=…
+ * with the quote: /comptoir/?ref=Q-2026-014&part=deposit&amt=600.00&cur=EUR&exp=…&sig=…
  * The page posts those fields here with op "create"; this file re-checks the
  * HMAC (the browser is never trusted with an amount), creates the order and
  * answers the PayPal approval URL; the page sends the visitor there. PayPal
- * returns them to /payer/merci/?token=<order id>, which posts op "capture".
+ * returns them to /comptoir/?…&done=1&token=<order id>, which posts op "capture".
+ * GET answers {ready, env} so the page shows the button only when it works.
  *
  * Environment (Vercel project settings, never git):
  *   PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET  the REST app's pair
@@ -17,7 +18,8 @@
  *
  * Raw fetch, no SDK: the project deploys with no install step.
  */
-import { createHmac, timingSafeEqual } from 'node:crypto';
+import { createHmac, timingSafeEqual, randomUUID } from 'node:crypto';
+import { price, publicCatalog } from './_shop.js';
 
 export const PARTS = ['deposit', 'balance', 'full'];
 export const CURRENCIES = ['EUR', 'USD'];
@@ -70,13 +72,22 @@ const LABEL = { deposit: 'Acompte 40 %', balance: 'Solde 60 %', full: 'Paiement'
 
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
-  if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return res.status(405).json({ error: 'method' }); }
-  if (!allowedOrigin(req.headers.origin)) return res.status(403).json({ error: 'origin' });
   const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PAY_LINK_SECRET } = process.env;
-  if (!PAYPAL_CLIENT_ID || !PAYPAL_CLIENT_SECRET || !PAY_LINK_SECRET) return res.status(503).json({ error: 'offline' });
+  const configured = Boolean(PAYPAL_CLIENT_ID && PAYPAL_CLIENT_SECRET && PAY_LINK_SECRET);
+  // GET: is the button worth showing? Says only the mode, never a key.
+  // The counter's price list comes with it, so the page and the charge read one list.
+  if (req.method === 'GET') {
+    const env = process.env.PAYPAL_ENV === 'live' ? 'live' : 'sandbox', catalog = publicCatalog();
+    if (!configured) return res.status(200).json({ ready: false, catalog });
+    try { await token(); return res.status(200).json({ ready: true, env, catalog }); }
+    catch { return res.status(200).json({ ready: false, env, error: 'auth', catalog }); }
+  }
+  if (req.method !== 'POST') { res.setHeader('Allow', 'GET, POST'); return res.status(405).json({ error: 'method' }); }
+  if (!allowedOrigin(req.headers.origin)) return res.status(403).json({ error: 'origin' });
+  if (!configured) return res.status(503).json({ error: 'offline' });
   let body;
   try { body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body; } catch { return res.status(400).json({ error: 'json' }); }
-  if (!body || JSON.stringify(body).length > 600) return res.status(413).json({ error: 'size' });
+  if (!body || JSON.stringify(body).length > 2000) return res.status(413).json({ error: 'size' });
 
   const origin = new URL(req.headers.origin).origin;
   try {
@@ -84,30 +95,52 @@ export default async function handler(req, res) {
     const headers = { authorization: `Bearer ${bearer}`, 'content-type': 'application/json' };
 
     if (body.op === 'create') {
-      const f = verify(body, PAY_LINK_SECRET);
-      if (!f) return res.status(400).json({ error: 'link' });
       const lang = ['fr', 'en', 'ar'].includes(body.lang) ? body.lang : 'fr';
-      const base = lang === 'fr' ? '' : `/${lang}`;
+      let unit, requestId, back;
+      if (body.mode === 'cart') {
+        // the counter: the server prices the bag from its own list; the browser only names items and counts
+        const q = price(body.bag, body.cur, body.part);
+        if (!q) return res.status(400).json({ error: 'bag' });
+        const ref = `C-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-${randomUUID().slice(0, 6).toUpperCase()}`;
+        const items = q.lines.map((l) => `${l.id}x${l.qty}`).join(' ');
+        unit = {
+          reference_id: ref,
+          custom_id: `${ref}:${q.part}:${items}`.slice(0, 127),
+          invoice_id: ref,
+          description: `Numidea Labs · ${q.part === 'deposit' ? 'Acompte 40 %' : 'Commande'} · ${items}`.slice(0, 127),
+          amount: { currency_code: q.cur, value: q.amount },
+        };
+        requestId = ref;
+        back = new URLSearchParams({ lang, ref });
+      } else {
+        // a quote: the amount is in the owner's signed link
+        const f = verify(body, PAY_LINK_SECRET);
+        if (!f) return res.status(400).json({ error: 'link' });
+        unit = {
+          reference_id: f.ref,
+          custom_id: `${f.ref}:${f.part}`,
+          invoice_id: `${f.ref}-${f.part}`,
+          description: `Numidea Labs · ${f.ref} · ${LABEL[f.part]}`,
+          amount: { currency_code: f.cur, value: f.amt },
+        };
+        // one order per link and part: a double click or a reload reuses it
+        requestId = `${f.ref}-${f.part}-${f.exp}`;
+        // the page reads the signed fields again on return, so a cancel lands back on the same contract
+        back = new URLSearchParams({ lang, ref: f.ref, part: f.part, amt: f.amt, cur: f.cur, exp: f.exp, sig: body.sig });
+      }
       const r = await fetch(`${api()}/v2/checkout/orders`, {
         method: 'POST',
-        // one order per link and part: a double click or a reload reuses it
-        headers: { ...headers, 'PayPal-Request-Id': `${f.ref}-${f.part}-${f.exp}` },
+        headers: { ...headers, 'PayPal-Request-Id': requestId },
         body: JSON.stringify({
           intent: 'CAPTURE',
-          purchase_units: [{
-            reference_id: f.ref,
-            custom_id: `${f.ref}:${f.part}`,
-            invoice_id: `${f.ref}-${f.part}`,
-            description: `Numidea Labs · ${f.ref} · ${LABEL[f.part]}`,
-            amount: { currency_code: f.cur, value: f.amt },
-          }],
+          purchase_units: [unit],
           payment_source: { paypal: { experience_context: {
             brand_name: 'Numidea Labs',
             user_action: 'PAY_NOW',
             shipping_preference: 'NO_SHIPPING',
             locale: lang === 'fr' ? 'fr-FR' : lang === 'ar' ? 'ar-EG' : 'en-US',
-            return_url: `${origin}${base}/payer/merci/`,
-            cancel_url: `${origin}${base}/payer/?ref=${encodeURIComponent(f.ref)}&cancel=1`,
+            return_url: `${origin}/comptoir/?${back}&done=1`,
+            cancel_url: `${origin}/comptoir/?${back}&cancel=1`,
           } } },
         }),
         signal: AbortSignal.timeout(8000),
@@ -116,7 +149,7 @@ export default async function handler(req, res) {
       const order = await r.json();
       const approve = (order.links || []).find((l) => l.rel === 'payer-action' || l.rel === 'approve');
       if (!approve) return res.status(502).json({ error: 'shape' });
-      return res.status(200).json({ approve: approve.href });
+      return res.status(200).json({ approve: approve.href, ref: unit.reference_id });
     }
 
     if (body.op === 'capture') {
