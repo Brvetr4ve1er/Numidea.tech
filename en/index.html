@@ -196,11 +196,11 @@
      in the stylesheet alone it was not yet read when a fast arrival showed its
      first frame ("opt-in disabled"), and the lift was skipped, a hard cut. -->
 <style>@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto;types:page}}</style>
-<link rel="stylesheet" href="../assets/fonts.css?v=202611270023">
+<link rel="stylesheet" href="../assets/fonts.css?v=202611270213">
 <!-- themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them -->
-<link rel="stylesheet" href="../assets/themes.css?v=202611270023">
-<link rel="stylesheet" href="../assets/styles.css?v=202611270023">
-<link rel="stylesheet" href="../assets/menu/menu.css?v=202611270023">
+<link rel="stylesheet" href="../assets/themes.css?v=202611270213">
+<link rel="stylesheet" href="../assets/styles.css?v=202611270213">
+<link rel="stylesheet" href="../assets/menu/menu.css?v=202611270213">
 <noscript><style>
   /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */
   .reveal{opacity:1!important;transform:none!important}
@@ -314,7 +314,7 @@
      The intro and navigation menu: the first screen of the home page. Its copy is
      in assets/i18n/*.js (menu.*); its markup, styles and motion come from
      /mnt/project-files/characters/site-menu (gen.py writes this block).
-     The old hero still follows inside <main>: see the draft PR for why. -->
+     The old hero follows inside <main> as the Aperçu offer; its title is an h2 since 2026-11-27, the menu's name is the page's h1. -->
 <section class="nl-menu p4" aria-label="Numidea Labs, menu" data-i18n-aria="menu.aria">
 <div class="nl-stage">
  <div class="nl-abs nl-stripes" aria-hidden="true"></div>
@@ -329,13 +329,13 @@
   <img class="nl-abs nl-fig" src="../assets/menu/yasser-full.webp" alt="" width="564" height="1278" fetchpriority="high" decoding="async">
  </div>
  <p class="nl-abs nl-line" data-text="Numidea Labs · le studio de nuit" aria-hidden="true" data-i18n="menu.line">Numidea Labs · the night studio</p>
- <p class="nl-abs nl-name" dir="ltr"><span aria-hidden="true"><span class="nl-ch j1">N</span><span class="nl-ch j2">u</span><span class="nl-ch j3">m</span><span class="nl-ch j4">i</span><span class="nl-ch j5">d</span><span class="nl-ch j0">e</span><span class="nl-ch j1">a</span><br><span class="nl-ch j4">L</span><span class="nl-ch j5">a</span><span class="nl-ch j0">b</span><span class="nl-ch j1">s</span></span><span class="nl-sr sr-only">Numidea Labs</span></p>
+ <h1 class="nl-abs nl-name" dir="ltr"><span aria-hidden="true"><span class="nl-ch j1">N</span><span class="nl-ch j2">u</span><span class="nl-ch j3">m</span><span class="nl-ch j4">i</span><span class="nl-ch j5">d</span><span class="nl-ch j0">e</span><span class="nl-ch j1">a</span><br><span class="nl-ch j4">L</span><span class="nl-ch j5">a</span><span class="nl-ch j0">b</span><span class="nl-ch j1">s</span></span><span class="nl-sr sr-only">Numidea Labs</span></h1>
 
  <div class="nl-abs nl-hud nl-cut" aria-hidden="true"><div class="nl-cut-band"></div>
   <img class="nl-cut-prop" data-kit="prop" src="../assets/kit/art/props/fineliner.webp" alt="" width="240" height="240" decoding="async">
   <div class="nl-cut-slot" data-kit="body"><div class="kit-slot"><img data-base src="../assets/kit/art/yasser/pose/receipt.webp" alt="" decoding="async"><img data-over src="../assets/kit/art/yasser/pose/receipt.webp" alt="" decoding="async"></div></div>
   <span class="nl-tag nl-cut-tag" data-i18n="menu.cut">On stage</span></div>
- <div class="nl-abs nl-hud nl-kuro" aria-hidden="true"><div class="nl-tarot"><img class="nl-tarot-frame" src="../assets/menu/tarot.webp" alt="" width="141" height="240" decoding="async"><img class="nl-cat" data-kit="kuro" src="../assets/kit/art/kuro/react/judge.webp" alt="" decoding="async"></div><span class="nl-tag"><span data-i18n="menu.kuroName">Kūro</span> : <span class="nl-kuro-say">juge</span></span></div>
+ <div class="nl-abs nl-hud nl-kuro" aria-hidden="true"><div class="nl-tarot"><img class="nl-tarot-frame" src="../assets/menu/tarot.webp" alt="" width="141" height="240" decoding="async"><img class="nl-cat" data-kit="kuro" src="../assets/kit/art/kuro/react/judge.webp" alt="" decoding="async"></div><span class="nl-tag"><span data-i18n="menu.kuroName">Kūro</span> : <span class="nl-kuro-say" data-i18n="menu.tarifs.kuro">judges</span></span></div>
 
  <nav aria-label="Studio menu" data-i18n-aria="menu.nav"><ul class="nl-nav">
 <li><a class="nl-item l big on" href="tarifs/" data-id="tarifs" data-kuro="judge" data-pose="yasser/pose/receipt" data-prop="fineliner">
@@ -382,7 +382,7 @@
 </a></li>
  </ul></nav>
 
- <div class="nl-abs nl-hud nl-say"><div class="nl-say-in"><span class="nl-say-dest">Tarifs · Prix fixe, écrit avant</span><p class="nl-say-box">Le prix est écrit avant qu’on commence. Pas de surprise.</p></div></div>
+ <div class="nl-abs nl-hud nl-say"><div class="nl-say-in"><span class="nl-say-dest"><span data-i18n="menu.tarifs.label">Pricing</span> · <span data-i18n="menu.tarifs.sub">Fixed price, written first</span></span><p class="nl-say-box" data-i18n="menu.tarifs.say">The price is written down before we start. No surprises.</p></div></div>
 
  <div class="nl-abs nl-hud nl-topright"><button class="nl-replay" type="button" data-i18n="menu.replay">Replay intro</button></div>
  <button class="nl-abs nl-skip" type="button" data-i18n="menu.skip">Skip intro</button>
@@ -400,7 +400,7 @@
     <div class="hero-grid">
       <div class="hero-copy">
         <span class="eyebrow" data-i18n="hero.eyebrow">Web studio · Bordj Bou Arréridj</span>
-        <h1 class="hero-h" id="hero-title" data-i18n="hero.title">See your homepage <span class="swash">before you pay.</span></h1>
+        <h2 class="hero-h" id="hero-title" data-i18n="hero.title">See your homepage <span class="swash">before you pay.</span></h2>
         <p class="lede" data-i18n="hero.lede">Before you pay anything, we build your new site’s homepage with your own content in 5 working days.<span class="lede-who"> Yasser Hamisse, founder, designs, codes and delivers it himself.</span></p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#contact" data-apercu data-i18n="hero.cta1">Request my free Preview <span aria-hidden="true">→</span></a>
@@ -1439,11 +1439,11 @@
 
 <!-- this page's dictionary (one language), then the script that reads it;
      both deferred, so they run in this order -->
-<script src="../assets/i18n/en.js?v=202611270023" defer></script>
-<script src="../assets/kit/kit.js?v=202611270023" defer></script>
-<script src="../assets/menu/menu.js?v=202611270023" defer></script>
-<script src="../assets/app.js?v=202611270023" defer></script>
-<script src="../assets/carry.js?v=202611270023" defer></script>
+<script src="../assets/i18n/en.js?v=202611270213" defer></script>
+<script src="../assets/kit/kit.js?v=202611270213" defer></script>
+<script src="../assets/menu/menu.js?v=202611270213" defer></script>
+<script src="../assets/app.js?v=202611270213" defer></script>
+<script src="../assets/carry.js?v=202611270213" defer></script>
 <!-- FAQ structured data, written from the page's dictionary by
      scripts/build-lang.mjs; applyLang() writes it again on load. -->
 <script type="application/ld+json" id="ld-faq">

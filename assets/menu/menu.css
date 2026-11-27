@@ -1,20 +1,8 @@
-/* Numidea Labs · intro + navigation menu
-   Plain CSS, no framework. Scoped under .nl-menu so it can sit on the home page.
-   Positions are authored on a 1280×800 stage that menu.js scales to fit (≥ 760 px).
-   Under 760 px the stage turns into a stacked layout (see the MOBILE block). */
-
+/* Numidea Labs menu. Generated: edit the package (characters/site-menu: gen.py, menu.css), then run sync-site.py */
 @font-face{font-family:'Archivo';font-style:normal;font-weight:900;font-display:swap;src:url(../fonts/archivo-900-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'Archivo';font-style:normal;font-weight:900;font-display:swap;src:url(../fonts/archivo-900-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:'NL Arabic';font-style:normal;font-weight:700;font-display:swap;src:url(../fonts/ibm-plex-sans-arabic-700-arabic.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0898-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC}
 @font-face{font-family:'NL Mark';font-style:normal;font-weight:900;font-display:block;src:url(../fonts/noto-jp-900-mark.woff2) format('woff2')}
-
-/* ===== MOTION TOKENS ======================================================
-   One clock: 90 BPM. beat = 667 ms, eighth (e8) = 83 ms.
-   Durations live on one ladder; never invent an in-between value.
-   OUT  things arriving        IN   things leaving
-   SNAP stamps and pops (one overshoot)
-   MOVE going from one rest spot to another
-   BREATHE the only loop (idle)                                              */
 .nl-menu{
   --e8:83ms;--d2:167ms;--d3:250ms;--d4:333ms;--d5:420ms;--beat:667ms;--bar:2667ms;
   --out:cubic-bezier(.16,1,.3,1);
@@ -27,37 +15,30 @@
   --mono:'Geist Mono',ui-monospace,monospace;
   --sticker:drop-shadow(2px 0 0 var(--paper)) drop-shadow(-2px 0 0 var(--paper)) drop-shadow(0 2px 0 var(--paper)) drop-shadow(0 -2px 0 var(--paper));
   position:relative;width:100%;height:clamp(440px,min(62.5vw,100svh),1000px);overflow:hidden;color:var(--paper);
-  background:repeating-linear-gradient(-62deg,transparent 0 22px,rgba(163,65,53,.15) 22px 26px),var(--ink);   /* fills the sides on wide screens */
+  background:repeating-linear-gradient(-62deg,transparent 0 22px,rgba(163,65,53,.15) 22px 26px),var(--ink);   
 }
 .nl-menu *{box-sizing:border-box}
 .nl-stage{position:absolute;left:50%;top:0;width:1280px;height:800px;transform-origin:50% 0;transform:translateX(-50%) scale(var(--k,1));font-family:Geist,system-ui,sans-serif}
 .nl-abs{position:absolute}
 .nl-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
-
-/* ===== BACKGROUND PLANES ================================================== */
 .nl-stripes{inset:0;opacity:.3;background-image:repeating-linear-gradient(-62deg,transparent 0 22px,rgba(163,65,53,.5) 22px 26px)}
 .nl-dots{inset:0;background:radial-gradient(circle,rgba(243,236,225,.2) 1.7px,transparent 2.1px) 0 0/11px 11px;-webkit-mask-image:linear-gradient(115deg,#000 0,transparent 38%,transparent 64%,#000 100%);mask-image:linear-gradient(115deg,#000 0,transparent 38%,transparent 64%,#000 100%)}
 .nl-mesh{left:0;top:0;width:1280px;height:800px;pointer-events:none}
-/* layout grid: 1280x800 stage, 48 px margins, everything mirrored around x = 640 */
 .nl-slab{left:340px;top:-40px;width:600px;height:900px;background:var(--red)}
 .nl-shard{opacity:0;transform:rotate(var(--sr)) scale(.2)}
 .nl-shard.s1{left:150px;top:250px;width:980px;height:300px;background:var(--red-deep);clip-path:polygon(0 62%,18% 30%,22% 44%,52% 0,55% 22%,100% 8%,82% 52%,96% 60%,60% 100%,57% 78%,30% 96%,33% 70%);--sr:-8deg}
 .nl-shard.s2{left:690px;top:470px;width:640px;height:380px;background:var(--paper);clip-path:polygon(0 40%,100% 0,78% 34%,100% 46%,46% 100%,52% 62%);--sr:6deg}
 .nl-shard.s3{left:-60px;top:520px;width:560px;height:340px;background:var(--paper);clip-path:polygon(0 10%,100% 52%,70% 58%,88% 100%,30% 70%,8% 96%);--sr:-4deg}
-/* The burst rises above the menu box, so it is drawn on ::before: the element stays inside the box
-   (axe builds its background stack from element boxes and ignores the menu's overflow clip). */
 .nl-burst{left:400px;top:0;width:480px;height:360px}
 .nl-burst::before{content:"";position:absolute;left:0;top:-120px;width:100%;height:480px;background:var(--ink);clip-path:polygon(50% 0,56% 20%,68% 4%,68% 24%,84% 14%,78% 32%,98% 30%,84% 44%,100% 54%,82% 58%,94% 74%,76% 72%,80% 92%,64% 80%,60% 100%,50% 82%,38% 100%,36% 80%,20% 92%,24% 72%,6% 76%,18% 60%,0 52%,16% 44%,2% 30%,22% 32%,16% 14%,32% 24%,32% 4%,44% 20%)}
 .nl-mark{right:40px;top:300px;font:900 130px/1 'NL Mark',sans-serif;color:rgba(243,236,225,.08);writing-mode:vertical-rl}
 .nl-echo,.nl-fig{left:380px;top:18px;height:1180px}
 .nl-echo img{display:block;height:100%;width:auto;transform:translateX(-3000px);filter:drop-shadow(3000px 0 0 var(--ink))}
 .nl-fig{width:auto;filter:var(--sticker) drop-shadow(12px 12px 0 rgba(33,30,27,.55))}
-
-/* ===== TYPE ================================================================ */
 .nl-line{left:0;right:0;top:372px;margin:0;text-align:center;font:500 14px/1 var(--mono);letter-spacing:.3em;text-transform:uppercase;color:var(--paper-2)}
 .nl-name{left:48px;top:36px;margin:0;font:900 52px/.86 var(--display);text-transform:uppercase;color:var(--paper);-webkit-text-stroke:1px var(--ink);text-shadow:5px 5px 0 var(--red);white-space:nowrap}
+html[dir] .nl-menu h1.nl-name{line-height:.86;padding-block:0}   
 .nl-ch{display:inline-block}
-/* GENERATED by gen.py: card geometry and logo jitter (no inline styles). Edit gen.py, not this block. */
 .nl-ch.j0{transform:translateY(0px) rotate(-2deg)}
 .nl-ch.j1{transform:translateY(-2px) rotate(1deg)}
 .nl-ch.j2{transform:translateY(1px) rotate(-1deg)}
@@ -70,11 +51,7 @@
 .nl-item[data-id=atelier]{--x:96px;--xr:824px;--y:616px;--w:360px;--h:56px;--r:-1deg;--rr:1deg;--rm:1deg;--d:126ms}
 .nl-item[data-id=lanterne]{--x:848px;--xr:72px;--y:544px;--w:360px;--h:56px;--r:2deg;--rr:-2deg;--rm:1deg;--d:168ms}
 .nl-item[data-id=bible]{--x:824px;--xr:96px;--y:616px;--w:360px;--h:56px;--r:1deg;--rr:-1deg;--rm:-1deg;--d:210ms}
-/* END GENERATED */
-
-/* ===== HUD ================================================================= */
 .nl-tag{padding:3px 8px;background:var(--ink);border:2px solid var(--paper);font:500 10px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase}
-/* the cut-in: Yasser doing the thing the selected card is about (kit scene menu.<id>) */
 .nl-cut{left:48px;top:148px;width:330px;height:236px;--hr:-3deg}
 .nl-cut-band{position:absolute;inset:0;background:var(--ink);border:3px solid var(--paper);box-shadow:8px 8px 0 var(--red);clip-path:polygon(4% 0,100% 0,96% 100%,0 100%)}
 .nl-cut-slot{position:absolute;right:26px;bottom:6px;height:224px;display:flex;align-items:flex-end;justify-content:center;filter:var(--sticker)}
@@ -102,8 +79,6 @@
 .nl-skip{right:30px;bottom:26px;min-height:44px;padding:0 12px;background:transparent;color:var(--paper);border:2px solid var(--paper);font:500 var(--t-label,12px)/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;cursor:pointer;z-index:10;transition:opacity var(--d2) linear}
 .p4 .nl-skip{opacity:0;pointer-events:none}
 .nl-menu :focus-visible{outline:3px solid var(--paper);outline-offset:3px}
-
-/* ===== CARDS =============================================================== */
 .nl-nav{margin:0;padding:0;list-style:none}
 .nl-item{position:absolute;left:var(--x);top:var(--y);width:var(--w);height:var(--h);display:block;color:inherit;text-decoration:none;z-index:4;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .nl-item.on{z-index:5}
@@ -114,7 +89,6 @@
 .nl-tx{position:absolute;inset:0;display:flex;align-items:center;padding:0 32px;color:var(--ink);transition:color var(--e8) linear}
 .nl-lab{display:inline-block;padding-top:.06em;font:900 var(--t-h2-xl,52px)/1 var(--display);text-transform:uppercase;white-space:nowrap;transform-origin:20% 60%}
 .nl-sub{position:absolute;right:32px;bottom:-13px;padding:4px 10px;background:var(--ink);color:var(--paper);font:500 var(--t-small,14px)/1.2 var(--mono);letter-spacing:.06em;white-space:nowrap;transition:background-color var(--e8) linear,color var(--e8) linear}
-/* the four quieter doors: smaller, darker, sub-line only when chosen */
 .nl-item.small .nl-face{background:var(--paper-2)}
 .nl-item.small .nl-sh{transform:translate(6px,6px)}
 .nl-item.small .nl-tx{padding:0 24px}
@@ -122,7 +96,6 @@
 .nl-item.small .nl-sub{font-size:var(--t-label,12px);bottom:-12px;right:24px;opacity:0;transition:opacity var(--e8) linear}
 .nl-item.small.on .nl-sub{opacity:1}
 @media (hover:hover){.nl-item.small:hover .nl-sub{opacity:1}}
-/* selected */
 .nl-item.on .nl-face{background:var(--red)}
 .nl-item.on .nl-tx{color:var(--paper)}
 .nl-item.on .nl-sub{background:var(--paper);color:var(--ink)}
@@ -132,18 +105,12 @@
 .nl-item:active .nl-pr{transform:translate(3px,4px) scale(.97);transition-duration:var(--e8)}
 .nl-item:focus-visible{outline:none}.nl-item:focus-visible .nl-face{box-shadow:inset 0 0 0 4px var(--ink)}
 .nl-item.on:focus-visible .nl-face{box-shadow:inset 0 0 0 4px var(--paper)}
-/* kit hooks (same rules as kit/kit.css) */
 .nl-menu .kit-slot{position:relative;display:inline-block}
 .nl-menu .kit-slot>[data-over]{position:absolute;left:0;top:0;opacity:0}
 @keyframes kit-pop{0%{transform:scale(.6) rotate(-8deg);opacity:0}100%{transform:rotate(-8deg);opacity:1}}
 @keyframes kit-slam{0%{transform:translateY(-40px) scaleY(1.06);opacity:0}55%{transform:translateY(0) scale(1.03,.95);opacity:1}100%{transform:none}}
 .nl-menu .kit-pop{animation:kit-pop var(--d3) var(--snap) both}
 .nl-menu .kit-slam{animation:kit-slam var(--d5) var(--out) both}
-
-/* ===== INTRO (phase classes p0..p4 on .nl-menu) ============================
-   p0 typed line · p1 red slab cuts in · p2 he slams + shards + burst + shake
-   p3 name stamps · p4 cards fan out, HUD settles. Each plane arrives once.
-   Without JS the markup ships as p4, so nothing is ever hidden.             */
 .nl-line{opacity:0}.p0 .nl-line{opacity:1}.p1 .nl-line{opacity:1}
 .nl-line{transition:opacity var(--e8) linear}
 .p0 .nl-slab{transform:translateX(-120%) skewX(-14deg)}
@@ -157,7 +124,6 @@
 .nl-echo{transform:translateX(54px) scale(1.14)}
 .nl-menu.played.p2 .nl-fig,.nl-menu.played.p3 .nl-fig{animation:nlSlam var(--d5) var(--out) both}
 .nl-menu.played.p2 .nl-echo{animation:nlEcho calc(var(--d5) * 2) var(--out) both}
-/* idle breath: three bars, then he holds still (the site's audit bans infinite animations) */
 .p4 .nl-fig{animation:nlBreathe var(--bar) var(--breathe) var(--beat) 3}
 .nl-menu.paused .nl-fig{animation-play-state:paused}
 .nl-menu.played.p2 .nl-shake{animation:nlShake 200ms steps(5,jump-none) var(--d3) 1}
@@ -181,10 +147,6 @@
 @keyframes nlPopB{0%{transform:scale(.86)}60%{transform:scale(1.05)}100%{transform:none}}
 .nl-say-in.a{animation:nlPopA var(--d3) var(--out) both}.nl-say-in.b{animation:nlPopB var(--d3) var(--out) both}
 .nl-say-in{transform-origin:0 100%}
-
-/* ===== EXIT ================================================================
-   Click: the other cards leave (IN, d2), the red wipe crosses (OUT, d4),
-   the label stamps (SNAP, d3), then the browser navigates (at ~7 e8). */
 .going .nl-item:not(.on){opacity:0;transform:translateY(40px) rotate(var(--r)) scale(.9);transition:transform var(--d2) var(--in),opacity var(--d2) linear}
 .nl-go{left:-10%;top:-10%;width:90%;height:120%;background:var(--red);z-index:8;transform:translateX(-112%) skewX(-14deg)}
 .going .nl-go{transform:skewX(-14deg) scaleX(2.2);transition:transform var(--d4) var(--out) var(--e8)}
@@ -194,37 +156,37 @@
 @keyframes nlGoStamp{0%{transform:scale(1.4) rotate(-8deg)}100%{transform:rotate(-4deg)}}
 .going .nl-golab{animation:nlGoStamp var(--d3) var(--snap) var(--d3) both}
 .nl-godest{padding:6px 12px;background:var(--ink);font:500 14px/1.2 var(--mono);letter-spacing:.14em}
-
-/* ===== MOBILE (< 760 px): a stacked menu, same parts, same motion ========== */
 @media (max-width:759.98px),(max-aspect-ratio:4/5){
   .nl-menu{height:auto;min-height:100svh}
   .nl-stage{position:relative;left:0;width:100%;height:auto;min-height:100svh;transform:none;padding:0 16px var(--s-8,64px);display:flex;flex-direction:column;align-items:center}
   .nl-mesh,.nl-kuro,.nl-mark,.nl-echo,.nl-langs,.nl-shard.s3,.nl-cut-prop,.nl-cut-tag{display:none}
-  /* the cut-in stays on the phone, small, on his right: a pick still makes him act */
-  .nl-cut{left:auto;right:max(10px,calc(50% - 188px));top:268px;width:132px;height:176px;z-index:4;--hr:4deg}
-  .nl-cut-slot{right:50%;transform:translateX(50%);height:164px}
-  .nl-name{transform-origin:50% 0}
-  .p0 .nl-name,.p1 .nl-name,.p2 .nl-name{transform:scale(1.5) rotate(-4deg)}
-  .p3 .nl-name{transform:scale(1.25) rotate(-4deg)}
-  /* back planes, all centred on the column */
-  .nl-slab{left:50%;margin-left:-110px;width:220px;height:110%}
-  .nl-burst{left:50%;margin-left:-150px;top:110px;width:300px;height:300px}
+  
+  .nl-cut{left:auto;right:6px;top:150px;width:112px;height:150px;z-index:4;--hr:4deg}
+  .nl-cut-slot{right:50%;transform:translateX(50%);height:140px}
+  .p0 .nl-name,.p1 .nl-name,.p2 .nl-name{transform:scale(1.4) rotate(-4deg)}
+  .p3 .nl-name{transform:scale(1.2) rotate(-4deg)}
+  
+  .nl-slab{left:auto;right:-24px;width:200px;height:110%}
+  .nl-burst{left:auto;right:-110px;top:40px;width:320px;height:320px}
   .nl-burst::before{top:0;height:100%}
-  .nl-shard.s1{left:-10%;top:300px;width:120%;height:180px}
+  .nl-shard.s1{left:-10%;top:230px;width:120%;height:180px}
   .nl-shard.s2{left:-10%;top:auto;bottom:-20px;width:120%;height:220px}
-  .nl-fig{left:50%;top:132px;height:520px;transform:translateX(-50%)}   /* starts under the name, never behind it */
+  .nl-fig{left:auto;right:-34px;top:34px;height:500px}
   .nl-menu.played.p2 .nl-fig,.nl-menu.played.p3 .nl-fig{animation:none}
   .p4 .nl-fig{animation:none}
-  /* front planes in flow: name, speech, cards */
-  .nl-name{order:1;position:relative;left:auto;top:auto;margin:28px 0 0;font-size:40px;text-align:center;z-index:5}
-  .nl-line{top:300px}
-  .nl-say{order:2;position:relative;left:auto;top:auto;width:100%;max-width:360px;margin:372px 0 34px;--hr:-2deg}
-  .nl-say-box{font-size:var(--t-ui,16px);padding:12px 16px;min-height:80px}   /* three lines reserved: the cards below never move when the line changes */
-  nav{order:3;width:100%;max-width:360px;position:relative;z-index:5}
-  /* the two that matter first, full width; the other four in a 2 x 2 grid */
+  
+  .nl-name{order:1;position:relative;left:auto;top:auto;align-self:flex-start;margin:20px 0 0 4px;font-size:40px;text-align:left;z-index:5}
+  .nl-line{top:124px;left:20px;right:auto;text-align:left;letter-spacing:.2em;font-size:12px}
+  .nl-say{order:3;position:relative;left:auto;top:auto;width:100%;max-width:360px;margin:40px 0 34px;--hr:-2deg}
+  .nl-say-box{font-size:var(--t-ui,16px);padding:12px 16px;min-height:96px}
+  .nl-say-dest{white-space:nowrap;letter-spacing:.04em;max-width:calc(100% - 8px);overflow:hidden;text-overflow:ellipsis}      
+  .nl-menu nav{order:2;width:100%;max-width:360px;margin-top:48px;position:relative;z-index:5}
+  
   .nl-nav{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-5,24px) var(--s-4,16px)}
   .nl-nav li{display:flex;justify-content:center;min-width:0}
-  .nl-nav li:nth-child(-n+2){grid-column:1 / -1}
+  .nl-nav li:nth-child(-n+2){grid-column:1 / -1;justify-content:flex-start}
+  .nl-item.big{width:66%}
+  .nl-item.big .nl-sub{right:auto;left:12px}   
   .nl-item{position:relative;left:auto;top:auto;width:100%;height:72px;--r:var(--rm) !important}
   .nl-item.small{height:52px}
   .nl-lab{font-size:var(--t-display,32px)}
@@ -239,18 +201,16 @@
   .nl-skip{right:16px;bottom:16px}
   .nl-golab{font-size:56px}
 }
-
 @media (min-width:600px) and (max-aspect-ratio:4/5){
-  .nl-say,nav{max-width:520px}
-  .nl-fig{height:600px}
-  .nl-say{margin-top:452px}
-  .nl-cut{right:calc(50% - 300px);top:300px;width:170px;height:226px}
+  .nl-say,.nl-menu nav{max-width:520px}
+  .nl-fig{height:640px;right:calc(50% - 300px)}
+  .nl-slab{right:calc(50% - 280px)}
+  .nl-burst{right:calc(50% - 360px)}
+  .nl-name{margin-left:calc(50% - 260px)}
+  .nl-line{left:calc(50% - 256px)}
+  .nl-cut{right:calc(50% - 290px);top:180px;width:170px;height:226px}
   .nl-cut-slot{height:212px}
 }
-
-/* ===== RIGHT TO LEFT (Arabic) ===============================================
-   The stage mirrors: cards swap columns (--xr, --rr come from gen.py), the cut-in
-   and Kūro swap sides, the name and the buttons swap corners. The logo stays LTR. */
 [dir=rtl] .nl-item{left:var(--xr);--r:var(--rr)}
 [dir=rtl] .nl-lab{text-transform:none;font-size:var(--t-h2-xl,52px);line-height:1.25;padding-top:0}
 [dir=rtl] .nl-item.small .nl-lab{font-size:var(--t-title,24px)}
@@ -276,31 +236,37 @@
 [dir=rtl] .p0 .nl-item.r,[dir=rtl] .p1 .nl-item.r,[dir=rtl] .p2 .nl-item.r,[dir=rtl] .p3 .nl-item.r{transform:translateX(260px) rotate(var(--r)) scale(.6)}
 @media (max-width:759.98px),(max-aspect-ratio:4/5){
   [dir=rtl] .nl-item{left:auto}
-  [dir=rtl] .nl-cut{right:auto;left:max(10px,calc(50% - 188px));--hr:-4deg}
-  [dir=rtl] .nl-cut-slot{left:auto}
-  [dir=rtl] .nl-name{right:auto;text-align:center}
+  [dir=rtl] .nl-cut{right:auto;left:6px;--hr:-4deg}
+  [dir=rtl] .nl-cut-slot{left:auto;right:50%}
+  [dir=rtl] .nl-name{right:auto;align-self:flex-start;margin:20px 4px 0 0;text-align:right}   
+  [dir=rtl] .nl-fig{right:auto;left:-34px}
+  [dir=rtl] .nl-slab{right:auto;left:-24px}
+  [dir=rtl] .nl-burst{right:auto;left:-110px}
+  [dir=rtl] .nl-line{left:auto;right:20px;text-align:right}
+  [dir=rtl] .nl-item.big .nl-sub{left:auto;right:12px}
   [dir=rtl] .nl-topright{left:50%}
   [dir=rtl] .nl-skip{left:16px}
   [dir=rtl] .nl-lab{font-size:var(--t-display,32px)}
   [dir=rtl] .nl-item.small .nl-lab{font-size:var(--t-lead,18px)}
   [dir=rtl] .p4 .nl-item.on.l,[dir=rtl] .p4 .nl-item.on.r{transform:rotate(var(--r)) scale(1.02)}
 }
-
-/* ===== REDUCED MOTION =======================================================
-   Everything lands at rest. Colour changes stay (they carry meaning).
-   menu.js skips the intro, draws the mesh once and navigates without the wipe. */
+@media (min-width:600px) and (max-aspect-ratio:4/5){
+  [dir=rtl] .nl-fig{left:calc(50% - 300px)}
+  [dir=rtl] .nl-slab{left:calc(50% - 280px)}
+  [dir=rtl] .nl-burst{left:calc(50% - 360px)}
+  [dir=rtl] .nl-name{margin-right:calc(50% - 260px)}
+  [dir=rtl] .nl-line{right:calc(50% - 256px)}
+  [dir=rtl] .nl-cut{left:calc(50% - 290px)}
+}
 @media (prefers-reduced-motion:reduce){
   .nl-menu *,.nl-menu *::before,.nl-menu *::after{animation:none!important;transition-property:background-color,color,opacity!important;transition-delay:0s!important}
 }
-
-/* gates (keys, vbugs, design, sweep) */
 .nl-item:focus-visible{outline:3px solid var(--paper);outline-offset:4px}
 .nl-item.big:focus-visible{outline-color:var(--red)}
 .nl-menu img{object-fit:contain}
 .p4 .nl-skip{visibility:hidden}
 [dir=rtl] .nl-stage{font-family:'NL Arabic',var(--font-ar-body,system-ui),sans-serif}
 [dir=rtl] .nl-menu{--mono:'NL Arabic',var(--font-ar-body,ui-monospace),monospace}
-/* 2em box: same height with or without the webfont */
 @media (max-width:419.98px){.nl-menu .nl-item.small .nl-lab{white-space:normal;line-height:1;font-size:var(--t-ui,16px);display:inline-flex;align-items:center;height:2em}}
 
 /* ===== ON THE HOME PAGE ======================================================
