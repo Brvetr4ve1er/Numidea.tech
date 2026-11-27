@@ -3,11 +3,11 @@
   "shelves": [
     { "id": "shelf1", "host": {"src": "img/lanterne/kit/yasser-pose-point.webp", "w": 498, "h": 440}, "notes": ["money.note2"], "books": [
       { "slug": "marque", "key": "marque", "title": "brandc.title", "kind": "lant.at.marque.kind", "line": "brandc.lead", "guide": "kuro",
-        "cover": {"plate": "marque-a2", "pos": "50% 70%", "cast": [{"src": "img/lanterne/kit/yasser-pose-sign.webp", "w": 519, "side": "end", "size": 1.2, "h": 440}, {"src": "img/lanterne/kit/kuro-react-judge.webp", "w": 240, "side": "start", "size": 0.46, "h": 194}]}, "accent": "#A34135", "start": true,
+        "cover": {"plate": "marque-a2", "pos": "50% 70%", "cast": [{"src": "img/lanterne/kit/yasser-pose-sign-solo.webp", "w": 518, "h": 440, "in": true, "size": 0.98, "x": "35%", "b": "-10%"}]}, "accent": "#A34135", "start": true,
         "store": "numidea-lanterne-marque", "migrate": "numidea-lessons-brandc",
         "ids": ["b1", "b2", "b3", "b4", "b9", "b5", "b6", "b7", "b8"] },
       { "slug": "web3", "key": "web3", "title": "web3c.title", "kind": "web3c.kicker", "line": "web3c.lead", "guide": "raven",
-        "cover": {"plate": "web3-a2", "pos": "50% 72%", "cast": [{"src": "img/lanterne/kit/yasser-pose-inspect.webp", "w": 560, "side": "end", "size": 1.3, "h": 416}, {"src": "img/lanterne/kit/props-server-boom.webp", "w": 415, "side": "start", "size": 0.72, "h": 480}]}, "accent": "#236660",
+        "cover": {"plate": "web3-a2", "pos": "50% 72%", "cast": [{"src": "img/lanterne/kit/yasser-pose-inspect-solo.webp", "w": 496, "h": 412, "in": true, "size": 1.04, "x": "-5%", "b": "-13%"}]}, "accent": "#236660",
         "store": "numidea-lanterne-web3", "migrate": "numidea-lessons-web3c",
         "ids": ["w1", "w2", "w3", "w8", "w4", "w5", "w6", "w7"], "vol2": true },
       { "slug": "web3-modules", "key": "w3m", "in": "web3", "title": "lant.at.w3m.book", "kind": "lant.at.w3m.kicker", "line": "lant.at.w3m.pitch", "guide": "raven",
@@ -21,7 +21,7 @@
     ] },
     { "id": "shelf2", "host": {"src": "img/lanterne/kit/kuro-react-leave.webp", "w": 240, "h": 209}, "notes": ["money.note1"], "books": [
       { "slug": "argent", "key": "argent", "title": "money.title", "kind": "lant.at.argent.kind", "line": "money.lead", "guide": "pigeon",
-        "cover": {"plate": "argent-a1", "pos": "50% 64%", "cast": [{"src": "img/lanterne/kit/yasser-pose-receipt.webp", "w": 412, "side": "end", "size": 1.22, "h": 440}, {"src": "img/lanterne/kit/kuro-react-scale.webp", "w": 192, "side": "start", "size": 0.5, "h": 186}]}, "accent": "#C98A2E",
+        "cover": {"plate": "argent-a1", "pos": "50% 64%", "cast": [{"src": "img/lanterne/kit/yasser-pose-receipt-solo.webp", "w": 300, "h": 440, "in": true, "size": 0.96, "x": "4%", "b": "2%"}]}, "accent": "#C98A2E",
         "store": "numidea-lanterne-argent", "migrate": "numidea-lessons",
         "ids": ["pay", "bank", "rate", "treso", "crypto", "appel"] },
       { "slug": "route", "key": "route", "title": "nomade.title", "kind": "nomade.kicker", "line": "nomade.lead", "guide": "pigeon",

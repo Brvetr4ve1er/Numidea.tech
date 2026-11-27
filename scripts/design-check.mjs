@@ -325,21 +325,37 @@ console.log(`design-check (${STRICT ? 'strict' : 'report-only: DESIGN_REPORT=1'}
 /* ---- scale: font sizes written off the type scale, per sheet (2026-11-26; spec
    https://claude.ai/artifact/BrvX62HC49TTPheF3Yiwhw). A font-size, or the size in a font shorthand, is on the scale
    when it is var(--fs-*), inherit/0/1em/100% (relative to an on-scale parent), or a clamp() whose min and max are
-   rem endpoints of the scale. Measured 2026-11-26 before the roll-out: lanterne 137, Studio 691, home 253. ---- */
+   rem endpoints of the scale, or a bare rem step of it. Measured 2026-11-26 before the roll-out: lanterne 137, Studio 691, home 253; Studio 423 after PR #28, 92 on 2026-11-27 (aliases snapped), then 0 the same day (headings by eye, art tier --fs-art-* for the watermark glyphs); home 253 -> 6 (only the old hero, which the menu replaces); Le comptoir 0. ---- */
 const SCALE_REM = new Set([0.75, 0.875, 1, 1.25, 1.5, 1.75, 2.375, 2.5, 3.5, 4.25, 7, 8]);
-const SCALE_CEIL = { 'hub/css/lanterne.css': 0, 'hub/style.css': 423, 'assets/styles.css': 253 };
+const SCALE_CEIL = { 'hub/css/lanterne.css': 0, 'hub/style.css': 0, 'assets/styles.css': 0, 'comptoir/comptoir.css': 0, 'assets/menu/menu.css': 9 }   // menu.css added 2026-11-27 at its measured 9 (the menu thread's sheet: 10-14px labels, 40-130px display and art sizes); home 6 -> 0 once the old hero left;
 const SIZE_RE = String.raw`(?:var\(--[\w-]+\)|clamp\([^()]*(?:\([^()]*\)[^()]*)*\)|calc\([^()]*(?:\([^()]*\)[^()]*)*\)|[\d.]+(?:px|rem|em|%|vw))`;
 const onScale = (v) => {
   v = v.trim();
   if (v.startsWith('var(--fs-') || ['inherit', '0', '1em', '100%'].includes(v)) return true;
-  const m = /^clamp\(\s*([\d.]+)rem\s*,[^,]+,\s*([\d.]+)rem\s*\)$/.exec(v);
+  if (/^[\d.]+rem$/.test(v)) return SCALE_REM.has(parseFloat(v));   /* a bare step of the scale, 1.75rem (added 2026-11-27) */
+  const m = /^clamp\(\s*([\d.]+)rem\s*,(?:[^(),]|\([^()]*\))+,\s*([\d.]+)rem\s*\)$/.exec(v);
   return !!(m && SCALE_REM.has(+m[1]) && SCALE_REM.has(+m[2]));
 };
+/* a sheet's own size alias (the Studio's --t-small, --t-label…) counts as on the scale when every definition of it in that
+   sheet, at every breakpoint and language, is on the scale (added 2026-11-27 with the aliases' definitions snapped) */
+const aliasesOnScale = (css) => {
+  const defs = {};
+  for (const m of css.matchAll(new RegExp(`(--t-[\\w-]+)\\s*:\\s*(${SIZE_RE}|min\\([^;}]*\\))`, 'g'))) (defs[m[1]] = defs[m[1]] || []).push(m[2]);
+  return new Set(Object.entries(defs).filter(([, vs]) => vs.every(onScale)).map(([k]) => k));
+};
+/* the theme contract's display sizes (--h1-fs, --h1-fs-wide in assets/themes.css) count like a sheet's alias when every
+   theme defines them on the scale (added 2026-11-27 with the offer band's h1) */
+const themeOnScale = (() => {
+  const defs = {};
+  for (const m of readFileSync(join(ROOT, 'assets/themes.css'), 'utf8').matchAll(new RegExp(`(--h1-fs[\\w-]*)\\s*:\\s*(${SIZE_RE})`, 'g'))) (defs[m[1]] = defs[m[1]] || []).push(m[2]);
+  return new Set(Object.entries(defs).filter(([, vs]) => vs.every(onScale)).map(([k]) => k));
+})();
 const offScale = (css) => {
   css = css.replace(/\/\*[\s\S]*?\*\//g, '');
+  const ok = aliasesOnScale(css), on = (v) => onScale(v) || ok.has((/^var\((--t-[\w-]+)\)$/.exec(v.trim()) || [])[1]) || themeOnScale.has((/^var\((--h1-fs[\w-]*)\)$/.exec(v.trim()) || [])[1]);
   const off = [];
-  for (const m of css.matchAll(new RegExp(`font-size\\s*:\\s*(${SIZE_RE})`, 'g'))) if (!onScale(m[1])) off.push(m[1]);
-  for (const m of css.matchAll(new RegExp(`(?<![-\\w])font\\s*:\\s*(?:(?:italic|normal|[1-9]00|bold|small-caps)\\s+)*(${SIZE_RE})(?:\\s*/|\\s+['"\\w])`, 'g'))) if (!onScale(m[1])) off.push(m[1]);
+  for (const m of css.matchAll(new RegExp(`font-size\\s*:\\s*(${SIZE_RE})`, 'g'))) if (!on(m[1])) off.push(m[1]);
+  for (const m of css.matchAll(new RegExp(`(?<![-\\w])font\\s*:\\s*(?:(?:italic|normal|[1-9]00|bold|small-caps)\\s+)*(${SIZE_RE})(?:\\s*/|\\s+['"\\w])`, 'g'))) if (!on(m[1])) off.push(m[1]);
   return off;
 };
 for (const [sheet, ceil] of Object.entries(SCALE_CEIL)) {
@@ -507,7 +523,7 @@ console.log('offer: the h1 and its two buttons inside the screen, fr/en/ar at 32
    to 1250 on an iPad in landscape; the hero and the plate left the home); (b) the home's height, fr, fonts loaded, held at what was
    measured plus 5%: phone 390 and tablet 768 (a ceiling to lower, never to raise); (c) no sideways scroll at
    the tablet widths; (d) the fixed + sticky chrome at most 25% of a 390x664 phone with the estimator open */
-const HOME_H = { 390: 10913, 768: 10170 };   // lowered 2026-11-27: the old hero left the home (the offer band under the menu keeps its h1, lede, two buttons and terms; the plate went): measured 10,913 and 10,170 (-276 / -593); before: 11,189 and 10,763, raised 2026-11-26 for the game menu as the home's first screen (assets/menu/): measured 11,189 and 10,763 (+1,048 / +1,141, the menu's own height), the old hero still below it until it is removed, which should bring this back down; raised 2026-11-24 for wave 3 by the measured growth, against HEAD section by section (the work foot's two new lines, the directory and this site: +208 / +156; the founder card's five delivery lines in place of two job titles, minus the CV and notebook links: +80 / +113; the longer services lead, minus the stack tags: +54 / +27; at 390 / 768): measured 10,087 and 9,577 (were 9,746 and 9,285); raised 2026-11-24 for the site audit's fixes: the home now links to the Librairie and the world (the journey's dead end), the contact door is 280px wide and the price line sits above the phone tabs: measured 9,716 and 9,255 (were 9,309 and 8,974); raised 2026-11-19 for the visual pass (measured section by section against the commit before it: the founder's night plate as a 4:3 picture below 1100 px +206 / +52, the atelier scene stacked up to 1000 px with its picture whole +56 / +331, the hero plate at 16:10 +43 / +119, at 390 / 768): measured 9,309 and 8,974 (were 9,004 and 8,408); measured 2026-11-14: 8,3xx at 390x664 and 7,9xx at 768x1024, +5% (it was 13,460 and 12,426); raised 2026-11-15 to 9,050 and 8,480 for the night workshop band (about 465px at 390, 523px at 768) and the founder portrait row (about 130px): measured 8,950 and 8,381 with the band on the scale tokens
+const HOME_H = { 390: 11026, 768: 10250 };   // raised 2026-11-27 (evening) by 113 / 80px: the type scale on the home sheet merged onto the hero removal (FAQ answers 15 -> 16px body, the contact lead 18 -> 20px, the offer h1 on scale steps); before: 10913 / 10170, lowered 2026-11-27: the old hero left the home (the offer band under the menu keeps its h1, lede, two buttons and terms; the plate went): measured 10,913 and 10,170 (-276 / -593); before: 11,189 and 10,763, raised 2026-11-26 for the game menu as the home's first screen (assets/menu/): measured 11,189 and 10,763 (+1,048 / +1,141, the menu's own height), the old hero still below it until it is removed, which should bring this back down; raised 2026-11-24 for wave 3 by the measured growth, against HEAD section by section (the work foot's two new lines, the directory and this site: +208 / +156; the founder card's five delivery lines in place of two job titles, minus the CV and notebook links: +80 / +113; the longer services lead, minus the stack tags: +54 / +27; at 390 / 768): measured 10,087 and 9,577 (were 9,746 and 9,285); raised 2026-11-24 for the site audit's fixes: the home now links to the Librairie and the world (the journey's dead end), the contact door is 280px wide and the price line sits above the phone tabs: measured 9,716 and 9,255 (were 9,309 and 8,974); raised 2026-11-19 for the visual pass (measured section by section against the commit before it: the founder's night plate as a 4:3 picture below 1100 px +206 / +52, the atelier scene stacked up to 1000 px with its picture whole +56 / +331, the hero plate at 16:10 +43 / +119, at 390 / 768): measured 9,309 and 8,974 (were 9,004 and 8,408); measured 2026-11-14: 8,3xx at 390x664 and 7,9xx at 768x1024, +5% (it was 13,460 and 12,426); raised 2026-11-15 to 9,050 and 8,480 for the night workshop band (about 465px at 390, 523px at 768) and the founder portrait row (about 130px): measured 8,950 and 8,381 with the band on the scale tokens
 {
   for (const path of ['/', '/en/', '/ar/']) {
     for (let w = 960; w <= 1440; w += 40) {

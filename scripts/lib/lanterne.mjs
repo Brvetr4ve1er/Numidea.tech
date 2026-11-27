@@ -695,10 +695,14 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', ...
         const pl = ART.plates[b.cover.plate];
         if (!pl) fail(`hub/src/lanterne/shelf.json ${b.slug}: cover plate "${b.cover.plate}" is not in art.json`);
         const small = pl.small || pl;
-        coverHtml = `<span class="book__cover"><img src="${up(small.src)}" alt="" width="${small.w}" height="${small.h}" style="--pos:${b.cover.pos || '50% 50%'}" loading="lazy" decoding="async"></span>`;
-        cast = `<span class="book__cast" dir="ltr">${(b.cover.cast || []).map((c) => {
-          if (!existsSync(join(HUB, c.src))) fail(`hub/src/lanterne/shelf.json ${b.slug}: cast ${c.src} is not a file under hub/`);
-          return `<img class="book__c book__c--${c.side === 'start' ? 'start' : 'end'}" style="--s:${c.size}" src="${up(c.src)}" alt="" width="${c.w}" height="${c.h}" loading="lazy" decoding="async">`; }).join('')}</span>`;
+        /* "in": true (2026-11-27, the web3 pilot): the figure is part of the cover's picture, inside its frame and under its
+           print layer (corners, halftone), placed by --x and --b, with a contact shadow and no sticker edge; it lifts with
+           the cover. The others stand on the cover's edge and break out of it. */
+        for (const c of b.cover.cast || []) if (!existsSync(join(HUB, c.src))) fail(`hub/src/lanterne/shelf.json ${b.slug}: cast ${c.src} is not a file under hub/`);
+        const inside = (b.cover.cast || []).filter((c) => c.in), out = (b.cover.cast || []).filter((c) => !c.in);
+        const inImgs = inside.map((c) => `<img class="book__cin" style="--s:${c.size};--x:${c.x ?? '0%'};--b:${c.b ?? '0%'}" src="${up(c.src)}" alt="" width="${c.w}" height="${c.h}" loading="lazy" decoding="async">`).join('');
+        coverHtml = `<span class="book__cover"><img src="${up(small.src)}" alt="" width="${small.w}" height="${small.h}" style="--pos:${b.cover.pos || '50% 50%'}" loading="lazy" decoding="async">${inImgs}</span>`;
+        cast = out.length ? `<span class="book__cast" dir="ltr">${out.map((c) => `<img class="book__c book__c--${c.side === 'start' ? 'start' : 'end'}" style="--s:${c.size}" src="${up(c.src)}" alt="" width="${c.w}" height="${c.h}" loading="lazy" decoding="async">`).join('')}</span>` : '';
       } else {
         if (!existsSync(join(HUB, b.cover.src))) fail(`hub/src/lanterne/shelf.json ${b.slug}: cover ${b.cover.src} is not a file under hub/`);
         coverHtml = `<span class="book__cover"><img src="${up(b.cover.src)}" alt="" loading="lazy" decoding="async"></span>`;
