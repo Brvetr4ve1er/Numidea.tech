@@ -24,6 +24,7 @@
     "hub:rig": "node scripts/build-hub-rig.mjs",
     "validate": "node scripts/validate.mjs",
     "vbugs": "node scripts/vbugs.mjs",
+    "webkit": "node scripts/vbugs.mjs --webkit && node scripts/stage-check.mjs --webkit",
     "verify": "node scripts/verify.mjs",
     "keys": "node scripts/keys.mjs",
     "design": "node scripts/design-check.mjs",

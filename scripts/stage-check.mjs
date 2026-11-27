@@ -21,7 +21,7 @@ import { spawnSync } from 'node:child_process';
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT } from './site.mjs';
-import { serve, launch } from './lib/serve.mjs';
+import { serve, launch, BROWSER } from './lib/serve.mjs';
 
 const SITE = join(ROOT, '_site');
 const errors = [];
@@ -84,4 +84,4 @@ if (!errors.some((e) => /_site\//.test(e))) ok(`${compiled} scripts compile from
 await browser.close(); srv.close();
 
 if (errors.length) { console.log(`\n✗ stage check: ${errors.length} problem(s)`); process.exit(1); }
-console.log(`\n✓ stage check passed: ${css.length} stylesheets, ${js.length} scripts, ${html.length} pages`);
+console.log(`\n✓ stage check passed (${BROWSER}): ${css.length} stylesheets, ${js.length} scripts, ${html.length} pages`);
