@@ -12117,6 +12117,6 @@ it. The codex still has eleven entries.
 - `story.p.11.c` « كان الرسم هو المفتاح. وكورو نائم. » (French: « Le croquis était la clé. Kūro dort déjà. »)
 - `story.p.11.a` « في قمرة القيادة يبتسم ياسر عند المقود وكورو نائم في حجره، والرسم مثبّت على لوحة القيادة. » (French: « Dans le cockpit, Yasser sourit aux commandes, Kūro endormi sur ses genoux ; le croquis est épinglé au tableau de bord. »)
 - `world.nav.story` « القصة » (French: « L’histoire »)
-- `start.real.go` « الصفحة الأخيرة، قصة في اثنتي عشرة صورة » (French: « La dernière page, une histoire en douze images »)
+- `start.real.go` « الصفحة الأخيرة، قصة في تسع صور » (French: « La dernière page, une histoire en neuf images »; nine since 2026-11-27, when panels 04, 08 and 10 were dropped on the owner's word)
 - `doors.b.story` « الصفحة الأخيرة » (French: « La dernière page »)
-- `world.note (changed: one sentence added)` « … والملف 09 قصة في اثنتي عشرة صورة. … » (French: « … Le dossier 09 est une histoire en douze images. … »)
+- `world.note (changed: one sentence added)` « … والملف 09 قصة في تسع صور. … » (French: « … Le dossier 09 est une histoire en neuf images. … »)

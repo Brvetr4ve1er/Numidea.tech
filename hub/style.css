@@ -1214,6 +1214,8 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 .st-story__p--sq{--r:1}
 .st-story__p--43{--r:1.34}
 .st-story__p--tall{--r:.5579}
+/* a panel that stands alone in its act (04, 08 and 10 left the story on 2026-11-27): centred at its own file's width, never enlarged */
+.st-story__p--solo{flex:none;align-self:center;width:min(100%,var(--w,800px))}
 .st-story__p img{display:block;width:100%;height:auto;border:2px solid var(--ink);box-shadow:5px 5px 0 var(--ink);background:var(--floor)}
 .st-story__p figcaption{display:flex;align-items:baseline;gap:10px;margin-top:14px;max-width:60ch;font-size:var(--fs-body);line-height:1.45;text-wrap:pretty}
 .st-story__n{flex:none;font-family:var(--f-mono);font-weight:600;font-size:var(--fs-micro);letter-spacing:.08em;color:var(--red-text)}

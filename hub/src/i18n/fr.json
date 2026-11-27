@@ -742,7 +742,7 @@
     "real": {
       "k": "LA RÉALITÉ",
       "d": "Les autres mondes : tr4veler.exe, MERCURY, et VOIDSPLUNKER.std, le projet qui tient la bible des personnages. Chaque projet livré en ouvre la porte.",
-      "go": "La dernière page, une histoire en douze images"
+      "go": "La dernière page, une histoire en neuf images"
     },
     "see": "Voir aussi",
     "bible": "La bible (en anglais)",
@@ -1666,7 +1666,7 @@
     },
     "kicker": "/ LE MONDE · PROJETS PERSONNELS",
     "title": "Derrière la porte de nuit.",
-    "note": "Ici, les projets du fondateur. Les dossiers 06 et 07 sont personnels : une bible de personnages et un court-métrage. Le dossier 08 rassemble ses travaux de designer publiés sur Behance, dont des travaux pour des clients. Le dossier 09 est une histoire en douze images. Puis des affiches et un journal d’atelier. Les sites livrés et les prix sont au Studio.",
+    "note": "Ici, les projets du fondateur. Les dossiers 06 et 07 sont personnels : une bible de personnages et un court-métrage. Le dossier 08 rassemble ses travaux de designer publiés sur Behance, dont des travaux pour des clients. Le dossier 09 est une histoire en neuf images. Puis des affiches et un journal d’atelier. Les sites livrés et les prix sont au Studio.",
     "nav": {
       "aria": "Sections du monde",
       "codex": "Codex",
@@ -1681,8 +1681,8 @@
   "story": {
     "kicker": "DOSSIER 09 · UNE HISTOIRE EN IMAGES",
     "name": "La dernière page",
-    "tag": "12 images · 3 actes",
-    "lead": "Douze images, trois actes, pas un dialogue. Yasser, Kūro et une carte qui s’allume.",
+    "tag": "9 images · 3 actes",
+    "lead": "Neuf images, trois actes, pas un dialogue. Yasser, Kūro et une carte qui s’allume.",
     "acts": [
       {
         "k": "ACTE I",
@@ -1714,10 +1714,6 @@
         "a": "Kūro, sur un carton, pousse de la patte une carte qui luit ; Yasser, flou, derrière."
       },
       {
-        "c": "La carte s’allume. C’est un plan.",
-        "a": "Par-dessus l’épaule de Yasser : la carte levée brille, on y voit une ruelle en escalier ; Kūro regarde."
-      },
-      {
         "c": "Le chemin est déjà dans ses lunettes.",
         "a": "Très gros plan : dans les verres ronds de Yasser se reflètent l’escalier et un tracé en pointillé."
       },
@@ -1730,16 +1726,8 @@
         "a": "Yasser file sur le scooter rouge dans une ruelle, manteau au vent ; Kūro dépasse de la sacoche."
       },
       {
-        "c": "Une porte cachée répond à la carte.",
-        "a": "Yasser lève la carte devant une porte cachée dont l’étoile ciselée s’allume ; Kūro sur son épaule."
-      },
-      {
         "c": "Sous la ville : une voûte pleine de serveurs.",
         "a": "Une allée de serveurs sous des arcs en fer à cheval ; Yasser de dos, Kūro sur l’épaule, marche vers un écran allumé."
-      },
-      {
-        "c": "Sur l’écran, la carte se déplie en schéma.",
-        "a": "Par-dessus l’épaule : sur le portable, la carte en schéma ; Kūro perché sur une baie, la porte de la voûte au fond."
       },
       {
         "c": "La voûte s’ouvre sur une mer de nuages. Le navire attendait.",

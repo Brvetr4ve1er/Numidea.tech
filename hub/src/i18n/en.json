@@ -742,7 +742,7 @@
     "real": {
       "k": "REALITY",
       "d": "The other worlds: tr4veler.exe, MERCURY, and VOIDSPLUNKER.std, the project that holds the character bible. Every delivered project opens their door.",
-      "go": "The Last Page, a story in twelve pictures"
+      "go": "The Last Page, a story in nine pictures"
     },
     "see": "See also",
     "bible": "The bible (in English)",
@@ -1666,7 +1666,7 @@
     },
     "kicker": "/ THE WORLD · PERSONAL PROJECTS",
     "title": "Behind the night door.",
-    "note": "Here, the founder’s own projects. Dossiers 06 and 07 are personal: a character bible and a short film. Dossier 08 gathers the design work published on Behance, client work included. Dossier 09 is a story in twelve pictures. Then posters and a workshop diary. Delivered sites and prices are on the Studio.",
+    "note": "Here, the founder’s own projects. Dossiers 06 and 07 are personal: a character bible and a short film. Dossier 08 gathers the design work published on Behance, client work included. Dossier 09 is a story in nine pictures. Then posters and a workshop diary. Delivered sites and prices are on the Studio.",
     "nav": {
       "aria": "Sections of the world",
       "codex": "Codex",
@@ -1681,8 +1681,8 @@
   "story": {
     "kicker": "FILE 09 · A STORY IN PICTURES",
     "name": "The Last Page",
-    "tag": "12 pictures · 3 acts",
-    "lead": "Twelve pictures, three acts, not a line of dialogue. Yasser, Kūro and a card that lights up.",
+    "tag": "9 pictures · 3 acts",
+    "lead": "Nine pictures, three acts, not a line of dialogue. Yasser, Kūro and a card that lights up.",
     "acts": [
       {
         "k": "ACT I",
@@ -1714,10 +1714,6 @@
         "a": "Kūro, on a box, paws a glowing card over the edge; Yasser sits out of focus behind."
       },
       {
-        "c": "The card lights up. It is a map.",
-        "a": "Over Yasser’s shoulder: the raised card glows and shows a stepped alley; Kūro looks on."
-      },
-      {
         "c": "The route is already in his glasses.",
         "a": "Extreme close-up: the staircase and a dotted route are reflected in Yasser’s round glasses."
       },
@@ -1730,16 +1726,8 @@
         "a": "Yasser speeds down an alley on the red scooter, coat flying; Kūro peers out of the satchel."
       },
       {
-        "c": "A hidden door answers the card.",
-        "a": "Yasser raises the card to a hidden door whose star lattice lights up; Kūro on his shoulder."
-      },
-      {
         "c": "Under the city: a vault full of servers.",
         "a": "An aisle of servers under horseshoe arches; Yasser from behind, Kūro on his shoulder, walks toward a lit screen."
-      },
-      {
-        "c": "On the screen, the card unfolds into a diagram.",
-        "a": "Over the shoulder: the laptop shows the card as a diagram; Kūro sits on a rack, the vault door beyond."
       },
       {
         "c": "The vault opens onto a sea of clouds. The ship was waiting.",
