@@ -12,12 +12,12 @@
 <meta name="description" content="Le comptoir de Numidea Labs : services du studio, cours et produits à prix fixe, réglés en ligne ou en dinars.">
 <link rel="canonical" href="https://www.numedialab.dev/comptoir/">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../assets/fonts.css?v=202611261943">
-<link rel="stylesheet" href="../hub/fonts/fonts.css?v=202611261943">
-<link rel="stylesheet" href="../hub/fonts/hud.css?v=202611261943">
-<link rel="stylesheet" href="comptoir.css?v=202611261943">
-<script src="../assets/carry.js?v=202611261943" defer></script>
-<script src="comptoir.js?v=202611261943" defer></script>
+<link rel="stylesheet" href="../assets/fonts.css?v=202611270023">
+<link rel="stylesheet" href="../hub/fonts/fonts.css?v=202611270023">
+<link rel="stylesheet" href="../hub/fonts/hud.css?v=202611270023">
+<link rel="stylesheet" href="comptoir.css?v=202611270023">
+<script src="../assets/carry.js?v=202611270023" defer></script>
+<script src="comptoir.js?v=202611270023" defer></script>
 </head>
 <body>
 <a class="c-skip" href="#c-h-board" data-t="skip">Aller aux articles</a>
@@ -64,12 +64,8 @@
         <span class="c-due c-num" id="c-due"></span>
       </div>
 
-      <fieldset class="c-field" id="c-route-f" hidden>
-        <legend class="c-label c-label--dim" data-t="route">Comment régler</legend>
-        <div class="c-chips" id="c-route"></div>
-      </fieldset>
       <fieldset class="c-field" id="c-cur-f" hidden>
-        <legend class="c-label c-label--dim" data-t="cur">Devise</legend>
+        <legend class="c-label c-label--dim" data-t="cur">Devise PayPal</legend>
         <div class="c-chips" id="c-cur"></div>
       </fieldset>
       <fieldset class="c-field" id="c-part-f" hidden>
@@ -77,24 +73,16 @@
         <div class="c-chips" id="c-part"></div>
       </fieldset>
 
-      <!-- every route ends on an order reference: the owner matches a payment to the bag by it -->
       <div class="c-act" id="c-act" hidden>
-        <p class="c-order"><span class="c-label c-label--dim" data-t="order">Bon de commande</span> <span class="c-num" id="c-ref"></span></p>
-        <ol class="c-steps" id="c-steps"></ol>
         <button type="button" class="c-btn" id="c-pay">
           <span class="c-btn__seal" aria-hidden="true">夜</span>
           <span class="c-btn__t" id="c-pay-t">Payer avec PayPal</span>
         </button>
-        <a class="c-btn" id="c-pp" href="#" rel="noopener" hidden>
-          <span class="c-btn__seal" aria-hidden="true">夜</span>
-          <span class="c-btn__t" id="c-pp-t">Payer sur PayPal</span>
-        </a>
         <a class="c-btn c-btn--alt" id="c-wa" href="https://wa.me/213672412578" rel="noopener">
-          <span class="c-btn__seal c-btn__seal--alt" aria-hidden="true">WA</span>
-          <span class="c-btn__t" data-t="waGo">Envoyer le bon sur WhatsApp</span>
+          <span class="c-btn__seal c-btn__seal--alt" aria-hidden="true">DA</span>
+          <span class="c-btn__t" data-t="waDA">Payer en dinars · WhatsApp</span>
         </a>
-        <button type="button" class="c-mini" id="c-copy" data-t="copy">Copier le bon</button>
-        <p class="c-fine" id="c-fine"></p>
+        <p class="c-fine" id="c-fine" data-t="fine">Carte bancaire ou compte PayPal. Vous validez chez PayPal ; nous ne voyons jamais vos données de carte. En dinars : CCP ou BaridiMob, le reçu part sur WhatsApp.</p>
       </div>
     </aside>
   </div>
