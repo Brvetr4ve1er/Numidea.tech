@@ -14,7 +14,21 @@
       bag: 'Ton sac', empty: 'Ton sac est vide. Ajoute une carte pour commencer.', total: 'Total',
       lvl: (n) => `Encore ${n} pour débloquer l’acompte 40\u00a0%`, lvlMax: 'Acompte 40\u00a0% débloqué',
       combo: 'Combo départ', hint: (x, off) => `Ajoute « ${x} » : combo débloqué, −${off}.`,
-      cur: 'Devise PayPal', part: 'Régler', full: 'Tout régler', deposit: 'Acompte 40\u00a0%',
+      route: 'Comment régler', routes: { paypal: 'PayPal · carte', ccp: 'CCP · BaridiMob', wire: 'Virement € / $' },
+      order: 'Bon de commande', waGo: 'Envoyer le bon sur WhatsApp', copy: 'Copier le bon', copied: 'Bon copié ✓',
+      ppGo: (a) => `Payer ${a} sur PayPal`,
+      steps: {
+        ccp: (a) => ['Envoie le bon sur WhatsApp.', 'Kūro répond avec le RIP CCP et le numéro BaridiMob.', `Paie ${a} et renvoie la photo du reçu : le travail démarre.`],
+        wire: (a) => ['Envoie le bon sur WhatsApp.', 'Kūro répond avec les coordonnées bancaires (IBAN, SWIFT) et la facture.', `Vire ${a} : le travail démarre à réception.`],
+        link: (a) => [`Paie ${a} sur PayPal : le montant est déjà rempli.`, 'Envoie le bon sur WhatsApp pour relier le paiement à ta commande.'],
+      },
+      fineR: {
+        ccp: 'En dinars, sans conversion : le prix de la carte, tel quel.',
+        wire: 'Depuis l’étranger. Montant converti au taux du site : 1 € = 152 DA, 1 $ = 136 DA.',
+        link: 'Carte bancaire ou compte PayPal. Tu paies chez PayPal ; nous ne voyons jamais tes données de carte.',
+      },
+      waOrder: (ref, lines, tot, due, route) => `Salam ! Commande ${ref} au comptoir :\n${lines}\nTotal : ${tot}\n${due}\nRèglement : ${route}`,
+      cur: 'Devise', part: 'Régler', full: 'Tout régler', deposit: 'Acompte 40\u00a0%',
       due: (a, p) => (p === 'deposit' ? `Acompte aujourd’hui : ${a}` : `À régler : ${a}`),
       pay: 'Payer avec PayPal', payX: (a) => `Payer ${a} avec PayPal`, busy: 'Ouverture de PayPal…',
       waDA: 'Payer en dinars · WhatsApp', see: 'Voir le sac',
@@ -42,7 +56,21 @@
       bag: 'Your bag', empty: 'Your bag is empty. Add a card to start.', total: 'Total',
       lvl: (n) => `${n} more to unlock the 40% deposit`, lvlMax: '40% deposit unlocked',
       combo: 'Starter combo', hint: (x, off) => `Add “${x}”: combo unlocked, −${off}.`,
-      cur: 'PayPal currency', part: 'Pay', full: 'Pay in full', deposit: '40% deposit',
+      route: 'How to pay', routes: { paypal: 'PayPal · card', ccp: 'CCP · BaridiMob (DZD)', wire: 'Bank transfer € / $' },
+      order: 'Order ref', waGo: 'Send the order on WhatsApp', copy: 'Copy the order', copied: 'Order copied ✓',
+      ppGo: (a) => `Pay ${a} on PayPal`,
+      steps: {
+        ccp: (a) => ['Send the order on WhatsApp.', 'Kūro replies with the CCP account and the BaridiMob number.', `Pay ${a} and send back a photo of the receipt: work starts.`],
+        wire: (a) => ['Send the order on WhatsApp.', 'Kūro replies with the bank details (IBAN, SWIFT) and the invoice.', `Transfer ${a}: work starts when it lands.`],
+        link: (a) => [`Pay ${a} on PayPal: the amount is already filled in.`, 'Send the order on WhatsApp so we can match the payment to it.'],
+      },
+      fineR: {
+        ccp: 'In dinars, no conversion: the carte price as it stands.',
+        wire: 'From abroad. Converted at the site’s rate: €1 = 152 DA, $1 = 136 DA.',
+        link: 'Card or PayPal account. You pay on PayPal; we never see your card details.',
+      },
+      waOrder: (ref, lines, tot, due, route) => `Hello! Order ${ref} from the counter:\n${lines}\nTotal: ${tot}\n${due}\nPaying by: ${route}`,
+      cur: 'Currency', part: 'Pay', full: 'Pay in full', deposit: '40% deposit',
       due: (a, p) => (p === 'deposit' ? `Deposit today: ${a}` : `To pay: ${a}`),
       pay: 'Pay with PayPal', payX: (a) => `Pay ${a} with PayPal`, busy: 'Opening PayPal…',
       waDA: 'Pay in dinars · WhatsApp', see: 'See the bag',
@@ -70,7 +98,21 @@
       bag: 'حقيبتك', empty: 'حقيبتك فارغة. أضف بطاقة للبدء.', total: 'المجموع',
       lvl: (n) => `بقي ⁦${n}⁩ لفتح العربون ⁦40\u00a0%⁩`, lvlMax: 'العربون ⁦40\u00a0%⁩ متاح',
       combo: 'كومبو الانطلاق', hint: (x, off) => `أضف «${x}»: يُفتح الكومبو، ⁦−${off}⁩.`,
-      cur: 'عملة PayPal', part: 'الدفع', full: 'الدفع الكامل', deposit: 'عربون ⁦40\u00a0%⁩',
+      route: 'طريقة الدفع', routes: { paypal: 'PayPal · بطاقة', ccp: 'CCP · بريدي موب', wire: 'تحويل بنكي € / $' },
+      order: 'رقم الطلب', waGo: 'أرسل الطلب عبر واتساب', copy: 'انسخ الطلب', copied: 'نُسخ الطلب ✓',
+      ppGo: (a) => `ادفع \u2066${a}\u2069 على PayPal`,
+      steps: {
+        ccp: (a) => ['أرسل الطلب عبر واتساب.', 'يردّ كورو برقم حساب CCP ورقم بريدي موب.', `ادفع \u2066${a}\u2069 وأرسل صورة الوصل: يبدأ العمل.`],
+        wire: (a) => ['أرسل الطلب عبر واتساب.', 'يردّ كورو بالبيانات البنكية (IBAN، SWIFT) والفاتورة.', `حوّل \u2066${a}\u2069: يبدأ العمل عند الاستلام.`],
+        link: (a) => [`ادفع \u2066${a}\u2069 على PayPal: المبلغ مُعبّأ مسبقًا.`, 'أرسل الطلب عبر واتساب لنربط الدفع بطلبك.'],
+      },
+      fineR: {
+        ccp: 'بالدينار، دون تحويل: سعر القائمة كما هو.',
+        wire: 'من الخارج. المبلغ محوَّل بسعر الموقع: \u20661 € = 152 DA، 1 $ = 136 DA\u2069.',
+        link: 'بطاقة بنكية أو حساب PayPal. تدفع لدى PayPal، ولا نرى بيانات بطاقتك أبدًا.',
+      },
+      waOrder: (ref, lines, tot, due, route) => `السلام عليكم! الطلب ${ref} من الكونتوار:\n${lines}\nالمجموع: ${tot}\n${due}\nطريقة الدفع: ${route}`,
+      cur: 'العملة', part: 'الدفع', full: 'الدفع الكامل', deposit: 'عربون ⁦40\u00a0%⁩',
       due: (a, p) => (p === 'deposit' ? `العربون اليوم: ⁦${a}⁩` : `المبلغ المستحق: ⁦${a}⁩`),
       pay: 'ادفع عبر PayPal', payX: (a) => `ادفع ⁦${a}⁩ عبر PayPal`, busy: 'جارٍ فتح PayPal…',
       waDA: 'ادفع بالدينار · واتساب', see: 'الحقيبة',
@@ -175,13 +217,17 @@
   function draw(cat, s) {
     const items = cat.items, byId = Object.fromEntries(items.map((i) => [i.id, i]));
     const bag = new Map();
-    let tab = 'all', cur = lang === 'en' ? 'USD' : 'EUR', part = 'full', lastTotal = 0, hadCombo = false, hadLvl = false;
+    let tab = 'all', cur = lang === 'en' ? 'USD' : 'EUR', part = 'full', lastTotal = 0, hadCombo = false, hadLvl = false, route = null, ref = null;
     try {
       const saved = JSON.parse(sessionStorage.getItem('comptoir-bag') || 'null');
       if (saved && Array.isArray(saved.bag)) saved.bag.forEach(([id, n]) => { if (byId[id] && Number.isInteger(n) && n >= 1 && n <= byId[id].max) bag.set(id, n); });
       if (saved && cat.fx[saved.cur]) cur = saved.cur;
+      if (saved && /^N-\d{8}-[A-Z0-9]{4}$/.test(saved.ref || '')) ref = saved.ref;
     } catch { /* storage may be off */ }
 
+    // a deep link from a carte card (?add=logo-ess): that card lands in the bag, its aisle open
+    const add = byId[q.get('add')];
+    if (add) { if (!bag.has(add.id)) bag.set(add.id, 1); tab = add.cat; }
     const name = (i) => i.n[lang] || i.n.fr;
     const rarity = (da) => (da > 50000 ? 'epic' : da > 15000 ? 'rare' : 'common');
     const fxOf = (da, c) => Math.max(1, Math.round(da / cat.fx[c]));
@@ -268,6 +314,17 @@
       return { lines, combos, total, p, dueDA, due: fxOf(dueDA, cur), canDeposit };
     }
 
+    // the order as the owner reads it on WhatsApp (and as the copy button gives it)
+    const order = (k, dueTxt) => t.waOrder(ref,
+      k.lines.map((l) => `• ${name(byId[l.id])}${l.n > 1 ? ` ×${l.n}` : ''}: ${fmtDA(l.da)}`)
+        .concat(k.combos.map((c) => `★ ${c.n[lang] || t.combo}: −${fmtDA(c.off)}`)).join('\n'),
+      fmtDA(k.total), t.due(dueTxt, k.p), t.routes[route]).replace(/[\u2066-\u2069]/g, '');   // a chat app shows bidi marks as boxes
+    function newRef() {
+      const d = new Date(), pad = (n) => String(n).padStart(2, '0'), A = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      const r = crypto.getRandomValues(new Uint8Array(4));
+      return `N-${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${[...r].map((x) => A[x % A.length]).join('')}`;
+    }
+
     const chips = (box, list, val, pick) => {
       box.textContent = '';
       list.forEach(([id, label]) => {
@@ -281,13 +338,13 @@
 
     function paintBag() {
       const k = quote(), count = [...bag.values()].reduce((s, n) => s + n, 0);
-      try { sessionStorage.setItem('comptoir-bag', JSON.stringify({ bag: [...bag], cur })); } catch { /* storage may be off */ }
+      try { sessionStorage.setItem('comptoir-bag', JSON.stringify({ bag: [...bag], cur, ref })); } catch { /* storage may be off */ }
       $('c-count').textContent = String(count);
       $('c-empty').hidden = !!bag.size;
-      $('c-tot').hidden = $('c-cur-f').hidden = !bag.size;
-      $('c-act').hidden = !bag.size || !ready;
-      $('c-wa').hidden = !bag.size;
-      if (bag.size && !ready) { $('c-act').hidden = false; $('c-pay').hidden = true; } else $('c-pay').hidden = false;
+      // one reference per bag: made when the first card lands, dropped when the bag empties
+      if (bag.size && !ref) ref = newRef();
+      if (!bag.size) ref = null;
+      $('c-tot').hidden = $('c-route-f').hidden = $('c-act').hidden = !bag.size;
 
       // receipt lines
       const sum = $('c-sum');
@@ -328,31 +385,47 @@
         big.classList.remove('is-roll'); void big.offsetWidth; big.classList.add('is-roll');
       } else big.textContent = fmtDA(k.total);
       lastTotal = k.total;
-      $('c-due').textContent = t.due(fmtCur(k.due, cur), k.p);
+      const dueTxt = route === 'ccp' ? fmtDA(k.dueDA) : fmtCur(k.due, cur);
+      $('c-due').textContent = t.due(dueTxt, k.p);
 
+      chips($('c-route'), routes.map((r) => [r, t.routes[r]]), route, (r) => { route = r; track(`route-${r}`); });
+      $('c-cur-f').hidden = !bag.size || route === 'ccp';
       chips($('c-cur'), [['EUR', 'EUR €'], ['USD', 'USD $']], cur, (c) => { cur = c; track(`cur-${c}`); });
       $('c-part-f').hidden = !k.canDeposit;
       if (k.canDeposit) chips($('c-part'), [['full', t.full], ['deposit', t.deposit]], k.p, (p) => { part = p; track(`part-${p}`); });
 
-      $('c-pay-t').textContent = t.payX(fmtCur(k.due, cur));
-      const lines = k.lines.map((l) => `• ${name(byId[l.id])}${l.n > 1 ? ` ×${l.n}` : ''}: ${fmtDA(l.da)}`)
-        .concat(k.combos.map((c) => `★ ${c.n[lang] || t.combo}: −${fmtDA(c.off)}`)).join('\n');
-      $('c-wa').href = `${WA}?text=${encodeURIComponent(t.waMsg(lines, fmtDA(k.total)))}`;
+      // the route: the API checkout, a prefilled PayPal.me link, or an order sent on WhatsApp (CCP, transfer)
+      const api = route === 'paypal' && ready, link = route === 'paypal' && !ready && s.paylink;
+      $('c-ref').textContent = ref || '';
+      $('c-pay').hidden = !api;
+      $('c-pp').hidden = !link;
+      $('c-pay-t').textContent = t.payX(dueTxt);
+      if (link) { $('c-pp').href = `${s.paylink}/${k.due}${cur}`; $('c-pp-t').textContent = t.ppGo(dueTxt); }
+      const steps = $('c-steps');
+      steps.textContent = '';
+      (api ? [] : t.steps[link ? 'link' : route](dueTxt)).forEach((x) => steps.append(el('li', '', x)));
+      steps.hidden = api;
+      $('c-fine').textContent = api ? `${t.fine}${s.env === 'sandbox' ? ` ${t.sandbox}` : ''}` : t.fineR[link ? 'link' : route];
+      $('c-wa').href = `${WA}?text=${encodeURIComponent(order(k, dueTxt))}`;
+      $('c-wa').classList.toggle('c-btn--alt', api || !!link);
 
       $('c-dock').hidden = !bag.size;
       $('c-dock-n').textContent = String(count);
       $('c-dock-t').textContent = fmtDA(k.total);
     }
 
-    let ready = !!s.ready;
-    if (!ready) msg(t.offline, true);
-    else if (s.env === 'sandbox') $('c-fine').textContent = `${t.fine} ${t.sandbox}`;
+    // PayPal is a route only when it can take the money (the API, or the owner's PayPal.me link);
+    // CCP and a bank transfer always are, closed by hand on WhatsApp
+    const ready = !!s.ready;
+    const routes = [...(ready || s.paylink ? ['paypal'] : []), 'ccp', 'wire'];
+    route = routes.includes('paypal') ? 'paypal' : lang === 'en' ? 'wire' : 'ccp';
     if (q.has('cancel')) { msg(t.cancel); track('cancel'); }
 
     $('c-shop').hidden = false;
     paintTabs(); paintGrid(); paintBag();
     hadCombo = !!quote().combos.length; hadLvl = quote().canDeposit;
     track('view');
+    if (add) { say(t.sayAdd); track(`deeplink-${add.id}`); }
 
     const btn = $('c-pay');
     btn.addEventListener('click', () => {
@@ -361,7 +434,16 @@
       track(`click-${k.p}`);
       checkout(btn, { op: 'create', mode: 'cart', lang, cur, part: k.p, bag: k.lines.map((l) => ({ id: l.id, qty: l.n })) }, t.payX(fmtCur(k.due, cur)));
     });
-    $('c-wa').addEventListener('click', () => track('wa-da'));
+    $('c-wa').addEventListener('click', () => track(`wa-${route}`));
+    $('c-pp').addEventListener('click', () => track('paylink'));
+    $('c-copy').addEventListener('click', () => {
+      const k = quote(), b = $('c-copy');
+      const txt = order(k, route === 'ccp' ? fmtDA(k.dueDA) : fmtCur(k.due, cur));
+      Promise.resolve().then(() => navigator.clipboard.writeText(txt)).then(() => {
+        b.textContent = t.copied; track('copy');
+        setTimeout(() => { b.textContent = t.copy; }, 2000);
+      }).catch(() => { /* no clipboard: the WhatsApp button carries the same text */ });
+    });
   }
 
   function checkout(btn, body, label) {

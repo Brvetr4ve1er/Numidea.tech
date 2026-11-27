@@ -78,9 +78,11 @@ export default async function handler(req, res) {
   // The counter's price list comes with it, so the page and the charge read one list.
   if (req.method === 'GET') {
     const env = process.env.PAYPAL_ENV === 'live' ? 'live' : 'sandbox', catalog = publicCatalog();
-    if (!configured) return res.status(200).json({ ready: false, catalog });
-    try { await token(); return res.status(200).json({ ready: true, env, catalog }); }
-    catch { return res.status(200).json({ ready: false, env, error: 'auth', catalog }); }
+    // the owner's PayPal.me name (PAYPAL_ME, not a secret): a pay link the counter can prefill when the API is off
+    const me = process.env.PAYPAL_ME || '', paylink = /^[A-Za-z0-9]{1,20}$/.test(me) ? `https://www.paypal.com/paypalme/${me}` : null;
+    if (!configured) return res.status(200).json({ ready: false, paylink, catalog });
+    try { await token(); return res.status(200).json({ ready: true, env, paylink, catalog }); }
+    catch { return res.status(200).json({ ready: false, env, error: 'auth', paylink, catalog }); }
   }
   if (req.method !== 'POST') { res.setHeader('Allow', 'GET, POST'); return res.status(405).json({ error: 'method' }); }
   if (!allowedOrigin(req.headers.origin)) return res.status(403).json({ error: 'origin' });

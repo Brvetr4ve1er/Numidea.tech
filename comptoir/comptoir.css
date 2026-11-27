@@ -131,6 +131,15 @@ body{margin:0;min-height:100vh;background:var(--navy);color:var(--on-navy);font:
 .c-btn__seal--alt{background:var(--paper);color:var(--ink);font:900 var(--fs-small)/1 var(--f-cond)}
 .c-fine{margin:0;font-size:var(--fs-micro);line-height:1.5;color:var(--paper)}
 
+/* the order reference and the route's steps */
+.c-order{margin:0;display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:8px 10px;border:2px dashed var(--paper)}
+.c-order .c-num{font:800 var(--fs-body)/1 var(--f-mono);color:var(--amber);letter-spacing:.04em}
+.c-steps{margin:0;padding:0;list-style:none;counter-reset:s;display:grid;gap:8px}
+.c-steps li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;font-size:var(--fs-small);line-height:1.4}
+.c-steps li::before{content:counter(s);display:grid;place-items:center;width:28px;height:28px;background:var(--paper);color:var(--ink);font:900 var(--fs-small)/1 var(--f-cond);clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%)}
+.c-mini{justify-self:start;min-height:44px;padding:0 4px;border:0;background:none;color:var(--amber);font:600 var(--fs-small)/1.2 var(--f-body);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.c-mini:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+
 /* ---- a signed quote ---- */
 .c-quote{max-width:560px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:var(--shadow);padding:24px 20px;display:grid;gap:16px}
 .c-quote .c-label{color:var(--red)}
