@@ -1,0 +1,38 @@
+# TEMPORARY (removed before this PR leaves draft): runs PR 42's WebKit gate
+# on this branch to reproduce the Safari-only findings, since WebKit is not
+# available where this branch is built. Uses PR 42's scripts at a pinned SHA.
+name: WebKit (temporary)
+on:
+  push:
+    branches: [claude/project-thread-vm2rxf]
+permissions:
+  contents: read
+jobs:
+  webkit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Overlay PR 42's gate scripts
+        run: |
+          git fetch --no-tags origin 64879c1a67757ff7a4f0f52b9d9d01ff9a8882d3 || git fetch --no-tags origin pull/42/head
+          git checkout 64879c1a67757ff7a4f0f52b9d9d01ff9a8882d3 -- scripts
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          package-manager-cache: false
+      - name: Install
+        run: npm ci
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+      - name: Install WebKit
+        run: npx playwright install --with-deps webkit
+      - name: vbugs on WebKit
+        continue-on-error: true
+        run: node scripts/vbugs.mjs --webkit
+      - name: stage-check on WebKit
+        continue-on-error: true
+        run: node scripts/stage-check.mjs --webkit
