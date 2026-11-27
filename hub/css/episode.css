@@ -8,7 +8,8 @@
   --d2:167ms;--d3:250ms;--d5:420ms;
   --out:cubic-bezier(.16,1,.3,1);--snap:cubic-bezier(.34,1.56,.64,1);
   max-width:1120px;margin:0 auto 40px;padding:16px;display:grid;gap:14px;background:var(--night);color:var(--paper-2);border-radius:16px;
-  min-height:60vh;box-sizing:border-box}
+  min-height:100vh;box-sizing:border-box}   /* the stage is drawn after its data arrives: a full screen held for it keeps the foot from jumping (CLS) */
+.ep-room.is-wait .ep-hs,.ep-room.is-wait .ep-yasser{visibility:hidden}
 .ep *,.ep *::before,.ep *::after{box-sizing:border-box}
 .ep [hidden]{display:none!important}
 .ep a{color:var(--paper-2)}

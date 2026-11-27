@@ -160,10 +160,16 @@
       room.appendChild(b);
     });
     var y = el('button', 'ep-yasser'); y.type = 'button'; y.setAttribute('data-hs', 'yasser'); y.setAttribute('aria-pressed', 'false');
-    var yi = el('img', 'ep-yasser__img'); yi.alt = ''; y.appendChild(yi);
+    var yi = el('img', 'ep-yasser__img'); yi.alt = ''; yi.src = src((st.last && st.last.pose) || ep.start.pose, 'pose'); y.appendChild(yi);
     y.appendChild(el('span', 'ep-hs__name', t(hsById('yasser').name)));
     room.appendChild(y);
     stage.appendChild(room);
+    /* the objects' heights are known only once their pictures arrive: they show together then, so nothing shifts (CLS) */
+    room.classList.add('is-wait');
+    var pics = [].slice.call(room.querySelectorAll('img')).filter(function (i) { return i.getAttribute('src'); });
+    var shown = false, show = function () { if (!shown) { shown = true; room.classList.remove('is-wait'); } };
+    Promise.all(pics.map(function (i) { return i.decode ? i.decode().catch(function () {}) : null; })).then(show, show);
+    setTimeout(show, 2500);
     root.appendChild(stage);
 
     var talk = el('section', 'ep-talk');
