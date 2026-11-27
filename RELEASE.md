@@ -28,9 +28,10 @@ on billing; [section 9](#9-outage-and-fallback) says what to do meanwhile).
   Vercel serves it: the project's own address,
   <https://numidea-tech.vercel.app/>, redirects to it page for page since
   2026-11-18 (`vercel.json`; it was the canonical from 2026-11-10). A release
-  is confirmed on the canonical address. The GitHub Pages
-  mirror, <https://brvetr4ve1er.github.io/Numidea.tech/> (`PAGES_BASE`), is
-  frozen on the 25 October build by a billing lock and is never canonical.
+  is confirmed on the canonical address. The GitHub Pages address,
+  <https://brvetr4ve1er.github.io/Numidea.tech/> (`PAGES_BASE`), is not a
+  mirror since 2026-11-27: it serves a noindex page that forwards to the same
+  path on `BASE` (`scripts/pages-forward.mjs`, `pages.yml`).
   Every page except 404 names one canonical
   URL (`check.mjs` block 6). `sitemap.xml` is generated from `BASE`
   (`scripts/build-sitemap.mjs`).
@@ -39,7 +40,8 @@ on billing; [section 9](#9-outage-and-fallback) says what to do meanwhile).
   it as their remote, and that keeps working.
 - **Working branch:** `claude/numidea-labs-landing-c4jokc`. It is also the
   repository's default branch, so scheduled workflows and Dependabot run on it.
-  Every push to it deploys, once the gates pass (`.github/workflows/pages.yml`).
+  A push to it publishes nothing by itself: production is published by hand
+  from a commit that passed `npm run verify` (section 3).
 - **Vercel and Netlify** (`vercel.json`, `netlify.toml`). They stage
   the same files into `_site/` (`scripts/stage-site.mjs`). They also send HTTP
   headers that GitHub Pages cannot set.
@@ -102,8 +104,8 @@ moves ([section 3](#3-how-a-change-reaches-the-live-site), step 3).
 
 | # | After the push | Proved by |
 | --- | --- | --- |
-| 14 | The gated deploy is green | Actions → "Deploy to GitHub Pages": the `gates` job and then `deploy` (`pages.yml`). The workflow file puts the gates at about twelve minutes. A red gate leaves the live site as it was. A push that changes only `**.md`, `knowledge-base/**` or `audit/**` starts no deploy (`paths-ignore`); `check.yml` still runs on it |
-| 15 | The live pages answer, carry the new stamp, and stay within the Lighthouse budgets | Actions → "Live monitor" → Run workflow (`monitor.yml`). It also runs every six hours |
+| 14 | The nightly gates are green on the commit | Actions → Check → Run workflow on the branch (jobs `nightly` ×4, `webkit`, `links`). `pages.yml` no longer gates anything: it publishes only the Pages forward page |
+| 15 | The live pages answer, carry one stamp (the new one once published), and stay within the Lighthouse budgets | Actions → "Live monitor" → Run workflow (`monitor.yml`). It also runs every six hours |
 | 16 | The live site passes the browser audit | `AUDIT_BASE=https://www.numedialab.dev npm run audit` (`scripts/audit.mjs`; the local-only runs are skipped) |
 | 17 | The mirrors built the same commit | the Netlify and Vercel dashboards (owner); nothing in this repository watches them |
 
