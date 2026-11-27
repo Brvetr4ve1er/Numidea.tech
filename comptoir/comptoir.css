@@ -194,3 +194,4 @@ body{margin:0;min-height:100vh;background:var(--navy);color:var(--on-navy);font:
   .c-stamp{top:14px;bottom:auto;inset-inline-end:12px}
   .c-da{font-size:var(--fs-lead)}
 }
+.c-terms{color:inherit;text-decoration:underline;text-underline-offset:2px}

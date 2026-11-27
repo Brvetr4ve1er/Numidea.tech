@@ -82,3 +82,29 @@ Thread: "Add PayPal payments across the site". This file is the living plan; eac
 | - | Game reward card (the first-project −5 % code; rank and code are `discount` in hub/src/lanterne/game.json, whatever the game thread sets) | Left out | Encre buys nothing; the code stays a WhatsApp handshake, confirmed by hand. |
 | - | Book-finish commission card | Left out, candidate | Points to Tarifs today. Next candidate: the money books (argent, route) open the console on the money services. Touches the lessons, so the owner decides. |
 | - | Case pages, home menu, lessons, enquêtes, COD shop | Left out | Proof and play, not a till. |
+
+## Increment 7 (2026-11-27): no lost orders, and terms of sale
+
+**The capture gap, closed.** `api/pay.js` captured an order only when the buyer came back to the counter. A buyer who
+approved on PayPal and closed the tab left an approved, uncharged order that expired with no trace. Now:
+
+- `api/pay-hook.js` is PayPal's webhook. Every event is checked with PayPal (`verify-webhook-signature`, the certificate
+  must be on paypal.com) before anything happens. On `CHECKOUT.ORDER.APPROVED` it captures the order with the same
+  `PayPal-Request-Id` (`cap-<order id>`) as the page, so PayPal charges once whichever arrives first. A failed capture
+  answers 500 so PayPal retries.
+- The order trace: one JSON line per step in the function logs (Vercel → Logs, filter `"pay"`): created, captured,
+  capture-failed, completed / denied / refunded / reversed / pending, hook-refused. Reference, amount, status and
+  PayPal's ids only; never a payer's name, e-mail or card.
+- `gate()` applies to the hook too: live keys do nothing before `PAYPAL_PROVEN=yes`.
+- Owner step (with the proof test, before PAYPAL_PROVEN): in the PayPal REST app → Webhooks, add
+  `https://www.numedialab.dev/api/pay-hook` with the events Checkout order approved, Payment capture completed, denied,
+  refunded, reversed; put the webhook id in Vercel as `PAYPAL_WEBHOOK_ID`. Without it the hook answers 503.
+- Tests: `node scripts/pay-test.mjs` (the hook block mocks PayPal: shared capture key, forged event refused, foreign
+  certificate refused, off without the id, off when live and unproven).
+
+**Terms of sale and refunds** (`comptoir/conditions/`, FR/EN/AR on one page). Drafted in `scripts/build-terms.mjs`,
+facts in `scripts/terms-data.mjs`. Same rule as the legal page: every `null` is a fact only the owner can give and
+blocks publication, and so does any gap in `scripts/legal-data.mjs` (the page repeats the seller's identity).
+`node scripts/build-terms.mjs` lists the gaps; `--preview` writes `terms-preview/` (git-ignored) with each gap marked;
+once nothing is missing it writes the page and the counter links to it under the pay buttons. The text is a draft, not
+legal advice: `reviewed` stays null until the owner (ideally a lawyer) has read it against Loi 18-05.

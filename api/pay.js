@@ -58,9 +58,9 @@ const allowedOrigin = (o) => {
   } catch { return false; }
 };
 
-const api = () => (process.env.PAYPAL_ENV === 'live' ? 'https://api-m.paypal.com' : 'https://api-m.sandbox.paypal.com');
+export const api = () => (process.env.PAYPAL_ENV === 'live' ? 'https://api-m.paypal.com' : 'https://api-m.sandbox.paypal.com');
 
-async function token() {
+export async function token() {
   const basic = Buffer.from(`${process.env.PAYPAL_CLIENT_ID}:${process.env.PAYPAL_CLIENT_SECRET}`).toString('base64');
   const r = await fetch(`${api()}/v1/oauth2/token`, {
     method: 'POST',
@@ -70,6 +70,29 @@ async function token() {
   });
   if (!r.ok) throw new Error('auth');
   return (await r.json()).access_token;
+}
+
+/* The order trace: one JSON line per step, in the function logs (Vercel → Logs, filter "pay"). Reference, amount,
+   status and PayPal's ids only; never a payer's name, e-mail or card. */
+export const trace = (step, data) => console.log(JSON.stringify({ pay: step, at: new Date().toISOString(), ...data }));
+
+/* Capture an approved order. The page (on return) and the webhook (api/pay-hook.js, when the buyer never comes back)
+   both call this with the same PayPal-Request-Id, so PayPal charges once whichever arrives first. */
+export async function capture(id, bearer, via) {
+  const r = await fetch(`${api()}/v2/checkout/orders/${id}/capture`, {
+    method: 'POST',
+    headers: { authorization: `Bearer ${bearer}`, 'content-type': 'application/json', 'PayPal-Request-Id': `cap-${id}` },
+    body: '{}',
+    signal: AbortSignal.timeout(10000),
+  });
+  const out = await r.json().catch(() => ({}));
+  // already captured (a reload of the thank-you page, or the webhook got there first) counts as paid
+  const done = out.status === 'COMPLETED' || (out.details || []).some((d) => d.issue === 'ORDER_ALREADY_CAPTURED');
+  const unit = (out.purchase_units || [])[0] || {};
+  const cap = ((unit.payments || {}).captures || [])[0] || {};
+  const res = { done, ref: unit.reference_id || null, amount: cap.amount || null, capture: cap.id || null };
+  trace(done ? 'captured' : 'capture-failed', { via, order: id, ref: res.ref, amount: res.amount, capture: res.capture, status: out.status || r.status });
+  return res;
 }
 
 const LABEL = { deposit: 'Acompte 40 %', balance: 'Solde 60 %', full: 'Paiement' };
@@ -163,22 +186,15 @@ export default async function handler(req, res) {
       const order = await r.json();
       const approve = (order.links || []).find((l) => l.rel === 'payer-action' || l.rel === 'approve');
       if (!approve) return res.status(502).json({ error: 'shape' });
+      trace('created', { order: order.id, ref: unit.reference_id, custom: unit.custom_id, amount: unit.amount });
       return res.status(200).json({ approve: approve.href, ref: unit.reference_id });
     }
 
     if (body.op === 'capture') {
       if (typeof body.token !== 'string' || !/^[A-Z0-9]{10,24}$/.test(body.token)) return res.status(400).json({ error: 'token' });
-      const r = await fetch(`${api()}/v2/checkout/orders/${body.token}/capture`, {
-        method: 'POST', headers: { ...headers, 'PayPal-Request-Id': `cap-${body.token}` }, body: '{}',
-        signal: AbortSignal.timeout(10000),
-      });
-      const out = await r.json().catch(() => ({}));
-      // already captured (a reload of the thank-you page) counts as paid
-      const done = out.status === 'COMPLETED' || (out.details || []).some((d) => d.issue === 'ORDER_ALREADY_CAPTURED');
-      if (!done) return res.status(402).json({ error: 'declined' });
-      const unit = (out.purchase_units || [])[0] || {};
-      const cap = ((unit.payments || {}).captures || [])[0] || {};
-      return res.status(200).json({ paid: true, ref: unit.reference_id || null, amount: cap.amount || null });
+      const c = await capture(body.token, bearer, 'page');
+      if (!c.done) return res.status(402).json({ error: 'declined' });
+      return res.status(200).json({ paid: true, ref: c.ref, amount: c.amount });
     }
 
     return res.status(400).json({ error: 'op' });

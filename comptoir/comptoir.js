@@ -15,7 +15,7 @@
       lvl: (n) => `Encore ${n} pour débloquer l’acompte 40\u00a0%`, lvlMax: 'Acompte 40\u00a0% débloqué',
       combo: 'Combo départ', hint: (x, off) => `Ajoute « ${x} » : combo débloqué, −${off}.`,
       route: 'Comment régler', routes: { paypal: 'PayPal · carte', ccp: 'CCP · BaridiMob', wire: 'Virement € / $' },
-      order: 'Bon de commande', waGo: 'Envoyer le bon sur WhatsApp', copy: 'Copier le bon', copied: 'Bon copié ✓',
+      order: 'Bon de commande', waGo: 'Envoyer le bon sur WhatsApp', copy: 'Copier le bon', terms: 'Conditions de vente et remboursements', copied: 'Bon copié ✓',
       ppGo: (a) => `Payer ${a} sur PayPal`,
       steps: {
         ccp: (a) => ['Envoie le bon sur WhatsApp.', 'Kūro répond avec le RIP CCP et le numéro BaridiMob.', `Paie ${a} et renvoie la photo du reçu : le travail démarre.`],
@@ -57,7 +57,7 @@
       lvl: (n) => `${n} more to unlock the 40% deposit`, lvlMax: '40% deposit unlocked',
       combo: 'Starter combo', hint: (x, off) => `Add “${x}”: combo unlocked, −${off}.`,
       route: 'How to pay', routes: { paypal: 'PayPal · card', ccp: 'CCP · BaridiMob (DZD)', wire: 'Bank transfer € / $' },
-      order: 'Order ref', waGo: 'Send the order on WhatsApp', copy: 'Copy the order', copied: 'Order copied ✓',
+      order: 'Order ref', waGo: 'Send the order on WhatsApp', copy: 'Copy the order', terms: 'Terms of sale and refunds', copied: 'Order copied ✓',
       ppGo: (a) => `Pay ${a} on PayPal`,
       steps: {
         ccp: (a) => ['Send the order on WhatsApp.', 'Kūro replies with the CCP account and the BaridiMob number.', `Pay ${a} and send back a photo of the receipt: work starts.`],
@@ -99,7 +99,7 @@
       lvl: (n) => `بقي ⁦${n}⁩ لفتح العربون ⁦40\u00a0%⁩`, lvlMax: 'العربون ⁦40\u00a0%⁩ متاح',
       combo: 'كومبو الانطلاق', hint: (x, off) => `أضف «${x}»: يُفتح الكومبو، ⁦−${off}⁩.`,
       route: 'طريقة الدفع', routes: { paypal: 'PayPal · بطاقة', ccp: 'CCP · بريدي موب', wire: 'تحويل بنكي € / $' },
-      order: 'رقم الطلب', waGo: 'أرسل الطلب عبر واتساب', copy: 'انسخ الطلب', copied: 'نُسخ الطلب ✓',
+      order: 'رقم الطلب', waGo: 'أرسل الطلب عبر واتساب', copy: 'انسخ الطلب', terms: 'شروط البيع والاسترداد', copied: 'نُسخ الطلب ✓',
       ppGo: (a) => `ادفع \u2066${a}\u2069 على PayPal`,
       steps: {
         ccp: (a) => ['أرسل الطلب عبر واتساب.', 'يردّ كورو برقم حساب CCP ورقم بريدي موب.', `ادفع \u2066${a}\u2069 وأرسل صورة الوصل: يبدأ العمل.`],
@@ -145,6 +145,7 @@
   document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
   document.title = t.title;
   document.querySelectorAll('[data-t]').forEach((n) => { if (typeof t[n.dataset.t] === 'string') n.textContent = t[n.dataset.t]; });
+  const termsA = document.querySelector('.c-terms'); if (termsA) termsA.href = 'conditions/#' + lang;
   $('c-off').hidden = true;
 
   // Arabic groups thousands with a space like the Studio's carte (70 000 دج), not ar-DZ's dot, which reads as a decimal
