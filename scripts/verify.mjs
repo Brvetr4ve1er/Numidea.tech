@@ -44,12 +44,20 @@ const STEPS = [
   ['design', ['scripts/design-check.mjs']],
   ['stage', ['scripts/stage-check.mjs']],
 ];
+/* A gate that stops answering (a browser call that never returns: seen once
+   in design, 2026-11-27, which passes in about 2 minutes on its own) fails
+   here after VERIFY_GATE_MIN minutes (default 30; each gate takes 17 at
+   most) instead of holding the whole run: the summary names it, and the
+   gates after it still run. */
+const LIMIT = Math.max(1, Number(process.env.VERIFY_GATE_MIN) || 30) * 60000;
 const results = [];
 for (const [name, args] of STEPS) {
   console.log(`\n━━━ ${name} ━━━`);
   const t = Date.now();
-  const r = spawnSync(process.execPath, args, { cwd: ROOT, stdio: 'inherit' });
-  results.push([name, r.status === 0, ((Date.now() - t) / 1000).toFixed(0) + 's']);
+  const r = spawnSync(process.execPath, args, { cwd: ROOT, stdio: 'inherit', timeout: LIMIT, killSignal: 'SIGKILL' });
+  const out = r.error && r.error.code === 'ETIMEDOUT';
+  if (out) console.log(`✗ ${name} gave no verdict in ${LIMIT / 60000} min: stopped (VERIFY_GATE_MIN raises the limit)`);
+  results.push([name, r.status === 0, ((Date.now() - t) / 1000).toFixed(0) + 's' + (out ? ' (stopped: no verdict)' : '')]);
 }
 console.log('\n━━━ summary ━━━');
 for (const [n, okk, s] of results) console.log(`${okk ? '✓' : '✗'} ${n.padEnd(9)} ${s}`);

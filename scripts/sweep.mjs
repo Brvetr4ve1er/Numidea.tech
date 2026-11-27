@@ -53,6 +53,7 @@ import {join} from 'node:path';
 import {serve,launch} from './lib/serve.mjs';
 import {loopState} from './lib/loop-state.mjs';
 import {ROOT,THEMES,LANTERNE_PAGES} from './site.mjs';
+import {pool,jobs} from './lib/pool.mjs';
 const srv=await serve();
 const B=srv.base;
 
@@ -101,8 +102,11 @@ for(const [pname,path,lang,w,h] of [['hub','/hub/index.html','fr',1280,900],['hu
   ['hub-fabrique','/hub/fabrique.html','fr',1280,900],['hub-fabrique@280','/hub/fabrique.html','fr',280,653],['hub-fabrique-ar@390','/hub/fabrique.html','ar',390,844],
   ['hub@280','/hub/index.html','fr',280,653],['hub@390','/hub/index.html','fr',390,844],['hub-ar@390','/hub/index.html','ar',390,844],['hub-bible@390','/hub/bible/index.html','en',390,844]])
   RUNS.push({theme:'arcanum',pname,path,lang,w,h});
+// the runs go SWEEP_JOBS at a time (lib/pool.mjs; 1 = one after the other),
+// each in its own page; the report below is sorted, so their order does not show
+const P=pool(jobs('SWEEP_JOBS'));
 for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)continue;
-  {
+  P.q(async()=>{
    // reduced motion: every picture is drawn at once, never held at opacity 0
    const p=await br.newPage({viewport:{width:w,height:h},isMobile:w<600,hasTouch:w<600,reducedMotion:'reduce'});
    await p.addInitScript(([t,l,init])=>{try{localStorage.setItem('numidea-theme',t);localStorage.setItem('numidea-lang',l);for(const k in init)localStorage.setItem(k,init[k])}catch(e){}},[theme,lang,init]);
@@ -243,8 +247,9 @@ for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)co
      }
    }
    await p.close();
-  }
+  });
 }
+await P.drain();
 await br.close();
 
 // summarise
@@ -257,7 +262,8 @@ for(const k of Object.keys(by).sort()){
   for(const r of rs.sort((a,b)=>a.med-b.med).slice(0,14))
     console.log(`   ${String(r.med).padStart(5)}:1 (need ${r.need})  ${r.where.padEnd(12)} ${r.sel.padEnd(30)} "${r.text}"`);
 }
-const total=report.filter(r=>!r.note).length;
+const total=report.filter(r=>!r.note).length+P.crashed();
+if(P.crashed())console.log(`\n${P.crashed()} run(s) crashed (counted as failures)`);
 if(loopBad.length){console.log('\nloops not on their stills with reduced motion:');for(const l of loopBad)console.log('   '+l)}
 console.log('\nTOTAL real failures:',total+loopBad.length);
 srv.close();
