@@ -371,6 +371,13 @@
       <li><figure class="kcard"><div class="pic"><img src="art/kuro-mug.webp" width="240" height="192" alt="Mug" loading="lazy" decoding="async"></div><figcaption>Mug<span>Sting · dawn</span></figcaption></figure></li>
     </ul>
   </div>
+  <!-- Ku&#x304;ro's model sheet (2026-11-27, from the owner's story book): the one place he is
+       shown from the side and the back, as section 02 shows Yasser. The view names are
+       text under the drawing, in its order. -->
+  <figure class="kuro-turn">
+    <img src="art/kuro-turn-1200.webp" srcset="art/kuro-turn-640.webp 640w, art/kuro-turn-1200.webp 1200w" sizes="(min-width:1280px) 1200px, 92vw" width="1200" height="405" alt="Ku&#x304;ro from five sides: front, three-quarter, profile, three-quarter back, back. Jet black, amber eyes, red collar with a small red tag." loading="lazy" decoding="async">
+    <figcaption><span>Front</span><span>3/4</span><span>Profile</span><span>3/4 back</span><span>Back</span></figcaption>
+  </figure>
 </section>
 
 <!-- ============================= 06 · HOW HE TALKS =============================
@@ -538,11 +545,11 @@
         <div class="sp-in sp-in--top" aria-hidden="true"><span class="t-lab">Ku&#x304;ro · the paw</span><p class="t-h t-h--ink t-h--s">Never<br>speaks.<br>Reacts.</p></div>
       </div><figcaption><span class="cap-k">07 · The paw</span>His rule from section 05 as the headline. He sits low on the floor line, to the right.</figcaption></figure>
 
-      <figure class="pf"><div class="sp sp--cream" role="img" aria-label="Post 8, process, on cream. Two drawings of Yasser pushing his glasses up with one finger: a small pixel silhouette labelled 24 pixels, then the finished drawing, with an arrow between them. Marker line: readable at 24 px or it's not him.">
+      <figure class="pf"><div class="sp sp--cream" role="img" aria-label="Post 8, process, on cream. Two drawings of Yasser pushing his glasses up with one finger: the drawing filled in ink, labelled ink, then the finished drawing, with an arrow between them. Marker line: readable at 24 px or it's not him.">
         <div class="sp-in" aria-hidden="true">
           <div class="p2-head"><span class="t-lab">Process</span><span class="t-lab t-lab--r">silhouette → final</span></div>
           <div class="p8-pair">
-            <div class="p8-a"><img src="art/sil-5.webp" width="258" height="716" alt="" loading="lazy" decoding="async"><b>01 · 24 px</b></div>
+            <div class="p8-a"><img src="art/rig-y-glasses.webp" width="501" height="565" alt="" loading="lazy" decoding="async"><b>01 · ink</b></div>
             <span class="p8-arrow">→</span>
             <div class="p8-b"><img src="art/rig-y-glasses.webp" width="501" height="565" alt="" loading="lazy" decoding="async"><b>02 · final</b></div>
           </div>
@@ -567,7 +574,7 @@
         </div>
       </div><figcaption><span class="cap-k">10 · Cover</span>The first slide of a day-in-the-void carousel, built on section 07&rsquo;s beats. Slides two onward are not drawn.</figcaption></figure>
 
-      <figure class="pf"><div class="sp sp--paper sp--dash" role="img" aria-label="Post 11, a sticker drop, marked maquette, on paper. A sheet of six die-cut stickers: Ku&#x304;ro with his paw up, Ku&#x304;ro with the stamp, Ku&#x304;ro in the mug, Ku&#x304;ro loving, Yasser laughing, Yasser lost with his map. A dashed stamp reads Maquette. The link reads wa.me/213672412578.">
+      <figure class="pf"><div class="sp sp--paper sp--dash" role="img" aria-label="Post 11, a sticker drop, marked maquette, on paper. A sheet of six die-cut stickers: Ku&#x304;ro with his paw up, Ku&#x304;ro with the stamp, Ku&#x304;ro in the mug, Ku&#x304;ro loving, Yasser laughing, Yasser shrugging. A dashed stamp reads Maquette. The link reads wa.me/213672412578.">
         <div class="sp-in" aria-hidden="true">
           <div class="p2-head"><span class="t-lab">Sticker drop</span><span class="stamp">Maquette</span></div>
           <ul class="p11-sheet">
@@ -576,7 +583,7 @@
             <li><img src="art/kuro-mug.webp" width="240" height="192" alt="" loading="lazy" decoding="async"></li>
             <li><img src="art/kuro-love.webp" width="240" height="242" alt="" loading="lazy" decoding="async"></li>
             <li><img src="art/face-laugh.webp" width="427" height="354" alt="" loading="lazy" decoding="async"></li>
-            <li><img src="art/yasser-lost-still.webp" width="480" height="442" alt="" loading="lazy" decoding="async"></li>
+            <li><img src="art/pose-shrug.webp" width="560" height="422" alt="" loading="lazy" decoding="async"></li>
           </ul>
           <span class="at ph--b">wa.me/213672412578</span>
         </div>
@@ -762,13 +769,11 @@
       <h3 class="else-h">One person. Every world.</h3>
       <p class="else-sub">Design, code, and everything between.</p>
     </div>
-    <!-- Yasser lost, once: the still is the src; app.js swaps in the animation
-         (one play, 4 s) when half of it is on screen, and it settles on the
-         frame it began from. With reduced motion the still stays. -->
-    <picture class="loop loop--lost">
-      <source media="(prefers-reduced-motion: reduce)" srcset="art/yasser-lost-still.webp">
-      <img src="art/yasser-lost-still.webp" data-anim="art/yasser-lost.webp" width="480" height="442" alt="" loading="lazy" decoding="async">
-    </picture>
+    <!-- The heading, drawn (2026-11-27, from the owner's story book; it replaces the
+         off-model "lost" sticker and its animation). A still: nothing here moves. -->
+    <figure class="else-fig">
+      <img src="art/every-world-720.webp" srcset="art/every-world-480.webp 480w, art/every-world-720.webp 720w" sizes="240px" width="720" height="1128" alt="Yasser sits and draws a staircase of light with a red pen; it climbs toward a ship in the night sky. Ku&#x304;ro sits on his shoulder. Three small sketches lie in front of him: a staircase, a ship, a cockpit." loading="lazy" decoding="async">
+    </figure>
   </div>
 
   <div class="groups">

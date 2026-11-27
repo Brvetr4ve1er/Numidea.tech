@@ -12039,3 +12039,84 @@ What the review of wave 3 changed, and what it leaves with you.
   الطلب … » (French: « … prix par personne à l’appui, ou sur demande … »)
 - `atelier.kicker` (markup only: the coordinates in a left-to-right `<bdi>`, so
   they no longer read « N 4°46′E′04°36 ») « برج بوعريريج · 36°04′N 4°46′E »
+
+## The world page, dossier 09: « La dernière page » (2026-11-27)
+
+Your story book is on the world page, whole and in its own order: twelve
+pictures in three acts, after dossier 08 (Behance) and before the Lab
+(`hub/monde.html#histoire`; source `hub/src/monde.html`, words in
+`hub/src/i18n`, keys `story.*`). A wide picture opens each act (01, 06, 09)
+and one closes the story (12); the others sit two to a row. Nothing moves.
+The world page's bar and menu have a new link (« L’histoire », 09), « Trois
+couches » links to it from « La réalité », and the Studio's world door lists
+it. The codex still has eleven entries.
+
+- **The words are drafts for you to read.** The board has a logline and act
+  names, no captions. Each caption says only what its picture shows; the three
+  mood lines are your story bible's (« quiet, curious », « motion, discovery »,
+  « tension, then tenderness »). Change any of them in `hub/src/i18n/fr.json`
+  (`story.p.N.c`), then `npm run build`.
+- **English says « the workshop », not « the studio »**, for act I and
+  picture 01: on this site « the Studio » is the clients' page, and the atelier
+  is « the workshop » everywhere else. Arabic says « الورشة » for the same
+  reason (the plan's draft said « المرسم »).
+- **The city.** The captions say « la Casbah » and name no city. The site says
+  the atelier is in Bordj Bou Arréridj. Say if the story should name Algiers.
+- **What was covered in the pictures.** The arcade look-alikes are gone: the
+  sprite on the wall, the sprite on the poster and the handheld on the shelf in
+  01, the sprite on the poster in 04, the two small sprites on the racks in 09.
+  Each was covered with the wall, the shelf or the rack beside it; nothing was
+  generated. The pixel star in 04 and the pixel cat on the far screen in 09
+  stay. Say so if you want the originals back.
+- **What was cut.** 02 is cut just above the compass on the sketch (its N, E
+  and W were out of place); the pixel health bar stays whole.
+- **Left as drawn.** In 01 the lower shelf still holds a row of game cartridges
+  and a small generic console, with spine labels too small to read (about 3 px
+  as shown); 10's screen has tiny pseudo-text in the diagram; the raised hand in
+  04 reads lighter than the model under the card's glow.
+- **Weight.** 24 files in `hub/img/studio/story`, 1,107,714 bytes; every
+  picture loads only as the reader reaches it. 07 has a 960 px file, not the
+  planned 800: its row shows it 935 px wide on a desktop.
+
+**Arabic for native review** (AR: native review, all new on 2026-11-27):
+- `story.kicker` « الملف 09 · قصة مصوّرة » (French: « DOSSIER 09 · UNE HISTOIRE EN IMAGES »)
+- `story.name` « الصفحة الأخيرة » (French: « La dernière page »)
+- `story.tag` « 12 صورة · 3 فصول » (French: « 12 images · 3 actes »)
+- `story.lead` « اثنتا عشرة صورة، ثلاثة فصول، بلا حوار. ياسر وكورو وبطاقة تضيء. » (French: « Douze images, trois actes, pas un dialogue. Yasser, Kūro et une carte qui s’allume. »)
+- `story.acts.0.k` « الفصل الأول » (French: « ACTE I »)
+- `story.acts.0.t` « الورشة، ليلًا » (French: « L’atelier, la nuit »)
+- `story.acts.0.m` « هدوء وفضول. » (French: « Calme, curiosité. »)
+- `story.acts.1.k` « الفصل الثاني » (French: « ACTE II »)
+- `story.acts.1.t` « القصبة، فجرًا » (French: « La Casbah, à l’aube »)
+- `story.acts.1.m` « حركة واكتشاف. » (French: « Mouvement, découverte. »)
+- `story.acts.2.k` « الفصل الثالث » (French: « ACTE III »)
+- `story.acts.2.t` « القبو، السفينة، قمرة القيادة » (French: « La voûte, le navire, le cockpit »)
+- `story.acts.2.m` « توتّر، ثم حنان. » (French: « Tension, puis tendresse. »)
+- `story.p.0.c` « في ساعة متأخرة من الليل. بقيت صفحة واحدة. » (French: « Tard dans la nuit. Il reste une page à finir. »)
+- `story.p.0.a` « الورشة من الأعلى ليلًا: ياسر من الخلف يرسم تحت المصباح، وكورو نائم فوق العلب. » (French: « L’atelier vu d’en haut, la nuit : Yasser de dos dessine sous la lampe, Kūro dort sur les cartons. »)
+- `story.p.1.c` « الخط الأخير: سُلَّم. » (French: « Le dernier trait : un escalier. »)
+- `story.p.1.a` « يد تُنهي بالحبر رسم سُلَّم. » (French: « Une main termine à l’encre le croquis d’un escalier. »)
+- `story.p.2.c` « كورو يدفع بطاقة عن حافة العلبة. » (French: « Kūro pousse une carte hors du carton. »)
+- `story.p.2.a` « كورو فوق علبة يدفع بمخلبه بطاقة مضيئة، وياسر خلفه غير واضح. » (French: « Kūro, sur un carton, pousse de la patte une carte qui luit ; Yasser, flou, derrière. »)
+- `story.p.3.c` « البطاقة تضيء. إنها خريطة. » (French: « La carte s’allume. C’est un plan. »)
+- `story.p.3.a` « من فوق كتف ياسر: البطاقة المرفوعة تتوهج وتُظهر زقاقًا بدرج، وكورو ينظر. » (French: « Par-dessus l’épaule de Yasser : la carte levée brille, on y voit une ruelle en escalier ; Kūro regarde. »)
+- `story.p.4.c` « الطريق مرسوم في نظّارته. » (French: « Le chemin est déjà dans ses lunettes. »)
+- `story.p.4.a` « لقطة قريبة جدًا: السُّلَّم ومسار منقّط ينعكسان في نظّارة ياسر المستديرة. » (French: « Très gros plan : dans les verres ronds de Yasser se reflètent l’escalier et un tracé en pointillé. »)
+- `story.p.5.c` « عند الفجر، سُلَّم الرسم موجود فعلًا. » (French: « À l’aube, l’escalier du croquis existe. »)
+- `story.p.5.a` « القصبة عند الفجر من علٍ: ياسر صغير يحمل البطاقة وكورو على درج واسع، والبحر في الأفق. » (French: « La Casbah à l’aube, vue de très haut : Yasser, minuscule, la carte en main, et Kūro sur un large escalier ; la mer au fond. »)
+- `story.p.6.c` « على السكوتر. كورو في الحقيبة، والبطاقة تتوهّج بجانبه. » (French: « En scooter. Kūro dans la sacoche, la carte qui brille à côté de lui. »)
+- `story.p.6.a` « ياسر يندفع على السكوتر الأحمر في زقاق ومعطفه يطير، وكورو يطل من الحقيبة. » (French: « Yasser file sur le scooter rouge dans une ruelle, manteau au vent ; Kūro dépasse de la sacoche. »)
+- `story.p.7.c` « باب مخفيّ يستجيب للبطاقة. » (French: « Une porte cachée répond à la carte. »)
+- `story.p.7.a` « ياسر يرفع البطاقة أمام باب مخفي تضيء نجمته المنقوشة، وكورو على كتفه. » (French: « Yasser lève la carte devant une porte cachée dont l’étoile ciselée s’allume ; Kūro sur son épaule. »)
+- `story.p.8.c` « تحت المدينة: قبو مليء بالخوادم. » (French: « Sous la ville : une voûte pleine de serveurs. »)
+- `story.p.8.a` « ممر من الخوادم تحت أقواس حدوية؛ ياسر من الخلف وكورو على كتفه يسير نحو شاشة مضيئة. » (French: « Une allée de serveurs sous des arcs en fer à cheval ; Yasser de dos, Kūro sur l’épaule, marche vers un écran allumé. »)
+- `story.p.9.c` « على الشاشة، تنفتح البطاقة مخططًا. » (French: « Sur l’écran, la carte se déplie en schéma. »)
+- `story.p.9.a` « من فوق الكتف: الحاسوب يعرض البطاقة مخططًا؛ كورو جالس فوق خزانة خوادم وباب القبو في الخلف. » (French: « Par-dessus l’épaule : sur le portable, la carte en schéma ; Kūro perché sur une baie, la porte de la voûte au fond. »)
+- `story.p.10.c` « القبو ينفتح على بحر من الغيوم. السفينة كانت تنتظر. » (French: « La voûte s’ouvre sur une mer de nuages. Le navire attendait. »)
+- `story.p.10.a` « على مقدمة سفينة يرفع ياسر البطاقة؛ عبر القوس بحر من غيوم الغروب، وكورو على الحاجز. » (French: « À la proue d’un navire, Yasser lève la carte ; par l’arche de brique, une mer de nuages au couchant ; Kūro sur le bastingage. »)
+- `story.p.11.c` « كان الرسم هو المفتاح. وكورو نائم. » (French: « Le croquis était la clé. Kūro dort déjà. »)
+- `story.p.11.a` « في قمرة القيادة يبتسم ياسر عند المقود وكورو نائم في حجره، والرسم مثبّت على لوحة القيادة. » (French: « Dans le cockpit, Yasser sourit aux commandes, Kūro endormi sur ses genoux ; le croquis est épinglé au tableau de bord. »)
+- `world.nav.story` « القصة » (French: « L’histoire »)
+- `start.real.go` « الصفحة الأخيرة، قصة في اثنتي عشرة صورة » (French: « La dernière page, une histoire en douze images »)
+- `doors.b.story` « الصفحة الأخيرة » (French: « La dernière page »)
+- `world.note (changed: one sentence added)` « … والملف 09 قصة في اثنتي عشرة صورة. … » (French: « … Le dossier 09 est une histoire en douze images. … »)

@@ -94,12 +94,13 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
      Studio so the Studio keeps the client's path and opens lighter. Its
      head is the Studio's (hub/src/page.html, re-addressed by
      scripts/build-hub.mjs); this file is its body: a head, "start here"
-     with the codex, the personal dossiers 06 to 08, the Lab, the workshop
+     with the codex, the personal dossiers 06 to 09, the Lab, the workshop
      diary, and a way back to the Studio. Same sheet (style.css) and script
      (app.js) as the Studio; the viewer (#lightbox) is here too, for the
      posters and the diary. 06 and 07 are personal; 08 gathers the
      founder's Behance galleries, client work included (world.note says so
-     as the page's lead, 2026-11-24). The page sells nothing: its bar's
+     as the page's lead, 2026-11-24); 09 is the owner's story in twelve
+     pictures, « La dernière page » (2026-11-27). The page sells nothing: its bar's
      button is the way back to the Studio, not the Aperçu (journey-27). -->
 <header class="st-nav">
   <div class="st-wrap st-nav__in">
@@ -109,6 +110,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
       <a href="#voidsplunker" data-i18n="world.nav.bible">La bible</a>
       <a href="#mercury" dir="ltr">MERCURY</a>
       <a href="#behance" data-i18n="world.nav.design">Design</a>
+      <a href="#histoire" data-i18n="world.nav.story">L’histoire</a>
       <a href="#lab" data-i18n="world.nav.lab">Le Lab</a>
       <a href="#diary" data-i18n="world.nav.diary">Journal</a>
     </nav>
@@ -135,7 +137,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
         <h1 class="st-h2" id="monde-h" data-i18n="world.title">Derrière la porte de nuit.</h1>
       </div>
       <div class="st-mondehead__lead">
-        <p class="st-lead" data-i18n="world.note">Ici, les projets du fondateur. Les dossiers 06 et 07 sont personnels : une bible de personnages et un court-métrage. Le dossier 08 rassemble ses travaux de designer publiés sur Behance, dont des travaux pour des clients. Puis des affiches et un journal d’atelier. Les sites livrés et les prix sont au Studio.</p>
+        <p class="st-lead" data-i18n="world.note">Ici, les projets du fondateur. Les dossiers 06 et 07 sont personnels : une bible de personnages et un court-métrage. Le dossier 08 rassemble ses travaux de designer publiés sur Behance, dont des travaux pour des clients. Le dossier 09 est une histoire en douze images. Puis des affiches et un journal d’atelier. Les sites livrés et les prix sont au Studio.</p>
         <p class="st-mondehead__note" data-i18n="doors.premise">Numidea est un atelier de nuit à Bordj Bou Arréridj où un bâtisseur et son chat noir construisent votre page d’accueil avant que vous ne payiez, et où chaque projet livré ouvre une porte vers un autre monde.</p>
       </div>
     </div>
@@ -144,7 +146,8 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
 
 <!-- ============================== START HERE, THE DOSSIERS ==============================
      "Start here" (the three layers and the codex), then the personal
-     dossiers 06 to 08. On the Studio until 2026-11-18. -->
+     dossiers 06 to 08 (on the Studio until 2026-11-18) and 09, the story
+     in pictures (2026-11-27). -->
 <section class="st-sec st-world" aria-labelledby="start-h">
   <div class="st-wrap">
     <div class="st-cases">
@@ -159,7 +162,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
         <p class="st-start__p" data-i18n-aria="start.aria" aria-label="Les trois couches du monde" role="group">
           <span class="st-start__l st-start__l--day"><b data-i18n="start.day.k">LE JOUR</b> <span data-i18n="start.day.d">Yasser, Numidea Labs, les clients, la vraie ville. Ce qui paie le café.</span></span>
           <span class="st-start__l st-start__l--night"><b data-i18n="start.night.k">LA NUIT</b> <span data-i18n="start.night.d">L’atelier de deux heures du matin. Kūro en est la porte et le contrôle qualité. Rien n’en sort sans avoir été regardé.</span></span>
-          <span class="st-start__l st-start__l--real"><b data-i18n="start.real.k">LA RÉALITÉ</b> <span data-i18n="start.real.d">Les autres mondes : tr4veler.exe, MERCURY, et VOIDSPLUNKER.std, le projet qui tient la bible des personnages. Chaque projet livré en ouvre la porte.</span></span>
+          <span class="st-start__l st-start__l--real"><b data-i18n="start.real.k">LA RÉALITÉ</b> <span data-i18n="start.real.d">Les autres mondes : tr4veler.exe, MERCURY, et VOIDSPLUNKER.std, le projet qui tient la bible des personnages. Chaque projet livré en ouvre la porte.</span> <a class="st-start__story" href="#histoire"><span data-i18n="start.real.go">La dernière page, une histoire en douze images</span><span class="st-arw" aria-hidden="true">→</span></a></span>
         </p>
         <!-- W1 (2026-11-19, the owner's pick): the world's animals together on one ground line, a crop of his
              "HOME" poster with none of its drawn text; never wider than its 830 px file at 2x, not mirrored in RTL -->
@@ -234,6 +237,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
           <li><a href="./#case-traveler" dir="ltr">tr4veler.exe</a></li>
           <li><a href="#mercury" dir="ltr">MERCURY</a></li>
           <li><a href="#voidsplunker" dir="ltr">VOIDSPLUNKER.<wbr>std</a></li>
+          <li><a href="#histoire" data-i18n="story.name">La dernière page</a></li>
           <li><a href="bible/" data-i18n="start.bible">La bible (en anglais)</a></li>
         </ul>
       </aside>
@@ -445,6 +449,59 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
         </ul>
         <img class="st-be__kuro" src="img/studio/kuro-sit.webp" width="240" height="358" alt="" loading="lazy" decoding="async">
       </section>
+
+      <!-- 09 · « La dernière page » (2026-11-27): the owner's story book, whole and in its own order. Twelve
+           pictures drawn for the studio, in three acts; each act's head and each picture's caption are HTML
+           text in three languages (hub/src/i18n, story.*), never lettering in a picture, and a caption says
+           only what its picture shows. Nothing moves: every picture is still. Rows are two pictures set to
+           one height (each takes a share of the row equal to its own ratio); on a phone, one column, each
+           picture at its own ratio, the tall door (08) no taller than 70% of the screen. In Arabic the rows
+           run right to left and no picture is mirrored. Files in hub/img/studio/story, each at the width it
+           is shown and a smaller one; 02 is cut above the compass on the sketch, whose letters were out of
+           place; the arcade look-alikes on 01, 04 and 09 are covered with the wall and the racks beside them. -->
+      <section class="st-proj st-story" id="histoire" aria-labelledby="histoire-h">
+        <div class="st-proj__bar">
+          <span class="st-seal st-seal--red" aria-hidden="true" lang="ja">話</span>
+          <div class="st-proj__id">
+            <span class="st-proj__hud" data-i18n="story.kicker">DOSSIER 09 · UNE HISTOIRE EN IMAGES</span>
+            <h3 class="st-proj__name" id="histoire-h" data-i18n="story.name">La dernière page</h3>
+          </div>
+          <span class="st-case__tag st-proj__tag" data-i18n="story.tag">12 images · 3 actes</span>
+        </div>
+        <div class="st-story__in">
+          <p class="st-h3l st-proj__sub st-story__lead" data-i18n="story.lead">Douze images, trois actes, pas un dialogue. Yasser, Kūro et une carte qui s’allume.</p>
+          <section class="st-story__act" aria-labelledby="histoire-a1">
+            <header class="st-story__head"><p class="st-story__k" data-i18n="story.acts.0.k">ACTE I</p><h4 class="st-story__t" id="histoire-a1" data-i18n="story.acts.0.t">L’atelier, la nuit</h4><p class="st-story__m" data-i18n="story.acts.0.m">Calme, curiosité.</p></header>
+            <figure class="st-story__p"><img src="img/studio/story/p01-1280.webp" srcset="img/studio/story/p01-640.webp 640w, img/studio/story/p01-1280.webp 1280w" sizes="(max-width:699px) calc(100vw - 56px), (max-width:1447px) calc(100vw - 132px), 1252px" width="1280" height="714" data-i18n-alt="story.p.0.a" alt="L’atelier vu d’en haut, la nuit : Yasser de dos dessine sous la lampe, Kūro dort sur les cartons." loading="lazy" decoding="async"><figcaption><span class="st-story__n" aria-hidden="true">01</span><span data-i18n="story.p.0.c">Tard dans la nuit. Il reste une page à finir.</span></figcaption></figure>
+            <div class="st-story__row">
+              <figure class="st-story__p st-story__p--sk"><img src="img/studio/story/p02-800.webp" srcset="img/studio/story/p02-480.webp 480w, img/studio/story/p02-800.webp 800w" sizes="(max-width:699px) calc(100vw - 56px), (max-width:1447px) calc(41vw - 62px), 504px" width="800" height="650" data-i18n-alt="story.p.1.a" alt="Une main termine à l’encre le croquis d’un escalier." loading="lazy" decoding="async"><figcaption><span class="st-story__n" aria-hidden="true">02</span><span data-i18n="story.p.1.c">Le dernier trait : un escalier.</span></figcaption></figure>
+              <figure class="st-story__p"><img src="img/studio/story/p03-800.webp" srcset="img/studio/story/p03-480.webp 480w, img/studio/story/p03-800.webp 800w" sizes="(max-width:699px) calc(100vw - 56px), (max-width:1447px) calc(59vw - 88px), 728px" width="800" height="447" data-i18n-alt="story.p.2.a" alt="Kūro, sur un carton, pousse de la patte une carte qui luit ; Yasser, flou, derrière." loading="lazy" decoding="async"><figcaption><span class="st-story__n" aria-hidden="true">03</span><span data-i18n="story.p.2.c">Kūro pousse une carte hors du carton.</span></figcaption></figure>
+            </div>
+            <div class="st-story__row">
+              <figure class="st-story__p"><img src="img/studio/story/p04-800.webp" srcset="img/studio/story/p04-480.webp 480w, img/studio/story/p04-800.webp 800w" sizes="(max-width:699px) calc(100vw - 56px), (max-width:1447px) calc(64vw - 96px), 788px" width="800" height="447" data-i18n-alt="story.p.3.a" alt="Par-dessus l’épaule de Yasser : la carte levée brille, on y voit une ruelle en escalier ; Kūro regarde." loading="lazy" decoding="async"><figcaption><span class="st-story__n" aria-hidden="true">04</span><span data-i18n="story.p.3.c">La carte s’allume. C’est un plan.</span></figcaption></figure>
+              <figure class="st-story__p st-story__p--sq"><img src="img/studio/story/p05-800.webp" srcset="img/studio/story/p05-480.webp 480w, img/studio/story/p05-800.webp 800w" sizes="(max-width:699px) calc(100vw - 56px), (max-width:1447px) calc(36vw - 54px), 444px" width="800" height="800" data-i18n-alt="story.p.4.a" alt="Très gros plan : dans les verres ronds de Yasser se reflètent l’escalier et un tracé en pointillé." loading="lazy" decoding="async"><figcaption><span class="st-story__n" aria-hidden="true">05</span><span data-i18n="story.p.4.c">Le chemin est déjà dans ses lunettes.</span></figcaption></figure>
+            </div>
+          </section>
+          <section class="st-story__act" aria-labelledby="histoire-a2">
+            <header class="st-story__head"><p class="st-story__k" data-i18n="story.acts.1.k">ACTE II</p><h4 class="st-story__t" id="histoire-a2" data-i18n="story.acts.1.t">La Casbah, à l’aube</h4><p class="st-story__m" data-i18n="story.acts.1.m">Mouvement, découverte.</p></header>
+            <figure class="st-story__p"><img src="img/studio/story/p06-1280.webp" srcset="img/studio/story/p06-640.webp 640w, img/studio/story/p06-1280.webp 1280w" sizes="(max-width:699px) calc(100vw - 56px), (max-width:1447px) calc(100vw - 132px), 1252px" width="1280" height="714" data-i18n-alt="story.p.5.a" alt="La Casbah à l’aube, vue de très haut : Yasser, minuscule, la carte en main, et Kūro sur un large escalier ; la mer au fond." loading="lazy" decoding="async"><figcaption><span class="st-story__n" aria-hidden="true">06</span><span data-i18n="story.p.5.c">À l’aube, l’escalier du croquis existe.</span></figcaption></figure>
+            <div class="st-story__row">
+              <figure class="st-story__p"><img src="img/studio/story/p07-960.webp" srcset="img/studio/story/p07-480.webp 480w, img/studio/story/p07-960.webp 960w" sizes="(max-width:699px) calc(100vw - 56px), (max-width:1447px) calc(76vw - 114px), 936px" width="960" height="536" data-i18n-alt="story.p.6.a" alt="Yasser file sur le scooter rouge dans une ruelle, manteau au vent ; Kūro dépasse de la sacoche." loading="lazy" decoding="async"><figcaption><span class="st-story__n" aria-hidden="true">07</span><span data-i18n="story.p.6.c">En scooter. Kūro dans la sacoche, la carte qui brille à côté de lui.</span></figcaption></figure>
+              <figure class="st-story__p st-story__p--tall"><img src="img/studio/story/p08-540.webp" srcset="img/studio/story/p08-360.webp 360w, img/studio/story/p08-540.webp 540w" sizes="(max-width:699px) min(calc(100vw - 56px), 39vh), (max-width:1447px) calc(24vw - 36px), 296px" width="540" height="968" data-i18n-alt="story.p.7.a" alt="Yasser lève la carte devant une porte cachée dont l’étoile ciselée s’allume ; Kūro sur son épaule." loading="lazy" decoding="async"><figcaption><span class="st-story__n" aria-hidden="true">08</span><span data-i18n="story.p.7.c">Une porte cachée répond à la carte.</span></figcaption></figure>
+            </div>
+          </section>
+          <section class="st-story__act" aria-labelledby="histoire-a3">
+            <header class="st-story__head"><p class="st-story__k" data-i18n="story.acts.2.k">ACTE III</p><h4 class="st-story__t" id="histoire-a3" data-i18n="story.acts.2.t">La voûte, le navire, le cockpit</h4><p class="st-story__m" data-i18n="story.acts.2.m">Tension, puis tendresse.</p></header>
+            <figure class="st-story__p"><img src="img/studio/story/p09-1280.webp" srcset="img/studio/story/p09-640.webp 640w, img/studio/story/p09-1280.webp 1280w" sizes="(max-width:699px) calc(100vw - 56px), (max-width:1447px) calc(100vw - 132px), 1252px" width="1280" height="714" data-i18n-alt="story.p.8.a" alt="Une allée de serveurs sous des arcs en fer à cheval ; Yasser de dos, Kūro sur l’épaule, marche vers un écran allumé." loading="lazy" decoding="async"><figcaption><span class="st-story__n" aria-hidden="true">09</span><span data-i18n="story.p.8.c">Sous la ville : une voûte pleine de serveurs.</span></figcaption></figure>
+            <div class="st-story__row">
+              <figure class="st-story__p st-story__p--43"><img src="img/studio/story/p10-800.webp" srcset="img/studio/story/p10-480.webp 480w, img/studio/story/p10-800.webp 800w" sizes="(max-width:699px) calc(100vw - 56px), (max-width:1447px) calc(43vw - 64px), 530px" width="800" height="597" data-i18n-alt="story.p.9.a" alt="Par-dessus l’épaule : sur le portable, la carte en schéma ; Kūro perché sur une baie, la porte de la voûte au fond." loading="lazy" decoding="async"><figcaption><span class="st-story__n" aria-hidden="true">10</span><span data-i18n="story.p.9.c">Sur l’écran, la carte se déplie en schéma.</span></figcaption></figure>
+              <figure class="st-story__p"><img src="img/studio/story/p11-800.webp" srcset="img/studio/story/p11-480.webp 480w, img/studio/story/p11-800.webp 800w" sizes="(max-width:699px) calc(100vw - 56px), (max-width:1447px) calc(57vw - 86px), 702px" width="800" height="447" data-i18n-alt="story.p.10.a" alt="À la proue d’un navire, Yasser lève la carte ; par l’arche de brique, une mer de nuages au couchant ; Kūro sur le bastingage." loading="lazy" decoding="async"><figcaption><span class="st-story__n" aria-hidden="true">11</span><span data-i18n="story.p.10.c">La voûte s’ouvre sur une mer de nuages. Le navire attendait.</span></figcaption></figure>
+            </div>
+            <figure class="st-story__p"><img src="img/studio/story/p12-1280.webp" srcset="img/studio/story/p12-640.webp 640w, img/studio/story/p12-1280.webp 1280w" sizes="(max-width:699px) calc(100vw - 56px), (max-width:1447px) calc(100vw - 132px), 1252px" width="1280" height="714" data-i18n-alt="story.p.11.a" alt="Dans le cockpit, Yasser sourit aux commandes, Kūro endormi sur ses genoux ; un dessin du navire est épinglé au tableau de bord." loading="lazy" decoding="async"><figcaption><span class="st-story__n" aria-hidden="true">12</span><span data-i18n="story.p.11.c">Cap sur l’horizon. Kūro dort déjà.</span></figcaption></figure>
+          </section>
+          <p class="st-proj__see"><span class="st-label" data-i18n="start.see">Voir aussi</span> <a href="bible/" data-i18n="start.bible">La bible (en anglais)</a> <a href="#voidsplunker" dir="ltr">VOIDSPLUNKER.std</a> <a href="#world" data-i18n="nav.world">Le monde</a></p>
+        </div>
+      </section>
     </div>
   </div>
 </section>
@@ -628,6 +685,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
     <a href="#voidsplunker"><span class="st-menu__n" aria-hidden="true">06</span><span data-i18n="world.nav.bible">La bible</span></a>
     <a href="#mercury"><span class="st-menu__n" aria-hidden="true">07</span><span dir="ltr">MERCURY</span></a>
     <a href="#behance"><span class="st-menu__n" aria-hidden="true">08</span><span data-i18n="world.nav.design">Design</span></a>
+    <a href="#histoire"><span class="st-menu__n" aria-hidden="true">09</span><span data-i18n="world.nav.story">L’histoire</span></a>
     <a href="#lab"><span class="st-menu__n" aria-hidden="true" lang="ja">遊</span><span data-i18n="world.nav.lab">Le Lab</span></a>
     <a href="#diary"><span class="st-menu__n" aria-hidden="true" lang="ja">書</span><span data-i18n="world.nav.diary">Journal</span></a>
     <p class="st-menu__g st-menu__g--night st-label" data-i18n="nav.groupSite">Je veux un site</p>
