@@ -131,7 +131,7 @@ absent.length && bad('themes with no block in themes.css: ' + absent.join(', '))
    in the header and again in the phone menu (plan C.8): each .theme-switch
    holds exactly that button, no menu. */
 const idx = read('index.html');
-const mapOf = (src, name) => Object.fromEntries([...(new RegExp('var ' + name + ' = \\{([^}]*)\\}').exec(src) || [, ''])[1].matchAll(/(\w+):\s*'([\w-]+)'/g)].map((m) => [m[1], m[2]]));
+const mapOf = (src, name) => Object.fromEntries([...(new RegExp('var ' + name + ' = \\{([^}]*)\\}').exec(src) || [, ''])[1].matchAll(/(\w+):\s*'([\w./-]+)'/g)].map((m) => [m[1], m[2].split('/').pop()]));
 const headMaps = { 'index.html': mapOf(idx, 'HEAD'), '404.html': mapOf(read('404.html'), 'HEAD') };
 const sameSet = (a, b) => a.length === b.length && a.every((x) => b.includes(x));
 const lists = {
@@ -178,10 +178,14 @@ for (const { sel, body } of blocks) {
   const name = (/data-theme="([a-z]+)"/.exec(sel) || [])[1]; if (!name) continue;
   const v = (k) => ((new RegExp('--' + k + ':\\s*([^;]+)').exec(body) || [])[1] || '').trim();
   // Geist and Geist Mono are variable: every weight is the one file per subset
-  const face = (fam, w) => fam.includes('font-deco') ? 'cinzel-' + w + '-latin' : fam.includes('font-mono') ? 'geist-mono-latin' : 'geist-latin';
+  const face = (fam, w) => fam.includes('f-cond') ? 'archivo-cond-' + w + '-latin' : fam.includes('font-deco') ? 'cinzel-' + w + '-latin' : fam.includes('font-mono') ? 'geist-mono-latin' : 'geist-latin';
   const head = face(v('font-head'), v('head-weight'));
   for (const [page, map] of Object.entries(headMaps)) if (map[name] !== head) faceDrift.push(`${name}: heading face ${head}, ${page} preloads ${map[name] || 'none'}`);
 }
+// a HEAD value is a path from assets/fonts/ (the faces outside it climb out): the file must be there
+for (const [page, src] of [['index.html', idx], ['404.html', read('404.html')]])
+  for (const [t, f] of [...((new RegExp('var HEAD = \\{([^}]*)\\}').exec(src) || [, ''])[1].matchAll(/(\w+):\s*'([\w./-]+)'/g))].map((m) => [m[1], m[2]]))
+    if (!existsSync(join(ROOT, 'assets/fonts', f + '.woff2'))) faceDrift.push(`${page} HEAD ${t} preloads ${f}.woff2, which is not there`);
 faceDrift.length ? bad(faceDrift.join('; ')) : ok('every theme preloads its own heading face (index.html and 404.html)');
 
 /* styles.css: no theme special cases, no theme colour literals */

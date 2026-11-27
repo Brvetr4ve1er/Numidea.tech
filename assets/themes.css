@@ -50,7 +50,7 @@
   --vista-far:rgba(176,160,128,.30); --vista-mid:rgba(230,180,80,.40); --vista-near:rgba(212,196,160,.24);   /* Fleet 7 round 4: the engraving in brass, as the dune strips, not a teal tower (the one cyan on the page is the wordmark) */
   --nav-glass:rgba(10,20,32,.96); --glass:rgba(23,54,79,.35); --field-bg:rgba(10,20,32,.6);
   --field-border:color-mix(in srgb,var(--faint) 75%,var(--navy));
-  --font-head:var(--font-deco); --font-head-em:var(--font-deco-dec); --head-weight:700; --head-tracking:.01em;
+  --font-head:var(--f-cond); --font-head-em:var(--f-cond); --head-weight:900; --head-tracking:0;
   /* 32px on a phone, not 27: the hero tops the 24px section heading by a
      third (it stood 28 against 27). 32 and 4.3vw are sizes where Cinzel and
      its metric fallback break the French and English hero alike. */
@@ -82,7 +82,7 @@
   --field-border:color-mix(in srgb,var(--faint) 75%,var(--navy));
   /* the engraved headings, as Arcanum: one brand face on both default-worthy
      themes, at Cinzel's sizes and leading (it runs wider than Geist) */
-  --font-head:var(--font-deco); --font-head-em:var(--font-deco-dec); --head-weight:700; --head-tracking:.01em;
+  --font-head:var(--f-cond); --font-head-em:var(--f-cond); --head-weight:900; --head-tracking:0;
   --hero-fs:clamp(32px,12.67px + 3.98vw,70px); --hero-fs-wide:clamp(44px,4.3vw,80px); --hero-lh:1.03;
   --r-sm:10px; --r-md:16px; --kicker-node:0px;
 }

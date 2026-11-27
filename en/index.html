@@ -8,7 +8,7 @@
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-5lLObl3ZFgbB3BTEHnUdhdXzkuDZ9/8ra3NFXCYc9Yc=' 'sha256-jqvmeaJzhI0avE/Byblgel+6lAUwtfzShFKt7DLnhME='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-NHaPWSzSvdsl1nSFWjwZxzDLopO/KvOq9y/9RT9pYyg=' 'sha256-jqvmeaJzhI0avE/Byblgel+6lAUwtfzShFKt7DLnhME='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Website design and development in Algeria | Numidea Labs</title>
 <meta name="description" content="Website design and development in English, French and Arabic, from 90,000 DZD. See your homepage before you pay. A web studio in Bordj Bou Arréridj, Algeria.">
 <meta name="theme-color" content="#0A1420">
@@ -140,8 +140,8 @@
 <script>
   (function () {
     var d = document.documentElement;
-    var HEAD = { arcanum: 'cinzel-700-latin', daylight: 'cinzel-700-latin' };
-    var SWASH = { arcanum: 'cinzel-decorative-700-latin', daylight: 'cinzel-decorative-700-latin' };
+    var HEAD = { arcanum: '../../hub/fonts/archivo-cond-900-latin', daylight: '../../hub/fonts/archivo-cond-900-latin' };
+    var SWASH = {};
     var BAKED = 'en', th = 'arcanum';
     /* each theme's page colour (themes.css --void), for the browser's own
        bar until app.js reads it from the tokens */
@@ -196,11 +196,11 @@
      in the stylesheet alone it was not yet read when a fast arrival showed its
      first frame ("opt-in disabled"), and the lift was skipped, a hard cut. -->
 <style>@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto;types:page}}</style>
-<link rel="stylesheet" href="../assets/fonts.css?v=202611270213">
+<link rel="stylesheet" href="../assets/fonts.css?v=202611271508">
 <!-- themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them -->
-<link rel="stylesheet" href="../assets/themes.css?v=202611270213">
-<link rel="stylesheet" href="../assets/styles.css?v=202611270213">
-<link rel="stylesheet" href="../assets/menu/menu.css?v=202611270213">
+<link rel="stylesheet" href="../assets/themes.css?v=202611271508">
+<link rel="stylesheet" href="../assets/styles.css?v=202611271508">
+<link rel="stylesheet" href="../assets/menu/menu.css?v=202611271508">
 <noscript><style>
   /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */
   .reveal{opacity:1!important;transform:none!important}
@@ -294,7 +294,10 @@
   <span class="menu-sep" aria-hidden="true"></span>
   <a class="menu-far" href="../hub/lanterne/?lang=en" data-i18n="nav.librairie">The Bookshop</a>
   <a class="menu-far" href="../hub/monde.html?lang=en" data-i18n="nav.monde">The world</a>
+  <a class="menu-far" href="../hub/?lang=en" data-i18n="menu.atelier.label">Workshop</a>
+  <a class="menu-far" href="../hub/bible/" data-i18n="menu.bible.label">The Bible</a>
   </nav>
+  <img class="menu-kuro" src="../assets/kit/art/kuro/react/loaf.webp" alt="" width="240" height="240" loading="lazy">
   <!-- the two ways to start, pinned at the foot of the menu (styles.css
        .menu-acts): eight section links and no action left the visitor who
        opened the menu to act with nothing to press. The same two links as
@@ -310,11 +313,7 @@
 
 
 <span id="top"></span>
-<!-- ================= MENU (characters thread, 2026-11-26) =================
-     The intro and navigation menu: the first screen of the home page. Its copy is
-     in assets/i18n/*.js (menu.*); its markup, styles and motion come from
-     /mnt/project-files/characters/site-menu (gen.py writes this block).
-     The old hero follows inside <main> as the Aperçu offer; its title is an h2 since 2026-11-27, the menu's name is the page's h1. -->
+<!-- MENU: generated, edit characters/site-menu (gen.py) and run sync-site.py -->
 <section class="nl-menu p4" aria-label="Numidea Labs, menu" data-i18n-aria="menu.aria">
 <div class="nl-stage">
  <div class="nl-abs nl-stripes" aria-hidden="true"></div>
@@ -329,7 +328,7 @@
   <img class="nl-abs nl-fig" src="../assets/menu/yasser-full.webp" alt="" width="564" height="1278" fetchpriority="high" decoding="async">
  </div>
  <p class="nl-abs nl-line" data-text="Numidea Labs · le studio de nuit" aria-hidden="true" data-i18n="menu.line">Numidea Labs · the night studio</p>
- <h1 class="nl-abs nl-name" dir="ltr"><span aria-hidden="true"><span class="nl-ch j1">N</span><span class="nl-ch j2">u</span><span class="nl-ch j3">m</span><span class="nl-ch j4">i</span><span class="nl-ch j5">d</span><span class="nl-ch j0">e</span><span class="nl-ch j1">a</span><br><span class="nl-ch j4">L</span><span class="nl-ch j5">a</span><span class="nl-ch j0">b</span><span class="nl-ch j1">s</span></span><span class="nl-sr sr-only">Numidea Labs</span></h1>
+ <h1 class="nl-abs nl-name" dir="ltr"><span aria-hidden="true"><span class="nl-ch j1">N</span><span class="nl-ch j2">u</span><span class="nl-ch j3">m</span><span class="nl-ch j4">i</span><span class="nl-ch j5">d</span><span class="nl-ch j0">e</span><span class="nl-ch j1">a</span><br><span class="nl-ch j4">L</span><span class="nl-ch j5">a</span><span class="nl-ch j0">b</span><span class="nl-ch j1">s</span></span><span class="nl-sr sr-only">Numidea Labs </span><span class="nl-kick" data-i18n="hero.eyebrow">Web studio · Bordj Bou Arréridj</span></h1>
 
  <div class="nl-abs nl-hud nl-cut" aria-hidden="true"><div class="nl-cut-band"></div>
   <img class="nl-cut-prop" data-kit="prop" src="../assets/kit/art/props/fineliner.webp" alt="" width="240" height="240" decoding="async">
@@ -1439,11 +1438,11 @@
 
 <!-- this page's dictionary (one language), then the script that reads it;
      both deferred, so they run in this order -->
-<script src="../assets/i18n/en.js?v=202611270213" defer></script>
-<script src="../assets/kit/kit.js?v=202611270213" defer></script>
-<script src="../assets/menu/menu.js?v=202611270213" defer></script>
-<script src="../assets/app.js?v=202611270213" defer></script>
-<script src="../assets/carry.js?v=202611270213" defer></script>
+<script src="../assets/i18n/en.js?v=202611271508" defer></script>
+<script src="../assets/kit/kit.js?v=202611271508" defer></script>
+<script src="../assets/menu/menu.js?v=202611271508" defer></script>
+<script src="../assets/app.js?v=202611271508" defer></script>
+<script src="../assets/carry.js?v=202611271508" defer></script>
 <!-- FAQ structured data, written from the page's dictionary by
      scripts/build-lang.mjs; applyLang() writes it again on load. -->
 <script type="application/ld+json" id="ld-faq">
