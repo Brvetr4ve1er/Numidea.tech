@@ -87,9 +87,37 @@
   function sub(a) { return a.querySelector('.nl-sub').textContent; }
   function restart(el, cls) { if (!el) return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); }
 
+  /* ---- Kūro's ear turn (2026-11-28): once each time the pointer or focus comes into the menu, if he is on his
+     judge frame, his right ear flicks out and back (540 ms, never a loop). Reduced motion keeps the still frame.
+     The body swaps to the earless cut only while the ear layer is turning, and picking a card ends it at once. ---- */
+  var ear = root.querySelector('.nl-ear'), inside = false, earBusy = false;
+  var JUDGE = /\/judge\.webp$/, NOEAR = 'judge-noear.webp';
+  function earEnd() {
+    if (!earBusy) return; earBusy = false; ear.classList.remove('turn');
+    if (cat.src.slice(-NOEAR.length) === NOEAR) cat.src = cat.src.replace(NOEAR, 'judge.webp');
+  }
+  function earTurn() {
+    if (!ear || !cat || earBusy || mqReduce.matches || !root.classList.contains('p4') || !JUDGE.test(cat.src)) return;
+    if (!cat.offsetWidth) return;                                       // phones hide the card
+    var body = new Image(); body.src = cat.src.replace(JUDGE, '/' + NOEAR);
+    earBusy = true;
+    Promise.all([body.decode(), ear.decode ? ear.decode() : 0]).then(function () {
+      if (!earBusy || !JUDGE.test(cat.src)) { earBusy = false; return; }  // a card was picked while the art loaded
+      cat.src = body.src; restart(ear, 'turn');
+    }).catch(function () { earBusy = false; });
+  }
+  if (ear) {
+    ear.loading = 'eager';                                              // the turn waits on it; lazy would never start it while hidden
+    ear.addEventListener('animationend', earEnd);
+    root.addEventListener('pointerenter', function () { if (!inside) { inside = true; earTurn(); } });
+    root.addEventListener('pointerleave', function () { inside = false; });
+    root.addEventListener('focusin', function (e) { if (!e.relatedTarget || !root.contains(e.relatedTarget)) earTurn(); });
+  }
+
   /* ---- picking a card: the character answers that card ---- */
   function pick(i) {
     if (i === on || !root.classList.contains('p4')) return;
+    earEnd();
     items[on].classList.remove('on'); on = i; items[on].classList.add('on');
     var a = items[on], d = a.dataset;
     if (sayText) sayText.textContent = text(a, 'say');
