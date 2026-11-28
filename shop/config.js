@@ -1,7 +1,7 @@
 /* CMF Buds 2a landing page settings: shared by index.html and ar.html. Edit this file only. */
 window.CMF_CONFIG = {
-  store: "Numidea Shop",                 // shop name shown in header and footer
-  whatsapp: "213XXXXXXXXX",         // WhatsApp Business number, international format, digits only (213 + 9 digits, no leading 0)
+  store: "Tr4velerz Studio",               // shop name shown in header and footer
+  whatsapp: "213672412578",        // WhatsApp Business number, international format, digits only (213 + 9 digits, no leading 0)
   price: 6500,                      // DZD
   compareAt: null,                  // e.g. 8500 shows a strike-through. Only if you really sold at that price recently.
   genuine: null,                    // true = show "original" claims · false = hide them · null = show with an À CONFIRMER tag

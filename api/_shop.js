@@ -43,7 +43,9 @@ export const ITEMS = [
   { id: 'pack', cat: 'cours', da: 15000, max: 1, src: 'PRICE_OPTS.pack.add.0', n: { fr: 'Pack de départ freelance', en: 'Freelance starter pack', ar: 'حزمة انطلاق المستقل' } },
   // Products
   { id: 'guides', cat: 'produits', da: 4000, max: 1, src: 'PRICE_OPTS.guides.add.0', n: { fr: 'Guides et modèles · la collection', en: 'Guides and templates · the set', ar: 'الأدلة والنماذج · المجموعة' } },
-  { id: 'stickers', cat: 'produits', da: 25000, max: 1, src: 'DESIGN.stick.planche6', n: { fr: 'Planche de 6 stickers Kūro', en: 'Sheet of 6 Kūro stickers', ar: 'لوحة من 6 ملصقات كورو' } },
+  // The design of a 6-sticker sheet (the carte's Stickers & merch line), a service. The Kūro sticker sheets
+  // themselves are a physical product sold on tr4velerz.studio (owner, 2026-11-28), not here.
+  { id: 'stickers', cat: 'services', da: 25000, max: 1, src: 'DESIGN.stick.planche6', n: { fr: 'Design · planche de 6 stickers', en: 'Design · a sheet of 6 stickers', ar: 'تصميم · لوحة من 6 ملصقات' } },
 ];
 
 /* The combo is the site's own bundle rule (PRICE_MODEL.argent.kit): the setup and the pack with at least one
