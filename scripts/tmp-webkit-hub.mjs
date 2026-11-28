@@ -5,9 +5,14 @@ import { ROOT } from './site.mjs';
 
 const srv = await serve(ROOT, { compress: false, fallback404: true });
 const b = await launch();
-for (let rep = 0; rep < 3; rep++) for (const rm of ['no-preference', 'reduce']) for (const [w, lang] of [[768, 'fr'], [390, 'ar'], [360, 'fr'], [360, 'ar']]) {
-  const p = await b.newPage({ viewport: { width: w, height: w < 600 ? 800 : 900 }, reducedMotion: rm });
-  await p.addInitScript((l) => localStorage.setItem('numidea-lang', l), lang);
+for (let rep = 0; rep < 3; rep++) for (const rm of ['nosting', 'noblur', 'noanim']) for (const [w, lang] of [[768, 'fr'], [390, 'ar'], [360, 'fr'], [360, 'ar']]) {
+  const p = await b.newPage({ viewport: { width: w, height: w < 600 ? 800 : 900 }, reducedMotion: 'no-preference' });
+  await p.addInitScript(([l, rm]) => {
+    localStorage.setItem('numidea-lang', l);
+    if (rm === 'nosting') sessionStorage.setItem('numidea-sting', '1');
+    const css = rm === 'noblur' ? '.st-sting__g{filter:none!important}' : rm === 'noanim' ? '.st-sting *{animation:none!important}' : '';
+    if (css) document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = css; document.head.appendChild(st); });
+  }, [lang, rm]);
   let last = 'load';
   p.on('console', (m) => { if (m.type() === 'error' || m.type() === 'warning') console.log(`  [${w}/${lang}/${rm}] console.${m.type()}: ${m.text().slice(0, 200)}`); });
   p.on('pageerror', (e) => console.log(`  [${w}/${lang}/${rm}] pageerror: ${e.message.slice(0, 200)}`));
