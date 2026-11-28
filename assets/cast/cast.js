@@ -71,8 +71,10 @@
   var css = d.createElement('link'); css.rel = 'stylesheet'; css.href = BASE + 'cast.css' + Q;
   var cssOk = new Promise(function (r) { css.onload = r; css.onerror = r; });
   d.head.appendChild(css);
+  // the home menu's big Yasser talks too (npc.js): same lines, same talk route
+  if (d.querySelector('.nl-menu')) { var npc = d.createElement('script'); npc.src = BASE + 'npc.js' + Q; npc.async = true; d.head.appendChild(npc); }
   Promise.all([fetch(BASE + 'lines.json' + Q).then(function (r) { return r.json(); }), cssOk])
-    .then(function (a) { L = a[0]; build(); })
+    .then(function (a) { L = a[0]; W.__castKr = function () { return ui('kr'); }; W.__castLine = function (k) { var x = t(k); return x ? any(x) : null; }; build(); })
     .catch(function () {});
 
   var t = function (k) { var l = L[lang()] || L.fr; return l[k]; };

@@ -331,4 +331,5 @@ var I18N = {
   'menu.replay': 'أعد المقدّمة',
   'menu.cut': 'على المسرح',
   'menu.kuroName': 'كورو',
+  'menu.arcana': 'العدالة',
 };

@@ -10,3 +10,18 @@
    A slab's data label reads level, like a HUD readout pinned to a tilted card; tilted with its slab, the English label ran off its chip onto the red face (design-check paint 2.7:1 on /en/) */
 .nl-item.big .nl-sub{transform:rotate(calc(-1 * var(--r)))}
 .p4 .nl-echo{opacity:0;transition:opacity var(--d5) linear var(--beat)}@media (max-width:759.98px),(max-aspect-ratio:4/5){.nl-cut{display:none}}
+
+/* Kūro's tarot (2026-11-28): a night scene under a Moorish arch, sunburst behind him, zellige band, olive vines,
+   corner knots, a numeral cartouche and a ribbon with the arcana his reaction draws (npc.js keeps it in step). */
+.nl-tarot{background:var(--ink);border-radius:8px;overflow:hidden;box-shadow:6px 6px 0 var(--ink),0 0 0 2px var(--paper)}
+.nl-t-sky,.nl-t-city{position:absolute;inset:0;width:100%;height:100%}
+.nl-t-rays{position:absolute;left:50%;top:44%;width:240px;height:240px;margin:-120px 0 0 -120px;border-radius:50%;background:repeating-conic-gradient(rgba(243,236,225,.16) 0 6deg,transparent 6deg 15deg);-webkit-mask:radial-gradient(closest-side,#000 30%,transparent);mask:radial-gradient(closest-side,#000 30%,transparent)}
+.nl-kuro .nl-catw{top:52%;width:70%;z-index:1}
+.nl-tarot-frame{z-index:2}
+.nl-t-num{position:absolute;left:0;right:0;top:6px;z-index:3;font:700 12px/14px var(--mono);letter-spacing:.12em;text-align:center;color:#E3C27E}
+.nl-t-title{position:absolute;left:24px;right:24px;top:205px;height:24px;z-index:3;display:flex;align-items:center;justify-content:center;font:900 12px/1 var(--display);letter-spacing:.04em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+[dir=rtl] .nl-t-title{font-family:'NL Arabic',var(--font-ar-body,system-ui),sans-serif;font-size:14px;letter-spacing:0}
+.nl-t-foil{position:absolute;inset:0;z-index:4;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(243,236,225,.22) 45%,rgba(227,194,126,.18) 52%,transparent 66%) 0 0/250% 100% no-repeat;background-position:120% 0;mix-blend-mode:screen}
+@media (hover:hover){.nl-kuro{transition:transform var(--d4) var(--out)}.nl-menu:hover .nl-t-foil{transition:background-position 1.2s var(--out);background-position:-40% 0}}
+@media (prefers-reduced-motion:no-preference){.nl-menu.p4 .nl-t-rays{animation:nlRays 24s linear infinite}.nl-menu.paused .nl-t-rays{animation-play-state:paused}}
+@keyframes nlRays{to{transform:rotate(1turn)}}

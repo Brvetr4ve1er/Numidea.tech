@@ -101,3 +101,95 @@
   .cast,.cast *{animation:none!important;transition-duration:1ms!important}
 }
 @media print{.cast{display:none}}
+
+/* ---- the home menu's big Yasser as a talking NPC (npc.js, 2026-11-28) ---- */
+.npc-hit{position:absolute;z-index:3;padding:0;margin:0;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;border-radius:40% 40% 12px 12px}
+.npc-hit:focus-visible{outline:3px dashed var(--paper);outline-offset:4px}
+.npc-cue{position:absolute;left:62%;top:-6px;padding:6px 10px 6px 24px;background:var(--ink);color:var(--paper);border:2px solid var(--paper);box-shadow:4px 4px 0 var(--red);font:500 13px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;opacity:0;transform:translateY(8px) rotate(-4deg);transition:opacity var(--d2,167ms) linear,transform var(--d3,250ms) var(--out,ease-out);pointer-events:none}
+.npc-cue::before{content:'';position:absolute;left:9px;top:50%;margin-top:-5px;border:5px solid transparent;border-left:7px solid var(--red);border-right:0}
+.npc-hit.cue .npc-cue,.npc-hit:focus-visible .npc-cue{opacity:1;transform:rotate(-4deg)}
+.nl-menu.npc-talking .npc-cue{opacity:0}
+[dir=rtl] .npc-cue{left:auto;right:62%;padding:6px 24px 6px 10px;letter-spacing:0;font-family:'NL Arabic',var(--font-ar-body,system-ui),sans-serif;font-weight:700}
+[dir=rtl] .npc-cue::before{left:auto;right:9px;border-left:0;border-right:7px solid var(--red)}
+
+.npc-emote{position:absolute;z-index:3;width:64px;height:64px;margin:-32px 0 0 -8px;pointer-events:none;opacity:0;background:center/contain no-repeat;font:900 56px/64px var(--display);text-align:center;color:var(--paper);text-shadow:3px 3px 0 var(--red),-2px -2px 0 var(--ink),2px -2px 0 var(--ink),-2px 2px 0 var(--ink)}
+.npc-emote.on{opacity:1;animation:npcPop 420ms cubic-bezier(.34,1.56,.64,1) both}
+.npc-emote.e-bang::before{content:'!'}
+.npc-emote.e-q::before{content:'?'}
+.npc-emote.e-dots::before{content:'…'}
+.npc-emote.e-note::before{content:'♪'}
+.npc-emote.e-zz::before{content:'z';font-size:34px}.npc-emote.e-zz::after{content:'Z'}
+.npc-emote.e-sweat,.npc-emote.e-vein,.npc-emote.e-spark,.npc-emote.e-heart{filter:drop-shadow(2px 0 0 var(--paper)) drop-shadow(-2px 0 0 var(--paper)) drop-shadow(0 2px 0 var(--paper)) drop-shadow(0 -2px 0 var(--paper)) drop-shadow(4px 4px 0 var(--ink))}
+.npc-emote.e-sweat{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 56'%3E%3Cpath d='M20 3C26 18 36 28 36 39a16 16 0 0 1-32 0C4 28 14 18 20 3z' fill='%238fc3e6' stroke='%23211E1B' stroke-width='3.5'/%3E%3Cpath d='M12 38a8 8 0 0 0 6 9' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E");width:40px;height:56px}
+.npc-emote.e-vein{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23A34135' stroke-width='7' stroke-linecap='round'%3E%3Cpath d='M8 24c10 0 16-6 16-16'/%3E%3Cpath d='M36 8c0 10 6 16 16 16'/%3E%3Cpath d='M52 36c-10 0-16 6-16 16'/%3E%3Cpath d='M24 52c0-10-6-16-16-16'/%3E%3C/g%3E%3C/svg%3E")}
+.npc-emote.e-spark{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='%23F3ECE1' stroke='%23211E1B' stroke-width='3' stroke-linejoin='round'%3E%3Cpath d='M24 4l5 17 17 5-17 5-5 17-5-17-17-5 17-5z'/%3E%3Cpath d='M50 34l3 9 9 3-9 3-3 9-3-9-9-3 9-3z' fill='%23A34135'/%3E%3C/g%3E%3C/svg%3E")}
+.npc-emote.e-heart{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 54'%3E%3Cpath d='M30 50S4 34 4 17A13 13 0 0 1 30 12a13 13 0 0 1 26 5c0 17-26 33-26 33z' fill='%23A34135' stroke='%23F3ECE1' stroke-width='4'/%3E%3C/svg%3E")}
+.npc-emote.e-zz{animation:npcPop 420ms cubic-bezier(.34,1.56,.64,1) both,npcFloat 2667ms ease-in-out 420ms infinite}
+@keyframes npcPop{0%{opacity:0;transform:translateY(14px) scale(.3) rotate(-18deg)}100%{opacity:1;transform:none}}
+@keyframes npcFloat{50%{transform:translate(6px,-10px)}}
+
+@media (hover:hover) and (min-width:760px){.nl-menu.p4 .nl-fig.npc-live{animation:npcBreathe 2667ms cubic-bezier(.45,0,.55,1) infinite}}
+.nl-menu.paused .nl-fig.npc-live{animation-play-state:paused}
+.nl-menu.p4 .nl-fig.npc-hop{animation:npcHop 420ms cubic-bezier(.34,1.56,.64,1)}
+.nl-menu.p4 .nl-fig.npc-flinch{animation:npcFlinch 420ms cubic-bezier(.16,1,.3,1)}
+.nl-menu.p4 .nl-fig.npc-shake{animation:npcShake 400ms steps(8,jump-none)}
+.nl-menu.p4 .nl-fig.npc-tilt{animation:npcTilt 667ms cubic-bezier(.16,1,.3,1)}
+@keyframes npcBreathe{0%,100%{transform:none}50%{transform:translateY(-3px) scale(1.004,1.01)}}
+@keyframes npcHop{0%,100%{transform:none}30%{transform:translateY(-22px) scale(.98,1.03)}60%{transform:translateY(0) scale(1.03,.97)}}
+@keyframes npcFlinch{0%,100%{transform:none}25%{transform:translateX(-10px) rotate(-2deg) scale(.98)}}
+@keyframes npcShake{0%,100%{transform:none}25%{transform:translateX(-6px) rotate(-.6deg)}50%{transform:translateX(6px) rotate(.6deg)}75%{transform:translateX(-4px)}}
+@keyframes npcTilt{0%,100%{transform:none}40%{transform:rotate(-2.5deg)}}
+.nl-tarot.npc-kr{animation:npcKr 420ms cubic-bezier(.34,1.56,.64,1)}
+@keyframes npcKr{0%{transform:none}40%{transform:rotate(6deg) scale(1.06)}100%{transform:none}}
+
+/* the dialogue box takes the place of the menu's text box */
+.nl-say.npc-on .nl-say-in{display:none}
+.nl-say.npc-on{top:auto;bottom:22px;left:320px;width:640px;--hr:-1deg}
+.npc-dlg{position:relative;display:grid;grid-template-columns:112px 1fr;gap:16px;padding:16px 18px 14px;background:var(--ink);color:var(--paper);border:3px solid var(--paper);box-shadow:8px 8px 0 var(--red);outline:0;text-transform:none}
+.npc-dlg[hidden]{display:none}
+.npc-por{position:relative;width:112px;height:107px;align-self:start;background:var(--red-deep);border:3px solid var(--paper);box-shadow:4px 4px 0 var(--red);overflow:hidden;transform:rotate(-3deg)}
+.npc-face{position:absolute;inset:0;--cw:168px;background:url(yasser.webp) calc(var(--i,0) * -1 * var(--cw) - var(--cw) / 6) -2px/calc(13 * var(--cw)) auto no-repeat}
+.npc-body{min-width:0}
+.npc-head{display:flex;align-items:center;justify-content:space-between;margin:-4px 0 4px}
+.npc-name{display:inline-block;padding:3px 10px;background:var(--red);color:var(--paper);font:500 13px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;transform:rotate(-2deg)}
+.npc-x{width:44px;height:44px;margin:-10px -12px -10px 0;border:0;background:none;color:var(--paper);font:400 26px/1 var(--mono);cursor:pointer}
+.npc-x:focus-visible,.npc-more:focus-visible,.npc-o a:focus-visible,.npc-o button:focus-visible,.npc-send:focus-visible{outline:2px solid var(--paper);outline-offset:2px}
+.npc-text{margin:0;min-height:2.6em;font:700 18px/1.35 var(--display);cursor:pointer}
+.npc-more{display:block;margin:2px 0 0 auto;width:44px;height:32px;border:0;background:none;color:var(--red);font:400 16px/1 var(--mono);cursor:pointer;animation:npcNudge 667ms ease-in-out infinite alternate}
+.npc-more[hidden]{display:none}
+@keyframes npcNudge{to{transform:translateY(4px)}}
+.npc-opts:empty{display:none}
+.npc-opts{list-style:none;margin:8px 0 0;padding:0;border-top:1px dashed rgba(243,236,225,.35)}
+.npc-o a,.npc-o button{display:flex;gap:10px;width:100%;min-height:34px;padding:6px 6px;border:0;background:none;color:var(--paper);font:500 15px/1.3 Geist,system-ui,sans-serif;text-align:start;text-decoration:none;cursor:pointer;animation:npcIn 250ms cubic-bezier(.16,1,.3,1) both}
+.npc-o:nth-child(2) a,.npc-o:nth-child(2) button{animation-delay:60ms}.npc-o:nth-child(3) button{animation-delay:120ms}.npc-o:nth-child(4) button{animation-delay:180ms}.npc-o:nth-child(5) button{animation-delay:240ms}.npc-o:nth-child(n+6) button{animation-delay:300ms}
+@keyframes npcIn{from{opacity:0;transform:translateX(-12px)}}
+.npc-n{flex:none;min-width:1.6em;color:#E07A68;font-family:var(--mono)}
+.npc-o a:hover,.npc-o button:hover,.npc-o a:focus-visible,.npc-o button:focus-visible{background:var(--red);color:var(--paper)}
+.npc-o a:hover .npc-n,.npc-o button:hover .npc-n,.npc-o a:focus-visible .npc-n,.npc-o button:focus-visible .npc-n{color:var(--paper)}
+.npc-o.read button{color:var(--paper-2)}
+.npc-o.read .npc-l::after{content:' ✓';color:var(--paper-2)}
+.npc-o-go a{font-weight:700}.npc-o-go .npc-l::after{content:' ↗'}
+.npc-o-ask button,.npc-o-bye button{font-style:italic}
+.npc-form{display:flex;gap:8px;margin-top:10px}
+.npc-form[hidden]{display:none}
+.npc-in{flex:1;min-width:0;height:44px;padding:0 12px;border:2px solid var(--paper);background:var(--paper);color:var(--ink);font:500 16px/1 Geist,system-ui,sans-serif}
+.npc-send{width:44px;height:44px;border:2px solid var(--paper);background:var(--red);color:var(--paper);font:700 18px/1 var(--mono);cursor:pointer}
+[dir=rtl] .npc-text,[dir=rtl] .npc-o a,[dir=rtl] .npc-o button,[dir=rtl] .npc-in{font-family:'NL Arabic',var(--font-ar-body,system-ui),sans-serif;line-height:1.6}
+[dir=rtl] .npc-name{letter-spacing:0;font-family:'NL Arabic',var(--font-ar-body,system-ui),sans-serif;font-weight:700}
+[dir=rtl] .npc-o-ask button,[dir=rtl] .npc-o-bye button{font-style:normal}
+[dir=rtl] .npc-x{margin:-10px 0 -10px -12px}
+[dir=rtl] .npc-more{margin:2px auto 0 0}
+[dir=rtl] .npc-por{transform:rotate(3deg)}
+@keyframes npcInR{from{opacity:0;transform:translateX(12px)}}
+[dir=rtl] .npc-o a,[dir=rtl] .npc-o button{animation-name:npcInR}
+[dir=rtl] .nl-say.npc-on{left:320px}
+@media (max-width:759.98px),(max-aspect-ratio:4/5){
+ .nl-say.npc-on,[dir=rtl] .nl-say.npc-on{left:auto;bottom:auto;width:100%}
+ .npc-dlg{grid-template-columns:72px 1fr;gap:12px;padding:12px 14px}
+ .npc-por{width:72px;height:69px}
+ .npc-face{--cw:108px}
+ .npc-text{font-size:16px}
+ .npc-o a,.npc-o button{min-height:44px;align-items:center}
+ .npc-emote{width:48px;height:48px;font-size:42px;line-height:48px}
+}
+@media (prefers-reduced-motion:reduce){.npc-emote.on,.npc-emote.e-zz,.npc-o a,.npc-o button,.npc-more,.nl-tarot.npc-kr{animation:none}.npc-cue{transition:none}}

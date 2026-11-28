@@ -9,6 +9,7 @@ The dock is a small companion card in the corner of every page. Yasser breathes,
 | `cast.js` | The engine. `assets/carry.js` loads it once the page is idle, so it adds nothing to first-load weight. |
 | `cast.css` | The dock, the bubble and the talk panel. Numidea palette, 90 BPM motion tokens. |
 | `lines.json` | Every written line, in FR, EN and AR, under the same keys in each language. |
+| `npc.js` | The home menu's big Yasser as a talking NPC: emotes, a dialogue box with his face as a portrait, written choice trees (`npc` in lines.json, written by `scripts/npc-lines.py`), Kūro's arcana on the tarot. Only "ask your own question" reaches the talk route. Loaded by `cast.js` on the home only. |
 | `yasser.webp`, `kuro-face.webp`, `kuro-react.webp` | Sprite strips cut from `hub/bible/art/rig-*` and `kuro-*` by `scripts/cast-art.py`. |
 
 ## Canon (the persona sheet the lines, the route and the art all follow)
