@@ -4477,6 +4477,14 @@ html[dir="rtl"] .portals-grid{padding:0 0 var(--s-2) var(--s-2)}
 .portal-hq .portal-city::before{content:"";flex:none;width:8px;height:14px;background:#A34135;box-shadow:0 0 0 1px #F3ECE1}
 .portal-lab{font-family:var(--f-cond);font-weight:900;font-size:var(--fs-h3);line-height:var(--lh-head);text-transform:uppercase;letter-spacing:0;color:var(--ice,inherit)}
 .portal-hq .portal-lab{font-size:var(--fs-h2)}
+/* La Carte is open (2026-11-28): its name links carte/ and its ::after covers the panel, so the whole dossier presses */
+.portal-hq-a{text-decoration:none;color:inherit;align-self:flex-start}
+.portal-hq-a::after{content:"";position:absolute;inset:0;z-index:3}
+.portal-hq:has(.portal-hq-a){transition:transform var(--m-press) var(--m-ease-enter),box-shadow var(--m-press) var(--m-ease-enter)}
+@media (hover:hover){.portal-hq:has(.portal-hq-a:hover){transform:translate(calc(-2px * var(--dx,1)),-2px);box-shadow:calc(12px * var(--dx,1)) 12px 0 var(--drop)}}
+.portal-hq:has(.portal-hq-a:active){transform:translate(calc(4px * var(--dx,1)),4px);box-shadow:calc(4px * var(--dx,1)) 4px 0 var(--drop)}
+.portal-hq-a:focus-visible{outline:none}
+.portal-hq:has(.portal-hq-a:focus-visible){outline:3px solid var(--crimson-text);outline-offset:5px}
 .portal-sub{font-size:var(--fs-small);line-height:1.45;color:var(--muted);max-width:30em}
 /* the chips: status chips, a square LED that never pulses; open = filled, sealed = hollow */
 .portal-chip{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:4px 10px;border:2px dashed var(--trace);border-radius:0;

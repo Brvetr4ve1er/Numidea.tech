@@ -306,9 +306,10 @@ var I18N = {
   'menu.bible.kuro': 'يحبّك',
   /* portals band (world map thread, 2026-11-27): the map HQ and the three store gates under the menu */
   'portals.aria': 'عالم نوميديا: الخريطة والمتاجر',
-  'portals.k': 'عالم نوميديا · 4 بوابات',
+  'portals.k': 'عالم نوميديا · خريطة واحدة، 3 متاجر',
   'portals.hq.city': 'المقر · برج بوعريريج',
   'portals.hq.label': 'الخريطة',
+  'portals.hq.open': 'افتح الخريطة',
   'portals.hq.sub': 'الجزائر كلها، متجر في كل مدينة. والاستوديو في الوسط.',
   'portals.soon': 'قريبًا',
   'portals.wear.city': 'وهران',

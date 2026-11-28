@@ -196,6 +196,8 @@ const SPEC = {
   'workspacehq/index.html': { langs: ['en'], tests: ['embeds'], only: 'English only (the product page)' },
   // the counter (2026-11-26): the shop's chips and cards are plain buttons; ?lang= picks the language
   'comptoir/index.html': { langs: ['fr', 'en', 'ar'], base: 'fr', tests: [] },
+  // La Carte (2026-11-28): the seals are plain buttons that open the dossier; ?lang= picks the language
+  'carte/index.html': { langs: ['fr', 'en', 'ar'], base: 'fr', tests: [] },
   '404.html': { langs: ['fr', 'ar'], tests: [], noSkip: 'one short block: the wordmark and two links (home, the offer)' },
   'legal/index.html': { langs: ['fr', 'ar'], tests: [] },
 };

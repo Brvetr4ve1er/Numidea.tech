@@ -437,21 +437,23 @@
        primary (La Carte, the HQ: the map the stores sit on) and three store
        gates. The three store gates open the owner's store, tr4velerz.studio
        (shop/ in this repo); each lands on a "Bientôt" page there until it fills.
-       La Carte stays sealed (no link) until the map page exists.
+       La Carte opens the map page, carte/ (2026-11-28, owner: the map IS the
+       world that holds the three stores): its name is the link and covers the
+       whole panel (.portal-hq-a::after).
        Game hooks (game loop spec, slice 4): data-city, the empty
        data-game-stamp spans, data-game-badge on the HQ chip, ?from=numidea on
        the store links (not on "Toutes les boutiques": check.mjs pairs it with
        the showcase's plain URL). Rank never gates a store link. Plan: the doc "La carte du monde Numidea". The map
        is a hand-drawn silhouette of Algeria, not survey-accurate. -->
   <nav class="portals" aria-label="Le monde Numidea : la carte et les boutiques" data-i18n-aria="portals.aria">
-    <p class="portals-k kicker" data-i18n="portals.k">Le monde Numidea · 4 portails</p>
-    <div class="portal portal-hq is-sealed" data-city="hq">
+    <p class="portals-k kicker" data-i18n="portals.k">Le monde Numidea · 1 carte, 3 boutiques</p>
+    <div class="portal portal-hq" data-city="hq">
         <div class="portal-tx">
           <span class="portal-city" data-i18n="portals.hq.city">QG · Bordj Bou Arréridj</span>
-          <span class="portal-lab" data-i18n="portals.hq.label">La Carte</span>
+          <a class="portal-lab portal-hq-a" href="carte/" data-i18n="portals.hq.label">La Carte</a>
           <span class="portal-sub" data-i18n="portals.hq.sub">Toute l’Algérie, une boutique par ville. Le studio est au centre.</span>
           <span class="portal-stamp" data-game-stamp hidden></span>
-          <span class="portal-chip" data-i18n="portals.soon" data-game-badge>Bientôt</span>
+          <span class="portal-chip is-open" data-i18n="portals.hq.open" data-game-badge>Ouvrir la carte</span>
         </div>
         <span class="kseal" aria-hidden="true">技</span>
         <svg class="portal-map" viewBox="0 0 430 420" aria-hidden="true" focusable="false">

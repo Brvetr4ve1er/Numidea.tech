@@ -36,7 +36,7 @@ export const LANG_FOLDERS = [...new Set(Object.keys(STATIC).map((p) => frOf(p).r
 // the Studio's hub/i18n.js); a link to one of them from en/ or ar/ carries
 // ?lang= (build-lang.mjs)
 // the old manual (hub/manuel.html) is a noindex stub since 2026-11-21: the Librairie's pages take its place
-export const MULTILINGUAL = new Set(['scene/index.html', 'legal/index.html', 'hub/index.html', ...LANTERNE_PAGES, 'hub/monde.html', 'hub/fabrique.html']);
+export const MULTILINGUAL = new Set(['scene/index.html', 'legal/index.html', 'hub/index.html', ...LANTERNE_PAGES, 'hub/monde.html', 'hub/fabrique.html', 'carte/index.html']);
 
 const url = (page) => BASE + page.replace(/index\.html$/, '');
 const xhtml = (l, href) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${href}"/>`;
@@ -45,7 +45,8 @@ const xhtml = (l, href) => `    <xhtml:link rel="alternate" hreflang="${l}" href
 // the published pages that are noindex, so not in the sitemap: 404.html, the old manual (a stub since 2026-11-21) and
 // the brand exploration, a louder gear kept for the record, not the identity (W-15, 2026-11-24), and the Numidea
 // brand book, a draft (0.1) unlinked until the owner signs it off (Q-04, 2026-11-24: it stays at its address)
-export const NOINDEX_PAGES = ['404.html', 'comptoir/index.html', 'hub/manuel.html', 'hub/brand/exploration/index.html', 'hub/brand/numidea/index.html'];
+// La Carte (carte/, 2026-11-28): noindex until a store behind one of its seals opens; ?lang= like the scene
+export const NOINDEX_PAGES = ['404.html', 'comptoir/index.html', 'carte/index.html', 'hub/manuel.html', 'hub/brand/exploration/index.html', 'hub/brand/numidea/index.html'];
 export function renderSitemap(pages = PAGES) {
   const rows = pages.filter((p) => !NOINDEX_PAGES.includes(p)).map((p) => {
     const loc = url(p);

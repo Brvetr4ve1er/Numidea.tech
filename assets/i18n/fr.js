@@ -303,9 +303,10 @@ var I18N = {
   'menu.bible.kuro': 'adore',
   /* portals band (world map thread, 2026-11-27): the map HQ and the three store gates under the menu */
   'portals.aria': 'Le monde Numidea : la carte et les boutiques',
-  'portals.k': 'Le monde Numidea · 4 portails',
+  'portals.k': 'Le monde Numidea · 1 carte, 3 boutiques',
   'portals.hq.city': 'QG · Bordj Bou Arréridj',
   'portals.hq.label': 'La Carte',
+  'portals.hq.open': 'Ouvrir la carte',
   'portals.hq.sub': 'Toute l’Algérie, une boutique par ville. Le studio est au centre.',
   'portals.soon': 'Bientôt',
   'portals.wear.city': 'Oran',
