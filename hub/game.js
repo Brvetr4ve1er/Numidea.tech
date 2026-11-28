@@ -211,7 +211,12 @@
       card.setAttribute('data-gm-up', String(r));
     } else { im.alt = ''; fig.setAttribute('aria-hidden', 'true'); fig.appendChild(im); card.removeAttribute('data-gm-up'); }
     box.appendChild(fig);
-    if (P.rank >= D.discount.rank) box.appendChild(el('p', 'gm-card__code', t('lant.ui.game.code', { code: D.discount.code })));
+    if (P.rank >= D.discount.rank) {
+      // the code is real at the counter now: one link puts it in the bag (comptoir/?code=…, checked again by api/_shop.js)
+      var cp = el('p', 'gm-card__code', t('lant.ui.game.code', { code: D.discount.code }) + ' ');
+      var ca = el('a', 'lnk', t('lant.ui.game.codeGo')); ca.href = D.root + 'comptoir/?code=' + encodeURIComponent(D.discount.code);
+      cp.appendChild(ca); box.appendChild(cp);
+    }
     var go = el('div', 'gm-card__go');
     if (o.book) {
       box.appendChild(el('p', 'gm-card__echo', t('lant.ui.game.comT', { b: bookName(o.book) })));

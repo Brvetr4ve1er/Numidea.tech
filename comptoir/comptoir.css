@@ -109,6 +109,16 @@ body{margin:0;min-height:100vh;background:var(--navy);color:var(--on-navy);font:
 .c-sum .c-v{white-space:nowrap;text-align:end}
 .c-sum .is-combo{color:var(--amber);font-weight:700}
 .c-hint{margin:0;padding:8px 10px;border:2px dashed var(--amber);color:var(--amber);font:600 var(--fs-small)/1.35 var(--f-body)}
+.c-code{display:grid;gap:6px;margin:0}
+.c-code__row{display:flex;gap:8px;min-width:0}
+.c-code__in{flex:1;min-width:0;min-height:44px;padding:6px 10px;border:2px solid var(--paper);border-radius:0;background:var(--navy);color:var(--cream);font:600 var(--fs-small)/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
+.c-code__in:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.c-code.is-on .c-code__in{border-color:var(--amber);color:var(--amber);border-style:dashed}
+.c-bag .c-code__b{min-height:44px;flex:none}
+.c-code__m{margin:0;font:500 var(--fs-micro)/1.35 var(--f-mono);color:var(--amber)}
+.c-code__m:empty{display:none}
+.c-code__m.is-bad{color:var(--cream)}
+.c-code__m.is-bad::before{content:"✕ ";color:var(--red)}
 .c-tot{display:grid;gap:4px;padding-top:4px}
 .c-big{font:900 clamp(1.75rem,1.4rem + 1.6vw,2.5rem)/1 var(--f-cond);color:var(--cream)}
 .c-due{font:500 var(--fs-small)/1.3 var(--f-mono);color:var(--amber)}

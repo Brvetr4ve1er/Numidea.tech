@@ -6369,7 +6369,7 @@
         "max": "Top rank reached. The Lantern is yours.",
         "up": "Rank reached: {name}. A drawing joins your notebook.",
         "close": "Close",
-        "code": "Code {code}: −5% on a first project, once per client. Confirm it with Yasser on WhatsApp.",
+        "code": "Code {code}: −5% off your bag at the counter, once per client.",
         "comK": "Commission",
         "comT": "You finished “{b}”. The studio does the same thing for real, for you.",
         "comPrice": "See the prices",
@@ -6411,7 +6411,8 @@
         "tapeCase": "Case solved",
         "tapeSeal": "Seal found",
         "tapeEp": "Episode done",
-        "badge": "Rank {n} · {name} · carry on"
+        "badge": "Rank {n} · {name} · carry on",
+        "codeGo": "Put it in the bag →"
       }
     },
     "cast": {
@@ -8752,7 +8753,9 @@
               "chat": "Messenger"
             }
           }
-        }
+        },
+        "toBag": "Or right now: one hour with Yasser to sort out your bank, at a fixed price.",
+        "toBagGo": "Put the call in the bag →"
       }
     },
     "stub": {

@@ -6369,7 +6369,7 @@
         "max": "Dernier rang atteint. La Lanterne est à vous.",
         "up": "Rang atteint : {name}. Un dessin rejoint votre carnet.",
         "close": "Fermer",
-        "code": "Code {code} : −5 % sur un premier projet, une fois par client. À confirmer avec Yasser sur WhatsApp.",
+        "code": "Code {code} : −5 % sur ton sac au comptoir, une fois par client.",
         "comK": "Commission",
         "comT": "Vous avez fini « {b} ». Le studio fait la même chose pour de vrai, pour vous.",
         "comPrice": "Voir les tarifs",
@@ -6411,7 +6411,8 @@
         "tapeCase": "Enquête résolue",
         "tapeSeal": "Sceau trouvé",
         "tapeEp": "Épisode terminé",
-        "badge": "Rang {n} · {name} · reprendre"
+        "badge": "Rang {n} · {name} · reprendre",
+        "codeGo": "Le mettre dans le sac →"
       }
     },
     "cast": {
@@ -8752,7 +8753,9 @@
               "chat": "Messagerie"
             }
           }
-        }
+        },
+        "toBag": "Ou tout de suite : une heure avec Yasser pour régler ta banque, à prix fixe.",
+        "toBagGo": "Mettre l’appel dans le sac →"
       }
     },
     "book": {},
