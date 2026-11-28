@@ -6411,7 +6411,32 @@
         "tapeCase": "Case solved",
         "tapeSeal": "Seal found",
         "tapeEp": "Episode done",
-        "badge": "Rank {n} · {name} · carry on"
+        "badge": "Rank {n} · {name} · carry on",
+        "o": {
+          "2": "The wick",
+          "3": "The flint",
+          "4": "The glass",
+          "5": "The counter key",
+          "6": "The brass ring",
+          "7": "Kūro’s seal",
+          "8": "The handle",
+          "9": "The night oil",
+          "10": "The Lantern"
+        },
+        "od": {
+          "2": "Nothing lights without it. Keep it dry.",
+          "3": "One sharp strike, one spark. The rest is up to you.",
+          "4": "It keeps the flame safe from the city wind.",
+          "5": "It opens the counter. So does the code below.",
+          "6": "It holds everything together, like a good binding.",
+          "7": "Kūro dropped it on purpose. He will never say so.",
+          "8": "To carry the light wherever you go.",
+          "9": "It burns a long time, mostly after midnight.",
+          "10": "Complete. It lights your own way now."
+        },
+        "find": "Found",
+        "sound": "Sound",
+        "soundK": "Play a sound on each find"
       }
     },
     "cast": {

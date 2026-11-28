@@ -289,10 +289,16 @@ export function lanterne(ctx) {
       if (!existsSync(join(HUB, 'bible', 'art', r.art))) fail(`hub/src/lanterne/game.json: rank ${i + 1}'s art hub/bible/art/${r.art} is not a file`);
       if (!(r.w > 0 && r.h > 0)) fail(`hub/src/lanterne/game.json: rank ${i + 1} needs the art's true w and h`);
       need(`lant.ui.game.r.${i + 1}`, 'the game'); need(`lant.ui.game.u.${i + 1}`, 'the game');
+      /* the lantern part found at this rank (the Find, 2026-11-28): every rank but the first has one, with its name and its line */
+      if (i > 0) {
+        if (!/^[a-z]+$/.test(r.obj || '')) fail(`hub/src/lanterne/game.json: rank ${i + 1} needs an "obj" (the lantern part found there)`);
+        need(`lant.ui.game.o.${i + 1}`, 'the game'); need(`lant.ui.game.od.${i + 1}`, 'the game');
+      }
     });
+    if (GAME.find && !existsSync(join(HUB, 'bible', 'art', GAME.find.art))) fail(`hub/src/lanterne/game.json: the Find's art hub/bible/art/${GAME.find.art} is not a file`);
     for (const b of live) { if (!GAME.service[b.slug]) fail(`hub/src/lanterne/game.json: no service for the book « ${b.slug} »`); gameTitles.add(b.title); }
     const enq = ENQ ? json(join(LS, 'enquetes.json')).store : null;
-    const G0 = { pts: GAME.pts, seals: GAME.seals, discount: GAME.discount, ranks: GAME.ranks.map((r) => ({ at: r.at, art: r.art, w: r.w, h: r.h })), service: GAME.service, wa: GAME.wa,
+    const G0 = { pts: GAME.pts, seals: GAME.seals, discount: GAME.discount, ranks: GAME.ranks.map((r) => ({ at: r.at, art: r.art, w: r.w, h: r.h, obj: r.obj || null })), find: GAME.find || null, service: GAME.service, wa: GAME.wa,
       enq: enq ? { store: enq } : null, art: '../bible/art/', root: '../../',
       titles: Object.fromEntries(live.map((b) => [b.slug, b.title])),
       books: live.map((b) => ({ slug: b.slug, store: b.store, migrate: b.migrate || null, acts: ATLAS[b.slug].acts.map((a) => ({ side: !!a.side, d: a.districts })) })) };

@@ -944,6 +944,35 @@ html:not(.motion-off) .gm-card.is-in .gm-bar__fill{animation:gm-fill 700ms cubic
 .gm-rank__seal::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,226,184,.75) 50%,transparent 65%);translate:-120% 0;pointer-events:none}
 html:not(.motion-off) .gm-card.is-in[data-gm-up] .gm-rank .gm-rank__seal::after{animation:gm-shine 650ms ease-out 420ms 1 both}
 @media (prefers-reduced-motion:reduce){html .gm-card.is-in :is(.gm-card__gain,.gm-card__stamp,.gm-card__art,.gm-bar__fill){animation:none}html .gm-card.is-in .gm-rank__seal::after{animation:none}html :is(.gm-chip,.gm-btn){transition:none}}
+/* the Find (2026-11-28, the Zelda-feel plan): a rank's lantern part held up by Yasser over a burst of ink rays; the name heads the card, Encre drops to a footnote */
+.gm-card__tape{z-index:4}
+.gm-find{display:grid;grid-template-columns:104px 1fr;column-gap:14px;align-items:end}
+.gm-find__stage{position:relative;block-size:184px}
+.gm-find__y{position:absolute;inset-block-end:-8px;inset-inline-start:0;inline-size:auto;block-size:168px;filter:drop-shadow(3px 3px 0 rgba(33,30,27,.45))}
+.gm-find__obj{position:absolute;z-index:2;inset-inline-start:-10px;inset-block-start:2px;inline-size:52px}
+.gm-find__rays{position:absolute;inset-inline-start:-46px;inset-block-start:-34px;inline-size:124px;aspect-ratio:1;border-radius:50%;background:repeating-conic-gradient(var(--gm-amber) 0 7deg,transparent 7deg 20deg);-webkit-mask:radial-gradient(closest-side,#000 25%,transparent);mask:radial-gradient(closest-side,#000 25%,transparent)}
+:root:lang(ar) .gm-find__y{scale:-1 1}
+.gm-find__name{margin:0;font:900 var(--fs-h3)/var(--lh-disp,.9) var(--f-cond);text-transform:uppercase}
+.gm-find__line{margin:8px 0 0;max-inline-size:24ch;font-size:var(--fs-small);line-height:var(--lh-body,1.5)}
+.gm-card__gain--foot .gm-num{font-size:var(--fs-lead);line-height:1;text-shadow:2px 2px 0 var(--gm-amber)}
+.gm-ico{display:block;inline-size:100%;block-size:auto;overflow:visible;filter:drop-shadow(2px 2px 0 rgba(33,30,27,.5))}
+.gm-ico path{stroke:var(--ink);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.gm-ico__f,.gm-ico__e{fill:var(--gm-amber)}.gm-ico__p{fill:var(--paper)}.gm-ico__k{fill:var(--ink)}.gm-ico__n,.gm-ico__w{fill:none}.gm-ico__w{stroke-width:4.5}
+:is(.gm-card--find,.gm-card--quiet) .gm-card__go{padding-inline-end:0}
+.gm-card--quiet .gm-card__art{display:none}.gm-card--quiet .gm-card__gain .gm-num{font-size:var(--fs-h3)}
+.gm-card__snd::before{content:"\266A" / "";margin-inline-end:6px}
+.gm-card__snd[aria-pressed=true]{background:var(--gm-amber);color:var(--ink)}
+:root:lang(ar) .gm-find__name{text-transform:none;letter-spacing:0}
+@media (max-width:420px){.gm-find{grid-template-columns:80px 1fr}.gm-find__y{block-size:140px}.gm-find__stage{block-size:156px}}
+@media (max-height:640px){.gm-find{grid-template-columns:52px 1fr}.gm-find__stage{block-size:56px}.gm-find__y,.gm-find__rays{display:none}.gm-find__obj{inset-inline-start:0}}
+@keyframes gm-rise{from{transform:translateY(28px) scale(.4) rotate(-20deg);opacity:0}60%{transform:translateY(-6px) scale(1.12) rotate(4deg);opacity:1}to{transform:none;opacity:1}}
+@keyframes gm-rays{from{opacity:0;transform:scale(.3)}35%{opacity:1}to{opacity:.8;transform:scale(1) rotate(30deg)}}
+@keyframes gm-ping{from{background:var(--gm-amber)}to{background:var(--cream)}}
+html:not(.motion-off) .gm-card.is-in .gm-find__y{animation:gm-pop 220ms cubic-bezier(.2,1.4,.4,1) 1 both}
+html:not(.motion-off) .gm-card.is-in .gm-find__obj{animation:gm-rise 520ms cubic-bezier(.2,1.2,.4,1) 200ms 1 both}
+html:not(.motion-off) .gm-card.is-in .gm-find__rays{animation:gm-rays 900ms ease-out 160ms 1 both}
+html:not(.motion-off) .gm-chip--ping{animation:gm-ping 900ms ease-out 1}
+@media (prefers-reduced-motion:reduce){html .gm-card.is-in :is(.gm-find__y,.gm-find__obj,.gm-find__rays),html .gm-chip--ping{animation:none}}
 /* under 360px the full wordmark, the language switch (3 x 44px) and the menu button can't share a row: "LABS" steps out (the link's name keeps it), the switch stays */
 @media (max-width:359px){.mast .st-wm__l{display:none}.mast .st-wm__t{font-size:var(--fs-body)}}
 /* the collage, owned (2026-11-27, zero credits): cel cut-outs on painted plates read as pasted, so they are pasted on purpose.

@@ -6411,7 +6411,32 @@
         "tapeCase": "Enquête résolue",
         "tapeSeal": "Sceau trouvé",
         "tapeEp": "Épisode terminé",
-        "badge": "Rang {n} · {name} · reprendre"
+        "badge": "Rang {n} · {name} · reprendre",
+        "o": {
+          "2": "La mèche",
+          "3": "La pierre à feu",
+          "4": "Le verre",
+          "5": "La clé du comptoir",
+          "6": "L’anneau de laiton",
+          "7": "Le sceau de Kūro",
+          "8": "L’anse",
+          "9": "L’huile de nuit",
+          "10": "La Lanterne"
+        },
+        "od": {
+          "2": "Sans elle, rien ne s’allume. Gardez-la sèche.",
+          "3": "Un coup sec, une étincelle. Le reste, c’est vous.",
+          "4": "Il protège la flamme du vent de la ville.",
+          "5": "Elle ouvre le comptoir. Le code plus bas aussi.",
+          "6": "Il tient tout ensemble, comme une bonne reliure.",
+          "7": "Kūro l’a laissé tomber exprès. Il ne le dira jamais.",
+          "8": "Pour porter la lumière là où vous allez.",
+          "9": "Elle brûle longtemps, surtout après minuit.",
+          "10": "Complète. Elle éclaire maintenant votre chemin."
+        },
+        "find": "Trouvaille",
+        "sound": "Son",
+        "soundK": "Jouer un son à chaque trouvaille"
       }
     },
     "cast": {

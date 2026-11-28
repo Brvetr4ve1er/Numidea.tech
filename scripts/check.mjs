@@ -1363,8 +1363,8 @@ runtimeDeps.length
     // the atlases and their dictionaries at measured + 10%: web3.html 221,819 and web3.ar.js 81,318 on 2026-11-21, once the
     // two client courses (marque, web3 vol. 1) were in with their fiche markup and its runtime strings (SPEC 3.13 had guessed
     // 160 kB; before: 160 kB at jeu.html 153,760, and 65 kB at route.ar.js 58,764)
-    'hub/lanterne': 261 * kB,   // 261 kB on 2026-11-27: the banking book (banque.html 259,950: 11 districts, live exercises, three languages)
-    'hub/lanterne/i18n': 93 * kB,   // 93 kB on 2026-11-27: the game card's tapes (case, seal, episode)
+    'hub/lanterne': 263 * kB,   // 263 kB on 2026-11-28: the Find's nine lantern parts, names and lines in every language (banque.html 261,702)
+    'hub/lanterne/i18n': 95 * kB,   // 95 kB on 2026-11-28: the Find's lantern parts and sound button (web3.ar.js 93,613)
     // the open night cases' own files (2026-11-23, the season plan's per-case budgets: structure 15 kB, fr 51, en 46, ar 59)
     'hub/lanterne/enq': 59 * kB,
     'hub/audio': 1321 * kB,       // 1,200,723 on 2026-11-16 (the workshop radio's tracks: two minutes each, MP3 at 80 kbit/s; +10%)
@@ -1385,7 +1385,7 @@ runtimeDeps.length
     'assets/cv_yasser_hamisse_2026.pdf': 378 * kB,   // 343,053 on 2026-10-31
     // the Librairie's shell and kit, its sheet and the radio moved out of hub/app.js (2026-11-21, measured + 10%)
     'hub/lanterne.js': 60 * kB,        // 57,791 on 2026-11-27 (3D atlases, the tree of knowledge); was a byte-exact ceiling
-    'hub/css/lanterne.css': 85 * kB,   // 84,232 on 2026-11-28: the game UI polish (seal rim, bar ticks and fill, ink bloom, chip hairline, hover and press)
+    'hub/css/lanterne.css': 88 * kB,   // 87,441 on 2026-11-28: the Find (a rank's lantern part held up by Yasser, rays, icons, sound button, chip ping)
     // « Le web3, sans fumée » vol. 2, the nine modules (2026-11-22, measured + 10%): 33 districts in 9 acts, each with its lab's
     // markup in its resting state (SPEC 3.13 had guessed 420 kB); its two dictionaries and the labs' French lines, fetched with
     // the labs; the labs' script, loaded when an exercise comes near

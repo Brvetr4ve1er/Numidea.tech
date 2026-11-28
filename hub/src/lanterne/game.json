@@ -1,19 +1,20 @@
 {
-  "_note": "The game layer (hub/game.js, 2026-11-26; spec: 'Numidea game loop spec'). Encre is never stored: hub/game.js adds it up from the keys the pages already keep. pts are the Encre per thing finished; ranks are the ten ranks (at = Encre needed), each with the drawing it unlocks (a hub/bible/art file, its true size, and its alt key lant.ui.game.u.N). discount: the rank that shows the first-project code (a placeholder the owner confirms by hand on WhatsApp, once per client; nothing redeems it). service: where a finished book's commission card points (a path from the site root). The build (scripts/lib/lanterne.mjs) adds each book's acts and keys and writes all of it into the pages as #game-data.",
+  "_note": "The game layer (hub/game.js, 2026-11-26; spec: 'Numidea game loop spec'). Encre is never stored: hub/game.js adds it up from the keys the pages already keep. pts are the Encre per thing finished; ranks are the ten ranks (at = Encre needed), each with the drawing it unlocks (a hub/bible/art file, its true size, and its alt key lant.ui.game.u.N) and, from rank 2, obj: the lantern part found there (its drawn icon in hub/game.js, its name lant.ui.game.o.N, its line lant.ui.game.od.N; the Zelda-feel plan, 2026-11-28). discount: the rank that shows the first-project code (a placeholder the owner confirms by hand on WhatsApp, once per client; nothing redeems it). service: where a finished book's commission card points (a path from the site root). The build (scripts/lib/lanterne.mjs) adds each book's acts and keys and writes all of it into the pages as #game-data.",
   "pts": { "district": 100, "side": 50, "act": 150, "book": 300, "enqDiv": 2, "seal": 50, "episode": 100 },
   "seals": { "key": "numidea-seals", "n": 7 },
+  "find": { "art": "actor-win-a.webp", "w": 252, "h": 540 },
   "discount": { "rank": 5, "code": "LANTERNE-5" },
   "ranks": [
     { "at": 0, "art": "kuro-peek.webp", "w": 240, "h": 165 },
-    { "at": 100, "art": "kuro-love.webp", "w": 240, "h": 242 },
-    { "at": 400, "art": "pose-sign.webp", "w": 519, "h": 440 },
-    { "at": 1000, "art": "pose-coffee.webp", "w": 385, "h": 440 },
-    { "at": 2000, "art": "pose-point.webp", "w": 498, "h": 440 },
-    { "at": 3500, "art": "kuro-stamp.webp", "w": 240, "h": 185 },
-    { "at": 5500, "art": "kuro-smug.webp", "w": 240, "h": 172 },
-    { "at": 8000, "art": "pose-handover.webp", "w": 560, "h": 435 },
-    { "at": 11000, "art": "pose-nap.webp", "w": 560, "h": 233 },
-    { "at": 14000, "art": "actor-win-a.webp", "w": 252, "h": 540 }
+    { "at": 100, "art": "kuro-love.webp", "w": 240, "h": 242, "obj": "wick" },
+    { "at": 400, "art": "pose-sign.webp", "w": 519, "h": 440, "obj": "flint" },
+    { "at": 1000, "art": "pose-coffee.webp", "w": 385, "h": 440, "obj": "glass" },
+    { "at": 2000, "art": "pose-point.webp", "w": 498, "h": 440, "obj": "key" },
+    { "at": 3500, "art": "kuro-stamp.webp", "w": 240, "h": 185, "obj": "ring" },
+    { "at": 5500, "art": "kuro-smug.webp", "w": 240, "h": 172, "obj": "seal" },
+    { "at": 8000, "art": "pose-handover.webp", "w": 560, "h": 435, "obj": "handle" },
+    { "at": 11000, "art": "pose-nap.webp", "w": 560, "h": 233, "obj": "oil" },
+    { "at": 14000, "art": "actor-win-a.webp", "w": 252, "h": 540, "obj": "lantern" }
   ],
   "service": {
     "marque": "tarifs/#pricing",
