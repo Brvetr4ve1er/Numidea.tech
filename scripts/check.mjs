@@ -1221,15 +1221,8 @@ runtimeDeps.length
     if (hsts && (age < 63072000 || !/;\s*includeSubDomains\b/.test(hsts) || !/;\s*preload\b/.test(hsts))) cspErr.push(`${host}: Strict-Transport-Security "${hsts}" (want max-age of two years or more, includeSubDomains, preload)`);
   }
   if (!netlify['Content-Security-Policy']) cspErr.push('netlify.toml: no Content-Security-Policy header on "/*"');
-  // Vercel applies no "/(.*)" rule under /.well-known/ (a dot segment; seen on the PR 43 preview), so that path
-  // repeats the shared headers in a rule of its own, and it must hold exactly the same ones
-  try {
-    const wk = (JSON.parse(read('vercel.json')).headers || []).find((h) => h.source === '/.well-known/(.*)');
-    const got = Object.fromEntries(((wk && wk.headers) || []).map((h) => [h.key, h.value]));
-    const off = [...new Set([...Object.keys(got), ...Object.keys(vc)])].filter((k) => got[k] !== vc[k]);
-    if (!wk) cspErr.push('vercel.json: no "/.well-known/(.*)" rule (Vercel sends none of the "/(.*)" headers there)');
-    else if (off.length) cspErr.push(`vercel.json: "/.well-known/(.*)" differs from "/(.*)" on ${off.join(', ')}`);
-  } catch (e) { /* the parse error is reported above */ }
+  // (Vercel sends none of these on /.well-known/: neither "/(.*)" nor a rule of its own applies there, seen on the
+  // PR 43 and PR 49 previews. Only its default HSTS goes out. security.txt is plain text, so nothing rides on it.)
   const metas = metaPolicies();
   const hdrs = [['vercel.json', 'page', vercelCsp.page], ['vercel.json', 'embed', vercelCsp.embed], ['netlify.toml', 'any', netlify['Content-Security-Policy']]];
   for (const [host, kind, policy] of hdrs) {
