@@ -361,7 +361,7 @@
   var motionOn = function () { return !reduce.matches && !root.classList.contains('motion-off'); };
   var KEY = DATA.store, saved = null;
   try { saved = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
-  var game = create(DATA, { saved: saved, save: function (p) { try { localStorage.setItem(KEY, JSON.stringify(p)); } catch (e) {} } });
+  var game = create(DATA, { saved: saved, save: function (p) { try { localStorage.setItem(KEY, JSON.stringify(p)); } catch (e) {} try { document.dispatchEvent(new CustomEvent('numidea:gain', { detail: { source: 'enq' } })); } catch (e) {} } });   /* numidea:gain: hub/game.js counts the Encre again and shows its card when a case paid (2026-11-27) */
   var S = game.state;
   /* a case's files, once in: its depths go to the rules, its strings to CS */
   function take(o) {

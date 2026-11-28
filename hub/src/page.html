@@ -268,6 +268,8 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
             <p class="st-bay__d" data-i18n="doors.c.d"></p>
             <p class="st-bay__buy"><span data-i18n="doors.c.buy"></span> <a href="{{lant.to.marque}}" data-i18n="doors.c.buyBrand"></a> · <a href="{{lant.to.web3}}" data-i18n="doors.c.buyWeb3"></a></p>
             <a class="st-btn st-btn--ghost st-bay__go" href="lanterne/"><span data-i18n="doors.c.go"></span><span class="st-arw" aria-hidden="true">→</span></a>
+            <!-- the game's rank, carried out of the Librairie (2026-11-27): hub/app.js fills it from numidea-save once a visitor has played -->
+            <a class="st-grank" href="lanterne/#passeport" data-game-badge hidden></a>
             <ul class="st-bay__more">
               <li><a href="{{lant.to.argent}}" data-i18n="doors.c.lessons"></a></li>
               <li><a href="{{lant.to.route}}" data-i18n="doors.c.nomad"></a></li>
@@ -624,6 +626,8 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
         <!-- the message "Recevoir mon devis" sends (hub/app.js 6): its words, in the page's language, filled by the script -->
         <span hidden data-i18n="pricing.waMsg"></span><span hidden data-i18n="pricing.mailSubj"></span>
         <a class="st-btn st-btn--primary st-btn--block" href="#contact" data-est-send><span data-i18n="pricing.cta"></span><span class="st-sr" data-est-tab hidden> <span data-i18n="case.newTab"></span></span></a>
+        <!-- the money services are fixed prices: they can be paid at the counter (hub/app.js 6, payments 2026-11-27) -->
+        <p class="st-est__bag" data-est-bag hidden><a href="../comptoir/?add=appel" data-i18n="pricing.bag"></a></p>
         <p class="st-est__src"><a href="../tarifs/#market" data-i18n="pricing.sources"></a></p>
       </div>
     </div>

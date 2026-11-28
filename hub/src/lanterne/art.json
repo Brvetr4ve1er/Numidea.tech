@@ -460,7 +460,8 @@
         "w": 600,
         "h": 800
       }
-    }
+    },
+    "bank-fridge": {"src": "img/lanterne/panels/bank-fridge.webp", "w": 960, "h": 536, "paints": ["yasser", "kuro"], "wide": true, "owner": true, "small": {"src": "img/lanterne/panels/bank-fridge-480.webp", "w": 480, "h": 268}}
   },
   "keys": {
     "bookstall": {

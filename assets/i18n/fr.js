@@ -19,7 +19,7 @@ var I18N = {
   'meta.ogAlt': 'Numidea Labs — «\u202fVotre site, avant de payer.\u202f» L\'Aperçu\u202f: votre page d\'accueil avant de payer, devant une gravure de l\'arc de Trajan à Timgad',
   'nav.about': 'Aperçu gratuit', 'nav.services': 'Services', 'nav.work': 'Réalisations',
   'nav.team': 'Fondateur', 'nav.faq': 'FAQ', 'nav.contact': 'Contact',
-  'offer.kicker': 'Studio web\u00a0· Bordj\u00a0Bou\u00a0Arréridj',
+  'offer.kicker': 'Création de sites web\u00a0· Bordj\u00a0Bou\u00a0Arréridj, Algérie',
   'offer.title': 'Voyez votre page d’accueil <em>avant de payer.</em>',
   'offer.lede': 'Avant tout paiement, nous construisons la page d’accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés.<span class="offer-who"> Yasser Hamisse, fondateur, la conçoit, la code et la livre lui-même.</span>',
   'offer.terms': 'Aperçu gratuit\u00a0· réservé aux entreprises immatriculées\u00a0· 4 par mois au plus',
@@ -262,7 +262,7 @@ var I18N = {
   'footer.studio': 'Le Studio',
   /* enh3 HOME, 2026-11-23: the bar's short estimate button, the Librairie and the world in the footer and the menu, the atelier's sub-line, the guide's own price answer, the work links by client, the footer's WorkspaceHQ label */
   'price.estCtaShort': 'Prix ferme <span aria-hidden="true">→</span>',
-  'nav.librairie': 'La Librairie',
+  'nav.librairie': 'La Lanterne',
   'nav.monde': 'Le monde',
   'atelier.sub': 'Services, travaux et prix du Studio',
   'tarifs.faq2a': 'Nos formules commencent à 90 000 DA pour un site vitrine, en dinars, en euros ou en dollars sur cette page. Le prix ferme est fixé une fois le périmètre clair\u202f: un forfait, sans frais cachés. Voir aussi <a href="../#apercu">l’Aperçu</a>.',
@@ -274,7 +274,7 @@ var I18N = {
   // wave 3 (2026-11-24): the other finished work under the four clients (index.html .work-foot)
   'work.annuaire': 'Terminé aussi\u00a0: l’Annuaire industriel algérien, les savoir-faire, certifications et besoins des entreprises industrielles algériennes, en trois langues.',
   'work.annuaireLive': 'Voir l’annuaire <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span>',
-  'work.own': 'Et ce site, le nôtre\u00a0: trois langues, un guide des prix, le Studio, la Librairie et les enquêtes de nuit.',
+  'work.own': 'Et ce site, le nôtre\u00a0: trois langues, un guide des prix, le Studio, la Lanterne et les enquêtes de nuit.',
   'footer.whq': 'WorkspaceHQ, notre outil (EN)',
   // the intro and navigation menu (characters thread, 2026-11-26; source: /mnt/project-files/characters/site-menu/gen.py)
   'menu.tarifs.label': 'Tarifs',
@@ -294,7 +294,8 @@ var I18N = {
   'menu.atelier.say': 'Là où je fabrique. Entre, mais ne touche pas au clavier.',
   'menu.atelier.kuro': 'surveille',
   'menu.lanterne.label': 'La Lanterne',
-  'menu.lanterne.sub': 'La librairie',
+  'menu.lanterne.sub': 'Les cours',
+  'menu.lanterne.back': 'Rang {n} · reprendre',
   'menu.lanterne.say': 'Ce que j’ai appris, rangé pour que tu l’apprennes plus vite.',
   'menu.lanterne.kuro': 'se repose',
   'menu.bible.label': 'La Bible',

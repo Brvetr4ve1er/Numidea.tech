@@ -22,7 +22,7 @@ var I18N = {
   'meta.ogAlt': 'Numidea Labs — «موقعك، قبل أن تدفع.» المعاينة: صفحتك الرئيسية قبل أن تدفع، فوق نقش لقوس تراجان في تيمقاد',
   'nav.about': 'معاينة مجانية', 'nav.services': 'الخدمات', 'nav.work': 'الأعمال',
   'nav.team': 'المؤسّس', 'nav.faq': 'الأسئلة', 'nav.contact': 'تواصل',
-  'offer.kicker': 'استوديو ويب\u00a0· برج بوعريريج',
+  'offer.kicker': 'تصميم مواقع الويب\u00a0· برج بوعريريج، الجزائر',
   'offer.title': 'شاهد صفحتك الرئيسية <em>قبل أن تدفع.</em>',
   'offer.lede': 'قبل أيّ دفع، نبني الصفحة الرئيسية لموقعك الجديد بمحتواك أنت خلال 5 أيام عمل.<span class="offer-who"> <bdi>Yasser Hamisse</bdi>، المؤسّس، يصمّمها ويبرمجها ويسلّمها بنفسه.</span>',
   'offer.terms': 'معاينة مجّانية\u00a0· للشركات المسجّلة فقط\u00a0· 4 في الشهر كحدّ أقصى',
@@ -265,7 +265,7 @@ var I18N = {
   'footer.studio': 'الاستوديو',
   /* enh3 HOME, 2026-11-23, AR review (native reader): seal.sent, scene.cta, contact.waNote, contact.vReply, nav.about, mbar.cta, mk.h and the keys below: price.estCtaShort, nav.librairie, nav.monde, atelier.sub, tarifs.faq2a, proj4/2/3/6.live, work.demoLive, footer.whq */
   'price.estCtaShort': 'السعر النهائي <span aria-hidden="true">←</span>',
-  'nav.librairie': 'المكتبة',
+  'nav.librairie': 'الفانوس',
   'nav.monde': 'العالم',
   'atelier.sub': 'خدمات الاستوديو وأعماله وأسعاره',
   'tarifs.faq2a': 'تبدأ باقاتنا من 90 000 دج للموقع التعريفي، بالدينار أو اليورو أو الدولار في هذه الصفحة، ونحدّد سعراً ثابتاً بعد توضيح نطاق العمل — دون مفاجآت. انظر أيضاً <a href="../#apercu">المعاينة</a>.',
@@ -277,7 +277,7 @@ var I18N = {
   // wave 3 (2026-11-24): the other finished work under the four clients (index.html .work-foot). AR review: work.annuaire, work.annuaireLive, work.own
   'work.annuaire': 'وأُنجز أيضاً: الدليل الصناعي الجزائري، كفاءات المؤسسات الصناعية الجزائرية وشهاداتها واحتياجاتها، بثلاث لغات.',
   'work.annuaireLive': 'زيارة الدليل <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span>',
-  'work.own': 'وهذا الموقع، موقعنا: ثلاث لغات، ودليل للأسعار، والاستوديو، والمكتبة، وتحقيقات الليل.',
+  'work.own': 'وهذا الموقع، موقعنا: ثلاث لغات، ودليل للأسعار، والاستوديو، والفانوس، وتحقيقات الليل.',
   'footer.whq': 'أداتنا WorkspaceHQ بالإنجليزية',
   // the intro and navigation menu (characters thread, 2026-11-26; source: /mnt/project-files/characters/site-menu/gen.py)
   'menu.tarifs.label': 'الأسعار',
@@ -297,7 +297,8 @@ var I18N = {
   'menu.atelier.say': 'هنا أصنع. ادخل، لكن لا تلمس لوحة المفاتيح.',
   'menu.atelier.kuro': 'يراقب',
   'menu.lanterne.label': 'الفانوس',
-  'menu.lanterne.sub': 'المكتبة',
+  'menu.lanterne.sub': 'الدروس',
+  'menu.lanterne.back': 'الرتبة {n} · تابِع',
   'menu.lanterne.say': 'ما تعلّمته، مرتّبًا لتتعلّمه أسرع.',
   'menu.lanterne.kuro': 'يستريح',
   'menu.bible.label': 'الدليل',

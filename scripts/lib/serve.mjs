@@ -1,6 +1,7 @@
 /**
  * Shared harness for the browser gates (audit, sweep, vbugs, keys): a static
- * server over the repository root on a free port, and a Chromium launcher.
+ * server over the repository root on a free port, and a browser launcher
+ * (Chromium; WebKit with PW_BROWSER=webkit or --webkit, see launch()).
  *
  * serve(root, { compress, fallback404 }): compress gzips text as the hosts
  * do; fallback404 answers a missing file the way GitHub Pages, Netlify and
@@ -21,7 +22,7 @@
  * off, the full build and the headless shell, both 141 and 149, give the
  * same 12 results.
  */
-import { chromium } from 'playwright';
+import { chromium, webkit } from 'playwright';
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { existsSync, readdirSync } from 'node:fs';
@@ -115,9 +116,21 @@ export const isStubbed = (url) => {
 };
 const stub = (ctx) => ctx.route((u) => isStubbed(u.href), (r) => r.fulfill({ status: 204, body: '' }));
 
+/* WebKit, Safari's engine (2026-11-27): PW_BROWSER=webkit, or --webkit on a gate's command line, launches
+   Playwright's WebKit instead (`npx playwright install --with-deps webkit` first). The Chromium flags (hinting, a
+   caller's args, ignoreDefaultArgs) do not apply and are dropped. Gates that drive Chromium's DevTools protocol (CDP:
+   the audit's throttled phone, keys, sweep's touch switch, design, hub-mobile) stay on Chromium; vbugs and
+   stage-check run on both (check.yml's nightly webkit job). */
+export const BROWSER = process.env.PW_BROWSER === 'webkit' || process.argv.includes('--webkit') ? 'webkit' : 'chromium';
 export async function launch(opts = {}) {
-  const executablePath = process.env.CHROMIUM_PATH || localChrome();
-  const b = await chromium.launch({ executablePath, ...opts, args: ['--font-render-hinting=none', ...(opts.args || [])] });
+  let b;
+  if (BROWSER === 'webkit') {
+    const { args, ignoreDefaultArgs, ...rest } = opts;
+    b = await webkit.launch(rest);
+  } else {
+    const executablePath = process.env.CHROMIUM_PATH || localChrome();
+    b = await chromium.launch({ executablePath, ...opts, args: ['--font-render-hinting=none', ...(opts.args || [])] });
+  }
   for (const m of ['newContext', 'newPage']) {
     const orig = b[m].bind(b);
     b[m] = async (o = {}) => {

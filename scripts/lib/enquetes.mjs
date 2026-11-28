@@ -138,7 +138,7 @@ const VERDICTS = ['yes', 'partly', 'no', 'added'];
 const PLACES = ['awning', 'shelves', 'headphones', 'book', 'lantern', 'satchel', 'drawers', 'kuro'];
 
 export function enquetes(h) {
-  const { LS, HUB, DICT, LANGS, fail, notes, esc, json, need, headFor, swap, menu, motionBtn, langSwitch, scripts, radioJson, WA, TOOLS, WM, stFoot } = h;
+  const { LS, HUB, DICT, LANGS, fail, notes, esc, json, need, headFor, swap, menu, motionBtn, langSwitch, scripts, radioJson, WA, TOOLS, WM, stFoot } = h, gameBlock = h.gameBlock || (() => '');
   const at = 'hub/src/lanterne/enquetes.json', CD = join(LS, 'enquetes');
   const E = json(join(LS, 'enquetes.json'));
   if (!E) return null;
@@ -391,8 +391,8 @@ ${stFoot(`
 <script type="application/json" id="hub-radio">${radioJson}</script>
 <!-- hub/lanterne.js reads #lant-data for the page's kind: an empty tools list keeps it to the mast, the menu and the words -->
 <script type="application/json" id="lant-data">{"tools":[]}</script>
-<script type="application/json" id="enq-data">${JSON.stringify(client).replace(/</g, '\\u003c')}</script>
-${scripts(['../lanterne.js', '../radio.js', '../enquetes.js', '../../assets/carry.js'])}
+<script type="application/json" id="enq-data">${JSON.stringify(client).replace(/</g, '\\u003c')}</script>${gameBlock('./#passeport')}
+${scripts(['../lanterne.js', '../radio.js', '../enquetes.js', '../game.js', '../../assets/carry.js'])}
 </body>
 </html>
 `;

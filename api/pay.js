@@ -14,6 +14,10 @@
  *   PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET  the REST app's pair
  *   PAYPAL_ENV        "live" for real money; anything else is sandbox
  *   PAY_LINK_SECRET   the HMAC key scripts/pay-link.mjs signs links with
+ *   PAYPAL_ME         the owner's PayPal.me name (not a secret), for the pay-link fallback
+ *   PAYPAL_PROVEN     "yes" once a real payment has reached the owner's PayPal account (2026-11-27: not yet proven
+ *                     that an Algerian account can receive). Until then no real-money PayPal path exists: live keys
+ *                     answer ready:false and the PayPal.me link is withheld. Sandbox keys still work (test money).
  * Without them this answers 503 and the page shows the transfer details only.
  *
  * Raw fetch, no SDK: the project deploys with no install step.
@@ -46,6 +50,22 @@ export function verify(f, secret, now = Date.now()) {
   return { ref, part, amt, cur, exp: String(exp) };
 }
 
+/* A brake on "create" (checklist 2026-11-27): each call opens a PayPal order, so a script hammering it would fill the
+   owner's PayPal account with dead orders. Per visitor address: at most RATE_MAX creates in RATE_WINDOW ms, then 429.
+   It lives in the function's memory, so it holds per warm instance, not across all of Vercel: a brake on one browser or
+   one script, not a wall. The durable wall is a Vercel Firewall rate-limit rule on /api/pay (owner, dashboard). */
+export const RATE_MAX = 8, RATE_WINDOW = 10 * 60 * 1000;
+const hits = new Map();
+export function limited(ip, now = Date.now(), store = hits) {
+  const key = typeof ip === 'string' && ip ? ip.slice(0, 64) : 'unknown';
+  const recent = (store.get(key) || []).filter((t) => now - t < RATE_WINDOW);
+  if (recent.length >= RATE_MAX) { store.set(key, recent); return true; }
+  recent.push(now); store.set(key, recent);
+  if (store.size > 5000) for (const [k, v] of store) if (!v.some((t) => now - t < RATE_WINDOW)) store.delete(k);
+  return false;
+}
+export const visitor = (req) => String(req.headers['x-real-ip'] || (req.headers['x-forwarded-for'] || '').split(',')[0] || '').trim();
+
 const allowedOrigin = (o) => {
   if (!o) return false;
   try {
@@ -54,9 +74,9 @@ const allowedOrigin = (o) => {
   } catch { return false; }
 };
 
-const api = () => (process.env.PAYPAL_ENV === 'live' ? 'https://api-m.paypal.com' : 'https://api-m.sandbox.paypal.com');
+export const api = () => (process.env.PAYPAL_ENV === 'live' ? 'https://api-m.paypal.com' : 'https://api-m.sandbox.paypal.com');
 
-async function token() {
+export async function token() {
   const basic = Buffer.from(`${process.env.PAYPAL_CLIENT_ID}:${process.env.PAYPAL_CLIENT_SECRET}`).toString('base64');
   const r = await fetch(`${api()}/v1/oauth2/token`, {
     method: 'POST',
@@ -68,19 +88,52 @@ async function token() {
   return (await r.json()).access_token;
 }
 
+/* The order trace: one JSON line per step, in the function logs (Vercel → Logs, filter "pay"). Reference, amount,
+   status and PayPal's ids only; never a payer's name, e-mail or card. */
+export const trace = (step, data) => console.log(JSON.stringify({ pay: step, at: new Date().toISOString(), ...data }));
+
+/* Capture an approved order. The page (on return) and the webhook (api/pay-hook.js, when the buyer never comes back)
+   both call this with the same PayPal-Request-Id, so PayPal charges once whichever arrives first. */
+export async function capture(id, bearer, via) {
+  const r = await fetch(`${api()}/v2/checkout/orders/${id}/capture`, {
+    method: 'POST',
+    headers: { authorization: `Bearer ${bearer}`, 'content-type': 'application/json', 'PayPal-Request-Id': `cap-${id}` },
+    body: '{}',
+    signal: AbortSignal.timeout(10000),
+  });
+  const out = await r.json().catch(() => ({}));
+  // already captured (a reload of the thank-you page, or the webhook got there first) counts as paid
+  const done = out.status === 'COMPLETED' || (out.details || []).some((d) => d.issue === 'ORDER_ALREADY_CAPTURED');
+  const unit = (out.purchase_units || [])[0] || {};
+  const cap = ((unit.payments || {}).captures || [])[0] || {};
+  const res = { done, ref: unit.reference_id || null, amount: cap.amount || null, capture: cap.id || null };
+  trace(done ? 'captured' : 'capture-failed', { via, order: id, ref: res.ref, amount: res.amount, capture: res.capture, status: out.status || r.status });
+  return res;
+}
+
 const LABEL = { deposit: 'Acompte 40 %', balance: 'Solde 60 %', full: 'Paiement' };
+
+/* real money moves through PayPal only once the owner has proven the account receives (PAYPAL_PROVEN=yes) */
+export function gate(e = process.env) {
+  const live = e.PAYPAL_ENV === 'live', proven = e.PAYPAL_PROVEN === 'yes';
+  const me = e.PAYPAL_ME || '';
+  return {
+    env: live ? 'live' : 'sandbox',
+    api: Boolean(e.PAYPAL_CLIENT_ID && e.PAYPAL_CLIENT_SECRET && e.PAY_LINK_SECRET) && (!live || proven),
+    paylink: proven && /^[A-Za-z0-9]{1,20}$/.test(me) ? `https://www.paypal.com/paypalme/${me}` : null,
+  };
+}
 
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
-  const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PAY_LINK_SECRET } = process.env;
-  const configured = Boolean(PAYPAL_CLIENT_ID && PAYPAL_CLIENT_SECRET && PAY_LINK_SECRET);
+  const g = gate(), configured = g.api;
   // GET: is the button worth showing? Says only the mode, never a key.
   // The counter's price list comes with it, so the page and the charge read one list.
   if (req.method === 'GET') {
-    const env = process.env.PAYPAL_ENV === 'live' ? 'live' : 'sandbox', catalog = publicCatalog();
-    if (!configured) return res.status(200).json({ ready: false, catalog });
-    try { await token(); return res.status(200).json({ ready: true, env, catalog }); }
-    catch { return res.status(200).json({ ready: false, env, error: 'auth', catalog }); }
+    const { env, paylink } = g, catalog = publicCatalog();
+    if (!configured) return res.status(200).json({ ready: false, paylink, catalog });
+    try { await token(); return res.status(200).json({ ready: true, env, paylink, catalog }); }
+    catch { return res.status(200).json({ ready: false, env, error: 'auth', paylink, catalog }); }
   }
   if (req.method !== 'POST') { res.setHeader('Allow', 'GET, POST'); return res.status(405).json({ error: 'method' }); }
   if (!allowedOrigin(req.headers.origin)) return res.status(403).json({ error: 'origin' });
@@ -89,6 +142,8 @@ export default async function handler(req, res) {
   try { body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body; } catch { return res.status(400).json({ error: 'json' }); }
   if (!body || JSON.stringify(body).length > 2000) return res.status(413).json({ error: 'size' });
 
+  // before any PayPal call: a visitor over the brake costs nothing upstream
+  if (body.op === 'create' && limited(visitor(req))) { trace('create-limited', {}); res.setHeader('Retry-After', '600'); return res.status(429).json({ error: 'busy' }); }
   const origin = new URL(req.headers.origin).origin;
   try {
     const bearer = await token();
@@ -149,22 +204,15 @@ export default async function handler(req, res) {
       const order = await r.json();
       const approve = (order.links || []).find((l) => l.rel === 'payer-action' || l.rel === 'approve');
       if (!approve) return res.status(502).json({ error: 'shape' });
+      trace('created', { order: order.id, ref: unit.reference_id, custom: unit.custom_id, amount: unit.amount, startOk: body.startOk === true });
       return res.status(200).json({ approve: approve.href, ref: unit.reference_id });
     }
 
     if (body.op === 'capture') {
       if (typeof body.token !== 'string' || !/^[A-Z0-9]{10,24}$/.test(body.token)) return res.status(400).json({ error: 'token' });
-      const r = await fetch(`${api()}/v2/checkout/orders/${body.token}/capture`, {
-        method: 'POST', headers: { ...headers, 'PayPal-Request-Id': `cap-${body.token}` }, body: '{}',
-        signal: AbortSignal.timeout(10000),
-      });
-      const out = await r.json().catch(() => ({}));
-      // already captured (a reload of the thank-you page) counts as paid
-      const done = out.status === 'COMPLETED' || (out.details || []).some((d) => d.issue === 'ORDER_ALREADY_CAPTURED');
-      if (!done) return res.status(402).json({ error: 'declined' });
-      const unit = (out.purchase_units || [])[0] || {};
-      const cap = ((unit.payments || {}).captures || [])[0] || {};
-      return res.status(200).json({ paid: true, ref: unit.reference_id || null, amount: cap.amount || null });
+      const c = await capture(body.token, bearer, 'page');
+      if (!c.done) return res.status(402).json({ error: 'declined' });
+      return res.status(200).json({ paid: true, ref: c.ref, amount: c.amount });
     }
 
     return res.status(400).json({ error: 'op' });

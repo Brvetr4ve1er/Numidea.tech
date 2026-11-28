@@ -4,11 +4,11 @@
      change index.html or the dictionary, then npm run build. -->
 <html lang="en" dir="ltr" data-theme="arcanum">
 <head>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',functionality_storage:'denied',personalization_storage:'denied',security_storage:'granted'});gtag('js',new Date());</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}var nc;try{nc=localStorage.getItem('numidea.consent')}catch(e){}gtag('consent','default',{ad_storage:'denied',analytics_storage:nc==='granted'?'granted':'denied',ad_user_data:'denied',ad_personalization:'denied',functionality_storage:'denied',personalization_storage:'denied',security_storage:'granted'});gtag('js',new Date());</script>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-irdS0xJ3CvNkw9o4G9wp9MYJmopPCe1hXIqLW6IYZOM=' 'sha256-Nqnn8clbgv+5l0PgxcTOldg8mkMKrFn4TvPL+rYUUGg=' 'sha256-jqvmeaJzhI0avE/Byblgel+6lAUwtfzShFKt7DLnhME='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-EGX+qDR3HhmMKM01Hb5sBBypTeZvbmz5/GeDtjXFBoI=' 'sha256-irdS0xJ3CvNkw9o4G9wp9MYJmopPCe1hXIqLW6IYZOM=' 'sha256-Nqnn8clbgv+5l0PgxcTOldg8mkMKrFn4TvPL+rYUUGg=' 'sha256-jqvmeaJzhI0avE/Byblgel+6lAUwtfzShFKt7DLnhME='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Website design and development in Algeria | Numidea Labs</title>
 <meta name="description" content="Website design and development in English, French and Arabic, from 90,000 DZD. See your homepage before you pay. A web studio in Bordj Bou Arréridj, Algeria.">
 <meta name="theme-color" content="#211E1B">
@@ -290,7 +290,7 @@
   <a href="#contact" data-i18n="nav.contact">Contact</a>
   <!-- the other two parts of the site, under a rule (journey-01): the home had no way to them but the footer's Studio link -->
   <span class="menu-sep" aria-hidden="true"></span>
-  <a class="menu-far" href="../hub/lanterne/?lang=en" data-i18n="nav.librairie">The Bookshop</a>
+  <a class="menu-far" href="../hub/lanterne/?lang=en" data-i18n="nav.librairie">The Lantern</a>
   <a class="menu-far" href="../hub/monde.html?lang=en" data-i18n="nav.monde">The world</a>
   <a class="menu-far" href="../hub/?lang=en" data-i18n="menu.atelier.label">Workshop</a>
   <a class="menu-far" href="../hub/bible/" data-i18n="menu.bible.label">The Bible</a>
@@ -371,7 +371,7 @@
 <li><a class="nl-item r small" href="../hub/lanterne/?lang=en" data-id="lanterne" data-kuro="loaf" data-pose="yasser/action/pointup-a" data-prop="sketchbook">
  <span class="nl-pr"><span class="nl-sh"></span><span class="nl-face"></span>
   <span class="nl-tx"><span class="nl-lab" data-i18n="menu.lanterne.label">The Lantern</span></span>
-  <span class="nl-sub" data-i18n="menu.lanterne.sub">The bookshop</span>
+  <span class="nl-sub" data-i18n="menu.lanterne.sub">The lessons</span>
  </span>
  <span class="nl-d" data-k="say" hidden data-i18n="menu.lanterne.say">What I learned, sorted so you learn it faster.</span><span class="nl-d" data-k="kuro" hidden data-i18n="menu.lanterne.kuro">is resting</span>
 </a></li>
@@ -470,8 +470,7 @@
        stand just below, each with its capture, its sheet and its live link
        (#work), under their logos (the proof). -->
   <section class="offer" aria-labelledby="offer-h">
-    <span class="kicker" data-i18n="offer.kicker">Web studio · Bordj Bou Arréridj</span>
-    <h1 class="offer-h" id="offer-h" data-i18n="offer.title">See your homepage <em>before you pay.</em></h1>
+    <h1 class="offer-h" id="offer-h"><span class="kicker" data-i18n="offer.kicker">Website design · Bordj Bou Arréridj, Algeria</span><span data-i18n="offer.title">See your homepage <em>before you pay.</em></span></h1>
     <div class="offer-body">
       <p class="offer-lede" data-i18n="offer.lede">Before you pay anything, we build your new site’s homepage with your own content in 5 working days.<span class="offer-who"> Yasser Hamisse, founder, designs, codes and delivers it himself.</span></p>
       <div class="actions-row offer-cta">
@@ -615,7 +614,7 @@
       <p class="work-demo"><span data-i18n="work.annuaire">Also finished: the Algerian industrial directory, the capabilities, certifications and needs of Algeria’s industrial companies, in three languages.</span>
         <span class="work-links"><a data-client="annuaire" href="https://annuaire-dz.vercel.app/fr" target="_blank" rel="noopener" data-i18n="work.annuaireLive">Visit the directory <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
         <a href="../scene/?lang=en#annuaire" data-i18n="work.sheet">See the project in detail</a></span></p>
-      <p class="work-demo"><span data-i18n="work.own">And this site, our own: three languages, a price guide, the Studio, the Lantern Bookshop and the night cases.</span>
+      <p class="work-demo"><span data-i18n="work.own">And this site, our own: three languages, a price guide, the Studio, the Lantern and the night cases.</span>
         <span class="work-links"><a href="../scene/?lang=en#numidea" data-i18n="work.sheet">See the project in detail</a></span></p>
       <a class="scene-link" href="../scene/?lang=en"><span class="sb-go" data-i18n="scene.cta">See the projects in detail <span aria-hidden="true">→</span></span></a>
       <p class="scene-lead" data-i18n="scene.lead">Each sheet shows a project’s key pages, its mobile version and its visual system — every screenshot taken from the live site.</p>
@@ -1331,7 +1330,7 @@
       <a href="#faq" data-i18n="nav.faq">FAQ</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>
       <a href="../hub/?lang=en" data-i18n="footer.studio">The Studio</a>
-      <a href="../hub/lanterne/?lang=en" data-i18n="nav.librairie">The Bookshop</a>
+      <a href="../hub/lanterne/?lang=en" data-i18n="nav.librairie">The Lantern</a>
       <a href="../hub/monde.html?lang=en" data-i18n="nav.monde">The world</a>
       <a href="../workspacehq/" data-i18n="footer.whq">WorkspaceHQ, our tool</a>
     </nav>

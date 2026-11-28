@@ -42,10 +42,11 @@ import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { AYN } from './ayn.mjs';
 import { enquetes } from './enquetes.mjs';
+import { kuro, KURO_EP } from './kuro.mjs';
 
 const W3M_KEYS = /^web3c\.(mods|x|chap|carnet)\./;
 const KIT = ['compose', 'observe', 'focus', 'scrub', 'ab', 'machineLaunch', 'machineAsh', 'funnel', 'toggles', 'path'];
-const BOUND = /^(pick|calc:(rate|treso|funnel|quote|zones|week|fee)|fiche|bins|flow|law|states|marktest|web3x:[a-z0-9]+)$/;
+const BOUND = /^(pick|calc:(rate|treso|funnel|quote|zones|week|fee)|fiche|bins|flow|law|states|marktest|web3x:[a-z0-9]+|bank:[a-z0-9]+)$/;   // bank:* (2026-11-27): « Ma banque, sans piège », bound by hub/banque-x.js (the atlas's labs)
 const WA = 'https://wa.me/213672412578';
 const DISTRICT_KEYS = ['name', 'sub', 'alt', 'lore', 'rule', 'q', 'keep', 'scene', 'handoff', 'decision', 'ex.t', 'ex.brief'];
 const ATLAS_KEYS = ['title1', 'title2', 'kicker', 'pitch', 'caseLabel', 'search', 'desc', 'coverAlt', 'conclusion'];
@@ -77,7 +78,9 @@ export function lanterne(ctx) {
   const TOOLS = existsSync(join(LS, 'apps.json')) ? json(join(LS, 'apps.json')) : null;
   /* « Les enquêtes de nuit » (2026-11-23): the night stall as a game, built after the toolbox once its data file exists (scripts/lib/enquetes.mjs) */
   const ENQ = existsSync(join(LS, 'enquetes.json'));
-  const enqMenu = ENQ ? [['enquetes.html', 'lant.enq.mast']] : [];
+  /* Kūro's episode (2026-11-27, scripts/lib/kuro.mjs): a page once its episode file exists, in every Librairie menu beside the night cases */
+  const KURO = existsSync(join(HUB, 'kuro', KURO_EP + '.json'));
+  const enqMenu = [...(ENQ ? [['enquetes.html', 'lant.enq.mast']] : []), ...(KURO ? [['kuro.html', 'lant.kuro.mast']] : [])];
   const toolIds = new Set(TOOLS ? [...TOOLS.categories.map((c) => 'tl-' + c.id), ...TOOLS.apps.map((a) => 'tl-app-' + a.id)] : []);
   for (const b of books) if (!ATLAS[b.slug]) notes.push(`the Librairie: « ${b.slug} » has no atlas file yet (hub/src/lanterne/atlases/${b.slug}.json): its book reads « bientôt »`);
   const fr = (k) => DICT.fr[k];
@@ -525,7 +528,9 @@ export function lanterne(ctx) {
     const page = P;
     const loPage = ids.some((id) => A.districts[id].object || A.districts[id].objectEx || A.districts[id].panel || A.districts[id].panelEx) || /img\/lanterne\/panels\//.test(['_sac', '_end', '_hero', '_journal'].map(part).join(''));
     const title = fr(ak(A, 'title1')) + ' ' + fr(ak(A, 'title2'));
-    const html = `${headFor(`${P}.html`, `lant.page.${P}`, page, [['La Librairie Lanterne', ''], [title.replace(/\.$/, ''), `${P}.html`]])}
+    /* an atlas's own sheet (2026-11-27, « Ma banque, sans piège »: "css": its labs' blocks, after lanterne.css), so the shared sheet keeps its budget */
+    const atlasHead = (h) => (A.css ? swap(h, '<link rel="stylesheet" href="../css/lanterne.css?v={{stamp}}">', `<link rel="stylesheet" href="../css/lanterne.css?v={{stamp}}">\n<link rel="stylesheet" href="../css/${A.css}?v={{stamp}}">`, 1, `${P}'s sheet`) : h);
+    const html = `${atlasHead(headFor(`${P}.html`, `lant.page.${P}`, page, [['La Librairie Lanterne', ''], [title.replace(/\.$/, ''), `${P}.html`]]))}
 <body class="lt lt-atlas" data-lt-atlas="${P}">
 <a class="skip" href="#quartiers" data-i18n="lant.ui.skip"></a>
 <header class="mast lt-wrap">
@@ -1033,8 +1038,14 @@ ${scripts(['../lanterne.js', '../../assets/carry.js'])}
      the page, its checks and the strings its engine writes; its sources' hosts join the toolbox's (a source there is a
      plain link to the page that was read, marked data-app like an app's official address) */
   if (ENQ) {
-    ENQG = enquetes({ LS, HUB, DICT, LANGS, fail, notes, esc, json, need, headFor, swap, menu, motionBtn, langSwitch, scripts, radioJson, WA, TOOLS, WM, stFoot });   // WM, stFoot: the Librairie's mark and foot, for E-05; motionBtn: the mast's motion switch goes into the menu under 651 px, as on the atlases
-    if (ENQG) { out.push(ENQG.out); runtime[ENQG.out.page] = ENQG.runtime; for (const hst of ENQG.hosts) appHosts.add(hst); }
+    ENQG = enquetes({ LS, HUB, DICT, LANGS, fail, notes, esc, json, need, headFor, swap, menu, motionBtn, langSwitch, scripts, radioJson, WA, TOOLS, WM, stFoot, gameBlock });   // gameBlock (2026-11-27): the night cases pay Encre with the game's card, as the atlases do   // WM, stFoot: the Librairie's mark and foot, for E-05; motionBtn: the mast's motion switch goes into the menu under 651 px, as on the atlases
+    if (ENQG) { out.push(ENQG.out); runtime[ENQG.out.page] = new Set([...ENQG.runtime, ...Object.keys(DICT.fr).filter((k) => /^lant\.ui\.game\./.test(k))]); for (const hst of ENQG.hosts) appHosts.add(hst); }
+  }
+
+  /* ================= Kūro's episode (2026-11-27, scripts/lib/kuro.mjs): finishing it counts in the game ================= */
+  if (KURO) {
+    const KG = kuro({ HUB, DICT, LANGS, fail, json, need, headFor, swap, menu, motionBtn, langSwitch, scripts, WA, TOOLS, WM, stFoot, gameBlock, enqMenu });
+    if (KG) { out.push(KG.out); runtime[KG.out.page] = KG.runtime; }
   }
 
   /* the French runtime strings each page writes itself (the rest is baked) */
@@ -1112,6 +1123,6 @@ if(l==='en'||l==='ar')u+='?lang='+l;if(at)u+='#'+at;location.replace(u);})();`;
 `;
   out.push({ file: 'hub/manuel.html', name: 'manuel.html', page: null, html: stub });
 
-  const generated = ['lanterne/index.html', ...live.map((b) => `lanterne/${b.slug}.html`), ...(TOOLS ? ['lanterne/outils.html'] : []), ...(ENQ ? ['lanterne/enquetes.html'] : []), ...out.filter((o) => o.page).flatMap((o) => ['en', 'ar'].map((l) => `lanterne/i18n/${o.page}.${l}.js`)), ...files.map(([f]) => f.slice(4))];
+  const generated = ['lanterne/index.html', ...live.map((b) => `lanterne/${b.slug}.html`), ...(TOOLS ? ['lanterne/outils.html'] : []), ...(ENQ ? ['lanterne/enquetes.html'] : []), ...(KURO ? ['lanterne/kuro.html'] : []), ...out.filter((o) => o.page).flatMap((o) => ['en', 'ar'].map((l) => `lanterne/i18n/${o.page}.${l}.js`)), ...files.map(([f]) => f.slice(4))];
   return { out, holes, runtime, generated, files, live: live.map((b) => b.slug), books, ATLAS, appHosts };
 }

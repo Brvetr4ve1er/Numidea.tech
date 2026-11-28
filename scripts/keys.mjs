@@ -151,6 +151,8 @@
  *    watch starts once the network is idle, or that reads as motion
  */
 import { existsSync, readFileSync } from 'node:fs';
+import { spawn } from 'node:child_process';
+import { availableParallelism } from 'node:os';
 import { join } from 'node:path';
 import { serve, launch, isStubbed } from './lib/serve.mjs';
 import { watchCsp } from './lib/csp-watch.mjs';
@@ -206,6 +208,68 @@ const name = (f) => (f === 'index.html' ? 'index' : f.replace(/\/index\.html$/, 
 const pages = PAGES.slice();
 if (existsSync(join(ROOT, 'legal-preview/index.html'))) { pages.push('legal-preview/index.html'); SPEC['legal-preview/index.html'] = SPEC['legal/index.html']; }
 if (ONLY) pages.splice(0, pages.length, ...pages.filter((f) => name(f).includes(ONLY)));
+const unclassified = pages.filter((f) => !SPEC[f]);
+
+/* Shards (2026-11-27). The gate grew from 91 runs to about 250 (the Librairie's
+   ten pages in three languages, the counter, the brand books) and, one page at
+   a time, took over 40 minutes: the reduced-motion pass alone holds every
+   page and language at both sizes for 6s plus a 400ms stop per viewport. It
+   never hung; it outran the limits it was run under. So the pages are dealt
+   to KEYS_JOBS child processes (default: the cores less one, at most 4), each
+   with its own server and browser, running this same file on its share
+   (KEYS_SHARD=i/n): every page still gets every check, nothing is cut. The
+   checks that span pages stay whole: the hand-over needs index and tarifs/
+   in one shard, so they are dealt together. KEYS_JOBS=1 runs it in one
+   process, as before. Each shard's report is printed whole when it ends, in
+   shard order. */
+const SHARD = process.env.KEYS_SHARD;
+const JOBS = SHARD ? 1 : Math.max(1, parseInt(process.env.KEYS_JOBS || '', 10) || Math.min(4, availableParallelism() - 1));
+// the cost of a page, roughly: its language and size runs, each a keyboard
+// and a reduced-motion visit, the home's heavy paths (form, estimator) on top
+const HEAVY = { form: 4, studio: 4, estimate: 2 };   // the long paths (measured: hub/ and the home pages lead)
+const cost = (f) => { const s = SPEC[f]; return s ? s.langs.length * (2 + s.tests.reduce((a, t) => a + (HEAVY[t] || 1), 0)) : 0; };
+function deal(list, n) {
+  const groups = [];
+  const together = ['index.html', 'tarifs/index.html'].filter((f) => list.includes(f));
+  if (together.length) groups.push(together);
+  for (const f of list) if (!together.includes(f)) groups.push([f]);
+  const gc = (g) => g.reduce((a, f) => a + cost(f), 0);
+  groups.sort((a, b) => gc(b) - gc(a));
+  const bins = Array.from({ length: n }, () => ({ w: 0, pages: [] }));
+  for (const g of groups) { const bin = bins.reduce((m, x) => (x.w < m.w ? x : m)); bin.pages.push(...g); bin.w += gc(g); }
+  // keep the site's own page order inside a shard
+  return bins.map((x) => list.filter((f) => x.pages.includes(f)));
+}
+if (SHARD) {
+  const [i, n] = SHARD.split('/').map(Number);
+  const mine = deal(pages, n)[i];
+  pages.splice(0, pages.length, ...mine);
+} else if (JOBS > 1 && pages.length > 1) {
+  const n = Math.min(JOBS, pages.length);
+  const shares = deal(pages, n);
+  const t0 = Date.now();
+  console.log(`keys: ${pages.length} pages in ${n} shards (KEYS_JOBS=1 for one process)`);
+  const outs = await Promise.all(shares.map((share, i) => new Promise((res) => {
+    const c = spawn(process.execPath, [process.argv[1], ...process.argv.slice(2)], { cwd: ROOT, env: { ...process.env, KEYS_SHARD: `${i}/${n}` } });
+    let out = '';
+    c.stdout.on('data', (d) => { out += d; });
+    c.stderr.on('data', (d) => { out += d; });
+    c.on('close', (code, sig) => {
+      console.log(`  shard ${i + 1}/${n} done in ${((Date.now() - t0) / 1000).toFixed(0)}s (${share.length} pages)${code === 0 ? '' : ' with failures'}`);
+      res({ i, code: code ?? 1, sig, out, share });
+    });
+  })));
+  let failed = 0;
+  for (const o of outs) {
+    console.log(`\n━━ shard ${o.i + 1}/${n}: ${o.share.map(name).join(', ')}`);
+    process.stdout.write(o.out);
+    if (o.code !== 0) { failed++; if (o.sig || !/FAILURES: |ALL CLEAN/.test(o.out)) console.log(`FAIL shard ${o.i + 1} ended without a verdict (${o.sig || 'exit ' + o.code})`); }
+  }
+  if (unclassified.length) { console.log('FAIL no keys spec for: ' + unclassified.join(', ') + ' (add it to SPEC in scripts/keys.mjs)'); failed++; }
+  const runsAll = outs.reduce((a, o) => { const m = o.out.match(/(?:FAILURES: \d+ of |ALL CLEAN \()(\d+)/); return a + (m ? +m[1] : 0); }, 0);
+  console.log(`\nkeys: ${n} shards, ${runsAll} runs, ${((Date.now() - t0) / 1000).toFixed(0)}s, ` + (failed ? `${failed} shard(s) failed` : 'all clean'));
+  process.exit(failed ? 1 : 0);
+}
 const SIZES = [[1280, 900], [390, 844]];
 const RING_N = 25;
 // index's dictionaries, as app.js holds them: the form's status lines are
@@ -216,8 +280,7 @@ const srv = await serve();
 const B = srv.base;
 const b = await launch();
 let fails = 0, runs = 0;
-const unclassified = pages.filter((f) => !SPEC[f]);
-if (unclassified.length) { console.log('FAIL no keys spec for: ' + unclassified.join(', ') + ' (add it to SPEC in scripts/keys.mjs)'); fails++; }
+if (!SHARD && unclassified.length) { console.log('FAIL no keys spec for: ' + unclassified.join(', ') + ' (add it to SPEC in scripts/keys.mjs)'); fails++; }
 
 // a language page (the home's three, the guide's three) is its language; the
 // pages that switch in place take ?lang=
@@ -388,6 +451,11 @@ async function themeToggle(p) {
   }, which);
   const focusBtn = () => p.evaluate((which) => document.querySelectorAll('.theme-switch')[which].querySelector('.theme-btn').focus(), which);
   const other = (t) => (t === 'daylight' ? 'arcanum' : 'daylight');
+  // the switch is a view transition (app.js swap): its update runs a frame or
+  // more after the press, so 80ms was a race a busy machine lost (seen with
+  // the gates side by side, 2026-11-27). Wait up to 1.5s for data-theme to
+  // leave what it was, then read the state and judge it as before.
+  const settled = async (was) => { await p.waitForFunction((was) => document.documentElement.getAttribute('data-theme') !== was, was, { timeout: 1500 }).catch(() => {}); await wait(80); return st(); };
   let s = await st();
   const first = s.theme;
   if (s.tag !== 'BUTTON' || s.type !== 'button') bad.push('the toggle is not a <button type="button">');
@@ -401,19 +469,19 @@ async function themeToggle(p) {
   if (s.labels !== 1) bad.push('the toggles on the page do not agree on their label');
   // keyboard: Enter, then Space, each flips it, stores it, keeps focus on the button
   await focusBtn();
-  await p.keyboard.press('Enter'); await wait(80); s = await st();
+  await p.keyboard.press('Enter'); s = await settled(s.theme);
   if (s.theme !== other(first)) bad.push(`Enter does not switch (${first} -> ${s.theme})`);
   if (s.stored !== s.theme) bad.push(`Enter does not store the choice (stored ${s.stored})`);
   if (!s.onBtn) bad.push('focus leaves the button after Enter');
   if (!named(s) || s.labels !== 1) bad.push(`the label does not follow the switch (${s.label})`);
   if (s.iconsShown !== 1) bad.push(`${s.iconsShown} icons shown after the switch, want 1`);
   if (inMenu && !s.menuOpen) bad.push('switching closes the phone menu around the toggle');
-  await p.keyboard.press('Space'); await wait(80); s = await st();
+  await p.keyboard.press('Space'); s = await settled(s.theme);
   if (s.theme !== first || s.stored !== first) bad.push(`Space does not switch back (theme ${s.theme}, stored ${s.stored})`);
   // pointer
   await p.evaluate((which) => document.querySelectorAll('.theme-switch')[which].querySelector('.theme-btn').scrollIntoView({ block: 'center' }), which);
   const box = await p.evaluate((which) => { const r = document.querySelectorAll('.theme-switch')[which].querySelector('.theme-btn').getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; }, which);
-  await p.mouse.click(box.x, box.y); await wait(80); s = await st();
+  await p.mouse.click(box.x, box.y); s = await settled(s.theme);
   const chosen = s.theme;
   if (chosen !== other(first) || s.stored !== chosen) bad.push(`a click does not switch and store (theme ${s.theme}, stored ${s.stored})`);
   // the browser's bar follows the page colour
@@ -774,6 +842,11 @@ async function studio(p, lang) {
   // the language buttons
   for (const l of ['en', 'ar', 'fr'].filter((x) => x !== lang).concat(lang)) {
     await key(`[data-lang="${l}"]`);
+    // the first switch to a language fetches its dictionary and fonts, then
+    // swaps under a 250ms cover (app.js withDicts, faces, swap): 120ms was a
+    // race that a busy machine lost (seen with the gate in shards), so wait
+    // up to 3s for the switch to land, then judge it as before
+    await p.waitForFunction((l) => document.documentElement.lang === l && document.querySelector(`[data-lang="${l}"]`).getAttribute('aria-pressed') === 'true', l, { timeout: 3000 }).catch(() => {});
     const r = await p.evaluate((l) => ({ lang: document.documentElement.lang, dir: document.documentElement.dir, on: document.querySelector(`[data-lang="${l}"]`).getAttribute('aria-pressed'), others: [...document.querySelectorAll('[data-lang]')].filter((b) => b.getAttribute('data-lang') !== l && b.getAttribute('aria-pressed') === 'true').length }), l);
     if (r.lang !== l) bad.push(`[data-lang=${l}] left html lang="${r.lang}"`);
     if (r.dir !== (l === 'ar' ? 'rtl' : 'ltr')) bad.push(`[data-lang=${l}] left dir="${r.dir}"`);

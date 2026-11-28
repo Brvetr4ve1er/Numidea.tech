@@ -56,3 +56,75 @@ Thread: "Add PayPal payments across the site". This file is the living plan; eac
   - Only fixed figures are sold (`api/_shop.js`): the carte's single-figure lines and the money services. Ranges stay quotes. The server re-prices every bag from its own list; `npm run pay:test` fails if a figure drifts from `assets/app.js` ESTIMATE.
   - Still noindex and linked from nowhere: where to link it from (the Studio's carte, Tarifs, the money pages) is the next decision.
   - Owner to confirm: the list of items for sale, the € / $ rounding (whole units at the site's FX), and whether the counter pays services in full or by deposit.
+- Increment 4 (PR #32, 2026-11-27): the counter works **without the PayPal API**, on what is provably available.
+  - Routes, chosen in the bag: **CCP · BaridiMob** (dinars, the carte price as is), **Virement € / $** (from abroad, at the site's FX), and **PayPal** only when it can take the money: the Orders API (`ready`), or else the owner's PayPal.me link (`PAYPAL_ME` env, a name, not a secret), prefilled with the amount and currency.
+  - Every bag gets an order reference (`N-YYYYMMDD-XXXX`), shown in the bag and sent in a prefilled WhatsApp message with the lines, the total, the amount due and the route; a copy button gives the same text. CCP and transfer close by hand: Kūro (the owner) answers with the account details. The site never prints account numbers it was not given.
+  - `/comptoir/?add=<item id>` opens the counter with that item in the bag: the link a carte card would use.
+- Proposal, where to link it from (owner decides): **the Studio's carte first** (hub/#carte): each fixed-price card gets a second button « Mettre dans le sac » → `/comptoir/?add=<id>`, beside its WhatsApp button. Then the money services' page for the call, setup, pack and guides. Not the home menu or the tier cards (quotes, not carts), not lessons or Encre (the game rule: Encre buys nothing).
+- Increment 5 (2026-11-27), the owner chose the carte: the 8 Studio carte cards whose lead tier the counter sells at that exact figure (Logo Signature, Mascotte, Landing, Site 5 écrans, Kit animé, Stickers, Deck 12, Audit parcours) carry « Mettre dans le sac → » under the WhatsApp button, to `../comptoir/?add=<id>` (+ `&lang=` in EN/AR). Built by scripts/lib/carte.mjs from api/_shop.js, so a card only links when its lead figure is in the shop list; ranges, quotes and Papeterie (lead tier not sold) get none. Next link spot: the money services' page.
+- Increment 6 (2026-11-27, "advance as far as possible"):
+  - Ground truth: the trunk took PR #32 up to increment 3 at 9647176 (the counter, PayPal through the Orders API only). Increments 4-6 live on this branch, re-synced with the trunk.
+  - **PayPal proof gate** (`gate()` in api/pay.js): no real-money PayPal path until `PAYPAL_PROVEN=yes` is set after a real payment reaches the account. Live keys answer `ready:false` and the PayPal.me link is withheld; sandbox keys still work. Production has no PayPal variable today (checked in Vercel: all four are preview-only, scoped to this branch), and no key is in the git history (scan of all 797 commits).
+  - **Studio console**: when the money services are picked, the receipt shows « Prix fixe : mettre dans le sac → », which opens the counter with the same calls and options (`?add=appel*2,setup,pack`); the starter combo applies there too.
+  - **Carte**: three more single-figure headline tiers in the shop list (Pack papeterie 30 000, Maquette app 10 écrans 120 000, Packaging 1 référence 45 000), so 11 cards link. Papeterie now sells the pack its tag shows.
+  - `?add=` takes a list (`id*n`, comma-separated, at most 8, each within its max).
+
+## Where a visitor is ready to pay (map, 2026-11-27)
+
+| Rank | Place | Decision | Why |
+|---|---|---|---|
+| 1 | Studio carte cards (hub/#carte) | **Placed** (11 cards) | The buyer has read a fixed price and a scope; one tap puts it in the bag. WhatsApp stays the main button. |
+| 2 | Studio console, money services (hub/#pricing) | **Placed** | The receipt is a fixed total the shop sells line for line. |
+| 3 | Signed quote links (deposit / balance) | Already built (increment 1) | Sent by hand with a quote; not a page link. |
+| - | Console, web projects; Tarifs page; home estimator | Left out | Ranges. A cart would sell a figure the studio has not quoted. |
+| - | Formules (Marque, Produit) | Left out | Big bundles; a conversation closes them better. Produit (185 000, fixed) is the first candidate if wanted. |
+| - | Monthly plan, maintenance | Left out | Recurring; needs PayPal subscriptions, not built. |
+| - | Game reward card (the first-project −5 % code; rank and code are `discount` in hub/src/lanterne/game.json, whatever the game thread sets) | Left out | Encre buys nothing; the code stays a WhatsApp handshake, confirmed by hand. |
+| - | Book-finish commission card | Left out, candidate | Points to Tarifs today. Next candidate: the money books (argent, route) open the console on the money services. Touches the lessons, so the owner decides. |
+| - | Case pages, home menu, lessons, enquêtes, COD shop | Left out | Proof and play, not a till. |
+
+## Increment 7 (2026-11-27): no lost orders, and terms of sale
+
+**The capture gap, closed.** `api/pay.js` captured an order only when the buyer came back to the counter. A buyer who
+approved on PayPal and closed the tab left an approved, uncharged order that expired with no trace. Now:
+
+- `api/pay-hook.js` is PayPal's webhook. Every event is checked with PayPal (`verify-webhook-signature`, the certificate
+  must be on paypal.com) before anything happens. On `CHECKOUT.ORDER.APPROVED` it captures the order with the same
+  `PayPal-Request-Id` (`cap-<order id>`) as the page, so PayPal charges once whichever arrives first. A failed capture
+  answers 500 so PayPal retries.
+- The order trace: one JSON line per step in the function logs (Vercel → Logs, filter `"pay"`): created, captured,
+  capture-failed, completed / denied / refunded / reversed / pending, hook-refused. Reference, amount, status and
+  PayPal's ids only; never a payer's name, e-mail or card.
+- `gate()` applies to the hook too: live keys do nothing before `PAYPAL_PROVEN=yes`.
+- Owner step (with the proof test, before PAYPAL_PROVEN): in the PayPal REST app → Webhooks, add
+  `https://www.numedialab.dev/api/pay-hook` with the events Checkout order approved, Payment capture completed, denied,
+  refunded, reversed; put the webhook id in Vercel as `PAYPAL_WEBHOOK_ID`. Without it the hook answers 503.
+- Tests: `node scripts/pay-test.mjs` (the hook block mocks PayPal: shared capture key, forged event refused, foreign
+  certificate refused, off without the id, off when live and unproven).
+
+**Terms of sale and refunds** (`comptoir/conditions/`, FR/EN/AR on one page). Drafted in `scripts/build-terms.mjs`,
+facts in `scripts/terms-data.mjs`. Same rule as the legal page: every `null` is a fact only the owner can give and
+blocks publication, and so does any gap in `scripts/legal-data.mjs` (the page repeats the seller's identity).
+`node scripts/build-terms.mjs` lists the gaps; `--preview` writes `terms-preview/` (git-ignored) with each gap marked;
+once nothing is missing it writes the page and the counter links to it under the pay buttons. The text is a draft, not
+legal advice: `reviewed` stays null until the owner (ideally a lawyer) has read it against Loi 18-05.
+
+## Increment 8 (2026-11-27): a brake on order creation, and a counter that speaks its total
+
+- `op: "create"` on `/api/pay` is braked per visitor address: at most 8 orders in 10 minutes, then 429 with
+  `Retry-After`, before any PayPal call. It lives in the function's memory, so it stops one browser or one script on a
+  warm instance; it is not a wall across all of Vercel. The durable wall, for the owner when PayPal goes live: a Vercel
+  Firewall rate-limit rule on `/api/pay` (dashboard → Firewall → Rate limiting).
+- `/comptoir/`: a polite status line (`#c-live`, visually hidden) says « Sac : 2 articles, total 45 000 DA » once the bag
+  settles, in FR/EN/AR; never on the first paint. The skip link to the shelves was already there.
+
+## Increment 9 (2026-11-28): the Lanterne sends its readers to the counter (owner's pick)
+
+- The two books that teach what the shop sells end with one quiet line straight into the bag: « L’argent » with the
+  one-hour call (`?add=appel`), « La route » with the freelance starter pack (`?add=pack`). The existing line to the
+  shelf's money services stays above it.
+- The shelf's money services (`hub/lanterne/#comptoir`): under each WhatsApp button, « Mettre dans le sac → » for the
+  call, the guided setup, the starter pack and the guides set; the kit card puts all three in the bag, so the counter's
+  kit combo applies. WhatsApp stays the main button.
+- `?from=<source>` on these links (argent, route, shelf): the counter counts one landing per source through the site's
+  own cookieless count, as `/go/game/shop-from-<source>` in Vercel Web Analytics. No personal data.

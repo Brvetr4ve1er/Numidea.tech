@@ -5,7 +5,8 @@
    the night cases ('numidea-lanterne-enquetes', XP ÷ pts.enqDiv, 2: a case of three depths at most 90), Kūro's seals ('numidea-seals') and the episodes
    finished (kept here). This file writes one key only, 'numidea-save' (v1):
      { v: 1, rank: 1..10 (the highest reached; a rank is never taken back), seen: [ranks whose card has played],
-       world: { flag: value } (what the hub remembers), ep: { id: { done: true, t: ms } }, name: '' }
+       world: { flag: value } (what the hub remembers), ep: { id: { done: true, t: ms } }, name: '',
+       last: the atlas last opened (its slug; the home menu's « Reprendre » goes there, 2026-11-27) }
    A save that is not an object, or is broken in parts, is rebuilt from what can be read (the broken parts dropped, never
    the whole progress: that lives in the other keys); a save from a newer version is read and never written over.
    Two parts. The CORE has no page in it, so scripts/game-sim.mjs runs it in Node. The VIEW: the rank chip in the atlas
@@ -37,6 +38,7 @@
     if (isObj(o.ep)) Object.keys(o.ep).forEach(function (k) { var e = o.ep[k]; if (/^[a-z0-9-]{1,40}$/.test(k) && isObj(e) && e.done === true) s.ep[k] = { done: true, t: typeof e.t === 'number' ? e.t : 0 }; else bad = true; });
     else if (o.ep != null) bad = true;
     if (typeof o.name === 'string') s.name = o.name.slice(0, 40);
+    if (typeof o.last === 'string' && /^[a-z0-9-]{1,40}$/.test(o.last)) s.last = o.last; else if (o.last != null) bad = true;
     return { s: s, fresh: false, bad: bad || o.v !== V && !future, future: future };
   }
   /* an atlas's finished districts: its own key, else the old manual's stamps it would migrate (read only) */
@@ -104,6 +106,7 @@
   var raw = null; try { raw = localStorage.getItem(KEY); } catch (e) {}
   var L = load(raw, D.ranks.length), s = L.s;
   var write = function () { if (L.future) return; try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {} };
+  var T0 = Date.now();
   var count = function (what) { try { if (G.numideaGame) G.numideaGame(what); } catch (e) {} };
   var P = compute(D, get, s);
   /* a first visit, or a save rebuilt: the rank already earned is taken quietly (no card for progress made before this layer) */
@@ -145,6 +148,7 @@
     chip.textContent = '';
     var cs = el('span', 'gm-rank__seal'); cs.setAttribute('aria-hidden', 'true'); cs.appendChild(el('span', 'gm-num', String(P.rank)));
     chip.appendChild(cs); chip.appendChild(el('span', 'gm-chip__t', num(P.encre) + ' ' + t('lant.ui.game.unit')));
+    chip.style.setProperty('--p', String(P.p)); /* the hairline under the chip: the road to the next rank */
     chip.setAttribute('aria-label', t('lant.ui.game.chip', { rank: rankName(P.rank), n: num(P.encre) })); chip.title = chip.getAttribute('aria-label');
     /* the review's shorter chip (seal + Encre), shown by the trunk's rule: only where it moves nothing else in the masthead and cuts no title, checked again when the faces land */
     if (fit() && !ro && G.ResizeObserver) {
@@ -173,7 +177,7 @@
     var box = el('div', 'gm-card__in');
     var summary = [];
     /* the tape across the card's head: a district done, or (navy card) a whole book done and the studio's offer */
-    box.appendChild(el('p', 'gm-card__tape', t(o.book ? 'lant.ui.game.tapeBook' : 'lant.ui.game.tape')));
+    box.appendChild(el('p', 'gm-card__tape', t(o.book ? 'lant.ui.game.tapeBook' : TAPE[o.src] || 'lant.ui.game.tape')));
     if (o.book) {
       box.appendChild(el('p', 'gm-card__where gm-label', bookName(o.book)));
       box.appendChild(el('p', 'gm-card__h', t('lant.ui.game.comH')));
@@ -184,7 +188,7 @@
     else { h.appendChild(el('span', 'gm-card__upk', t('lant.ui.game.upK'))); summary.push(t('lant.ui.game.upK')); }
     box.appendChild(h);
     /* the rank badge: the seal with its number, the name, the road to the next */
-    var rk = el('div', 'gm-rank'); rk.style.setProperty('--p', String(P.p));
+    var rk = el('div', 'gm-rank'); rk.style.setProperty('--p', String(P.p)); rk.style.setProperty('--p0', String(Math.min(P.p, o.p0 || 0)));
     var seal = el('span', 'gm-rank__seal'); seal.setAttribute('aria-hidden', 'true'); seal.appendChild(el('span', 'gm-num', String(P.rank)));
     rk.appendChild(seal);
     rk.appendChild(el('span', 'gm-rank__k gm-label', t('lant.ui.game.rankOf', { n: P.rank, N: D.ranks.length })));
@@ -223,12 +227,28 @@
     card.appendChild(box);
     card.hidden = false;
     card.classList.remove('is-in');
-    if (motionOn()) { void card.offsetWidth; card.classList.add('is-in'); }
+    if (motionOn()) {
+      void card.offsetWidth; card.classList.add('is-in');
+      /* the gain counts up once (about half a second, eased out), the way ink fills a stamp; the final figure is
+         in the markup from the start, so a reader or a still page always has it */
+      var gn = o.gain > 0 && $('.gm-card__gain .gm-num', card);
+      if (gn && G.requestAnimationFrame) {
+        var t0 = 0, dur = 520, to = o.gain;
+        var step = function (ts) {
+          if (!t0) t0 = ts; var k = Math.min(1, (ts - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+          gn.textContent = '+' + num(Math.round(to * e));
+          if (k < 1 && card.classList.contains('is-in')) requestAnimationFrame(step); else gn.textContent = '+' + num(to);
+        };
+        gn.textContent = '+' + num(0); requestAnimationFrame(step);
+      }
+    }
     live.textContent = summary.map(function (x) { return String(x).replace(/[.。]\s*$/, ''); }).join('. ') + '.';
   }
 
   /* ---- a finish: count again, and say what changed ---- */
-  function settle(bookSlug) {
+  /* the tape names what paid: a district (the default), a night case, a seal, an episode */
+  var TAPE = { enq: 'lant.ui.game.tapeCase', seal: 'lant.ui.game.tapeSeal', episode: 'lant.ui.game.tapeEp' };
+  function settle(bookSlug, src) {
     var before = P, beforeRank = s.rank;
     P = compute(D, get, s);
     paintChip();
@@ -240,16 +260,22 @@
     write();
     var b = bookSlug && P.books[bookSlug], wasDone = bookSlug && before.books[bookSlug] && before.books[bookSlug].n === before.books[bookSlug].N;
     var book = b && b.n === b.N && !wasDone ? bookSlug : null;
-    if (P.parts.district + P.parts.side > before.parts.district + before.parts.side) count('district');
+    /* pacing: minutes from this page's opening to the district's end, in buckets (m2 = under 2, … m30 = 30 or more),
+       to test the 4-minutes-a-district guess against real visitors */
+    if (P.parts.district + P.parts.side > before.parts.district + before.parts.side) {
+      count('district');
+      var mins = (Date.now() - T0) / 60000;
+      count('district-m' + (mins < 2 ? 2 : mins < 4 ? 4 : mins < 8 ? 8 : mins < 15 ? 15 : 30));
+    }
     if (book) { count('book'); count('commission'); }
     up.forEach(function (r) { count('rank-' + r); });
-    show({ gain: Math.max(0, gain), up: up, book: book });
+    show({ gain: Math.max(0, gain), up: up, book: book, src: src || '', p0: up.length ? 0 : before.p });
   }
   var here = (function () { try { var A = JSON.parse($('#lant-data').textContent); return A.slug || null; } catch (e) { return null; } })();
-  var soon = function (slug) { setTimeout(function () { settle(slug); }, 0); };
+  var soon = function (slug, src) { setTimeout(function () { settle(slug, src); }, 0); };
   d.addEventListener('numidea:lesson', function () { soon(here); });
   d.addEventListener('numidea:exercise', function (e) { soon((e.detail && e.detail.atlas) || here); });
-  d.addEventListener('numidea:gain', function () { soon(null); });
+  d.addEventListener('numidea:gain', function (e) { soon(null, e.detail && typeof e.detail.source === 'string' ? e.detail.source : ''); });
   addEventListener('storage', function (e) { if (e.key === KEY) { L = load(e.newValue, D.ranks.length); s = L.s; P = compute(D, get, s); paintChip(); } });
 
   /* ---- the reset, on the shelf: the game's own key only, never an atlas, a case or a seal ---- */
@@ -288,6 +314,8 @@
 
   var start = function () {
     paintChip(); reset();
+    /* the atlas last opened, for the home menu's way back in (assets/menu/menu.js reads it) */
+    if (here && D.books.some(function (b) { return b.slug === here; }) && s.last !== here) { s.last = here; write(); }
     /* a rank earned elsewhere (a night case, a seal) since the last page: its card, once */
     if (!L.fresh && !L.bad && !L.future && P.earned > s.rank) settle(null);
   };

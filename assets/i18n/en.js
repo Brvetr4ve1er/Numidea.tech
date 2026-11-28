@@ -19,7 +19,7 @@ var I18N = {
   'meta.ogAlt': 'Numidea Labs — “Your site, before you pay.” The Preview: your homepage before you pay, over an engraving of the Arch of Trajan at Timgad',
   'nav.about': 'Free Preview', 'nav.services': 'Services', 'nav.work': 'Work',
   'nav.team': 'Founder', 'nav.faq': 'FAQ', 'nav.contact': 'Contact',
-  'offer.kicker': 'Web studio\u00a0· Bordj\u00a0Bou\u00a0Arréridj',
+  'offer.kicker': 'Website design\u00a0· Bordj\u00a0Bou\u00a0Arréridj, Algeria',
   'offer.title': 'See your homepage <em>before you pay.</em>',
   'offer.lede': 'Before you pay anything, we build your new site’s homepage with your own content in 5 working days.<span class="offer-who"> Yasser Hamisse, founder, designs, codes and delivers it himself.</span>',
   'offer.terms': 'Free Preview\u00a0· registered businesses only\u00a0· at most 4 a month',
@@ -261,7 +261,7 @@ var I18N = {
   'footer.studio': 'The Studio',
   /* enh3 HOME, 2026-11-23: the bar's short estimate button, the Bookshop and the world in the footer and the menu, the workshop's sub-line, the guide's own price answer, the work links by client, the footer's WorkspaceHQ label */
   'price.estCtaShort': 'Firm price <span aria-hidden="true">→</span>',
-  'nav.librairie': 'The Bookshop',
+  'nav.librairie': 'The Lantern',
   'nav.monde': 'The world',
   'atelier.sub': 'The Studio’s services, work and prices',
   'tarifs.faq2a': 'Our packages start at 90,000 DZD for a showcase site, in dinars, euros or dollars on this page, and every project gets one fixed price once the scope is clear — no surprise fees. See also <a href="../#apercu">the Preview</a>.',
@@ -273,7 +273,7 @@ var I18N = {
   // wave 3 (2026-11-24): the other finished work under the four clients (index.html .work-foot)
   'work.annuaire': 'Also finished: the Algerian industrial directory, the capabilities, certifications and needs of Algeria’s industrial companies, in three languages.',
   'work.annuaireLive': 'Visit the directory <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span>',
-  'work.own': 'And this site, our own: three languages, a price guide, the Studio, the Lantern Bookshop and the night cases.',
+  'work.own': 'And this site, our own: three languages, a price guide, the Studio, the Lantern and the night cases.',
   'footer.whq': 'WorkspaceHQ, our tool',
   // the intro and navigation menu (characters thread, 2026-11-26; source: /mnt/project-files/characters/site-menu/gen.py)
   'menu.tarifs.label': 'Pricing',
@@ -293,7 +293,8 @@ var I18N = {
   'menu.atelier.say': 'Where I build things. Come in, just don’t touch the keyboard.',
   'menu.atelier.kuro': 'keeps watch',
   'menu.lanterne.label': 'The Lantern',
-  'menu.lanterne.sub': 'The bookshop',
+  'menu.lanterne.sub': 'The lessons',
+  'menu.lanterne.back': 'Rank {n} · carry on',
   'menu.lanterne.say': 'What I learned, sorted so you learn it faster.',
   'menu.lanterne.kuro': 'is resting',
   'menu.bible.label': 'The Bible',

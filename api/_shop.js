@@ -33,6 +33,10 @@ export const ITEMS = [
   { id: 'deck', cat: 'services', da: 48000, max: 1, src: 'DESIGN.deck.deck12', n: { fr: 'Pitch deck · 12 slides', en: 'Pitch deck · 12 slides', ar: 'عرض المستثمرين · 12 شريحة' } },
   { id: 'carte', cat: 'services', da: 8000, max: 3, src: 'DESIGN.print.carte', n: { fr: 'Carte de visite', en: 'Business card', ar: 'بطاقة زيارة' } },
   { id: 'flyer', cat: 'services', da: 12000, max: 3, src: 'DESIGN.print.flyer', n: { fr: 'Flyer ou affiche', en: 'Flyer or poster', ar: 'منشور أو ملصق' } },
+  // 2026-11-27: the carte's other single-figure headline tiers, so their cards can link too (Papeterie's tag showed this pack)
+  { id: 'papeterie', cat: 'services', da: 30000, max: 1, src: 'DESIGN.print.papeterie', n: { fr: 'Pack papeterie', en: 'Stationery pack', ar: 'حزمة القرطاسية' } },
+  { id: 'app10', cat: 'services', da: 120000, max: 1, src: 'DESIGN.ui.app10', n: { fr: 'Maquette · app 10 écrans', en: 'Mock-up · 10-screen app', ar: 'نموذج تصميم · تطبيق 10 شاشات' } },
+  { id: 'pack1', cat: 'services', da: 45000, max: 1, src: 'DESIGN.pack.ref1', n: { fr: 'Packaging · 1 référence', en: 'Packaging · 1 product', ar: 'تغليف · مرجع واحد' } },
   // Courses: « L'argent, sans jargon », one-to-one
   { id: 'appel', cat: 'cours', da: 3000, max: 6, src: 'PRICE_MODEL.argent.base.0', n: { fr: 'Appel 60 min · L’argent, sans jargon', en: '60-min call · Money, minus the jargon', ar: 'مكالمة 60 دقيقة · المال بلا تعقيد' } },
   { id: 'setup', cat: 'cours', da: 6000, max: 1, src: 'PRICE_OPTS.setup.add.0', n: { fr: 'Mise en place accompagnée', en: 'Guided setup', ar: 'إعداد مرافَق' } },

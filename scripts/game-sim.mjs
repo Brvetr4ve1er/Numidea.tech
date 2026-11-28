@@ -80,6 +80,8 @@ ok(reached[2] === MIN_PER_DISTRICT, 'rank 2 on the first lesson');
 ok(firstBookRank >= 3, `rank 3 or more by the end of the first book (rank ${firstBookRank} at ${firstBookMin} min)`);
 ok(atlasOnly >= D.ranks[N - 1].at, `the top rank on the atlases alone (${atlasOnly} ≥ ${D.ranks[N - 1].at})`);
 { const one = D.pts.enqDiv ? Math.floor(180 / D.pts.enqDiv) : 0; ok(one >= D.pts.district * 0.5 && one <= D.pts.district * 1.5, `a night case (3 depths, 180 XP) is worth about a district (${one} Encre)`); }
+ok(reached[D.discount.rank] <= 75, `the studio discount (rank ${D.discount.rank}, code ${D.discount.code}) inside about an hour of play (${reached[D.discount.rank]} min; owner decision 2026-11-27)`);
+ok(D.discount.code === 'LANTERNE-' + D.discount.rank, 'the discount code names its rank');
 ok(worst <= 180, `no rank more than 3 hours after the one before (longest gap ${worst} min)`);
 {
   const s2 = C.blank(); s2.rank = 6;

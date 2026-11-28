@@ -2,7 +2,7 @@
   "_note": "The game layer (hub/game.js, 2026-11-26; spec: 'Numidea game loop spec'). Encre is never stored: hub/game.js adds it up from the keys the pages already keep. pts are the Encre per thing finished; ranks are the ten ranks (at = Encre needed), each with the drawing it unlocks (a hub/bible/art file, its true size, and its alt key lant.ui.game.u.N). discount: the rank that shows the first-project code (a placeholder the owner confirms by hand on WhatsApp, once per client; nothing redeems it). service: where a finished book's commission card points (a path from the site root). The build (scripts/lib/lanterne.mjs) adds each book's acts and keys and writes all of it into the pages as #game-data.",
   "pts": { "district": 100, "side": 50, "act": 150, "book": 300, "enqDiv": 2, "seal": 50, "episode": 100 },
   "seals": { "key": "numidea-seals", "n": 7 },
-  "discount": { "rank": 8, "code": "LANTERNE-8" },
+  "discount": { "rank": 5, "code": "LANTERNE-5" },
   "ranks": [
     { "at": 0, "art": "kuro-peek.webp", "w": 240, "h": 165 },
     { "at": 100, "art": "kuro-love.webp", "w": 240, "h": 242 },
@@ -22,7 +22,7 @@
     "cours-du-soir": "tarifs/#pricing",
     "argent": "tarifs/#models",
     "route": "tarifs/#models",
-    "jeu": "tarifs/#pricing"
+    "jeu": "tarifs/#pricing", "banque": "tarifs/#pricing"
   },
   "wa": "https://wa.me/213672412578"
 }

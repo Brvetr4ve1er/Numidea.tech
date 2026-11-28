@@ -46,7 +46,7 @@ const xhtml = (l, href) => `    <xhtml:link rel="alternate" hreflang="${l}" href
 // the brand exploration, a louder gear kept for the record, not the identity (W-15, 2026-11-24), and the Numidea
 // brand book, a draft (0.1) unlinked until the owner signs it off (Q-04, 2026-11-24: it stays at its address)
 // La Carte (carte/, 2026-11-28): noindex until a store behind one of its seals opens; ?lang= like the scene
-export const NOINDEX_PAGES = ['404.html', 'comptoir/index.html', 'carte/index.html', 'hub/manuel.html', 'hub/brand/exploration/index.html', 'hub/brand/numidea/index.html'];
+export const NOINDEX_PAGES = ['404.html', 'comptoir/index.html', 'comptoir/conditions/index.html', 'carte/index.html', 'hub/manuel.html', 'hub/brand/exploration/index.html', 'hub/brand/numidea/index.html'];
 export function renderSitemap(pages = PAGES) {
   const rows = pages.filter((p) => !NOINDEX_PAGES.includes(p)).map((p) => {
     const loc = url(p);
