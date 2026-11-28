@@ -1669,7 +1669,8 @@ html:active-view-transition .st-sting,html:active-view-transition .st-sting *{an
 .st-sting__word{position:absolute;left:clamp(16px,7vw,140px);top:26%;display:flex;flex-direction:column;align-items:flex-start;gap:.04em;font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(2.5rem,7.4vw,8rem);line-height:.9;letter-spacing:-.02em;color:var(--ink);text-transform:uppercase}
 .st-sting__word > span,.st-sting__labs > span:first-child{display:flex}
 .st-sting__labs{align-items:flex-end;gap:.18em;color:var(--red)}
-.st-sting__g{display:inline-block;opacity:0;transform:translateY(56px);filter:blur(10px);animation:st-letter 417ms var(--m-ease-enter) forwards;animation-delay:calc(333ms + var(--m-beat) / 16 * var(--i))}
+/* no animated filter:blur on the letters: eleven of them blurring at once killed WebKit's page process on a phone-width /hub/ (8 crashes in 12 loads, 0 in 36 without it, 2026-11-28); the stretch along the rise stands in for the blur */
+.st-sting__g{display:inline-block;opacity:0;transform:translateY(56px) scaleY(1.3);transform-origin:50% 100%;animation:st-letter 417ms var(--m-ease-enter) forwards;animation-delay:calc(333ms + var(--m-beat) / 16 * var(--i))}
 .st-sting__labs .st-sting__g{animation-duration:var(--m-enter);animation-delay:calc(667ms + var(--m-beat) / 16 * var(--i))}   /* (333 each: the last is still at 1125, a beat line before the night cut at 1333) */
 .st-sting__eyes{position:absolute;inset:0;z-index:1;display:grid;place-items:center;overflow:hidden;background:#0F1E30;opacity:0;animation:st-eyes var(--m-enter) var(--m-ease-snap) 1333ms forwards}
 /* Kuro at his file's own size in a cream panel: stretched across the screen his 360px frame went soft and its paper-matte edge showed as a pale line on the navy */
@@ -1689,7 +1690,7 @@ html:active-view-transition .st-sting,html:active-view-transition .st-sting *{an
   .st-sting__stamp{left:auto;inset-inline-end:10%;bottom:12%;width:clamp(72px,22vw,110px);font-size:clamp(2.375rem,12vw,4.25rem)}
 }
 @keyframes st-hud{to{clip-path:inset(0 0 0 0)}}
-@keyframes st-letter{to{opacity:1;transform:none;filter:none}}
+@keyframes st-letter{to{opacity:1;transform:none}}
 /* the frames over the bar: base cuts in at 167 ms, up at 667, smirk at 1000 */
 @keyframes st-fa{0%,6.25%{opacity:0}6.26%,25%{opacity:1}25.01%,100%{opacity:0}}
 @keyframes st-fb{0%,25%{opacity:0}25.01%,37.5%{opacity:1}37.51%,100%{opacity:0}}
