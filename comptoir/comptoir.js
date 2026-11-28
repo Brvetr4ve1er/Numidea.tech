@@ -236,6 +236,9 @@
       add = add || i;
     }
     if (add) tab = add.cat;
+    // where the bag came from (a Lanterne book, the shelf…): one count per landing, as /go/game/shop-from-<src>
+    const src = q.get('from');
+    if (add && src && /^[a-z]{2,10}$/.test(src)) track(`from-${src}`);
     const name = (i) => i.n[lang] || i.n.fr;
     const rarity = (da) => (da > 50000 ? 'epic' : da > 15000 ? 'rare' : 'common');
     const fxOf = (da, c) => Math.max(1, Math.round(da / cat.fx[c]));

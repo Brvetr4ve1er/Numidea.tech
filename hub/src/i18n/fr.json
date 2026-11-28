@@ -876,13 +876,15 @@
         }
       ],
       "each": "le guide",
-      "all": "la collection"
+      "all": "la collection",
+      "bag": "Mettre dans le sac →"
     },
     "kit": {
       "k": "KIT NOMADE",
       "line": "Le pack, la mise en place et deux appels.",
       "was": "au lieu de",
-      "go": "Réserver le kit sur WhatsApp"
+      "go": "Réserver le kit sur WhatsApp",
+      "bag": "Le kit dans le sac →"
     },
     "ls": {
       "kicker": "/ CINQ LEÇONS · L’ARGENT",
@@ -7098,7 +7100,9 @@
               }
             }
           }
-        }
+        },
+        "toBag": "Ou tout de suite : un appel d’une heure, à prix fixe.",
+        "toBagGo": "Mettre l’appel dans le sac →"
       },
       "route": {
         "title1": "Le carnet",
@@ -7222,7 +7226,9 @@
             "keep": "Le tampon « Départ »"
           }
         },
-        "toRate": "le quartier « Tarif » de « Gagner sa vie de loin »"
+        "toRate": "le quartier « Tarif » de « Gagner sa vie de loin »",
+        "toBag": "Ou tout de suite : le pack de départ freelance, à prix fixe.",
+        "toBagGo": "Mettre le pack dans le sac →"
       },
       "jeu": {
         "title1": "Le jeu",

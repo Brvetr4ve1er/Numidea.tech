@@ -117,3 +117,14 @@ legal advice: `reviewed` stays null until the owner (ideally a lawyer) has read 
   Firewall rate-limit rule on `/api/pay` (dashboard → Firewall → Rate limiting).
 - `/comptoir/`: a polite status line (`#c-live`, visually hidden) says « Sac : 2 articles, total 45 000 DA » once the bag
   settles, in FR/EN/AR; never on the first paint. The skip link to the shelves was already there.
+
+## Increment 9 (2026-11-28): the Lanterne sends its readers to the counter (owner's pick)
+
+- The two books that teach what the shop sells end with one quiet line straight into the bag: « L’argent » with the
+  one-hour call (`?add=appel`), « La route » with the freelance starter pack (`?add=pack`). The existing line to the
+  shelf's money services stays above it.
+- The shelf's money services (`hub/lanterne/#comptoir`): under each WhatsApp button, « Mettre dans le sac → » for the
+  call, the guided setup, the starter pack and the guides set; the kit card puts all three in the bag, so the counter's
+  kit combo applies. WhatsApp stays the main button.
+- `?from=<source>` on these links (argent, route, shelf): the counter counts one landing per source through the site's
+  own cookieless count, as `/go/game/shop-from-<source>` in Vercel Web Analytics. No personal data.
