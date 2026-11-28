@@ -940,7 +940,10 @@
     var near = function (q) { var x = $(q, app); if (x && x.scrollIntoView) x.scrollIntoView({ block: 'nearest', behavior: 'auto' }); };
     /* after a first miss the keyboard goes back to the question, so the next Tab is an answer; the page moves only as far
        as the reason needs, and the part just tapped stays on screen with it */
-    if (focus === 'miss') { var q0 = $('[data-f="top"]', app) || app; try { q0.focus({ preventScroll: true }); } catch (e) {} near('.enq-fb'); return; }
+    if (focus === 'miss') { var q0 = $('[data-f="top"]', app) || app; try { q0.focus({ preventScroll: true }); } catch (e) {} near('.enq-fb');
+      /* a font subset the reason's text needs can land after this scroll and make the box taller: bring it back once (2026-11-28) */
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { near('.enq-fb'); });
+      setTimeout(function () { near('.enq-fb'); }, 120); setTimeout(function () { near('.enq-fb'); }, 400); return; }
     var n = $('[data-f="' + focus + '"]', app) || $('[data-f="top"]', app) || app;
     if (n.disabled) n = $('[data-f="next"]', app) || $('[data-f="top"]', app) || app;
     /* focus never throws the page about: it moves only as far as the thing just brought needs */
