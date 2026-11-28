@@ -1209,8 +1209,9 @@ runtimeDeps.length
 }
 
 /* 16b — the Google tag */
-// Owner decision 2026-11-14: container GTM-PMF7RWVK, Consent Mode denied for
-// good, no cookie bar. Each page of PAGES (the legal page once published; its
+// Container GTM-PMF7RWVK (GA4 G-KBXP8LQJ5K). Owner decision 2026-11-14:
+// Consent Mode denied, no cookie bar; since 2026-11-27 the consent card
+// (assets/consent.js) may grant analytics_storage and nothing else. Each page of PAGES (the legal page once published; its
 // preview render stands in for it until then) holds exactly one copy of the
 // snippet scripts/lib/gtag.mjs writes, immediately after <head>, and nothing
 // on it ever updates consent. The inline script runs in a bare sandbox and
@@ -1233,17 +1234,29 @@ runtimeDeps.length
     // outside the CSP meta, the loader is the only mention of a Google host
     if ((html.replace(/<meta http-equiv="Content-Security-Policy"[^>]*>/, '').match(/googletagmanager\.com|google-analytics\.com|analytics\.google\.com/g) || []).length !== 1)
       errs.push(`${f}: a Google host outside the tag and the CSP meta`);
-    if (/['"]consent['"]\s*,\s*['"]update['"]|consent\s*:\s*['"]update['"]/.test(html)) errs.push(`${f}: updates Google consent (it is denied for good: a consent bar must come first)`);
+    if (/['"]consent['"]\s*,\s*['"]update['"]|consent\s*:\s*['"]update['"]/.test(html)) errs.push(`${f}: updates Google consent (only assets/consent.js may)`);
+  }
+  // the inline script, run three ways: no storage, a refusal kept, an acceptance kept (assets/consent.js)
+  for (const [kept, want] of [[undefined, WANT], ['denied', WANT], ['granted', { ...WANT, analytics_storage: 'granted' }]]) {
     const win = { Date, Array }; win.window = win;
-    try { runInNewContext(GTAG_INLINE, win, { timeout: 200 }); } catch (e) { errs.push(`${f}: the Google tag's inline script does not run (${e.message})`); continue; }
+    if (kept !== undefined) win.localStorage = { getItem: (k) => (k === 'numidea.consent' ? kept : null) };
+    try { runInNewContext(GTAG_INLINE, win, { timeout: 200 }); } catch (e) { errs.push(`the Google tag's inline script does not run (${e.message})`); continue; }
     const [first, second, ...rest] = Array.from(win.dataLayer || [], (a) => Array.from(a));
     const got = first && first[0] === 'consent' && first[1] === 'default' ? first[2] : null;
-    if (!got || Object.keys(WANT).some((k) => got[k] !== WANT[k]) || Object.keys(got).length !== Object.keys(WANT).length) errs.push(`${f}: the consent default is not "denied" on every signal but security_storage`);
-    if (!second || second[0] !== 'js' || rest.length) errs.push(`${f}: the Google tag pushes more than the consent default and js`);
+    if (!got || Object.keys(want).some((k) => got[k] !== want[k]) || Object.keys(got).length !== Object.keys(want).length) errs.push(`consent default with "${kept}" kept: not ${JSON.stringify(want)}`);
+    if (!second || second[0] !== 'js' || rest.length) errs.push('the Google tag pushes more than the consent default and js');
+  }
+  // the card is the one place consent changes, and only analytics_storage (the ad signals stay denied)
+  {
+    const card = read('assets/consent.js');
+    const ups = [...card.matchAll(/gtag\(\s*'consent'\s*,\s*'update'\s*,\s*\{([^}]*)\}/g)].map((m) => m[1].trim());
+    if (!ups.length || ups.some((u) => u.replace(/\s+/g, '') !== "analytics_storage:'granted'")) errs.push(`assets/consent.js: a consent update other than analytics_storage granted (${ups.join(' | ') || 'none'})`);
+    if (!/numidea\.consent/.test(card)) errs.push('assets/consent.js: does not keep the answer under numidea.consent');
+    for (const l of ['fr', 'en', 'ar']) if (!new RegExp(`\\b${l}: \\{ k:`).test(card)) errs.push(`assets/consent.js: no ${l} words`);
   }
   for (const f of EXTRA_PAGES) if (read(f).includes(GTAG_ID)) errs.push(`${f}: an embed must not carry the Google tag (an iframe inside workspacehq/: it would count a visit twice)`);
   errs.length ? bad('google tag: ' + errs.join('; '))
-    : ok(`google tag: ${targets.length} pages carry exactly one copy of the ${GTAG_ID} snippet right after <head>, consent default denied (security_storage aside), never updated; the ${EXTRA_PAGES.length} embeds carry none`);
+    : ok(`google tag: ${targets.length} pages carry exactly one copy of the ${GTAG_ID} snippet right after <head>, consent default denied (security_storage aside; analytics_storage only after the card's yes), no page updates it; the ${EXTRA_PAGES.length} embeds carry none`);
 }
 
 /* 17 — asset budgets */

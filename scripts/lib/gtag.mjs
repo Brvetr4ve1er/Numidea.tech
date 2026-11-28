@@ -1,12 +1,16 @@
 /**
  * The Google tag — one source of truth: `withGtag(html)`.
  *
- * Container GTM-PMF7RWVK, owner decision 2026-11-14: Google Consent Mode is
- * DENIED for good and there is no cookie bar, so Google receives cookieless
- * pings only (see BRAND.md "Google tag"). The consent default is pushed to
+ * Container GTM-PMF7RWVK (GA4 G-KBXP8LQJ5K). Owner decision 2026-11-14 was
+ * Consent Mode denied for good with no cookie bar; since 2026-11-27 the
+ * consent card (assets/consent.js) may grant analytics_storage, and only
+ * that (see BRAND.md "Google tag"). The consent default is pushed to
  * dataLayer by the inline script, which therefore comes FIRST; the async
- * loader follows. Consent is never updated to granted anywhere (check.mjs
- * refuses an 'update' on any page).
+ * loader follows. The default is denied on every signal but
+ * security_storage, except analytics_storage when the visitor accepted on
+ * the card earlier (localStorage "numidea.consent" = "granted"). No page
+ * updates consent itself (check.mjs refuses an 'update' in any page): only
+ * assets/consent.js does, and only analytics_storage.
  *
  * The two scripts sit immediately after the opening <head> tag, once per
  * page, on every page of scripts/site.mjs PAGES. Not on the WorkspaceHQ
@@ -22,7 +26,7 @@
  */
 export const GTAG_ID = 'GTM-PMF7RWVK';
 export const GTAG_SRC = `https://www.googletagmanager.com/gtm.js?id=${GTAG_ID}`;
-export const GTAG_INLINE = "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',functionality_storage:'denied',personalization_storage:'denied',security_storage:'granted'});gtag('js',new Date());";
+export const GTAG_INLINE = "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}var nc;try{nc=localStorage.getItem('numidea.consent')}catch(e){}gtag('consent','default',{ad_storage:'denied',analytics_storage:nc==='granted'?'granted':'denied',ad_user_data:'denied',ad_personalization:'denied',functionality_storage:'denied',personalization_storage:'denied',security_storage:'granted'});gtag('js',new Date());";
 export const GTAG_INLINE_TAG = `<script>${GTAG_INLINE}</script>`;
 export const GTAG_LOADER_TAG = `<script async src="${GTAG_SRC}"></script>`;
 export const GTAG_SNIPPET = `${GTAG_INLINE_TAG}\n${GTAG_LOADER_TAG}`;

@@ -106,6 +106,7 @@
   var raw = null; try { raw = localStorage.getItem(KEY); } catch (e) {}
   var L = load(raw, D.ranks.length), s = L.s;
   var write = function () { if (L.future) return; try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {} };
+  var T0 = Date.now();
   var count = function (what) { try { if (G.numideaGame) G.numideaGame(what); } catch (e) {} };
   var P = compute(D, get, s);
   /* a first visit, or a save rebuilt: the rank already earned is taken quietly (no card for progress made before this layer) */
@@ -244,7 +245,13 @@
     write();
     var b = bookSlug && P.books[bookSlug], wasDone = bookSlug && before.books[bookSlug] && before.books[bookSlug].n === before.books[bookSlug].N;
     var book = b && b.n === b.N && !wasDone ? bookSlug : null;
-    if (P.parts.district + P.parts.side > before.parts.district + before.parts.side) count('district');
+    /* pacing: minutes from this page's opening to the district's end, in buckets (m2 = under 2, … m30 = 30 or more),
+       to test the 4-minutes-a-district guess against real visitors */
+    if (P.parts.district + P.parts.side > before.parts.district + before.parts.side) {
+      count('district');
+      var mins = (Date.now() - T0) / 60000;
+      count('district-m' + (mins < 2 ? 2 : mins < 4 ? 4 : mins < 8 ? 8 : mins < 15 ? 15 : 30));
+    }
     if (book) { count('book'); count('commission'); }
     up.forEach(function (r) { count('rank-' + r); });
     show({ gain: Math.max(0, gain), up: up, book: book, src: src || '' });
