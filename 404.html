@@ -5,7 +5,7 @@
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-4/m/27rCsNfx7L2ssbsphakf4dVmJr1pD8IuJ9PRL7A=' 'sha256-kpVKoixTJ4qrYxqDpnSZ9Mpg25dtEVMcamOH5PyE5hw='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-4/m/27rCsNfx7L2ssbsphakf4dVmJr1pD8IuJ9PRL7A=' 'sha256-HbX7csG0d9/f1nJyq667N1tz4tz02n2PcZfreBgIgTM='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Cette page a pris la route — Numidea Labs</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#211E1B">
@@ -268,6 +268,10 @@
   // the numeral's face, unless it is the Geist the script above preloads for every theme
   if (HEAD[th] !== 'geist-latin') {
     document.write('\x3clink rel="preload" as="font" type="font/woff2" crossorigin href="' + root + 'fonts/' + HEAD[th] + '.woff2">');
+  }
+  // in Arabic the whole page sets in Plex Arabic: fetched late, its swap moved the lines 50px (CLS 0.0167, 2026-11-28)
+  if (lang === 'ar') {
+    document.write('\x3clink rel="preload" as="font" type="font/woff2" crossorigin href="' + root + 'fonts/ibm-plex-sans-arabic-400-arabic.woff2">');
   }
 })();
 </script>
