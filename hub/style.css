@@ -997,7 +997,7 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 .st-rank li.is-you{padding:8px 10px;background:var(--teal);border-color:var(--ink);color:var(--cream);font-size:var(--t-small)}
 .st-rank li.is-you b{font-weight:600}
 .st-rank li.is-you span:last-child{margin-inline-start:auto}
-.st-tcard__foot{display:flex;align-items:baseline;gap:12px;margin-top:auto;padding-top:14px;border-top:2px solid var(--ink);font-size:var(--fs-small);line-height:1.4;color:var(--ink-2)}
+.st-tcard__foot{display:flex;align-items:baseline;gap:12px;margin-top:auto;padding-top:14px;padding-bottom:6px;border-top:2px solid var(--ink);font-size:var(--fs-small);line-height:1.4;color:var(--ink-2)}
 .st-stat{flex:none;font-family:"Archivo",sans-serif;font-weight:900;font-size:var(--t-stat);line-height:1;color:var(--red)}
 .st-stat sup{font-size:var(--fs-lead);vertical-align:.95em;line-height:0}
 .st-tcard__aside{position:absolute;top:18px;inset-inline-end:16px;font-size:var(--fs-lead);white-space:nowrap;transform:rotate(5deg)}

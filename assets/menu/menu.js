@@ -65,6 +65,8 @@
   if (seen || mqReduce.matches) skip(); else intro();
 
   function ours(e) { var t = e.target; return t === document.body || root.contains(t); }   // keys work when nothing else has focus
+  // Tab into the menu mid-intro: the doors are still invisible, so the intro ends where focus landed
+  root.addEventListener('focusin', function (e) { if (!root.classList.contains('p4') && !e.target.closest('.nl-skip')) skip(); });
   var skipBtn = root.querySelector('.nl-skip');
   skipBtn && skipBtn.addEventListener('click', skip);
   var replay = root.querySelector('.nl-replay');
