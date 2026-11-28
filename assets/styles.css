@@ -4554,11 +4554,10 @@ html[dir="rtl"] .portal-city{font-family:var(--font-ar-body)}
   --dx:1;   /* a drop's horizontal direction: to the inline end */
   /* a button's own drop: near-black on both grounds (the red drop would sit under a red button) */
   --mr-btn-drop:color-mix(in srgb,var(--console),#000 55%);
-  /* the ruler: a 2px rule, a tick every 8px (1x4, the trace), a taller one every 64px */
-  --ruler:
-    linear-gradient(var(--edge),var(--edge)) 0 100%/100% 2px no-repeat,
-    repeating-linear-gradient(90deg,var(--trace) 0 1px,transparent 1px 8px) 0 calc(100% - 2px)/100% 4px no-repeat,
-    repeating-linear-gradient(90deg,var(--edge) 0 2px,transparent 2px 64px) 0 calc(100% - 2px)/100% 9px no-repeat;
+  /* the ruler: a 2px rule, a tick every 8px (1x4, the trace), a taller one every 64px
+     (one line: a custom property keeps its whitespace, and home-first.css
+     is written without indentation, so a wrapped value would compute apart) */
+  --ruler:linear-gradient(var(--edge),var(--edge)) 0 100%/100% 2px no-repeat,repeating-linear-gradient(90deg,var(--trace) 0 1px,transparent 1px 8px) 0 calc(100% - 2px)/100% 4px no-repeat,repeating-linear-gradient(90deg,var(--edge) 0 2px,transparent 2px 64px) 0 calc(100% - 2px)/100% 9px no-repeat;
 }
 html[dir="rtl"]{--dx:-1}
 
