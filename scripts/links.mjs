@@ -77,8 +77,9 @@ const PREFIXES = {
 };
 // Seen 2026-10-24 from a datacenter network with this script's browser user
 // agent; a headless Chromium got the same answers. "host/path-prefix", and
-// "*." for any subdomain. DeviantArt, YouTube and x.com answer (404 for a
-// page that does not exist), so they are checked like any other host.
+// "*." for any subdomain. YouTube answers (404 for a page that does not
+// exist), so it is checked like any other host. DeviantArt and x.com did too
+// until 2026-11-25; since then they wall GitHub's runners (below).
 const BLOCKS = {
   'www.linkedin.com/': 'answers 999 (its bot wall) or 429 to anyone not signed in, whatever the profile',
   'www.instagram.com/': 'after a request or two, redirects every page to its login with a 429, existing or not',
@@ -96,6 +97,13 @@ const BLOCKS = {
   'www.revolut.com/': 'answers 403 to this script (seen 2026-11-23, three attempts): a wall. The tools page links it; a person must open it to confirm',
   'www.legifrance.gouv.fr/': 'answers 403 to scripts (seen 2026-11-21 and 2026-11-22, from two runs): a wall, not a missing page',
   'www.sec.gov/': 'answers 403 to a client that does not declare a contact in its user agent (the SEC’s fair-access rule)',
+  // seen from GitHub's hosted runners in every live-monitor run from 2026-11-25 to 2026-11-27 (runs 74 to 77), the same
+  // answer for every page each host was asked for
+  'www.w3.org/': 'answers 403 to GitHub\'s runners for every page (four W3C specs and its history page, all public)',
+  'x.com/': 'answers 403 to GitHub\'s runners (it answered 404 for a missing profile until 2026-11-25)',
+  'www.deviantart.com/': 'answers 403 to GitHub\'s runners (it answered 404 for a missing profile until 2026-11-25)',
+  'www.whatsapp.com/': 'answers 400 to this script for its home page and its security page alike: a wall, not a bad link',
+  'www.moet.gov.ae/': 'does not answer GitHub\'s runners at all (a connect timeout, three attempts, most runs): the network is refused, not the page',
   'www.bank-of-algeria.dz/': 'serves its certificate without the DigiCert intermediate: browsers complete the chain, Node and curl refuse it ("unable to verify the first certificate")',
 };
 // hosts that answer 200 whatever the name, so a pass shows only that the host is up

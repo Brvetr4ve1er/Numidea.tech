@@ -6,6 +6,9 @@
  *
  *   check      repository invariants (check.mjs + themes-check.mjs)
  *   validate   html-validate on every page
+ *   first      assets/home-first.css is current with styles.css, and the home
+ *              above <main> computes the same without styles.css as with it
+ *              (build-first.mjs --check, first-check.mjs)
  *   audit      browser audit: axe, CLS, LCP, overflow, taps, images, loops, network,
  *              CSP violations, the WorkspaceHQ embeds and console, 404 two folders
  *              down (locally and on an emulated GitHub Pages), a throttled phone
@@ -36,6 +39,8 @@ const STEPS = [
   ['themes', ['scripts/themes-check.mjs']],
   ['hub', ['scripts/build-hub.mjs', '--check']],
   ['validate', ['scripts/validate.mjs']],
+  ['first', ['scripts/build-first.mjs', '--check']],
+  ['first-paint', ['scripts/first-check.mjs']],
   ['audit', ['scripts/audit.mjs']],
   ['sweep', ['scripts/sweep.mjs']],
   ['vbugs', ['scripts/vbugs.mjs']],
@@ -44,12 +49,26 @@ const STEPS = [
   ['design', ['scripts/design-check.mjs']],
   ['stage', ['scripts/stage-check.mjs']],
 ];
+/* A gate that stops answering (a browser call that never returns: seen once
+   in design, 2026-11-27, which passes in about 2 minutes on its own) fails
+   here after VERIFY_GATE_MIN minutes (default 30; each gate takes 17 at
+   most) instead of holding the whole run: the summary names it, and the
+   gates after it still run. */
+const LIMIT = Math.max(1, Number(process.env.VERIFY_GATE_MIN) || 30) * 60000;
+/* --only=audit,sweep (or VERIFY_ONLY): those gates alone, in STEPS order. CI's nightly job splits the gates across
+   runners this way (check.yml), so no runner holds the whole ~34 minutes; a name that is not a gate stops the run. */
+const onlyArg = (process.argv.find((a) => a.startsWith('--only=')) || '').slice(7) || process.env.VERIFY_ONLY || '';
+const only = onlyArg ? onlyArg.split(',').map((x) => x.trim()).filter(Boolean) : null;
+const unknown = only ? only.filter((n) => !STEPS.some(([s]) => s === n)) : [];
+if (unknown.length) { console.error(`✗ not a gate: ${unknown.join(', ')} (the gates: ${STEPS.map(([s]) => s).join(', ')})`); process.exit(2); }
 const results = [];
-for (const [name, args] of STEPS) {
+for (const [name, args] of STEPS.filter(([s]) => !only || only.includes(s))) {
   console.log(`\n━━━ ${name} ━━━`);
   const t = Date.now();
-  const r = spawnSync(process.execPath, args, { cwd: ROOT, stdio: 'inherit' });
-  results.push([name, r.status === 0, ((Date.now() - t) / 1000).toFixed(0) + 's']);
+  const r = spawnSync(process.execPath, args, { cwd: ROOT, stdio: 'inherit', timeout: LIMIT, killSignal: 'SIGKILL' });
+  const out = r.error && r.error.code === 'ETIMEDOUT';
+  if (out) console.log(`✗ ${name} gave no verdict in ${LIMIT / 60000} min: stopped (VERIFY_GATE_MIN raises the limit)`);
+  results.push([name, r.status === 0, ((Date.now() - t) / 1000).toFixed(0) + 's' + (out ? ' (stopped: no verdict)' : '')]);
 }
 console.log('\n━━━ summary ━━━');
 for (const [n, okk, s] of results) console.log(`${okk ? '✓' : '✗'} ${n.padEnd(9)} ${s}`);

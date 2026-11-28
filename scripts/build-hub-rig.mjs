@@ -22,7 +22,6 @@
  *   hub/bible/art/actor-<name>-{a,b}.webp   head to toe, two frames each (04b);
  *                                actor-duo-a is also the cover's picture
  *   hub/bible/art/kuro-<name>.webp     Kūro's ten cards (section 05)
- *   hub/bible/art/sil-5.webp           the pixel figure at 24 px (section 08)
  * It fails on a rig frame over 60 kB, a rig set over 1.2 MB, any other file
  * over 300 kB, a master that is missing, or a source frame whose size is
  * not the rig's. It is not part of `npm run build`: CI has no masters, and
@@ -56,9 +55,10 @@ const FACES = ['smirk', 'focus', 'think', 'pointyou', 'laugh', 'deadpan', 'sidee
 const POSES = ['y-coffee', 'y-laptop', 'y-point', 'y-shrug', 'y-sign', 'y-facepalm', 'sc-inspect', 'sc-receipt', 'sc-invoice', 'sc-flagstack', 'sc-handover', 'sc-nap'];
 const ACTORS = ['wave', 'pointup', 'phone', 'sketch', 'win', 'duo'];
 const KURO = ['judge', 'loaf', 'smug', 'stamp', 'peek', 'shook', 'hiss', 'love', 'leave', 'mug'];
-// sil-5 only (the pixel row's 24 px figure, section 08); section 02 and the menu's character
-// sheet show the drawn turnaround (turn-*.webp) since 2026-11-25, so 0, 2 and 3 are no longer cut
-const SIL = [5];
+// none since 2026-11-27: sil-5 (the pixel figure of the feed's post 8, off-model) was retired, and the
+// post shows rig-y-glasses in ink instead; section 02 and the menu's character sheet show the drawn
+// turnaround (turn-*.webp) since 2026-11-25, so 0, 2 and 3 were already no longer cut
+const SIL = [];
 
 const jobs = [];
 const job = (from, to, opts = {}) => jobs.push({ from: join(SRC, from), to, ...opts });

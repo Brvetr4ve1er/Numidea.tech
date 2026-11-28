@@ -95,6 +95,7 @@ import sharp from 'sharp';
 import {readFileSync,existsSync} from 'node:fs';
 import {join} from 'node:path';
 import {serve,launch,isStubbed} from './lib/serve.mjs';
+import {pool,jobs} from './lib/pool.mjs';
 import {watchCsp} from './lib/csp-watch.mjs';
 import {loopState} from './lib/loop-state.mjs';
 import {deployFiles} from './lib/deploy-files.mjs';
@@ -112,6 +113,20 @@ const PHONE={lcp:2500,lt:300,inp:200};
 const PHONE_STRICT=process.env.AUDIT_PHONE_STRICT==='1';
 const TIMING=new Set(['lcp','lt','inp']);
 let fails=0;const rows=[],warnings=[],phoneWarn=[];
+/* The page runs, the prints, the nested 404s and the fallback-type pairs go
+   AUDIT_JOBS at a time in the one browser (lib/pool.mjs; 1 = one after the
+   other), each printed whole in the order it was queued: run() and the others
+   queue and return at once, so the `await run(...)` lines below read as
+   before. The throttled phone measures timing under a 4x CPU throttle and
+   runs alone, after every queued run has finished (drain() below). The
+   desktop LCP budget (1.5s; the runs here measure 0.1-0.4s) and the CLS
+   ceiling are read with other runs beside them: an over-budget timing is
+   measured again before it fails, as before. */
+const P=pool(jobs('AUDIT_JOBS'));
+const run=(...a)=>P.q(()=>runNow(...a));
+const nested404=(...a)=>P.q(()=>nested404Now(...a));
+const fallbackType=(...a)=>P.q(()=>fallbackTypeNow(...a));
+const printPage=(...a)=>P.q(()=>printPageNow(...a));
 const short=u=>u.replace(B,'').split(/[?#]/)[0]||'/';
 // the home page in a language: its own page (build-lang.mjs), opened
 // directly; the root would send a stored en/ar there anyway, in two loads;
@@ -146,7 +161,7 @@ const watch=async p=>{
   return w;
 };
 
-const run=async(label,path,o={})=>{
+const runNow=async(label,path,o={})=>{
   if(ONLY&&!ONLY.test(label))return;
   const {theme,lang,w=1280,h=900,dpr=1,lede=false,clsMax=0.01,allowLoops=false,touch=w<600,init={},click=null,act=null,lcpBudget=0,axeOff=[],again=false}=o;
   const p=await b.newPage({viewport:{width:w,height:h},deviceScaleFactor:dpr,hasTouch:touch,isMobile:touch});
@@ -188,11 +203,11 @@ const run=async(label,path,o={})=>{
       const cx=a.left+a.width/2,cy=a.top+a.height/2;
       return R.some((b,j)=>j!==i&&(dist(cx,cy,b)<12||((b.width<24||b.height<24)&&Math.hypot(cx-(b.left+b.width/2),cy-(b.top+b.height/2))<24)))}).length;
     const imgs=[...document.images].filter(i=>i.complete&&i.naturalWidth===0&&(i.getAttribute('src')||i.currentSrc)).length;   // an <img> with no src yet (a viewer's, filled on open) is not a broken one
-    // the first screen must reach the offer: the hero's lede starts inside the first viewport (a short landscape phone or a laptop at 150% put it below the fold)
-    // 2026-11-26: when the game menu is the home's first screen (assets/menu/), the offer it must reach is its
+    // the first screen must reach the offer (a short landscape phone or a laptop at 150% put it below the fold)
+    // 2026-11-26: the game menu is the home's first screen (assets/menu/), and the offer it must reach is its
     // Tarifs slab (always a link, never dimmed or locked), so the slab is what has to start inside the first viewport.
-    // The old hero's .lede is still measured on any page without the menu.
-    const L=document.querySelector('.nl-menu .nl-item.big[data-id="tarifs"]')||document.querySelector('.lede');
+    // 2026-11-27: the old hero left the home, and its .lede with it (it was the fallback here): the slab alone is measured.
+    const L=document.querySelector('.nl-menu .nl-item.big[data-id="tarifs"]');
     return {cls:window.__cls,of:[...new Set(of)],hidden,small,imgs,hscroll:document.documentElement.scrollWidth>dw+1,ledeTop:L?Math.round(L.getBoundingClientRect().top+scrollY):null,
       // the webfont files this page fetched, as the browser counted them (the Arabic page carries its own faces)
       fontBytes:performance.getEntriesByType('resource').filter(r=>/\.woff2(\?|$)/.test(r.name)).reduce((a,r)=>a+(r.encodedBodySize||0),0)};});
@@ -200,13 +215,7 @@ const run=async(label,path,o={})=>{
   // the hub's loops: each one the scroll brought on screen shows its animation
   const loops=await p.evaluate(loopState),stuck=loops.filter(l=>!l.ok);
   W.off=true;
-  // The plate rail's crossfade (.pm-rot: the hero deck turns once the page
-  // is woken, two slides fading over each other): read mid-fade, axe once
-  // saw a slide's caption at a contrast it never keeps ('index cv open fr',
-  // 2026-11-01, a flake). Wait until nothing animates inside the rail, 8s at
-  // most (a loop that never ends there is the anim count's finding above).
-  await p.waitForFunction(()=>{const r=document.querySelector('.pm-rot');
-    return !r||!document.getAnimations().some(a=>a.playState==='running'&&a.effect&&a.effect.target&&r.contains(a.effect.target))},null,{timeout:8000}).catch(()=>{});
+  // (2026-11-27: the wait for the hero deck's caption crossfade, .pm-rot, left with the deck.)
   // axe in every frame too, so it reads the embeds in their host page
   for(const f of p.frames())try{await f.evaluate(AXE)}catch{/* detached */}
   // The Plate I vista (.vista, aria-hidden scenery in an overflow:hidden box)
@@ -220,6 +229,7 @@ const run=async(label,path,o={})=>{
   // elementsFromPoint, with pointer-events forced on, finds no layer at that
   // point). The layers go for axe's run; the painted contrast of the
   // vista's caption and everything near it is the sweep's job (real pixels).
+  // 2026-11-27: the vista left the home with the engraving language; this finds nothing now and is kept for older checkouts
   await p.evaluate(()=>{for(const l of document.querySelectorAll('.vista .v-l'))l.style.visibility='hidden'});
   const axr=await p.evaluate(async off=>{const r=await axe.run(document,{resultTypes:['violations','incomplete'],rules:Object.fromEntries(off.map(k=>[k,{enabled:false}]))});
     // each violation with its nodes (the selector and the markup), so a
@@ -256,7 +266,7 @@ const run=async(label,path,o={})=>{
   await p.close();
   if(issues.length&&issues.every(i=>TIMING.has(i))&&!again){
     console.log('  ?? '+label.padEnd(26),line,' — over budget, measuring again');
-    return run(label,path,{...o,again:true});
+    return runNow(label,path,{...o,again:true});
   }
   if(issues.length)fails++;
   rows.push({label,lcp,...m,anim,ax,errs,bad,third,csp,issues});
@@ -327,7 +337,7 @@ const bootConsole=async p=>{
 const PUBLISHED=new Set(deployFiles());
 // emulate: answer the host of `site` (BASE, or PAGES_BASE for the GitHub Pages
 // mirror under its repository subpath) from this checkout instead of the network
-const nested404=async(label,{site,path,js=true,theme,lang,emulate=false})=>{
+const nested404Now=async(label,{site,path,js=true,theme,lang,emulate=false})=>{
   const pagesRoot=new URL(site).pathname;
   if(ONLY&&!ONLY.test(label))return;
   const ctx=await b.newContext({viewport:{width:1280,height:900},javaScriptEnabled:js});
@@ -387,7 +397,7 @@ const nested404=async(label,{site,path,js=true,theme,lang,emulate=false})=>{
    Liberation Sans has no Arabic, so on Linux its fallback is DejaVu Sans and
    says nothing about Arial on a visitor's machine. */
 const FB_WIDTHS=[360,390,768,1024,1280,1440,1600];
-const fallbackType=async(label,{theme,lang})=>{
+const fallbackTypeNow=async(label,{theme,lang})=>{
   if(ONLY&&!ONLY.test(label))return;
   const blocks=async refuse=>{
     const ctx=await b.newContext({viewport:{width:FB_WIDTHS[0],height:900},reducedMotion:'reduce'});
@@ -405,7 +415,7 @@ const fallbackType=async(label,{theme,lang})=>{
           return [e.tagName.toLowerCase()+(typeof e.className==='string'&&e.className?'.'+e.className.split(' ')[0]:''),e.offsetHeight,e.getBoundingClientRect().top+scrollY<innerHeight];})});
     }
     // the heading's glyph case: lower-case letters with descenders ('p' drops below the line), small capitals
-    // (no descender: Cinzel's lower case) or capitals: it must be the same with the face and without (a heading
+    // (no descender: Cinzel's lower case, retired 2026-11-27; the titles are Archivo 900 capitals now) or capitals: it must be the same with the face and without (a heading
     // that lands as small capitals over a fallback's lower case is a visible swap, not only a reflow)
     out.hcase=await p.evaluate(()=>{const h=document.querySelector('h1');if(!h)return null;const cs=getComputedStyle(h);
       if(cs.textTransform==='uppercase')return 'capitals';
@@ -627,7 +637,7 @@ for(const l of ['fr','ar']){
 // be): rendered with the print sheet at A4 width (794 × 1123 CSS px), page 1
 // must carry ink (at least 20% of its 16 px cells hold some: a blank first
 // page is a page nobody keeps) and nothing may run past the page box.
-const printPage=async(label,path,{lang='fr'}={})=>{
+const printPageNow=async(label,path,{lang='fr'}={})=>{
   if(ONLY&&!ONLY.test(label))return;
   const ctx=await b.newContext({viewport:{width:794,height:1123},reducedMotion:'reduce'});
   await ctx.addInitScript(l=>{try{localStorage.setItem('numidea-lang',l)}catch{}},lang);
@@ -671,6 +681,8 @@ if(!REMOTE){
 }
 console.log('— first paint in fallback type: webfonts refused vs loaded, 360-1600 —');
 for(const t of THEMES)for(const l of ['fr','en'])await fallbackType(`fallback type ${t}/${l}`,{theme:t,lang:l});
+await P.drain();
+if(P.crashed()){fails+=P.crashed();console.log(`FAIL ${P.crashed()} run(s) crashed`)}
 console.log(`— throttled phone: 412×823, CPU 4×, Slow 4G, cold cache (timing targets ${PHONE_STRICT?'strict':'report-only'}) —`);
 await phone('throttled index fr',HOME('fr'),{to:'ar'});
 await phone('throttled index ar',HOME('ar'),{to:'fr'});
@@ -680,9 +692,11 @@ await phone('throttled index ar',HOME('ar'),{to:'fr'});
   if(fr&&ar&&fr.fontBytes){
     // target 1.5×; held at 2.7× (216 kB / 81 kB on 2026-11-07: the Arabic page fetches six Plex Arabic files, 600 and Latin subsets among them, beside Geist):
     // dropping the 600 faces (styles.css no longer asks for 600 in Arabic) and preloading the 400 and 700 Arabic files alone is the way down (GAP3)
-    const ratio=ar.fontBytes/fr.fontBytes,bad=ratio>2.7;
+    // re-based 2026-11-27 (owner's choice): the French page lost Cinzel (95 to 80 kB), which pushed the ratio to 2.9 with Arabic unchanged,
+    // so the hold is now on the Arabic bytes themselves (232 kB measured), the ratio printed as the target to work towards
+    const AR_HOLD=232.5*1024,ratio=ar.fontBytes/fr.fontBytes,bad=ar.fontBytes>AR_HOLD;
     if(bad)fails++;
-    console.log((bad?'FAIL ':'  ok ')+'font bytes ar / fr'.padEnd(26),`${(ar.fontBytes/1024).toFixed(0)} kB / ${(fr.fontBytes/1024).toFixed(0)} kB = ${ratio.toFixed(2)} (target 1.5, held at 2.7)`);
+    console.log((bad?'FAIL ':'  ok ')+'font bytes ar / fr'.padEnd(26),`${(ar.fontBytes/1024).toFixed(1)} kB / ${(fr.fontBytes/1024).toFixed(0)} kB = ${ratio.toFixed(2)} (target 1.5; Arabic held at 232.5 kB)`);
   }
 }
 await b.close();srv?.close();

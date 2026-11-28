@@ -21,6 +21,7 @@
   var cat = root.querySelector('.nl-cat');
   var catSay = root.querySelector('.nl-kuro-say');
   var cutIn = root.querySelector('.nl-cut');
+  var fig = root.querySelector('.nl-fig');
   var cutImg = root.querySelector('.nl-cut-slot [data-base]');
   var cutProp = root.querySelector('.nl-cut-prop');
   var cutBase = root.querySelector('.nl-cut-slot [data-base]');
@@ -46,6 +47,11 @@
   function intro() {
     clear();
     if (mqReduce.matches) { skip(); return; }
+    /* On the stacked (phone) layout the figure never slams in (menu.css turns
+       its animation off there), so it stays up through beats 0-1 instead of
+       popping in at beat 2: hidden, it was the page's largest paint, held
+       back 1.3 s behind the scripts on every first visit (mobile LCP). */
+    if (fig) fig.style.opacity = mqDesk.matches ? '' : '1';
     root.classList.add('played'); phase(0);
     var n = 0;
     if (line) { line.textContent = ''; (function type() { if (n > INTRO.length) return; line.textContent = INTRO.slice(0, n++); later(type, E8 / 2); })(); }
@@ -59,6 +65,8 @@
   if (seen || mqReduce.matches) skip(); else intro();
 
   function ours(e) { var t = e.target; return t === document.body || root.contains(t); }   // keys work when nothing else has focus
+  // Tab into the menu mid-intro: the doors are still invisible, so the intro ends where focus landed
+  root.addEventListener('focusin', function (e) { if (!root.classList.contains('p4') && !e.target.closest('.nl-skip')) skip(); });
   var skipBtn = root.querySelector('.nl-skip');
   skipBtn && skipBtn.addEventListener('click', skip);
   var replay = root.querySelector('.nl-replay');

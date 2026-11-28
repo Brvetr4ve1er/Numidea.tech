@@ -26,8 +26,9 @@
  */
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { serve, launch } from './lib/serve.mjs';
+import { serve, launch, BROWSER } from './lib/serve.mjs';
 import { ROOT, LANTERNE_PAGES } from './site.mjs';
+import { pool, jobs } from './lib/pool.mjs';
 const srv = await serve();
 // [page, path, width, what it is set to (localStorage), how a row names it]
 const combos=[];
@@ -67,8 +68,13 @@ combos.push(['bible','/hub/bible/',360,{},'bible 360']);
 const ONLY=process.env.VBUGS_ONLY?new RegExp(process.env.VBUGS_ONLY):null;
 const b = await launch();
 const agg={};
-for(const [page,path,w,init,label] of combos){
- if(ONLY&&!ONLY.test(page+' '+label))continue;
+// the combos run VBUGS_JOBS at a time (lib/pool.mjs; 1 = one after the other),
+// each in its own page; their findings are gathered in the combos' order
+const P = pool(jobs('VBUGS_JOBS'));
+const found = [];
+combos.forEach(([page,path,w,init,label],ci)=>{
+ if(ONLY&&!ONLY.test(page+' '+label))return;
+ P.q(async()=>{
  const p=await b.newPage({viewport:{width:w,height:w<600?800:900}});
  await p.addInitScript((init)=>{for(const k in init)localStorage.setItem(k,init[k])},init);
  await p.goto(srv.base+path,{waitUntil:'networkidle'});
@@ -146,9 +152,12 @@ for(const [page,path,w,init,label] of combos){
     const r=(af.content!=='none'&&af.position==='absolute'&&af.top==='0px'&&af.left==='0px'&&cb?cb:e).getBoundingClientRect();if(!r.width||!r.height||r.bottom+scrollY<=0)continue;
     if(r.width<43.5||r.height<43.5)out.push('SMALLTAP '+sel(e)+' "'+(e.getAttribute('aria-label')||e.textContent).trim().replace(/\s+/g,' ').slice(0,24)+'" '+Math.round(r.width)+'x'+Math.round(r.height))}
   return out},w);
- for(const x of r){const k=page+' '+x;(agg[k]=agg[k]||[]).push(label)}
+ found[ci]=r.map((x)=>[page+' '+x,label]);
  await p.close();
-}
+ },`${page} ${path} ${label}`);
+});
+await P.drain();
+for(const f of found) if(f) for(const [k,label] of f)(agg[k]=agg[k]||[]).push(label);
 await b.close();
 srv.close();
 const ALLOW = JSON.parse(readFileSync(join(ROOT, 'scripts/vbugs-allow.json'), 'utf8'));
@@ -157,5 +166,6 @@ const rows=Object.entries(agg).sort((a,b)=>b[1].length-a[1].length);
 let fresh = 0;
 for(const [k,v] of rows){ const a = allowed(k); if (!a) fresh++;
   console.log((a ? ' allowed ' : '   ISSUE ') + String(v.length).padStart(3), k.slice(0,150), '|', v.slice(0,4).join(' ')); }
-console.log(`\n${rows.length} distinct, ${rows.length - fresh} allowed, ${fresh} new`);
-process.exit(fresh ? 1 : 0);
+if (P.crashed()) console.log(`FAIL ${P.crashed()} combo(s) crashed`);
+console.log(`\n${BROWSER}: ${rows.length} distinct, ${rows.length - fresh} allowed, ${fresh} new`);
+process.exit(fresh || P.crashed() ? 1 : 0);

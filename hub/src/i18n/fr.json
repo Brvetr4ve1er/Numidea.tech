@@ -711,7 +711,8 @@
       "t": "Le monde",
       "d": "Ce qui se passe quand l’atelier ferme sa porte : la bible des personnages, MERCURY, tr4veler.exe, et le codex qui nomme tout cela.",
       "go": "Entrer dans le monde",
-      "bible": "La bible"
+      "bible": "La bible",
+      "story": "La dernière page"
     },
     "c": {
       "k": "03 · LA LIBRAIRIE",
@@ -741,7 +742,8 @@
     },
     "real": {
       "k": "LA RÉALITÉ",
-      "d": "Les autres mondes : tr4veler.exe, MERCURY, et VOIDSPLUNKER.std, le projet qui tient la bible des personnages. Chaque projet livré en ouvre la porte."
+      "d": "Les autres mondes : tr4veler.exe, MERCURY, et VOIDSPLUNKER.std, le projet qui tient la bible des personnages. Chaque projet livré en ouvre la porte.",
+      "go": "La dernière page, une histoire en neuf images"
     },
     "see": "Voir aussi",
     "bible": "La bible (en anglais)",
@@ -1665,16 +1667,78 @@
     },
     "kicker": "/ LE MONDE · PROJETS PERSONNELS",
     "title": "Derrière la porte de nuit.",
-    "note": "Ici, les projets du fondateur. Les dossiers 06 et 07 sont personnels : une bible de personnages et un court-métrage. Le dossier 08 rassemble ses travaux de designer publiés sur Behance, dont des travaux pour des clients. Puis des affiches et un journal d’atelier. Les sites livrés et les prix sont au Studio.",
+    "note": "Ici, les projets du fondateur. Les dossiers 06 et 07 sont personnels : une bible de personnages et un court-métrage. Le dossier 08 rassemble ses travaux de designer publiés sur Behance, dont des travaux pour des clients. Le dossier 09 est une histoire en neuf images. Puis des affiches et un journal d’atelier. Les sites livrés et les prix sont au Studio.",
     "nav": {
       "aria": "Sections du monde",
       "codex": "Codex",
       "bible": "La bible",
       "design": "Design",
       "lab": "Le Lab",
-      "diary": "Journal"
+      "diary": "Journal",
+      "story": "L’histoire"
     },
     "mercuryLant": "MERCURY a deux chemins de traverse dans la Librairie"
+  },
+  "story": {
+    "kicker": "DOSSIER 09 · UNE HISTOIRE EN IMAGES",
+    "name": "La dernière page",
+    "tag": "9 images · 3 actes",
+    "lead": "Neuf images, trois actes, pas un dialogue. Yasser, Kūro et une carte qui s’allume.",
+    "acts": [
+      {
+        "k": "ACTE I",
+        "t": "L’atelier, la nuit",
+        "m": "Calme, curiosité."
+      },
+      {
+        "k": "ACTE II",
+        "t": "La Casbah, à l’aube",
+        "m": "Mouvement, découverte."
+      },
+      {
+        "k": "ACTE III",
+        "t": "La voûte, le navire, le cockpit",
+        "m": "Tension, puis tendresse."
+      }
+    ],
+    "p": [
+      {
+        "c": "Tard dans la nuit. Il reste une page à finir.",
+        "a": "L’atelier vu d’en haut, la nuit : Yasser de dos dessine sous la lampe, Kūro dort sur les cartons."
+      },
+      {
+        "c": "Le dernier trait : un escalier.",
+        "a": "Une main termine à l’encre le croquis d’un escalier."
+      },
+      {
+        "c": "Kūro pousse une carte hors du carton.",
+        "a": "Kūro, sur un carton, pousse de la patte une carte qui luit ; Yasser, flou, derrière."
+      },
+      {
+        "c": "Le chemin est déjà dans ses lunettes.",
+        "a": "Très gros plan : dans les verres ronds de Yasser se reflètent l’escalier et un tracé en pointillé."
+      },
+      {
+        "c": "À l’aube, l’escalier du croquis existe.",
+        "a": "La Casbah à l’aube, vue de très haut : Yasser, minuscule, la carte en main, et Kūro sur un large escalier ; la mer au fond."
+      },
+      {
+        "c": "En scooter. Kūro dans la sacoche, la carte qui brille à côté de lui.",
+        "a": "Yasser file sur le scooter rouge dans une ruelle, manteau au vent ; Kūro dépasse de la sacoche."
+      },
+      {
+        "c": "Sous la ville : une voûte pleine de serveurs.",
+        "a": "Une allée de serveurs sous des arcs en fer à cheval ; Yasser de dos, Kūro sur l’épaule, marche vers un écran allumé."
+      },
+      {
+        "c": "La voûte s’ouvre sur une mer de nuages. Le navire attendait.",
+        "a": "À la proue d’un navire, Yasser lève la carte ; par l’arche de brique, une mer de nuages au couchant ; Kūro sur le bastingage."
+      },
+      {
+        "c": "Cap sur l’horizon. Kūro dort déjà.",
+        "a": "Dans le cockpit, Yasser sourit aux commandes, Kūro endormi sur ses genoux ; un dessin du navire est épinglé au tableau de bord."
+      }
+    ]
   },
   "fiche": {
     "act": {

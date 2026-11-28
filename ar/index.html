@@ -8,10 +8,10 @@
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-tvP3jANvq9/UzP4uqPdi/24QZBuNriDoqxuEquwEVKk=' 'sha256-jqvmeaJzhI0avE/Byblgel+6lAUwtfzShFKt7DLnhME='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-mNjEYjrwpXMefUeVNGNNUZxbzorM/reJ6+W/30HZBEI=' 'sha256-Nqnn8clbgv+5l0PgxcTOldg8mkMKrFn4TvPL+rYUUGg=' 'sha256-jqvmeaJzhI0avE/Byblgel+6lAUwtfzShFKt7DLnhME='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>إنشاء مواقع ويب في الجزائر | Numidea Labs</title>
 <meta name="description" content="إنشاء مواقع ويب بالعربية والفرنسية والإنجليزية، من 90 000 دج. شاهد الصفحة الرئيسية لموقعك قبل أن تدفع. استوديو ويب في برج بوعريريج، الجزائر.">
-<meta name="theme-color" content="#0A1420">
+<meta name="theme-color" content="#211E1B">
 <meta name="author" content="Numidea Labs">
 
 <!-- Open Graph / social — scrapers require ABSOLUTE urls and run no scripts, so
@@ -125,27 +125,25 @@
      ?lang=, so a link to them from en/ or ar/ carries it.
      Fonts are preloaded here rather than as static tags: the preload scanner
      would otherwise queue an Arabic visitor's faces behind the Latin ones and
-     land them after the first paint, where the swap moves the hero (fonts.css
+     land them after the first paint, where the swap moves the text (fonts.css
      says why it is swap). Each visitor gets the faces that set most of their
-     hero, each file once; HEAD is each theme's heading face (themes.css
+     page, each file once; HEAD is each theme's heading face (themes.css
      --font-head + --head-weight), kept in step by themes-check. Geist and
      Geist Mono are variable, one file per subset for every weight, so a
      theme whose heading is Geist adds nothing to the base preloads.
-     SWASH is the hero's second face where it has one (the Cinzel
-     Decorative of Arcanum and Daylight, 15 KB): left to its metric-matched
-     fallback, "avant de payer." was set in lowercase serif for the first
-     seconds on a slow phone and then re-set in small caps, the words that
-     carry the offer changing case under the reader. The fallback matched
-     the width, not the case. -->
+     SWASH is the h1's second face where it has one. It has none since the
+     headings left Cinzel (#37): they are Archivo Condensed 900 in capitals,
+     one file, and capitals set in the metric fallback stay capitals, so the
+     case never changes under the reader when the face lands (2026-11-27). -->
 <script>
   (function () {
     var d = document.documentElement;
-    var HEAD = { arcanum: 'cinzel-700-latin', daylight: 'cinzel-700-latin' };
-    var SWASH = { arcanum: 'cinzel-decorative-700-latin', daylight: 'cinzel-decorative-700-latin' };
+    var HEAD = { arcanum: '../../hub/fonts/archivo-cond-900-latin', daylight: '../../hub/fonts/archivo-cond-900-latin' };
+    var SWASH = {};
     var BAKED = 'ar', th = 'arcanum';
     /* each theme's page colour (themes.css --void), for the browser's own
        bar until app.js reads it from the tokens */
-    var VOID = { arcanum: '#0A1420', daylight: '#F6F3EC' };
+    var VOID = { arcanum: '#211E1B', daylight: '#D8CBB8' };
     /* Theme: the visitor's stored choice if it is one of the two. A stored
        name from a retired theme (noir, mono, altneon, engineering) becomes
        Arcanum and is written back. With nothing valid stored, the OS decides:
@@ -172,8 +170,8 @@
 
     /* The Arabic page sets every role in Plex Arabic, at 400 and 700 (styles.css's
        Arabic type spec; the logo is drawn): those two Arabic files, and the
-       one the plate's captions still set the client names in (Latin at 600,
-       .pm-item b: left to swap, the plate moved 5px at 1024). The old list
+       one its Latin words at 600 are set in (client names, labels: the page
+       still asks for it with the hero's plate gone, 2026-11-27). The old list
        (three weights in two subsets, Geist and Cinzel besides, 255 KB
        fetched) left the buttons' 700 to arrive last, at 10 s on a slow
        phone, set in the fallback until then. */
@@ -196,11 +194,11 @@
      in the stylesheet alone it was not yet read when a fast arrival showed its
      first frame ("opt-in disabled"), and the lift was skipped, a hard cut. -->
 <style>@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto;types:page}}</style>
-<link rel="stylesheet" href="../assets/fonts.css?v=202611270023">
+<link rel="stylesheet" href="../assets/fonts.css?v=202611280315">
 <!-- themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them -->
-<link rel="stylesheet" href="../assets/themes.css?v=202611270023">
-<link rel="stylesheet" href="../assets/styles.css?v=202611270023">
-<link rel="stylesheet" href="../assets/menu/menu.css?v=202611270023">
+<link rel="stylesheet" href="../assets/themes.css?v=202611280315">
+<link rel="stylesheet" href="../assets/styles.css?v=202611280315">
+<link rel="stylesheet" href="../assets/menu/menu.css?v=202611280315">
 <noscript><style>
   /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */
   .reveal{opacity:1!important;transform:none!important}
@@ -216,7 +214,7 @@
 <header class="navbar">
   <div class="nav-inner">
     <div class="bar">
-      <a class="logo" href="#top" aria-label="Numidea Labs"><svg class="wm" viewBox="0 0 7699 734" width="168" height="16" fill="currentColor"><title>Numidea Labs</title><g id="wm"><path d="M78 0 716 608 728 729 90 122ZM83 644V715H0V705Q0 705 9 705Q18 705 19 705Q44 705 62 687Q80 669 80 644ZM223 644Q223 669 241 687Q259 705 284 705Q285 705 294 705Q303 705 303 705V715H220V644ZM78 0 222 153 223 715H80V125Q80 69 74 34Q68 0 68 0ZM725 15V601Q725 638 728 668Q731 697 734 713Q737 729 737 729H728L583 567V15ZM805 15V25Q805 25 796 25Q787 25 787 25Q762 25 744 42Q726 60 725 86H722V15ZM502 15H585V86H583Q582 60 564 42Q547 25 521 25Q521 25 512 25Q503 25 502 25Z M1097 115V492Q1097 584 1140 636Q1182 688 1258 688Q1337 688 1380 639Q1424 590 1425 503V115H1491V497Q1491 604 1426 666Q1360 728 1240 728Q1095 728 1024 666Q953 605 953 498V115ZM955 115V167H953Q952 148 939 136Q926 124 907 124Q907 124 900 124Q893 124 893 124V115ZM1156 115V124Q1156 124 1149 124Q1142 124 1142 124Q1123 124 1110 136Q1097 148 1097 167H1095V115ZM1427 115V167H1425Q1424 148 1411 136Q1398 124 1380 124Q1380 124 1373 124Q1366 124 1366 124V115ZM1550 115V124Q1550 124 1544 124Q1537 124 1537 124Q1518 124 1504 136Q1491 148 1491 167H1489V115Z M2304 102 2312 205 2043 632Q2043 632 2034 648Q2025 665 2016 688Q2008 711 2007 734H1998L1959 652ZM1689 651V715H1591V705Q1591 705 1598 705Q1604 705 1604 705Q1629 705 1648 691Q1666 677 1670 651ZM1732 665Q1731 676 1739 690Q1747 705 1767 705H1781V715H1721L1727 665ZM1748 102H1756L1790 198L1727 715H1662ZM1756 102 2052 545 1998 734 1732 331ZM2313 102 2401 715H2248L2199 350L2304 102ZM2373 651H2392Q2397 677 2416 691Q2434 705 2457 705Q2457 705 2464 705Q2471 705 2471 705V715H2373ZM2241 665H2247L2253 715H2193V705H2207Q2229 705 2236 690Q2243 676 2241 665Z"/><g class="wm-accent" style="fill:var(--teal-text,currentColor)"><path d="M2750 115V715H2606V115ZM2609 652V715H2536V705Q2536 705 2542 705Q2548 705 2549 705Q2572 705 2589 690Q2606 674 2606 652ZM2748 652H2750Q2751 674 2768 690Q2784 705 2808 705Q2808 705 2814 705Q2819 705 2820 705V715H2748ZM2748 178V115H2820L2819 125Q2819 125 2814 125Q2809 125 2808 125Q2784 125 2768 140Q2751 155 2750 178ZM2609 178H2606Q2606 155 2589 140Q2572 125 2548 125Q2548 125 2542 125Q2536 125 2536 125V115H2609Z M3259 115Q3366 115 3443 150Q3520 186 3561 254Q3602 321 3602 415Q3602 509 3561 576Q3520 643 3443 679Q3366 715 3259 715H3037L3035 675Q3111 675 3158 675Q3204 675 3226 675Q3247 675 3247 675Q3341 675 3395 606Q3449 537 3449 415Q3449 293 3395 224Q3341 154 3247 154Q3247 154 3225 154Q3203 154 3154 154Q3105 154 3025 154V115ZM3134 115V715H2990V115ZM2993 651V715H2921V705Q2921 705 2927 705Q2933 705 2934 705Q2957 705 2974 689Q2990 673 2990 651ZM2992 178H2990Q2989 155 2972 140Q2956 125 2933 125Q2933 125 2927 125Q2921 125 2921 125V115H2992Z M3909 115V715H3765V115ZM4143 675 4166 715H3907V675ZM4109 398V438H3907V398ZM4154 115V155H3907V115ZM4207 531 4169 715H3996L4027 675Q4070 675 4104 658Q4137 640 4161 608Q4185 575 4198 531ZM4109 436V524H4099V516Q4099 483 4078 461Q4058 439 4023 438V436ZM4109 312V400H4023V398Q4058 397 4078 374Q4099 352 4099 319V312ZM4154 153V259H4144V250Q4144 206 4120 181Q4097 156 4053 155V153ZM4154 100V124L4049 115Q4078 115 4110 110Q4142 104 4154 100ZM3767 652 3772 715H3698V705Q3698 705 3704 705Q3710 705 3711 705Q3733 705 3748 690Q3764 674 3765 652ZM3767 178H3765Q3764 155 3748 140Q3733 125 3711 125Q3710 125 3704 125Q3698 125 3698 125V115H3772Z M4587 88 4883 710H4714L4528 271ZM4399 649Q4388 676 4402 690Q4416 705 4433 705H4441V715H4241V705Q4241 705 4245 705Q4249 705 4249 705Q4269 705 4291 692Q4313 680 4327 649ZM4587 88 4589 208 4372 712H4298L4532 209Q4534 203 4541 188Q4548 172 4556 152Q4564 133 4571 116Q4578 98 4579 88ZM4674 519V558H4419V519ZM4689 649H4854Q4869 680 4891 692Q4913 705 4933 705Q4933 705 4937 705Q4941 705 4941 705V715H4647V705H4655Q4672 705 4686 690Q4700 676 4689 649Z"/></g><path d="M5511 15V715H5361V15ZM5775 672 5799 715H5508V672ZM5848 510 5802 715H5606L5642 672Q5692 672 5730 652Q5768 633 5795 596Q5822 560 5838 510ZM5364 642V715H5284V705Q5284 705 5290 705Q5297 705 5297 705Q5323 705 5342 686Q5360 668 5361 642ZM5364 88H5361Q5360 62 5342 44Q5323 25 5297 25Q5297 25 5290 25Q5284 25 5284 25V15H5364ZM5508 88V15H5588V25Q5587 25 5581 25Q5575 25 5575 25Q5549 25 5530 44Q5512 62 5511 88Z M6218 88 6514 710H6345L6159 271ZM6030 649Q6019 676 6033 690Q6047 705 6064 705H6072V715H5872V705Q5872 705 5876 705Q5880 705 5880 705Q5900 705 5922 692Q5944 680 5958 649ZM6218 88 6220 208 6003 712H5929L6163 209Q6165 203 6172 188Q6179 172 6187 152Q6195 133 6202 116Q6209 98 6210 88ZM6305 519V558H6050V519ZM6320 649H6485Q6500 680 6522 692Q6544 705 6564 705Q6564 705 6568 705Q6572 705 6572 705V715H6278V705H6286Q6303 705 6317 690Q6331 676 6320 649Z M6722 115H6888Q6927 115 6967 121Q7007 127 7040 143Q7073 159 7093 188Q7113 217 7113 264Q7113 302 7097 329Q7081 356 7056 371Q7031 386 7003 388Q7047 391 7082 411Q7117 431 7138 464Q7160 498 7160 544Q7160 591 7140 624Q7120 656 7085 676Q7050 697 7004 706Q6959 715 6909 715H6819Q6819 715 6819 705Q6819 695 6819 685Q6819 675 6819 675H6867Q6903 675 6932 662Q6962 648 6980 617Q6998 586 6998 535Q6998 500 6988 474Q6977 447 6958 430Q6939 414 6913 406Q6887 398 6856 398V389Q6878 389 6898 382Q6918 376 6932 362Q6947 349 6956 327Q6964 305 6964 274Q6964 207 6933 180Q6902 154 6855 154H6731Q6731 153 6728 144Q6726 134 6724 124Q6722 115 6722 115ZM6826 115V715H6684V115ZM6687 652V715H6619V705Q6620 705 6624 705Q6629 705 6630 705Q6654 705 6670 690Q6685 674 6684 652ZM6687 178H6684Q6685 154 6670 140Q6654 125 6630 125Q6629 125 6624 125Q6620 125 6619 125V115H6687Z M7465 102Q7485 102 7514 104Q7542 106 7570 108Q7598 111 7620 114Q7641 118 7649 121L7636 243H7627Q7627 197 7595 170Q7563 143 7503 143Q7455 143 7426 164Q7396 185 7394 220Q7392 238 7400 252Q7409 267 7424 278Q7440 289 7459 300L7616 397Q7656 417 7679 455Q7702 493 7699 547Q7696 603 7666 644Q7637 685 7586 706Q7534 728 7464 728Q7421 728 7384 721Q7347 714 7320 702Q7294 690 7280 675Q7272 655 7273 626Q7274 598 7282 570Q7290 541 7302 522H7310Q7307 567 7326 605Q7346 643 7384 666Q7422 688 7475 688Q7533 688 7562 661Q7591 634 7591 598Q7591 571 7574 550Q7556 528 7516 507L7374 417Q7324 391 7302 348Q7279 305 7285 254Q7290 206 7314 172Q7337 138 7376 120Q7415 102 7465 102ZM7649 111 7648 129H7541V111Z"/></g></svg><span class="cursor" aria-hidden="true"></span></a>
+      <a class="logo" href="#top" aria-label="Numidea Labs"><span class="wm-t">NUMIDEA <span class="wm-l">LABS</span></span><span class="cursor" aria-hidden="true"></span><span class="wm-kana" aria-hidden="true">ヌミディア・ラボ</span></a>
       <!-- phones fold the links into the menu; this names the section you are in -->
       <span class="crumb" id="crumb" aria-hidden="true"><i>/</i><b id="crumbNow"></b></span>
       <nav class="nav-links" aria-label="التنقّل الرئيسي" data-i18n-aria="ui.navPrimary">
@@ -292,9 +290,12 @@
   <a href="#contact" data-i18n="nav.contact">تواصل</a>
   <!-- the other two parts of the site, under a rule (journey-01): the home had no way to them but the footer's Studio link -->
   <span class="menu-sep" aria-hidden="true"></span>
-  <a class="menu-far" href="../hub/lanterne/?lang=ar" data-i18n="nav.librairie">المكتبة</a>
+  <a class="menu-far" href="../hub/lanterne/?lang=ar" data-i18n="nav.librairie">الفانوس</a>
   <a class="menu-far" href="../hub/monde.html?lang=ar" data-i18n="nav.monde">العالم</a>
+  <a class="menu-far" href="../hub/?lang=ar" data-i18n="menu.atelier.label">الورشة</a>
+  <a class="menu-far" href="../hub/bible/" data-i18n="menu.bible.label">الدليل</a>
   </nav>
+  <img class="menu-kuro" src="../assets/kit/art/kuro/react/loaf.webp" alt="" width="240" height="240" loading="lazy">
   <!-- the two ways to start, pinned at the foot of the menu (styles.css
        .menu-acts): eight section links and no action left the visitor who
        opened the menu to act with nothing to press. The same two links as
@@ -314,7 +315,8 @@
      The intro and navigation menu: the first screen of the home page. Its copy is
      in assets/i18n/*.js (menu.*); its markup, styles and motion come from
      /mnt/project-files/characters/site-menu (gen.py writes this block).
-     The old hero still follows inside <main>: see the draft PR for why. -->
+     It replaced the home's hero on 2026-11-27 (owner decision, 2026-11-26):
+     the offer's sentence, its two ways in and its terms follow in <main>. -->
 <section class="nl-menu p4" aria-label="Numidea Labs، القائمة" data-i18n-aria="menu.aria">
 <div class="nl-stage">
  <div class="nl-abs nl-stripes" aria-hidden="true"></div>
@@ -325,17 +327,17 @@
   <div class="nl-abs nl-shard s1"></div><div class="nl-abs nl-shard s2"></div><div class="nl-abs nl-shard s3"></div>
   <div class="nl-abs nl-burst"></div>
   <div class="nl-abs nl-mark" aria-hidden="true" data-decorative>ヌミデア</div>
-  <div class="nl-abs nl-echo"><img src="../assets/menu/yasser-full.webp" alt="" width="564" height="1278" decoding="async"></div>
-  <img class="nl-abs nl-fig" src="../assets/menu/yasser-full.webp" alt="" width="564" height="1278" fetchpriority="high" decoding="async">
+  <div class="nl-abs nl-echo"><picture><source type="image/avif" srcset="../assets/menu/yasser-full-440.avif 440w, ../assets/menu/yasser-full.avif 564w" sizes="(max-width:599.98px) 229px, (max-aspect-ratio:4/5) 283px, (max-width:759.98px) 229px, 564px"><img src="../assets/menu/yasser-full.webp" srcset="../assets/menu/yasser-full-440.webp 440w, ../assets/menu/yasser-full.webp 564w" sizes="(max-width:599.98px) 229px, (max-aspect-ratio:4/5) 283px, (max-width:759.98px) 229px, 564px" alt="" width="564" height="1278" fetchpriority="high" decoding="async"></picture></div>
+  <picture><source type="image/avif" srcset="../assets/menu/yasser-full-440.avif 440w, ../assets/menu/yasser-full.avif 564w" sizes="(max-width:599.98px) 229px, (max-aspect-ratio:4/5) 283px, (max-width:759.98px) 229px, 564px"><img class="nl-abs nl-fig" src="../assets/menu/yasser-full.webp" srcset="../assets/menu/yasser-full-440.webp 440w, ../assets/menu/yasser-full.webp 564w" sizes="(max-width:599.98px) 229px, (max-aspect-ratio:4/5) 283px, (max-width:759.98px) 229px, 564px" alt="" width="564" height="1278" fetchpriority="high" decoding="async"></picture>
  </div>
  <p class="nl-abs nl-line" data-text="Numidea Labs · le studio de nuit" aria-hidden="true" data-i18n="menu.line">Numidea Labs · استوديو الليل</p>
  <p class="nl-abs nl-name" dir="ltr"><span aria-hidden="true"><span class="nl-ch j1">N</span><span class="nl-ch j2">u</span><span class="nl-ch j3">m</span><span class="nl-ch j4">i</span><span class="nl-ch j5">d</span><span class="nl-ch j0">e</span><span class="nl-ch j1">a</span><br><span class="nl-ch j4">L</span><span class="nl-ch j5">a</span><span class="nl-ch j0">b</span><span class="nl-ch j1">s</span></span><span class="nl-sr sr-only">Numidea Labs</span></p>
 
  <div class="nl-abs nl-hud nl-cut" aria-hidden="true"><div class="nl-cut-band"></div>
-  <img class="nl-cut-prop" data-kit="prop" src="../assets/kit/art/props/fineliner.webp" alt="" width="240" height="240" decoding="async">
+  <img class="nl-cut-prop" data-kit="prop" src="../assets/kit/art/props/fineliner.webp" alt="" width="240" height="240" loading="lazy" decoding="async">
   <div class="nl-cut-slot" data-kit="body"><div class="kit-slot"><img data-base src="../assets/kit/art/yasser/pose/receipt.webp" alt="" decoding="async"><img data-over src="../assets/kit/art/yasser/pose/receipt.webp" alt="" decoding="async"></div></div>
   <span class="nl-tag nl-cut-tag" data-i18n="menu.cut">على المسرح</span></div>
- <div class="nl-abs nl-hud nl-kuro" aria-hidden="true"><div class="nl-tarot"><img class="nl-tarot-frame" src="../assets/menu/tarot.webp" alt="" width="141" height="240" decoding="async"><img class="nl-cat" data-kit="kuro" src="../assets/kit/art/kuro/react/judge.webp" alt="" decoding="async"></div><span class="nl-tag"><span data-i18n="menu.kuroName">كورو</span> : <span class="nl-kuro-say">juge</span></span></div>
+ <div class="nl-abs nl-hud nl-kuro" aria-hidden="true"><div class="nl-tarot"><img class="nl-tarot-frame" src="../assets/menu/tarot.webp" alt="" width="141" height="240" loading="lazy" decoding="async"><img class="nl-cat" data-kit="kuro" src="../assets/kit/art/kuro/react/judge.webp" alt="" loading="lazy" decoding="async"></div><span class="nl-tag"><span data-i18n="menu.kuroName">كورو</span> : <span class="nl-kuro-say" data-i18n="menu.tarifs.kuro">يدقّق</span></span></div>
 
  <nav aria-label="قائمة الاستوديو" data-i18n-aria="menu.nav"><ul class="nl-nav">
 <li><a class="nl-item l big on" href="tarifs/" data-id="tarifs" data-kuro="judge" data-pose="yasser/pose/receipt" data-prop="fineliner">
@@ -369,7 +371,7 @@
 <li><a class="nl-item r small" href="../hub/lanterne/?lang=ar" data-id="lanterne" data-kuro="loaf" data-pose="yasser/action/pointup-a" data-prop="sketchbook">
  <span class="nl-pr"><span class="nl-sh"></span><span class="nl-face"></span>
   <span class="nl-tx"><span class="nl-lab" data-i18n="menu.lanterne.label">الفانوس</span></span>
-  <span class="nl-sub" data-i18n="menu.lanterne.sub">المكتبة</span>
+  <span class="nl-sub" data-i18n="menu.lanterne.sub">الدروس</span>
  </span>
  <span class="nl-d" data-k="say" hidden data-i18n="menu.lanterne.say">ما تعلّمته، مرتّبًا لتتعلّمه أسرع.</span><span class="nl-d" data-k="kuro" hidden data-i18n="menu.lanterne.kuro">يستريح</span>
 </a></li>
@@ -382,7 +384,7 @@
 </a></li>
  </ul></nav>
 
- <div class="nl-abs nl-hud nl-say"><div class="nl-say-in"><span class="nl-say-dest">Tarifs · Prix fixe, écrit avant</span><p class="nl-say-box">Le prix est écrit avant qu’on commence. Pas de surprise.</p></div></div>
+ <div class="nl-abs nl-hud nl-say"><div class="nl-say-in"><span class="nl-say-dest"><span data-i18n="menu.tarifs.label">الأسعار</span> · <span data-i18n="menu.tarifs.sub">سعر ثابت، مكتوب مسبقًا</span></span><p class="nl-say-box" data-i18n="menu.tarifs.say">السعر مكتوب قبل أن نبدأ. لا مفاجآت.</p></div></div>
 
  <div class="nl-abs nl-hud nl-topright"><button class="nl-replay" type="button" data-i18n="menu.replay">أعد المقدّمة</button></div>
  <button class="nl-abs nl-skip" type="button" data-i18n="menu.skip">تخطَّ المقدّمة</button>
@@ -390,133 +392,110 @@
  <div class="nl-abs nl-gotxt" aria-hidden="true"><span class="nl-golab"></span><span class="nl-godest"></span></div>
 </div>
 </section>
+<!-- The full stylesheet, here and not in the head: the navbar and the menu
+     above paint with assets/home-first.css alone, and what follows waits
+     for this sheet (the empty script makes Firefox wait too). menu.css comes
+     again after it, so the cascade stays fonts, themes, styles, menu.
+     scripts/build-first.mjs says more. -->
+<link rel="stylesheet" href="../assets/styles.css?v=202611280315">
+<link rel="stylesheet" href="../assets/menu/menu.css?v=202611280315">
+<script> </script>
 <main id="main" class="wrap" tabindex="-1">
 
-  <!-- ================= HERO ================= -->
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="sheet-frame" aria-hidden="true">
-      <i class="sf tl"></i><i class="sf tr"></i><i class="sf bl"></i><i class="sf br"></i>
+  <!-- ================= PORTALS (world map thread, 2026-11-27) =================
+       The four ways into the Numidea world, right under the menu: one wide
+       primary (La Carte, the HQ: the map the stores sit on) and three store
+       gates. The three store gates open the owner's store, tr4velerz.studio
+       (shop/ in this repo); each lands on a "Bientôt" page there until it fills.
+       La Carte stays sealed (no link) until the map page exists.
+       Game hooks (game loop spec, slice 4): data-city, the empty
+       data-game-stamp spans, data-game-badge on the HQ chip, ?from=numidea on
+       the store links (not on "Toutes les boutiques": check.mjs pairs it with
+       the showcase's plain URL). Rank never gates a store link. Plan: the doc "La carte du monde Numidea". The map
+       is a hand-drawn silhouette of Algeria, not survey-accurate. -->
+  <nav class="portals" aria-label="عالم نوميديا: الخريطة والمتاجر" data-i18n-aria="portals.aria">
+    <p class="portals-k kicker" data-i18n="portals.k">عالم نوميديا · 4 بوابات</p>
+    <div class="portal portal-hq is-sealed" data-city="hq">
+        <div class="portal-tx">
+          <span class="portal-city" data-i18n="portals.hq.city">المقر · برج بوعريريج</span>
+          <span class="portal-lab" data-i18n="portals.hq.label">الخريطة</span>
+          <span class="portal-sub" data-i18n="portals.hq.sub">الجزائر كلها، متجر في كل مدينة. والاستوديو في الوسط.</span>
+          <span class="portal-stamp" data-game-stamp hidden></span>
+          <span class="portal-chip" data-i18n="portals.soon" data-game-badge>قريبًا</span>
+        </div>
+        <span class="kseal" aria-hidden="true">技</span>
+        <svg class="portal-map" viewBox="0 0 430 420" aria-hidden="true" focusable="false">
+          <path class="pm-land" d="M136 53 180 35 240 15 280 15 352 13 348 51 344 77 332 95 370 161 376 209 378 242 386 288 418 308 330 365 296 398 264 405 244 407 242 389 204 370 84 275 6 224 6 194 40 176 80 167 108 145 156 119 152 103 146 70Z"/>
+          <path class="pm-route" d="M275 32 167 40M275 32 253 110 291 324"/>
+          <circle class="pm-pin pm-hq" cx="275" cy="32" r="9"/>
+          <circle class="pm-pin" cx="167" cy="40" r="6"/>
+          <circle class="pm-pin" cx="253" cy="110" r="6"/>
+          <circle class="pm-pin" cx="291" cy="324" r="6"/>
+        </svg>
     </div>
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow" data-i18n="hero.eyebrow">استوديو ويب · برج بوعريريج</span>
-        <h1 class="hero-h" id="hero-title" data-i18n="hero.title">شاهد صفحتك الرئيسية <span class="swash">قبل أن تدفع.</span></h1>
-        <p class="lede" data-i18n="hero.lede">قبل أيّ دفع، نبني الصفحة الرئيسية لموقعك الجديد بمحتواك أنت خلال 5 أيام عمل.<span class="lede-who"> <bdi>Yasser Hamisse</bdi>، المؤسّس، يصمّمها ويبرمجها ويسلّمها بنفسه.</span></p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#contact" data-apercu data-i18n="hero.cta1">اطلب معاينتك المجانية <span aria-hidden="true">←</span></a>
-          <!-- WhatsApp with the Aperçu's own message, so a phone can write from
-               the first screen (owner decision, 2026-10-26). Its link is baked
-               in, in the page's language (scripts/build-lang.mjs), so it works
-               before the deferred app.js arrives and with scripts off; app.js 13
-               rewrites it with the ad's [ref]. scripts/build-tarifs.mjs copies
-               this button to the price guide by this exact class string, once:
-               the page's other WhatsApp buttons order their classes
-               differently (btn wa-link btn-teal). -->
-          <a class="btn btn-teal wa-link" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20Numidea%20Labs%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%A7%D9%8A%D9%86%D8%A9%20%D9%85%D8%AC%D8%A7%D9%86%D9%8A%D8%A9%20%D9%84%D9%85%D9%88%D9%82%D8%B9%D9%8A%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.%0A%D8%A7%D9%84%D8%B4%D8%B1%D9%83%D8%A9%3A%20%0A%D8%A7%D9%84%D9%86%D8%B4%D8%A7%D8%B7%20%D9%88%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9%3A%20%0A%D8%A7%D9%84%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D8%AD%D8%A7%D9%84%D9%8A%20(%D8%A5%D9%86%20%D9%88%D9%8F%D8%AC%D8%AF)%3A%20" target="_blank" rel="noopener">
-            <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
-            <span data-i18n="hero.cta2">راسلنا عبر واتساب</span>
-          </a>
-        </div>
-        <p class="hero-terms" data-i18n="hero.terms">معاينة مجّانية · للشركات المسجّلة فقط · 4 في الشهر كحدّ أقصى</p>
-        <!-- the workshop's place on the sheet, back at the hero's foot (it stood under the title until 8 Nov;
-             the 404 page still wears it): a mark, not a claim, so it is the same in every language -->
-        <div class="dim-line" aria-hidden="true"><i></i><b dir="ltr">36°04′N · 4°46′E</b><i></i></div>
-      </div>
-      <!-- THE PLATE — the four live client sites, one at a time, at a size you
-           can actually read. This replaced a fan of three static thumbnails
-           that showed 3 of 5 clients and was too small to make out; the studio's
-           strongest asset was being used as texture. Wiped, never cross-faded:
-           screenshots stay flat and sharp, which is the scene/ idiom. Client
-           sites only: the Glaive demo stays in the grid and on scene/, where
-           it is marked as no client's order.
-           Each slide is its capture at 1280 and at 720 (scripts/shots.mjs
-           writes both); sizes is the plate's measured width: 91vw to 960px,
-           at most 40vw above, so a phone at 2x takes the 720 file. The first
-           slide is the page's largest paint and keeps its high priority; the
-           three others wait in the <template> until the visitor moves (app.js:
-           the deck's wake() puts them in the plate), since the deck does not
-           turn before that and their files loaded ahead of everything else for
-           a slide nobody had asked for yet. A template, not src-less images,
-           which the audit counts as broken. The order is the page's language's:
-           scripts/build-lang.mjs reorders the slides, their captions and the
-           rail by data-client (PLATE_ORDER there), so the Arabic page opens on
-           Nomara, an Arabic site, not on a French capture. One slide per line:
-           the generator moves lines. The plate holds still under the pointer: a capture that drifts reads as a mock-up. -->
-      <div class="plate-wrap">
-        <!-- The plate is a way into the site, not out of it: it leads to the
-             slide's project sheet (scene/), where the caption under it leads
-             to the client's live site. The deck (app.js) moves this link to
-             each slide's sheet as it turns (each of the four has one since
-             wave 3; a slide without data-sheet would lead to its card below).
-             The link is named by the slide
-             shown (its alt) and the sheet's own words. -->
-        <a class="plate-link" href="../scene/?lang=ar#nomara">
-        <div class="plate">
-          <i class="pk tl" aria-hidden="true"></i><i class="pk tr" aria-hidden="true"></i>
-          <i class="pk bl" aria-hidden="true"></i><i class="pk br" aria-hidden="true"></i>
-        <img class="pl on" data-client="nomara" src="../assets/previews/nomara.webp" srcset="../assets/previews/nomara-720.webp 720w, ../assets/previews/nomara.webp 1280w" sizes="(min-width:961px) 50vw, 91vw" alt="Nomara Voyages" width="1280" height="800" decoding="async" fetchpriority="high">
-        <template id="plate-more">
-        <img class="pl" data-client="alliance" src="../assets/previews/alliancetravel.webp" srcset="../assets/previews/alliancetravel-720.webp 720w, ../assets/previews/alliancetravel.webp 1280w" sizes="(min-width:961px) 50vw, 91vw" alt="Alliance Travel" width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
-        <img class="pl" data-client="bordjsteel" src="../assets/previews/bordjsteel.webp" srcset="../assets/previews/bordjsteel-720.webp 720w, ../assets/previews/bordjsteel.webp 1280w" sizes="(min-width:961px) 50vw, 91vw" alt="Bordj Steel" width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
-        <img class="pl" data-client="almaflow" src="../assets/previews/almaflowclim.webp" srcset="../assets/previews/almaflowclim-720.webp 720w, ../assets/previews/almaflowclim.webp 1280w" sizes="(min-width:961px) 50vw, 91vw" alt="AlmaFlowClim" width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
-        </template>
-          <span class="pl-wipe" aria-hidden="true"></span>
-        </div>
-        <!-- the same site on a phone, beside the desktop capture (aesthetics B2,
-             2026-11-24): the slide shown picks its phone by data-client in
-             styles.css (:has), so it needs no script; Nomara has no phone
-             capture yet, so the phone steps aside on its slide -->
-        <span class="dev-ph dev-ph--hero" aria-hidden="true">
-          <img class="ph-shot" data-client="bordjsteel" src="../assets/work/bordjsteel/m1-416.webp" alt="" width="416" height="900" decoding="async" loading="lazy">
-          <img class="ph-shot" data-client="alliance" src="../assets/work/alliance/m1-416.webp" alt="" width="416" height="900" decoding="async" loading="lazy">
-          <img class="ph-shot" data-client="almaflow" src="../assets/work/almaflow/m1-416.webp" alt="" width="416" height="900" decoding="async" loading="lazy">
-        </span>
-        <span class="sr-only" data-i18n="work.sheet">تفاصيل المشروع</span>
+    <ul class="portals-grid">
+      <li class="portal" data-city="oran"><a class="portal-a" href="https://tr4velerz.studio/?from=numidea" target="_blank" rel="noopener">
+        <span class="portal-city" data-i18n="portals.wear.city">وهران</span>
+        <span class="portal-lab" data-i18n="portals.wear.label">غرفة الملابس</span>
+        <span class="portal-sub" data-i18n="portals.wear.sub">ملابس ومانغا وملصقات: كل المنتجات، على <bdi>tr4velerz.studio</bdi>.<span class="sr-only"> (يفتح في تبويب جديد)</span></span>
+        <span class="portal-stamp" data-game-stamp hidden></span>
+        <span class="portal-chip" data-i18n="portals.soon">قريبًا</span>
+      </a></li>
+      <li class="portal" data-city="tamanrasset"><a class="portal-a" href="https://tr4velerz.studio/?from=numidea" target="_blank" rel="noopener">
+        <span class="portal-city" data-i18n="portals.arcade.city">تمنراست</span>
+        <span class="portal-lab" data-i18n="portals.arcade.label">الأركيد</span>
+        <span class="portal-sub" data-i18n="portals.arcade.sub">ألعابنا، للتحميل، على <bdi>tr4velerz.studio</bdi>.<span class="sr-only"> (يفتح في تبويب جديد)</span></span>
+        <span class="portal-stamp" data-game-stamp hidden></span>
+        <span class="portal-chip" data-i18n="portals.arcade.chip">قريبًا</span>
+      </a></li>
+      <li class="portal" data-city="ghardaia"><a class="portal-a" href="https://tr4velerz.studio/?from=numidea" target="_blank" rel="noopener">
+        <span class="portal-city" data-i18n="portals.apps.city">غرداية</span>
+        <span class="portal-lab" data-i18n="portals.apps.label">مكتبة التطبيقات</span>
+        <span class="portal-sub" data-i18n="portals.apps.sub">تطبيقاتنا، على <bdi>tr4velerz.studio</bdi>.<span class="sr-only"> (يفتح في تبويب جديد)</span></span>
+        <span class="portal-stamp" data-game-stamp hidden></span>
+        <span class="portal-chip" data-i18n="portals.apps.chip">قريبًا</span>
+      </a></li>
+    </ul>
+    <p class="portals-all"><a href="https://tr4velerz.studio/" data-client="tr4velerz" target="_blank" rel="noopener" data-i18n="portals.all">كل المتاجر: <bdi>tr4velerz.studio</bdi> <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span></a></p>
+  </nav>
+
+  <!-- ================= THE OFFER (2026-11-27) =================
+       What follows the menu, in place of the old hero (owner order: the menu
+       is the home's first screen and replaces the hero). The band keeps what
+       only the hero said: the page's h1 (the offer's sentence), what it
+       covers, the two ways in and the terms. The hero's plate (the four
+       client captures, one at a time) left with it: the same four sites
+       stand just below, each with its capture, its sheet and its live link
+       (#work), under their logos (the proof). -->
+  <section class="offer" aria-labelledby="offer-h">
+    <h1 class="offer-h" id="offer-h"><span class="kicker" data-i18n="offer.kicker">تصميم مواقع الويب · برج بوعريريج، الجزائر</span><span data-i18n="offer.title">شاهد صفحتك الرئيسية <em>قبل أن تدفع.</em></span></h1>
+    <div class="offer-body">
+      <p class="offer-lede" data-i18n="offer.lede">قبل أيّ دفع، نبني الصفحة الرئيسية لموقعك الجديد بمحتواك أنت خلال 5 أيام عمل.<span class="offer-who"> <bdi>Yasser Hamisse</bdi>، المؤسّس، يصمّمها ويبرمجها ويسلّمها بنفسه.</span></p>
+      <div class="actions-row offer-cta">
+        <a class="btn btn-primary" href="#contact" data-apercu data-i18n="prev.cta">اطلب معاينتك المجانية <span aria-hidden="true">←</span></a>
+        <!-- WhatsApp with the Aperçu's own message, so a phone can write from
+             the band (owner decision, 2026-10-26). Its link is baked in, in
+             the page's language (scripts/build-lang.mjs), so it works before
+             the deferred app.js arrives and with scripts off; app.js 13
+             rewrites it with the ad's [ref]. scripts/build-tarifs.mjs copies
+             this button to the price guide by this exact class string, once:
+             the page's other WhatsApp buttons order their classes
+             differently (btn wa-link btn-teal). -->
+        <a class="btn btn-teal wa-link" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20Numidea%20Labs%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%A7%D9%8A%D9%86%D8%A9%20%D9%85%D8%AC%D8%A7%D9%86%D9%8A%D8%A9%20%D9%84%D9%85%D9%88%D9%82%D8%B9%D9%8A%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.%0A%D8%A7%D9%84%D8%B4%D8%B1%D9%83%D8%A9%3A%20%0A%D8%A7%D9%84%D9%86%D8%B4%D8%A7%D8%B7%20%D9%88%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9%3A%20%0A%D8%A7%D9%84%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D8%AD%D8%A7%D9%84%D9%8A%20(%D8%A5%D9%86%20%D9%88%D9%8F%D8%AC%D8%AF)%3A%20" target="_blank" rel="noopener">
+          <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
+          <span data-i18n="prev.wa">راسلنا عبر واتساب</span>
         </a>
-        <div class="plate-meta">
-          <span class="pm-idx" aria-hidden="true"><b>01</b>/04</span>
-          <span class="pm-rot">
-        <a class="pm-item on" data-client="nomara" data-sheet="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener noreferrer"><b>Nomara Voyages</b><i data-i18n="proj6.cat">سفر · عمرة</i></a>
-        <a class="pm-item" data-client="alliance" data-sheet="alliance" href="https://alliancetravel.app/" target="_blank" rel="noopener noreferrer"><b>Alliance Travel</b><i data-i18n="proj2.cat">سفر · نموّ</i></a>
-        <a class="pm-item" data-client="bordjsteel" data-sheet="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener noreferrer"><b>Bordj Steel</b><i data-i18n="proj4.cat">صناعة · B2B</i></a>
-        <a class="pm-item" data-client="almaflow" data-sheet="almaflow" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener noreferrer"><b>AlmaFlowClim</b><i data-i18n="proj3.cat">حِرفي · إيل دو فرانس</i></a>
-          </span>
-        </div>
-        <div class="plate-ctl js-only">
-        <!-- one name, whatever the state: aria-pressed says paused or not
-             (a label that swapped to "resume" as it was pressed was read as
-             "Reprendre la rotation, pressed": the state twice, contradicting) -->
-        <button type="button" class="pl-pause" aria-pressed="false" aria-label="إيقاف التدوير مؤقتاً" data-i18n-aria="hero.platePause"><svg viewBox="0 0 12 12" aria-hidden="true"><path class="ic-pause" d="M3.5 2v8M8.5 2v8"/><path class="ic-play" d="M3 1.8v8.4L10 6z"/></svg></button>
-        <!-- one Tab stop: the arrows move between the tabs (app.js) -->
-        <div class="plate-rail" role="group" aria-label="الأعمال المعروضة" data-i18n-aria="hero.plateRail">
-        <button type="button" data-client="nomara" aria-current="true" aria-label="Nomara Voyages"><i></i></button>
-        <button type="button" data-client="alliance" tabindex="-1" aria-label="Alliance Travel"><i></i></button>
-        <button type="button" data-client="bordjsteel" tabindex="-1" aria-label="Bordj Steel"><i></i></button>
-        <button type="button" data-client="almaflow" tabindex="-1" aria-label="AlmaFlowClim"><i></i></button>
-        </div>
-        </div>
       </div>
+      <p class="offer-terms" data-i18n="offer.terms">معاينة مجّانية · للشركات المسجّلة فقط · 4 في الشهر كحدّ أقصى</p>
     </div>
-
-
   </section>
 
 
-  <!-- PLATE I — the landscape the studio sits in, engraved. Three depth
-       layers: each is a fill clipped to its own skyline (so nearer ground
-       hides farther ground) plus a luminance-masked ink layer. -->
-  <div class="vista lz lv" aria-hidden="true">
-    <svg class="v-sky" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMin slice"><circle class="tw tw0" cx="392" cy="32" r="0.7"/><circle class="tw tw1" cx="95" cy="92" r="0.9"/><circle class="tw tw2" cx="698" cy="151" r="0.8"/><circle class="tw tw3" cx="54" cy="76" r="0.7"/><circle class="tw tw0" cx="294" cy="95" r="0.7"/><circle class="tw tw2" cx="273" cy="107" r="0.7"/><circle class="tw tw3" cx="691" cy="70" r="0.8"/><circle class="tw tw0" cx="65" cy="143" r="0.9"/><circle class="tw tw1" cx="505" cy="93" r="1.4"/><circle class="tw tw2" cx="374" cy="136" r="0.8"/><circle class="tw tw3" cx="132" cy="98" r="0.8"/><circle class="tw tw0" cx="449" cy="94" r="0.7"/><circle class="tw tw1" cx="676" cy="105" r="1.1"/><circle class="tw tw2" cx="813" cy="75" r="0.9"/><circle class="tw tw3" cx="559" cy="153" r="0.9"/><circle class="tw tw0" cx="364" cy="133" r="0.8"/><circle class="tw tw1" cx="107" cy="55" r="1.1"/><circle class="tw tw2" cx="1043" cy="123" r="0.9"/><circle class="tw tw3" cx="729" cy="19" r="1.4"/><circle class="tw tw0" cx="503" cy="127" r="0.8"/><circle class="tw tw1" cx="1111" cy="74" r="0.7"/><circle class="tw tw2" cx="912" cy="98" r="0.9"/><circle class="tw tw3" cx="411" cy="63" r="1.1"/><circle class="tw tw0" cx="694" cy="80" r="0.7"/><circle class="tw tw1" cx="1125" cy="82" r="0.7"/><circle class="tw tw2" cx="82" cy="118" r="1.4"/><circle class="tw tw3" cx="1182" cy="137" r="0.9"/><circle class="tw tw0" cx="856" cy="147" r="0.9"/><circle class="tw tw1" cx="37" cy="80" r="0.8"/><circle class="tw tw2" cx="731" cy="86" r="0.8"/><circle class="tw tw3" cx="917" cy="28" r="0.8"/><circle class="tw tw0" cx="480" cy="152" r="1.1"/><circle class="tw tw1" cx="105" cy="79" r="1.4"/><circle class="tw tw2" cx="338" cy="29" r="1.1"/><circle class="tw tw0" cx="500" cy="64" r="1.1"/><circle class="tw tw1" cx="1140" cy="32" r="0.8"/><circle class="tw tw2" cx="189" cy="111" r="0.7"/><circle class="tw tw3" cx="582" cy="100" r="0.9"/><circle class="tw tw0" cx="343" cy="31" r="1.4"/><circle class="tw tw1" cx="446" cy="97" r="0.8"/><circle class="tw tw2" cx="825" cy="89" r="1.4"/><circle class="tw tw3" cx="783" cy="124" r="1.1"/><circle class="tw tw0" cx="1071" cy="130" r="1.4"/><circle class="tw tw1" cx="473" cy="71" r="0.7"/><circle class="tw tw2" cx="578" cy="71" r="0.8"/><circle class="tw tw3" cx="89" cy="41" r="0.8"/><circle class="tw tw0" cx="140" cy="102" r="0.7"/><circle class="tw tw1" cx="10" cy="32" r="0.7"/><circle class="tw tw2" cx="1130" cy="104" r="0.7"/><circle class="tw tw0" cx="185" cy="48" r="0.9"/><circle class="tw tw1" cx="721" cy="82" r="0.7"/><path class="v-moon" d="M1012 34a26 26 0 1 0 0 52a21 21 0 1 1 0-52Z"/><path class="v-const" pathLength="1" d="M160 52 214 34 262 61 318 48 352 92M262 61 248 112"/><g class="v-const-s"><circle cx="160" cy="52" r="2"/><circle cx="214" cy="34" r="2.4"/><circle cx="262" cy="61" r="2"/><circle cx="318" cy="48" r="2.2"/><circle cx="352" cy="92" r="1.8"/><circle cx="248" cy="112" r="1.8"/></g></svg>
-    <span class="v-l v-far"><i class="v-fill"></i><i class="v-ink"></i></span>
-    <span class="v-l v-mid"><i class="v-fill"></i><i class="v-ink"></i></span>
-    <span class="v-l v-near"><i class="v-fill"></i><i class="v-ink"></i></span>
-    <span class="v-cap pl-cap" data-i18n="pl.vista">نقش 1 — منظر طبيعي</span>
-  </div>
 
   <!-- ================= PROOF ================= -->
   <section class="proof reveal" aria-labelledby="proof-h">
     <span class="kicker" id="proof-h" data-i18n="proof.kicker">الإثبات</span>
-    <p class="proof-line" data-i18n="proof.line">4 مواقع مُسلَّمة · الردّ في يوم العمل التالي · بالفرنسية والإنجليزية والعربية</p>
+    <p class="proof-line" data-i18n="proof.line"><span class="pc">4 مواقع مُسلَّمة</span> · <span class="pc">الردّ في يوم العمل التالي</span> · <span class="pc">بالفرنسية والإنجليزية والعربية</span></p>
     <!-- The four delivered client sites, each logo the client's own file
          (scripts/client-logos.mjs), painted in one theme colour by styles.css
          ("r3/b: client logos") and linked to its work card below. Never the
@@ -547,35 +526,29 @@
            (no label: four labelled quotes read as one form filled four
            times). One column on a phone. Live sites first; the
            first card shows the Bordj Steel references page (a steel frame
-           under a crane, four totals), not the plate's home and not the
+           under a crane, four totals), not the site's home and not the
            white catalogue. Projects in progress get a card only once their
            site is live.
-           The shots are the plate's captures, 720 and 1280 wide; sizes is each
+           The shots are scripts/shots.mjs's captures, 720 and 1280 wide; sizes is each
            thumb's measured width: the lead's 49vw from 860px (820px from
            1920), the others' 28vw from 960px (457px from 1920), 44vw from 720
            to 959, 91vw below. -->
-      <article id="w-bordjsteel" class="proj proj--brand proj--lead reveal" style="--brand:214,55,48">
-        <div class="thumb"><img class="shot" src="../assets/previews/bordjsteel-references.webp" srcset="../assets/previews/bordjsteel-references-720.webp 720w, ../assets/previews/bordjsteel-references.webp 1280w" sizes="(min-width:1920px) 820px, (min-width:860px) 49vw, (min-width:720px) 86vw, 91vw" alt="لقطة من موقع Bordj Steel" data-i18n-alt="proj4.alt" loading="lazy" decoding="async" width="1280" height="800"><span class="dev-ph" aria-hidden="true"><img class="ph-shot" src="../assets/work/bordjsteel/m1-416.webp" alt="" width="416" height="900" loading="lazy" decoding="async"></span></div>
+      <article id="w-nomara" class="proj proj--lead proj--brand reveal" style="--brand:34,180,104">
+        <div class="thumb" data-host="nomaravoyages.netlify.app"><img class="shot" src="../assets/previews/nomara.webp" srcset="../assets/previews/nomara-720.webp 720w, ../assets/previews/nomara.webp 1280w" sizes="(min-width:1920px) 820px, (min-width:860px) 49vw, (min-width:720px) 86vw, 91vw" alt="لقطة من موقع Nomara Voyages" data-i18n-alt="proj6.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
-          <span class="cat" data-i18n="proj4.cat">صناعة · B2B</span>
-          <!-- the title is the way to the sheet (styles.css stretches it over
-               the card: .proj h3 a::after); the benefit line leads to the
-               sheet's own account of it (check.mjs 5c); the live site is the
-               one visible secondary link. The host line and a second "En
-               ligne" pill left on 2026-11-07: an address in netlify type under
-               every title, and a state the plate already says. -->
-          <h3><a href="../scene/?lang=ar#bordjsteel">Bordj Steel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">تفاصيل المشروع</span></a></h3>
-          <p data-i18n="proj4.desc">موقع مؤسسي B2B لمصنّع الهياكل المعدنية في برج بوعريريج: الكتالوج والمراجع وقسم التوظيف.</p>
+          <span class="cat" data-i18n="proj6.cat">سفر · عمرة</span>
+          <h3><a href="../scene/?lang=ar#nomara">Nomara Voyages <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">تفاصيل المشروع</span></a></h3>
+          <p data-i18n="proj6.desc">واجهة ثنائية اللغة لرحلات منظَّمة والعمرة انطلاقاً من قسنطينة.</p>
           <span class="gain-k" data-i18n="work.outcome">للزائر</span>
-          <a class="gain" href="../scene/?lang=ar#gv-bordjsteel"><span data-i18n="proj4.gain">يجد المشتري خط الإنتاج المناسب وخصائصه التقنية دون أن يتصل.</span><span class="sr-only" data-i18n="work.gainMore"> — التفاصيل في لوحة المشروع</span></a>
+          <a class="gain" href="../scene/?lang=ar#gv-nomara"><span data-i18n="proj6.gain">يقارن المعتمر باقات العمرة حسب السعر والمسافة عن الحرم، ثم يراسل الوكالة عبر واتساب.</span><span class="sr-only" data-i18n="work.gainMore"> — التفاصيل في لوحة المشروع</span></a>
           <div class="actions">
-            <a data-client="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener" data-i18n="proj4.live">زيارة موقع <bdi>Bordj Steel</bdi> <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span></a>
+            <a data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener" data-i18n="proj6.live">زيارة موقع <bdi>Nomara Voyages</bdi> <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span></a>
           </div>
         </div>
       </article>
 
       <article id="w-alliance" class="proj proj--brand reveal" style="--brand:95,214,134">
-        <div class="thumb"><img class="shot" src="../assets/previews/alliancetravel.webp" srcset="../assets/previews/alliancetravel-720.webp 720w, ../assets/previews/alliancetravel.webp 1280w" sizes="(min-width:1920px) 457px, (min-width:960px) 28vw, (min-width:720px) 44vw, 91vw" alt="لقطة من موقع Alliance Travel" data-i18n-alt="proj2.alt" loading="lazy" decoding="async" width="1280" height="800"><span class="dev-ph" aria-hidden="true"><img class="ph-shot" src="../assets/work/alliance/m1-416.webp" alt="" width="416" height="900" loading="lazy" decoding="async"></span></div>
+        <div class="thumb" data-host="alliancetravel.app"><img class="shot" src="../assets/previews/alliancetravel.webp" srcset="../assets/previews/alliancetravel-720.webp 720w, ../assets/previews/alliancetravel.webp 1280w" sizes="(min-width:1920px) 457px, (min-width:960px) 28vw, (min-width:720px) 44vw, 91vw" alt="لقطة من موقع Alliance Travel" data-i18n-alt="proj2.alt" loading="lazy" decoding="async" width="1280" height="800"><span class="dev-ph" aria-hidden="true"><img class="ph-shot" src="../assets/work/alliance/m1-416.webp" alt="" width="416" height="900" loading="lazy" decoding="async"></span></div>
         <div class="body">
           <span class="cat" data-i18n="proj2.cat">سفر · نموّ</span>
           <h3><a href="../scene/?lang=ar#alliance">Alliance Travel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">تفاصيل المشروع</span></a></h3>
@@ -588,8 +561,28 @@
         </div>
       </article>
 
+      <article id="w-bordjsteel" class="proj proj--brand reveal" style="--brand:214,55,48">
+        <div class="thumb" data-host="bordjsteelb2b.netlify.app"><img class="shot" src="../assets/previews/bordjsteel-references.webp" srcset="../assets/previews/bordjsteel-references-720.webp 720w, ../assets/previews/bordjsteel-references.webp 1280w" sizes="(min-width:1920px) 457px, (min-width:960px) 28vw, (min-width:720px) 44vw, 91vw" alt="لقطة من موقع Bordj Steel" data-i18n-alt="proj4.alt" loading="lazy" decoding="async" width="1280" height="800"><span class="dev-ph" aria-hidden="true"><img class="ph-shot" src="../assets/work/bordjsteel/m1-416.webp" alt="" width="416" height="900" loading="lazy" decoding="async"></span></div>
+        <div class="body">
+          <span class="cat" data-i18n="proj4.cat">صناعة · B2B</span>
+          <!-- the title is the way to the sheet (styles.css stretches it over
+               the card: .proj h3 a::after); the benefit line leads to the
+               sheet's own account of it (check.mjs 5c); the live site is the
+               one visible secondary link. The host line and a second "En
+               ligne" pill left on 2026-11-07: an address in netlify type under
+               every title, and a state the live link already says. -->
+          <h3><a href="../scene/?lang=ar#bordjsteel">Bordj Steel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">تفاصيل المشروع</span></a></h3>
+          <p data-i18n="proj4.desc">موقع مؤسسي B2B لمصنّع الهياكل المعدنية في برج بوعريريج: الكتالوج والمراجع وقسم التوظيف.</p>
+          <span class="gain-k" data-i18n="work.outcome">للزائر</span>
+          <a class="gain" href="../scene/?lang=ar#gv-bordjsteel"><span data-i18n="proj4.gain">يجد المشتري خط الإنتاج المناسب وخصائصه التقنية دون أن يتصل.</span><span class="sr-only" data-i18n="work.gainMore"> — التفاصيل في لوحة المشروع</span></a>
+          <div class="actions">
+            <a data-client="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener" data-i18n="proj4.live">زيارة موقع <bdi>Bordj Steel</bdi> <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span></a>
+          </div>
+        </div>
+      </article>
+
       <article id="w-almaflow" class="proj proj--brand reveal" style="--brand:59,164,224">
-        <div class="thumb"><img class="shot" src="../assets/previews/almaflowclim.webp" srcset="../assets/previews/almaflowclim-720.webp 720w, ../assets/previews/almaflowclim.webp 1280w" sizes="(min-width:1920px) 457px, (min-width:960px) 28vw, (min-width:720px) 44vw, 91vw" alt="لقطة من موقع AlmaFlowClim" data-i18n-alt="proj3.alt" loading="lazy" decoding="async" width="1280" height="800"><span class="dev-ph" aria-hidden="true"><img class="ph-shot" src="../assets/work/almaflow/m1-416.webp" alt="" width="416" height="900" loading="lazy" decoding="async"></span></div>
+        <div class="thumb" data-host="almaflowclim.netlify.app"><img class="shot" src="../assets/previews/almaflowclim.webp" srcset="../assets/previews/almaflowclim-720.webp 720w, ../assets/previews/almaflowclim.webp 1280w" sizes="(min-width:1920px) 457px, (min-width:960px) 28vw, (min-width:720px) 44vw, 91vw" alt="لقطة من موقع AlmaFlowClim" data-i18n-alt="proj3.alt" loading="lazy" decoding="async" width="1280" height="800"><span class="dev-ph" aria-hidden="true"><img class="ph-shot" src="../assets/work/almaflow/m1-416.webp" alt="" width="416" height="900" loading="lazy" decoding="async"></span></div>
         <div class="body">
           <span class="cat" data-i18n="proj3.cat">حِرفي · إيل دو فرانس</span>
           <h3><a href="../scene/?lang=ar#almaflow">AlmaFlowClim <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">تفاصيل المشروع</span></a></h3>
@@ -598,20 +591,6 @@
           <a class="gain" href="../scene/?lang=ar#gv-almaflow"><span data-i18n="proj3.gain">عند العطل، يتصل العميل بلمسة واحدة من صفحة التخصّص المعني.</span><span class="sr-only" data-i18n="work.gainMore"> — التفاصيل في لوحة المشروع</span></a>
           <div class="actions">
             <a data-client="almaflow" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener" data-i18n="proj3.live">زيارة موقع <bdi>AlmaFlowClim</bdi> <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span></a>
-          </div>
-        </div>
-      </article>
-
-      <article id="w-nomara" class="proj proj--brand reveal" style="--brand:34,180,104">
-        <div class="thumb"><img class="shot" src="../assets/previews/nomara.webp" srcset="../assets/previews/nomara-720.webp 720w, ../assets/previews/nomara.webp 1280w" sizes="(min-width:1920px) 457px, (min-width:960px) 28vw, (min-width:720px) 44vw, 91vw" alt="لقطة من موقع Nomara Voyages" data-i18n-alt="proj6.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
-        <div class="body">
-          <span class="cat" data-i18n="proj6.cat">سفر · عمرة</span>
-          <h3><a href="../scene/?lang=ar#nomara">Nomara Voyages <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">تفاصيل المشروع</span></a></h3>
-          <p data-i18n="proj6.desc">واجهة ثنائية اللغة لرحلات منظَّمة والعمرة انطلاقاً من قسنطينة.</p>
-          <span class="gain-k" data-i18n="work.outcome">للزائر</span>
-          <a class="gain" href="../scene/?lang=ar#gv-nomara"><span data-i18n="proj6.gain">يقارن المعتمر باقات العمرة حسب السعر والمسافة عن الحرم، ثم يراسل الوكالة عبر واتساب.</span><span class="sr-only" data-i18n="work.gainMore"> — التفاصيل في لوحة المشروع</span></a>
-          <div class="actions">
-            <a data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener" data-i18n="proj6.live">زيارة موقع <bdi>Nomara Voyages</bdi> <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span></a>
           </div>
         </div>
       </article>
@@ -633,7 +612,7 @@
       <p class="work-demo"><span data-i18n="work.annuaire">وأُنجز أيضاً: الدليل الصناعي الجزائري، كفاءات المؤسسات الصناعية الجزائرية وشهاداتها واحتياجاتها، بثلاث لغات.</span>
         <span class="work-links"><a data-client="annuaire" href="https://annuaire-dz.vercel.app/fr" target="_blank" rel="noopener" data-i18n="work.annuaireLive">زيارة الدليل <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span></a>
         <a href="../scene/?lang=ar#annuaire" data-i18n="work.sheet">تفاصيل المشروع</a></span></p>
-      <p class="work-demo"><span data-i18n="work.own">وهذا الموقع، موقعنا: ثلاث لغات، ودليل للأسعار، والاستوديو، والمكتبة، وتحقيقات الليل.</span>
+      <p class="work-demo"><span data-i18n="work.own">وهذا الموقع، موقعنا: ثلاث لغات، ودليل للأسعار، والاستوديو، والفانوس، وتحقيقات الليل.</span>
         <span class="work-links"><a href="../scene/?lang=ar#numidea" data-i18n="work.sheet">تفاصيل المشروع</a></span></p>
       <a class="scene-link" href="../scene/?lang=ar"><span class="sb-go" data-i18n="scene.cta">اطّلع على الأعمال بالتفصيل <span aria-hidden="true">←</span></span></a>
       <p class="scene-lead" data-i18n="scene.lead">الصفحات وعرض الهاتف والنظام البصري لكل مشروع، ملتقطة من المواقع كما هي على الإنترنت.</p>
@@ -651,6 +630,7 @@
       <img class="nsp-img" src="../assets/illus/workbench-night.webp" srcset="../assets/illus/workbench-night-560.webp 560w, ../assets/illus/workbench-night.webp 1000w" sizes="(min-width:1000px) min(46vw, 650px), calc(100vw - 32px)" width="1000" height="671" alt="ياسر على طاولة الورشة ليلاً يرفع لوحة مرسومة، وكورو، القط الأسود، جالس على مخطط بجانبه قرب كوب قهوة." data-i18n-alt="atelier.alt" loading="lazy" decoding="async">
     </figure>
     <div class="nsp-copy">
+      <span class="kseal" aria-hidden="true">夜</span>
       <p class="nsp-kick" data-i18n="atelier.kicker">برج بوعريريج · <bdi dir="ltr">36°04′N 4°46′E</bdi></p>
       <h2 class="nsp-h" id="nsp-h" data-i18n="atelier.title">ورشة الليل.</h2>
       <p class="nsp-line" data-i18n="atelier.line">نوميديا ورشة ليلية في برج بوعريريج، يبني فيها صانعٌ وقطّه الأسود صفحتك الرئيسية قبل أن تدفع، وكل مشروع يُسلَّم يفتح باباً إلى عالم آخر.</p>
@@ -676,6 +656,7 @@
              narrower it is display:contents, so its lines flow as before -->
         <div class="prev-head">
           <span class="tag" data-i18n="prev.tag">عرض مميّز</span>
+          <span class="kseal" aria-hidden="true">技</span>
           <h3 id="prev-h" data-i18n="prev.name">المعاينة</h3>
           <p class="promise" data-i18n="prev.promise">بلا مخاطرة: ترى النتيجة قبل أن تدفع.</p>
           <p class="prev-terms" data-i18n="prev.terms">مجّاناً ودون التزام · للشركات المسجّلة فقط · 4 معاينات في الشهر كحدّ أقصى لجميع العملاء.</p>
@@ -702,7 +683,7 @@
         <p class="prev-paid"><span class="ptl-d" data-i18n="prev.tl5d">المدفوع حتى الآن:</span><b class="ptl-zero">0&nbsp;<span class="cur" data-i18n="price.cur">دج</span></b><span class="prev-out"><b data-i18n="svc.outcomeLabel">النتيجة</b><span data-i18n="prev.outcome">تقول نعم عن معرفة: فقد رأيت النتيجة بالفعل.</span></span></p>
         <p class="prev-actions">
           <a class="btn btn-primary" id="prev-cta" href="#contact" data-apercu data-i18n="prev.cta">اطلب معاينتك المجانية <span aria-hidden="true">←</span></a>
-          <!-- WhatsApp as the hero wears it (a button with the mark, not an
+          <!-- WhatsApp as the offer band wears it (a button with the mark, not an
                underlined aside): it is the one way in that needs no mail app -->
           <a class="btn wa-link btn-teal" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20Numidea%20Labs%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%A7%D9%8A%D9%86%D8%A9%20%D9%85%D8%AC%D8%A7%D9%86%D9%8A%D8%A9%20%D9%84%D9%85%D9%88%D9%82%D8%B9%D9%8A%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.%0A%D8%A7%D9%84%D8%B4%D8%B1%D9%83%D8%A9%3A%20%0A%D8%A7%D9%84%D9%86%D8%B4%D8%A7%D8%B7%20%D9%88%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9%3A%20%0A%D8%A7%D9%84%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D8%AD%D8%A7%D9%84%D9%8A%20(%D8%A5%D9%86%20%D9%88%D9%8F%D8%AC%D8%AF)%3A%20" target="_blank" rel="noopener">
             <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
@@ -935,6 +916,7 @@
       <div class="pm-body">
       <div class="estimator" id="estimator">
         <div class="est-head">
+          <span class="kseal" aria-hidden="true">技</span>
           <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M3.5 6.5h17M3.5 12h17M3.5 17.5h17"/><circle class="f a-sl" style="--i:0" cx="8.5" cy="6.5" r="2"/><circle class="f a-sl" style="--i:1" cx="15" cy="12" r="2"/><circle class="f a-sl" style="--i:2" cx="7" cy="17.5" r="2"/></svg>
           <p data-i18n="price.estP">اضبط ما تحتاجه، فيُعاد حساب السعر التقديري مباشرة. وللمواقع وتطبيقات الويب، هي الأرقام نفسها المعلنة في الباقات أعلاه.</p>
         </div>
@@ -1031,9 +1013,6 @@
 
 
   <!-- ================= FOUNDER ================= -->
-  <!-- the dunes of the footer's plate, mirrored and cut to a strip: the turn
-       from the prices to the person. The founder's panel starts where it ends. -->
-  <div class="dune-strip lz" aria-hidden="true"><span class="ds-ink"></span></div>
 
   <section id="founder" class="band" aria-labelledby="founder-h">
     <span class="kicker" data-i18n="founder.kicker">المؤسّس</span>
@@ -1047,6 +1026,9 @@
          founder, with freelancers when a project needs one (owner, 2026-10-30):
          the team block under the card says so, and names nobody. -->
     <div class="founder-card reveal">
+      <span class="kseal" aria-hidden="true">夜</span>
+      <!-- the dossier's bar readout, as La Carte's and the night band's: the atelier's coordinates (the same words as #atelier's kicker, so hidden from readers); a phone, too narrow for them, reads the section's own kicker -->
+      <span class="fd-bar" aria-hidden="true"><span class="fd-bar-l" data-i18n="atelier.kicker">برج بوعريريج · <bdi dir="ltr">36°04′N 4°46′E</bdi></span><span class="fd-bar-s" data-i18n="founder.kicker">المؤسّس</span></span>
       <!-- no photograph: the founder's face on the site is the drawn Yasser
            (owner, wave 3, 2026-11-24: "animated ones or artworks instead"),
            the night plate in the right column -->
@@ -1226,7 +1208,7 @@
       <a class="btn btn-primary" href="#contact" data-apercu data-i18n="prev.cta">اطلب معاينتك المجانية <span aria-hidden="true">←</span></a>
       <a class="btn wa-link btn-teal" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20Numidea%20Labs%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%A7%D9%8A%D9%86%D8%A9%20%D9%85%D8%AC%D8%A7%D9%86%D9%8A%D8%A9%20%D9%84%D9%85%D9%88%D9%82%D8%B9%D9%8A%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.%0A%D8%A7%D9%84%D8%B4%D8%B1%D9%83%D8%A9%3A%20%0A%D8%A7%D9%84%D9%86%D8%B4%D8%A7%D8%B7%20%D9%88%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9%3A%20%0A%D8%A7%D9%84%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D8%AD%D8%A7%D9%84%D9%8A%20(%D8%A5%D9%86%20%D9%88%D9%8F%D8%AC%D8%AF)%3A%20" target="_blank" rel="noopener">
         <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
-        <span data-i18n="hero.cta2">راسلنا عبر واتساب</span>
+        <span data-i18n="prev.wa">راسلنا عبر واتساب</span>
       </a>
     </p>
     <!-- Kūro's window (the Studio's FAQ shows the same drawing): the empty
@@ -1329,15 +1311,13 @@
 
 </main>
 
-<!-- PLATE V — the erg closes the page. -->
-<div class="foot-dunes lz" aria-hidden="true"><span class="fd-ink"></span><span class="pl-cap" data-i18n="pl.dunes">نقش 2 — كثبان</span></div>
 
 <button type="button" class="to-top" id="toTop" data-i18n-aria="ui.top" aria-label="إلى الأعلى"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer wrap">
   <div class="footer-top">
-    <a class="logo" href="#top" aria-label="Numidea Labs"><svg class="wm" viewBox="0 0 7699 734" width="168" height="16" fill="currentColor"><title>Numidea Labs</title><use href="#wm"/></svg><span class="cursor" aria-hidden="true"></span></a>
+    <a class="logo" href="#top" aria-label="Numidea Labs"><span class="wm-t">NUMIDEA <span class="wm-l">LABS</span></span><span class="cursor" aria-hidden="true"></span><span class="wm-kana" aria-hidden="true">ヌミディア・ラボ</span></a>
     <nav aria-label="تذييل الصفحة" data-i18n-aria="footer.navAria">
       <a href="#work" data-i18n="nav.work">الأعمال</a>
       <a href="#services" data-i18n="nav.services">الخدمات</a>
@@ -1348,7 +1328,7 @@
       <a href="#faq" data-i18n="nav.faq">الأسئلة</a>
       <a href="#contact" data-i18n="nav.contact">تواصل</a>
       <a href="../hub/?lang=ar" data-i18n="footer.studio">الاستوديو</a>
-      <a href="../hub/lanterne/?lang=ar" data-i18n="nav.librairie">المكتبة</a>
+      <a href="../hub/lanterne/?lang=ar" data-i18n="nav.librairie">الفانوس</a>
       <a href="../hub/monde.html?lang=ar" data-i18n="nav.monde">العالم</a>
       <a href="../workspacehq/" data-i18n="footer.whq">أداتنا WorkspaceHQ بالإنجليزية</a>
     </nav>
@@ -1378,7 +1358,7 @@
      and every shared link (the x-default). The script is inline, right
      after the line. The line waits: it appears once the visitor has
      scrolled past the first screen, or after 8 seconds, never on the first
-     screen, where it sat over the hero capture's headline, and it leaves
+     screen, where it sat over the first screen's headline, and it leaves
      again after 7 seconds. styles.css floats it at the foot of the screen
      while it shows: it takes no height from the page, and nothing moves when
      the deferred app.js arrives. -->
@@ -1421,7 +1401,7 @@
 </script>
 
 <!-- phones: the two ways to start, kept in reach once the visitor is past the
-     hero; it steps aside while #contact, or the footer just below it, is on
+     menu and the offer band; it steps aside while #contact, or the footer just below it, is on
      screen, where #contact already offers both -->
 <nav class="m-contact" aria-label="تواصل سريع" data-i18n-aria="mbar.aria">
   <a class="btn btn-primary m-main" href="#contact" data-apercu data-i18n="mbar.cta">معاينة مجانية</a>
@@ -1439,11 +1419,11 @@
 
 <!-- this page's dictionary (one language), then the script that reads it;
      both deferred, so they run in this order -->
-<script src="../assets/i18n/ar.js?v=202611270023" defer></script>
-<script src="../assets/kit/kit.js?v=202611270023" defer></script>
-<script src="../assets/menu/menu.js?v=202611270023" defer></script>
-<script src="../assets/app.js?v=202611270023" defer></script>
-<script src="../assets/carry.js?v=202611270023" defer></script>
+<script src="../assets/i18n/ar.js?v=202611280315" defer></script>
+<script src="../assets/kit/kit.js?v=202611280315" defer></script>
+<script src="../assets/menu/menu.js?v=202611280315" defer></script>
+<script src="../assets/app.js?v=202611280315" defer></script>
+<script src="../assets/carry.js?v=202611280315" defer></script>
 <!-- FAQ structured data, written from the page's dictionary by
      scripts/build-lang.mjs; applyLang() writes it again on load. -->
 <script type="application/ld+json" id="ld-faq">

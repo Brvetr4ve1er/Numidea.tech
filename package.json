@@ -19,11 +19,14 @@
     "stage": "node scripts/stage-site.mjs",
     "build": "node scripts/build-scene.mjs && node scripts/build-voices.mjs && node scripts/build-legal.mjs && node scripts/build-terms.mjs && node scripts/build-lang.mjs && node scripts/build-tarifs.mjs && node scripts/build-hub.mjs && node scripts/build-sitemap.mjs && node scripts/build-csp.mjs",
     "csp": "node scripts/build-csp.mjs",
+    "first": "node scripts/build-first.mjs",
+    "first:check": "node scripts/build-first.mjs --check && node scripts/first-check.mjs",
     "og": "node scripts/build-og.mjs",
     "hub:art": "node scripts/build-hub-art.mjs",
     "hub:rig": "node scripts/build-hub-rig.mjs",
     "validate": "node scripts/validate.mjs",
     "vbugs": "node scripts/vbugs.mjs",
+    "webkit": "node scripts/vbugs.mjs --webkit && node scripts/stage-check.mjs --webkit",
     "verify": "node scripts/verify.mjs",
     "keys": "node scripts/keys.mjs",
     "design": "node scripts/design-check.mjs",
@@ -41,7 +44,7 @@
   "devDependencies": {
     "axe-core": "^4.13.0",
     "html-validate": "^11.16.1",
-    "playwright": "^1.49.0",
+    "playwright": "^1.63.0",
     "sharp": "^0.35.5"
   }
 }

@@ -1,6 +1,6 @@
 name: Check
 
-# Two jobs.
+# The jobs.
 #
 # check — every push and pull request, about a minute, no browser: the
 #   repository invariants, html-validate, "the build leaves no change" and
@@ -10,12 +10,14 @@ name: Check
 #   package.json declares one. Every step runs even when an earlier one
 #   failed, so one run shows everything that is wrong (as npm run verify does).
 #
-# nightly — every night and on demand (Actions → Check → Run workflow): the
-#   browser gates (npm run verify, keys included), links and the full npm audit,
-#   development dependencies included. A new advisory against a dev-only tool
-#   turns this red without blocking every push.
+# nightly, webkit, links — every night and on demand (Actions → Check → Run
+#   workflow): every browser gate (npm run verify, split across four runners),
+#   vbugs and stage-check on WebKit, the external links and the full npm
+#   audit, development dependencies included. A new advisory against a
+#   dev-only tool turns this red without blocking every push.
 #
-# The deploy (pages.yml) runs its own gates; it does not wait for this file.
+# pages.yml publishes only a forward page (no copy of the site), so it runs
+# no gate; production is published by hand after npm run verify (RELEASE.md).
 # Every action is pinned to a commit SHA, its version in the comment;
 # Dependabot (.github/dependabot.yml) proposes the updates.
 
@@ -77,10 +79,27 @@ jobs:
         if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: npm audit --omit=dev
 
+  # The browser gates, split across four runners (npm run verify --only=…) so
+  # none holds the whole run: on one 4-core runner verify takes about 34
+  # minutes, and the single 60-minute job it used to be was cancelled four
+  # nights in a row while verify took 51. Each shard has its own limit;
+  # VERIFY_GATE_MIN stops one gate that gives no verdict. fail-fast is off,
+  # so a red shard never hides the others' results.
   nightly:
     if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.browser)
+    name: nightly (${{ matrix.name }})
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: ${{ matrix.minutes }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { name: static and design, gates: "check,themes,hub,validate,design,stage", minutes: 20 }   # ~4 min
+          - { name: audit and sweep, gates: "audit,sweep", minutes: 30 }                               # ~8 min
+          - { name: vbugs and hub-mobile, gates: "vbugs,hub-mobile", minutes: 30 }                     # ~8 min
+          - { name: keys, gates: "keys", minutes: 40 }                                                 # ~16 min
+    env:
+      VERIFY_GATE_MIN: "25"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -96,16 +115,57 @@ jobs:
       # the Chromium build that the locked Playwright version expects, with its
       # system libraries and fonts (scripts/lib/serve.mjs uses it in CI)
       - name: Install Chromium
-        id: browser
         run: npx playwright install --with-deps chromium
-      # verify runs check, themes, validate, audit, sweep, vbugs and keys
-      # (scripts/verify.mjs STEPS), so keys is not run again on its own
-      - name: Every gate (npm run verify)
-        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
-        run: npm run verify
+      - name: Gates ${{ matrix.gates }} (npm run verify -- --only=…)
+        run: npm run verify -- --only=${{ matrix.gates }}
+
+  # Safari's engine: the layout scanner (vbugs) and the staged copy's parse
+  # check (stage-check) on Playwright's WebKit. The other browser gates drive
+  # Chromium's DevTools protocol and stay on Chromium (scripts/lib/serve.mjs).
+  # A WebKit-only finding goes in scripts/vbugs-allow.json with its reason,
+  # or gets fixed, as a Chromium one does.
+  webkit:
+    if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.browser)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          package-manager-cache: false
+      - name: Install
+        run: npm ci
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+      - name: Install WebKit
+        run: npx playwright install --with-deps webkit
+      - name: vbugs and stage-check on WebKit (npm run webkit)
+        run: npm run webkit
+
+  # the network checks, apart from the gates: their answers depend on other
+  # people's servers, so a wall there never hides a gate's result
+  links:
+    if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.browser)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          package-manager-cache: false
+      - name: Install
+        id: install
+        run: npm ci
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
       - name: External links (npm run links)
-        if: ${{ !cancelled() }}
         run: npm run links
       - name: Full dependency audit (npm audit, dev included)
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: npm audit

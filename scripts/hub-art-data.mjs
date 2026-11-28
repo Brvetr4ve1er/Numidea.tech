@@ -139,7 +139,7 @@ export const IMAGES = [
 export const LOOP_ENCODE = { quality: 80, effort: 6, alphaQuality: 100 };
 export const EDGE = 2;
 export const LOOPS = [
-  { name: 'yasser-lost', master: 'loops/yasser-lost.webp', still: 'loops/yasser-lost-still.png', long: 480, step: 2, alphaLevels: 4 },
+  // yasser-lost left the bible on 2026-11-27 (off-model; section 08 shows a still picture now), so it is no longer cut
   { name: 'kuro-sleep', master: 'loops/kuro-sleep.webp', still: 'loops/kuro-sleep-still.png', long: 480, step: 2, alphaLevels: 4 },
 ];
 
