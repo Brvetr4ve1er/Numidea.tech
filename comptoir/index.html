@@ -57,6 +57,15 @@
       <p class="c-empty" id="c-empty" data-t="empty">Ton sac est vide. Ajoute une carte pour commencer.</p>
       <ul class="c-sum" id="c-sum"></ul>
       <p class="c-hint" id="c-hint" hidden></p>
+      <!-- a code from the Lanterne (rank 5): −5 % on the bag, checked again by the server -->
+      <form class="c-code" id="c-code-f" hidden novalidate>
+        <label class="c-label c-label--dim" for="c-code" data-t="codeL">Un code de la Lanterne ?</label>
+        <div class="c-code__row">
+          <input class="c-code__in c-num" id="c-code" name="code" type="text" maxlength="20" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="c-code-m">
+          <button class="c-chip c-code__b" id="c-code-b" type="submit" data-t="codeGo">Appliquer</button>
+        </div>
+        <p class="c-code__m" id="c-code-m" aria-live="polite"></p>
+      </form>
 
       <div class="c-tot" id="c-tot" hidden>
         <span class="c-label c-label--dim" data-t="total">Total</span>

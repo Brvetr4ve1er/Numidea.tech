@@ -30,7 +30,7 @@ t('junk fails', () => { assert.equal(verify(null, S), null); assert.equal(verify
    ESTIMATE (the carte DESIGN, the money services PRICE_MODEL.argent / PRICE_OPTS) and fail on any drift. */
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
-import { ITEMS, COMBOS, FX, price } from '../api/_shop.js';
+import { ITEMS, COMBOS, FX, CODES, price } from '../api/_shop.js';
 
 const app = readFileSync(new URL('../assets/app.js', import.meta.url), 'utf8');
 const start = app.indexOf('var ESTIMATE = (function () {');
@@ -57,6 +57,21 @@ t('a bag with a bad line is refused', () => {
   assert.equal(price([]), null);
 });
 t('a small bag cannot take a deposit', () => assert.equal(price([{ id: 'carte', qty: 1 }], 'EUR', 'deposit'), null));
+t('the game code takes its percent after the combos, before the deposit', () => {
+  const bag = [{ id: 'setup', qty: 1 }, { id: 'pack', qty: 1 }, { id: 'appel', qty: 2 }, { id: 'logo-ess', qty: 1 }];
+  const p = price(bag, 'EUR', 'deposit', ' lanterne-5 ');
+  assert.equal(p.code.id, 'LANTERNE-5'); assert.equal(p.code.da, -3350);
+  assert.equal(p.totalDA, 63650); assert.equal(p.dueDA, 25460); assert.equal(p.amount, '168.00');
+  assert.equal(price(bag, 'EUR', 'full', '').code, null);
+});
+t('an unknown code refuses the bag (never a price the buyer did not see)', () => {
+  assert.equal(price([{ id: 'appel', qty: 1 }], 'EUR', 'full', 'FREE-100'), null);
+  assert.equal(price([{ id: 'appel', qty: 1 }], 'EUR', 'full', { id: 'LANTERNE-5' }), null);
+});
+t('the counter code is the one the Lanterne shows', () => {
+  const g = JSON.parse(readFileSync(new URL('../hub/src/lanterne/game.json', import.meta.url), 'utf8'));
+  assert.ok(CODES[g.discount.code], g.discount.code);
+});
 
 // no real money through PayPal before the owner has proven the account receives (PAYPAL_PROVEN=yes)
 const KEYS = { PAYPAL_CLIENT_ID: 'id', PAYPAL_CLIENT_SECRET: 'x', PAY_LINK_SECRET: 'k' };

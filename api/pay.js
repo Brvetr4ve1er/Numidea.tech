@@ -154,10 +154,10 @@ export default async function handler(req, res) {
       let unit, requestId, back;
       if (body.mode === 'cart') {
         // the counter: the server prices the bag from its own list; the browser only names items and counts
-        const q = price(body.bag, body.cur, body.part);
+        const q = price(body.bag, body.cur, body.part, body.code);
         if (!q) return res.status(400).json({ error: 'bag' });
         const ref = `C-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-${randomUUID().slice(0, 6).toUpperCase()}`;
-        const items = q.lines.map((l) => `${l.id}x${l.qty}`).join(' ');
+        const items = q.lines.map((l) => `${l.id}x${l.qty}`).join(' ') + (q.code ? ` ${q.code.id}` : '');
         unit = {
           reference_id: ref,
           custom_id: `${ref}:${q.part}:${items}`.slice(0, 127),

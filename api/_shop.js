@@ -53,12 +53,17 @@ export const COMBOS = [
     n: { fr: 'Combo départ : appel + mise en place + pack', en: 'Starter combo: call + setup + pack', ar: 'كومبو الانطلاق: مكالمة + إعداد + حزمة' } },
 ];
 
+// the game's codes: a rank in the Lanterne shows one (hub/src/lanterne/game.json, discount); the bag takes it here.
+// pct comes off the bag after its combos and before any deposit. "Once per client" stays the owner's check on the order.
+export const CODES = { 'LANTERNE-5': { pct: 5, n: { fr: 'Code de la Lanterne', en: 'Lantern code', ar: 'رمز الفانوس' } } };
+export const codeOf = (c) => (typeof c === 'string' && /^[A-Za-z0-9-]{1,20}$/.test(c.trim()) && CODES[c.trim().toUpperCase()] ? c.trim().toUpperCase() : null);
+
 const BY_ID = Object.fromEntries(ITEMS.map((i) => [i.id, i]));
 export const DEPOSIT = 0.4;              // the studio's terms: 40 % at order
 export const DEPOSIT_FROM = 40000;       // under this, a bag is paid in full (a deposit on 8 000 DA is noise)
 
 /* the bag as sent, checked and priced; null when anything is off */
-export function price(bag, cur = 'EUR', part = 'full') {
+export function price(bag, cur = 'EUR', part = 'full', code = null) {
   if (!Array.isArray(bag) || !bag.length || bag.length > ITEMS.length) return null;
   if (!FX[cur] || !['full', 'deposit'].includes(part)) return null;
   const seen = new Set(), lines = [];
@@ -69,14 +74,20 @@ export function price(bag, cur = 'EUR', part = 'full') {
     lines.push({ id: it.id, qty, da: it.da * qty });
   }
   const combos = COMBOS.filter((c) => c.needs.every((id) => seen.has(id))).map((c) => ({ id: c.id, da: -c.off }));
-  const totalDA = lines.reduce((s, l) => s + l.da, 0) + combos.reduce((s, c) => s + c.da, 0);
+  const subDA = lines.reduce((s, l) => s + l.da, 0) + combos.reduce((s, c) => s + c.da, 0);
+  // a code the bag does not know is refused, not ignored: the buyer must never pay a price they did not see
+  const cid = code == null || code === '' ? null : codeOf(code);
+  if (code != null && code !== '' && !cid) return null;
+  const off = cid ? { id: cid, pct: CODES[cid].pct, da: -Math.round((subDA * CODES[cid].pct) / 100) } : null;
+  const totalDA = subDA + (off ? off.da : 0);
   if (part === 'deposit' && totalDA < DEPOSIT_FROM) return null;
   const dueDA = part === 'deposit' ? Math.round(totalDA * DEPOSIT) : totalDA;
   const amount = Math.max(1, Math.round(dueDA / FX[cur])).toFixed(2);
-  return { lines, combos, totalDA, dueDA, part, cur, amount };
+  return { lines, combos, code: off, totalDA, dueDA, part, cur, amount };
 }
 
 /* what the page needs to draw the counter (no secret in it) */
 export const publicCatalog = () => ({ fx: FX, cats: CATS, deposit: DEPOSIT, depositFrom: DEPOSIT_FROM,
   items: ITEMS.map(({ id, cat, da, max, n }) => ({ id, cat, da, max, n })),
-  combos: COMBOS.map(({ id, needs, off, n }) => ({ id, needs, off, n })) });
+  combos: COMBOS.map(({ id, needs, off, n }) => ({ id, needs, off, n })),
+  codes: Object.entries(CODES).map(([id, { pct, n }]) => ({ id, pct, n })) });

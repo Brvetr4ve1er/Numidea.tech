@@ -13,6 +13,7 @@
       add: 'Ajouter', remove: 'Retirer', inBag: 'Dans le sac', less: 'Un de moins', more: 'Un de plus',
       live: (n, tot) => (n ? `Sac : ${n} article${n > 1 ? 's' : ''}, total ${tot}` : 'Ton sac est vide'), bag: 'Ton sac', empty: 'Ton sac est vide. Ajoute une carte pour commencer.', total: 'Total',
       lvl: (n) => `Encore ${n} pour débloquer l’acompte 40\u00a0%`, lvlMax: 'Acompte 40\u00a0% débloqué',
+      codeL: 'Un code de la Lanterne ?', codeGo: 'Appliquer', codeOff: 'Retirer le code', codeBad: 'Ce code n’existe pas au comptoir.', codeOk: (pct) => `Code accepté : −${pct} % sur le sac. Une fois par client, Kūro vérifie à la commande.`, sayCode: 'Code de la Lanterne ! Kūro baisse le prix.',
       combo: 'Combo départ', hint: (x, off) => `Ajoute « ${x} » : combo débloqué, −${off}.`,
       route: 'Comment régler', routes: { paypal: 'PayPal · carte', ccp: 'CCP · BaridiMob', wire: 'Virement € / $' },
       order: 'Bon de commande', waGo: 'Envoyer le bon sur WhatsApp', copy: 'Copier le bon', terms: 'Conditions de vente et remboursements', copied: 'Bon copié ✓',
@@ -56,6 +57,7 @@
       add: 'Add', remove: 'Remove', inBag: 'In the bag', less: 'One fewer', more: 'One more',
       live: (n, tot) => (n ? `Bag: ${n} item${n > 1 ? 's' : ''}, total ${tot}` : 'Your bag is empty'), bag: 'Your bag', empty: 'Your bag is empty. Add a card to start.', total: 'Total',
       lvl: (n) => `${n} more to unlock the 40% deposit`, lvlMax: '40% deposit unlocked',
+      codeL: 'A Lantern code?', codeGo: 'Apply', codeOff: 'Remove the code', codeBad: 'The counter doesn’t know this code.', codeOk: (pct) => `Code accepted: −${pct}% off the bag. Once per client, Kūro checks it on the order.`, sayCode: 'Lantern code! Kūro drops the price.',
       combo: 'Starter combo', hint: (x, off) => `Add “${x}”: combo unlocked, −${off}.`,
       route: 'How to pay', routes: { paypal: 'PayPal · card', ccp: 'CCP · BaridiMob (DZD)', wire: 'Bank transfer € / $' },
       order: 'Order ref', waGo: 'Send the order on WhatsApp', copy: 'Copy the order', terms: 'Terms of sale and refunds', copied: 'Order copied ✓',
@@ -99,6 +101,7 @@
       add: 'أضف', remove: 'أزل', inBag: 'في الحقيبة', less: 'واحد أقل', more: 'واحد أكثر',
       live: (n, tot) => (n ? `الحقيبة: عدد العناصر ${n}، المجموع ${tot}` : 'حقيبتك فارغة'), bag: 'حقيبتك', empty: 'حقيبتك فارغة. أضف بطاقة للبدء.', total: 'المجموع',
       lvl: (n) => `بقي ⁦${n}⁩ لفتح العربون ⁦40\u00a0%⁩`, lvlMax: 'العربون ⁦40\u00a0%⁩ متاح',
+      codeL: 'لديك رمز من الفانوس؟', codeGo: 'تطبيق', codeOff: 'إزالة الرمز', codeBad: 'هذا الرمز غير موجود في الكونتوار.', codeOk: (pct) => `قُبل الرمز: خصم ⁦${pct}٪⁩ على الحقيبة. مرة واحدة لكل عميل، ويتحقق كورو عند الطلب.`, sayCode: 'رمز الفانوس! كورو يخفّض السعر.',
       combo: 'كومبو الانطلاق', hint: (x, off) => `أضف «${x}»: يُفتح الكومبو، ⁦−${off}⁩.`,
       route: 'طريقة الدفع', routes: { paypal: 'PayPal · بطاقة', ccp: 'CCP · بريدي موب', wire: 'تحويل بنكي € / $' },
       order: 'رقم الطلب', waGo: 'أرسل الطلب عبر واتساب', copy: 'انسخ الطلب', terms: 'شروط البيع والاسترداد', copied: 'نُسخ الطلب ✓',
@@ -225,12 +228,13 @@
   function draw(cat, s) {
     const items = cat.items, byId = Object.fromEntries(items.map((i) => [i.id, i]));
     const bag = new Map();
-    let tab = 'all', cur = lang === 'en' ? 'USD' : 'EUR', part = 'full', lastTotal = 0, hadCombo = false, hadLvl = false, route = null, ref = null;
+    let tab = 'all', cur = lang === 'en' ? 'USD' : 'EUR', part = 'full', lastTotal = 0, hadCombo = false, hadLvl = false, route = null, ref = null, code = null;
     try {
       const saved = JSON.parse(sessionStorage.getItem('comptoir-bag') || 'null');
       if (saved && Array.isArray(saved.bag)) saved.bag.forEach(([id, n]) => { if (byId[id] && Number.isInteger(n) && n >= 1 && n <= byId[id].max) bag.set(id, n); });
       if (saved && cat.fx[saved.cur]) cur = saved.cur;
       if (saved && /^N-\d{8}-[A-Z0-9]{4}$/.test(saved.ref || '')) ref = saved.ref;
+      if (saved && typeof saved.code === 'string') code = saved.code;
     } catch { /* storage may be off */ }
 
     // ?add=<id>[*n][,<id>[*n]…]: a carte card or the console's receipt, put in the bag (an item already there keeps its count)
@@ -241,6 +245,11 @@
       if (!bag.has(i.id)) bag.set(i.id, n);
       add = add || i;
     }
+    // the game's codes, as the server knows them: a code is applied only if it is on this list (api/_shop.js CODES)
+    const codes = Object.fromEntries((cat.codes || []).map((c) => [c.id, c]));
+    const codeOf = (v) => { const c = String(v || '').trim().toUpperCase(); return codes[c] ? c : null; };
+    const fromLink = codeOf(q.get('code'));
+    code = fromLink || codeOf(code);
     if (add) tab = add.cat;
     // where the bag came from (a Lanterne book, the shelf…): one count per landing, as /go/game/shop-from-<src>
     const src = q.get('from');
@@ -325,11 +334,13 @@
     function quote() {
       const lines = [...bag].map(([id, n]) => ({ id, n, da: byId[id].da * n }));
       const combos = cat.combos.filter((c) => c.needs.every((id) => bag.has(id)));
-      const total = lines.reduce((s, l) => s + l.da, 0) - combos.reduce((s, c) => s + c.off, 0);
+      const sub = lines.reduce((s, l) => s + l.da, 0) - combos.reduce((s, c) => s + c.off, 0);
+      const off = code && lines.length ? { id: code, pct: codes[code].pct, da: Math.round((sub * codes[code].pct) / 100), n: codes[code].n } : null;
+      const total = sub - (off ? off.da : 0);
       const canDeposit = total >= cat.depositFrom;
       const p = canDeposit ? part : 'full';
       const dueDA = p === 'deposit' ? Math.round(total * cat.deposit) : total;
-      return { lines, combos, total, p, dueDA, due: fxOf(dueDA, cur), canDeposit };
+      return { lines, combos, off, total, p, dueDA, due: fxOf(dueDA, cur), canDeposit };
     }
 
     // the order as the owner reads it on WhatsApp (and as the copy button gives it)
@@ -344,7 +355,8 @@
     };
     const order = (k, dueTxt) => t.waOrder(ref,
       k.lines.map((l) => `• ${name(byId[l.id])}${l.n > 1 ? ` ×${l.n}` : ''}: ${fmtDA(l.da)}`)
-        .concat(k.combos.map((c) => `★ ${c.n[lang] || t.combo}: −${fmtDA(c.off)}`)).join('\n'),
+        .concat(k.combos.map((c) => `★ ${c.n[lang] || t.combo}: −${fmtDA(c.off)}`))
+        .concat(k.off ? [`◆ ${k.off.n[lang] || k.off.n.fr} ${k.off.id} (−${k.off.pct} %): −${fmtDA(k.off.da)}`] : []).join('\n'),
       fmtDA(k.total), t.due(dueTxt, k.p), t.routes[route]).concat(needOk() && $('c-ok').checked ? `\n${t.okLine}` : '').replace(/[\u2066-\u2069]/g, '');   // a chat app shows bidi marks as boxes
     function newRef() {
       const d = new Date(), pad = (n) => String(n).padStart(2, '0'), A = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -366,7 +378,7 @@
     let liveT = 0, painted = false;
     function paintBag() {
       const k = quote(), count = [...bag.values()].reduce((s, n) => s + n, 0);
-      try { sessionStorage.setItem('comptoir-bag', JSON.stringify({ bag: [...bag], cur, ref })); } catch { /* storage may be off */ }
+      try { sessionStorage.setItem('comptoir-bag', JSON.stringify({ bag: [...bag], cur, ref, code })); } catch { /* storage may be off */ }
       $('c-count').textContent = String(count);
       $('c-empty').hidden = !!bag.size;
       // one reference per bag: made when the first card lands, dropped when the bag empties
@@ -387,6 +399,13 @@
         li.append(el('span', '', `★ ${c.n[lang] || t.combo}`), el('span', 'c-v c-num', `−${fmtDA(c.off)}`));
         sum.append(li);
       });
+
+      if (k.off) {
+        const li = el('li', 'is-combo is-code');
+        li.append(el('span', '', `◆ ${k.off.n[lang] || k.off.n.fr} · ${k.off.id}`), el('span', 'c-v c-num', `−${fmtDA(k.off.da)}`));
+        sum.append(li);
+      }
+      paintCode();
 
       // a combo one card away
       const near = cat.combos.find((c) => !k.combos.includes(c) && c.needs.filter((id) => bag.has(id)).length === c.needs.length - 1);
@@ -456,11 +475,34 @@
     route = routes.includes('paypal') ? 'paypal' : lang === 'en' ? 'wire' : 'ccp';
     if (q.has('cancel')) { msg(t.cancel); track('cancel'); }
 
+    /* the code field: a Lanterne rank shows the code; here it comes off the bag, and the server checks it again */
+    const cf = $('c-code-f'), ci = $('c-code'), cb = $('c-code-b'), cm = $('c-code-m');
+    function paintCode() {
+      cf.hidden = !bag.size || !Object.keys(codes).length;
+      ci.readOnly = !!code;
+      if (code) ci.value = code;
+      cb.textContent = code ? t.remove : t.codeGo;   // short, so the code itself stays readable
+      if (code) cb.setAttribute('aria-label', t.codeOff); else cb.removeAttribute('aria-label');
+      cf.classList.toggle('is-on', !!code);
+      if (code && !cm.classList.contains('is-bad')) cm.textContent = t.codeOk(codes[code].pct);
+      if (!code && !cm.classList.contains('is-bad')) cm.textContent = '';
+    }
+    cf.addEventListener('submit', (e) => {
+      e.preventDefault();
+      cm.classList.remove('is-bad');
+      if (code) { code = null; ci.value = ''; track('code-off'); paintBag(); ci.focus(); return; }
+      const c = codeOf(ci.value);
+      if (!c) { cm.classList.add('is-bad'); cm.textContent = t.codeBad; track('code-bad'); ci.focus(); return; }
+      code = c; say(t.sayCode); track('code'); paintBag();
+    });
+    ci.addEventListener('input', () => { if (cm.classList.contains('is-bad')) { cm.classList.remove('is-bad'); cm.textContent = ''; } });
+
     $('c-shop').hidden = false;
     paintTabs(); paintGrid(); paintBag();
     hadCombo = !!quote().combos.length; hadLvl = quote().canDeposit;
     track('view');
     if (add) { say(t.sayAdd); track(`deeplink-${add.id}`); }
+    if (fromLink) { track('code-link'); if (!add) say(t.sayCode); }
 
     $('c-ok').addEventListener('change', () => { $('c-ok-l').classList.remove('is-need'); track(`start-ok-${$('c-ok').checked}`); paintBag(); });
     const btn = $('c-pay');
@@ -468,7 +510,7 @@
       const k = quote();
       if (!k.lines.length || blocked()) return;
       track(`click-${k.p}`);
-      checkout(btn, { op: 'create', mode: 'cart', lang, cur, part: k.p, startOk: $('c-ok').checked, bag: k.lines.map((l) => ({ id: l.id, qty: l.n })) }, t.payX(fmtCur(k.due, cur)));
+      checkout(btn, { op: 'create', mode: 'cart', lang, cur, part: k.p, startOk: $('c-ok').checked, bag: k.lines.map((l) => ({ id: l.id, qty: l.n })), ...(k.off ? { code: k.off.id } : {}) }, t.payX(fmtCur(k.due, cur)));
     });
     $('c-wa').addEventListener('click', (e) => { if (!blocked(e)) track(`wa-${route}`); });
     $('c-pp').addEventListener('click', (e) => { if (!blocked(e)) track('paylink'); });

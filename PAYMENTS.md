@@ -128,3 +128,12 @@ legal advice: `reviewed` stays null until the owner (ideally a lawyer) has read 
   kit combo applies. WhatsApp stays the main button.
 - `?from=<source>` on these links (argent, route, shelf): the counter counts one landing per source through the site's
   own cookieless count, as `/go/game/shop-from-<source>` in Vercel Web Analytics. No personal data.
+
+## Increment 10 · the Lanterne code at the counter (2026-11-28)
+
+- `api/_shop.js` `CODES` (`LANTERNE-5`: 5 %). `price(bag, cur, part, code)` takes it off **after the combos, before the deposit**, rounded to the dinar, and returns a `code` line. An unknown code refuses the whole bag (the buyer never pays a price they did not see). `publicCatalog()` lists the codes; `api/pay.js` passes `body.code` and writes the code into the PayPal order's description and custom_id.
+- The counter: a code field in the bag (shown once the bag holds a card), a `◆` receipt line, the code in the WhatsApp/copied order, kept in the session bag. `?code=LANTERNE-5` applies it on landing. Counts: `shop-code`, `shop-code-bad`, `shop-code-off`, `shop-code-link`.
+- The Lanterne reward card (rank ≥ 5, `hub/game.js`) now says the code works at the counter and links to `comptoir/?code=…`.
+- The banking book (`banque`) ends with one quiet line that puts the call in the bag (`?add=appel&from=banque`).
+- `npm run pay:test` checks the maths (67 000 DA bag → −3 350 → 25 460 DA deposit) and that the counter's code is the one in `hub/src/lanterne/game.json`.
+- **Known limit:** "once per client" is not enforced by the site (no accounts). The code is public in the Lanterne's page data, so anyone who reads it gets 5 %. The owner checks repeat use on the order; a PayPal payment already taken can only be refunded, not refused.
