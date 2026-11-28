@@ -142,6 +142,11 @@ for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)co
    // footer into view and once hid the bar under its own measured text
    await p.evaluate(()=>{for(const e of document.querySelectorAll('.m-contact')){const c=e.className;
      new MutationObserver(()=>{if(e.className!==c)e.className=c}).observe(e,{attributes:true,attributeFilter:['class']})}});
+   // the dock cast (assets/cast/cast.js, a fixed layer) changes on its own clock: the bubble hides after a few seconds
+   // and the dock steps out while a staging of the same characters is on screen, so between this measure and the
+   // capture it could be gone and its text was sampled against the page (1:1). Measured in the state it has now
+   await p.evaluate(()=>{for(const e of document.querySelectorAll('.cast,.cast-say,.cast-kr')){const c=e.className,h=e.hidden;
+     new MutationObserver(()=>{if(e.className!==c)e.className=c;if(e.hidden!==h)e.hidden=h}).observe(e,{attributes:true,attributeFilter:['class','hidden']})}});
    // a bottom-sticky layer (the Studio's one-line price under its estimator on
    // phones) pins to the foot of the viewport as the page moves; the full-page
    // capture computes it against the first viewport, where it is clamped to the
@@ -172,6 +177,9 @@ for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)co
        // painted where it is laid out, in either render (the capture keeps the
        // bar over the first viewport), so it is read once it scrolls clear, by
        // eye; measured here it was the bar's own colour against the text's
+       // under the dock cast: it takes no pointer (pointer-events:none, but for its buttons), so elementFromPoint
+       // below sees through it, while the capture paints it over the text; read once it scrolls clear, as for a bar
+       if(!fixed&&[...document.querySelectorAll('.cast-stage,.cast-say,.cast-panel')].some(c=>{const q=c.getBoundingClientRect();return q.width&&!c.hidden&&getComputedStyle(c.closest('.cast')).opacity>.05&&rect.left<q.right&&rect.right>q.left&&rect.top<q.bottom&&rect.bottom>q.top}))continue;
        if(!fixed&&rect.top>=0&&rect.bottom<=innerHeight){const top=document.elementFromPoint(rect.left+rect.width/2,rect.top+rect.height/2);
          if(top&&!el.contains(top)&&!top.contains(el)){let lay=null;for(let f=top;f&&f!==document.body;f=f.parentElement)if(getComputedStyle(f).position==='fixed'){lay=f;break}
            if(lay&&!lay.contains(el))continue}}
