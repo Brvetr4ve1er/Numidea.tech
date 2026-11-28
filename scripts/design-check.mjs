@@ -524,7 +524,7 @@ console.log('offer: the h1 and its two buttons inside the screen, fr/en/ar at 32
    to 1250 on an iPad in landscape; the hero and the plate left the home); (b) the home's height, fr, fonts loaded, held at what was
    measured plus 5%: phone 390 and tablet 768 (a ceiling to lower, never to raise); (c) no sideways scroll at
    the tablet widths; (d) the fixed + sticky chrome at most 25% of a 390x664 phone with the estimator open */
-const HOME_H = { 390: 11076, 768: 10564 };   // 2026-11-28: measured 11,036 and 10,524 after the review round (FAQ marks, the services' one row, the founder's bar), + 40px of margin: the height reads ±16px between runs (lazy art, font timing), so a ceiling at the exact measure failed on noise. Before: 11,071 and 10,537, lowered 2026-11-27 (late night), measured after the machine-room restyle (the gravure band, the dune strip and the footer's dunes left; panels, bars and readouts came in): 11,071 and 10,537; before: 11,127 and 10,710, measured 2026-11-27 (night) after merging the portals band (#44) onto the type scale on the home (#36) and menu round 3 (#37): 11,127 and 10,710
+const HOME_H = { 390: 11102, 768: 10609 };   // 2026-11-28: measured 11,062 and 10,569 after the restyle merged with the portals follow-up (#44: opaque band, « Toutes les boutiques » line), + 40px of margin (the height reads ±16px between runs)
 {
   for (const path of ['/', '/en/', '/ar/']) {
     for (let w = 960; w <= 1440; w += 40) {

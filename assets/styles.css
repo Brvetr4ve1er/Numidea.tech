@@ -4434,7 +4434,7 @@ html[dir="rtl"] .proj .thumb:is(*,:has(.shot)){background-position:calc(100% - 1
    the fill) and the HQ pin's infinite pulse (nothing loops below the menu:
    the pin settles once on reveal). Every word, link and sealed state is
    #44's. */
-.portals{position:relative;padding-block:calc(14px + var(--s-6)) var(--s-6);
+.portals{position:relative;background:var(--void);padding-block:calc(14px + var(--s-6)) var(--s-6);
   /* the home's type steps (design-check reads computed sizes against --t-*), named as scale tokens */
   --fs-label:var(--t-label);--fs-small:var(--t-small);--fs-h3:var(--t-feature);--fs-h2:var(--t-h2)}
 /* the seam: a full-width 14px ruler, parchment ticks on the console ink */
