@@ -5,7 +5,7 @@ import { ROOT } from './site.mjs';
 
 const srv = await serve(ROOT, { compress: false, fallback404: true });
 const b = await launch();
-for (let rep = 0; rep < 3; rep++) for (const rm of ['nosting', 'noblur', 'noanim']) for (const [w, lang] of [[768, 'fr'], [390, 'ar'], [360, 'fr'], [360, 'ar']]) {
+for (let rep = 0; rep < 3; rep++) for (const rm of ['fixed']) for (const [w, lang] of [[768, 'fr'], [390, 'ar'], [360, 'fr'], [360, 'ar']]) {
   const p = await b.newPage({ viewport: { width: w, height: w < 600 ? 800 : 900 }, reducedMotion: 'no-preference' });
   await p.addInitScript(([l, rm]) => {
     localStorage.setItem('numidea-lang', l);
