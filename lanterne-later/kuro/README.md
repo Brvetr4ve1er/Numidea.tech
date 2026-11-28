@@ -1,6 +1,6 @@
 # Kūro episodes · episode 1 « Le dernier départ »
 
-**Status:** playable prototype plus design notes. **Not integrated and not published.** This project doesn't publish; the publishing session does.
+**Status (2026-11-27):** integrated on branch `claude/project-thread-1uki34` as the Librairie page `hub/lanterne/kuro.html` (built by `scripts/lib/kuro.mjs`; player `hub/episode.js`, sheet `hub/css/episode.css`, episode `hub/kuro/ep01-dernier-depart.json`, objects `hub/img/kuro/`, characters from `hub/bible/art/`). Finishing it calls `NUMIDEA_GAME.episodeDone` (+100 Encre, `world.kuro_in_bag`). This folder stays the design record and is still not deployed. Still to do from section 4: the hub's porthole composite and Yasser's new line.
 **Supersedes:** `kuro-episode-note.md` (still accurate, this goes further).
 
 | File | What |

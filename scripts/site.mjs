@@ -45,7 +45,9 @@ export const LANTERNE_ATLASES = (() => { try { return JSON.parse(readFileSync(jo
 export const LANTERNE_TOOLS = existsSync(join(LANT_SRC, 'apps.json')) ? ['hub/lanterne/outils.html'] : [];
 /* « Les enquêtes de nuit » (2026-11-23): the night stall as a game, built from hub/src/lanterne/enquetes.json once it exists */
 export const LANTERNE_GAMES = existsSync(join(LANT_SRC, 'enquetes.json')) ? ['hub/lanterne/enquetes.html'] : [];
-export const LANTERNE_PAGES = ['hub/lanterne/index.html', ...LANTERNE_ATLASES.map((s) => `hub/lanterne/${s}.html`), ...LANTERNE_TOOLS, ...LANTERNE_GAMES];
+/* Kūro's episode « Le dernier départ » (2026-11-27): a Librairie page once its episode file exists (scripts/lib/kuro.mjs) */
+export const LANTERNE_EPISODES = existsSync(join(ROOT, 'hub/kuro/ep01-dernier-depart.json')) ? ['hub/lanterne/kuro.html'] : [];
+export const LANTERNE_PAGES = ['hub/lanterne/index.html', ...LANTERNE_ATLASES.map((s) => `hub/lanterne/${s}.html`), ...LANTERNE_TOOLS, ...LANTERNE_GAMES, ...LANTERNE_EPISODES];
 
 /* the landing page is three static pages, one per language: index.html
    (French, the template) and en/, ar/ written from it by build-lang.mjs;

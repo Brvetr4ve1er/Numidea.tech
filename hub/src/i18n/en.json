@@ -73,7 +73,8 @@
       "yawn": "YAWN",
       "laugh": "LOL",
       "glasses": "OK, WATCH THIS"
-    }
+    },
+    "bag": "He won’t leave that bag now. Thanks for the other night."
   },
   "wedge": {
     "kicker": "/ 01 · THE PROBLEM · TOO MANY HANDS",
@@ -761,7 +762,8 @@
           "n": "Kūro",
           "t": "BLACK CAT",
           "d": "The workshop’s cat. He is its gate and its quality check: he judges every commit, then falls asleep on the keyboard. In the Bookshop he sleeps on the counter and comes to sit by whatever you are reading.",
-          "go": "Kūro, alive, in the Bookshop"
+          "go": "Kūro, alive, in the Bookshop",
+          "ep": "Play his episode: “The Last Run”"
         },
         "atelier": {
           "n": "The night workshop",
@@ -6402,7 +6404,11 @@
         "tapeBook": "Book done",
         "unit": "Encre",
         "rankOf": "Rank {n} / {N}",
-        "comH": "The studio does it for you."
+        "comH": "The studio does it for you.",
+        "tapeCase": "Case solved",
+        "tapeSeal": "Seal found",
+        "tapeEp": "Episode done",
+        "badge": "Rank {n} · {name} · carry on"
       }
     },
     "cast": {
@@ -8611,6 +8617,14 @@
         "alt": "At night on a station platform, Yasser reads a glowing map, a bag strap across his chest; Kūro waits at his feet.",
         "cap": "Your office fits in a bag: anything that breaks, gets lost or cuts out stops you dead."
       }
+    },
+    "kuro": {
+      "title": "The Last Run: an episode with Kūro · La Librairie Lanterne",
+      "desc": "The scooter is ready, so is the parcel, and Kūro has vanished. Search the studio, find the cat, keep four studio lessons. A short, free episode in this browser.",
+      "mast": "The Last Run",
+      "lead": "An episode with Kūro: search the studio, find the cat. Finishing it earns Encre.",
+      "noscript": "This episode needs JavaScript. The Librairie’s books read without it.",
+      "skip": "Skip to the episode"
     }
   }
 }
