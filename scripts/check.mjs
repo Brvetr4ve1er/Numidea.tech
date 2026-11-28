@@ -1383,7 +1383,7 @@ runtimeDeps.length
     'assets/cv_yasser_hamisse_2026.pdf': 378 * kB,   // 343,053 on 2026-10-31
     // the Librairie's shell and kit, its sheet and the radio moved out of hub/app.js (2026-11-21, measured + 10%)
     'hub/lanterne.js': 60 * kB,        // 57,791 on 2026-11-27 (3D atlases, the tree of knowledge); was a byte-exact ceiling
-    'hub/css/lanterne.css': 84 * kB,   // 79,650 on 2026-11-27 (the shelf, the cast flag "in", the type scale); was a byte-exact ceiling
+    'hub/css/lanterne.css': 85 * kB,   // 84,232 on 2026-11-28: the game UI polish (seal rim, bar ticks and fill, ink bloom, chip hairline, hover and press)
     // « Le web3, sans fumée » vol. 2, the nine modules (2026-11-22, measured + 10%): 33 districts in 9 acts, each with its lab's
     // markup in its resting state (SPEC 3.13 had guessed 420 kB); its two dictionaries and the labs' French lines, fetched with
     // the labs; the labs' script, loaded when an exercise comes near
