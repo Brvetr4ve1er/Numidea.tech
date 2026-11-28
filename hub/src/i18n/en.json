@@ -7753,7 +7753,7 @@
         "toArgentGo": "Open the book",
         "src": {
           "title": "Sources",
-          "note": "The numbers and rules quoted come from these pages, read on 21 November 2026. The messages in the exercises are invented."
+          "note": "The numbers and rules quoted come from these pages, reread on 28 November 2026. The messages in the exercises are invented."
         },
         "d": {
           "porte": {
@@ -7835,7 +7835,7 @@
             "name": "Alerts",
             "sub": "Your eyes on the account",
             "lore": "Lina switches on her alerts. That same evening, an “alert” asks her to tap to cancel a payment she never made.",
-            "rule": "A real alert informs, within seconds. It never asks for a code and has no link to follow.",
+            "rule": "A real alert informs, within seconds. It never asks for a code, and there is no link to follow: to check, open the app yourself.",
             "keep": "The “Alerts” stamp",
             "scene": "Lina switches on her alerts",
             "handoff": "End of Act I: Lina can read her account. The scammers already have her number.",
@@ -8142,7 +8142,7 @@
             "low": "Low-balance threshold",
             "meter": "alerts on",
             "empty": "Nothing warns you. Switch an alert on.",
-            "rule": "A real alert informs. It never asks for a code and has no link to follow.",
+            "rule": "A real alert informs. It never asks for a code, and there is no link to follow: to check, open the app yourself.",
             "where": "The alerts on offer depend on your bank: text, app notification or email. Look for “Alerts” or “Notifications” in the app, or ask at the counter."
           },
           "lien": {
@@ -8543,7 +8543,7 @@
               {
                 "f": "“Police”",
                 "b": "Your card was used in a fraud. Send us a photo of both sides for the investigation.",
-                "why": "Police don’t investigate with a photo of your card. The DGSN warns about this script."
+                "why": "Police don’t investigate by asking for a photo of your card. The DGSN says never to send one to anyone who asks for it by message."
               },
               {
                 "f": "Fast Hiring",
@@ -8654,8 +8654,8 @@
             "keep": "Keep on this device",
             "forget": "Clear",
             "fold": "Once printed, cut it out and fold it in half: it fits in a wallet.",
-            "src1530": "1530: Algérie Poste’s customer service number, as reported in the press in 2024 and 2026. Check it on the back of your card.",
-            "where": "Elsewhere, add your country’s national fraud-reporting number and, where one exists, the service that blocks cards from every bank."
+            "src1530": "1530: Algérie Poste’s customer service number, as reported in the press in 2024 and 2026. Check it at the counter or on Algérie Poste’s website.",
+            "where": "In Algeria, if your BaridiMob account is hacked, Algérie Poste also advises changing the phone number linked to the account at a GAB cash machine, then calling 1530. Elsewhere, add your country’s national fraud-reporting number and, where one exists, the service that blocks cards from every bank."
           },
           "c": {
             "run": {

@@ -7753,7 +7753,7 @@
         "toArgentGo": "Ouvrir le livre",
         "src": {
           "title": "Sources",
-          "note": "Les numéros et les règles cités viennent de ces pages, lues le 21 novembre 2026. Les messages des exercices sont inventés."
+          "note": "Les numéros et les règles cités viennent de ces pages, relues le 28 novembre 2026. Les messages des exercices sont inventés."
         },
         "d": {
           "porte": {
@@ -7835,7 +7835,7 @@
             "name": "Les alertes",
             "sub": "Vos yeux sur le compte",
             "lore": "Lina allume ses alertes. Le soir même, une « alerte » lui demande de cliquer pour annuler un paiement qu’elle n’a jamais fait.",
-            "rule": "Une vraie alerte informe, en quelques secondes. Elle ne demande jamais de code et ne contient pas de lien à suivre.",
+            "rule": "Une vraie alerte informe, en quelques secondes. Elle ne demande jamais de code, et aucun lien n’est à suivre : pour vérifier, ouvrez vous-même l’appli.",
             "keep": "Le tampon « Alertes »",
             "scene": "Lina allume ses alertes",
             "handoff": "Fin de l’acte I : Lina sait lire son compte. Les escrocs, eux, ont déjà son numéro.",
@@ -8142,7 +8142,7 @@
             "low": "Seuil du solde bas",
             "meter": "alertes allumées",
             "empty": "Rien ne vous prévient. Allumez une alerte.",
-            "rule": "Une vraie alerte informe. Elle ne demande jamais de code et ne contient pas de lien à suivre.",
+            "rule": "Une vraie alerte informe. Elle ne demande jamais de code, et aucun lien n’est à suivre : pour vérifier, ouvrez vous-même l’appli.",
             "where": "Les alertes proposées dépendent de votre banque : SMS, notification de l’appli ou e-mail. Cherchez « Alertes » ou « Notifications » dans l’appli, ou demandez au guichet."
           },
           "lien": {
@@ -8543,7 +8543,7 @@
               {
                 "f": "« Police »",
                 "b": "Votre carte a servi à une fraude. Envoyez-nous une photo recto verso pour l’enquête.",
-                "why": "La police n’enquête pas avec une photo de votre carte. La DGSN met en garde contre ce scénario."
+                "why": "La police n’enquête pas en réclamant une photo de votre carte. La DGSN demande de ne jamais l’envoyer à qui la réclame par message."
               },
               {
                 "f": "Recrutement Rapide",
@@ -8654,8 +8654,8 @@
             "keep": "Garder sur cet appareil",
             "forget": "Effacer",
             "fold": "Imprimée, la carte se découpe et se plie en deux : elle tient dans un portefeuille.",
-            "src1530": "1530 : numéro du service client d’Algérie Poste, tel que cité dans la presse en 2024 et 2026. Vérifiez-le au dos de votre carte.",
-            "where": "Ailleurs, ajoutez le numéro national de signalement des fraudes de votre pays et, s’il existe, le service qui bloque les cartes de toutes les banques."
+            "src1530": "1530 : numéro du service client d’Algérie Poste, cité par la presse en 2024 et 2026. Vérifiez-le au guichet ou sur le site d’Algérie Poste.",
+            "where": "En Algérie, si votre compte BaridiMob est piraté, Algérie Poste conseille aussi de changer, depuis un GAB, le numéro de téléphone lié au compte, puis d’appeler le 1530. Ailleurs, ajoutez le numéro national de signalement des fraudes de votre pays et, s’il existe, le service qui bloque les cartes de toutes les banques."
           },
           "c": {
             "run": {
