@@ -41,16 +41,17 @@ export function pool(n) {
   };
   const next = () => {
     while (active < n && waiting.length) {
-      const [slot, fn, res] = waiting.shift();
+      const [slot, fn, res, name] = waiting.shift();
       active++;
-      als.run(slot, () => Promise.resolve().then(fn)).catch((e) => { slot.lines.push(['FAIL (crashed) ' + String(e && e.stack || e).split('\n').slice(0, 3).join(' | ')]); crashed++; })
+      als.run(slot, () => Promise.resolve().then(fn)).catch((e) => { slot.lines.push(['FAIL (crashed) ' + (name ? name + ': ' : '') + String(e && e.stack || e).split('\n').slice(0, 3).join(' | ')]); crashed++; })
         .finally(() => { slot.done = true; active--; flush(); next(); res(); });
     }
   };
-  const q = (fn) => {
+  // name (optional): which run it is, printed if it crashes (a crash's stack names the line, not the page)
+  const q = (fn, name) => {
     const slot = { lines: [], done: false };
     slots.push(slot);
-    all.push(new Promise((res) => { waiting.push([slot, fn, res]); }));
+    all.push(new Promise((res) => { waiting.push([slot, fn, res, name]); }));
     next();
   };
   const drain = async () => { for (let i = 0; i < all.length; i++) await all[i]; flush(); };

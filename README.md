@@ -80,8 +80,8 @@ NOTICE.md             # what LICENSE (CC0) covers and what it does not
 .github/
   dependabot.yml      # weekly update pull requests: npm dev dependencies, pinned actions
   workflows/
-    check.yml         # static gates on every push and pull request; browser gates nightly
-    pages.yml         # every gate, then stages and publishes to GitHub Pages
+    check.yml         # static gates on every push and pull request; browser gates nightly (4 runners + WebKit)
+    pages.yml         # the GitHub Pages address as a noindex forward to the site
     monitor.yml       # the live site every six hours; a failure opens one issue
 ```
 
@@ -94,13 +94,13 @@ NOTICE.md             # what LICENSE (CC0) covers and what it does not
   Vercel address, <https://numidea-tech.vercel.app/>, was the canonical from
   2026-11-10 until then and redirects to it, page for page, since 2026-11-18
   (`vercel.json`).
-  **GitHub Pages is a mirror:** <https://brvetr4ve1er.github.io/Numidea.tech/>
-  (`PAGES_BASE`; staged with `--pages`, frozen on the 25 October build by a
-  billing lock).
-  Every push to the working branch runs the gates in `pages.yml` (below); only
-  when every one is green does `scripts/stage-site.mjs` copy `DEPLOY` from
-  `scripts/site.mjs` into `_site/`, which is published. A red gate leaves the
-  live site as it was.
+  **GitHub Pages is no longer a mirror:** <https://brvetr4ve1er.github.io/Numidea.tech/>
+  (`PAGES_BASE`) serves a noindex page that forwards every path to the same
+  path on `BASE` (`scripts/pages-forward.mjs`, since 2026-11-27; until then it
+  served the frozen 25 October build).
+  Production is published by hand from a commit that passed `npm run verify`
+  (RELEASE.md); `scripts/stage-site.mjs` copies `DEPLOY` from `scripts/site.mjs`
+  into `_site/` for the hosts that build it.
 - **Netlify is a mirror; Vercel is the canonical host.** `netlify.toml` and `vercel.json` run
   `check` and `themes-check`, then the same staging, and publish `_site/`.
   They do not run the browser gates.
@@ -155,9 +155,9 @@ GitHub Actions, in `.github/workflows/`:
 | Workflow | When | What |
 | --- | --- | --- |
 | `check.yml`, job `check` | every push to any branch, every pull request | `check` and `themes-check`, `npm ci`, `validate`, `npm run build` then `git diff --exit-code` (and no new untracked file), `npm audit --omit=dev` (runtime dependencies only; there are none, and check block 15c fails if one is declared, so this audit only starts to count the day one is allowed). About a minute, no browser |
-| `check.yml`, job `nightly` | 03:17 UTC every night; Actions → Check → Run workflow | installs Chromium, then `npm run verify` (every gate, the browser ones and `keys` included), `links` and the full `npm audit` (dev dependencies included) |
-| `pages.yml` | every push to the working branch that changes something other than `**.md`, `knowledge-base/**` or `audit/**` (`paths-ignore`: a documentation push deploys nothing; `check.yml` still runs on it); on demand | job `gates`: the static gates above except `npm audit --omit=dev` (check block 15c, which it does run, keeps runtime dependencies at none), then audit, sweep, vbugs, keys and stage-check on Chromium (about twelve minutes). Job `deploy`, only when `gates` passed: stages `_site/` (comments stripped from its stylesheets and scripts) and publishes it to Pages. One deployment at a time |
-| `monitor.yml` | every six hours (00:41, 06:41, 12:41, 18:41 UTC); on demand | the live site: every page and stamped asset answers, with the branch's `?v=` stamp; sitemap, robots.txt, og.jpg; the last Pages run succeeded (so a deploy refused by its gates is reported even when the stamp did not change); `npm run links`; Lighthouse on the live index (fr and ar, mobile and desktop, median of three: CLS ≤ 0.1; desktop LCP ≤ 2.5 s and TBT ≤ 200 ms; mobile, still short of that target, held to regression ceilings of 6.5 s and 350 ms, RELEASE.md §5). A failure opens or updates one issue, "Live monitor failed"; the first green run closes it |
+| `check.yml`, jobs `nightly`, `webkit`, `links` | 03:17 UTC every night; Actions → Check → Run workflow | `nightly`: every gate, split across four runners with `npm run verify -- --only=…` (static and design; audit and sweep; vbugs and hub-mobile; keys), each with its own limit. `webkit`: `npm run webkit` (vbugs and stage-check on Playwright's WebKit). `links`: `npm run links` and the full `npm audit` (dev dependencies included) |
+| `pages.yml` | a push to the working branch that changes `scripts/pages-forward.mjs`, `scripts/site.mjs` or the workflow; on demand | publishes the forward page (`scripts/pages-forward.mjs`: noindex, canonical `BASE`, the same path on `BASE`) to GitHub Pages. No gate: it publishes nothing of the site. About a minute |
+| `monitor.yml` | every six hours (00:41, 06:41, 12:41, 18:41 UTC); on demand | the live site: every page and stamped asset answers, every page carries the live home's `?v=` stamp (one stamp site-wide; behind the branch is a notice, since publishing is by hand; a page the branch has and the live site not yet is "not published yet"); sitemap, robots.txt, og.jpg; the Pages address is the forward page (report-only); `npm run links`; Lighthouse on the live index (fr and ar, mobile and desktop, median of three: CLS ≤ 0.1; desktop LCP ≤ 2.5 s and TBT ≤ 200 ms; mobile, still short of that target, held to regression ceilings of 6.5 s and 350 ms, RELEASE.md §5). A failure opens or updates one issue, "Live monitor failed"; the first green run closes it |
 
 - Every gate runs even after an earlier one failed, so one run lists
   everything that is wrong.

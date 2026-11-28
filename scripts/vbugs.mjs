@@ -26,7 +26,7 @@
  */
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { serve, launch } from './lib/serve.mjs';
+import { serve, launch, BROWSER } from './lib/serve.mjs';
 import { ROOT, LANTERNE_PAGES } from './site.mjs';
 import { pool, jobs } from './lib/pool.mjs';
 const srv = await serve();
@@ -154,7 +154,7 @@ combos.forEach(([page,path,w,init,label],ci)=>{
   return out},w);
  found[ci]=r.map((x)=>[page+' '+x,label]);
  await p.close();
- });
+ },`${page} ${path} ${label}`);
 });
 await P.drain();
 for(const f of found) if(f) for(const [k,label] of f)(agg[k]=agg[k]||[]).push(label);
@@ -167,5 +167,5 @@ let fresh = 0;
 for(const [k,v] of rows){ const a = allowed(k); if (!a) fresh++;
   console.log((a ? ' allowed ' : '   ISSUE ') + String(v.length).padStart(3), k.slice(0,150), '|', v.slice(0,4).join(' ')); }
 if (P.crashed()) console.log(`FAIL ${P.crashed()} combo(s) crashed`);
-console.log(`\n${rows.length} distinct, ${rows.length - fresh} allowed, ${fresh} new`);
+console.log(`\n${BROWSER}: ${rows.length} distinct, ${rows.length - fresh} allowed, ${fresh} new`);
 process.exit(fresh || P.crashed() ? 1 : 0);
