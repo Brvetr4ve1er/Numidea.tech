@@ -147,6 +147,7 @@
     chip.textContent = '';
     var cs = el('span', 'gm-rank__seal'); cs.setAttribute('aria-hidden', 'true'); cs.appendChild(el('span', 'gm-num', String(P.rank)));
     chip.appendChild(cs); chip.appendChild(el('span', 'gm-chip__t', num(P.encre) + ' ' + t('lant.ui.game.unit')));
+    chip.style.setProperty('--p', String(P.p)); /* the hairline under the chip: the road to the next rank */
     chip.setAttribute('aria-label', t('lant.ui.game.chip', { rank: rankName(P.rank), n: num(P.encre) })); chip.title = chip.getAttribute('aria-label');
     /* the review's shorter chip (seal + Encre), shown by the trunk's rule: only where it moves nothing else in the masthead and cuts no title, checked again when the faces land */
     if (fit() && !ro && G.ResizeObserver) {
@@ -186,7 +187,7 @@
     else { h.appendChild(el('span', 'gm-card__upk', t('lant.ui.game.upK'))); summary.push(t('lant.ui.game.upK')); }
     box.appendChild(h);
     /* the rank badge: the seal with its number, the name, the road to the next */
-    var rk = el('div', 'gm-rank'); rk.style.setProperty('--p', String(P.p));
+    var rk = el('div', 'gm-rank'); rk.style.setProperty('--p', String(P.p)); rk.style.setProperty('--p0', String(Math.min(P.p, o.p0 || 0)));
     var seal = el('span', 'gm-rank__seal'); seal.setAttribute('aria-hidden', 'true'); seal.appendChild(el('span', 'gm-num', String(P.rank)));
     rk.appendChild(seal);
     rk.appendChild(el('span', 'gm-rank__k gm-label', t('lant.ui.game.rankOf', { n: P.rank, N: D.ranks.length })));
@@ -225,7 +226,21 @@
     card.appendChild(box);
     card.hidden = false;
     card.classList.remove('is-in');
-    if (motionOn()) { void card.offsetWidth; card.classList.add('is-in'); }
+    if (motionOn()) {
+      void card.offsetWidth; card.classList.add('is-in');
+      /* the gain counts up once (about half a second, eased out), the way ink fills a stamp; the final figure is
+         in the markup from the start, so a reader or a still page always has it */
+      var gn = o.gain > 0 && $('.gm-card__gain .gm-num', card);
+      if (gn && G.requestAnimationFrame) {
+        var t0 = 0, dur = 520, to = o.gain;
+        var step = function (ts) {
+          if (!t0) t0 = ts; var k = Math.min(1, (ts - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+          gn.textContent = '+' + num(Math.round(to * e));
+          if (k < 1 && card.classList.contains('is-in')) requestAnimationFrame(step); else gn.textContent = '+' + num(to);
+        };
+        gn.textContent = '+' + num(0); requestAnimationFrame(step);
+      }
+    }
     live.textContent = summary.map(function (x) { return String(x).replace(/[.。]\s*$/, ''); }).join('. ') + '.';
   }
 
@@ -247,7 +262,7 @@
     if (P.parts.district + P.parts.side > before.parts.district + before.parts.side) count('district');
     if (book) { count('book'); count('commission'); }
     up.forEach(function (r) { count('rank-' + r); });
-    show({ gain: Math.max(0, gain), up: up, book: book, src: src || '' });
+    show({ gain: Math.max(0, gain), up: up, book: book, src: src || '', p0: up.length ? 0 : before.p });
   }
   var here = (function () { try { var A = JSON.parse($('#lant-data').textContent); return A.slug || null; } catch (e) { return null; } })();
   var soon = function (slug, src) { setTimeout(function () { settle(slug, src); }, 0); };
