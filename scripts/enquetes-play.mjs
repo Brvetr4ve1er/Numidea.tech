@@ -28,7 +28,7 @@ const win = {}; new Function('window', readFileSync(join(ROOT, 'hub/enquetes.js'
 const fillIn = (s, v) => String(s).replace(/\{(\w+)\}/g, (m, k) => (v && v[k] != null ? v[k] : m));
 const T0 = 12000;
 /* a font subset of the site's own, asked for once a string needs it: the one request after load besides a case's files */
-const FONT = /^\/(?:assets|hub)\/fonts\/[a-z0-9-]+\.woff2$/;
+const FONT = /^\/(?:assets|hub)\/fonts\/[a-z0-9-]+\.woff2$|^\/hub\/bible\/art\/[a-z0-9-]+\.webp$/;   // fonts, and the game card's rank drawing (hub/game.js, PR #33 slice 2: a solved case shows the reward card)
 
 const DATA0 = JSON.parse(/<script type="application\/json" id="enq-data">([\s\S]*?)<\/script>/.exec(readFileSync(join(ROOT, 'hub/lanterne/enquetes.html'), 'utf8'))[1]);
 const srv = await serve(undefined, { compress: true });
@@ -99,8 +99,11 @@ async function screenOk(p, where, name, tag) {
 
 /* after a first miss: the reason sits on screen (nobody scrolls to find it) and the keyboard is back on the question */
 async function missOk(p, where, name) {
-  const r = await p.evaluate(() => { const f = document.querySelector('#enq .enq-fb'), a = document.activeElement, b = f ? f.getBoundingClientRect() : null;
+  let r = await p.evaluate(() => { const f = document.querySelector('#enq .enq-fb'), a = document.activeElement, b = f ? f.getBoundingClientRect() : null;
     return { fb: !!b && b.top >= -1 && b.bottom <= innerHeight + 1, at: b ? Math.round(b.top) + '..' + Math.round(b.bottom) + ' of ' + innerHeight : 'none', prompt: !!a && a.classList.contains('enq-prompt') }; });
+  /* the page brings the reason in itself, but the game layer's work on each answer (hub/game.js, 2026-11-28) can put that scroll a few frames later on a loaded machine: give it up to 2 s */
+  for (let i = 0; !r.fb && i < 20; i++) { await p.waitForTimeout(100); r = await p.evaluate(() => { const f = document.querySelector('#enq .enq-fb'), a = document.activeElement, b = f ? f.getBoundingClientRect() : null;
+    return { fb: !!b && b.top >= -1 && b.bottom <= innerHeight + 1, at: b ? Math.round(b.top) + '..' + Math.round(b.bottom) + ' of ' + innerHeight : 'none', prompt: !!a && a.classList.contains('enq-prompt') }; }); }
   assert(r.fb, `${where} ${name}: after a first miss the reason is off screen (${r.at})`);
   assert(r.prompt, `${where} ${name}: after a first miss focus is back on the question`);
 }

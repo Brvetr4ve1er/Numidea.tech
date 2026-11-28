@@ -803,6 +803,7 @@ html.js .st-est__nojs{display:none}
 .st-mny__kit{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin:0 0 18px;padding:18px 22px;background:var(--red);color:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow)}
 .st-mny__kit p{margin:0}
 .st-mny__kit :focus-visible{outline-color:var(--cream)}
+.st-mny__kit .st-mny__bag{color:var(--cream)}
 .st-mny__kitk{font-family:var(--f-disp);font-weight:900;font-size:clamp(1.5rem,2.6vw,2.375rem);line-height:1;letter-spacing:-.01em}
 .st-mny__kitl{flex:1 1 320px;font-size:var(--t-body);line-height:1.4}
 .st-mny__kitl b{font-family:"Archivo",sans-serif;font-weight:900;font-size:var(--fs-h4);white-space:nowrap}
