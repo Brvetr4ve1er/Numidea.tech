@@ -27,7 +27,7 @@ import { loadDicts, toMarkup, esc } from './lib/i18n.mjs';
 import { withCsp } from './lib/csp.mjs';
 import { withGtag } from './lib/gtag.mjs';
 import { AYN } from './lib/ayn.mjs';
-import { WORDMARK } from './lib/wordmark.mjs';
+import { LOCKUP } from './lib/wordmark.mjs';
 
 // each theme's page colour (themes.css --void), for the browser's own bar
 const VOID = Object.fromEntries([...readFileSync(join(ROOT, 'assets/themes.css'), 'utf8').matchAll(/:root\[data-theme="([a-z]+)"\]\{([^}]*)\}/g)]
@@ -300,7 +300,7 @@ export function renderLegal(data = LEGAL, { preview = false } = {}) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>${esc(UI.fr.title)}</title>
 <meta name="description" content="${esc(UI.fr.desc)}">
-<meta name="theme-color" content="#0A1420">
+<meta name="theme-color" content="#211E1B">
 <meta property="og:url" content="${BASE}legal/">
 <meta property="og:title" content="${esc(UI.fr.title)}">
 <meta property="og:description" content="${esc(UI.fr.desc)}">
@@ -360,7 +360,7 @@ for(k in S)for(j in S[k])if(S[k][j]===x&&S[k][l]!==x)history.replaceState(null,'
 <a class="skip" href="#lg-main" data-i18n="ui.skip">${esc(UI.fr.skip)}</a>
 <div class="lg-page">
   <header class="lg-top">
-    <a class="logo" href="../" aria-label="Numidea Labs">${WORDMARK}</a>
+    <a class="logo" href="../" aria-label="Numidea Labs">${LOCKUP}</a>
     <div class="lang" role="group" aria-label="${esc(UI.fr.lang)}" data-i18n-aria="ui.lang">
       ${LANG_BUTTONS.map((b) => `<button type="button" data-lang="${b.l}" aria-pressed="${b.l === 'fr'}"${b.drawn ? '' : ` lang="${b.l}"`} aria-label="${esc(b.name)}">${b.text}</button>`).join('\n      ')}
     </div>

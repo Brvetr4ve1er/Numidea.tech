@@ -22,13 +22,10 @@
  *     applyLang() rebuilds it,
  *   - every WhatsApp link (a.wa-link): with window.NUMIDEA_WA set in the
  *     page, its wa.me link with the opening line (data-wa-text, else
- *     wa.hello), as app.js §13 builds it, so the hero's WhatsApp button works
- *     on the first screen before the deferred app.js arrives; with no number,
+ *     wa.hello), as app.js §13 builds it, so the offer's WhatsApp button works
+ *     before the deferred app.js arrives; with no number,
  *     the guard app.js applies (no href, aria-disabled). app.js then adds
  *     the ad's [ref],
- *   - the hero plate's slide order (PLATE_ORDER): its slides, their
- *     captions and the rail, by data-client, the first one shown and loaded
- *     first, the others in the <template>,
  *   - html lang and dir, the language switch's current link (aria-current),
  *     og:url, og:locale and its two alternates, the share card (og:image and
  *     twitter:image: assets/og.jpg, og-en.jpg, og-ar.jpg, scripts/build-og.mjs)
@@ -87,36 +84,31 @@ const HEAD_TEXTS = [
   ['name', 'description', 'meta.desc'], ['property', 'og:title', 'meta.ogTitle'], ['property', 'og:description', 'meta.ogDesc'],
   ['property', 'og:image:alt', 'meta.ogAlt'], ['name', 'twitter:title', 'meta.ogTitle'], ['name', 'twitter:description', 'meta.twDesc'],
 ];
-/* The hero plate's slides in each language's order, by data-client (the
-   template's own order where a language has none). The Arabic page opens on
-   Nomara, an Arabic-language site, then Alliance, whose sites read Arabic
-   too, rather than on a French capture. */
-export const PLATE_ORDER = { ar: ['nomara', 'alliance', 'bordjsteel', 'almaflow'] };
-function plateOrder(html, lang) {
-  const order = PLATE_ORDER[lang];
-  if (!order || !html.includes('id="plate-more"')) return html;
-  // one slide, caption or rail button per line (index.html says so)
-  const kinds = [
-    ['slide', /^([ \t]*)<img class="pl(?: on)?" data-client="([a-z0-9-]+)".*$/gm, (line, first) => line
-      .replace(/class="pl(?: on)?"/, first ? 'class="pl on"' : 'class="pl"')
-      .replace(/ (?:loading="lazy" )?fetchpriority="(?:high|low)"/, first ? ' fetchpriority="high"' : ' loading="lazy" fetchpriority="low"')],
-    ['caption', /^([ \t]*)<a class="pm-item(?: on)?" data-client="([a-z0-9-]+)".*$/gm, (line, first) => line.replace(/class="pm-item(?: on)?"/, first ? 'class="pm-item on"' : 'class="pm-item"')],
-    ['rail button', /^([ \t]*)<button type="button" data-client="([a-z0-9-]+)".*$/gm, (line, first) => line
-      .replace(/ aria-current="true"| tabindex="-1"/g, '').replace(/(data-client="[a-z0-9-]+")/, first ? '$1 aria-current="true"' : '$1 tabindex="-1"')],
-  ];
-  for (const [what, re, set] of kinds) {
-    const lines = [...html.matchAll(re)];
-    const by = Object.fromEntries(lines.map((m) => [m[2], m[0].slice(m[1].length)]));
-    if (lines.length !== order.length || order.some((c) => !by[c])) throw new Error(`index.html: the plate's ${what} lines are not ${order.join(', ')}, one per line`);
-    let k = 0;
-    html = html.replace(re, (all, indent) => indent + set(by[order[k]], k++ === 0));
-  }
-  // the hero phone: only the first slide's screen loads at once, and none when that slide hides the phone (Nomara has no capture)
-  html = html.replace(/<img class="ph-shot" data-client="([a-z0-9-]+)"([^>]*)>/g, (all, c, rest) =>
-    `<img class="ph-shot" data-client="${c}"${rest.replace(/ loading="lazy"/g, '')}${c === order[0] ? '' : ' loading="lazy"'}>`);
-  // the plate's link follows its first slide: its sheet, else its card
-  const lead = (new RegExp(`<a class="pm-item on" data-client="${order[0]}"(?: data-sheet="([a-z0-9-]+)")?`).exec(html) || [])[1];
-  return once(html, /(<a class="plate-link" href=")[^"]*(")/, `$1${lead ? 'scene/#' + lead : '#w-' + order[0]}$2`, 'the plate link');
+/* The work cards in each language's order (2026-11-27, owner): the Arabic
+   page opens its Réalisations on Nomara, an Arabic-language site, then
+   Alliance, whose sites read Arabic too, as its hero plate did before the
+   hero left (PLATE_ORDER, git 2042e5d~1). French and English keep the
+   template's order, Bordj Steel first. The first card is the lead
+   (proj--lead) and takes the lead's image sizes; the one that was first
+   takes the cards'. The proof's logo row keeps the template order. */
+export const WORK_ORDER = { ar: ['nomara', 'alliance', 'bordjsteel', 'almaflow'] };
+const LEAD_SIZES = '(min-width:1920px) 820px, (min-width:860px) 49vw, (min-width:720px) 86vw, 91vw';
+const CARD_SIZES = '(min-width:1920px) 457px, (min-width:960px) 28vw, (min-width:720px) 44vw, 91vw';
+export function workOrder(html, lang) {
+  const order = WORK_ORDER[lang];
+  if (!order || !html.includes('<div class="work-grid">')) return html;
+  const re = /^([ \t]*)<article id="w-([a-z0-9-]+)" class="proj\b[\s\S]*?^\1<\/article>/gm;
+  const cards = [...html.matchAll(re)];
+  const by = Object.fromEntries(cards.map((m) => [m[2], m[0].slice(m[1].length)]));
+  if (cards.length !== order.length || order.some((c) => !by[c])) throw new Error(`index.html: the work cards are not ${order.join(', ')}, one <article id="w-…" class="proj"> each`);
+  const lead = (c) => by[c]
+    .replace(/(<article id="w-[a-z0-9-]+" class="proj\b[^"]*?)( proj--lead)?(\b[^"]*")/, (a, b, l, e) => b + ' proj--lead' + e)
+    .replace(/(<img class="shot"[^>]*\ssizes=")[^"]*(")/, `$1${LEAD_SIZES}$2`);
+  const card = (c) => by[c]
+    .replace(/ proj--lead\b/, '')
+    .replace(/(<img class="shot"[^>]*\ssizes=")[^"]*(")/, `$1${CARD_SIZES}$2`);
+  let k = 0;
+  return html.replace(re, (all, indent) => { const c = order[k]; return indent + (k++ === 0 ? lead(c) : card(c)); });
 }
 
 // the page folders that switch language in place (scene, legal), from MULTILINGUAL
@@ -196,6 +188,7 @@ function relocate(html, lang, depth) {
  */
 export function bakeLang(html, lang, dict = loadDicts()[lang], { depth = lang === 'fr' ? 0 : 1, path = lang === 'fr' ? '' : lang + '/', ld = true, generated = GENERATED } = {}) {
   if (!LANGS.includes(lang)) throw new Error(`no such language: ${lang}`);
+  html = workOrder(html, lang);
   const missing = [];
   const need = (key) => { if (dict[key] == null) missing.push(key); return dict[key]; };
   // inner HTML, last node first so earlier offsets stay valid
@@ -265,7 +258,6 @@ export function bakeLang(html, lang, dict = loadDicts()[lang], { depth = lang ==
   for (const [attr, name] of [['property', 'og:image'], ['name', 'twitter:image']]) html = between(html, meta(attr, name), BASE + CARD[lang], `<meta ${attr}="${name}">`);
   html = once(html, /(<script src=")(?:\.\.\/)*assets\/i18n\/[a-z]{2}\.js(\?v=\d+" defer><\/script>)/, `$1${I18N_FILES[lang]}$2`, 'the dictionary <script>');
 
-  html = plateOrder(html, lang);
   if (depth) html = relocate(html, lang, depth);
   if (lang !== 'fr') {
     // the head script without the French page's block, baked for this language

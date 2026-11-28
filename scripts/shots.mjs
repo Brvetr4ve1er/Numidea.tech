@@ -89,6 +89,8 @@ export const PROJECTS = {
   glaive:                { capture: 'https://glaivestore.netlify.app',            client: 'glaive',     sheet: 'glaive/d1', demo: true },
   // a finished project (wave 3): its link on the home page carries data-client too, and it has no preview file either
   annuaire:              { capture: 'https://annuaire-dz.vercel.app/fr',          client: 'annuaire',   sheet: 'annuaire/d1', line: true },
+  // the owner's store (2026-11-27, world map thread): linked from the home's portals band ("Toutes les boutiques"), data-client too, no preview file
+  tr4velerz:             { capture: 'https://tr4velerz.studio/',                  client: 'tr4velerz',  sheet: 'tr4velerz/d1', line: true },
 };
 
 /* The 16:10 window of each capture that keeps the client's h1, its lede and

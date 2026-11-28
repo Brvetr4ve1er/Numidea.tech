@@ -6,6 +6,9 @@
  *
  *   check      repository invariants (check.mjs + themes-check.mjs)
  *   validate   html-validate on every page
+ *   first      assets/home-first.css is current with styles.css, and the home
+ *              above <main> computes the same without styles.css as with it
+ *              (build-first.mjs --check, first-check.mjs)
  *   audit      browser audit: axe, CLS, LCP, overflow, taps, images, loops, network,
  *              CSP violations, the WorkspaceHQ embeds and console, 404 two folders
  *              down (locally and on an emulated GitHub Pages), a throttled phone
@@ -36,6 +39,8 @@ const STEPS = [
   ['themes', ['scripts/themes-check.mjs']],
   ['hub', ['scripts/build-hub.mjs', '--check']],
   ['validate', ['scripts/validate.mjs']],
+  ['first', ['scripts/build-first.mjs', '--check']],
+  ['first-paint', ['scripts/first-check.mjs']],
   ['audit', ['scripts/audit.mjs']],
   ['sweep', ['scripts/sweep.mjs']],
   ['vbugs', ['scripts/vbugs.mjs']],

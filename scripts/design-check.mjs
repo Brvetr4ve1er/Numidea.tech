@@ -5,9 +5,10 @@
  * one space set, one button, few card paddings, one grid gutter, and whether
  * what the CSS claims is what is painted.
  *
- *   type      every painted text size is a token (--t-*), the hero heading or
- *             the section heading
- *   hero      .hero-h ÷ h2.sec at least 1.5 at 1440 and 1.25 at 390
+ *   type      every painted text size is a token (--t-*), the page's h1 (the
+ *             offer's sentence) or the section heading
+ *   h1        .offer-h ÷ h2.sec at least 1.5 at 1440 and 1.25 at 390 (.hero-h
+ *             until 2026-11-27: the hero left the home, the h1 is the offer's)
  *   titles    no h3/h4 at or above the section heading
  *   space     gaps and paddings of boxes are on the space set (--s-*, card pads)
  *   button    one .btn geometry per page (the mobile menu's own row excepted)
@@ -23,9 +24,9 @@
  *   hover     no :hover rule outside @media (hover: hover) (a tap leaves it on)
  *   cover     fixed + sticky elements together cover at most 30% of the screen
  *             at 390×844, 360×780, 844×390 and 640×400, at every scroll stop
- *   plate     the hero plate is as wide as its column (.plate = .plate-wrap) and
- *             inside the screen, in fr, en and ar at 320, 360, 375, 390, 414
- *             (the caption's longest name once pushed it 20-50px past the box)
+ *   offer     the offer band (its h1 and its two buttons) is inside the screen,
+ *             in fr, en and ar at 320, 360, 375, 390, 414 (2026-11-27: it took
+ *             the place of the hero plate's check, which left with the plate)
  *   labels    one visible link label has one destination
  *   art       hub/bible/art/*.webp: one alpha connected component of any size
  *             (no sprite debris beside the figure); the Kūro motion marks are listed
@@ -106,7 +107,7 @@ const measure = () => {
   };
   const tIds = ['label', 'small', 'ui', 'body', 'lead', 'title', 'feature', 'cv', 'display', 'h2', 'h2-xl'];
   const sizeSet = new Set(tIds.map((t) => probe(`font-size:var(--t-${t},0px)`)).filter(Boolean));
-  const h1 = document.querySelector('.hero-h');
+  const h1 = document.querySelector('.offer-h');
   const h2 = document.querySelector('h2.sec');
   const hs = h1 ? px(getComputedStyle(h1).fontSize) : 0;
   const h2s = h2 ? px(getComputedStyle(h2).fontSize) : 0;
@@ -125,6 +126,7 @@ const measure = () => {
     const el = n.parentElement;
     if (!el || skip(el) || !vis(el)) continue;
     const s = px(getComputedStyle(el).fontSize);
+    if (s === 0) continue;   // 2026-11-28: a 0px text paints nothing, so it is no type size (the proof strip folds the copy's " · " separators between its chips this way)
     if (!sizeSet.has(s)) { const k = s + ' ' + (el.className || el.tagName).toString().split(' ')[0]; out.offSizes[k] = (out.offSizes[k] || 0) + 1; }
   }
   if (h2s) {
@@ -324,21 +326,37 @@ console.log(`design-check (${STRICT ? 'strict' : 'report-only: DESIGN_REPORT=1'}
 /* ---- scale: font sizes written off the type scale, per sheet (2026-11-26; spec
    https://claude.ai/artifact/BrvX62HC49TTPheF3Yiwhw). A font-size, or the size in a font shorthand, is on the scale
    when it is var(--fs-*), inherit/0/1em/100% (relative to an on-scale parent), or a clamp() whose min and max are
-   rem endpoints of the scale. Measured 2026-11-26 before the roll-out: lanterne 137, Studio 691, home 253. ---- */
+   rem endpoints of the scale, or a bare rem step of it. Measured 2026-11-26 before the roll-out: lanterne 137, Studio 691, home 253; Studio 423 after PR #28, 92 on 2026-11-27 (aliases snapped), then 0 the same day (headings by eye, art tier --fs-art-* for the watermark glyphs); home 253 -> 6 (only the old hero, which the menu replaces); Le comptoir 0. ---- */
 const SCALE_REM = new Set([0.75, 0.875, 1, 1.25, 1.5, 1.75, 2.375, 2.5, 3.5, 4.25, 7, 8]);
-const SCALE_CEIL = { 'hub/css/lanterne.css': 0, 'hub/style.css': 423, 'assets/styles.css': 253 };
+const SCALE_CEIL = { 'hub/css/lanterne.css': 0, 'hub/style.css': 0, 'assets/styles.css': 0, 'comptoir/comptoir.css': 0, 'assets/menu/menu.css': 9 }   // menu.css added 2026-11-27 at its measured 9 (the menu thread's sheet: 10-14px labels, 40-130px display and art sizes); home 6 -> 0 once the old hero left;
 const SIZE_RE = String.raw`(?:var\(--[\w-]+\)|clamp\([^()]*(?:\([^()]*\)[^()]*)*\)|calc\([^()]*(?:\([^()]*\)[^()]*)*\)|[\d.]+(?:px|rem|em|%|vw))`;
 const onScale = (v) => {
   v = v.trim();
   if (v.startsWith('var(--fs-') || ['inherit', '0', '1em', '100%'].includes(v)) return true;
-  const m = /^clamp\(\s*([\d.]+)rem\s*,[^,]+,\s*([\d.]+)rem\s*\)$/.exec(v);
+  if (/^[\d.]+rem$/.test(v)) return SCALE_REM.has(parseFloat(v));   /* a bare step of the scale, 1.75rem (added 2026-11-27) */
+  const m = /^clamp\(\s*([\d.]+)rem\s*,(?:[^(),]|\([^()]*\))+,\s*([\d.]+)rem\s*\)$/.exec(v);
   return !!(m && SCALE_REM.has(+m[1]) && SCALE_REM.has(+m[2]));
 };
+/* a sheet's own size alias (the Studio's --t-small, --t-label…) counts as on the scale when every definition of it in that
+   sheet, at every breakpoint and language, is on the scale (added 2026-11-27 with the aliases' definitions snapped) */
+const aliasesOnScale = (css) => {
+  const defs = {};
+  for (const m of css.matchAll(new RegExp(`(--t-[\\w-]+)\\s*:\\s*(${SIZE_RE}|min\\([^;}]*\\))`, 'g'))) (defs[m[1]] = defs[m[1]] || []).push(m[2]);
+  return new Set(Object.entries(defs).filter(([, vs]) => vs.every(onScale)).map(([k]) => k));
+};
+/* the theme contract's display sizes (--h1-fs, --h1-fs-wide in assets/themes.css) count like a sheet's alias when every
+   theme defines them on the scale (added 2026-11-27 with the offer band's h1) */
+const themeOnScale = (() => {
+  const defs = {};
+  for (const m of readFileSync(join(ROOT, 'assets/themes.css'), 'utf8').matchAll(new RegExp(`(--h1-fs[\\w-]*)\\s*:\\s*(${SIZE_RE})`, 'g'))) (defs[m[1]] = defs[m[1]] || []).push(m[2]);
+  return new Set(Object.entries(defs).filter(([, vs]) => vs.every(onScale)).map(([k]) => k));
+})();
 const offScale = (css) => {
   css = css.replace(/\/\*[\s\S]*?\*\//g, '');
+  const ok = aliasesOnScale(css), on = (v) => onScale(v) || ok.has((/^var\((--t-[\w-]+)\)$/.exec(v.trim()) || [])[1]) || themeOnScale.has((/^var\((--h1-fs[\w-]*)\)$/.exec(v.trim()) || [])[1]);
   const off = [];
-  for (const m of css.matchAll(new RegExp(`font-size\\s*:\\s*(${SIZE_RE})`, 'g'))) if (!onScale(m[1])) off.push(m[1]);
-  for (const m of css.matchAll(new RegExp(`(?<![-\\w])font\\s*:\\s*(?:(?:italic|normal|[1-9]00|bold|small-caps)\\s+)*(${SIZE_RE})(?:\\s*/|\\s+['"\\w])`, 'g'))) if (!onScale(m[1])) off.push(m[1]);
+  for (const m of css.matchAll(new RegExp(`font-size\\s*:\\s*(${SIZE_RE})`, 'g'))) if (!on(m[1])) off.push(m[1]);
+  for (const m of css.matchAll(new RegExp(`(?<![-\\w])font\\s*:\\s*(?:(?:italic|normal|[1-9]00|bold|small-caps)\\s+)*(${SIZE_RE})(?:\\s*/|\\s+['"\\w])`, 'g'))) if (!on(m[1])) off.push(m[1]);
   return off;
 };
 for (const [sheet, ceil] of Object.entries(SCALE_CEIL)) {
@@ -369,10 +387,10 @@ for (const path of PAGES) {
     const pads = Object.keys(m.cardPads);
     const nOffSpace = Object.keys(m.offSpace).length;
     const spread = w >= 1000 ? Math.max(0, ...Object.values(m.cols).map((list) => { const xs = list.map((l) => l.x1); return Math.max(...xs) - Math.min(...xs); })) : 0;
-    console.log(`${tag.padEnd(22)} hero/h2 ${ratioH ?? '-'}  off-scale sizes ${nOff}  off-set spaces ${nOffSpace}  btn geometries ${nBtn}  card paddings ${pads.length} [${pads.join(',')}]  gutter spread ${spread}px`);
+    console.log(`${tag.padEnd(22)} h1/h2 ${ratioH ?? '-'}  off-scale sizes ${nOff}  off-set spaces ${nOffSpace}  btn geometries ${nBtn}  card paddings ${pads.length} [${pads.join(',')}]  gutter spread ${spread}px`);
     if (nOff > ceil.type) bad(`type: ${Object.entries(m.offSizes).map(([k, v]) => `${k}×${v}`).slice(0, 8).join('; ')}`);
     note('type', nOff, TARGET.type);
-    if (ratioH !== null && ratioH < (w >= 1000 ? 1.5 : 1.25)) bad(`hero: .hero-h ${m.hs}px ÷ h2.sec ${m.h2s}px = ${ratioH}`);
+    if (ratioH !== null && ratioH < (w >= 1000 ? 1.5 : 1.25)) bad(`h1: .offer-h ${m.hs}px ÷ h2.sec ${m.h2s}px = ${ratioH}`);
     if (m.titles.length > ceil.titles) bad(`titles at or above the section heading: ${m.titles.slice(0, 6).join('; ')}`);
     if (nOffSpace > ceil.space) bad(`space: ${nOffSpace} off-set (ceiling ${ceil.space}): ${Object.entries(m.offSpace).map(([k, v]) => `${k}×${v}`).slice(0, 8).join('; ')}`);
     note('space', nOffSpace, TARGET.space);
@@ -451,20 +469,23 @@ console.log(`hover: ${hoverSeen.size} :hover selectors outside @media (hover: ho
   }
 }
 
-/* ---- the hero plate fits its column on every common phone width ---- */
+/* ---- the offer band fits the screen on every common phone width ----
+   2026-11-27: the hero and its plate left the home (the game menu is its first screen); this was the plate's
+   check (.plate = .plate-wrap). The band that keeps the offer is held the same way: its h1 and its two
+   buttons inside the screen, in three languages (the Arabic accent phrase does not wrap). */
 for (const path of ['/', '/en/', '/ar/']) {
   for (const w of [320, 360, 375, 390, 414]) {
     const ctx = await br.newContext({ viewport: { width: w, height: 800 }, reducedMotion: 'reduce', isMobile: true, hasTouch: true });
     const p = await ctx.newPage();
     await p.goto(srv.base + path, { waitUntil: 'load' }).catch(() => {});
     await p.waitForTimeout(250);
-    const r = await p.evaluate(() => { const pl = document.querySelector('.plate'), wr = document.querySelector('.plate-wrap'); if (!pl || !wr) return null; const a = pl.getBoundingClientRect(), b = wr.getBoundingClientRect(); return { plate: Math.round(a.width), wrap: Math.round(b.width), left: Math.round(a.left), right: Math.round(a.right), vw: innerWidth }; });
-    if (!r) fails.push(`plate ${path} @${w}: no .plate`);
-    else if (Math.abs(r.plate - r.wrap) > 1 || r.left < 0 || r.right > r.vw) fails.push(`plate ${path} @${w}: .plate ${r.plate}px in a ${r.wrap}px column, spans ${r.left} to ${r.right} of ${r.vw}`);
+    const r = await p.evaluate(() => { const els = [...document.querySelectorAll('.offer-h, .offer-h em, .offer-cta .btn')]; if (els.length < 4) return null; const vw = document.documentElement.clientWidth; return els.map((e) => { const a = e.getBoundingClientRect(); return { k: e.className || e.tagName.toLowerCase(), left: Math.round(a.left), right: Math.round(a.right), vw }; }).filter((x) => x.left < 0 || x.right > x.vw); });
+    if (!r) fails.push(`offer ${path} @${w}: no .offer-h with its accent and two .offer-cta buttons`);
+    else for (const x of r) fails.push(`offer ${path} @${w}: ${x.k} spans ${x.left} to ${x.right} of ${x.vw}`);
     await ctx.close();
   }
 }
-console.log('plate: .plate = .plate-wrap and inside the screen, fr/en/ar at 320 to 414');
+console.log('offer: the h1 and its two buttons inside the screen, fr/en/ar at 320 to 414');
 
 /* ---- Arabic: mono word spaces, system faces, a leading "+" ---- */
 {
@@ -498,11 +519,12 @@ console.log('plate: .plate = .plate-wrap and inside the screen, fr/en/ar at 320 
 }
 
 /* ---- the phone and the tablet (2026-11-14: the home was 13,460px at 390 and a stretched phone at 768) ----
-   (a) the hero's buttons never run into the plate's column at 961 to 1440, in every language (the French pair
-   did from 1100 to 1250 on an iPad in landscape); (b) the home's height, fr, fonts loaded, held at what was
+   (a) the offer's buttons stay in their own column and never run into the h1 at 960 to 1440, in every language
+   (2026-11-27: it was the hero's buttons against the plate's column, where the French pair ran over from 1100
+   to 1250 on an iPad in landscape; the hero and the plate left the home); (b) the home's height, fr, fonts loaded, held at what was
    measured plus 5%: phone 390 and tablet 768 (a ceiling to lower, never to raise); (c) no sideways scroll at
    the tablet widths; (d) the fixed + sticky chrome at most 25% of a 390x664 phone with the estimator open */
-const HOME_H = { 390: 11189, 768: 10763 };   // raised 2026-11-26 for the game menu as the home's first screen (assets/menu/): measured 11,189 and 10,763 (+1,048 / +1,141, the menu's own height), the old hero still below it until it is removed, which should bring this back down; raised 2026-11-24 for wave 3 by the measured growth, against HEAD section by section (the work foot's two new lines, the directory and this site: +208 / +156; the founder card's five delivery lines in place of two job titles, minus the CV and notebook links: +80 / +113; the longer services lead, minus the stack tags: +54 / +27; at 390 / 768): measured 10,087 and 9,577 (were 9,746 and 9,285); raised 2026-11-24 for the site audit's fixes: the home now links to the Librairie and the world (the journey's dead end), the contact door is 280px wide and the price line sits above the phone tabs: measured 9,716 and 9,255 (were 9,309 and 8,974); raised 2026-11-19 for the visual pass (measured section by section against the commit before it: the founder's night plate as a 4:3 picture below 1100 px +206 / +52, the atelier scene stacked up to 1000 px with its picture whole +56 / +331, the hero plate at 16:10 +43 / +119, at 390 / 768): measured 9,309 and 8,974 (were 9,004 and 8,408); measured 2026-11-14: 8,3xx at 390x664 and 7,9xx at 768x1024, +5% (it was 13,460 and 12,426); raised 2026-11-15 to 9,050 and 8,480 for the night workshop band (about 465px at 390, 523px at 768) and the founder portrait row (about 130px): measured 8,950 and 8,381 with the band on the scale tokens
+const HOME_H = { 390: 11102, 768: 10609 };   // 2026-11-28: measured 11,062 and 10,569 after the restyle merged with the portals follow-up (#44: opaque band, « Toutes les boutiques » line), + 40px of margin (the height reads ±16px between runs)
 {
   for (const path of ['/', '/en/', '/ar/']) {
     for (let w = 960; w <= 1440; w += 40) {
@@ -512,16 +534,17 @@ const HOME_H = { 390: 11189, 768: 10763 };   // raised 2026-11-26 for the game m
       await p.evaluate(() => document.fonts.ready);
       await p.waitForTimeout(200);
       const hit = await p.evaluate(() => {
-        const pw = document.querySelector('.plate-wrap'); if (!pw) return 'no .plate-wrap';
-        const b = pw.getBoundingClientRect();
-        for (const e of document.querySelectorAll('.hero-cta .btn')) { const r = e.getBoundingClientRect(); if (r.left < b.right && b.left < r.right && r.top < b.bottom && b.top < r.bottom) return (e.textContent || '').trim().slice(0, 30); }
+        const body = document.querySelector('.offer-body'), h1 = document.querySelector('.offer-h'); if (!body || !h1) return 'no .offer-body / .offer-h';
+        const c = body.getBoundingClientRect(), b = h1.getBoundingClientRect();
+        const btns = [...document.querySelectorAll('.offer-cta .btn')]; if (btns.length !== 2) return `${btns.length} buttons`;
+        for (const e of btns) { const r = e.getBoundingClientRect(); if (r.left < c.left - 1 || r.right > c.right + 1 || (r.left < b.right && b.left < r.right && r.top < b.bottom && b.top < r.bottom)) return (e.textContent || '').trim().slice(0, 30); }
         return '';
       });
-      if (hit) fails.push(`hero ${path} @${w}: the button "${hit}" runs into the plate's column`);
+      if (hit) fails.push(`offer ${path} @${w}: the button "${hit}" leaves its column or runs into the h1`);
       await ctx.close();
     }
   }
-  console.log('hero: the buttons clear the plate, 960 to 1440, fr/en/ar');
+  console.log('offer: the buttons in their column, clear of the h1, 960 to 1440, fr/en/ar');
   for (const [w, h, key] of [[390, 664, 390], [768, 1024, 768]]) {
     const ctx = await br.newContext({ viewport: { width: w, height: h }, reducedMotion: 'reduce', isMobile: true, hasTouch: true });
     const p = await ctx.newPage();
@@ -545,6 +568,21 @@ const HOME_H = { 390: 11189, 768: 10763 };   // raised 2026-11-26 for the game m
     }
   }
   console.log('tablet: no sideways scroll at 768, 834, 1024, 1194, fr/en/ar');
+  /* 2026-11-27: every work capture arrives once its frame has been on screen at 1440 (a lazy image held fully
+     clipped by the unroll was never fetched: white frames on production; app.js now asks for it on sight) */
+  for (const path of ['/', '/en/', '/ar/']) {
+    const ctx = await br.newContext({ viewport: { width: 1440, height: 900 } });
+    const p = await ctx.newPage();
+    await p.goto(srv.base + path, { waitUntil: 'load' }).catch(() => {});
+    const empty = [];
+    for (const id of await p.evaluate(() => [...document.querySelectorAll('.proj')].map((e) => e.id))) {
+      await p.evaluate((i) => document.getElementById(i).querySelector('.thumb').scrollIntoView({ block: 'center' }), id);
+      await p.waitForFunction((i) => { const s = document.getElementById(i).querySelector('.shot'); return s && s.complete && s.naturalWidth > 0; }, id, { timeout: 5000 }).catch(() => empty.push(id));
+    }
+    if (empty.length) fails.push(`captures ${path} @1440: ${empty.join(', ')} still empty after being on screen`);
+    await ctx.close();
+  }
+  console.log('captures: every work frame has its image after being on screen at 1440, fr/en/ar');
   {
     const ctx = await br.newContext({ viewport: { width: 390, height: 664 }, reducedMotion: 'reduce', isMobile: true, hasTouch: true });
     const p = await ctx.newPage();
@@ -567,7 +605,7 @@ const HOME_H = { 390: 11189, 768: 10763 };   // raised 2026-11-26 for the game m
 /* ---- the hub's art: no debris beside the figure ---- */
 {
   const dir = join(ROOT, 'hub/bible/art');
-  const motion = /^(?:kuro-|rig-k-|motion-|yasser-lost)/;   // the Kūro marks (stars, steam, z's) are parts by design, and so are the question marks over Yasser's map in the bible's yasser-lost loop (restored 2026-11-11)
+  const motion = /^(?:kuro-|rig-k-|motion-)/;   // the Kūro marks (stars, steam, z's) are parts by design (the yasser-lost loop, whose question marks were too, left the bible on 2026-11-27)
   const bad = [], held = [];
   let n = 0;
   for (const f of readdirSync(dir).filter((f) => /\.webp$/.test(f))) {
