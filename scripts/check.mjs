@@ -1361,7 +1361,7 @@ runtimeDeps.length
     // the atlases and their dictionaries at measured + 10%: web3.html 221,819 and web3.ar.js 81,318 on 2026-11-21, once the
     // two client courses (marque, web3 vol. 1) were in with their fiche markup and its runtime strings (SPEC 3.13 had guessed
     // 160 kB; before: 160 kB at jeu.html 153,760, and 65 kB at route.ar.js 58,764)
-    'hub/lanterne': 246 * kB,   // 246 kB on 2026-11-27: the game's words for the night cases, seals and episodes in every Lanterne page (marque.html 245,019); 245 kB before
+    'hub/lanterne': 261 * kB,   // 261 kB on 2026-11-27: the banking book (banque.html 259,950: 11 districts, live exercises, three languages)
     'hub/lanterne/i18n': 93 * kB,   // 93 kB on 2026-11-27: the game card's tapes (case, seal, episode)
     // the open night cases' own files (2026-11-23, the season plan's per-case budgets: structure 15 kB, fr 51, en 46, ar 59)
     'hub/lanterne/enq': 59 * kB,

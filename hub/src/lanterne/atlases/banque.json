@@ -1,0 +1,185 @@
+{
+  "_note": "« Ma banque, sans piège » (2026-11-27): PR #14's online-banking course rebuilt as the eighth book (game/slice3/PR14-ASSESSMENT.md), three acts and a side act, eleven districts. Copy under lant.at.banque.* (the exercises' words under lant.at.banque.x.*, moved from PR #14's bank.*). Exercises: hub/banque-x.js (the labs, loaded like web3x.js, kinds bank:*), markup in ex/banque/. Case: Lina, an invented example. Art: the owner's banking panels and plates already on the site (0 credits): the plates where they are whole scenes (no cut-out on them), act plates of other books with the cast where a scene is missing; keepsakes are PR #14's own lesson drawings (hub/img/studio/bank/, 480 px and 240 px: the same drawings as the panels, which stay one place each), the card the existing bank-card panel's. Storage: numidea-lanterne-banque only; the emergency card writes numidea-bank-card only when the reader ticks « Garder ». Transfers from abroad and fees are Argent's: linked in _end, not repeated.",
+  "slug": "banque",
+  "key": "banque",
+  "store": "numidea-lanterne-banque",
+  "app": false,
+  "labs": {
+    "script": "banque-x.js"
+  },
+  "css": "banque-x.css",
+  "accent": "#2F6B4F",
+  "keys": {
+    "coverAlt": "lant.at.route.plate.desk"
+  },
+  "cover": {
+    "src": "img/lanterne/plates/bank-desk-close.webp",
+    "srcset": "img/lanterne/plates/bank-desk-close-600.webp 600w, img/lanterne/plates/bank-desk-close.webp 1152w"
+  },
+  "caseArt": "keys",
+  "acts": [
+    {
+      "id": "b1",
+      "plate": "argent-a1",
+      "districts": [
+        "porte",
+        "acces",
+        "solde",
+        "alerte"
+      ]
+    },
+    {
+      "id": "b2",
+      "plate": "bank-call",
+      "districts": [
+        "lien",
+        "urgence",
+        "familles",
+        "rappel"
+      ]
+    },
+    {
+      "id": "b3",
+      "plate": "route-a3",
+      "districts": [
+        "reglages",
+        "carte"
+      ]
+    },
+    {
+      "id": "bx",
+      "side": true,
+      "plate": "jeu-a3",
+      "districts": [
+        "quiz"
+      ]
+    }
+  ],
+  "districts": {
+    "porte": {
+      "guide": "kuro",
+      "plate": "bank-post",
+      "right": 1,
+      "ex": "bank:doors",
+      "keep": "img/studio/bank/l1-1.webp",
+      "keys": {
+        "alt": "lant.at.argent.plate.post"
+      }
+    },
+    "acces": {
+      "guide": "kuro",
+      "lead": "kuro",
+      "prop": "keys",
+      "right": 2,
+      "ex": "bank:traps",
+      "keep": "img/studio/bank/l1-2.webp",
+      "keys": {
+        "alt": "lant.at.argent.plate.a1"
+      }
+    },
+    "solde": {
+      "guide": "pigeon",
+      "lead": "pigeonStand",
+      "companion": "kuro",
+      "prop": "glasses",
+      "plate": "argent-a2",
+      "right": 1,
+      "ex": "bank:dash",
+      "keep": "img/studio/bank/l1-3.webp",
+      "keys": {
+        "alt": "lant.at.argent.plate.a2"
+      }
+    },
+    "alerte": {
+      "guide": "kuro",
+      "lead": "pigeon",
+      "companion": "kuro",
+      "prop": "notebook",
+      "right": 0,
+      "ex": "bank:alerts",
+      "keep": "img/studio/bank/l1-4.webp",
+      "keys": {
+        "alt": "lant.at.argent.plate.a1"
+      }
+    },
+    "lien": {
+      "guide": "raven",
+      "plate": "bank-desk",
+      "right": 1,
+      "ex": "bank:link",
+      "keep": "img/studio/bank/l5-1.webp",
+      "keys": {
+        "alt": "lant.at.argent.plate.desk"
+      }
+    },
+    "urgence": {
+      "guide": "kuro",
+      "lead": "raven",
+      "companion": "kuro",
+      "prop": "paper",
+      "plate": "route-a2",
+      "right": 2,
+      "ex": "bank:press",
+      "keep": "img/studio/bank/l5-2.webp",
+      "keys": {
+        "alt": "lant.at.route.plate.r2"
+      }
+    },
+    "familles": {
+      "guide": "ratman",
+      "lead": "ratman",
+      "companion": "kuro",
+      "prop": "bag",
+      "plate": "jeu-a2",
+      "right": 0,
+      "ex": "bank:over",
+      "keep": "img/studio/bank/l5-3.webp",
+      "keys": {
+        "alt": "lant.at.jeu.plate.j2"
+      }
+    },
+    "rappel": {
+      "guide": "kuro",
+      "right": 1,
+      "ex": "bank:call",
+      "keep": "img/studio/bank/l5-4.webp",
+      "keys": {
+        "alt": "lant.at.argent.plate.call"
+      }
+    },
+    "reglages": {
+      "guide": "kuro",
+      "lead": "kuro",
+      "companion": "pigeonStand",
+      "prop": "laptop",
+      "right": 1,
+      "ex": "bank:check",
+      "keep": "img/studio/bank/l8-2.webp",
+      "keys": {
+        "alt": "lant.at.route.plate.r3"
+      }
+    },
+    "carte": {
+      "guide": "kuro",
+      "plate": "bank-fridge",
+      "right": 2,
+      "ex": "bank:card",
+      "keep": "img/lanterne/panels/bank-card.webp",
+      "keys": {
+        "alt": "lant.panel.bank-fridge.alt"
+      }
+    },
+    "quiz": {
+      "guide": "kuro",
+      "lead": "kuro",
+      "companion": "raven",
+      "prop": "star",
+      "right": 0,
+      "ex": "bank:quiz",
+      "keep": "img/studio/bank/l8-1.webp",
+      "keys": {
+        "alt": "lant.at.jeu.plate.j3"
+      }
+    }
+  }
+}

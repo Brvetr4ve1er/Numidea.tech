@@ -27,7 +27,11 @@
       { "slug": "route", "key": "route", "title": "nomade.title", "kind": "nomade.kicker", "line": "nomade.lead", "guide": "pigeon",
         "cover": {"plate": "route-a1", "pos": "50% 60%", "cast": [{"src": "img/lanterne/kit/yasser-pose-laptop.webp", "w": 495, "side": "end", "size": 1.0, "h": 440}, {"src": "img/lanterne/kit/props-scooter.webp", "w": 480, "side": "start", "size": 0.62, "h": 356}]}, "accent": "#3F6E8C",
         "store": "numidea-lanterne-route", "migrate": "numidea-lessons-nomade",
-        "ids": ["n1", "n2", "n3", "n4", "n5", "n6", "n7", "n8"] }
+        "ids": ["n1", "n2", "n3", "n4", "n5", "n6", "n7", "n8"] },
+      { "slug": "banque", "key": "banque", "title": "lant.at.banque.book", "kind": "lant.at.banque.kind", "line": "lant.at.banque.pitch", "guide": "kuro",
+        "cover": { "src": "img/lanterne/plates/bank-desk-close-600.webp" }, "accent": "#2F6B4F",
+        "store": "numidea-lanterne-banque",
+        "ids": ["porte", "acces", "solde", "alerte", "lien", "urgence", "familles", "rappel", "reglages", "carte", "quiz"] }
     ] },
     { "id": "shelf3", "host": {"src": "img/lanterne/kit/yasser-pose-shrug.webp", "w": 560, "h": 422}, "sleeper": {"src": "img/lanterne/kit/kuro-react-loaf.webp", "w": 240, "h": 111}, "books": [
       { "slug": "jeu", "key": "jeu", "title": "jeu.title", "kind": "jeu.kicker", "line": "jeu.lead", "guide": "kuro",

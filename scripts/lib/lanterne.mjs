@@ -46,7 +46,7 @@ import { kuro, KURO_EP } from './kuro.mjs';
 
 const W3M_KEYS = /^web3c\.(mods|x|chap|carnet)\./;
 const KIT = ['compose', 'observe', 'focus', 'scrub', 'ab', 'machineLaunch', 'machineAsh', 'funnel', 'toggles', 'path'];
-const BOUND = /^(pick|calc:(rate|treso|funnel|quote|zones|week|fee)|fiche|bins|flow|law|states|marktest|web3x:[a-z0-9]+)$/;
+const BOUND = /^(pick|calc:(rate|treso|funnel|quote|zones|week|fee)|fiche|bins|flow|law|states|marktest|web3x:[a-z0-9]+|bank:[a-z0-9]+)$/;   // bank:* (2026-11-27): « Ma banque, sans piège », bound by hub/banque-x.js (the atlas's labs)
 const WA = 'https://wa.me/213672412578';
 const DISTRICT_KEYS = ['name', 'sub', 'alt', 'lore', 'rule', 'q', 'keep', 'scene', 'handoff', 'decision', 'ex.t', 'ex.brief'];
 const ATLAS_KEYS = ['title1', 'title2', 'kicker', 'pitch', 'caseLabel', 'search', 'desc', 'coverAlt', 'conclusion'];
@@ -528,7 +528,9 @@ export function lanterne(ctx) {
     const page = P;
     const loPage = ids.some((id) => A.districts[id].object || A.districts[id].objectEx || A.districts[id].panel || A.districts[id].panelEx) || /img\/lanterne\/panels\//.test(['_sac', '_end', '_hero', '_journal'].map(part).join(''));
     const title = fr(ak(A, 'title1')) + ' ' + fr(ak(A, 'title2'));
-    const html = `${headFor(`${P}.html`, `lant.page.${P}`, page, [['La Librairie Lanterne', ''], [title.replace(/\.$/, ''), `${P}.html`]])}
+    /* an atlas's own sheet (2026-11-27, « Ma banque, sans piège »: "css": its labs' blocks, after lanterne.css), so the shared sheet keeps its budget */
+    const atlasHead = (h) => (A.css ? swap(h, '<link rel="stylesheet" href="../css/lanterne.css?v={{stamp}}">', `<link rel="stylesheet" href="../css/lanterne.css?v={{stamp}}">\n<link rel="stylesheet" href="../css/${A.css}?v={{stamp}}">`, 1, `${P}'s sheet`) : h);
+    const html = `${atlasHead(headFor(`${P}.html`, `lant.page.${P}`, page, [['La Librairie Lanterne', ''], [title.replace(/\.$/, ''), `${P}.html`]]))}
 <body class="lt lt-atlas" data-lt-atlas="${P}">
 <a class="skip" href="#quartiers" data-i18n="lant.ui.skip"></a>
 <header class="mast lt-wrap">
