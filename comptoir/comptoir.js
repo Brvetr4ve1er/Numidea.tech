@@ -27,6 +27,7 @@
         wire: 'Depuis l’étranger. Montant converti au taux du site : 1 € = 152 DA, 1 $ = 136 DA.',
         link: 'Carte bancaire ou compte PayPal. Tu paies chez PayPal ; nous ne voyons jamais tes données de carte.',
       },
+      edu: 'De l’éducation : ni conseil financier ni conseil en placement.', okStart: 'Je demande que le travail commence dès la confirmation, et je reconnais perdre mon droit de rétractation dès qu’il a commencé.', okNeed: 'Coche la case au-dessus des boutons pour continuer.', okLine: 'Démarrage dès confirmation demandé ; renonciation à la rétractation une fois le travail commencé : acceptée.',
       waOrder: (ref, lines, tot, due, route) => `Salam ! Commande ${ref} au comptoir :\n${lines}\nTotal : ${tot}\n${due}\nRèglement : ${route}`,
       cur: 'Devise', part: 'Régler', full: 'Tout régler', deposit: 'Acompte 40\u00a0%',
       due: (a, p) => (p === 'deposit' ? `Acompte aujourd’hui : ${a}` : `À régler : ${a}`),
@@ -69,6 +70,7 @@
         wire: 'From abroad. Converted at the site’s rate: €1 = 152 DA, $1 = 136 DA.',
         link: 'Card or PayPal account. You pay on PayPal; we never see your card details.',
       },
+      edu: 'Education: not financial or investment advice.', okStart: 'I ask for the work to start as soon as the order is confirmed, and I acknowledge that I lose my right of withdrawal once it has started.', okNeed: 'Tick the box above the buttons to continue.', okLine: 'Start on confirmation requested; withdrawal waived once work has started: accepted.',
       waOrder: (ref, lines, tot, due, route) => `Hello! Order ${ref} from the counter:\n${lines}\nTotal: ${tot}\n${due}\nPaying by: ${route}`,
       cur: 'Currency', part: 'Pay', full: 'Pay in full', deposit: '40% deposit',
       due: (a, p) => (p === 'deposit' ? `Deposit today: ${a}` : `To pay: ${a}`),
@@ -111,6 +113,7 @@
         wire: 'من الخارج. المبلغ محوَّل بسعر الموقع: \u20661 € = 152 DA، 1 $ = 136 DA\u2069.',
         link: 'بطاقة بنكية أو حساب PayPal. تدفع لدى PayPal، ولا نرى بيانات بطاقتك أبدًا.',
       },
+      edu: 'تعليم فقط: ليس استشارة مالية ولا استثمارية.', okStart: 'أطلب أن يبدأ العمل فور تأكيد الطلب، وأُقرّ بأنني أفقد حقّي في العدول بمجرد بدئه.', okNeed: 'ضع علامة في الخانة فوق الأزرار للمتابعة.', okLine: 'طُلب البدء فور التأكيد؛ التنازل عن العدول بمجرد بدء العمل: مقبول.',
       waOrder: (ref, lines, tot, due, route) => `السلام عليكم! الطلب ${ref} من الكونتوار:\n${lines}\nالمجموع: ${tot}\n${due}\nطريقة الدفع: ${route}`,
       cur: 'العملة', part: 'الدفع', full: 'الدفع الكامل', deposit: 'عربون ⁦40\u00a0%⁩',
       due: (a, p) => (p === 'deposit' ? `العربون اليوم: ⁦${a}⁩` : `المبلغ المستحق: ⁦${a}⁩`),
@@ -200,7 +203,10 @@
       track('quote-view');
     }).catch(() => msg(t.offline, true));
     const btn = $('c-qpay');
-    btn.addEventListener('click', () => checkout(btn, { op: 'create', lang, ...f }, t.pay));
+    btn.addEventListener('click', () => {
+      if (!$('c-qok').checked) { msg(t.okNeed, true); $('c-qok').focus(); return; }
+      checkout(btn, { op: 'create', lang, startOk: true, ...f }, t.pay);
+    });
   }
 
   /* ---------- the shop ---------- */
@@ -275,6 +281,7 @@
         const price = el('div', 'c-price');
         price.append(el('span', 'c-da c-num', fmtDA(i.da)), el('span', 'c-fx c-num', `≈ ${fmtCur(fxOf(i.da, cur), cur)}`));
         b.append(el('span', 'c-rar', `${t.rar[r]} · ${t.cats[i.cat]}`), el('h3', 'c-name', name(i)), price);
+        if (i.cat === 'cours') b.append(el('p', 'c-edu', t.edu));
         const foot = el('div', 'c-card__f');
         if (i.max > 1 && n) {
           const st = el('div', 'c-step');
@@ -323,10 +330,19 @@
     }
 
     // the order as the owner reads it on WhatsApp (and as the copy button gives it)
+    // custom work and digital guides need the buyer's "start now" request (the terms' withdrawal clause);
+    // a bag of sticker sheets only keeps its 14 days and needs no box
+    const needOk = () => [...bag.keys()].some((id) => id !== 'stickers');
+    const blocked = (e) => {
+      if (!needOk() || $('c-ok').checked) return false;
+      if (e) e.preventDefault();
+      $('c-ok-l').classList.add('is-need'); msg(t.okNeed, true); $('c-ok').focus();
+      return true;
+    };
     const order = (k, dueTxt) => t.waOrder(ref,
       k.lines.map((l) => `• ${name(byId[l.id])}${l.n > 1 ? ` ×${l.n}` : ''}: ${fmtDA(l.da)}`)
         .concat(k.combos.map((c) => `★ ${c.n[lang] || t.combo}: −${fmtDA(c.off)}`)).join('\n'),
-      fmtDA(k.total), t.due(dueTxt, k.p), t.routes[route]).replace(/[\u2066-\u2069]/g, '');   // a chat app shows bidi marks as boxes
+      fmtDA(k.total), t.due(dueTxt, k.p), t.routes[route]).concat(needOk() && $('c-ok').checked ? `\n${t.okLine}` : '').replace(/[\u2066-\u2069]/g, '');   // a chat app shows bidi marks as boxes
     function newRef() {
       const d = new Date(), pad = (n) => String(n).padStart(2, '0'), A = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
       const r = crypto.getRandomValues(new Uint8Array(4));
@@ -417,6 +433,9 @@
       $('c-wa').href = `${WA}?text=${encodeURIComponent(order(k, dueTxt))}`;
       $('c-wa').classList.toggle('c-btn--alt', api || !!link);
 
+      const gate = needOk() && !$('c-ok').checked;
+      $('c-ok-l').hidden = !needOk();
+      ['c-pay', 'c-pp', 'c-wa', 'c-copy'].forEach((id) => { if (gate) $(id).setAttribute('aria-disabled', 'true'); else $(id).removeAttribute('aria-disabled'); });
       $('c-dock').hidden = !bag.size;
       $('c-dock-n').textContent = String(count);
       $('c-dock-t').textContent = fmtDA(k.total);
@@ -435,16 +454,18 @@
     track('view');
     if (add) { say(t.sayAdd); track(`deeplink-${add.id}`); }
 
+    $('c-ok').addEventListener('change', () => { $('c-ok-l').classList.remove('is-need'); track(`start-ok-${$('c-ok').checked}`); paintBag(); });
     const btn = $('c-pay');
     btn.addEventListener('click', () => {
       const k = quote();
-      if (!k.lines.length) return;
+      if (!k.lines.length || blocked()) return;
       track(`click-${k.p}`);
-      checkout(btn, { op: 'create', mode: 'cart', lang, cur, part: k.p, bag: k.lines.map((l) => ({ id: l.id, qty: l.n })) }, t.payX(fmtCur(k.due, cur)));
+      checkout(btn, { op: 'create', mode: 'cart', lang, cur, part: k.p, startOk: $('c-ok').checked, bag: k.lines.map((l) => ({ id: l.id, qty: l.n })) }, t.payX(fmtCur(k.due, cur)));
     });
-    $('c-wa').addEventListener('click', () => track(`wa-${route}`));
-    $('c-pp').addEventListener('click', () => track('paylink'));
+    $('c-wa').addEventListener('click', (e) => { if (!blocked(e)) track(`wa-${route}`); });
+    $('c-pp').addEventListener('click', (e) => { if (!blocked(e)) track('paylink'); });
     $('c-copy').addEventListener('click', () => {
+      if (blocked()) return;
       const k = quote(), b = $('c-copy');
       const txt = order(k, route === 'ccp' ? fmtDA(k.dueDA) : fmtCur(k.due, cur));
       Promise.resolve().then(() => navigator.clipboard.writeText(txt)).then(() => {

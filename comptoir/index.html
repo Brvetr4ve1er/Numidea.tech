@@ -81,6 +81,7 @@
       <div class="c-act" id="c-act" hidden>
         <p class="c-order"><span class="c-label c-label--dim" data-t="order">Bon de commande</span> <span class="c-num" id="c-ref"></span></p>
         <ol class="c-steps" id="c-steps"></ol>
+        <label class="c-ok" id="c-ok-l" hidden><input type="checkbox" id="c-ok"> <span data-t="okStart">Je demande que le travail commence dès la confirmation, et je reconnais perdre mon droit de rétractation dès qu’il a commencé.</span></label>
         <button type="button" class="c-btn" id="c-pay">
           <span class="c-btn__seal" aria-hidden="true">夜</span>
           <span class="c-btn__t" id="c-pay-t">Payer avec PayPal</span>
@@ -109,6 +110,7 @@
       <div class="c-qamt"><dt class="c-label c-label--dim" data-t="amount">Montant</dt><dd class="c-num" id="c-qamt"></dd></div>
     </dl>
     <div class="c-act" id="c-qact" hidden>
+        <label class="c-ok"><input type="checkbox" id="c-qok"> <span data-t="okStart">Je demande que le travail commence dès la confirmation, et je reconnais perdre mon droit de rétractation dès qu’il a commencé.</span></label>
       <button type="button" class="c-btn" id="c-qpay">
         <span class="c-btn__seal" aria-hidden="true">夜</span>
         <span class="c-btn__t" data-t="pay">Payer avec PayPal</span>
