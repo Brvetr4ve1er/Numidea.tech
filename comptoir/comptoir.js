@@ -334,8 +334,8 @@
 
     // the order as the owner reads it on WhatsApp (and as the copy button gives it)
     // custom work and digital guides need the buyer's "start now" request (the terms' withdrawal clause);
-    // a bag of sticker sheets only keeps its 14 days and needs no box
-    const needOk = () => [...bag.keys()].some((id) => id !== 'stickers');
+    // everything the counter sells is one or the other since the sticker sheets moved to tr4velerz.studio
+    const needOk = () => bag.size > 0;
     const blocked = (e) => {
       if (!needOk() || $('c-ok').checked) return false;
       if (e) e.preventDefault();

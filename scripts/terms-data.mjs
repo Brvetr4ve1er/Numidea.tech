@@ -21,8 +21,6 @@ export const TERMS = {
   depositAfterStart: { fr: null, en: null, ar: null },
   callNotice: null,      // hours of notice to move a call free of charge, e.g. 24
   refundDays: null,      // days within which a refund is sent, by the route it was paid, e.g. 14
-  // the sticker sheets (the only physical product): where they ship, the cost, the delay
-  shipping: { fr: null, en: null, ar: null },
   portfolio: null,       // true: the studio may show finished work in its portfolio unless the client asks otherwise; false: never without written consent
   // the court for disputes, e.g. { fr: 'les tribunaux de Sétif', en: 'the courts of Sétif', ar: 'محاكم سطيف' }
   court: { fr: null, en: null, ar: null },
@@ -30,7 +28,7 @@ export const TERMS = {
   reviewed: null,        // true once the owner has read (and ideally had checked) this text; it does not publish before
 };
 
-export const TERMS_TRANSLATED = ['confirm', 'cancelBeforeStart', 'depositAfterStart', 'shipping', 'court'];
+export const TERMS_TRANSLATED = ['confirm', 'cancelBeforeStart', 'depositAfterStart', 'court'];
 
 export function termsMissing(data = TERMS, langs = ['fr', 'en', 'ar']) {
   const out = [];

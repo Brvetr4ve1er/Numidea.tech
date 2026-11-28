@@ -36,7 +36,7 @@ Live preview with every gap highlighted: `node scripts/build-legal.mjs --preview
 
 ## C. Terms of sale at Le comptoir
 
-Already covered in the draft from your own counter, so no question: the **40 % deposit** from the counter's threshold (`api/_shop.js`), the balance on delivery, the routes (CCP · BaridiMob, € / $ transfer, PayPal), the mock-up/audit credit, the 4-working-day return of a faulty sticker sheet (Law 18-05), and a new **right-of-withdrawal** section: custom work started at your client's request and digital guides supplied at purchase are not withdrawable; standard sticker sheets are, 14 days, for buyers who have that right.
+Already covered in the draft from your own counter, so no question: the **40 % deposit** from the counter's threshold (`api/_shop.js`), the balance on delivery, the routes (CCP · BaridiMob, € / $ transfer, PayPal), the mock-up/audit credit, and a new **right-of-withdrawal** section: custom work started at your client's request and digital guides supplied at purchase are not withdrawable; standard sticker sheets are, 14 days, for buyers who have that right.
 
 | # | Question | Field | Notes / proposal |
 |---|---|---|---|
@@ -45,7 +45,7 @@ Already covered in the draft from your own counter, so no question: the **40 % d
 | 17 | The deposit **once work has started** … | `depositAfterStart` (FR/EN/AR) | Proposal: "reste acquis au studio" |
 | 18 | Hours of notice to move a call free of charge | `callNotice` | Proposal: 24 |
 | 19 | Days within which a refund is sent | `refundDays` | Proposal: 14 |
-| 20 | Sticker sheets: where you ship, what it costs, how long | `shipping` (FR/EN/AR) | e.g. "livrées en Algérie par Yalidine, 400 DA, 2 à 5 jours ; pas d'envoi à l'étranger" |
+| 20 | ~~Sticker sheets: shipping~~ No longer asked: physical goods moved to tr4velerz.studio (2026-11-28), so the counter ships nothing | (removed) | |
 | 21 | May you show finished work in your portfolio unless the client refuses in writing? | `portfolio` | yes (opt-out) / no (only with written consent) |
 | 22 | The court for disputes | `court` (FR/EN/AR) | Proposal: "les tribunaux de Bordj Bou Arréridj" (where the studio is) |
 
