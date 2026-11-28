@@ -204,7 +204,7 @@ export default async function handler(req, res) {
       const order = await r.json();
       const approve = (order.links || []).find((l) => l.rel === 'payer-action' || l.rel === 'approve');
       if (!approve) return res.status(502).json({ error: 'shape' });
-      trace('created', { order: order.id, ref: unit.reference_id, custom: unit.custom_id, amount: unit.amount });
+      trace('created', { order: order.id, ref: unit.reference_id, custom: unit.custom_id, amount: unit.amount, startOk: body.startOk === true });
       return res.status(200).json({ approve: approve.href, ref: unit.reference_id });
     }
 
