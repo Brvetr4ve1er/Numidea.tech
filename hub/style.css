@@ -1751,6 +1751,13 @@ html:active-view-transition .st-sting,html:active-view-transition .st-sting *{an
 .st-bay__t{font-family:var(--f-disp);font-weight:900;font-size:clamp(1.5rem,2.5vw,2.5rem);line-height:.98;letter-spacing:-.015em;text-transform:uppercase;text-wrap:balance;overflow-wrap:break-word}
 .st-bay__d{font-size:var(--t-card);line-height:1.5;max-width:30em;text-wrap:pretty}
 .st-bay__go{margin-top:4px!important}
+/* the game's rank on the Studio pages (2026-11-27, hub/app.js [data-game-badge]): the Librairie's hex seal, navy, and one line */
+.st-grank{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:10px;padding:4px 14px 4px 4px;border:2px solid var(--ink);border-radius:14px;max-width:100%;background:var(--cream);color:var(--ink);font-weight:700;font-size:var(--fs-small);line-height:1.25;text-decoration:none;box-shadow:3px 3px 0 var(--ink)}
+[dir="rtl"] .st-grank{padding:4px 4px 4px 14px}
+.st-grank[hidden]{display:none}
+.st-grank__seal{display:grid;place-items:center;flex:none;width:34px;height:38px;background:#0F1E30;color:#FFE2B8;font:900 var(--fs-body)/1 "Archivo","Arial Black",sans-serif;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.st-grank:hover{background:#F0B05A}
+.st-grank:focus-visible{outline:3px solid var(--red);outline-offset:4px}
 .st-bay--b .st-bay__go{border-color:var(--cream);color:var(--cream)}
 .st-arw{display:inline-block;margin-inline-start:.5em;transition:translate var(--m-quick) var(--m-ease-exit)}
 [dir="rtl"] .st-arw{transform:scaleX(-1)}

@@ -11,13 +11,23 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "numidea-tech\\.vercel\\.app" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "numidea-tech\\.vercel\\.app"
+        }
+      ],
       "destination": "https://www.numedialab.dev/$1",
       "permanent": true
     },
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "numidea-tech-br4vetravelers-projects\\.vercel\\.app" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "numidea-tech-br4vetravelers-projects\\.vercel\\.app"
+        }
+      ],
       "destination": "https://www.numedialab.dev/$1",
       "permanent": true
     }
@@ -79,12 +89,26 @@
           "value": "camera=(), microphone=(), geolocation=()"
         },
         {
-          "key": "Content-Security-Policy",
-          "value": "frame-ancestors 'self'; base-uri 'self'; object-src 'none'"
-        },
-        {
           "key": "Strict-Transport-Security",
-          "value": "max-age=63072000"
+          "value": "max-age=63072000; includeSubDomains; preload"
+        }
+      ]
+    },
+    {
+      "source": "/:path((?!workspacehq/embed/).*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-+soBNfHl+UCdPimAGnPFIucClEq4wOJLFeD6tkwvr58=' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw=' 'sha256-4aAO/p6u9K6gUEjwWZAjEg1y8mSXhsDz7YCTRtD8T2s=' 'sha256-6HkJyK9+5R2fOh/cJ9sUF2wNTkEzPj9tc/TgSDNuovM=' 'sha256-7ta5j7xFd9q62M6gdkh+4OdiYJfzDS3ADeSpUw/Cnx0=' 'sha256-C30AtI0wmvEdaMi1UMYuJmGTuyz6Vufzplazp/XjpDY=' 'sha256-EGX+qDR3HhmMKM01Hb5sBBypTeZvbmz5/GeDtjXFBoI=' 'sha256-HbX7csG0d9/f1nJyq667N1tz4tz02n2PcZfreBgIgTM=' 'sha256-IDh1W8RNPNVfZtkb2yjs28F0v/DlXWnpAm3S9um94ZI=' 'sha256-IgvAKE5wARI4KBrnqgf5qxTiIpASxEIZXPWAcIHttTQ=' 'sha256-L1EfGNdRzHnYR134uPdRHCFvGRUGoW77K/Y0an1C7cI=' 'sha256-Nqnn8clbgv+5l0PgxcTOldg8mkMKrFn4TvPL+rYUUGg=' 'sha256-NtsEniQR01t6WsYxIRBLfu/XC5nmHlgMkIRHY+K+WaY=' 'sha256-QBjFP5wjuFn8Hei1SQkgimCLzt9dCEuLeOXH4+7Hhmg=' 'sha256-SdfAbwT83eB9+KF0T2N4b4yyphtv5c07Y4HE8zQuQNw=' 'sha256-WeHxLtsKc2EH9HCsufVpFufpZ/nkFzPb6DmEQ6cxsiU=' 'sha256-dRyXCCrhVv2EOzoU2BRj9tO5ZaFsczEnNF5o6ja6LZ0=' 'sha256-eefOVJfjz+ffQL+LGGDRwH9N0goAVZlFRd+cVJ1myVc=' 'sha256-irdS0xJ3CvNkw9o4G9wp9MYJmopPCe1hXIqLW6IYZOM=' 'sha256-jqvmeaJzhI0avE/Byblgel+6lAUwtfzShFKt7DLnhME=' 'sha256-knpLOFmiw4pzjJFhMvA04ofoEJbuj47VwDQwnPpGbMI=' 'sha256-kuXs47751VfvZuojzAoIekzWLITuob3XwxtdIZ7mOZw=' 'sha256-mNjEYjrwpXMefUeVNGNNUZxbzorM/reJ6+W/30HZBEI=' 'sha256-r6Echk4l476oNhe0Dch0+uYc3AozST++YRh5t5bEDcw=' 'sha256-rVZ2oS4VInLkdKqVqspZIgNOyPMLBqskIyrmDVwOQ1A=' 'sha256-tJ6bMlVmfJkKBwsNeYMCbbZqwbwp0OWvE5bPx98/KzQ=' 'sha256-tnguwLvaFqrrwyPoXWSImnkRnfKnMFy+qzOPFQE6Fgo=' 'sha256-v6fvFvdxSDKsWtHDpqa9MoKR287IdX76/uPgDWG3iUw=' 'sha256-vgWhFno8tRxupvTmX+uZNkAtSjNb0pO0kiOjYJcYTdY='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:; frame-ancestors 'self'; upgrade-insecure-requests; report-uri /api/csp-report"
+        }
+      ]
+    },
+    {
+      "source": "/workspacehq/embed/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-eval' 'sha256-KnJJ4fG/HO1sE7Ya57IE12Buvk9jLIKk7wZyG89PjV4=' 'sha256-R5R2cAZ4TmMqCaeF62vMuLRUd0LF8wmyABrD+llzAOE=' 'sha256-SN2VGi+YGu093+mOtytR6KD5bDg/W22aVc6UKlfVim8=' 'sha256-YKRBUhTjDMqGzmBlvPc1gxQtJiyk8ybpS7jOBMbkEYs='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:; frame-ancestors 'self'; upgrade-insecure-requests; report-uri /api/csp-report"
         }
       ]
     }

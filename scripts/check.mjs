@@ -58,8 +58,10 @@
  *  15c. no runtime dependency — package.json lists tools only (devDependencies)
  *  16. content security policy — every page equals withCsp(page) (scripts/lib/csp.mjs);
  *                        no unhashed inline script, inline handler or javascript: URL;
- *                        both policies stand on scripts/lib/csp-floor.mjs; the mirrors
- *                        send the same headers, with frame-ancestors and HSTS
+ *                        both policies stand on scripts/lib/csp-floor.mjs; the hosts'
+ *                        header policy (scripts/lib/csp-header.mjs) is current, allows
+ *                        every meta of its kind, reports to /api/csp-report; HSTS two
+ *                        years + includeSubDomains + preload; .well-known/security.txt
  *  16b. Google tag    — every page (PAGES, not the WorkspaceHQ embeds) carries exactly one
  *                        copy of scripts/lib/gtag.mjs's snippet, container GTM-PMF7RWVK, right
  *                        after <head>; run in a sandbox it pushes the consent default with
@@ -1179,38 +1181,84 @@ runtimeDeps.length
     for (const e of policyErrors(policy, { kind, connect: f === 'index.html' && supaOn })) cspErr.push(`${f}: ${e}`);
   }
   for (const e of fixtureErrors()) cspErr.push(`withCsp fixtures (node scripts/csp-test.mjs): ${e}`);
-  // The mirrors send the headers on every path. A second policy in a header is
-  // enforced on top of the meta, so it may only add what a meta cannot carry
-  // (frame-ancestors) or repeat the meta's floor: a fetch directive there
-  // would block what the meta allows. HSTS: a year at least.
+  // The hosts' headers. The same security headers on every path, on Netlify
+  // and Vercel alike. Then the header policy (scripts/lib/csp-header.mjs): the
+  // browser enforces it on top of each page's meta, so it must allow every
+  // source of every meta of its kind (a stale hash there blocks a live boot
+  // script), it must equal what npm run csp writes, and its fetch part stands
+  // on the meta floor. Vercel sends one policy per kind on exclusive paths;
+  // Netlify one for both. HSTS: two years, includeSubDomains, preload.
+  const { headerPolicy, metaPolicies, VERCEL_SOURCE } = await import('./lib/csp-header.mjs');
   const netlify = {};
   for (const b of read('netlify.toml').split(/^[ \t]*\[\[headers\]\][ \t]*(?:#.*)?$/m).slice(1)) {
     if ((/^\s*for\s*=\s*"([^"]*)"/m.exec(b) || [])[1] !== '/*') continue;
     const values = (b.split(/^[ \t]*\[headers\.values\][ \t]*(?:#.*)?$/m)[1] || '').split(/^[ \t]*\[/m)[0];
-    for (const m of values.matchAll(/^[ \t]*([A-Za-z0-9-]+)[ \t]*=[ \t]*"((?:[^"\\]|\\.)*)"[ \t]*(?:#.*)?$/gm)) netlify[m[1]] = m[2];
+    for (const m of values.matchAll(/^[ \t]*([A-Za-z0-9-]+)[ \t]*=[ \t]*"((?:[^"\\]|\\.)*)"[ \t]*(?:#.*)?$/gm)) netlify[m[1]] = m[2].replace(/\\(.)/g, '$1');
   }
-  let vercel = {};
+  let vercel = {}, vercelCsp = {};
   try {
-    const all = (JSON.parse(read('vercel.json')).headers || []).find((h) => h.source === '/(.*)');
+    const rules = JSON.parse(read('vercel.json')).headers || [];
+    const all = rules.find((h) => h.source === '/(.*)');
     vercel = Object.fromEntries(((all && all.headers) || []).map((h) => [h.key, h.value]));
+    for (const [kind, source] of Object.entries(VERCEL_SOURCE)) {
+      const vals = rules.filter((r) => r.source === source).flatMap((r) => r.headers || []).filter((h) => h.key === 'Content-Security-Policy');
+      if (vals.length !== 1) cspErr.push(`vercel.json: ${vals.length} Content-Security-Policy headers on "${source}" (want 1)`);
+      else vercelCsp[kind] = vals[0].value;
+    }
+    const strays = rules.filter((r) => !Object.values(VERCEL_SOURCE).includes(r.source) && (r.headers || []).some((h) => h.key === 'Content-Security-Policy'));
+    if (strays.length) cspErr.push(`vercel.json: a Content-Security-Policy on ${strays.map((r) => `"${r.source}"`).join(', ')}, which overlaps the two generated rules (a page would get two header policies)`);
   } catch (e) { cspErr.push(`vercel.json does not parse: ${e.message}`); }
-  const differ = [...new Set([...Object.keys(netlify), ...Object.keys(vercel)])].filter((k) => netlify[k] !== vercel[k]).sort();
+  const shared = (h) => Object.fromEntries(Object.entries(h).filter(([k]) => k !== 'Content-Security-Policy'));
+  const nl = shared(netlify), vc = shared(vercel);
+  const differ = [...new Set([...Object.keys(nl), ...Object.keys(vc)])].filter((k) => nl[k] !== vc[k]).sort();
   if (differ.length) cspErr.push('netlify.toml ("/*") and vercel.json ("/(.*)") send different headers: '
-    + differ.map((k) => `${k} ${JSON.stringify(netlify[k] ?? null)} vs ${JSON.stringify(vercel[k] ?? null)}`).join(', '));
+    + differ.map((k) => `${k} ${JSON.stringify(nl[k] ?? null)} vs ${JSON.stringify(vc[k] ?? null)}`).join(', '));
   for (const [host, h] of [['netlify.toml', netlify], ['vercel.json', vercel]]) {
-    for (const k of ['X-Content-Type-Options', 'X-Frame-Options', 'Referrer-Policy', 'Permissions-Policy', 'Content-Security-Policy', 'Strict-Transport-Security'])
+    for (const k of ['X-Content-Type-Options', 'X-Frame-Options', 'Referrer-Policy', 'Permissions-Policy', 'Strict-Transport-Security'])
       if (!h[k]) cspErr.push(`${host}: no ${k} header on every path`);
-    if (h['Content-Security-Policy']) for (const e of headerPolicyErrors(h['Content-Security-Policy'])) cspErr.push(`${host}: the header policy: ${e}`);
-    const age = Number((/\bmax-age=(\d+)/.exec(h['Strict-Transport-Security'] || '') || [])[1] || 0);
-    if (h['Strict-Transport-Security'] && age < 31536000) cspErr.push(`${host}: Strict-Transport-Security max-age=${age} (want at least 31536000)`);
+    const hsts = h['Strict-Transport-Security'] || '';
+    const age = Number((/\bmax-age=(\d+)/.exec(hsts) || [])[1] || 0);
+    if (hsts && (age < 63072000 || !/;\s*includeSubDomains\b/.test(hsts) || !/;\s*preload\b/.test(hsts))) cspErr.push(`${host}: Strict-Transport-Security "${hsts}" (want max-age of two years or more, includeSubDomains, preload)`);
+  }
+  if (!netlify['Content-Security-Policy']) cspErr.push('netlify.toml: no Content-Security-Policy header on "/*"');
+  const metas = metaPolicies();
+  const hdrs = [['vercel.json', 'page', vercelCsp.page], ['vercel.json', 'embed', vercelCsp.embed], ['netlify.toml', 'any', netlify['Content-Security-Policy']]];
+  for (const [host, kind, policy] of hdrs) {
+    if (policy == null) continue;
+    for (const e of headerPolicyErrors(policy, { kind })) cspErr.push(`${host}: the ${kind} header policy: ${e}`);
+    try { if (policy !== headerPolicy(kind, metas)) cspErr.push(`${host}: the ${kind} header policy is stale (run: npm run csp)`); }
+    catch (e) { cspErr.push(`${host}: ${e.message}`); }
+    // what the browser does with two policies: each meta source must be in the header
+    const hd = directiveMap(policy);
+    for (const { file, policy: meta } of kind === 'any' ? [...metas.page, ...metas.embed] : metas[kind]) {
+      for (const [n, vals] of Object.entries(directiveMap(meta))) {
+        const miss = vals.filter((v) => !(hd[n] || hd['default-src'] || []).includes(v) && !(n !== 'default-src' && !hd[n] && v === "'none'"));
+        if (miss.length) cspErr.push(`${host}: the ${kind} header policy blocks what ${file} allows: ${n} ${miss.slice(0, 3).join(' ')}${miss.length > 3 ? '…' : ''} (run: npm run csp)`);
+      }
+    }
+  }
+  // security.txt (RFC 9116): a Contact, an Expires under a year away and not
+  // within 30 days (renew it: a stale file reads as an abandoned site), the
+  // canonical URL on the canonical host
+  {
+    const txt = existsSync(join(ROOT, '.well-known/security.txt')) ? read('.well-known/security.txt') : null;
+    if (txt == null) cspErr.push('.well-known/security.txt is missing');
+    else {
+      const field = (k) => [...txt.matchAll(new RegExp(`^${k}:[ \\t]*(.+)$`, 'gmi'))].map((m) => m[1].trim());
+      const exp = field('Expires'), days = exp.length === 1 ? (Date.parse(exp[0]) - Date.now()) / 864e5 : NaN;
+      if (!field('Contact').length) cspErr.push('security.txt: no Contact');
+      if (!(days >= 30 && days <= 366)) cspErr.push(`security.txt: Expires ${exp.join(', ') || 'missing'} (want one date between 30 days and a year away: bump it)`);
+      if (field('Canonical')[0] !== BASE + '.well-known/security.txt') cspErr.push(`security.txt: Canonical "${field('Canonical')[0] || ''}" (want ${BASE}.well-known/security.txt)`);
+    }
   }
   cspErr.length ? bad('content security policy: ' + cspErr.join('; '))
-    : ok(`content security policy: ${nPages} pages equal withCsp, ${nScripts} inline scripts all hashed, no inline handlers, every policy on its floor (directives known and given once, script-src 'self' and hashes only, object-src 'none', base-uri 'self'); mirrors send frame-ancestors and HSTS`);
+    : ok(`content security policy: ${nPages} pages equal withCsp, ${nScripts} inline scripts all hashed, no inline handlers, every policy on its floor (directives known and given once, script-src 'self' and hashes only, object-src 'none', base-uri 'self'); header policies are the union of the metas, on the floor, with frame-ancestors and reporting; HSTS two years + includeSubDomains + preload`);
 }
 
 /* 16b — the Google tag */
-// Owner decision 2026-11-14: container GTM-PMF7RWVK, Consent Mode denied for
-// good, no cookie bar. Each page of PAGES (the legal page once published; its
+// Container GTM-PMF7RWVK (GA4 G-KBXP8LQJ5K). Owner decision 2026-11-14:
+// Consent Mode denied, no cookie bar; since 2026-11-27 the consent card
+// (assets/consent.js) may grant analytics_storage and nothing else. Each page of PAGES (the legal page once published; its
 // preview render stands in for it until then) holds exactly one copy of the
 // snippet scripts/lib/gtag.mjs writes, immediately after <head>, and nothing
 // on it ever updates consent. The inline script runs in a bare sandbox and
@@ -1233,17 +1281,29 @@ runtimeDeps.length
     // outside the CSP meta, the loader is the only mention of a Google host
     if ((html.replace(/<meta http-equiv="Content-Security-Policy"[^>]*>/, '').match(/googletagmanager\.com|google-analytics\.com|analytics\.google\.com/g) || []).length !== 1)
       errs.push(`${f}: a Google host outside the tag and the CSP meta`);
-    if (/['"]consent['"]\s*,\s*['"]update['"]|consent\s*:\s*['"]update['"]/.test(html)) errs.push(`${f}: updates Google consent (it is denied for good: a consent bar must come first)`);
+    if (/['"]consent['"]\s*,\s*['"]update['"]|consent\s*:\s*['"]update['"]/.test(html)) errs.push(`${f}: updates Google consent (only assets/consent.js may)`);
+  }
+  // the inline script, run three ways: no storage, a refusal kept, an acceptance kept (assets/consent.js)
+  for (const [kept, want] of [[undefined, WANT], ['denied', WANT], ['granted', { ...WANT, analytics_storage: 'granted' }]]) {
     const win = { Date, Array }; win.window = win;
-    try { runInNewContext(GTAG_INLINE, win, { timeout: 200 }); } catch (e) { errs.push(`${f}: the Google tag's inline script does not run (${e.message})`); continue; }
+    if (kept !== undefined) win.localStorage = { getItem: (k) => (k === 'numidea.consent' ? kept : null) };
+    try { runInNewContext(GTAG_INLINE, win, { timeout: 200 }); } catch (e) { errs.push(`the Google tag's inline script does not run (${e.message})`); continue; }
     const [first, second, ...rest] = Array.from(win.dataLayer || [], (a) => Array.from(a));
     const got = first && first[0] === 'consent' && first[1] === 'default' ? first[2] : null;
-    if (!got || Object.keys(WANT).some((k) => got[k] !== WANT[k]) || Object.keys(got).length !== Object.keys(WANT).length) errs.push(`${f}: the consent default is not "denied" on every signal but security_storage`);
-    if (!second || second[0] !== 'js' || rest.length) errs.push(`${f}: the Google tag pushes more than the consent default and js`);
+    if (!got || Object.keys(want).some((k) => got[k] !== want[k]) || Object.keys(got).length !== Object.keys(want).length) errs.push(`consent default with "${kept}" kept: not ${JSON.stringify(want)}`);
+    if (!second || second[0] !== 'js' || rest.length) errs.push('the Google tag pushes more than the consent default and js');
+  }
+  // the card is the one place consent changes, and only analytics_storage (the ad signals stay denied)
+  {
+    const card = read('assets/consent.js');
+    const ups = [...card.matchAll(/gtag\(\s*'consent'\s*,\s*'update'\s*,\s*\{([^}]*)\}/g)].map((m) => m[1].trim());
+    if (!ups.length || ups.some((u) => u.replace(/\s+/g, '') !== "analytics_storage:'granted'")) errs.push(`assets/consent.js: a consent update other than analytics_storage granted (${ups.join(' | ') || 'none'})`);
+    if (!/numidea\.consent/.test(card)) errs.push('assets/consent.js: does not keep the answer under numidea.consent');
+    for (const l of ['fr', 'en', 'ar']) if (!new RegExp(`\\b${l}: \\{ k:`).test(card)) errs.push(`assets/consent.js: no ${l} words`);
   }
   for (const f of EXTRA_PAGES) if (read(f).includes(GTAG_ID)) errs.push(`${f}: an embed must not carry the Google tag (an iframe inside workspacehq/: it would count a visit twice)`);
   errs.length ? bad('google tag: ' + errs.join('; '))
-    : ok(`google tag: ${targets.length} pages carry exactly one copy of the ${GTAG_ID} snippet right after <head>, consent default denied (security_storage aside), never updated; the ${EXTRA_PAGES.length} embeds carry none`);
+    : ok(`google tag: ${targets.length} pages carry exactly one copy of the ${GTAG_ID} snippet right after <head>, consent default denied (security_storage aside; analytics_storage only after the card's yes), no page updates it; the ${EXTRA_PAGES.length} embeds carry none`);
 }
 
 /* 17 — asset budgets */
@@ -1301,8 +1361,8 @@ runtimeDeps.length
     // the atlases and their dictionaries at measured + 10%: web3.html 221,819 and web3.ar.js 81,318 on 2026-11-21, once the
     // two client courses (marque, web3 vol. 1) were in with their fiche markup and its runtime strings (SPEC 3.13 had guessed
     // 160 kB; before: 160 kB at jeu.html 153,760, and 65 kB at route.ar.js 58,764)
-    'hub/lanterne': 245 * kB,
-    'hub/lanterne/i18n': 92 * kB,   // 92 kB on 2026-11-26 for the game layer's words (ranks, reward card, commission: lant.ui.game.*) in every atlas's dictionary; 90 kB before
+    'hub/lanterne': 246 * kB,   // 246 kB on 2026-11-27: the game's words for the night cases, seals and episodes in every Lanterne page (marque.html 245,019); 245 kB before
+    'hub/lanterne/i18n': 93 * kB,   // 93 kB on 2026-11-27: the game card's tapes (case, seal, episode)
     // the open night cases' own files (2026-11-23, the season plan's per-case budgets: structure 15 kB, fr 51, en 46, ar 59)
     'hub/lanterne/enq': 59 * kB,
     'hub/audio': 1321 * kB,       // 1,200,723 on 2026-11-16 (the workshop radio's tracks: two minutes each, MP3 at 80 kbit/s; +10%)

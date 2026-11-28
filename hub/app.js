@@ -376,7 +376,9 @@
       [Y, K].forEach(function (m) { Object.keys(m).forEach(function (k) { var el = m[k]; if (el.decode) el.decode().catch(function () {}); }); });
     };
     var ready = function (img) { return img && img.complete && img.naturalWidth > 0; };
-    var lines = function () { var a = []; for (var i = 0; t('rig.lines.' + i); i++) a.push(t('rig.lines.' + i)); return a; };
+    /* Kūro's episode, finished (world.kuro_in_bag in numidea-save, 2026-11-27): Yasser's first line is his thanks */
+    var bag = false; try { var sv = JSON.parse(localStorage.getItem('numidea-save') || 'null'); bag = !!(sv && sv.world && sv.world.kuro_in_bag === true); } catch (e) {}
+    var lines = function () { var a = bag && t('rig.bag') ? [t('rig.bag')] : []; for (var i = 0; t('rig.lines.' + i); i++) a.push(t('rig.lines.' + i)); return a; };
     if (reduce && liveEl) { liveEl.setAttribute('data-i18n', 'hero.still'); liveEl.textContent = t('hero.still'); }
 
     var t0 = now();
@@ -1138,6 +1140,29 @@
   // the Aperçu card's WhatsApp message, in the page's language
   var wa = $('[data-wa-preview]');
   if (wa) onLang.push(function () { wa.href = 'https://wa.me/213672412578?text=' + encodeURIComponent(t('contact.previewMsg')); });
+
+  /* the game's rank, carried out of the Librairie (2026-11-27): [data-game-badge] on the Studio pages shows « Rang N · name ·
+     reprendre » once a visitor has played (rank 2 or more in numidea-save, which hub/game.js keeps) and leads back to the
+     book last opened. Read only, every field checked; anything malformed leaves the badge hidden. Encre is not shown here:
+     it is added up from the Librairie's own keys, by hub/game.js, on the Librairie's pages. */
+  (function () {
+    var bs = $$('[data-game-badge]'); if (!bs.length) return;
+    var s = null; try { s = JSON.parse(localStorage.getItem('numidea-save') || 'null'); } catch (e) { return; }
+    if (!s || typeof s !== 'object' || typeof s.rank !== 'number' || s.rank % 1 || s.rank < 2 || s.rank > 10) return;
+    var last = typeof s.last === 'string' && /^[a-z0-9-]{1,40}$/.test(s.last) ? s.last : '';
+    var paint = function () {
+      bs.forEach(function (b) {
+        b.textContent = '';
+        var seal = document.createElement('span'); seal.className = 'st-grank__seal'; seal.setAttribute('aria-hidden', 'true'); seal.textContent = String(s.rank);
+        var tx = document.createElement('span'); tx.className = 'st-grank__t';
+        tx.textContent = t('lant.ui.game.badge').replace('{n}', String(s.rank)).replace('{name}', t('lant.ui.game.r.' + s.rank));
+        b.appendChild(seal); b.appendChild(tx);
+        if (last) b.setAttribute('href', 'lanterne/' + last + '.html');
+        b.hidden = false;
+      });
+    };
+    paint(); onLang.push(paint);
+  })();
 
   /* ---------------- 8 · the cases' shell ----------------
      Every case is a <section class="st-case case-<slug>">; this wires what

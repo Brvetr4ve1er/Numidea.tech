@@ -196,4 +196,19 @@
     if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; root.classList.toggle('paused', !visible); wake(); }).observe(root);
     [mqFine, mqDesk, mqReduce].forEach(function (q) { q.addEventListener && q.addEventListener('change', wake); });
   }
+  /* ---- the game's way back in (2026-11-27, hub/game.js): a visitor who has played the Librairie gets their rank on
+     its card and the card opens the atlas they last had open. Read only; anything malformed is ignored. ---- */
+  (function () {
+    var a = root.querySelector('.nl-item[data-id="lanterne"]'); if (!a) return;
+    var s = null; try { s = JSON.parse(localStorage.getItem('numidea-save') || 'null'); } catch (e) { return; }
+    if (!s || typeof s !== 'object' || Array.isArray(s)) return;
+    var rank = typeof s.rank === 'number' && s.rank === Math.floor(s.rank) && s.rank >= 1 && s.rank <= 10 ? s.rank : 0;
+    var last = typeof s.last === 'string' && /^[a-z0-9-]{1,40}$/.test(s.last) ? s.last : '';
+    if (!last && rank < 2) return;
+    var D = window.I18N || {}, t = D['menu.lanterne.back'];
+    var sb = a.querySelector('.nl-sub');
+    if (sb && t && rank) { sb.removeAttribute('data-i18n'); sb.textContent = String(t).replace('{n}', rank); }
+    if (last) { try { var u = new URL(a.getAttribute('href'), location.href); u.pathname = u.pathname.replace(/\/?$/, '/') + last + '.html'; a.href = u.href; } catch (e) {} }   // keeps ?lang=
+    a.setAttribute('data-game', 'back');
+  })();
 })();

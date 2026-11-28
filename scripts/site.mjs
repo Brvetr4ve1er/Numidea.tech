@@ -48,7 +48,9 @@ export const LANTERNE_ATLASES = (() => { try { return JSON.parse(readFileSync(jo
 export const LANTERNE_TOOLS = existsSync(join(LANT_SRC, 'apps.json')) ? ['hub/lanterne/outils.html'] : [];
 /* « Les enquêtes de nuit » (2026-11-23): the night stall as a game, built from hub/src/lanterne/enquetes.json once it exists */
 export const LANTERNE_GAMES = existsSync(join(LANT_SRC, 'enquetes.json')) ? ['hub/lanterne/enquetes.html'] : [];
-export const LANTERNE_PAGES = ['hub/lanterne/index.html', ...LANTERNE_ATLASES.map((s) => `hub/lanterne/${s}.html`), ...LANTERNE_TOOLS, ...LANTERNE_GAMES];
+/* Kūro's episode « Le dernier départ » (2026-11-27): a Librairie page once its episode file exists (scripts/lib/kuro.mjs) */
+export const LANTERNE_EPISODES = existsSync(join(ROOT, 'hub/kuro/ep01-dernier-depart.json')) ? ['hub/lanterne/kuro.html'] : [];
+export const LANTERNE_PAGES = ['hub/lanterne/index.html', ...LANTERNE_ATLASES.map((s) => `hub/lanterne/${s}.html`), ...LANTERNE_TOOLS, ...LANTERNE_GAMES, ...LANTERNE_EPISODES];
 
 /* the landing page is three static pages, one per language: index.html
    (French, the template) and en/, ar/ written from it by build-lang.mjs;
@@ -61,7 +63,9 @@ export const PAGES = ['index.html', 'en/index.html', 'ar/index.html', 'tarifs/in
   .concat(TERMS_PUBLISHED ? ['comptoir/conditions/index.html'] : []);
 export const EXTRA_PAGES = ['workspacehq/embed/trailer.html', 'workspacehq/embed/walkthrough.html', 'workspacehq/embed/console.html'];
 
-export const DEPLOY = ['index.html', 'en', 'ar', 'tarifs', 'comptoir', '404.html', 'robots.txt', 'sitemap.xml', 'google35d412133786d0cb.html', 'assets', 'scene', 'hub', 'workspacehq']
+/* .well-known/security.txt (RFC 9116, 2026-11-27): where to report a security problem; check.mjs 16 holds its Expires
+   to within a year and at least 30 days out */
+export const DEPLOY = ['index.html', 'en', 'ar', 'tarifs', 'comptoir', '404.html', 'robots.txt', 'sitemap.xml', 'google35d412133786d0cb.html', '.well-known', 'assets', 'scene', 'hub', 'workspacehq']
   .concat(LEGAL_PUBLISHED ? ['legal'] : []);
 // file names never published even inside a deployed folder: a folder's own
 // notes and the manifest the WorkspaceHQ design-system export ships. Every

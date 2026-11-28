@@ -73,7 +73,8 @@
       "yawn": "BÂILLEMENT",
       "laugh": "MDR",
       "glasses": "OK, REGARDE"
-    }
+    },
+    "bag": "Il ne sort plus de cette sacoche. Merci pour l’autre soir."
   },
   "wedge": {
     "kicker": "/ 01 · LE PROBLÈME · TROP DE MAINS",
@@ -762,7 +763,8 @@
           "n": "Kūro",
           "t": "CHAT NOIR",
           "d": "Le chat de l’atelier. Il en est la porte et le contrôle qualité : il juge chaque commit, puis s’endort sur le clavier. Dans la Librairie, il dort sur le comptoir et vient s’asseoir près de ce que vous lisez.",
-          "go": "Kūro, vivant, dans la Librairie"
+          "go": "Kūro, vivant, dans la Librairie",
+          "ep": "Jouer son épisode : « Le dernier départ »"
         },
         "atelier": {
           "n": "L’atelier de nuit",
@@ -6405,7 +6407,11 @@
         "tapeBook": "Livre terminé",
         "unit": "Encre",
         "rankOf": "Rang {n} / {N}",
-        "comH": "Le studio le fait pour vous."
+        "comH": "Le studio le fait pour vous.",
+        "tapeCase": "Enquête résolue",
+        "tapeSeal": "Sceau trouvé",
+        "tapeEp": "Épisode terminé",
+        "badge": "Rang {n} · {name} · reprendre"
       }
     },
     "cast": {
@@ -8619,6 +8625,14 @@
         "alt": "La nuit, sur un quai de gare, Yasser lit une carte qui luit, la bandoulière d’un sac en travers du torse ; Kūro attend à ses pieds.",
         "cap": "Votre bureau tient dans un sac : tout ce qui casse, se perd ou se coupe vous arrête net."
       }
+    },
+    "kuro": {
+      "title": "Le dernier départ : un épisode avec Kūro · La Librairie Lanterne",
+      "desc": "Le scooter est prêt, le colis aussi, et Kūro a disparu. Fouillez l’atelier, trouvez le chat, gardez quatre leçons de studio. Gratuit.",
+      "mast": "Le dernier départ",
+      "lead": "Un épisode avec Kūro : fouillez l’atelier, trouvez le chat. Le terminer rapporte de l’Encre.",
+      "noscript": "Cet épisode se joue avec JavaScript. Les livres de la Librairie se lisent sans.",
+      "skip": "Aller à l’épisode"
     }
   }
 }

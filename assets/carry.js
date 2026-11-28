@@ -64,24 +64,59 @@
     vs.src = '/_vercel/insights/script.js';
     document.head.appendChild(vs);
   }
+  /* Every count goes two ways: a Vercel virtual view of /go/<kind>/<what>/<page>
+     (cookieless, the source of truth), and a GA4 event numidea_<kind> with
+     numidea_what, through gtag. Without the visitor's consent
+     (assets/consent.js) GA4 gets it as a cookieless ping only. Names are short slugs, so a typo cannot flood the
+     reports with free text. */
+  // the consent card (assets/consent.js): pages with the Google tag, live host and Vercel previews
+  if ((LIVE || /\.vercel\.app$/.test(location.hostname)) && document.querySelector('script[src*="googletagmanager.com/gtm.js"]')) {
+    var me = document.querySelector('script[src*="assets/carry.js"]');
+    if (me) { var cs = document.createElement('script'); cs.defer = true; cs.src = me.src.replace(/carry\.js(\?.*)?$/, 'consent.js$1'); document.head.appendChild(cs); }
+  }
+  var SLUG = /^[a-z0-9-]{1,24}$/;
+  // what gtag('event', …) does: the Google tag GTM loads (G-KBXP8LQJ5K) reads it from dataLayer
+  function gtagEvent(kind, what) {
+    try { window.dataLayer = window.dataLayer || []; (function () { window.dataLayer.push(arguments); })('event', 'numidea_' + kind.replace(/-/g, '_'), { numidea_what: what }); } catch (x) {}
+  }
+  window.numideaTrack = function (kind, what) {
+    if (!SLUG.test(String(kind)) || !SLUG.test(String(what))) return;
+    gtagEvent(kind, what);
+    if (!LIVE) return;
+    window.va('pageview', { route: '/go/' + kind + '/' + what, path: '/go/' + kind + '/' + what + location.pathname });
+  };
   var went = 0;
   window.numideaGo = function (channel) {
-    if (!LIVE || Date.now() - went < 1000) return;   // one count per gesture
+    if (Date.now() - went < 1000) return;   // one count per gesture
     went = Date.now();
-    window.va('pageview', { route: '/go/' + channel, path: '/go/' + channel + location.pathname });
+    if (!SLUG.test(String(channel))) return;
+    gtagEvent('contact', channel);
+    if (LIVE) window.va('pageview', { route: '/go/' + channel, path: '/go/' + channel + location.pathname });
   };
   /* game moments (hub/game.js, 2026-11-26) counted the same way: a virtual view of /go/game/<what>/<page>
-     (district, book, commission, rank-2 … rank-10); one count per moment, on the canonical host only */
-  window.numideaGame = function (what) {
-    if (!LIVE || !/^[a-z0-9-]{1,24}$/.test(String(what))) return;
-    window.va('pageview', { route: '/go/game/' + what, path: '/go/game/' + what + location.pathname });
-  };
+     (district, district-m2 … district-m30, book, commission, rank-2 … rank-10, shop-…) */
+  window.numideaGame = function (what) { window.numideaTrack('game', what); };
   var CHANNEL = [[/^https:\/\/(wa\.me|api\.whatsapp\.com)\//, 'whatsapp'], [/^mailto:/i, 'email'], [/^tel:/i, 'phone']];
+  /* What a click says, besides the channel: a slab of the home menu
+     (.nl-item[data-id]: /go/menu/<id>) and a package's Aperçu button
+     (a[data-apercu]: /go/offer/<package>). */
   function contact(e) {
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
     if (!a) return;
+    if (a.classList.contains('nl-item') && a.getAttribute('data-id')) window.numideaTrack('menu', a.getAttribute('data-id'));
+    if (a.hasAttribute('data-apercu')) window.numideaTrack('offer', a.getAttribute('data-apercu') || 'any');
     for (var i = 0; i < CHANNEL.length; i++) if (CHANNEL[i][0].test(a.href)) { window.numideaGo(CHANNEL[i][1]); return; }
   }
+  /* the estimator (home and tarifs/): counted once a page, at the first
+     control the visitor moves, /go/tarifs/estimator */
+  var touched = false;
+  function estimate(e) {
+    if (touched || !e.target || !e.target.closest || !e.target.closest('#estimator')) return;
+    touched = true;
+    window.numideaTrack('tarifs', 'estimator');
+  }
+  document.addEventListener('input', estimate, true);
+  document.addEventListener('change', estimate, true);
   document.addEventListener('click', contact, true);
   document.addEventListener('auxclick', contact, true);
 
