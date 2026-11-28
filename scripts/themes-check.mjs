@@ -33,8 +33,10 @@ export const CONTRACT = [
   'glow-teal', 'glow-crimson', 'btn-glow',
   // atmosphere
   'atmos', 'grid-color', 'grid-opacity', 'grid-size',
-  // the hero vista's three engraved layers (ink and alpha in one: far ridge, mid, near)
-  'vista-far', 'vista-mid', 'vista-near',
+  // 2026-11-27: the engraving's three layers (vista-far/-mid/-near) left with
+  // the engraving; the contract grew for the hard-edge language (the Studio's
+  // sibling): a panel's edge, its hard drop, the line-work, the dark console
+  'edge', 'drop', 'trace', 'console',
   // surfaces
   'nav-glass', 'glass', 'field-bg', 'field-border',
   // type (the wordmark is drawn, scripts/lib/wordmark.mjs: no logo face)

@@ -413,7 +413,7 @@ export function renderTemplate(lang, home = read('index.html'), dicts = loadDict
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title data-i18n="tarifs.title">${toMarkup(fr['tarifs.title'])}</title>
 <meta name="description" content="${esc(fr['tarifs.desc'])}" data-i18n-content="tarifs.desc">
-<meta name="theme-color" content="#0A1420">
+<meta name="theme-color" content="#211E1B">
 <meta name="author" content="Numidea Labs">
 
 <!-- Open Graph / social — absolute URLs, no scripts run: this page's language.

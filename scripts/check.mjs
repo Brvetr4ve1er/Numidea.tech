@@ -768,6 +768,18 @@ for (const [file, l] of Object.entries(STATIC_LANG).filter(([f]) => f !== 'index
 }
 langStale.length ? bad('language pages: ' + langStale.join('; ') + ' (run: npm run build)')
   : ok('en/ and ar/ equal index.html baked with I18N.en and I18N.ar (scripts/build-lang.mjs)');
+// 2026-11-27 (owner): each language's Réalisations open on its lead card, the
+// first card and the only proj--lead: Nomara on the Arabic page (an Arabic-
+// language site, as its hero plate opened before the hero left), Bordj Steel
+// on the French and English ones (build-lang.mjs WORK_ORDER)
+{
+  const LEAD = { 'index.html': 'bordjsteel', 'en/index.html': 'bordjsteel', 'ar/index.html': 'nomara' };
+  const wrong = Object.entries(LEAD).filter(([f, c]) => {
+    const cards = [...read(f).matchAll(/<article id="w-([a-z0-9-]+)" class="([^"]*)"/g)];
+    return !cards.length || cards[0][1] !== c || !/\bproj--lead\b/.test(cards[0][2]) || cards.filter((m) => /\bproj--lead\b/.test(m[2])).length !== 1;
+  }).map(([f, c]) => `${f} (want #w-${c} first and the only proj--lead)`);
+  wrong.length ? bad('work lead card: ' + wrong.join('; ')) : ok('work lead card: Bordj Steel on / and /en/, Nomara on /ar/');
+}
 // Client voices: valid (consent recorded, delivered clients only) and the
 // index.html region equals what scripts/build-voices.mjs writes from them.
 const voiceErr = validateVoices();
@@ -1265,7 +1277,7 @@ runtimeDeps.length
   const BUDGET = {
     'assets/previews': 53 * kB,   // 48,016 then (nomara.webp)
     'assets/work': 129 * kB,      // 117,246 (alliance/d1.webp)
-    'assets/illus': 203 * kB,     // 183,670 (vista-near.webp)
+    'assets/illus': 95 * kB,      // 86,364 on 2026-11-27 (arch.webp), +10%: the engraving's masks (vista-far/-mid/-near.webp, dunes.webp) left with the engraving; before: 203 kB at 183,670 (vista-near.webp)
     'assets/clients': 22 * kB,    // 19,320 (bordjsteel.svg)
     'hub/bible/art': 98 * kB,           // 89,038 on 2026-11-27 (every-world-720.webp, the section-08 picture from the owner's story book; the animation it replaced is gone, and the folder's files went from 2,169,139 to 1,957,627 bytes); before: 346 kB at 345,724 on 2026-11-11 (yasser-lost.webp, the section-08 sticker animation, 4.05 s once, back with the recovery); before: 52 kB at 46,978 on 2026-11-06 (pose-inspect.webp)
     'hub/fonts': 46 * kB,         // 45,936 on 2026-11-07 (aref-ruqaa-700-arabic.woff2; the Studio's subsets joined the bible's)
@@ -1292,6 +1304,11 @@ runtimeDeps.length
     'hub/audio': 1321 * kB,       // 1,200,723 on 2026-11-16 (the workshop radio's tracks: two minutes each, MP3 at 80 kbit/s; +10%)
     'hub/css': 42 * kB,           // 37,653 on 2026-11-07 (the five cases' sheets)
     'assets/fonts': 51 * kB,      // 45,688 on 2026-10-26 (ibm-plex-sans-arabic-600-arabic.woff2)
+    // 2026-11-27 (late night, the home restyled as the Studio's sibling, "the machine room"), web fonts a visit fetches at 1440, measured
+    // over a full scroll: the home 81,788 -> 99,620 bytes (+17,832: the Studio's Japanese subset, hub/fonts by URL, for the seals and the
+    // lockup's kana; Archivo 900 and Archivo Condensed were already fetched); /tarifs/ 65,828 -> 97,208 (+13,548 Archivo 900 for the slab
+    // buttons, +17,832 the seal face); /scene/ 67,712 -> 97,208 (Cinzel 700 15,184 left; Archivo Condensed, Archivo 900 and the seal face
+    // came). No file was added to assets/fonts: the folder's largest stays the Plex Arabic file below.
     'workspacehq': 64 * kB,       // 57,319 on 2026-10-31 (og.jpg)
     'workspacehq/embed': 299 * kB,               // 271,134 on 2026-10-31 (console.html)
     'workspacehq/embed/vendor': 146 * kB,        // 131,835 on 2026-10-31 (react-dom.production.min.js)

@@ -1272,6 +1272,8 @@
         // changes meaning with the type (pages, products, screens…)
         var two = dual(n);
         if (eSizeV) { eSizeV.textContent = n; eSizeV.hidden = two; }
+        // the track's filled part, for the segmented bar styles.css draws (2026-11-27): the share of the range, a number, nothing else
+        eSize.style.setProperty('--fill', ((n - eSize.min) / ((eSize.max - eSize.min) || 1) * 100).toFixed(1) + '%');
         if (eSizeH) eSizeH.textContent = unit(m.u, n);
         eSize.setAttribute('aria-valuetext', counted(m.u, n));
         var headText = t('price.ty' + ({ vitrine: 'Vitrine', surmesure: 'Custom', ecommerce: 'Shop',
@@ -2267,7 +2269,15 @@
     // screen whose 8 cycles had started with the page. It moves by
     // transform and clip now (styles.css), and still only on screen.
     var skio = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
-      es.forEach(function (e) { e.target.classList.toggle('sk-run', e.isIntersecting && !e.target.classList.contains('sk-done')); });
+      es.forEach(function (e) {
+        e.target.classList.toggle('sk-run', e.isIntersecting && !e.target.classList.contains('sk-done'));
+        /* 2026-11-27: a lazy capture whose box is on screen is asked for now.
+           From 721px its unroll held it fully clipped until it loaded, and
+           Chromium does not fetch a lazy image it cannot see: Alliance,
+           AlmaFlow and Nomara stayed white frames at 1440 (the hold is gone
+           from styles.css too; this keeps any clip from starving the fetch). */
+        if (e.isIntersecting) { var i = e.target.querySelector('img.shot'); if (i && i.loading === 'lazy') i.loading = 'eager'; }
+      });
     }) : null;
     [].forEach.call(document.querySelectorAll('.proj .thumb img.shot'), function (img) {
       var box = img.closest('.thumb'); if (!box || (img.complete && img.naturalWidth)) return;

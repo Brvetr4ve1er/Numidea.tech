@@ -20,7 +20,7 @@ import { withCsp } from './lib/csp.mjs';
 import { withGtag } from './lib/gtag.mjs';
 import { esc, loadDicts } from './lib/i18n.mjs';
 import { AYN } from './lib/ayn.mjs';
-import { WORDMARK } from './lib/wordmark.mjs';
+import { LOCKUP } from './lib/wordmark.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const stamp = (readFileSync(join(ROOT, 'index.html'), 'utf8').match(/\?v=(\d+)/) || [, '1'])[1];
@@ -492,7 +492,7 @@ if(!e.viewTransition||!k||!/^(bordjsteel|almaflow)$/.test(k))return;var i=docume
 if(!i||!i.complete||!i.naturalWidth)return;i.style.viewTransitionName='case-shot';try{e.viewTransition.types.add('case');}catch(x){}e.viewTransition.finished.finally(function(){i.style.viewTransitionName='';});});</script>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/cinzel-700-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../hub/fonts/archivo-cond-900-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-mono-latin.woff2">
 <!-- The page change's opt-in (the stylesheet has it too), inline and first:
@@ -515,7 +515,7 @@ if(!i||!i.complete||!i.naturalWidth)return;i.style.viewTransitionName='case-shot
 <header class="hud">
   <div class="hud-bar">
   <nav class="bc" aria-label="${esc(ui('crumbNav'))}" ${T('ui.crumbNav', '-aria')}><ol>
-    <li><a href="../" class="hud-logo" aria-label="Numidea Labs">${WORDMARK}<span class="cursor" aria-hidden="true"></span></a></li>
+    <li><a href="../" class="hud-logo" aria-label="Numidea Labs">${LOCKUP}</a></li>
     <li aria-current="page"><span ${T('ui.crumb')}>${esc(ui('crumb'))}</span></li>
   </ol></nav>
   <nav class="hud-nav" aria-label="${esc(home('ui.navPrimary'))}" ${T('ui.navPrimary', '-aria')}>

@@ -84,6 +84,33 @@ const HEAD_TEXTS = [
   ['name', 'description', 'meta.desc'], ['property', 'og:title', 'meta.ogTitle'], ['property', 'og:description', 'meta.ogDesc'],
   ['property', 'og:image:alt', 'meta.ogAlt'], ['name', 'twitter:title', 'meta.ogTitle'], ['name', 'twitter:description', 'meta.twDesc'],
 ];
+/* The work cards in each language's order (2026-11-27, owner): the Arabic
+   page opens its Réalisations on Nomara, an Arabic-language site, then
+   Alliance, whose sites read Arabic too, as its hero plate did before the
+   hero left (PLATE_ORDER, git 2042e5d~1). French and English keep the
+   template's order, Bordj Steel first. The first card is the lead
+   (proj--lead) and takes the lead's image sizes; the one that was first
+   takes the cards'. The proof's logo row keeps the template order. */
+export const WORK_ORDER = { ar: ['nomara', 'alliance', 'bordjsteel', 'almaflow'] };
+const LEAD_SIZES = '(min-width:1920px) 820px, (min-width:860px) 49vw, (min-width:720px) 86vw, 91vw';
+const CARD_SIZES = '(min-width:1920px) 457px, (min-width:960px) 28vw, (min-width:720px) 44vw, 91vw';
+export function workOrder(html, lang) {
+  const order = WORK_ORDER[lang];
+  if (!order || !html.includes('<div class="work-grid">')) return html;
+  const re = /^([ \t]*)<article id="w-([a-z0-9-]+)" class="proj\b[\s\S]*?^\1<\/article>/gm;
+  const cards = [...html.matchAll(re)];
+  const by = Object.fromEntries(cards.map((m) => [m[2], m[0].slice(m[1].length)]));
+  if (cards.length !== order.length || order.some((c) => !by[c])) throw new Error(`index.html: the work cards are not ${order.join(', ')}, one <article id="w-…" class="proj"> each`);
+  const lead = (c) => by[c]
+    .replace(/(<article id="w-[a-z0-9-]+" class="proj\b[^"]*?)( proj--lead)?(\b[^"]*")/, (a, b, l, e) => b + ' proj--lead' + e)
+    .replace(/(<img class="shot"[^>]*\ssizes=")[^"]*(")/, `$1${LEAD_SIZES}$2`);
+  const card = (c) => by[c]
+    .replace(/ proj--lead\b/, '')
+    .replace(/(<img class="shot"[^>]*\ssizes=")[^"]*(")/, `$1${CARD_SIZES}$2`);
+  let k = 0;
+  return html.replace(re, (all, indent) => { const c = order[k]; return indent + (k++ === 0 ? lead(c) : card(c)); });
+}
+
 // the page folders that switch language in place (scene, legal), from MULTILINGUAL
 const SWITCHING = [...MULTILINGUAL].map((p) => dirname(p));
 
@@ -161,6 +188,7 @@ function relocate(html, lang, depth) {
  */
 export function bakeLang(html, lang, dict = loadDicts()[lang], { depth = lang === 'fr' ? 0 : 1, path = lang === 'fr' ? '' : lang + '/', ld = true, generated = GENERATED } = {}) {
   if (!LANGS.includes(lang)) throw new Error(`no such language: ${lang}`);
+  html = workOrder(html, lang);
   const missing = [];
   const need = (key) => { if (dict[key] == null) missing.push(key); return dict[key]; };
   // inner HTML, last node first so earlier offsets stay valid

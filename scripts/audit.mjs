@@ -214,6 +214,7 @@ const run=async(label,path,o={})=>{
   // elementsFromPoint, with pointer-events forced on, finds no layer at that
   // point). The layers go for axe's run; the painted contrast of the
   // vista's caption and everything near it is the sweep's job (real pixels).
+  // 2026-11-27: the vista left the home with the engraving language; this finds nothing now and is kept for older checkouts
   await p.evaluate(()=>{for(const l of document.querySelectorAll('.vista .v-l'))l.style.visibility='hidden'});
   const axr=await p.evaluate(async off=>{const r=await axe.run(document,{resultTypes:['violations','incomplete'],rules:Object.fromEntries(off.map(k=>[k,{enabled:false}]))});
     // each violation with its nodes (the selector and the markup), so a
@@ -399,7 +400,7 @@ const fallbackType=async(label,{theme,lang})=>{
           return [e.tagName.toLowerCase()+(typeof e.className==='string'&&e.className?'.'+e.className.split(' ')[0]:''),e.offsetHeight,e.getBoundingClientRect().top+scrollY<innerHeight];})});
     }
     // the heading's glyph case: lower-case letters with descenders ('p' drops below the line), small capitals
-    // (no descender: Cinzel's lower case) or capitals: it must be the same with the face and without (a heading
+    // (no descender: Cinzel's lower case, retired 2026-11-27; the titles are Archivo 900 capitals now) or capitals: it must be the same with the face and without (a heading
     // that lands as small capitals over a fallback's lower case is a visible swap, not only a reflow)
     out.hcase=await p.evaluate(()=>{const h=document.querySelector('h1');if(!h)return null;const cs=getComputedStyle(h);
       if(cs.textTransform==='uppercase')return 'capitals';

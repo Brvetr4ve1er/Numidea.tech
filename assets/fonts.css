@@ -25,10 +25,37 @@
    the sheet carried four copies of the same declaration.
    Fonts are OFL-1.1 (see assets/fonts/OFL.txt). */
 
-/* Cinzel 700 — latin-ext */
-/* home headings: the type system's display face (Cinzel stays the Lanterne's) */
+/* ---- the display faces ----
+   home headings: the type system's display face (Cinzel stays the Lanterne's).
+   2026-11-27 (the home becomes the Studio's sibling, "the machine room"):
+   the Archivo Condensed rule is amended in place (its latin range, so an
+   Arabic or Japanese glyph never asks for it), and the other display faces
+   join it, each declared ONCE and by URL, never copied (check.mjs fails a
+   duplicate file):
+     Archivo 900 (UI: buttons, tapes), moved here from assets/menu/menu.css
+       so the price guide, the cases, the 404 and the legal pages have it;
+       not preloaded (the menu figure keeps the bandwidth, #45)
+     NL Seal, the Studio's Japanese subset (夜 技 and ヌミディア・ラボ), on
+       aria-hidden seals and the footer's watermark only: fetched only where
+       one is drawn, never preloaded
+   Cinzel and Cinzel Decorative stay declared below for the image builders
+   (build-og.mjs, build-creative.mjs): no page on this sheet sets them any
+   more, so no visitor fetches them (the Lanterne keeps its own). */
 @font-face { font-family: "Archivo Condensed"; font-style: normal; font-weight: 900; font-display: swap;
-  src: url("../hub/fonts/archivo-cond-900-latin.woff2") format("woff2"); }
+  src: url("../hub/fonts/archivo-cond-900-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face{font-family:'Archivo';font-style:normal;font-weight:900;font-display:swap;src:url("fonts/archivo-900-latin.woff2") format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Archivo';font-style:normal;font-weight:900;font-display:swap;src:url("fonts/archivo-900-latin-ext.woff2") format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+/* The prices group their digits with a narrow no-break space (U+202F), and
+   neither Archivo face has one: it fell to a system face at a hair's width,
+   and "180 000" read "180000". This one character is drawn from a local
+   sans, scaled up: no download (2026-11-27). */
+@font-face{font-family:'Archivo Condensed';font-weight:900;src:local("Arial"), local("Liberation Sans"), local("Arimo"), local("DejaVu Sans");unicode-range:U+202F;size-adjust:125%}
+@font-face{font-family:'Archivo';font-weight:900;src:local("Arial"), local("Liberation Sans"), local("Arimo"), local("DejaVu Sans");unicode-range:U+202F;size-adjust:110%}
+@font-face{font-family:'NL Seal';font-style:normal;font-weight:900;font-display:swap;src:url("../hub/fonts/noto-sans-jp-700-900-studio.woff2") format('woff2');unicode-range:U+30A1-30A3,U+30C7,U+30CC,U+30DC,U+30DF,U+30E9,U+30FB,U+591C,U+6280}
+/* (2026-11-27: Reem Kufi 700, the Studio's Arabic DISPLAY face, is NOT declared here: it would add 9 KB to the Arabic page, which audit.mjs holds at 232.5 kB of fonts; the Arabic headings stay on Plex Arabic, as the menu's threads shipped them) */
+
+/* Cinzel 700 — latin-ext */
 @font-face {
   font-family: 'Cinzel';
   font-style: normal;
@@ -269,3 +296,14 @@
 @font-face{font-family:"Geist Fallback";font-weight:700;src:local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Arimo Bold"), local("Arimo-Bold"), local("Helvetica Neue Bold"), local("HelveticaNeue-Bold"), local("DejaVu Sans Bold"), local("DejaVuSans-Bold");size-adjust:101.70%;ascent-override:98.82%;descent-override:29.00%;line-gap-override:0.00%}
 @font-face{font-family:"Geist Mono Fallback";src:local("Courier New"), local("Liberation Mono"), local("Cousine Regular"), local("Cousine"), local("DejaVu Sans Mono");size-adjust:99.98%;ascent-override:100.52%;descent-override:29.50%;line-gap-override:0.00%}
 @font-face{font-family:"IBM Plex Sans Arabic Fallback";src:local("Arial"), local("Helvetica Neue"), local("Liberation Sans"), local("DejaVu Sans");size-adjust:89.86%;ascent-override:120.74%;descent-override:46.18%;line-gap-override:0.00%}
+/* 2026-11-27: the display faces' fallbacks, in place of Cinzel's as the
+   headings' (Cinzel's two above stay for the image builders). Archivo 900 on
+   Arial Bold (Liberation Sans Bold, Arimo): its capitals run 107.2% of the
+   fallback's on the French offer title (106.6% English, 108.5% on the six
+   section titles), measured with canvas measureText over this page's own
+   copy in capitals; ascent and descent are Archivo's own (878/210 per 1000,
+   typo metrics), divided by the size. Archivo Condensed on the same faces
+   at 72.5% (its figures and the price strings; no Arial Narrow on the
+   measuring machine). Capitals in both, so the glyph case never swaps. */
+@font-face{font-family:"Archivo Fallback";font-weight:900;src:local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Arimo Bold"), local("Arimo-Bold");size-adjust:107.2%;ascent-override:81.90%;descent-override:19.59%;line-gap-override:0.00%}
+@font-face{font-family:"Archivo Condensed Fallback";font-weight:900;src:local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Arimo Bold"), local("Arimo-Bold");size-adjust:72.5%;ascent-override:121.10%;descent-override:28.97%;line-gap-override:0.00%}

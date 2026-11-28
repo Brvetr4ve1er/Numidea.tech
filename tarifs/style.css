@@ -389,3 +389,29 @@ html[dir="rtl"] .t-pl::after{text-align:start;
   #pricing .market>.mk-day{flex:1 1 0;min-width:0;margin-bottom:0}
   #pricing .market>.mk-note{flex:1 1 0;min-width:0;align-self:center;margin:var(--s-5) 0 0}
 }
+
+/* ============================================================
+   THE MACHINE ROOM (2026-11-27): the guide follows the home (assets/
+   styles.css, the same date). The title is Archivo 900 capitals; the five
+   planche heads are the home's: an index tag ("01 / 05"), the label, then a
+   ruler (2px rule, 8px ticks, a taller one every 64px), no Cinzel numeral
+   and no "Pl." label; the jump row's chips and the market table go square
+   with 2px edges.
+   ============================================================ */
+h1.sec,html[dir="ltr"] h1.sec{font-family:var(--f-disp);font-weight:900;text-transform:uppercase;letter-spacing:0;line-height:var(--lh-disp);font-size:var(--t-h2-xl);max-width:none}
+h1.sec em,html[dir="ltr"] h1.sec em{font-family:inherit;color:var(--crimson-text)}
+html[dir="rtl"] h1.sec{font-weight:700;text-transform:none;line-height:1.3}
+.t-pl{align-items:flex-end;letter-spacing:var(--tr-label)}
+.t-pl::before,html[dir="rtl"] .t-pl::before{content:counter(tpl,decimal-leading-zero) " / 05";content:counter(tpl,decimal-leading-zero) " / 05" / "";
+  display:inline-flex;align-items:center;flex:none;height:28px;padding:0 10px;margin:0;
+  background:var(--ice);color:var(--void);-webkit-text-stroke:0;
+  font-family:var(--font-mono);font-weight:700;font-size:var(--t-label);line-height:1;letter-spacing:.08em;direction:ltr;unicode-bidi:isolate}
+.t-pl::after,html[dir="rtl"] .t-pl::after{content:"";height:14px;margin-bottom:2px;padding:0;background:var(--ruler)}
+html[dir="rtl"] .t-pl::after{transform:scaleX(-1)}
+.t-jump a{border:2px solid var(--edge);border-radius:0;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.08em;text-transform:uppercase}
+.t-jump a[aria-current="true"]{background:var(--ice);color:var(--void)}
+html[dir="rtl"] .t-jump a{letter-spacing:0;text-transform:none}
+.mk-table{border:2px solid var(--edge);border-radius:0}
+.mk-table thead th{background:var(--plum);font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--ice)}
+.mk-table td{font-variant-numeric:tabular-nums}
+@media (max-width:719px){.mk-table tbody tr{border:2px solid var(--edge);border-radius:0}}

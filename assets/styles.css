@@ -13,15 +13,18 @@
    either links that sheet (the home does not yet: until then the stacks fall back to Archivo / Arial). ---- */
 html[lang="ar"]{--fs-micro:.8125rem}
 :root{
-  --f-cond:"Archivo Condensed","Archivo","Arial Narrow",sans-serif;
-  --f-wide:"Archivo Expanded","Archivo","Arial Black",sans-serif;
+  --f-cond:"Archivo Condensed","Archivo Condensed Fallback","Archivo","Arial Narrow",sans-serif;
+  /* 2026-11-27: UI is Archivo 900, the menu's slab face (assets/fonts.css), the hub's --f-disp value; --f-wide falls to it (no Expanded file on the home, for budget) */
+  --f-disp:"Archivo","Archivo Fallback","Arial Black",sans-serif;
+  --f-wide:var(--f-disp);
+  --f-seal:"NL Seal","NL Mark",sans-serif;
   --fs-micro:.75rem;--fs-label:.75rem;--fs-small:.875rem;--fs-body:1rem;--fs-lead:1.25rem;--fs-h4:1.5rem;
   --fs-h3:clamp(1.75rem,1.45rem + .9vw,2.375rem);--fs-h2:clamp(2.5rem,1.7rem + 2.8vw,4.25rem);--fs-h1:clamp(3.5rem,2.2rem + 5vw,7rem);
   --fs-index:clamp(3.5rem,2rem + 6vw,8rem);
   --lh-disp:.9;--lh-head:1;--lh-ui:1.2;--lh-body:1.55;
   --tr-disp:0;--tr-ui:.04em;--tr-label:.14em;
 }
-:root:lang(ar){--f-cond:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;--f-wide:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;--lh-disp:1.25;--tr-ui:0;--tr-label:0}
+:root:lang(ar){--f-cond:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;--f-wide:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;--f-disp:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;--lh-disp:1.25;--tr-ui:0;--tr-label:0}
 :root{
   /* motion: one tempo for the whole site, 90 BPM, the pulse the radio's
      four tracks share (85 to 92 BPM). A beat is 667 ms; every duration,
@@ -2126,79 +2129,36 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
    currentColor (same rule as .ill: one file, every palette). Masks are only
    assigned under .lz-on — app.js adds it a screen ahead of the viewport —
    or when scripts never ran (no [data-lz] on <html>). */
-:is(.lz-on,html:not([data-lz]) .lz) .v-far .v-ink{-webkit-mask-image:url(illus/vista-far.webp);mask-image:url(illus/vista-far.webp)}
-:is(.lz-on,html:not([data-lz]) .lz) .v-mid .v-ink{-webkit-mask-image:url(illus/vista-mid.webp);mask-image:url(illus/vista-mid.webp)}
-:is(.lz-on,html:not([data-lz]) .lz) .v-near .v-ink{-webkit-mask-image:url(illus/vista-near.webp);mask-image:url(illus/vista-near.webp)}
-:is(.lz-on,html:not([data-lz]) .lz) .fd-ink{-webkit-mask-image:url(illus/dunes.webp);mask-image:url(illus/dunes.webp)}
 
-.v-ink,.pi>i,.fd-ink{display:block;background:currentColor;
+.pi>i{display:block;background:currentColor;
   -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
   -webkit-mask-size:100% 100%;mask-size:100% 100%;
   -webkit-mask-source-type:luminance;mask-mode:luminance}
 
 /* the small engraved caption every plate carries */
-.pl-cap{position:absolute;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
-  color:var(--muted);white-space:nowrap;pointer-events:none;
-  /* a chip: the caption sits on engraving, and line work behind label-size
-     type takes it under 4.5:1 wherever the hatching is dense. The page
-     ground at 70% with the engraving blurred beneath, as the hero plate's
-     own caption has, so the caption reads and the plate shows through. */
-  background:color-mix(in srgb,var(--void) 70%,transparent);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:4px 8px;border-radius:3px}
-html[dir="rtl"] .pl-cap{letter-spacing:0;font-family:var(--font-ar-body)}
 
 /* ---------- Plate I — the vista under the offer ----------
    Full-bleed, three depth layers. Each layer is wider than the viewport and
    reaches below the frame by more than its parallax cap, so no drift can
    ever bare an edge. Nearer layers carry darker fills — aerial perspective —
-   so they read as standing in front of, not printed over, the far ridge. */
-.vista{position:relative;z-index:1;height:clamp(240px,34vw,500px);overflow:hidden;
-  width:100vw;margin-inline:calc(50% - 50vw);margin-top:calc(-1 * var(--s-7));pointer-events:none;
-  -webkit-mask-image:linear-gradient(transparent,#000 22%,#000 82%,transparent);mask-image:linear-gradient(transparent,#000 22%,#000 82%,transparent)}
-.v-sky{position:absolute;inset:0 0 auto;width:100%;height:70%;color:var(--muted)}
-.v-sky .tw{fill:currentColor;opacity:.55}
-.v-sky .v-moon{fill:var(--crimson-text);opacity:.55}
-.v-sky .v-const{fill:none;stroke:var(--teal-text);stroke-width:1;opacity:.45;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1333ms var(--m-ease-enter) var(--m-beat)}   /* two beats, after one */
-.v-sky .v-const-s{fill:var(--teal-text);opacity:.8}
-.lz-on .v-sky .v-const,html:not([data-lz]) .v-sky .v-const{stroke-dashoffset:0}
-.v-l{position:absolute;bottom:-60px;width:max(calc(100% + 80px),860px);aspect-ratio:1600/679;
-  left:50%;margin-left:calc(max(calc(100% + 80px),860px) / -2)}
-.v-l>i{position:absolute;inset:0;display:block}
-.v-mid{width:max(calc(82% + 40px),700px);margin-left:0;left:auto;right:-40px}
+   so they read as standing in front of, not printed over, the far ridge. */   /* two beats, after one */
 /* each fill is clipped to its own layer's skyline, traced from the engraving */
-.v-far .v-fill{clip-path:polygon(0.00% 61.32%,0.63% 61.02%,1.25% 60.72%,1.88% 60.43%,2.50% 59.98%,3.13% 59.98%,3.75% 60.28%,4.38% 60.87%,5.00% 60.87%,5.63% 60.87%,6.25% 61.32%,6.88% 61.62%,7.50% 61.62%,8.13% 61.91%,8.75% 61.91%,9.38% 61.47%,10.00% 60.28%,10.63% 59.53%,11.25% 59.53%,11.88% 59.68%,12.50% 59.98%,13.13% 59.83%,13.75% 58.64%,14.37% 57.75%,15.00% 57.45%,15.63% 56.56%,16.25% 55.66%,16.88% 55.66%,17.50% 55.96%,18.13% 56.41%,18.75% 57.00%,19.38% 58.05%,20.00% 57.60%,20.63% 57.60%,21.25% 57.75%,21.88% 57.60%,22.50% 57.45%,23.13% 55.37%,23.75% 55.37%,24.38% 55.52%,25.00% 53.73%,25.62% 52.69%,26.25% 52.69%,26.88% 52.69%,27.50% 52.99%,28.13% 53.13%,28.75% 53.43%,29.38% 53.43%,30.00% 53.58%,30.63% 54.47%,31.25% 55.07%,31.87% 54.47%,32.50% 53.58%,33.13% 53.13%,33.75% 53.13%,34.38% 52.84%,35.00% 52.84%,35.63% 52.84%,36.25% 52.84%,36.88% 53.43%,37.50% 53.88%,38.13% 54.77%,38.75% 54.62%,39.38% 54.77%,40.00% 55.37%,40.63% 55.96%,41.25% 55.81%,41.88% 55.07%,42.50% 55.07%,43.13% 55.22%,43.75% 55.52%,44.38% 55.52%,45.00% 55.66%,45.63% 56.11%,46.25% 57.75%,46.88% 57.60%,47.50% 57.30%,48.13% 57.45%,48.75% 57.45%,49.38% 57.45%,50.00% 57.60%,50.63% 58.34%,51.25% 58.94%,51.88% 59.24%,52.50% 59.98%,53.13% 59.68%,53.75% 58.64%,54.37% 58.49%,55.00% 58.49%,55.63% 58.49%,56.25% 58.64%,56.88% 59.53%,57.50% 59.68%,58.13% 59.98%,58.75% 59.98%,59.38% 58.94%,60.00% 57.90%,60.62% 57.90%,61.25% 58.05%,61.88% 58.34%,62.50% 57.30%,63.13% 56.85%,63.75% 56.56%,64.38% 56.56%,65.00% 56.71%,65.63% 56.11%,66.25% 55.66%,66.88% 54.92%,67.50% 54.47%,68.13% 54.33%,68.75% 54.33%,69.38% 55.96%,70.00% 56.26%,70.63% 56.71%,71.25% 56.26%,71.88% 56.26%,72.50% 55.07%,73.13% 55.07%,73.75% 55.22%,74.38% 55.66%,75.00% 56.11%,75.63% 56.71%,76.25% 57.15%,76.88% 58.19%,77.50% 58.49%,78.13% 58.64%,78.75% 59.09%,79.38% 59.09%,80.00% 59.09%,80.63% 59.24%,81.25% 58.94%,81.88% 58.64%,82.50% 57.60%,83.13% 57.45%,83.75% 57.90%,84.38% 58.19%,85.00% 57.90%,85.63% 57.30%,86.25% 57.30%,86.88% 58.19%,87.50% 58.79%,88.13% 58.79%,88.75% 59.24%,89.38% 58.94%,90.00% 58.94%,90.63% 58.34%,91.25% 57.75%,91.88% 57.75%,92.50% 58.05%,93.13% 59.24%,93.75% 59.83%,94.38% 60.43%,95.00% 61.17%,95.63% 61.17%,96.25% 61.17%,96.88% 61.02%,97.50% 60.43%,98.13% 60.13%,98.75% 60.13%,99.38% 59.98%,100.00% 60.13%,100% 100%,0% 100%)}
-.v-mid .v-fill{clip-path:polygon(0.00% 100.00%,0.63% 100.00%,1.25% 100.00%,1.88% 100.00%,2.50% 100.00%,3.13% 100.00%,3.75% 98.52%,4.38% 98.22%,5.00% 98.08%,5.63% 97.78%,6.25% 97.63%,6.88% 97.18%,7.50% 96.88%,8.13% 96.59%,8.75% 96.44%,9.38% 95.99%,10.00% 95.55%,10.63% 95.10%,11.25% 94.95%,11.88% 94.80%,12.50% 94.35%,13.13% 94.06%,13.75% 93.91%,14.37% 93.46%,15.00% 93.16%,15.63% 92.87%,16.25% 92.57%,16.88% 92.12%,17.50% 91.68%,18.13% 91.08%,18.75% 90.78%,19.38% 90.49%,20.00% 90.19%,20.63% 89.74%,21.25% 89.30%,21.88% 88.85%,22.50% 88.40%,23.13% 88.10%,23.75% 87.96%,24.38% 87.96%,25.00% 87.96%,25.62% 87.66%,26.25% 87.51%,26.88% 87.51%,27.50% 87.36%,28.13% 87.21%,28.75% 87.21%,29.38% 87.21%,30.00% 87.21%,30.63% 87.21%,31.25% 87.06%,31.87% 86.91%,32.50% 86.91%,33.13% 86.62%,33.75% 86.02%,34.38% 85.43%,35.00% 85.28%,35.63% 84.83%,36.25% 84.68%,36.88% 84.38%,37.50% 84.38%,38.13% 84.38%,38.75% 84.24%,39.38% 83.94%,40.00% 83.64%,40.63% 83.64%,41.25% 83.49%,41.88% 83.19%,42.50% 82.75%,43.13% 82.30%,43.75% 81.85%,44.38% 81.56%,45.00% 80.96%,45.63% 80.52%,46.25% 79.92%,46.88% 79.62%,47.50% 79.47%,48.13% 79.18%,48.75% 79.03%,49.38% 78.88%,50.00% 78.88%,50.63% 64.59%,51.25% 64.44%,51.88% 61.77%,52.50% 60.28%,53.13% 60.43%,53.75% 60.58%,54.37% 61.02%,55.00% 61.32%,55.63% 62.06%,56.25% 61.32%,56.88% 60.43%,57.50% 60.43%,58.13% 59.83%,58.75% 59.98%,59.38% 61.62%,60.00% 61.62%,60.62% 62.66%,61.25% 44.80%,61.88% 44.21%,62.50% 42.72%,63.13% 40.78%,63.75% 39.15%,64.38% 37.36%,65.00% 35.87%,65.63% 34.24%,66.25% 32.00%,66.88% 30.37%,67.50% 28.88%,68.13% 27.54%,68.75% 25.90%,69.38% 23.97%,70.00% 22.03%,70.63% 20.40%,71.25% 19.06%,71.88% 18.76%,72.50% 18.76%,73.13% 18.76%,73.75% 19.06%,74.38% 20.10%,75.00% 21.88%,75.63% 23.37%,76.25% 25.16%,76.88% 27.24%,77.50% 29.03%,78.13% 30.52%,78.75% 32.15%,79.38% 34.38%,80.00% 35.87%,80.63% 37.66%,81.25% 39.30%,81.88% 41.08%,82.50% 42.72%,83.13% 44.35%,83.75% 44.95%,84.38% 52.99%,85.00% 51.05%,85.63% 51.05%,86.25% 51.35%,86.88% 53.13%,87.50% 53.58%,88.13% 52.99%,88.75% 51.94%,89.38% 51.94%,90.00% 52.99%,90.63% 53.73%,91.25% 57.15%,91.88% 57.30%,92.50% 58.05%,93.13% 56.71%,93.75% 56.26%,94.38% 56.56%,95.00% 55.66%,95.63% 55.66%,96.25% 55.96%,96.88% 59.24%,97.50% 59.68%,98.13% 69.65%,98.75% 79.62%,99.38% 100.00%,100.00% 100.00%,100% 100%,0% 100%)}
-.v-near .v-fill{clip-path:polygon(0.00% 19.35%,0.63% 19.65%,1.25% 15.19%,1.88% 14.44%,2.50% 14.74%,3.13% 15.49%,3.75% 14.30%,4.38% 13.55%,5.00% 13.40%,5.63% 13.55%,6.25% 14.74%,6.88% 15.93%,7.50% 17.42%,8.13% 15.63%,8.75% 15.49%,9.38% 14.89%,10.00% 14.30%,10.63% 14.44%,11.25% 15.34%,11.88% 19.95%,12.50% 19.80%,13.13% 19.95%,13.75% 26.35%,14.37% 26.80%,15.00% 27.84%,15.63% 36.47%,16.25% 37.81%,16.88% 39.59%,17.50% 41.23%,18.13% 41.53%,18.75% 41.53%,19.38% 43.46%,20.00% 42.72%,20.63% 42.27%,21.25% 42.12%,21.88% 42.12%,22.50% 42.72%,23.13% 45.84%,23.75% 52.39%,24.38% 53.13%,25.00% 54.03%,25.62% 54.18%,26.25% 52.24%,26.88% 51.20%,27.50% 50.90%,28.13% 60.28%,28.75% 55.37%,29.38% 55.37%,30.00% 59.53%,30.63% 56.71%,31.25% 53.13%,31.87% 53.13%,32.50% 55.81%,33.13% 55.07%,33.75% 61.47%,34.38% 60.28%,35.00% 58.79%,35.63% 57.90%,36.25% 65.63%,36.88% 65.19%,37.50% 64.89%,38.13% 64.30%,38.75% 64.30%,39.38% 68.46%,40.00% 68.46%,40.63% 71.44%,41.25% 72.48%,41.88% 68.76%,42.50% 66.08%,43.13% 63.85%,43.75% 63.10%,44.38% 63.10%,45.00% 69.95%,45.63% 69.21%,46.25% 68.76%,46.88% 68.76%,47.50% 76.50%,48.13% 76.50%,48.75% 75.90%,49.38% 75.46%,50.00% 77.24%,50.63% 77.24%,51.25% 79.33%,51.88% 76.94%,52.50% 75.90%,53.13% 79.33%,53.75% 75.75%,54.37% 75.16%,55.00% 75.16%,55.63% 85.72%,56.25% 86.02%,56.88% 87.21%,57.50% 88.25%,58.13% 85.28%,58.75% 81.85%,59.38% 81.85%,60.00% 80.52%,60.62% 78.28%,61.25% 78.28%,61.88% 68.46%,62.50% 67.12%,63.13% 66.97%,63.75% 67.12%,64.38% 69.65%,65.00% 74.56%,65.63% 70.69%,66.25% 70.69%,66.88% 64.30%,67.50% 55.52%,68.13% 55.52%,68.75% 55.66%,69.38% 56.56%,70.00% 58.05%,70.63% 60.87%,71.25% 61.77%,71.88% 60.13%,72.50% 58.79%,73.13% 58.94%,73.75% 60.58%,74.38% 62.21%,75.00% 50.60%,75.63% 50.60%,76.25% 52.54%,76.88% 52.39%,77.50% 50.90%,78.13% 48.82%,78.75% 41.23%,79.38% 40.34%,80.00% 39.89%,80.63% 39.89%,81.25% 39.89%,81.88% 38.70%,82.50% 37.51%,83.13% 36.77%,83.75% 36.47%,84.38% 36.47%,85.00% 36.47%,85.63% 35.13%,86.25% 33.94%,86.88% 26.94%,87.50% 26.05%,88.13% 25.46%,88.75% 19.95%,89.38% 19.80%,90.00% 19.95%,90.63% 15.19%,91.25% 14.59%,91.88% 14.44%,92.50% 14.44%,93.13% 15.04%,93.75% 15.78%,94.38% 14.15%,95.00% 12.96%,95.63% 12.36%,96.25% 11.91%,96.88% 12.06%,97.50% 12.81%,98.13% 14.89%,98.75% 14.44%,99.38% 14.59%,100.00% 15.49%,100% 100%,0% 100%)}
-.v-fill{background:var(--void)}
-.v-far .v-fill{background:color-mix(in srgb,var(--navy) 62%,var(--void))}
-.v-mid .v-fill{background:color-mix(in srgb,var(--navy) 30%,var(--void))}
-.v-far .v-ink{color:var(--vista-far)}
-.v-mid .v-ink{color:var(--vista-mid)}
-.v-near .v-ink{color:var(--vista-near)}
-.v-near{bottom:-150px}
-.v-cap{bottom:24%;inset-inline-start:max(var(--gutter),calc(50vw - var(--max) / 2 + var(--gutter)));z-index:2}
 /* At 960px and below the vista is not shown (owner decision, 2026-10-26):
    its three masks are 416 KB, and it sits inside the loader's lookahead, so
    on a phone they arrived before any scroll. Under display:none the
    observer never reports it, .lz-on is never set, and with scripts off the
    masks are not fetched either. Phones keep plate VI, under the footer.
    The seam it used to cover is handled with the proof, further down. */
-@media (max-width:960px){.vista{display:none}}
 
 /* ---------- shared: plates inside sections ---------- */
 #work,#founder,#faq{position:relative;isolation:isolate}
 
-/* Plate V — the erg under the footer */
-.foot-dunes{position:relative;z-index:1;height:clamp(150px,22vw,330px);overflow:clip;pointer-events:none;margin-top:var(--s-7)}
-.fd-ink{position:absolute;left:50%;bottom:-30px;width:max(calc(100% + 60px),900px);aspect-ratio:1500/596;
-  margin-left:calc(max(calc(100% + 60px),900px) / -2);color:var(--crimson-text);opacity:.32}
-.foot-dunes .pl-cap{bottom:14px;inset-inline-end:max(var(--gutter),calc(50vw - var(--max) / 2 + var(--gutter)));z-index:2}   /* over the fade below, not under it (it painted at 1.9:1) */
-.foot-dunes::after{content:"";position:absolute;inset:auto 0 0;height:40%;background:linear-gradient(transparent,var(--void))}
+/* Plate V — the erg under the footer */   /* over the fade below, not under it (it painted at 1.9:1) */
 
 
 /* the plates hold still: the coins' turn, the lantern's swing and glow, the
    beam's sweep and the sky's twinkle are gone. The constellation still
    draws on once, as the icons do. */
-@media (prefers-reduced-motion:reduce){.v-sky .v-const{transition:none}}
 
 /* ═══ animated icons (.ai) ═══
    24×24, stroke 1.5, currentColor — the service-mark grammar. Every stroked
@@ -2237,9 +2197,7 @@ html[dir="rtl"] .pl-cap{letter-spacing:0;font-family:var(--font-ar-body)}
 .md-card .ai-corner{top:var(--s-5);inset-inline-end:var(--s-5);width:24px;height:24px}
 .tier-pop .ai-corner{color:var(--crimson-text)}
 
-@media print{
-  .vista,.foot-dunes{display:none!important}
-  .ai .p{stroke-dashoffset:0!important}
+@media print{  .ai .p{stroke-dashoffset:0!important}
 }
 
 /* ═══ visual pass, Oct 2026 ═══ */
@@ -2409,10 +2367,7 @@ html[dir="rtl"]{--t-label:var(--fs-micro);--t-small:var(--fs-small);--t-body:var
 @media (min-width:961px){:root,html[dir="rtl"]{--t-body:clamp(1rem,.9rem + .25vw,1.25rem)}}
 
 /* labels */
-.kicker,.tag,.t-pop,.md-tag,.md-sub,.eo-k,.est-hint,
-.pl-cap,.v-cap,.channels dt,.field label,
-.est-field legend,.est-field>label,.est-lab,.mk-table caption,.mk-table thead th,.team-h,
-.t-time,.eo-time,.fd-role{
+.kicker,.tag,.t-pop,.md-tag,.md-sub,.eo-k,.est-hint,.channels dt,.field label,.est-field legend,.est-field>label,.est-lab,.mk-table caption,.mk-table thead th,.team-h,.t-time,.eo-time,.fd-role{
   font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);
   text-transform:uppercase;font-weight:400}
 .pill{font-size:var(--t-label);letter-spacing:.02em}
@@ -2505,8 +2460,6 @@ section.band::after,section.band+section.band::after{
    of pure picture between content; both are now an interlude, not a stop.
    The vista's foot runs under the proof (its mask has faded by then), so
    the hero's copy and "01 Preuves" are a section's padding apart, not two. */
-.vista{height:clamp(120px,15vw,210px);margin-bottom:calc(-1 * var(--s-7))}
-.foot-dunes{height:clamp(110px,14vw,210px)}
 
 /* ---- work ---- */
 
@@ -2617,7 +2570,7 @@ section.band::after,section.band+section.band::after{
 @media (prefers-reduced-motion:reduce){.m-contact,.m-contact.on{transition:none}}
 @media print{.m-contact{display:none!important}}
 /* on A4 (794 px) the tablet band laid the Aperçu's and the form's two buttons side by side, past the page: they stack on paper */
-@media print{.prev-actions,.form-acts{flex-wrap:wrap!important}.prev-actions .btn,.form-acts .btn,.form-acts button{max-width:100%;white-space:normal}.dune-strip{display:none!important}}
+@media print{.prev-actions,.form-acts{flex-wrap:wrap!important}.prev-actions .btn,.form-acts .btn,.form-acts button{max-width:100%;white-space:normal}}
 @media print{.proj .actions{flex-wrap:wrap}.proj .actions a{max-width:100%;overflow-wrap:anywhere;white-space:normal}}   /* a delivered site's link prints its address after it: it wraps inside the page box (2026-11-24) */
 
 /* ---- Client voices (scripts/build-voices.mjs; absent until a real quote exists) ---- */
@@ -2985,8 +2938,6 @@ html[dir="rtl"] .channels dt{font-family:var(--font-ar-body)}
   .footer nav a{min-height:44px;font-size:var(--t-small)}
   .footer .meta>span:first-child,.footer .meta-legal,.footer .meta-end,.footer .meta>span:nth-child(2){font-family:var(--font-body);font-size:var(--t-small)}
 }
-.foot-dunes .pl-cap{background:var(--void);-webkit-backdrop-filter:none;backdrop-filter:none;font-family:var(--font-body);font-size:var(--t-small);letter-spacing:0;text-transform:none;color:var(--muted)}
-.v-cap{font-family:var(--font-body);font-size:var(--t-small);letter-spacing:0;text-transform:none}
 
 /* the price section's head is the other sections' (the heading on six tracks,
    the lead on the last five): its own #pricing>* rule spanned both */
@@ -3175,8 +3126,7 @@ html[dir="rtl"] #services .svc-grid>.svc-row h3::before{text-align:right}
    ends, then the ruled row, so the logos no longer stand on the engraving's
    foot. On a phone the four marks share one row (a quarter of the 2x2 grid's
    height); the plate and the rows below show the same four captures, so the
-   marks stay small. */
-.vista{margin-bottom:0;height:clamp(120px,10vw,144px)}   /* 144 at 1440 (was 172): the proof line ends above 900 on a 1440x900 screen (home-07) */
+   marks stay small. */   /* 144 at 1440 (was 172): the proof line ends above 900 on a 1440x900 screen (home-07) */
 @media (max-width:959px){
   main.wrap>section.proof{gap:var(--s-3);padding-block:var(--s-4)}
   .cl-row{display:flex;justify-content:space-between;align-items:center;width:100%;gap:var(--s-1)}
@@ -3250,12 +3200,6 @@ html[dir="rtl"] .prev-paid{gap:var(--s-2)}
 }
 
 /* ---- set piece 2: the strip, then the founder's panel ---- */
-.dune-strip{position:relative;z-index:1;height:clamp(72px,8vw,112px);margin:calc(-1 * var(--s-5)) calc(50% - 50vw) 0;overflow:clip;pointer-events:none}
-.ds-ink{display:block;position:absolute;inset:0 -30px;background:var(--crimson-text);opacity:.4;transform:scaleX(-1);
-  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% auto;mask-size:100% auto;-webkit-mask-position:50% 63%;mask-position:50% 63%;
-  -webkit-mask-source-type:luminance;mask-mode:luminance}
-:is(.lz-on,html:not([data-lz]) .lz) .ds-ink{-webkit-mask-image:url(illus/dunes.webp);mask-image:url(illus/dunes.webp)}
-.dune-strip::after{content:"";position:absolute;inset:auto 0 0;height:60%;background:linear-gradient(transparent,var(--panel))}
 main.wrap>#founder.band{padding-top:var(--s-7)}
 main.wrap>#founder.band::after{background:var(--panel);border-bottom:1px solid var(--hairline)}
 
@@ -3305,7 +3249,6 @@ html[dir="rtl"] .fdp-cap{font-family:var(--font-ar-body);letter-spacing:0;text-t
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* ---- the vista starts below the offer, not under its foot ---- */
-@media (min-width:961px){.vista{margin-top:0}}
 
 /* ---- the proof: one mono small-cap line, then the marks, on a dimension rule ---- */
 .proof-line{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;line-height:1.7;color:var(--muted)}
@@ -3342,10 +3285,6 @@ main.wrap>section.proof::before{content:"";position:absolute;inset:0 0 auto;heig
 .echip:has(input:focus-visible){outline-color:var(--crimson)}
 
 /* ---- the founder's panel: the dunes' strip turns up on a phone, at full ink, cropped on the caravan ---- */
-@media (max-width:720px){
-  .dune-strip{height:104px}
-  .ds-ink{opacity:.8;-webkit-mask-size:205% auto;mask-size:205% auto;-webkit-mask-position:81% 57%;mask-position:81% 57%}
-}
 
 /* ---- the offer on a phone: the lede without the founder's sentence (the founder section says it) ---- */
 @media (max-width:720px){.offer-who{display:none}}
@@ -3447,11 +3386,7 @@ html[dir="rtl"] main:has(>#work)>section:not(.offer,.proof)>.kicker::after{align
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* ---- on a phone Gravure I stands under the offer as a strip ---- */
-@media (max-width:960px){
-  .vista{display:block;height:128px;margin-top:0;margin-bottom:var(--s-2)}
-  .vista .v-near{display:none}   /* no mask is fetched for a layer that is not rendered */
-  .vista .v-cap{bottom:12px}
-  .vista .v-l{width:960px;margin-left:-480px}
+@media (max-width:960px){   /* no mask is fetched for a layer that is not rendered */
 }
 
 /* ---- the work cards: one paragraph, one link treatment ---- */
@@ -3499,7 +3434,6 @@ html[dir="rtl"] main:has(>#work)>section:not(.offer,.proof)>.kicker::after{align
 }
 
 /* ---- plate captions: one step stronger, on the engraving's chip ---- */
-.pl-cap,.v-cap{color:var(--body-strong)}
 
 /* ═══════════════════════════════════════════════════════════════════════
    FLEET 7 / ROUND 4 — captures as one set, the hero's foot on one row, the
@@ -3829,14 +3763,10 @@ html.menu-open{overscroll-behavior:none}   /* (set with the menu, app.js: a :has
 /* ---- the proof and Gravure I on a phone ---- */
 @media (max-width:720px){
   main.wrap>section.proof{padding-block:var(--s-3)}
-  .vista{height:104px;margin-bottom:0}
 }
 
 
 /* ---- a phone on its side: Gravure I, shorter ---- */
-@media (max-height:560px) and (min-width:640px) and (max-width:1099px){
-  .vista{height:88px}
-}
 
 /* ---- the Aperçu: three lines, then the amount and the action; the five steps behind a button ---- */
 .ptl-more{display:none}
@@ -4005,9 +3935,7 @@ html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
 }
 
 /* ---- the founder ---- */
-@media (max-width:720px){
-  .dune-strip{height:72px}
-  main.wrap>#founder.band{padding-top:var(--s-6)}
+@media (max-width:720px){  main.wrap>#founder.band{padding-top:var(--s-6)}
   #founder .founder-card{padding-top:var(--s-4)}
   .fd-top{gap:var(--s-3);margin-bottom:var(--s-3)}
   .fd-aside .fd-plate{display:none}   /* the dune strip above is the section's engraving; this one's 85 KB is not fetched */
@@ -4056,7 +3984,6 @@ html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
   .footer-top{margin-bottom:var(--s-3);gap:var(--s-3)}
   .footer nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 var(--s-4)}
   .footer nav a{min-height:44px}
-  .foot-dunes{height:88px}
 }
 
 /* ---- tablet: two columns where the text has the room ---- */
@@ -4099,7 +4026,6 @@ html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
   .channels{margin-top:var(--s-5)}
   .channels .ch{grid-template-columns:minmax(0,1fr);gap:var(--s-1)}
   .form-acts{flex-wrap:nowrap}
-  .dune-strip{height:88px}
 }
 /* the founder's name never splits across two lines in the offer's lede on a tablet or a phone on its side (Arabic: "Yasser" / "Hamisse،") */
 .offer-lede bdi{white-space:nowrap}
@@ -4115,13 +4041,14 @@ html[dir="rtl"] main:has(>#work)>section:not(.offer,.proof)>.kicker::before{font
    shadow and a ground line, never a floating cut-out. The headline is the
    Studio's heavy Archivo (22 KB, latin; the Arabic page keeps Plex).
    ============================================================ */
-@font-face{font-family:"Archivo";font-style:normal;font-weight:800 900;font-display:swap;src:url("../hub/fonts/archivo-800-900-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+/* (2026-11-27: the Archivo face that stood here, hub/fonts/archivo-800-900, went: assets/fonts.css declares Archivo 900 once for every shared page; two rules for one weight made the page fetch both files) */
 :root{
-  --nsp-ink:#0A1420; --nsp-panel:#0F1E30; --nsp-paper:#EAF1F8; --nsp-mute:#B4C4D4;
-  --nsp-red:#FF5A4D;            /* voice and action: 5.9:1 on --nsp-ink, 5.1:1 on --nsp-panel */
-  --nsp-brass:#E6B450;          /* place only */
-  --nsp-red-fill:#C8372D; --nsp-on-red:#FFF6EE;   /* a stamp's ink and its paper */
-  --nsp-shadow:#05090F;
+  /* 2026-11-27: the night scene in the menu's ink, parchment and brick red (navy and brass retired) */
+  --nsp-ink:#211E1B; --nsp-panel:#211E1B; --nsp-paper:#F3ECE1; --nsp-mute:#D8CBB8;
+  --nsp-red:#E8806E;            /* red as text on the ink: 6.1:1 */
+  --nsp-brass:#D8CBB8;          /* place (the coordinates): parchment-2 now, no brass */
+  --nsp-red-fill:#A34135; --nsp-on-red:#F3ECE1;   /* a stamp's ink and its paper */
+  --nsp-shadow:#A34135;
 }
 main.wrap>.nsp{position:relative;margin:var(--s-8) 0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:0;background:var(--nsp-panel);color:var(--nsp-paper);
   border:2px solid var(--nsp-ink);border-radius:4px;box-shadow:8px 8px 0 var(--nsp-shadow);overflow:clip}
@@ -4288,14 +4215,14 @@ html.m-swap *,html.m-swap *::before,html.m-swap *::after{transition:none!importa
    clip from its top edge down in one beat on the move curve, distinct from
    the text's 12px rise; the atelier's scene also settles from 106% to its
    crop (scale only, so the crop is never changed). A capture still under its
-   skeleton waits, clipped, until it has arrived (app.js removes .sk). Not on
+   skeleton unrolls as it would (the skeleton under it covers the wait; app.js asks for a lazy capture once its box is on screen). Not on
    the phone's card rail (its cards are forced visible), never on a card the
    address names (:target), and nothing with reduced motion. ---- */
 @media (prefers-reduced-motion:no-preference){
   @media (min-width:721px){
     .js-ready .reveal:not(.in):not(:target) .thumb .shot{clip-path:inset(0 0 100% 0)}
     .js-ready .reveal.in .thumb .shot{animation:m-unroll var(--m-beat) var(--m-ease-move) calc(var(--rd,0ms) + var(--m-step)) backwards}
-    .js-ready .reveal.in .thumb.sk .shot{animation-play-state:paused}
+    /* 2026-11-27: the paused hold under .sk went: held fully clipped, a lazy capture was never fetched (white frames at 1440, live on production); app.js now asks for a capture once its box is on screen, and the frame's skeleton covers the wait */
   }
   .nsp-scene{overflow:clip}
   .js-ready .reveal:not(.in) .nsp-img{clip-path:inset(0 0 100% 0)}
@@ -4418,7 +4345,6 @@ html[dir="rtl"] .proj .thumb:is(*,:has(.shot)){background-position:calc(100% - 1
   .contact-side>.sub{flex:1 1 0;min-width:0;order:1;margin:0}
   .contact-side>.ct-door{flex:0 0 280px;order:2;margin:var(--s-1) 0 0;max-width:none}
   .contact-side>.channels{flex:1 1 100%;order:3}
-  .foot-dunes{height:clamp(56px,7vw,105px)}
 }
 
 /* ---- the footer: the links on a fixed grid, and a column with the number,
@@ -4492,49 +4418,829 @@ html[dir="rtl"] .proj .thumb:is(*,:has(.shot)){background-position:calc(100% - 1
 
 /* ---------- the portals (world map thread, 2026-11-27) ----------
    Under the menu: La Carte (the HQ) is the one wide primary, the three
-   store gates sit under it as equals, smaller. Cut corners like the menu's
-   plates; a sealed gate (no target yet) is dashed and striped, not a link.
-   Phone: the HQ stays full width, the gates become a swipe strip. */
-.portals{padding-block:var(--s-7) var(--s-6);
+   store gates sit under it as equals, smaller. A sealed gate (no target
+   yet) is not a link. Phone: the HQ stays full width, the gates become a
+   swipe strip.
+   2026-11-27, the machine room (the home as the Studio's sibling): the
+   portals are the first machine-room panel and carry the menu -> page
+   handoff. The seam is a ruler drawn INSIDE the portals' box (it never
+   covers the menu's own controls); the kicker is the page's first readout,
+   on a red tape; La Carte is a dossier (ink bar with the city readout and
+   the 技 seal) whose map is a plot in a display well on the blueprint grid;
+   the gates are square cartridges with hard drops that press; the chips are
+   status chips with a square LED (filled when open, hollow when sealed).
+   The cut corners went (clip-path eats the hard drop), the teal city label,
+   the pill chips, the --grad-blood hover (a hover moves, it never changes
+   the fill) and the HQ pin's infinite pulse (nothing loops below the menu:
+   the pin settles once on reveal). Every word, link and sealed state is
+   #44's. */
+.portals{position:relative;padding-block:calc(14px + var(--s-6)) var(--s-6);
   /* the home's type steps (design-check reads computed sizes against --t-*), named as scale tokens */
   --fs-label:var(--t-label);--fs-small:var(--t-small);--fs-h3:var(--t-feature);--fs-h2:var(--t-h2)}
-.portals-k{margin-bottom:var(--s-4)}
-.portals-grid{list-style:none;margin:0;padding:0;display:grid;gap:var(--s-3);grid-template-columns:repeat(3,minmax(0,1fr))}
-.portal{--cut:18px;position:relative;display:flex;flex-direction:column;gap:var(--s-1);min-height:168px;padding:var(--card-pad);
-  background:var(--navy);border:1px solid var(--hairline-2);
-  clip-path:polygon(var(--cut) 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%,0 var(--cut))}
-.portal-a{display:flex;flex-direction:column;gap:var(--s-1);height:100%;padding:var(--card-pad);color:inherit;text-decoration:none;
-  transition:background-color var(--t-hover,.2s) ease}
-.portal:has(.portal-a){padding:0}
-@media (hover:hover){.portal-a:hover{background:var(--grad-blood)}}
-.portal-a:focus-visible{background:var(--grad-blood)}
-.portal-a:focus-visible{outline:2px solid var(--crimson-text);outline-offset:-4px}
-.portal-hq{margin-bottom:var(--s-3);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);align-items:center;gap:var(--s-5);min-height:0;--cut:28px;
-  background:var(--grad-noir,var(--navy))}
+/* the seam: a full-width 14px ruler, parchment ticks on the console ink */
+.portals::before{content:"";position:absolute;z-index:0;top:0;left:calc(50% - 50vw);width:100vw;height:14px;pointer-events:none;
+  background:
+    linear-gradient(#F3ECE1,#F3ECE1) 0 100%/100% 2px no-repeat,
+    repeating-linear-gradient(90deg,#A8957F 0 1px,transparent 1px 8px) 0 calc(100% - 2px)/100% 4px no-repeat,
+    repeating-linear-gradient(90deg,#F3ECE1 0 2px,transparent 2px 64px) 0 calc(100% - 2px)/100% 9px no-repeat,
+    var(--console)}
+html[dir="rtl"] .portals::before{transform:scaleX(-1)}
+.portals>*{position:relative;z-index:1}
+/* the kicker: the first readout, on a red tape crossing the ruler */
+.portals>.portals-k,html[dir="ltr"] .portals>.portals-k{display:inline-flex;align-items:center;gap:10px;width:max-content;max-width:100%;
+  margin:calc(-1 * var(--s-6) - 4px) 0 var(--s-5);padding:8px 14px;background:#A34135;color:#F3ECE1;border:2px solid #F3ECE1;
+  box-shadow:calc(4px * var(--dx,1)) 4px 0 #211E1B;
+  font-family:var(--font-mono);font-weight:700;font-size:var(--fs-label);letter-spacing:var(--tr-label);text-transform:uppercase;line-height:1.2;
+  transform:rotate(-2deg);transform-origin:0 50%}
+.portals>.portals-k::before,html[dir="ltr"] .portals>.portals-k::before{content:"";flex:none;width:8px;height:14px;margin:0;background:#F3ECE1;border:0;border-radius:0;transform:none;-webkit-text-stroke:0}
+.portals>.portals-k::after{display:none}
+html[dir="rtl"] .portals>.portals-k{transform:rotate(2deg);transform-origin:100% 50%;letter-spacing:0;text-transform:none}
+.portals-grid{list-style:none;margin:0;padding:0 var(--s-2) var(--s-2) 0;display:grid;gap:var(--s-4);grid-template-columns:repeat(3,minmax(0,1fr))}
+html[dir="rtl"] .portals-grid{padding:0 0 var(--s-2) var(--s-2)}
+/* a gate: a square cartridge, a 2px edge, a 6px hard drop */
+.portal{position:relative;display:flex;flex-direction:column;gap:var(--s-1);min-height:168px;padding:var(--card-pad);
+  background:var(--navy);border:2px solid var(--edge);border-radius:0;box-shadow:calc(6px * var(--dx,1)) 6px 0 var(--drop)}
+.portal-a{display:flex;flex-direction:column;gap:var(--s-1);height:100%;padding:var(--card-pad);color:inherit;text-decoration:none}
+.portal:has(.portal-a){padding:0;transition:transform var(--m-press) var(--m-ease-enter),box-shadow var(--m-press) var(--m-ease-enter)}
+@media (hover:hover){.portal:has(.portal-a:hover){transform:translate(calc(-2px * var(--dx,1)),-2px);box-shadow:calc(8px * var(--dx,1)) 8px 0 var(--drop)}}
+.portal:has(.portal-a:active){transform:translate(calc(4px * var(--dx,1)),4px);box-shadow:calc(2px * var(--dx,1)) 2px 0 var(--drop)}
+.portal-a:focus-visible{outline:3px solid var(--crimson-text);outline-offset:5px}
+/* La Carte (the HQ): a dossier; its ink bar carries the city readout and the seal */
+.portal-hq{margin-bottom:var(--s-5);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);align-items:stretch;gap:var(--s-5);min-height:0;
+  padding:var(--card-pad);border-width:3px;box-shadow:calc(10px * var(--dx,1)) 10px 0 var(--drop);background:var(--navy)}
+.portal-hq::before{content:"";position:absolute;inset:0 0 auto;height:34px;background:var(--console);pointer-events:none}
+.portal-hq>.kseal{position:absolute;z-index:2;top:-3px;inset-inline-end:var(--s-3);transform:rotate(-6deg) scale(.8)}
 .portal-tx{display:flex;flex-direction:column;gap:var(--s-1)}
-.portal-city{font-family:var(--font-mono);font-size:var(--fs-label);letter-spacing:var(--tr-label,.08em);text-transform:uppercase;color:var(--teal-text)}
-.portal-lab{font-family:var(--f-cond);font-weight:900;font-size:var(--fs-h3);line-height:var(--lh-head);text-transform:uppercase;letter-spacing:.01em;color:var(--ice,inherit)}
+.portal-hq>.portal-tx,.portal-hq>.portal-map{margin-top:34px}
+.portal-city{font-family:var(--font-mono);font-size:var(--fs-label);letter-spacing:var(--tr-label,.08em);text-transform:uppercase;color:var(--muted)}
+.portal-hq .portal-city{position:absolute;z-index:1;top:0;inset-inline-start:var(--card-pad);height:34px;display:inline-flex;align-items:center;gap:var(--s-2);color:#F3ECE1}
+.portal-hq .portal-city::before{content:"";flex:none;width:8px;height:14px;background:#A34135;box-shadow:0 0 0 1px #F3ECE1}
+.portal-lab{font-family:var(--f-cond);font-weight:900;font-size:var(--fs-h3);line-height:var(--lh-head);text-transform:uppercase;letter-spacing:0;color:var(--ice,inherit)}
 .portal-hq .portal-lab{font-size:var(--fs-h2)}
 .portal-sub{font-size:var(--fs-small);line-height:1.45;color:var(--muted);max-width:30em}
-.portal-chip{align-self:flex-start;margin-top:auto;padding:2px var(--s-2);border:1px solid var(--hairline-2);border-radius:999px;
-  font-family:var(--font-mono);font-size:var(--fs-label);text-transform:uppercase;letter-spacing:var(--tr-label,.08em);color:var(--muted)}
-.portal-chip.is-open{border-color:var(--crimson-text);color:var(--crimson-text)}
+/* the chips: status chips, a square LED that never pulses; open = filled, sealed = hollow */
+.portal-chip{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding:4px 10px;border:2px dashed var(--trace);border-radius:0;
+  font-family:var(--font-mono);font-size:var(--fs-label);text-transform:uppercase;letter-spacing:var(--tr-label,.08em);line-height:1.2;color:var(--muted)}
+.portal-chip::before{content:"";flex:none;width:6px;height:6px;box-shadow:inset 0 0 0 2px var(--trace)}
+.portal-chip.is-open{border:2px solid var(--edge);color:var(--ice)}
+.portal-chip.is-open::before{background:var(--crimson);box-shadow:0 0 0 1px var(--edge)}
 .portal-hq .portal-chip{margin-top:var(--s-3)}
-.portal.is-sealed{border-style:dashed;background:repeating-linear-gradient(135deg,transparent 0 10px,var(--hairline) 10px 11px),var(--navy)}
-.portal-hq.is-sealed{background:repeating-linear-gradient(135deg,transparent 0 14px,var(--hairline) 14px 15px),var(--grad-noir,var(--navy))}
-.portal-map{width:100%;max-height:260px}
-.pm-land{fill:var(--void);stroke:var(--teal-text);stroke-width:2;stroke-linejoin:round}
-.pm-route{fill:none;stroke:var(--hairline-2);stroke-width:2;stroke-dasharray:4 6}
-.pm-pin{fill:var(--teal-text)}
-.pm-hq{fill:var(--crimson-text)}
+/* sealed: the menu's diagonal stripe, a dashed edge, no drop (not pressable) */
+.portal.is-sealed{border-style:dashed;box-shadow:none;background:repeating-linear-gradient(-45deg,color-mix(in srgb,var(--trace) 30%,transparent) 0 2px,transparent 2px 14px),var(--navy)}
+.portal-hq.is-sealed{border-style:solid;box-shadow:calc(10px * var(--dx,1)) 10px 0 var(--drop);background:repeating-linear-gradient(-45deg,color-mix(in srgb,var(--trace) 30%,transparent) 0 2px,transparent 2px 14px),var(--navy)}
+/* the map: a plot in a display well, on the blueprint grid (a plot, not running text); the routes are traces */
+.portal-map{width:100%;height:100%;max-height:260px;padding:var(--s-3);box-sizing:border-box;border:2px solid var(--edge);
+  background:
+    linear-gradient(color-mix(in srgb,var(--trace) 35%,transparent) 1px,transparent 1px) 0 0/24px 24px,
+    linear-gradient(90deg,color-mix(in srgb,var(--trace) 35%,transparent) 1px,transparent 1px) 0 0/24px 24px,
+    var(--plum)}
+.pm-land{fill:var(--navy);stroke:var(--edge);stroke-width:2;stroke-linejoin:miter}
+.pm-route{fill:none;stroke:var(--trace);stroke-width:2;stroke-linejoin:miter}
+.pm-pin{fill:var(--void);stroke:var(--edge);stroke-width:2}
+.pm-hq{fill:var(--crimson);stroke:var(--edge);stroke-width:2}
+/* the HQ pin settles once as the panel arrives, then stays */
 @media (prefers-reduced-motion:no-preference){
-  .pm-hq{transform-box:fill-box;transform-origin:center;animation:pm-pulse 2.4s ease-in-out infinite}
-  @keyframes pm-pulse{50%{transform:scale(1.35)}}
+  .pm-hq{transform-box:fill-box;transform-origin:center;animation:pm-set var(--m-quick) var(--m-ease-enter) var(--m-reveal) backwards}
+  @keyframes pm-set{from{transform:scale(1.35)}}
 }
 html[dir="rtl"] :is(.portal-lab,.portal-city){font-family:var(--font-ar-display);text-transform:none;letter-spacing:0}
+html[dir="rtl"] .portal-city{font-family:var(--font-ar-body)}
 @media (max-width:719px){
-  .portals-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:var(--s-2)}
+  .portals-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:var(--s-3)}
   .portal{scroll-snap-align:start;min-height:140px}
   .portal-hq{grid-template-columns:minmax(0,1fr) 120px;gap:var(--s-3)}
-  .portal-map{max-height:130px}
+  .portal-map{max-height:130px;padding:var(--s-1)}
+  .portal-hq>.kseal{display:none}
+}
+
+/* ============================================================
+   THE MACHINE ROOM — the home as the Studio's sibling (2026-11-27)
+   Owner: "the main page looks average and simple; the Studio is the anime
+   redesign. Restyle the old page to the Studio style, with a technology
+   flair." The page under the menu now speaks the menu's and the Studio's
+   grammar (ink, parchment, one brick red; Archivo 900 capitals on hard
+   panels; hard offset drops; seals, tapes, slabs) and adds its own accent,
+   the machine room: the bench where the sites are built and shipped.
+   The technology layer is seven devices, each with one job, none looping:
+     1 readout   mono label segments, " / " separators, the static cursor
+     2 index tag "01 / 06" in an inverted square (the planche counter)
+     3 ruler     a 2px rule with 8px ticks and a taller one every 64px
+     4 trace     circuit line-work with square pads, only where a sequence is
+     5 status    a chip with a square LED that never pulses
+     6 progress  a determinate segmented bar that fills once and stops
+     7 hardware  the captures in a window with a title bar printing the host;
+                 the phone with a bezel, a camera pill and two keys
+   Mono is for labels only; sentences stay Geist; no text-shadow, no glow,
+   no gradient, no blur, no pill, no gold. Written last: it overrides the
+   component rules above in place (the dead engraving rules stay inert).
+   It builds on the threads that merged under it and undoes none of them:
+   the heading face (#37), the type scale (#36), the four world portals
+   (#44, restyled here as the first machine-room panel) and the mobile LCP
+   work (#45: nothing here is preloaded or eager above the fold).
+   Type roles (one scale, the --fs-* tokens at the top of this sheet):
+     DISPLAY --f-cond Archivo Condensed 900 caps (--font-head, as #37 set it):
+             titles, names, prices, totals, index numerals
+     UI      --f-disp Archivo 900 (no Expanded file on the home: budget):
+             buttons, tapes, summary bars
+     LABEL   Geist Mono caps, .14em (12px floor, 13px Arabic)
+     BODY    Geist 400/600, 60ch at most, never caps
+   ============================================================ */
+:root{
+  /* the fixed palette of the always-dark surfaces (the console, the proof
+     band, the frames' bars, the receipt) and the brand's three inks */
+  --mr-ink:#211E1B; --mr-paper:#F3ECE1; --mr-paper-2:#D8CBB8; --mr-red:#A34135; --mr-red-text:#E8806E; --mr-dim:#A8957F;
+  --dx:1;   /* a drop's horizontal direction: to the inline end */
+  /* a button's own drop: near-black on both grounds (the red drop would sit under a red button) */
+  --mr-btn-drop:color-mix(in srgb,var(--console),#000 55%);
+  /* the ruler: a 2px rule, a tick every 8px (1x4, the trace), a taller one every 64px */
+  --ruler:
+    linear-gradient(var(--edge),var(--edge)) 0 100%/100% 2px no-repeat,
+    repeating-linear-gradient(90deg,var(--trace) 0 1px,transparent 1px 8px) 0 calc(100% - 2px)/100% 4px no-repeat,
+    repeating-linear-gradient(90deg,var(--edge) 0 2px,transparent 2px 64px) 0 calc(100% - 2px)/100% 9px no-repeat;
+}
+html[dir="rtl"]{--dx:-1}
+
+/* ---------- the shared atoms ---------- */
+/* the seal: a red disc, a parchment ring, one kanji (夜 the night workshop,
+   技 technique, on the machine room's items); aria-hidden in the markup */
+.kseal{display:inline-grid;place-items:center;flex:none;width:40px;height:40px;border-radius:50%;
+  background:var(--mr-red);color:var(--mr-paper);box-shadow:0 0 0 2px var(--mr-paper);
+  font-family:var(--f-seal);font-weight:900;font-size:var(--t-lead);line-height:1;letter-spacing:0;text-transform:none;font-style:normal;
+  transform:rotate(-6deg);pointer-events:none;user-select:none}
+/* the static cursor block, the wordmark's own: the tech signature, never blinking */
+.logo .cursor,.cursor{width:9px;height:20px;background:var(--mr-red);box-shadow:none;border-radius:0}
+
+/* ---------- header (every page on this sheet) ---------- */
+.navbar.scrolled,html:not(.js) .navbar{background:var(--nav-glass)}
+.navbar .nav-inner{border-bottom:2px solid transparent}
+.navbar.scrolled .nav-inner,html:not(.js) .navbar .nav-inner{border-color:var(--edge)}
+.logo .wm-accent{fill:currentColor}
+/* the lockup, the Studio's (hub .st-wm): NUMIDEA LABS as text in Archivo 900
+   capitals, LABS in red, the static cursor block, and from 1200px the kana in
+   the seal face (aria-hidden). It replaced the drawn wordmark, which was
+   Cinzel set as paths: Cinzel is the Lanterne's alone (owner). The link's
+   aria-label carries the name; a fixed Latin stack, so the Arabic page sets
+   it in Archivo too. */
+.logo .wm-t{display:block;font-family:"Archivo","Archivo Fallback","Arial Black",sans-serif;font-weight:900;line-height:1;letter-spacing:-.01em;white-space:nowrap;color:inherit;text-transform:none}
+.logo .wm-l{color:var(--crimson-text)}
+.logo .wm-kana{display:none;margin-inline-start:12px;font-family:var(--f-seal);font-weight:900;font-size:var(--t-label);line-height:1;color:var(--crimson-text);white-space:nowrap}
+@media (min-width:1500px){.navbar .logo .wm-kana{display:inline}}   /* the home bar carries seven links: the kana from 1500 (the Studio, with fewer, from 1200) */
+.footer .logo .wm-kana{display:inline;color:#E8806E}
+.footer .logo .wm-l{color:#E8806E}
+.logo .cursor{margin-inline-start:6px;height:.9em;width:.42em;transform:none}
+.navbar .logo{margin-inline-end:var(--s-5)}
+.nav-links{gap:var(--s-4)}
+.nav-links a{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap;
+  padding-block:6px;background:linear-gradient(var(--mr-red),var(--mr-red)) 0 100%/0 3px no-repeat}
+.nav-links a[aria-current="true"],.nav-links a[aria-current="page"]{color:var(--ice);background-size:100% 3px}
+@media (hover:hover){.nav-links a:hover{color:var(--ice)}}
+html[dir="rtl"] .nav-links a{letter-spacing:0;text-transform:none;background-position:100% 100%}
+.lang{border:2px solid var(--edge);border-radius:0;gap:0}
+.lang :is(a,button){font-family:var(--font-mono);font-weight:700;letter-spacing:.06em;color:var(--ice);border-radius:0}
+.lang :is(a,button)+:is(a,button){border-inline-start:2px solid var(--edge)}
+.lang :is(a[aria-current],button[aria-pressed="true"]){background:var(--ice);color:var(--void)}
+@media (hover:hover){.lang :is(a,button):not([aria-current],[aria-pressed="true"]):hover{background:color-mix(in srgb,var(--ice) 12%,transparent);color:var(--ice)}}
+.theme-btn,.menu-toggle{border:2px solid var(--edge);border-radius:0}
+@media (hover:hover){.theme-btn:hover{border-color:var(--crimson-text)}}
+.mobile-menu{background:var(--void)}
+.mobile-menu nav a{font-family:var(--f-cond);font-weight:900;text-transform:uppercase;letter-spacing:0;line-height:1.05}
+html[dir="rtl"] .mobile-menu nav a{font-family:var(--f-cond);font-weight:700;text-transform:none}
+.mobile-menu .menu-acts{background:var(--void);-webkit-backdrop-filter:none;backdrop-filter:none;border-top:2px solid var(--edge)}
+.to-top{border:2px solid var(--edge)!important;border-radius:0!important;background:var(--navy)!important;color:var(--ice)!important;
+  box-shadow:calc(4px * var(--dx)) 4px 0 var(--drop)!important}
+
+/* ---------- buttons: slabs with press physics ---------- */
+.btn{font-family:var(--f-disp);font-weight:900;text-transform:uppercase;letter-spacing:var(--tr-ui);font-size:var(--t-small);line-height:1.2;
+  min-height:52px;padding:var(--s-3) var(--card-pad);border-radius:0;border:2px solid var(--edge);
+  transition:transform var(--m-press) var(--m-ease-enter),box-shadow var(--m-press) var(--m-ease-enter),background-color var(--t-hover),color var(--t-hover)}
+html[dir="rtl"] .btn,:root:lang(ar) .btn{text-transform:none;letter-spacing:0;font-size:var(--t-ui);font-weight:700}
+.btn-primary{background:var(--crimson);color:var(--on-crimson);border-color:var(--edge);box-shadow:calc(6px * var(--dx)) 6px 0 var(--mr-btn-drop)}
+.btn-teal{background:var(--teal);color:var(--on-teal);border-color:var(--mr-ink);box-shadow:calc(6px * var(--dx)) 6px 0 var(--drop)}
+@media (hover:hover){
+  .btn-primary:hover{background:var(--crimson);border-color:var(--edge)}
+  .btn-teal:hover{background:var(--teal);border-color:var(--mr-ink)}
+  :is(.btn-primary,.btn-teal):hover{transform:translate(calc(-2px * var(--dx)),-2px)}
+  .btn-primary:hover{box-shadow:calc(8px * var(--dx)) 8px 0 var(--mr-btn-drop)}
+  .btn-teal:hover{box-shadow:calc(8px * var(--dx)) 8px 0 var(--drop)}
+}
+:is(.btn-primary,.btn-teal):active{transform:translate(calc(4px * var(--dx)),4px)}
+.btn-primary:active{box-shadow:calc(2px * var(--dx)) 2px 0 var(--mr-btn-drop)}
+.btn-teal:active{box-shadow:calc(2px * var(--dx)) 2px 0 var(--drop)}
+.btn:focus-visible{outline:3px solid var(--crimson-text);outline-offset:3px}
+.btn .wa-i svg{fill:currentColor}
+/* the text link: the text colour, a 2px red underline at 4px */
+.btn-ghost{font-family:var(--font-body);font-weight:600;text-transform:none;letter-spacing:0;font-size:var(--t-ui);
+  border:0;box-shadow:none;color:var(--ice);text-decoration:underline;text-decoration-color:var(--crimson);text-decoration-thickness:2px;text-underline-offset:4px}
+@media (hover:hover){.btn-ghost:hover{color:var(--crimson-text);text-decoration-color:var(--crimson-text)}}
+
+/* ---------- section heads: index tag, readout, ruler; the outlined numeral; the display title ---------- */
+main:has(>#work)>section:not(.offer,.proof)>.kicker,
+html[dir="ltr"] main:has(>#work)>section:not(.offer,.proof)>.kicker{
+  display:flex;align-items:flex-end;gap:var(--s-3);margin-bottom:var(--s-5);padding:0;
+  font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--tr-label);text-transform:uppercase;color:var(--muted);line-height:1.2}
+main:has(>#work)>section:not(.offer,.proof)>.kicker::before,
+html[dir="ltr"] main:has(>#work)>section:not(.offer,.proof)>.kicker::before,
+html[dir="rtl"] main:has(>#work)>section:not(.offer,.proof)>.kicker::before{
+  content:counter(planche,decimal-leading-zero) " / 06";content:counter(planche,decimal-leading-zero) " / 06" / "";
+  display:inline-flex;align-items:center;flex:none;height:28px;padding:0 10px;margin:0;border:0;
+  background:var(--ice);color:var(--void);-webkit-text-stroke:0;
+  font-family:var(--font-mono);font-weight:700;font-size:var(--t-label);line-height:1;letter-spacing:.08em;
+  font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+main:has(>#work)>section:not(.offer,.proof)>.kicker::after,
+html[dir="ltr"] main:has(>#work)>section:not(.offer,.proof)>.kicker::after,
+html[dir="rtl"] main:has(>#work)>section:not(.offer,.proof)>.kicker::after{
+  content:"";flex:1 1 auto;align-self:flex-end;width:auto;height:14px;margin:0 0 2px;padding:0;border-radius:0;transform:none;
+  background:var(--ruler)}
+html[dir="rtl"] main:has(>#work)>section:not(.offer,.proof)>.kicker::after{transform:scaleX(-1)}
+html[dir="rtl"] main:has(>#work)>section:not(.offer,.proof)>.kicker{letter-spacing:0;text-transform:none}
+/* the title: display capitals; an outlined index numeral behind its start */
+main.wrap h2.sec,main.wrap .contact h2,html[dir="ltr"] main.wrap :is(h2.sec,.contact h2){
+  position:relative;isolation:isolate;font-family:var(--font-head);font-weight:900;line-height:var(--lh-disp);
+  letter-spacing:0;text-transform:uppercase;color:var(--ice);font-style:normal}
+main.wrap :is(h2.sec,.contact h2) em,html[dir="ltr"] main.wrap :is(h2.sec,.contact h2) em{font-family:inherit;font-style:normal;color:var(--crimson-text)}
+html[dir="rtl"] main.wrap :is(h2.sec,.contact h2),:root:lang(ar) main.wrap :is(h2.sec,.contact h2){font-weight:700;text-transform:none;line-height:1.25}
+/* (the outlined index numeral behind the title was tried and left: over the capitals it read as noise; the index tag carries the number) */
+main.wrap .sec-lead,main.wrap .svc-lead{color:var(--body-strong)}
+
+/* ---------- the offer: a short ruler under the portals; the kicker a readout (rev. 2: the portals carry the seam and the one tape) ---------- */
+.offer{position:relative}
+@media (min-width:1100px){.offer>.offer-h{grid-column:1/span 7}html[dir="ltr"] .offer-h,.offer-h{font-size:var(--h1-fs-wide)}.offer>.offer-body{grid-column:8/-1}}
+.offer::before{content:"";position:absolute;z-index:0;top:0;left:0;right:0;width:auto;height:8px;pointer-events:none;
+  background:
+    linear-gradient(var(--edge),var(--edge)) 0 100%/100% 2px no-repeat,
+    repeating-linear-gradient(90deg,var(--trace) 0 1px,transparent 1px 8px) 0 calc(100% - 2px)/100% 4px no-repeat,
+    repeating-linear-gradient(90deg,var(--edge) 0 2px,transparent 2px 64px) 0 calc(100% - 2px)/100% 6px no-repeat}
+html[dir="rtl"] .offer::before{transform:scaleX(-1)}
+.offer>*{position:relative;z-index:1}
+.offer>.kicker,html[dir="ltr"] .offer>.kicker{display:inline-flex;align-items:center;gap:var(--s-2);justify-self:start;align-self:start;width:max-content;max-width:100%;
+  margin:var(--s-5) 0 var(--s-5);padding:0;background:none;border:0;box-shadow:none;color:var(--muted);
+  font-family:var(--font-mono);font-weight:400;font-size:var(--t-label);letter-spacing:var(--tr-label);text-transform:uppercase;line-height:1.2}
+.offer>.kicker::before,html[dir="ltr"] .offer>.kicker::before{content:"";flex:none;width:8px;height:14px;background:var(--crimson);margin:0;transform:none;border-radius:0;border:0;-webkit-text-stroke:0}
+.offer>.kicker::after{display:none}
+html[dir="rtl"] .offer>.kicker{letter-spacing:0;text-transform:none}
+html[dir="ltr"] .offer-h,.offer-h{font-family:var(--font-head);font-weight:900;font-size:var(--h1-fs);line-height:var(--h1-lh);letter-spacing:0;text-transform:uppercase;color:var(--ice)}
+.offer-h em,html[dir="ltr"] .offer-h em{font-family:inherit;font-style:normal;color:var(--crimson-text);
+  text-decoration:underline;text-decoration-color:var(--crimson);text-decoration-thickness:.09em;text-underline-offset:.08em;text-decoration-skip-ink:none}
+html[dir="rtl"] .offer-h{font-family:var(--f-cond);font-weight:700;text-transform:none;line-height:1.3}
+.offer-lede{font-size:var(--t-lead);line-height:1.5;color:var(--body-strong)}
+.offer-terms{font-family:var(--font-body);color:var(--muted)}
+
+/* ---------- the proof: a console band; the line split into status chips; the logos in slots ---------- */
+main.wrap>section.proof{position:relative;background:var(--console);color:var(--mr-paper);border:0;
+  box-shadow:0 0 0 100vmax var(--console);clip-path:inset(0 -100vmax);padding-block:var(--s-5)}
+main.wrap>section.proof::after{content:"";position:absolute;inset:0 calc(50% - 50vw);z-index:0;pointer-events:none;opacity:.15;
+  background:repeating-linear-gradient(-45deg,var(--mr-paper-2) 0 2px,transparent 2px 14px)}
+main.wrap>section.proof>*{position:relative;z-index:1}
+/* the copy's " · " separators sit between the chips as text: font-size 0 folds them away (the chips set their own size; the "·" inside FR · EN · AR stays), so a wrapped row leaves no stray dot (2026-11-28) */
+.proof-line{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-2) var(--s-2);color:var(--mr-dim);font-size:0}
+.proof-line .pc{display:inline-flex;align-items:center;gap:var(--s-2);min-height:32px;padding:var(--s-1) var(--s-2);border:2px solid var(--mr-paper-2);background:var(--mr-ink);color:var(--mr-paper);
+  font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;line-height:1.2;white-space:nowrap}
+.proof-line .pc::before{content:"";flex:none;width:6px;height:6px;background:var(--mr-red);box-shadow:0 0 0 1px var(--mr-paper)}
+html[dir="rtl"] .proof-line .pc{letter-spacing:0;text-transform:none;font-family:var(--font-ar-body)}
+@media (max-width:599px){.proof-line .pc{white-space:normal}}
+.proof .cl{background:var(--mr-paper);color:var(--mr-ink);border:2px solid var(--mr-ink);box-shadow:calc(4px * var(--dx)) 4px 0 var(--mr-red);
+  min-height:56px;padding:var(--s-1) var(--s-3);border-radius:0;transition:transform var(--m-press) var(--m-ease-enter),box-shadow var(--m-press) var(--m-ease-enter)}
+@media (hover:hover){.proof .cl:hover{color:var(--mr-ink);transform:translate(calc(-2px * var(--dx)),-2px);box-shadow:calc(6px * var(--dx)) 6px 0 var(--mr-red)}}
+.proof .cl:focus-visible{color:var(--mr-ink);outline:3px solid var(--mr-red-text);outline-offset:3px}
+@media (min-width:960px){.proof .cl-row{gap:var(--s-4)}}
+@media (max-width:959px){.proof .cl{justify-content:center}.proof .cl-row{gap:var(--s-3);width:100%}}
+
+/* ---------- 01 Réalisations: dossiers with real hardware ---------- */
+/* the window: a 2px edge, a hard drop, a console title bar printing the host */
+.proj .thumb,.proj .thumb:has(.shot),html[dir="rtl"] .proj .thumb:is(*,:has(.shot)){
+  --bar:28px;position:relative;box-sizing:content-box;border:2px solid var(--edge);border-top:var(--bar) solid var(--mr-ink);border-radius:0;
+  box-shadow:calc(8px * var(--dx)) 8px 0 var(--drop);
+  /* the empty frame (a skeleton) is never white: the panel, the stripe, the blueprint grid */
+  background:
+    linear-gradient(color-mix(in srgb,var(--trace) 35%,transparent) 1px,transparent 1px) 0 0/24px 24px,
+    linear-gradient(90deg,color-mix(in srgb,var(--trace) 35%,transparent) 1px,transparent 1px) 0 0/24px 24px,
+    repeating-linear-gradient(-45deg,color-mix(in srgb,var(--trace) 30%,transparent) 0 2px,transparent 2px 12px),
+    var(--plum)}
+.proj .shot,.proj .thumb:not(.sk)::after{border-radius:0}
+/* the bar's keys (three squares) and the host, drawn: the host is the live link's, data, the same in every language */
+.proj .thumb::before{content:attr(data-host);content:attr(data-host) / "";position:absolute;z-index:4;top:calc(-1 * var(--bar));left:-2px;right:-2px;height:var(--bar);display:block;text-align:center;line-height:var(--bar);padding:0 56px;border:0;width:auto;
+  font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:.08em;line-height:1;color:var(--mr-paper);direction:ltr;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:1;transform:none;
+  background:
+    linear-gradient(var(--mr-paper),var(--mr-paper)) 10px 50%/8px 8px no-repeat,
+    linear-gradient(var(--mr-red),var(--mr-red)) 24px 50%/8px 8px no-repeat,
+    linear-gradient(var(--mr-paper-2),var(--mr-paper-2)) 38px 50%/8px 8px no-repeat}
+html[dir="rtl"] .proj .thumb::before{background-position:calc(100% - 10px) 50%,calc(100% - 24px) 50%,calc(100% - 38px) 50%}
+.proj .thumb .browser{display:none}
+/* the skeleton's sweep in the panel's own colours */
+.proj .thumb.sk::after{background:linear-gradient(100deg,transparent 36%,color-mix(in srgb,var(--mr-paper) 10%,transparent) 50%,transparent 64%)}
+/* the phone: hardware, a bezel, a camera pill, two side keys */
+.proj .dev-ph{border:8px solid var(--mr-ink)!important;border-radius:14px!important;outline:2px solid var(--edge);
+  box-shadow:calc(4px * var(--dx)) 4px 0 var(--drop)!important;background:var(--mr-ink)!important}
+.proj .dev-ph::before{content:"";position:absolute;z-index:3;top:-5px;left:50%;width:22px;height:4px;margin-left:-11px;border-radius:2px;background:var(--mr-paper-2);opacity:1;border:0}
+.proj .dev-ph::after{content:"";position:absolute;z-index:3;top:22%;inset-inline-end:-13px;width:3px;height:18px;border-radius:0;background:var(--edge);
+  box-shadow:0 26px 0 var(--edge);opacity:1;border:0}
+.proj .dev-ph .ph-shot{border-radius:6px!important}
+/* the card's words: index tag, category chips, the display name, the visitor's line in a well */
+.proj .cat{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+html[dir="rtl"] .proj .cat{letter-spacing:0;text-transform:none}
+.proj h3{font-family:var(--f-cond);font-weight:900;text-transform:uppercase;letter-spacing:0;line-height:1;font-size:var(--t-title)}
+.proj--lead h3{font-size:var(--t-display)}
+html[dir="rtl"] .proj h3{font-weight:700;text-transform:none;line-height:1.3}
+.proj h3 a{color:var(--ice);text-decoration:none}
+.proj h3 .arr{color:var(--crimson-text)}
+#work .proj .gain-k{color:var(--mr-paper);background:var(--mr-red)}
+.proj .gain-k{position:relative;z-index:1;margin-bottom:-6px;display:inline-block;width:max-content;padding:4px 8px;background:var(--mr-red);color:var(--mr-paper);border:0;
+  font-family:var(--font-mono);font-weight:700;font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;line-height:1.2;transform:rotate(-2deg)}
+html[dir="rtl"] .proj .gain-k{letter-spacing:0;text-transform:none;transform:rotate(2deg)}
+.proj .gain{display:block;padding:var(--s-3) var(--s-4);background:var(--plum);border:0;border-inline-start:3px solid var(--mr-red);color:var(--ice)}
+.proj .gain::before,.proj .gain::after{display:none}
+.proj .actions a{font-family:var(--font-body);font-weight:600;font-size:var(--t-ui);letter-spacing:0;text-transform:none;color:var(--ice);
+  display:inline-flex;align-items:center;gap:8px;min-height:44px;
+  text-decoration:underline;text-decoration-color:var(--crimson);text-decoration-thickness:2px;text-underline-offset:4px;border:0;background:none}
+.proj .actions a>span[aria-hidden]{display:inline-grid;place-items:center;width:20px;height:20px;background:var(--ice);color:var(--void);font-size:var(--t-label);text-decoration:none}
+.proj .actions{border-top:2px solid var(--edge)}
+/* the other works: ruled rows, each led by a red "+" */
+/* the rule and the padding only where the row is a box (under 720px; above it .work-demo is display:contents and a border on it is drawn nowhere, but vbugs measured its text against it, 2026-11-27) */
+@media (max-width:719px){.work-foot .work-demo{border-top:1px solid var(--hairline-2);padding-block:var(--s-3)}}
+.work-foot .work-demo>span:first-child::before{content:"+ ";content:"+ " / "";font-family:var(--font-mono);font-weight:700;color:var(--crimson-text)}
+.work-foot .work-links a{color:var(--ice);text-decoration-color:var(--crimson);text-decoration-thickness:2px;text-underline-offset:4px}
+.work-foot .scene-link{display:inline-flex;align-items:center;min-height:52px;padding:var(--s-3) var(--card-pad);margin-top:var(--s-4);
+  background:var(--teal);color:var(--on-teal);border:2px solid var(--mr-ink);box-shadow:calc(6px * var(--dx)) 6px 0 var(--drop);text-decoration:none;
+  font-family:var(--f-disp);font-weight:900;text-transform:uppercase;letter-spacing:var(--tr-ui);font-size:var(--t-small);
+  transition:transform var(--m-press) var(--m-ease-enter),box-shadow var(--m-press) var(--m-ease-enter)}
+.work-foot .scene-link .sb-go{color:inherit;text-decoration:none;border:0;background:none;padding:0}
+@media (hover:hover){.work-foot .scene-link:hover{transform:translate(calc(-2px * var(--dx)),-2px);box-shadow:calc(8px * var(--dx)) 8px 0 var(--drop)}}
+html[dir="rtl"] .work-foot .scene-link{text-transform:none;letter-spacing:0;font-weight:700;font-size:var(--t-ui)}
+
+/* ---------- the atelier band: a console dossier; the ink bar carries the coordinates and the 夜 seal ---------- */
+main.wrap>.nsp,html[dir="rtl"] main.wrap>.nsp{background:var(--mr-ink);color:var(--mr-paper);border:3px solid var(--mr-paper);border-radius:0;
+  box-shadow:calc(10px * var(--dx)) 10px 0 var(--mr-red);overflow:visible}
+.nsp-scene{border-color:var(--mr-paper)!important}
+.nsp-copy{position:relative}
+.nsp-copy>.kseal{position:absolute;top:var(--s-4);inset-inline-end:var(--s-4)}
+.nsp-kick{display:inline-flex;align-items:center;gap:var(--s-2);color:var(--mr-paper-2);font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--tr-label);
+  padding-bottom:var(--s-2);border-bottom:2px solid var(--mr-paper);padding-inline-end:var(--s-8)}
+.nsp-kick::before{content:"";flex:none;width:8px;height:14px;background:var(--mr-red)}
+.nsp-h,html[dir="rtl"] .nsp-h{font-family:var(--f-cond);text-transform:uppercase;line-height:var(--lh-disp);color:var(--mr-paper)}
+html[dir="rtl"] .nsp-h{text-transform:none;line-height:1.25}
+.nsp-line{color:var(--mr-paper-2)}
+.nsp-go{min-height:52px;padding:var(--s-3) var(--s-5);background:var(--mr-paper);color:var(--mr-ink);border:2px solid var(--mr-paper);box-shadow:calc(6px * var(--dx)) 6px 0 var(--mr-red);
+  text-decoration:none;font-family:var(--f-disp);font-weight:900;text-transform:uppercase;letter-spacing:var(--tr-ui);font-size:var(--t-small);
+  transition:transform var(--m-press) var(--m-ease-enter),box-shadow var(--m-press) var(--m-ease-enter)}
+@media (hover:hover){.nsp-go:hover{color:var(--mr-ink);transform:translate(calc(-2px * var(--dx)),-2px);box-shadow:calc(8px * var(--dx)) 8px 0 var(--mr-red)}}
+.nsp-go:active{transform:translate(calc(4px * var(--dx)),4px);box-shadow:calc(2px * var(--dx)) 2px 0 var(--mr-red)}
+html[dir="rtl"] .nsp-go{text-transform:none;letter-spacing:0;font-weight:700;font-size:var(--t-ui)}
+.nsp-sub{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--mr-paper-2)}
+html[dir="rtl"] .nsp-sub{letter-spacing:0;text-transform:none;font-family:var(--font-ar-body)}
+@media (min-width:1000px){
+  .nsp-scene{margin:-16px 0 0;margin-inline-start:-3px;border:3px solid var(--mr-paper)!important;transform:rotate(-1deg);transform-origin:50% 100%;
+    box-shadow:calc(6px * var(--dx)) 6px 0 var(--mr-red);background:var(--mr-ink);z-index:1}
+}
+
+/* ---------- 02 Services: the signature offer as a dossier; the five steps as a build log ---------- */
+#apercu.preview{position:relative;background:var(--navy);border:3px solid var(--edge);border-radius:0;padding-top:calc(36px + var(--card-pad-lg));
+  /* the ink bar is an inset band inside the 3px edge (a 36px top border mitred into the side edges) */
+  box-shadow:inset 0 36px 0 var(--console),calc(10px * var(--dx)) 10px 0 var(--drop);overflow:visible;-webkit-mask:none;mask:none}
+#apercu.preview::before,#apercu.preview::after{display:none}
+#apercu .body,#apercu .prev-head{position:static}
+/* the ink bar is the card's top border; on it, the existing label "Offre signature" and the 技 seal at its end */
+#apercu .prev-head>.tag,#apercu .tag{position:absolute;top:0;inset-inline-start:var(--card-pad-lg);display:flex;align-items:center;gap:var(--s-2);height:36px;margin:0;padding:0;
+  background:none;color:var(--mr-paper);border:0;border-radius:0;
+  font-family:var(--font-mono);font-weight:700;font-size:var(--t-label);letter-spacing:var(--tr-label);text-transform:uppercase;line-height:1}
+#apercu .tag::before{content:"";flex:none;width:8px;height:14px;background:var(--mr-red)}
+html[dir="rtl"] #apercu .tag{letter-spacing:0;text-transform:none}
+#apercu .prev-head>.kseal{position:absolute;top:-2px;inset-inline-end:14px}
+#apercu h3{font-family:var(--f-cond);font-weight:900;text-transform:uppercase;font-size:var(--t-display);line-height:1;letter-spacing:0;color:var(--ice)}
+html[dir="rtl"] #apercu h3{font-weight:700;text-transform:none;line-height:1.3}
+#apercu .promise{color:var(--crimson-text);font-weight:600}
+/* the steps: pads on a circuit trace */
+#apercu .ptl{counter-reset:ptl;position:relative}
+#apercu .ptl-s{counter-increment:ptl;position:relative;grid-template-columns:40px minmax(0,1fr)}
+/* the trace: 2px line-work from pad to pad (vertical on a phone, across from 720px of card) */
+#apercu .ptl-s:not(:last-child)::after{background:var(--trace);inset-inline-start:19px;top:40px;width:2px;height:calc(100% - 40px + var(--s-4))}
+@container (min-width:720px){
+  #apercu .ptl-s{grid-template-columns:minmax(0,1fr);grid-template-rows:auto}
+  #apercu .ptl-s:not(:last-child)::after{top:calc(var(--s-2) + 19px);inset-inline-start:40px;width:calc(100% - 40px + var(--s-5));height:2px}
+  #apercu .ptl-t{margin-top:var(--s-3)}
+}
+#apercu .ptl-m,#apercu .ptl-build .ptl-m{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:0;background:var(--mr-ink);border:2px solid var(--edge);box-shadow:none;
+  color:var(--mr-paper);font-family:var(--font-mono);font-weight:700;font-size:var(--t-label);transform:none}
+#apercu .ptl-m::before{content:counter(ptl,decimal-leading-zero);content:counter(ptl,decimal-leading-zero) / "";position:static;inset:auto;width:auto;height:auto;background:none;border:0;border-radius:0;transform:none;font:inherit;color:inherit}
+#apercu .ptl-m::after{display:none}
+#apercu .ptl-dec .ptl-m{background:var(--mr-red);border-color:var(--edge)}
+/* the build: the pad carries the five cells of "5 jours ouvrés", a segmented bar that fills once (the reveal's own stagger) */
+/* narrow card: the pad keeps its 40px column; the five cells stack under the number, a vertical bar (no overlap with the title) */
+#apercu .ptl-build .ptl-m{width:40px;height:auto;min-height:40px;justify-self:start;display:inline-flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0}
+#apercu .ptl-build .ptl-m::before{margin:0 0 3px}
+#apercu .ptl-build .ptl-m i{width:16px!important;height:4px!important}
+@container (min-width:720px){
+  #apercu .ptl-build .ptl-m{width:auto;height:40px;min-height:0;flex-direction:row;gap:3px;padding:0 8px}
+  #apercu .ptl-build .ptl-m::before{margin:0 6px 0 0}
+  html[dir="rtl"] #apercu .ptl-build .ptl-m::before{margin:0 0 0 6px}
+  #apercu .ptl-build .ptl-m i{width:7px!important;height:16px!important}
+}
+#apercu .ptl-build .ptl-m i{display:block;flex:none;width:7px;height:16px;border:1px solid var(--mr-paper);background:var(--mr-red);border-radius:0;position:static;transform:none}
+#apercu .ptl-t{font-family:var(--font-body);font-weight:600;text-transform:none;letter-spacing:0;color:var(--ice)}
+/* the durations: status chips */
+#apercu .ptl-d{display:inline-flex;align-items:center;gap:8px;width:max-content;max-width:100%;padding:4px 10px;border:2px solid var(--edge);background:transparent;color:var(--ice);
+  font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.08em;text-transform:uppercase;line-height:1.2;border-radius:0}
+#apercu .ptl-d::before{content:"";flex:none;width:6px;height:6px;background:var(--mr-red);box-shadow:0 0 0 1px var(--edge)}
+html[dir="rtl"] #apercu .ptl-d{letter-spacing:0;text-transform:none}
+#apercu .prev-paid .ptl-d{border:0;padding:0;background:none}
+#apercu .prev-paid .ptl-d::before{display:none}
+/* the one figure: 0 in the condensed display face, red */
+#apercu .ptl-zero{font-family:var(--f-cond);font-weight:900;font-size:var(--t-h2-xl);line-height:.9;letter-spacing:0;color:var(--crimson-text);font-variant-numeric:tabular-nums}
+html[dir="rtl"] #apercu .ptl-zero{line-height:1.2}   /* 2026-11-27: at .9 the Arabic line's glyph box rose into "المدفوع حتى الآن:" above it (vbugs OVERLAP) */
+#apercu .ptl-zero .cur{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;color:var(--muted);vertical-align:super}
+#apercu .prev-out b{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+#apercu .prev-stub{border-inline-start:2px dashed var(--edge)!important;border-radius:0!important}
+#apercu .prev-stub::before,#apercu .prev-stub::after{display:none}
+
+/* the service rows: a ruler between rows; the item art in a hard frame; the index tag; display titles */
+#services .svc-grid>.svc-row{border:0;border-top:0;padding-top:var(--s-5);position:relative}
+#services .svc-grid>.svc-row::before{content:"";position:absolute;top:0;left:0;right:0;height:14px;background:var(--ruler);transform:none;width:auto;border:0}
+#services .svc-grid>.svc-row::after{display:none}
+#services .svc-spot{border:2px solid var(--edge);border-radius:6px;box-shadow:calc(6px * var(--dx)) 6px 0 var(--drop);background:var(--navy)}
+#services .svc-grid>.svc-row h3{font-family:var(--f-cond);font-weight:900;text-transform:uppercase;letter-spacing:0;line-height:1.05;font-size:var(--t-title);color:var(--ice)}
+html[dir="rtl"] #services .svc-grid>.svc-row h3{font-weight:700;text-transform:none;line-height:1.35}
+#services .svc-grid>.svc-row h3::before{display:inline-flex;align-items:center;vertical-align:.2em;width:max-content;height:24px;padding:0 8px;margin:0;margin-inline-end:var(--s-2);
+  background:var(--ice);color:var(--void);font-family:var(--font-mono);font-weight:700;font-size:var(--t-label);letter-spacing:.08em;text-transform:none}
+#services .svc-row .promise{color:var(--crimson-text);font-weight:600}
+#services .fam{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+html[dir="rtl"] #services .fam{letter-spacing:0;text-transform:none}
+/* the folds ("the 5 other services", the estimator, "price-more"): a summary bar */
+details.capabilities>summary{background:var(--navy);border:2px solid var(--edge);border-radius:0;box-shadow:calc(4px * var(--dx)) 4px 0 var(--drop);
+  padding:var(--s-4) var(--card-pad);transition:transform var(--m-press) var(--m-ease-enter),box-shadow var(--m-press) var(--m-ease-enter)}
+details.capabilities>summary>span:first-child{font-family:var(--f-disp);font-weight:900;text-transform:uppercase;letter-spacing:var(--tr-ui);color:var(--ice)}
+html[dir="rtl"] details.capabilities>summary>span:first-child{font-weight:700;text-transform:none;letter-spacing:0}
+@media (hover:hover){details.capabilities>summary:hover{transform:translate(calc(-2px * var(--dx)),-2px);box-shadow:calc(6px * var(--dx)) 6px 0 var(--drop)}}
+details.capabilities>summary .chev{width:32px;height:32px;flex:none;background:var(--ice);border-radius:0}
+details.capabilities>summary .chev::before,details.capabilities>summary .chev::after,details.capabilities[open]>summary .chev::before{background:var(--void);border-radius:0}
+.cap{border-top:1px solid var(--hairline-2)}
+.cap h4{font-family:var(--f-cond);font-weight:900;text-transform:uppercase;letter-spacing:0;font-size:var(--t-ui)}
+html[dir="rtl"] .cap h4{font-weight:700;text-transform:none}
+
+/* ---------- 03 Tarifs (here and on /tarifs/) ---------- */
+/* the currency switch: a segmented control */
+.pr-cur legend,.est-field legend,.est-lab label{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--tr-label);text-transform:uppercase;color:var(--muted)}
+html[dir="rtl"] :is(.pr-cur legend,.est-field legend,.est-lab label){letter-spacing:0;text-transform:none}
+.pr-cur .est-chips{display:inline-flex;gap:0;border:2px solid var(--edge)}
+.pr-cur .echip{min-width:52px;min-height:44px;justify-content:center;padding:0 14px;border:0;border-radius:0;background:transparent;color:var(--ice);font-family:var(--font-mono);font-weight:700}
+@media (max-width:400px){.pr-cur .echip{min-width:44px;padding:0 12px}}   /* 2026-11-27: at 360 the three chips (156px) ran past their 145px frame and the $ was cut (vbugs HCLIP) */
+.pr-cur .echip+.echip{border-inline-start:2px solid var(--edge)}
+.pr-cur .echip:has(input:checked){background:var(--ice);color:var(--void);border-color:var(--edge)}
+.pr-cur .echip:has(input:focus-visible){outline:3px solid var(--crimson-text);outline-offset:2px}
+/* the tiers: spec sheets */
+.tier{background:var(--navy)!important;border:2px solid var(--edge)!important;border-radius:0!important;box-shadow:calc(8px * var(--dx)) 8px 0 var(--drop)!important}
+.tier::before,.tier::after{border-color:transparent!important}
+.tier-pop::before{display:none!important}
+.tier h3{font-family:var(--f-cond)!important;font-weight:900;text-transform:uppercase;letter-spacing:0;font-size:var(--t-title);line-height:1;color:var(--ice)}
+html[dir="rtl"] .tier h3{font-weight:700!important;text-transform:none}
+.tier .t-range b{word-spacing:.12em;font-family:var(--f-cond);font-weight:900;font-size:var(--t-display);line-height:1;letter-spacing:0;color:var(--ice);font-variant-numeric:tabular-nums}
+/* 2026-11-27: in Arabic --f-cond is the Arabic stack, whose Latin figures run wide; the range is one unbreakable line (no-break spaces round the dash) and "450 000 – 1 200 000" ran 90px past its card at 1024 and 1280 (vbugs ESCAPES). One step down, on the scale; no Latin condensed face fetched for it (the Arabic font budget) */
+html[dir="rtl"] .tier .t-range b{font-size:var(--t-title)}
+.tier .t-range .cur{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;color:var(--muted)}
+.tier .t-time{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+html[dir="rtl"] .tier .t-time{letter-spacing:0;text-transform:none}
+.tier .t-incl summary{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--tr-label);text-transform:uppercase;color:var(--ice)}
+html[dir="rtl"] .tier .t-incl summary{letter-spacing:0;text-transform:none}
+.tier .t-list li::before{width:8px!important;height:8px!important;top:.6em!important;border-radius:0!important;background:var(--ice)!important;border:0!important;box-shadow:none!important;transform:none!important;-webkit-mask:none!important;mask:none!important}
+/* 2026-11-27: one column the card's width, and the CTA wraps inside it. The caps CTA ("DEMANDER MON APERÇU GRATUIT →", nowrap) set the grid's auto column at 359px in a 293px card at 1280, and the list, the range and the button ran past the card's edge (vbugs ESCAPES) */
+.tiers>.tier{grid-template-columns:minmax(0,1fr)}
+.tier .actions-row .btn{white-space:normal;text-align:center;max-width:100%}
+@media (min-width:1100px){.tier .actions-row .btn{font-family:var(--f-cond)}}   /* three cards across: the condensed face keeps the CTA on one line at the shared button size (one geometry, design-check); below 1100 it may wrap rather than leave its card */
+.tier-pop{border-top:8px solid var(--mr-red)!important;box-shadow:calc(10px * var(--dx)) 10px 0 var(--crimson)!important}
+.tier-pop .t-pop{display:inline-flex;align-items:center;gap:8px;position:absolute;top:-18px;inset-inline-start:var(--s-5);inset-inline-end:auto;
+  padding:var(--s-1) var(--s-3);background:var(--mr-red);color:var(--mr-paper);border:2px solid var(--mr-paper);border-radius:0;box-shadow:calc(3px * var(--dx)) 3px 0 var(--mr-ink);
+  font-family:var(--font-mono);font-weight:700;font-size:var(--t-label);letter-spacing:var(--tr-label);text-transform:uppercase;line-height:1.2;transform:rotate(-3deg)}
+.tier-pop .t-pop::before{content:"";flex:none;width:6px;height:6px;background:var(--mr-paper);box-shadow:0 0 0 1px var(--mr-ink)}
+html[dir="rtl"] .tier-pop .t-pop{transform:rotate(3deg);letter-spacing:0;text-transform:none}
+.tier .t-wk b,.tier .t-wk{border-radius:0!important}
+.tier .t-wk b{background:var(--mr-red)!important}
+.price-note .pr-ret b{font-family:var(--f-cond);font-weight:900;font-size:var(--t-lead);font-variant-numeric:tabular-nums;color:var(--ice)}
+
+/* the estimator: the machine. A console panel in both themes; a receipt slip for the output */
+.estimator{background:var(--mr-ink)!important;color:var(--mr-paper);border:3px solid var(--mr-paper)!important;border-radius:0!important;
+  box-shadow:calc(10px * var(--dx)) 10px 0 var(--mr-red)!important}
+/* the console's type is parchment in both themes (the theme tokens are the page's; these are fixed) */
+.estimator :is(p,span,legend,label,li,b,small,strong,caption,th,td,h3,h4){color:var(--mr-paper)}
+.estimator :is(.est-hint,.est-field legend,.est-lab label,.eo-fine){color:var(--mr-paper-2)}
+.estimator :is(.esc-nm span){color:var(--mr-paper-2)}
+.estimator .est-head{position:relative;display:flex;align-items:center;gap:var(--s-3);margin:0 0 var(--s-5);padding:var(--s-3) var(--s-4);background:var(--mr-red);color:var(--mr-paper);border-bottom:3px solid var(--mr-paper)}
+.estimator .est-head p{color:var(--mr-paper);margin:0;padding-inline-end:52px}
+.estimator .est-head .ai-corner{display:none}
+.estimator .eopt{align-items:center}
+.estimator .est-head>.kseal{position:absolute;inset-inline-end:var(--s-3);top:50%;margin-top:-20px;background:var(--mr-ink)}
+.estimator :is(.echip,.eopt){border:2px solid var(--mr-paper-2);border-radius:0;background:transparent;color:var(--mr-paper)}
+.estimator :is(.echip,.eopt):has(input:checked){background:var(--mr-paper);border-color:var(--mr-paper);color:var(--mr-ink)}
+.estimator :is(.echip,.eopt):has(input:checked) span{color:var(--mr-ink)}
+.estimator .eopt::before{border:2px solid currentColor;border-radius:0}
+.estimator .eopt:has(input:checked)::before{background:var(--mr-red);border-color:var(--mr-ink)}
+.estimator :is(.echip,.eopt):has(input:focus-visible){outline:3px solid var(--mr-red-text);outline-offset:2px}
+@media (hover:hover){.estimator :is(.echip,.eopt):not(:has(input:checked)):hover{border-color:var(--mr-paper);color:var(--mr-paper)}}
+/* the range: a segmented track, the filled part red; a square thumb */
+.estimator input[type=range]{accent-color:var(--mr-red);height:44px;background:transparent}
+.estimator input[type=range]::-webkit-slider-runnable-track{height:12px;border:2px solid var(--mr-paper-2);border-radius:0;
+  background:linear-gradient(90deg,var(--mr-red) var(--fill,30%),transparent var(--fill,30%)),repeating-linear-gradient(90deg,transparent 0 10px,var(--mr-paper-2) 10px 12px)}
+html[dir="rtl"] .estimator input[type=range]::-webkit-slider-runnable-track{
+  background:linear-gradient(270deg,var(--mr-red) var(--fill,30%),transparent var(--fill,30%)),repeating-linear-gradient(270deg,transparent 0 10px,var(--mr-paper-2) 10px 12px)}
+.estimator input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;margin-top:-8px;border-radius:0;background:var(--mr-red);border:2px solid var(--mr-paper);box-shadow:none}
+.estimator input[type=range]::-moz-range-track{height:8px;border:2px solid var(--mr-paper-2);border-radius:0;background:transparent}
+.estimator input[type=range]::-moz-range-progress{height:8px;background:var(--mr-red)}
+.estimator input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:0;background:var(--mr-red);border:2px solid var(--mr-paper)}
+/* the value in a display well with the blueprint grid */
+.estimator .est-sizev{display:inline-grid;place-items:center;min-width:56px;height:40px;padding:0 10px;border:2px solid var(--mr-paper-2);
+  background:
+    linear-gradient(color-mix(in srgb,var(--mr-dim) 30%,transparent) 1px,transparent 1px) 0 0/8px 8px,
+    linear-gradient(90deg,color-mix(in srgb,var(--mr-dim) 30%,transparent) 1px,transparent 1px) 0 0/8px 8px,#36302A;
+  font-family:var(--f-cond);font-weight:900;font-size:var(--t-title);line-height:1;color:var(--mr-paper);font-variant-numeric:tabular-nums}
+.estimator .est-hint{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--mr-paper-2)}
+/* the output: a printed receipt, ink on parchment, its top and bottom edges cut */
+.estimator .est-out{background:var(--mr-paper)!important;color:var(--mr-ink);border:0!important;border-radius:0!important;box-shadow:none!important;
+  /* square, as prices and forms stay (2026-11-27: tilted, its box read taller and the sticky receipt covered more of a landscape phone); the cut edges carry the slip */
+  -webkit-mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50% 100%/14px 51% repeat-x,conic-gradient(from 135deg at top,#0000,#000 1deg 89deg,#0000 90deg) 50% 0/14px 51% repeat-x;
+  mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50% 100%/14px 51% repeat-x,conic-gradient(from 135deg at top,#0000,#000 1deg 89deg,#0000 90deg) 50% 0/14px 51% repeat-x}
+.estimator .est-out :is(p,span,li,b,small,strong){color:var(--mr-ink)}
+.estimator .est-out .btn-primary,.estimator .est-out .btn-primary *{color:var(--mr-paper)}
+.estimator .est-out .eo-k{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--tr-label);text-transform:uppercase;color:#4F4238}
+.estimator .eo-range,.estimator .eo-range b{font-family:var(--f-cond);font-weight:900;color:var(--mr-ink);font-variant-numeric:tabular-nums;letter-spacing:0}
+.estimator .eo-range b{font-size:var(--t-display)}
+.estimator .eo-range .cur{font-family:var(--font-mono);font-size:var(--t-label);color:#4F4238}
+.estimator .eo-time{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.08em;text-transform:uppercase;color:#3B332C;border-bottom:2px dashed var(--mr-ink);padding-bottom:var(--s-3)}
+.estimator .eo-sum li{font-family:var(--font-mono);font-size:var(--t-label);color:var(--mr-ink);border-bottom:1px dotted #937F6B}
+.estimator .eo-fine{color:#3B332C}
+.estimator .esc-band{border-radius:0!important}
+.estimator .est-out .btn-primary{border-color:var(--mr-ink)}
+.estimator .est-nojs{background:var(--mr-paper);color:var(--mr-ink)}
+
+/* ---------- 04 Fondateur: the character sheet ---------- */
+#founder .founder-card{position:relative;background:var(--navy)!important;border:3px solid var(--edge)!important;border-radius:0!important;
+  box-shadow:inset 0 36px 0 var(--console),calc(10px * var(--dx)) 10px 0 var(--drop)!important;padding:calc(36px + var(--card-pad-lg)) var(--card-pad-lg) var(--card-pad-lg)!important}
+#founder .founder-card::before{content:"";position:absolute;top:11px;inset-inline-start:var(--card-pad-lg);right:auto;width:8px;height:14px;background:var(--mr-red);border:0;transform:none;opacity:1;display:block}
+#founder .founder-card::after{display:none}
+#founder .founder-card>.kseal{position:absolute;z-index:6;top:-2px;inset-inline-start:calc(var(--card-pad-lg) + 22px)}
+#founder .fd-top>.fd-facts,#founder .fd-facts{grid-template-columns:minmax(0,1fr)!important;gap:0!important;margin-top:var(--s-4)}
+#founder .fd-facts>div{border-bottom:1px solid var(--hairline-2)}
+.fd-id h3{font-family:var(--f-cond);font-weight:900;text-transform:uppercase;letter-spacing:0;font-size:var(--t-display);line-height:1;color:var(--ice)}
+html[dir="rtl"] .fd-id h3{font-weight:700;text-transform:none}
+.fd-facts>div{display:flex;align-items:baseline;gap:var(--s-2);border:0;padding-block:var(--s-1)}
+.fd-facts dt{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);flex:none}
+.fd-facts dd{font-weight:600;color:var(--ice);margin:0}
+.fd-facts>div::after{display:none}
+.fd-facts dt::after{content:"";display:inline-block;width:24px;margin-inline-start:8px;border-bottom:2px dotted var(--trace);vertical-align:middle}
+html[dir="rtl"] .fd-facts dt{letter-spacing:0;text-transform:none}
+.fds-art,html[dir="rtl"] .fds-art{border:3px solid var(--edge);box-shadow:calc(10px * var(--dx)) 10px 0 var(--mr-red);border-radius:0}
+@media (min-width:1100px){#founder .fd-aside .fds-art{margin-top:calc(-24px - 36px - var(--card-pad-lg))}}
+.team-h,.fd-recent h4,.cv-col h4{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--tr-label);text-transform:uppercase;color:var(--muted)}
+html[dir="rtl"] :is(.team-h,.fd-recent h4,.cv-col h4){letter-spacing:0;text-transform:none}
+.fd-links a{border-radius:0!important;border:2px solid var(--edge)!important}
+.fl-b{border-radius:0!important;background:var(--ice)!important;color:var(--void)!important}
+
+/* ---------- 05 FAQ: a prompt and an answer ---------- */
+.faq-list .faq-item{background:var(--navy);border:2px solid var(--edge)!important;border-radius:0;box-shadow:calc(4px * var(--dx)) 4px 0 var(--drop);margin-bottom:var(--s-3)}
+.faq-item>summary{padding:var(--s-4)!important;gap:var(--s-3)}
+.faq-item>summary .q{font-family:var(--font-body);font-weight:600;font-size:var(--t-lead);line-height:1.35;text-transform:none;letter-spacing:0;color:var(--ice)}
+.faq-item>summary .q::before{content:">";content:">" / "";font-family:var(--font-mono);font-weight:700;color:var(--crimson-text);margin-inline-end:10px}
+html[dir="rtl"] .faq-item>summary .q::before{content:"<";content:"<" / ""}
+.faq-item .faq-mark{display:inline-grid;place-items:center;flex:none;width:32px;height:32px;background:var(--ice);border-radius:0;position:relative;margin-inline-end:0}   /* the old 44px hit box hung past the padding (-s-3); the visible box now sits inside the card, the whole summary is the target */
+.faq-item .faq-mark::before,.faq-item .faq-mark::after{background:var(--void)!important}
+/* one + / − mark (2026-11-28), the FAQ's and the estimator's: the strokes are a
+   share of the parchment box (44% of it, centred), not the old 12px / 6px
+   insets, which left a 4px cross (FAQ, 28px box) or a corner bracket
+   (estimator, phone) once the box changed size: 12px at 28, 14px at 32 */
+:is(.faq-item .faq-mark,details.capabilities>summary .chev)::before{left:28%;right:28%;top:50%;bottom:auto;width:auto;height:2px;border-radius:0;transform:translateY(-50%)}
+:is(.faq-item .faq-mark,details.capabilities>summary .chev)::after{top:28%;bottom:28%;left:50%;right:auto;height:auto;width:2px;border-radius:0;transform:translateX(-50%)}
+:is(.faq-item[open] .faq-mark,details.capabilities[open]>summary .chev)::after{transform:translateX(-50%) scaleY(0);opacity:0}
+.faq-item .faq-a{margin:0 var(--s-4) var(--s-4);padding-inline-start:var(--s-4);border-inline-start:3px solid var(--mr-red)}
+.faq-item .faq-a p{color:var(--body-strong);max-width:60ch}
+#faq>.faq-win img,#faq>.faq-win{border-radius:0}
+#faq>.faq-win{border:3px solid var(--edge);box-shadow:calc(10px * var(--dx)) 10px 0 var(--mr-red)}
+.faq-ask strong{font-family:var(--f-cond);font-weight:900;text-transform:uppercase;letter-spacing:0}
+html[dir="rtl"] .faq-ask strong{font-weight:700;text-transform:none}
+
+/* ---------- 06 Contact: the terminal ---------- */
+.form .field label{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--tr-label);text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
+html[dir="rtl"] .form .field label{letter-spacing:0;text-transform:none}
+.form .field:focus-within label{color:var(--ice)}
+.form .field:focus-within label::before{content:"";width:8px;height:14px;background:var(--mr-red)}
+.form :is(input,textarea){background:var(--navy)!important;border:2px solid var(--field-border)!important;border-radius:0!important;min-height:48px;color:var(--ice);box-shadow:none}
+.form :is(input,textarea)::placeholder{color:var(--faint)}
+.form :is(input,textarea):focus,.form :is(input,textarea):focus-visible{outline:3px solid var(--crimson-text)!important;outline-offset:2px;box-shadow:calc(4px * var(--dx)) 4px 0 var(--drop)!important}
+.form .field.invalid :is(input,textarea),.form [aria-invalid="true"]{border-color:var(--crimson-text)!important}
+.channels .ch{border-top:1px solid var(--hairline-2)!important;display:flex;align-items:baseline;gap:var(--s-2)}
+.channels dt{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+html[dir="rtl"] .channels dt{letter-spacing:0;text-transform:none}
+.channels .ch:last-child dd>span::before{content:"";display:inline-block;width:6px;height:6px;margin-inline-end:8px;vertical-align:.15em;background:var(--mr-red);box-shadow:0 0 0 1px var(--edge)}
+.ct-door{border:3px solid var(--edge)!important;border-radius:0!important;box-shadow:calc(10px * var(--dx)) 10px 0 var(--mr-red)!important;transform:rotate(-1deg)}
+.ct-door img{border-radius:0!important}
+
+/* ---------- footer: the bookend console ---------- */
+.footer,footer.footer{position:relative;background:var(--mr-ink)!important;color:var(--mr-paper);border-top:0!important;
+  box-shadow:0 0 0 100vmax var(--mr-ink);clip-path:inset(0 -100vmax);margin-top:var(--s-8);padding-top:calc(38px + var(--s-6))!important}
+.footer :is(a,span,p,b,address,small,dt,dd,strong){color:var(--mr-paper)}
+.footer .logo .wm{color:var(--mr-paper)}
+.footer::before{content:"";position:absolute;left:calc(50% - 50vw);right:auto;bottom:auto;width:100vw;top:0;height:38px;border:0;transform:none;opacity:1;pointer-events:none;
+  background:
+    linear-gradient(var(--mr-paper),var(--mr-paper)) 0 0/100% 2px no-repeat,
+    repeating-linear-gradient(90deg,var(--mr-dim) 0 1px,transparent 1px 8px) 0 2px/100% 4px no-repeat,
+    repeating-linear-gradient(-45deg,var(--mr-red) 0 6px,var(--mr-ink) 6px 14px) 0 14px/100% 24px no-repeat,
+    var(--mr-ink)}
+.footer::after{border-top-color:#4A423A}
+/* the menu's watermark returning once: the kana, vertical, at the inline end (kept out of the accessibility tree by its empty alt) */
+.footer .meta::after{content:"ヌミディア・ラボ";content:"ヌミディア・ラボ" / "";position:absolute;z-index:-1;top:calc(38px + var(--s-5));inset-inline-end:max(var(--gutter),calc(50vw - var(--max) / 2));writing-mode:vertical-rl;
+  font-family:var(--f-seal);font-weight:900;font-size:var(--fs-h2);line-height:1;color:var(--mr-paper);opacity:.05;pointer-events:none;user-select:none}
+@media (max-width:1099px){.footer .meta::after{display:none}}
+.footer .logo{color:var(--mr-paper)}
+.footer nav a{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--mr-paper);min-height:44px;display:inline-flex;align-items:center}
+@media (hover:hover){.footer nav a:hover{color:var(--mr-red-text)}}
+html[dir="rtl"] .footer nav a{letter-spacing:0;text-transform:none}
+.footer .foot-reach,.footer .foot-reach a,.footer .foot-reach span{color:var(--mr-paper-2)}
+.footer .foot-k{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:#CFBFAB}
+/* the meta row's paper rule only where the row is a box (to 960px; above it .footer .meta is display:contents, its border drawn nowhere, 2026-11-27) */
+@media (max-width:960px){.footer .meta{border-top:2px solid var(--mr-paper)!important}}
+.footer .meta{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.06em;color:#CFBFAB}
+.footer .meta a{color:#CFBFAB}
+.footer .foot-coord i{display:none}
+.footer .foot-coord b{color:#CFBFAB}
+
+/* ---------- shared pages: 404's sheet marks go; the dimension line becomes a readout ---------- */
+.sheet-frame{display:none}
+.dim-line i{background:var(--trace);height:2px}
+.dim-line i::before,.dim-line i::after{background:var(--trace)}
+
+/* ---------- motion: answers once, then stops ---------- */
+@media (prefers-reduced-motion:reduce){
+  .btn,.proof .cl,.work-foot .scene-link,.nsp-go,details.capabilities>summary,details.capabilities>summary .chev{transition:none!important}
+  :is(.btn,.proof .cl,.work-foot .scene-link,.nsp-go,details.capabilities>summary):active{transform:none!important}
+  @media (hover:hover){:is(.btn,.proof .cl,.work-foot .scene-link,.nsp-go,details.capabilities>summary):hover{transform:none!important}}
+}
+
+/* ---------- the phone's contact bar and the menu's action row: solid, a 2px edge (no glass) ---------- */
+.m-contact,.mobile-menu .menu-acts{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+@media (max-width:720px){.m-contact{background:var(--void);border-top:2px solid var(--edge)}}
+/* the visitor's line: its tape sits over the well's top edge */
+.proj .gain-k{z-index:6}
+.proj .body a.gain>span:first-child,.proj .body p.gain{border-inline-start:0;padding-inline-start:0}
+.proj .body .gain{padding:var(--s-3) var(--s-4);border-inline-start:3px solid var(--mr-red)}
+/* the founder's links: square chips with room inside */
+.fd-links a{padding:0 var(--s-3)!important;text-decoration:none}
+/* phone width: a 24px bar, the host truncated with an ellipsis */
+@media (max-width:719px){.proj .thumb,.proj .thumb:has(.shot),html[dir="rtl"] .proj .thumb:is(*,:has(.shot)){--bar:24px}}
+/* the build bar fills once as the offer arrives (five cells, five working days), then stays; with reduced motion it is filled at once */
+@media (prefers-reduced-motion:no-preference){
+  .js-ready #apercu.reveal:not(.in) .ptl-build .ptl-m i{background:transparent}
+  #apercu .ptl-build .ptl-m i{transition:background-color var(--m-press) linear var(--m-reveal)}
+  #apercu .ptl-build .ptl-m i:nth-child(2){transition-delay:calc(var(--m-reveal) + var(--m-step))}
+  #apercu .ptl-build .ptl-m i:nth-child(3){transition-delay:calc(var(--m-reveal) + 2 * var(--m-step))}
+  #apercu .ptl-build .ptl-m i:nth-child(4){transition-delay:calc(var(--m-reveal) + 3 * var(--m-step))}
+  #apercu .ptl-build .ptl-m i:nth-child(5){transition-delay:calc(var(--m-reveal) + 4 * var(--m-step))}
+}
+/* a slab's label stays on one line from 1200px (one button geometry: 52px tall); the caps run at .02em so the longest label fits a tier */
+@media (min-width:1200px){.btn{white-space:nowrap;letter-spacing:.02em}}
+/* a checked option is ink on parchment: its small print ("inclus") too */
+.estimator :is(.echip,.eopt):has(input:checked) :is(small,b,strong,em){color:var(--mr-ink)}
+/* one button geometry on a phone too: 52px at least everywhere in the page */
+main.wrap .btn.btn.btn{min-height:52px}
+@media (max-width:719px){main.wrap .btn{letter-spacing:0}}
+/* ---------- the phone (to 719px): the same grammar, tighter, so the page keeps the height the gravure band left (design-check HOME_H) ---------- */
+@media (max-width:719px){
+  main.wrap>section.proof{padding-block:var(--s-4)}
+  .proof-line{gap:var(--s-1)}
+  .proof-line .pc{min-height:0;padding:var(--s-1) var(--s-2);letter-spacing:.06em}
+  .proof .cl{min-height:44px;padding:var(--s-1) var(--s-2)}
+  .proof .cl-row{gap:var(--s-2)}
+  #services .svc-grid>.svc-row{padding-top:var(--s-4)}
+  #services .svc-grid>.svc-row::before{height:8px;background-size:auto}
+  #apercu .prev-head{padding-top:var(--s-4)}
+  .faq-list .faq-item{margin-bottom:var(--s-2)}
+  .faq-item>summary{padding:var(--s-3)!important}
+  .faq-item>summary .q{font-size:var(--t-ui);line-height:1.35}
+  .faq-item .faq-mark{width:28px;height:28px}
+  .faq-item .faq-a{margin:0 var(--s-3) var(--s-3);padding-inline-start:var(--s-3)}
+  #founder .founder-card{padding:var(--s-7) var(--card-pad) var(--card-pad)!important}
+  .work-foot .work-demo{padding-block:var(--s-2)}
+  .work-foot .scene-link{margin-top:var(--s-3)}
+  .proj .body .gain{padding:var(--s-2) var(--s-3)}
+  .tier-pop .t-pop{top:-14px}
+  .footer,footer.footer{padding-top:calc(30px + var(--s-4))!important;margin-top:var(--s-6)}
+  .footer::before{height:30px}
+}
+@media (max-width:1099px){.fd-id h3{font-size:var(--t-title)}}
+/* tablet and phone: the service rows and the build log stay as compact as the rows they replaced */
+@media (max-width:1099px){
+  #services .svc-grid>.svc-row{padding-top:var(--s-3)}
+  #services .svc-grid>.svc-row h3{font-size:var(--t-lead)}
+  #services .svc-grid>.svc-row h3::before{height:20px;padding:0 6px}
+}
+/* a narrow card: the build pad keeps 40x40, its number over a row of five thin cells */
+@container (max-width:719px){
+  #apercu .ptl-build .ptl-m{width:40px;height:40px;min-height:0;flex-direction:row;flex-wrap:wrap;justify-content:center;align-content:center;gap:3px 2px;padding:0}
+  #apercu .ptl-build .ptl-m::before{flex:0 0 100%;text-align:center;margin:0}
+  #apercu .ptl-build .ptl-m i{width:4px!important;height:8px!important;border-width:0!important}
+  #apercu .ptl-d{padding:var(--s-1) var(--s-2)}
+}
+@media (max-width:719px){
+  .work-foot .work-demo{padding-block:0 var(--s-1)}
+  .work-foot .scene-link{margin-top:var(--s-2);padding-inline:var(--card-pad);letter-spacing:0}
+  .proj .gain-k{margin-bottom:-4px}
+  .proj .actions{padding-top:0}
+}
+/* tablet and phone, continued: the portals' seam, the offer's readout, the proof, the FAQ and the footer keep the old rows' height */
+@media (max-width:1099px){
+  .portals{padding-block:calc(14px + var(--s-5)) var(--s-5)}
+  .portals>.portals-k,html[dir="ltr"] .portals>.portals-k{margin:calc(-1 * var(--s-5) - 4px) 0 var(--s-3)}
+  .portal-hq{margin-bottom:var(--s-3)}
+  .offer>.kicker,html[dir="ltr"] .offer>.kicker{margin:var(--s-4) 0 var(--s-3)}
+  main.wrap>section.proof{padding-block:var(--s-3)}
+  .proof .cl{min-height:44px;padding:var(--s-1) var(--s-2)}
+  .proj .thumb,.proj .thumb:has(.shot),html[dir="rtl"] .proj .thumb:is(*,:has(.shot)){--bar:24px}
+  .faq-list .faq-item{margin-bottom:var(--s-2)}
+  .faq-item>summary{padding:var(--s-3)!important}
+  .faq-item>summary .q{font-size:var(--t-ui);line-height:1.35}
+  .faq-item .faq-mark{width:28px;height:28px}
+  .footer,footer.footer{padding-top:calc(30px + var(--s-4))!important;margin-top:var(--s-6)}
+  .footer::before{height:30px}
+  #founder .founder-card,#apercu.preview{box-shadow:inset 0 32px 0 var(--console),calc(8px * var(--dx)) 8px 0 var(--drop)!important}
+  #apercu.preview{padding-top:var(--s-6)}
+  #founder .founder-card{padding-top:var(--s-7)!important}
+  #apercu .prev-head>.tag,#apercu .tag{height:32px}
+  #founder .founder-card::before{top:8px}
+}
+@media (max-width:719px){
+  .pr-cur legend{letter-spacing:.06em}
+  #services .svc-grid>.svc-row h3,.cap h4{font-size:var(--t-ui)}
+  details.capabilities>summary .chev{width:28px;height:28px}
+}
+.price-note .pr-ret b{font-size:inherit}
+@container (max-width:719px){
+  #apercu .ptl-s{grid-template-columns:32px minmax(0,1fr)}
+  #apercu .ptl-m,#apercu .ptl-build .ptl-m{width:32px;height:32px}
+  #apercu .ptl-s:not(:last-child)::after{inset-inline-start:15px;top:32px}
+  #apercu .ptl-build .ptl-m i{height:6px!important}
+}
+/* the lockup on the home's type steps; titles under the section heading on a phone */
+.navbar .logo .wm-t{font-size:var(--t-lead)}
+@media (max-width:719px){
+  .navbar .logo .wm-t{font-size:var(--t-ui)}
+  .proj--lead h3,#apercu h3{font-size:var(--t-title)}
+  .btn.btn.btn{padding-inline:var(--card-pad)}
+}
+/* the footer is the console in both themes: its small print reads parchment-2 on the ink whatever the theme tokens say (8.1:1) */
+.footer :is(.meta,.meta span,.meta bdi,.meta a,.meta b,.foot-k,.foot-reach,.foot-reach a,.foot-reach span,.foot-reach bdi){color:#CFBFAB!important}
+.footer nav a{color:#F3ECE1!important}
+@media (hover:hover){.footer nav a:hover{color:#E8806E!important}}
+/* the phone header's language drop: its trigger is text on the bar, the menu's ink or paper */
+@media (max-width:720px){html.js .navbar .lang>a[aria-current]{color:var(--ice);background:none}}
+/* the Arabic page draws no kanji (the seal face is 17.8 KB the Arabic font budget has no room for: audit.mjs holds it at 232.5 kB): its seals, the footer's watermark and the lockup's kana stay on the French and English pages */
+:root:lang(ar) :is(.kseal,.wm-kana){display:none!important}
+:root:lang(ar) .footer .meta::after{content:none}
+/* the logo slots share the band's width: they shrink rather than push past the page (960 to 1199) */
+.proof .cl-row{min-width:0;flex-wrap:nowrap}
+.proof .cl-row>li{flex:1 1 0;min-width:0}
+.proof .cl{width:100%;justify-content:center}
+.proof .cl img{max-width:100%;height:auto}
+main.wrap>section.proof>.clients{min-width:0;flex:1 1 auto}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Review round (2026-11-28): one row for the ten services, one bar for the
+   founder's dossier, the pricing's recommended action kept a slab on
+   phones, the ruler kept where it measures (section heads, the portals'
+   seam, the price timelines), not between rows or doubled under the
+   portals.
+   ═══════════════════════════════════════════════════════════════════════ */
+/* the offer's short ruler doubled the portals' seam right above it: gone */
+.offer::before{content:none}
+/* the service rows, the five first and the five in the fold: a plain 2px
+   rule between rows (the ruler did a hairline's job there), the parchment
+   index chip, condensed 900 capitals; a wrapped title runs back to the
+   title's own start (block, the chip inline), at every width */
+#services .svc-grid>.svc-row::before{display:block;content:"";height:2px;background:color-mix(in srgb,var(--edge) 32%,transparent)}
+#services .cap::after{content:none}
+#services .cap,#services .cap-grid>.cap:first-child,#services .capabilities.svc-flat .cap:first-child{border-top:2px solid color-mix(in srgb,var(--edge) 32%,transparent)}
+#services .cap h4{font-family:var(--f-cond);font-weight:900;text-transform:uppercase;letter-spacing:0;line-height:1.05;font-size:var(--t-title);color:var(--ice)}
+html[dir="rtl"] #services .cap h4{font-family:var(--f-cond);font-weight:700;text-transform:none;line-height:1.35}
+#services :is(.svc-grid>.svc-row h3,.cap h4){display:grid;grid-template-columns:auto minmax(0,1fr);align-items:start}   /* the chip in its own column: a wrapped title hangs from the title's own start, not under the chip (2026-11-28) */
+#services :is(.svc-grid>.svc-row h3,.cap h4)::before{display:inline-flex;align-items:center;vertical-align:.2em;width:max-content;height:24px;padding:0 8px;margin:0;margin-inline-end:var(--s-2);
+  background:var(--ice);color:var(--void);font-family:var(--font-mono);font-weight:700;font-size:var(--t-label);line-height:1;letter-spacing:.08em;text-transform:none;vertical-align:0}
+@media (max-width:1099px){
+  #services .cap h4{font-size:var(--t-lead)}
+  #services :is(.svc-grid>.svc-row h3,.cap h4)::before{height:20px;padding:0 6px}
+}
+@media (max-width:719px){#services :is(.svc-grid>.svc-row h3,.cap h4){font-size:var(--t-ui)}}
+/* the founder's dossier: its bar carries a readout (the atelier's
+   coordinates) behind the red tick, and the 夜 seal sits at the inline end,
+   as on La Carte and the night band */
+#founder .founder-card::before{content:none}
+#founder .fd-bar{position:absolute;z-index:5;top:0;inset-inline-start:var(--card-pad-lg);inset-inline-end:calc(var(--card-pad-lg) + 48px);height:36px;
+  display:flex;align-items:center;gap:var(--s-2);overflow:hidden;white-space:nowrap;
+  font-family:var(--font-mono);font-size:var(--t-label);line-height:1;letter-spacing:.1em;text-transform:uppercase;color:var(--mr-paper)}
+#founder .fd-bar::before{content:"";flex:none;width:8px;height:14px;background:var(--mr-red);box-shadow:0 0 0 1px var(--mr-paper)}
+html[dir="rtl"] #founder .fd-bar{letter-spacing:0;text-transform:none;font-family:var(--font-ar-body)}
+#founder .founder-card>.kseal{inset-inline-start:auto;inset-inline-end:var(--s-3)}
+@media (max-width:1099px){#founder .fd-bar{height:32px;inset-inline-start:var(--card-pad)}}
+#founder .fd-bar-s{display:none}
+@media (max-width:719px){#founder .fd-bar-l{display:none}#founder .fd-bar-s{display:inline}}
+/* the tier actions on a phone: the recommended tier's stays a slab (filled,
+   hard drop, the arrow after its words); the two others are text links whose
+   arrow follows the text (inline, start-aligned), not parked at the far end */
+@media (max-width:720px){
+  .tiers.tt .tier .t-foot .actions-row .btn,.tier:not(.tier-pop) .actions-row .btn{display:block;text-align:start}
+  .tiers.tt .tier.tier-pop .t-foot .actions-row .btn,.tier.tier-pop .actions-row .btn{display:block;width:100%;margin-inline-start:0;text-align:center;text-decoration:none;
+    background:var(--crimson);color:var(--on-crimson);border-color:var(--edge);box-shadow:calc(6px * var(--dx)) 6px 0 var(--mr-btn-drop)}
 }

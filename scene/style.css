@@ -38,7 +38,8 @@
   --grid:color-mix(in srgb,var(--muted) 7%,transparent); --grid-2:color-mix(in srgb,var(--muted) 11%,transparent);
   --ink:var(--ice);
   --gold:var(--crimson-text); --teal:var(--teal-text);
-  --display:'Cinzel','Cinzel Fallback',Georgia,serif;
+  /* 2026-11-27: the display face is the home's and the Studio's DISPLAY role, Archivo Condensed 900 in capitals (assets/fonts.css, by URL into hub/fonts); Cinzel left the shared pages */
+  --display:'Archivo Condensed','Archivo Condensed Fallback','Archivo','Arial Narrow',sans-serif;
   --body:'Geist','Geist Fallback',system-ui,sans-serif;
   --mono:'Geist Mono','Geist Mono Fallback',ui-monospace,monospace;
   --ar:'IBM Plex Sans Arabic','IBM Plex Sans Arabic Fallback',system-ui,sans-serif;
@@ -715,3 +716,75 @@ html[dir="ltr"] [lang="ar"]{font-family:var(--ar);letter-spacing:0}
 @keyframes m-in{from{opacity:0}}
 /* reduced motion: no lift and no crossfade, the next page at once */
 @media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+
+/* ============================================================
+   THE MACHINE ROOM (2026-11-27): the case planches follow the home, the
+   Studio's sibling. A planche is a dossier: a 2px edge, a hard drop (red on
+   the ink, ink on the paper: themes.css --drop), square corners, an ink
+   bar for its head; the corner registration ticks (crop marks) went; the
+   sheet's number is an index tag; the titles are Archivo 900 capitals.
+   ============================================================ */
+:root{--dx:1}
+html[dir="rtl"]{--dx:-1}
+.intro h1,.sh-head h2,.group,.outro-q{font-weight:900;text-transform:uppercase;letter-spacing:0;line-height:.98}
+html[dir="rtl"] :is(.intro h1,.sh-head h2,.group,.outro-q){text-transform:none;line-height:1.3}
+.sheet{border:2px solid var(--edge);border-radius:0;background:var(--navy);box-shadow:calc(8px * var(--dx)) 8px 0 var(--drop)}
+.tick{display:none}
+.sh-head{border-bottom:2px solid var(--edge)}
+.sh-no{display:inline-flex;align-items:center;height:26px;padding:0 10px;background:var(--ice);color:var(--void);font-weight:700;letter-spacing:.08em}
+.chip{border-radius:0;border-width:2px}
+/* the masthead's lockup, the home's and the Studio's (scripts/lib/wordmark.mjs LOCKUP): text in Archivo 900 capitals, LABS in red, the static cursor; the kana from 1200px */
+.hud-logo .wm-t{font-family:"Archivo","Archivo Fallback","Arial Black",sans-serif;font-weight:900;font-size:18px;line-height:1;letter-spacing:-.01em;white-space:nowrap}
+.hud-logo .wm-l{color:var(--crimson-text)}
+.hud-logo .cursor{background:var(--crimson);height:16px}
+.hud-logo .wm-kana{display:none;margin-inline-start:10px;font-family:"NL Seal",sans-serif;font-weight:900;font-size:12px;line-height:1;color:var(--crimson-text);white-space:nowrap}
+/* the kana from 1600px (2026-11-28): the bar carries the home's seven sections from 1360, and between 1200 and 1600 the kana ran into the first one ('ラボRéalisations'); the crumb keeps its own width, so the wordmark is never squeezed under the nav */
+@media (min-width:1600px){.hud-logo .wm-kana{display:inline}}
+:root:lang(ar) .hud-logo .wm-kana{display:none}   /* as the home's Arabic bar: the Latin lockup alone */
+.hud .bc{flex:none}
+.hud-logo{direction:ltr;unicode-bidi:isolate}
+/* the status marks read on the sheet's own ground in both themes (the theme's --teal is a fill now, parchment; the seal red as text is --crimson-text) */
+.chip.is-live,.chip.is-finished{color:var(--teal-text);border-color:color-mix(in srgb,var(--teal-text) 55%,transparent)}
+.sh-done{color:var(--crimson-text)}
+.sh-done__k{border-color:var(--crimson-text)}
+
+/* ============================================================
+   The shared pieces, the home's (2026-11-28 review): /scene/ read as half
+   moved (sentence-case nav, a rounded language pill, soft buttons, pill path
+   chips). The masthead's sections are mono capitals; the language is a
+   square segment, the pressed one filled; the buttons are square slabs in
+   Archivo 900 capitals with a hard drop that press; the path chips are
+   square mono tags on a 1px ink border; the index and the visit links lose
+   their rounding. The blueprint grid stays.
+   ============================================================ */
+.hud-nav{gap:var(--s-4)}
+.hud-nav a{font:500 12px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+html[dir="rtl"] .hud-nav a{letter-spacing:0;text-transform:none;font-family:var(--ar);font-size:14px}
+.lang{border:2px solid var(--edge);border-radius:0}
+.lang button+button{border-inline-start:2px solid var(--edge)}
+.lang button[aria-pressed="true"],.lang button[aria-pressed="true"]:hover{background:var(--edge);color:var(--void)}
+.btn{font-family:"Archivo","Archivo Fallback","Arial Black",sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.04em;font-size:14px;line-height:1.2;
+  border-radius:0;border:2px solid var(--edge);
+  transition:transform 120ms cubic-bezier(.2,.8,.2,1),box-shadow 120ms cubic-bezier(.2,.8,.2,1),background-color var(--t-hover),color var(--t-hover)}
+html[dir="rtl"] .btn{font-family:var(--ar);font-weight:700;text-transform:none;letter-spacing:0;font-size:16px}
+.btn-primary{background:var(--crimson);color:var(--on-crimson);border-color:var(--edge);box-shadow:calc(6px * var(--dx)) 6px 0 color-mix(in srgb,var(--console,#211E1B),#000 55%)}
+.btn-teal{background:var(--teal);color:var(--on-teal);border-color:var(--edge);box-shadow:calc(6px * var(--dx)) 6px 0 var(--drop)}
+@media (hover:hover){
+  .btn-primary:hover{background:var(--crimson);border-color:var(--edge)}
+  .btn-teal:hover{background:var(--teal);border-color:var(--edge)}
+  :is(.btn-primary,.btn-teal):hover{transform:translate(calc(-2px * var(--dx)),-2px)}
+}
+:is(.btn-primary,.btn-teal):active{transform:translate(calc(4px * var(--dx)),4px);box-shadow:calc(2px * var(--dx)) 2px 0 var(--drop)}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+/* the phone bar: the two slabs on the page's own ground behind a 2px edge */
+@media (max-width:720px) and (min-height:561px),(max-width:479px){
+  .m-contact{border-top:2px solid var(--edge);background:var(--paper);-webkit-backdrop-filter:none;backdrop-filter:none}
+  .m-contact .btn{box-shadow:calc(4px * var(--dx)) 4px 0 var(--drop)}
+}
+.gv-list code{border:1px solid var(--ink);border-radius:0;padding:2px 8px;letter-spacing:.02em;color:var(--ink)}
+.index a,.visit{border-radius:0;border:2px solid var(--edge)}
+/* the index's 2px edge takes its extra pixel from the padding, so the name keeps the width it had (2026-11-28): one pixel less tipped "Annuaire industriel algérien" onto a third line when the Arabic page's face arrived, a 0.017 shift at 1280 */
+.index a{padding:9px 15px}
+@media (max-width:719px){.index a{padding:9px}}
+.visit{font:500 12px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+html[dir="rtl"] .visit{letter-spacing:0;text-transform:none;font-family:var(--ar);font-size:14px}

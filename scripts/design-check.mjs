@@ -126,6 +126,7 @@ const measure = () => {
     const el = n.parentElement;
     if (!el || skip(el) || !vis(el)) continue;
     const s = px(getComputedStyle(el).fontSize);
+    if (s === 0) continue;   // 2026-11-28: a 0px text paints nothing, so it is no type size (the proof strip folds the copy's " · " separators between its chips this way)
     if (!sizeSet.has(s)) { const k = s + ' ' + (el.className || el.tagName).toString().split(' ')[0]; out.offSizes[k] = (out.offSizes[k] || 0) + 1; }
   }
   if (h2s) {
@@ -523,7 +524,7 @@ console.log('offer: the h1 and its two buttons inside the screen, fr/en/ar at 32
    to 1250 on an iPad in landscape; the hero and the plate left the home); (b) the home's height, fr, fonts loaded, held at what was
    measured plus 5%: phone 390 and tablet 768 (a ceiling to lower, never to raise); (c) no sideways scroll at
    the tablet widths; (d) the fixed + sticky chrome at most 25% of a 390x664 phone with the estimator open */
-const HOME_H = { 390: 11127, 768: 10710 };   // measured 2026-11-27 (night) after merging the portals band (#44) onto the type scale on the home (#36) and menu round 3 (#37): 11,127 and 10,710
+const HOME_H = { 390: 11076, 768: 10564 };   // 2026-11-28: measured 11,036 and 10,524 after the review round (FAQ marks, the services' one row, the founder's bar), + 40px of margin: the height reads ±16px between runs (lazy art, font timing), so a ceiling at the exact measure failed on noise. Before: 11,071 and 10,537, lowered 2026-11-27 (late night), measured after the machine-room restyle (the gravure band, the dune strip and the footer's dunes left; panels, bars and readouts came in): 11,071 and 10,537; before: 11,127 and 10,710, measured 2026-11-27 (night) after merging the portals band (#44) onto the type scale on the home (#36) and menu round 3 (#37): 11,127 and 10,710
 {
   for (const path of ['/', '/en/', '/ar/']) {
     for (let w = 960; w <= 1440; w += 40) {
@@ -567,6 +568,21 @@ const HOME_H = { 390: 11127, 768: 10710 };   // measured 2026-11-27 (night) afte
     }
   }
   console.log('tablet: no sideways scroll at 768, 834, 1024, 1194, fr/en/ar');
+  /* 2026-11-27: every work capture arrives once its frame has been on screen at 1440 (a lazy image held fully
+     clipped by the unroll was never fetched: white frames on production; app.js now asks for it on sight) */
+  for (const path of ['/', '/en/', '/ar/']) {
+    const ctx = await br.newContext({ viewport: { width: 1440, height: 900 } });
+    const p = await ctx.newPage();
+    await p.goto(srv.base + path, { waitUntil: 'load' }).catch(() => {});
+    const empty = [];
+    for (const id of await p.evaluate(() => [...document.querySelectorAll('.proj')].map((e) => e.id))) {
+      await p.evaluate((i) => document.getElementById(i).querySelector('.thumb').scrollIntoView({ block: 'center' }), id);
+      await p.waitForFunction((i) => { const s = document.getElementById(i).querySelector('.shot'); return s && s.complete && s.naturalWidth > 0; }, id, { timeout: 5000 }).catch(() => empty.push(id));
+    }
+    if (empty.length) fails.push(`captures ${path} @1440: ${empty.join(', ')} still empty after being on screen`);
+    await ctx.close();
+  }
+  console.log('captures: every work frame has its image after being on screen at 1440, fr/en/ar');
   {
     const ctx = await br.newContext({ viewport: { width: 390, height: 664 }, reducedMotion: 'reduce', isMobile: true, hasTouch: true });
     const p = await ctx.newPage();

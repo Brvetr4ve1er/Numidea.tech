@@ -28,62 +28,70 @@
        is fine for a rule and fails for a control)
    The wordmark is drawn (scripts/lib/wordmark.mjs), so no theme sets a logo
    face any more.
+   2026-11-27 (owner: "restyle the old page to the Studio style, with a
+   technology flair"): the two themes keep their keys and become the menu's
+   and the Studio's grounds. Arcanum is the ink (#211E1B) the menu is drawn
+   on, Daylight the Studio's paper (#D8CBB8 / #F3ECE1); one brick red
+   (#A34135) is the accent in both. Navy, brass and cyan are retired, as are
+   the glows, the washes and the graph paper (their tokens stay in the
+   contract, flat). The type lines (--font-head = Archivo Condensed 900,
+   #37; the --h1-* sizes on the scale, #36) are kept as those threads set
+   them. The contract grew for the hard-edge language:
+     --edge     a panel's 2-3px border (parchment on ink, ink on paper)
+     --drop     the hard offset shadow (red on ink, ink on paper), never blurred
+     --trace    blueprint and circuit line-work: rulers' ticks, traces, pads
+                (decorative, it never carries meaning alone)
+     --console  the always-dark surface (the estimator, the atelier band,
+                the frames' title bars, the proof band, the footer): ink in
+                both themes, its text always parchment
+   The engraving's three layers (--vista-*) left with the engraving.
    ============================================================ */
 
-/* ----- ARCANUM — arcane blue and brass, engraved Cinzel (primary) ----- */
+/* ----- ARCANUM — the menu's ink: parchment type, brick red, red drops ----- */
 :root[data-theme="arcanum"]{
-  --void:#0A1420; --navy:#0F1E30; --plum:#13283E;
-  --ice:#EAF1F8; --body-strong:#C7D5E2; --muted:#9DB2C6; --faint:#7D92A6;
-  --crimson:#E6B450; --crimson-hi:#F4D27A; --on-crimson:#0A1420; --crimson-text:#E6B450;
-  --teal:#34D0E8; --teal-text:#34D0E8; --on-teal:#0A1420;
-  --hairline:#1C3550; --hairline-2:#27496B;
-  --band:rgba(19,40,62,.34); --shade:0 0 0; --shade-k:1;
-  --grad-blood:linear-gradient(135deg,#F4D27A 0%,#B07E2A 52%,#13283E 110%);
-  --grad-noir:radial-gradient(120% 120% at 20% 0%,#15293F 0%,#0F1E30 45%,#0A1420 100%);
-  --glow-teal:0 0 0 1px rgba(52,208,232,.4);
-  --glow-crimson:0 0 0 1px rgba(230,180,80,.45);   /* a ring: the 34px bloom was an ambient glow */
-  --btn-glow:0 1px 0 color-mix(in srgb,var(--on-crimson) 25%,transparent),0 8px 20px -14px rgb(var(--shade) / .6);
-  /* flat navy: the gold and cyan corner washes read as a SaaS gradient and
-     tinted the capture's surround (Fleet 5, A2) */
+  --void:#211E1B; --navy:#2C2824; --plum:#36302A;
+  --ice:#F3ECE1; --body-strong:#E4DACB; --muted:#CFBFAB; --faint:#A8957F;
+  /* red on ink is 2.66:1 as a fill, so every red control here carries a 2px
+     --edge border (styles.css), as the menu's slabs do; red as text is the
+     lighter #E8806E (6.1:1 on the ink) */
+  --crimson:#A34135; --crimson-hi:#7E2F26; --on-crimson:#F3ECE1; --crimson-text:#E8806E;
+  --teal:#D8CBB8; --teal-text:#D8CBB8; --on-teal:#211E1B;
+  --hairline:#4A423A; --hairline-2:#5E544A;
+  --edge:#F3ECE1; --drop:#A34135; --trace:#5E544A; --console:#211E1B;
+  --band:transparent; --shade:0 0 0; --shade-k:0;
+  --grad-blood:linear-gradient(#A34135,#A34135);
+  --grad-noir:linear-gradient(#2C2824,#2C2824);
+  --glow-teal:0 0 0 2px #D8CBB8;
+  --glow-crimson:0 0 0 2px #A34135;
+  --btn-glow:none;
   --atmos:none;
-  --grid-color:rgba(230,180,80,.5); --grid-opacity:.035; --grid-size:64px;
-  --vista-far:rgba(176,160,128,.30); --vista-mid:rgba(230,180,80,.40); --vista-near:rgba(212,196,160,.24);   /* Fleet 7 round 4: the engraving in brass, as the dune strips, not a teal tower (the one cyan on the page is the wordmark) */
-  --nav-glass:rgba(10,20,32,.96); --glass:rgba(23,54,79,.35); --field-bg:rgba(10,20,32,.6);
-  --field-border:color-mix(in srgb,var(--faint) 75%,var(--navy));
+  --grid-color:transparent; --grid-opacity:0; --grid-size:64px;
+  --nav-glass:rgba(33,30,27,.96); --glass:#2C2824; --field-bg:#2C2824;
+  --field-border:#D8CBB8;
   --font-head:var(--f-cond); --font-head-em:var(--f-cond); --head-weight:900; --head-tracking:0;
-  /* 32px on a phone, not 27: the hero tops the 24px section heading by a
-     third (it stood 28 against 27). 32 and 4.3vw are sizes where Cinzel and
-     its metric fallback break the French and English hero alike. */
   --h1-fs:clamp(1.75rem,.9rem + 4.4vw,4.25rem); --h1-fs-wide:clamp(2.5rem,4.3vw,4.25rem); --h1-lh:1.03;
-  --r-sm:8px; --r-md:14px; --kicker-node:0px;   /* the ◆ after every kicker was the theme button's own mark, nine times over */
+  --r-sm:0px; --r-md:0px; --kicker-node:0px;
 }
 
-/* ----- DAYLIGHT — warm paper, ink, ochre and deep teal ----- */
+/* ----- DAYLIGHT — the Studio's paper: ink type, brick red, ink drops ----- */
 :root[data-theme="daylight"]{
-  --void:#F6F3EC; --navy:#FFFFFF; --plum:#EFEADF;
-  --ice:#15181D; --body-strong:#2B3038; --muted:#4B515E; --faint:#606671;
-  /* Fleet 5 (D3): an ochre-gold nearer Arcanum's brass than the brown it was.
-     #8A5B00 on the paper #F6F3EC is 5.30:1 (text), the cream #FFF8EC on it
-     5.56:1 (the button); the hover darkens (#7A4F06), as a pressed brass does */
-  --crimson:#8A5B00; --crimson-hi:#7A4F06; --on-crimson:#FFF8EC; --crimson-text:#8A5B00;
-  --teal:#0E6E78; --teal-text:#0B5F68; --on-teal:#FFFFFF;
-  --hairline:#E4DED2; --hairline-2:#D2C9B8;
-  --band:rgba(140,94,10,.045); --shade:60 45 20; --shade-k:.28;
-  --grad-blood:linear-gradient(135deg,#A8741A 0%,#8C5E0A 55%,#5C3D06 100%);
-  --grad-noir:linear-gradient(#FFFFFF,#FFFFFF);   /* one card surface: white, as --navy (it was a radial wash to #F1ECE1) */
-  --glow-teal:0 0 0 1px rgba(14,110,120,.35);
-  --glow-crimson:0 0 0 1px rgba(140,94,10,.35);
-  --btn-glow:0 1px 0 color-mix(in srgb,var(--on-crimson) 25%,transparent),0 8px 20px -14px rgb(var(--shade) / .6);
-  --atmos:none;   /* paper, untinted: the ochre and teal washes are gone */
-  --grid-color:var(--ice); --grid-opacity:.028; --grid-size:64px;
-  /* Fleet 7 round 2: the engraving in the brass and umber of the dune strips, not the page's blue-grey at .6 (a grey smear with a cyan tower) */
-  --vista-far:rgba(122,106,74,.5); --vista-mid:rgba(138,91,0,.62); --vista-near:rgba(58,44,18,.5);   /* .045 read as graph paper through the lede */
-  --nav-glass:rgba(246,243,236,.96); --glass:#FFFFFF; --field-bg:rgba(255,255,255,.9);
-  --field-border:color-mix(in srgb,var(--faint) 75%,var(--navy));
-  /* the engraved headings, as Arcanum: one brand face on both default-worthy
-     themes, at Cinzel's sizes and leading (it runs wider than Geist) */
+  --void:#D8CBB8; --navy:#F3ECE1; --plum:#CFBFAB;
+  --ice:#211E1B; --body-strong:#3B332C; --muted:#4F4238; --faint:#5E5045;
+  --crimson:#A34135; --crimson-hi:#7E2F26; --on-crimson:#F3ECE1; --crimson-text:#8A3127;
+  --teal:#F3ECE1; --teal-text:#211E1B; --on-teal:#211E1B;
+  --hairline:#B5A28C; --hairline-2:#937F6B;
+  --edge:#211E1B; --drop:#211E1B; --trace:#937F6B; --console:#211E1B;
+  --band:transparent; --shade:0 0 0; --shade-k:0;
+  --grad-blood:linear-gradient(#A34135,#A34135);
+  --grad-noir:linear-gradient(#F3ECE1,#F3ECE1);
+  --glow-teal:0 0 0 2px #211E1B;
+  --glow-crimson:0 0 0 2px #A34135;
+  --btn-glow:none;
+  --atmos:none;
+  --grid-color:transparent; --grid-opacity:0; --grid-size:64px;
+  --nav-glass:rgba(216,203,184,.96); --glass:#F3ECE1; --field-bg:#F3ECE1;
+  --field-border:#211E1B;
   --font-head:var(--f-cond); --font-head-em:var(--f-cond); --head-weight:900; --head-tracking:0;
   --h1-fs:clamp(1.75rem,.9rem + 4.4vw,4.25rem); --h1-fs-wide:clamp(2.5rem,4.3vw,4.25rem); --h1-lh:1.03;
-  --r-sm:10px; --r-md:16px; --kicker-node:0px;
+  --r-sm:0px; --r-md:0px; --kicker-node:0px;
 }
-
