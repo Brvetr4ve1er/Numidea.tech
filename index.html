@@ -227,7 +227,9 @@
 <link rel="stylesheet" href="assets/fonts.css?v=202611281221">
 <!-- themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them -->
 <link rel="stylesheet" href="assets/themes.css?v=202611281221">
-<link rel="stylesheet" href="assets/styles.css?v=202611281221">
+<!-- the rules of styles.css that reach above <main> (scripts/build-first.mjs);
+     the full sheet loads right before <main>, below -->
+<link rel="stylesheet" href="assets/home-first.css?v=202611281221">
 <link rel="stylesheet" href="assets/menu/menu.css?v=202611281221">
 <noscript><style>
   /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */

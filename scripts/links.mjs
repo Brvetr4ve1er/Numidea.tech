@@ -12,7 +12,7 @@
  *    sitemap.xml and robots.txt; and the link annotations of the published
  *    PDFs. HTML comments are left out, as check.mjs does. Not links: JSON-LD's
  *    "@context" (a vocabulary name) and the files in SKIP, each with its
- *    reason. A URL a script completes at runtime ('https://wa.me/' + the
+ *    reason, and SAMPLES (lesson addresses shown as text). A URL a script completes at runtime ('https://wa.me/' + the
  *    number) is checked as completed (PREFIXES); a prefix not listed there
  *    fails, so a new one gets classified.
  *  - the client pages the project sheets name (scripts/scene-data.mjs): each
@@ -35,9 +35,9 @@
  * live-site or client URL stops the run.
  *
  * Deploy lag: a live-site link that answers 404 while this checkout publishes
- * the file and carries another ?v= stamp than the live site is "not deployed
- * yet": warned, not failed (a branch ahead of the deploy). With the same
- * stamp it fails. A link that answers 2xx only by redirecting to its site's
+ * the file while the live site is another build (another ?v= stamp, or a
+ * sitemap.xml that differs from this checkout's) is "not deployed yet":
+ * warned, not failed (a branch ahead of the deploy). Same build, it fails. A link that answers 2xx only by redirecting to its site's
  * home page is warned too: that is how many sites answer for a removed page.
  *
  *   node scripts/links.mjs --list       the links and where each comes from; no requests
@@ -60,6 +60,15 @@ if (!LIST) useEnvProxy();
 
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 const html = read('index.html');
+
+// Addresses shown as text for the reader to judge, never linked: the banking
+// book's "spot the fake link" cards and its fake page's address bar (the bank
+// and the scam hosts are invented, so none resolves). Exact URLs, so a real
+// link on these hosts would still be checked.
+const SAMPLES = new Set([
+  'https://mabanque.dz/connexion', 'https://aide.mabanque.dz/contact', 'https://mabanque.dz.securite-client.com/',
+  'https://ma-banque-dz.com/aide', 'https://mabanque.dz-verification.net/', 'https://edahabia-maj.info/', 'https://edahabia-maj.info',
+]);
 
 // Published files whose URLs nobody is shown or sent to
 const SKIP = [
@@ -154,6 +163,9 @@ for (const f of published) {
     if (/@context["']?\s*:\s*["']$/.test(src.slice(Math.max(0, m.index - 16), m.index))) continue;
     // RFC 2606 reserved example domains and the reserved .example top-level domain (a lab's or a case's sample
     // address, shown as text): no page to fetch
+    // the scheme named in prose (« https:// », “https://”): no host follows
+    if (!/^https:\/\/[a-z0-9]/i.test(u)) continue;
+    if (SAMPLES.has(u)) continue;
     if (/^https:\/\/(www\.)?example\.(org|com|net)(\/|$)/.test(u) || /^https:\/\/[^/]+\.example(\/|$)/.test(u)) continue;
     // a CSS attribute selector (a[href^="https://wa.me"]) names a prefix, not a page
     if (/\[[\w-]+[\^$*|~]?=["']?$/.test(src.slice(Math.max(0, m.index - 24), m.index))) continue;
@@ -222,6 +234,11 @@ await Promise.all(Array.from({ length: POOL }, async () => {
 const stampOf = (t) => (/\?v=(\d+)/.exec(t || '') || [])[1];
 const localStamp = stampOf(html);
 const liveStamp = todo.some((u) => kind(u) === 'site' && results.get(u).status === 404) ? stampOf((await get(BASE, { body: true })).text) : undefined;
+// the stamp alone can match across builds (a merge that adds a page without bumping it): a live
+// sitemap that differs from this checkout's is another build too
+const siteMiss = todo.some((u) => kind(u) === 'site' && results.get(u).status === 404);
+const liveSitemap = siteMiss ? (await get(BASE + 'sitemap.xml', { body: true })).text : undefined;
+const otherBuild = siteMiss && ((liveStamp && localStamp && liveStamp !== localStamp) || (liveSitemap && liveSitemap.trim() !== read('sitemap.xml').trim()));
 const publishedSet = new Set(published);
 const localFile = (u) => {
   let rel = decodeURIComponent(new URL(u).pathname.slice(new URL(BASE).pathname.length));
@@ -245,8 +262,8 @@ for (const u of todo) {
     continue;
   }
   if (k === 'blocked') { warn(`${blockOf(u)}  ${BLOCKS[blockOf(u)]}`, `${answer(r, u)}  ${u}`); continue; }
-  if (k === 'site' && r.status === 404 && localFile(u) && liveStamp && localStamp && liveStamp !== localStamp) {
-    warn(`not deployed yet: in this checkout (?v=${localStamp}), not on the live site (?v=${liveStamp})`, `404  ${u}`);
+  if (k === 'site' && r.status === 404 && localFile(u) && otherBuild) {
+    warn(`not deployed yet: in this checkout (?v=${localStamp}), not on the live site (?v=${liveStamp}${liveStamp === localStamp ? ', same stamp, another sitemap' : ''})`, `404  ${u}`);
     continue;
   }
   fails.push(`✗ ${answer(r, u)}${r.attempts > 1 ? ` (${r.attempts} attempts)` : ''}  ${k}  ${u}\n      in ${[...links.get(u)].join(' · ')}`);
