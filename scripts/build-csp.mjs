@@ -15,6 +15,9 @@
  * after <head>, before the policy is computed so its inline script is hashed. It runs last because every
  * earlier build step may rewrite an inline script (and bump.mjs re-applies it
  * after stamping): a hash taken before the last edit would block the script.
+ * Then the hosts' header policy (vercel.json, netlify.toml), the union of
+ * every page's meta plus reporting (scripts/lib/csp-header.mjs): it changes
+ * whenever a hash does, so it is written right after the metas.
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -22,6 +25,7 @@ import { pathToFileURL } from 'node:url';
 import { ROOT, PAGES, EXTRA_PAGES } from './site.mjs';
 import { withCsp, cspKind, scriptHashes } from './lib/csp.mjs';
 import { withGtag } from './lib/gtag.mjs';
+import { applyHeaders } from './lib/csp-header.mjs';
 
 // pages whose generator calls withCsp itself (build-scene.mjs, build-legal.mjs)
 export const GENERATED = ['scene/index.html', 'legal/index.html'];
@@ -45,5 +49,10 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     console.log(check ? `${r.changed ? '✗' : '✓'} ${what}${r.changed ? ': CSP meta stale (run: npm run csp)' : ''}`
       : `✓ ${what}${r.changed ? ' — updated' : ''}`);
   }
-  if (check) process.exit(rows.some((r) => r.changed) ? 1 : 0);
+  const stale = applyHeaders({ write: !check });
+  for (const f of ['vercel.json', 'netlify.toml']) {
+    const s = stale.includes(f);
+    console.log(check ? `${s ? '✗' : '✓'} ${f} header policy${s ? ': stale (run: npm run csp)' : ''}` : `✓ ${f} header policy${s ? ' — updated' : ''}`);
+  }
+  if (check) process.exit(rows.some((r) => r.changed) || stale.length ? 1 : 0);
 }
