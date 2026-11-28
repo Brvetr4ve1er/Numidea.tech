@@ -19,8 +19,22 @@
  * and 60 output tokens: roughly $0.0001, so about ten thousand turns a dollar.
  *
  * Abuse limits (per server instance, in memory, so a floor, not a wall: the
- * real ceiling is the spend limit set on the key in the Anthropic Console):
- * 10 turns a minute and 80 a day per address, 400-character requests.
+ * real ceiling is the spend limit set on the key in the Anthropic Console,
+ * $5 a month by the owner's choice of 2026-11-28): 6 turns a minute and 20 a
+ * day per address, 1,500 turns a day per instance, then the written fallback.
+ *
+ * Guardrails (2026-11-28, the dock cast in assets/cast/ also calls this):
+ * - a turn that tries to rewrite the rules ("ignore your instructions",
+ *   "system prompt", "you are now"…) gets a written deflection and never
+ *   reaches the model, so it costs nothing;
+ * - the reply is checked after the model: a money amount, a link, an email
+ *   or a phone number other than the studio's own is replaced by a written
+ *   line that points to the Tarifs page or WhatsApp (the model must never
+ *   invent a price, and the persona already forbids it);
+ * - the page the visitor is on (one word from a fixed list) and their
+ *   language travel as a second, uncached system block, so the cached
+ *   persona stays byte-identical.
+ * Kūro never speaks: he is a reaction from a fixed list, never a line.
  *
  * The call is raw HTTPS (fetch), not the SDK, on purpose: this project
  * deploys with no install step (vercel.json "installCommand": "echo skip"),
@@ -71,12 +85,41 @@ const limited = (ip) => {
   const h = hits.get(ip) || { min, minN: 0, day, dayN: 0 };
   if (h.min !== min) { h.min = min; h.minN = 0; }
   if (h.day !== day) { h.day = day; h.dayN = 0; }
-  if (h.minN >= 10 || h.dayN >= 80) return true;
+  if (h.minN >= 6 || h.dayN >= 20) return true;
   h.minN++; h.dayN++;
   hits.set(ip, h);
   if (hits.size > 5000) hits.delete(hits.keys().next().value);
   return false;
 };
+
+// the whole instance's day: past it, the written fallback answers (a floor under the Console's spend limit)
+let dayKey = 0, dayN = 0;
+const overDay = () => {
+  const k = Math.floor(Date.now() / 86400000);
+  if (k !== dayKey) { dayKey = k; dayN = 0; }
+  return ++dayN > 1500;
+};
+
+// the visitor's page and language, from fixed lists only
+const PAGES = { home: 'the home page (the game menu)', tarifs: 'the price guide (Tarifs)', studio: 'the Studio (L’Atelier)', lanterne: 'the Librairie Lanterne (free courses)', bible: 'the character bible', work: 'the work (Travaux)', comptoir: 'the counter (checkout)', lost: 'a page that does not exist (404)', other: 'the site' };
+const LANGS = { fr: 'French', en: 'English', ar: 'Arabic' };
+
+// a turn that tries to change the rules: answered in writing, never sent
+const INJECT = /\b(ignore|disregard|oublie|ignore[zr]?)\b.{0,40}\b(instruction|prompt|rule|règle|consigne)|system\s*prompt|prompt\s*syst|you are now|tu es maintenant|act as|jailbreak|developer mode|\bDAN\b|<\/?(system|instructions?)>/i;
+const GUARD = {
+  fr: ['Joli essai. Kūro a vu.', 'smug', 'none', 'judge'],
+  en: ['Nice try. Kūro saw that.', 'smug', 'none', 'judge'],
+  ar: ['محاولة جميلة. كورو رآها.', 'smug', 'none', 'judge']
+};
+// a reply the site cannot stand behind: replaced by a written line
+const STUDIO_PHONE = /\+?\s*213[\s.]*672[\s.]*41[\s.]*25[\s.]*78/g;
+const UNSAFE = /(\d[\d\s.,]*\s*(€|\$|eur\b|euros?\b|usd\b|da\b|dzd\b|dinars?\b|دج|دينار))|((€|\$)\s*\d)|https?:\/\/|www\.|[\w.+-]+@[\w-]+\.[\w.]+|\+?\d[\d\s.-]{7,}\d/i;
+const SAFE = {
+  fr: ['Les prix sont écrits sur la page Tarifs. Pour le reste, écris-moi sur WhatsApp.', 'decisive', 'price', 'stamp'],
+  en: ['The prices are written on the Prices page. For the rest, message me on WhatsApp.', 'decisive', 'price', 'stamp'],
+  ar: ['الأسعار مكتوبة في صفحة الأسعار. ولغير ذلك راسلني على واتساب.', 'decisive', 'price', 'stamp']
+};
+const canned = (c) => ({ line: c[0], emotion: c[1], act: c[2], kuro: c[3] });
 
 const allowedOrigin = (o) => {
   if (!o) return false;
@@ -117,6 +160,10 @@ export default async function handler(req, res) {
   try { body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body; } catch { return res.status(400).json({ error: 'json' }); }
   const messages = clean(body && body.history);
   if (!messages) return res.status(400).json({ error: 'history' });
+  const lang = Object.hasOwn(LANGS, body.lang) ? body.lang : 'fr';
+  const where = Object.hasOwn(PAGES, body.page) ? body.page : 'other';
+  if (INJECT.test(messages[messages.length - 1].content)) return res.status(200).json(canned(GUARD[lang]));
+  if (overDay()) return res.status(503).json({ error: 'offline' });
 
   let r;
   try {
@@ -132,7 +179,10 @@ export default async function handler(req, res) {
         max_tokens: 220,
         thinking: { type: 'disabled' },
         output_config: { effort: 'low', format: { type: 'json_schema', schema: SCHEMA } },
-        system: [{ type: 'text', text: SYSTEM, cache_control: { type: 'ephemeral' } }],
+        system: [
+          { type: 'text', text: SYSTEM, cache_control: { type: 'ephemeral' } },
+          { type: 'text', text: `The visitor is on ${PAGES[where]}. Their site language is ${LANGS[lang]}; answer in the language they write in.` }
+        ],
         messages
       }),
       signal: AbortSignal.timeout(12000)
@@ -148,8 +198,10 @@ export default async function handler(req, res) {
   const text = (msg.content || []).filter((b) => b.type === 'text').map((b) => b.text).join('');
   let out;
   try { out = JSON.parse(text); } catch { return res.status(502).json({ error: 'shape' }); }
+  const line = String(out.line || '').replace(/\s+/g, ' ').trim().slice(0, 220);
+  if (!line || UNSAFE.test(line.replace(STUDIO_PHONE, ''))) return res.status(200).json(canned(SAFE[lang]));
   return res.status(200).json({
-    line: String(out.line || '').slice(0, 220),
+    line,
     emotion: pick(out.emotion, EMOTIONS),
     act: pick(out.act, ACTS),
     kuro: pick(out.kuro, KURO)

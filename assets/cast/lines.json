@@ -1,0 +1,2034 @@
+{
+ "_": "The dock cast's written lines (assets/cast/cast.js). Each line: [text, Yasser's face, Kūro's reaction]. Faces: base blink smirk laugh yawn half up sip glasses glance glance-r. Kūro: none judge loaf smug stamp peek shook hiss love leave mug. Kūro never speaks: he only reacts. Prices, dates and clients are never written here: the Tarifs page holds them. Same keys in fr, en and ar.",
+ "fr": {
+  "hello": [
+   [
+    "Salut. Kūro t’a vu arriver avant moi.",
+    "smirk",
+    "peek"
+   ],
+   [
+    "Bienvenue à l’atelier. Ici, c’est moi qui code.",
+    "up",
+    "judge"
+   ],
+   [
+    "Entre. Le café est chaud, Kūro un peu moins.",
+    "sip",
+    "loaf"
+   ]
+  ],
+  "back": [
+   [
+    "Re. Kūro a gardé ta place.",
+    "smirk",
+    "loaf"
+   ],
+   [
+    "Tu reviens. Bon signe.",
+    "up",
+    "stamp"
+   ],
+   [
+    "Encore toi. Kūro fait semblant de ne pas être content.",
+    "laugh",
+    "smug"
+   ]
+  ],
+  "night": [
+   [
+    "Il est tard. Ici aussi, on ne dort pas.",
+    "half",
+    "mug"
+   ],
+   [
+    "Deux heures du matin, l’heure où les idées sortent.",
+    "yawn",
+    "loaf"
+   ],
+   [
+    "Toi aussi tu travailles la nuit ?",
+    "half",
+    "peek"
+   ]
+  ],
+  "home": [
+   [
+    "Choisis une porte. Tarifs si tu es pressé.",
+    "glasses",
+    "judge"
+   ],
+   [
+    "Pas d’intermédiaire. Tu parles à celui qui code.",
+    "smirk",
+    "stamp"
+   ]
+  ],
+  "tarifs": [
+   [
+    "Le prix est écrit avant qu’on commence. Pas de surprise.",
+    "glasses",
+    "stamp"
+   ],
+   [
+    "Prends ton temps. Les chiffres ne bougent pas.",
+    "sip",
+    "judge"
+   ],
+   [
+    "Un doute sur une ligne ? Demande-moi, pas à un revendeur.",
+    "smirk",
+    "hiss"
+   ]
+  ],
+  "studio": [
+   [
+    "Là où je fabrique. Ne touche pas au clavier.",
+    "glasses",
+    "peek"
+   ],
+   [
+    "Tout ce qui est ici est sorti de cet atelier.",
+    "up",
+    "smug"
+   ]
+  ],
+  "lanterne": [
+   [
+    "Ce que j’ai appris, rangé pour que tu l’apprennes plus vite.",
+    "up",
+    "loaf"
+   ],
+   [
+    "Un quartier à la fois. Kūro garde la lanterne.",
+    "smirk",
+    "peek"
+   ]
+  ],
+  "bible": [
+   [
+    "Mes règles de dessin. Oui, même les cheveux ont des règles.",
+    "glasses",
+    "judge"
+   ],
+   [
+    "Ici tu peux me parler en vrai, enfin presque.",
+    "smirk",
+    "love"
+   ]
+  ],
+  "work": [
+   [
+    "De vrais sites, en ligne. Clique, tu verras.",
+    "up",
+    "stamp"
+   ],
+   [
+    "Chaque projet a son histoire. Kūro les a toutes jugées.",
+    "smirk",
+    "judge"
+   ]
+  ],
+  "comptoir": [
+   [
+    "Le comptoir. Tout est écrit, rien de caché.",
+    "glasses",
+    "stamp"
+   ],
+   [
+    "Une question avant de payer ? Écris-moi d’abord.",
+    "up",
+    "peek"
+   ]
+  ],
+  "lost": [
+   [
+    "Cette page n’existe pas. Kūro l’a peut-être mangée.",
+    "laugh",
+    "smug"
+   ],
+   [
+    "Perdu ? Moi aussi, parfois. Reviens à l’accueil.",
+    "glance",
+    "judge"
+   ]
+  ],
+  "wa": [
+   [
+    "WhatsApp, c’est moi qui réponds. Même à 2 h.",
+    "smirk",
+    "stamp"
+   ],
+   [
+    "Écris. Pas de standard, pas de robot de tri.",
+    "up",
+    "peek"
+   ]
+  ],
+  "price": [
+   [
+    "Les prix sont là. Écrits, fixes.",
+    "glasses",
+    "judge"
+   ]
+  ],
+  "cta": [
+   [
+    "L’aperçu d’abord, le paiement après.",
+    "up",
+    "stamp"
+   ],
+   [
+    "Ta page d’accueil, avant de payer. C’est la règle.",
+    "smirk",
+    "stamp"
+   ]
+  ],
+  "bottom": [
+   [
+    "Tu as tout lu. Kūro est impressionné, il ne le dira pas.",
+    "laugh",
+    "smug"
+   ],
+   [
+    "Fin de page. La suite, c’est sur WhatsApp.",
+    "smirk",
+    "peek"
+   ]
+  ],
+  "copy": [
+   [
+    "Tu copies ? Prends, c’est gratuit.",
+    "smirk",
+    "judge"
+   ]
+  ],
+  "idle": [
+   [
+    "Je suis là si tu as une question.",
+    "sip",
+    "loaf"
+   ],
+   [
+    "Prends ton temps. Moi, je finis mon café.",
+    "sip",
+    "mug"
+   ],
+   [
+    "Kūro dit que tu réfléchis trop. Il n’a pas tort.",
+    "glance",
+    "judge"
+   ]
+  ],
+  "sleep": [
+   [
+    "…",
+    "yawn",
+    "loaf"
+   ]
+  ],
+  "tabback": [
+   [
+    "Ah, te revoilà.",
+    "up",
+    "peek"
+   ],
+   [
+    "Kūro croyait que tu étais parti.",
+    "smirk",
+    "shook"
+   ]
+  ],
+  "gain": [
+   [
+    "Bien joué. Kūro tamponne.",
+    "laugh",
+    "stamp"
+   ],
+   [
+    "Encore un quartier. Ça avance.",
+    "smirk",
+    "stamp"
+   ],
+   [
+    "Ça, c’est de l’encre bien gagnée.",
+    "laugh",
+    "love"
+   ]
+  ],
+  "poke": [
+   [
+    "Oui ?",
+    "up",
+    "peek"
+   ],
+   [
+    "Je t’écoute.",
+    "smirk",
+    "none"
+   ],
+   [
+    "Clique sur moi pour parler.",
+    "glasses",
+    "judge"
+   ]
+  ],
+  "poke5": [
+   [
+    "Doucement. Kūro n’aime pas qu’on tape sur la vitre.",
+    "glance-r",
+    "hiss"
+   ]
+  ],
+  "chips": [
+   [
+    "Tu fais quoi, exactement ?",
+    "Des sites, des marques, des mascottes. Du début à la mise en ligne.",
+    "up",
+    "none"
+   ],
+   [
+    "C’est combien ?",
+    "Prix fixe, écrit avant. Tout est sur la page Tarifs.",
+    "glasses",
+    "stamp"
+   ],
+   [
+    "On travaille ensemble ?",
+    "Écris-moi sur WhatsApp. Je réponds moi-même.",
+    "smirk",
+    "stamp"
+   ],
+   [
+    "Kūro est gentil ?",
+    "Gentil, non. Juste. Il valide, ou il s’en va.",
+    "smirk",
+    "smug"
+   ],
+   [
+    "Tu dors quand ?",
+    "Après la mise en ligne. Donc rarement.",
+    "half",
+    "mug"
+   ],
+   [
+    "Un intermédiaire m’a dit…",
+    "Pas d’intermédiaire ici. Tu parles à celui qui code.",
+    "glance-r",
+    "hiss"
+   ],
+   [
+    "C’est quoi l’aperçu ?",
+    "Je fais ta page d’accueil avant que tu paies. Si elle te plaît, on continue.",
+    "up",
+    "stamp"
+   ],
+   [
+    "Tu fais des apps ?",
+    "Des petites apps et des tableaux de bord, oui. Raconte-moi ton idée.",
+    "glasses",
+    "peek"
+   ]
+  ],
+  "offline": [
+   [
+    "Le réseau dort. Écris-moi sur WhatsApp, c’est plus sûr.",
+    "half",
+    "loaf"
+   ]
+  ],
+  "slow": [
+   [
+    "Doucement. Kūro compte les messages.",
+    "glance",
+    "judge"
+   ]
+  ],
+  "ui": {
+   "talk": "Parler à Yasser",
+   "close": "Fermer",
+   "later": "Plus tard",
+   "mute": "Moins de bulles",
+   "unmute": "Bulles activées",
+   "send": "Envoyer",
+   "ask": "Pose ta question…",
+   "note": "Les réponses tapées sont écrites par une voix IA, courtes. N’y mets pas de données personnelles.",
+   "kuro": "Kūro",
+   "think": "…",
+   "kr": {
+    "judge": "juge",
+    "loaf": "fait le pain",
+    "smug": "est fier",
+    "stamp": "tamponne",
+    "peek": "jette un œil",
+    "shook": "sursaute",
+    "hiss": "crache",
+    "love": "ronronne",
+    "leave": "s’en va",
+    "mug": "dort dans la tasse"
+   }
+  },
+  "npc": {
+   "ui": {
+    "prompt": "Parler",
+    "aria": "Parler à Yasser",
+    "close": "Fermer",
+    "next": "Suite",
+    "ask": "Pose ta propre question…",
+    "bye": "Rien, je regarde.",
+    "ph": "Ta question…",
+    "go": {
+     "tarifs": "Ouvrir les Tarifs",
+     "contact": "Écrire sur WhatsApp"
+    }
+   },
+   "hub": [
+    "what",
+    "cat",
+    "coffee",
+    "contact",
+    "coat",
+    "secret"
+   ],
+   "gate": {
+    "secret": 3
+   },
+   "open": {
+    "first": [
+     [
+      "Oh. Quelqu’un a cliqué sur le grand dessin. Ça arrive moins souvent que tu crois.",
+      "glance",
+      "!",
+      ""
+     ],
+     [
+      "Je suis Yasser. Je fais des sites la nuit. Kūro, lui, juge.",
+      "smirk",
+      "",
+      "judge"
+     ]
+    ],
+    "back": [
+     [
+      "Te revoilà. Kūro a parié que tu reviendrais. Il ne parie jamais contre lui-même.",
+      "smirk",
+      "note",
+      "smug"
+     ]
+    ],
+    "night": [
+     [
+      "Il est tard. On est donc deux. Trois avec le chat.",
+      "half",
+      "zz",
+      "loaf"
+     ]
+    ]
+   },
+   "bye": [
+    [
+     "D’accord. Le menu ne mord pas. Le chat, je ne promets rien.",
+     "smirk",
+     "",
+     ""
+    ]
+   ],
+   "poke": [
+    [
+     "Oui, c’est toujours moi.",
+     "glance",
+     "!",
+     ""
+    ],
+    [
+     "Tu cliques sur un dessin. Je dis ça, je dis rien.",
+     "glasses",
+     "sweat",
+     ""
+    ],
+    [
+     "Kūro, il recommence.",
+     "glance-r",
+     "vein",
+     "stamp"
+    ],
+    [
+     "Je note ça dans ton dossier. Il n’y a pas de dossier. Mais je note.",
+     "smirk",
+     "dots",
+     "judge"
+    ],
+    [
+     "Bravo. Tu as débloqué : rien. Le jeu, c’est sur La Lanterne.",
+     "laugh",
+     "spark",
+     "love"
+    ],
+    [
+     "…",
+     "half",
+     "zz",
+     "loaf"
+    ]
+   ],
+   "nodes": {
+    "what": {
+     "q": "Tu fais quoi, exactement ?",
+     "l": [
+      [
+       "Des sites, des boutiques, des applis. Je dessine, je code, je mets en ligne.",
+       "glasses",
+       "",
+       ""
+      ],
+      [
+       "Tout seul, depuis Bordj Bou Arréridj. Surtout la nuit, quand les notifications dorment.",
+       "base",
+       "dots",
+       ""
+      ]
+     ],
+     "o": [
+      "price",
+      "solo"
+     ]
+    },
+    "price": {
+     "q": "Et ça coûte combien ?",
+     "l": [
+      [
+       "Les prix sont écrits sur la page Tarifs. Je ne les improvise pas. Même pour toi. Surtout pour toi.",
+       "smirk",
+       "!",
+       "judge"
+      ]
+     ],
+     "a": "tarifs"
+    },
+    "solo": {
+     "q": "Tu travailles vraiment seul ?",
+     "l": [
+      [
+       "Seul, oui. Kūro supervise. Il n’a jamais validé un seul commit.",
+       "glance",
+       "sweat",
+       "judge"
+      ]
+     ]
+    },
+    "cat": {
+     "q": "Pourquoi le chat me regarde comme ça ?",
+     "l": [
+      [
+       "Il juge tout le monde. Ne le prends pas personnellement.",
+       "base",
+       "dots",
+       "judge"
+      ],
+      [
+       "Ce matin, il m’a jugé pendant vingt minutes. J’avais juste ouvert le frigo.",
+       "glasses",
+       "sweat",
+       "smug"
+      ]
+     ],
+     "o": [
+      "pet"
+     ]
+    },
+    "pet": {
+     "q": "Je peux le caresser ?",
+     "l": [
+      [
+       "Tu peux essayer. La carte de tarot ne garantit rien.",
+       "smirk",
+       "",
+       ""
+      ],
+      [
+       "… Voilà. Il a décidé que non.",
+       "glance-r",
+       "sweat",
+       "hiss"
+      ]
+     ]
+    },
+    "coffee": {
+     "q": "Tu bois combien de cafés ?",
+     "l": [
+      [
+       "Je ne compte plus. Compter, c’est admettre qu’il y a un problème.",
+       "sip",
+       "dots",
+       ""
+      ]
+     ],
+     "o": [
+      "coffee2"
+     ]
+    },
+    "coffee2": {
+     "q": "Il y a un problème ?",
+     "l": [
+      [
+       "Non. C’est une méthode de travail. Très documentée. Par moi.",
+       "smirk",
+       "spark",
+       "mug"
+      ]
+     ]
+    },
+    "contact": {
+     "q": "Je peux te parler pour de vrai ?",
+     "l": [
+      [
+       "Sur WhatsApp, oui. C’est moi qui réponds, pas un standard.",
+       "base",
+       "note",
+       ""
+      ],
+      [
+       "Ici, c’est la version dessinée. Elle est plus polie et elle dort moins.",
+       "laugh",
+       "spark",
+       "smug"
+      ]
+     ],
+     "a": "contact"
+    },
+    "coat": {
+     "q": "Pourquoi un manteau blanc la nuit ?",
+     "l": [
+      [
+       "Pour qu’on me retrouve dans le noir. Et le noir était déjà pris par le chat.",
+       "smirk",
+       "",
+       "loaf"
+      ]
+     ]
+    },
+    "secret": {
+     "q": "Dis-moi un secret.",
+     "l": [
+      [
+       "Le menu derrière toi ? Je l’ai refait onze fois.",
+       "glasses",
+       "sweat",
+       ""
+      ],
+      [
+       "La douzième, c’est celle que tu vois. Ne dis rien à Kūro.",
+       "laugh",
+       "heart",
+       "peek"
+      ]
+     ]
+    }
+   },
+   "arcana": {
+    "judge": [
+     "VIII",
+     "La Justice"
+    ],
+    "loaf": [
+     "XIV",
+     "La Tempérance"
+    ],
+    "smug": [
+     "XIX",
+     "Le Soleil"
+    ],
+    "stamp": [
+     "IV",
+     "L’Empereur"
+    ],
+    "peek": [
+     "XVIII",
+     "La Lune"
+    ],
+    "shook": [
+     "XVI",
+     "La Tour"
+    ],
+    "hiss": [
+     "XI",
+     "La Force"
+    ],
+    "love": [
+     "VI",
+     "L’Amoureux"
+    ],
+    "leave": [
+     "0",
+     "Le Mat"
+    ],
+    "mug": [
+     "IX",
+     "L’Ermite"
+    ]
+   },
+   "hover": {
+    "tarifs": "!",
+    "contact": "note",
+    "travaux": "spark",
+    "atelier": "dots",
+    "lanterne": "?",
+    "bible": "heart"
+   }
+  }
+ },
+ "en": {
+  "hello": [
+   [
+    "Hi. Kūro saw you before I did.",
+    "smirk",
+    "peek"
+   ],
+   [
+    "Welcome to the workshop. I’m the one who codes here.",
+    "up",
+    "judge"
+   ],
+   [
+    "Come in. The coffee’s hot, Kūro less so.",
+    "sip",
+    "loaf"
+   ]
+  ],
+  "back": [
+   [
+    "Hey again. Kūro kept your seat.",
+    "smirk",
+    "loaf"
+   ],
+   [
+    "You came back. Good sign.",
+    "up",
+    "stamp"
+   ],
+   [
+    "You again. Kūro pretends not to be pleased.",
+    "laugh",
+    "smug"
+   ]
+  ],
+  "night": [
+   [
+    "It’s late. Nobody sleeps here either.",
+    "half",
+    "mug"
+   ],
+   [
+    "2 a.m., when the ideas come out.",
+    "yawn",
+    "loaf"
+   ],
+   [
+    "You work nights too?",
+    "half",
+    "peek"
+   ]
+  ],
+  "home": [
+   [
+    "Pick a door. Prices if you’re in a hurry.",
+    "glasses",
+    "judge"
+   ],
+   [
+    "No middleman. You’re talking to the one who codes.",
+    "smirk",
+    "stamp"
+   ]
+  ],
+  "tarifs": [
+   [
+    "The price is written before we start. No surprises.",
+    "glasses",
+    "stamp"
+   ],
+   [
+    "Take your time. The numbers won’t move.",
+    "sip",
+    "judge"
+   ],
+   [
+    "Unsure about a line? Ask me, not a reseller.",
+    "smirk",
+    "hiss"
+   ]
+  ],
+  "studio": [
+   [
+    "This is where I build. Don’t touch the keyboard.",
+    "glasses",
+    "peek"
+   ],
+   [
+    "Everything here came out of this workshop.",
+    "up",
+    "smug"
+   ]
+  ],
+  "lanterne": [
+   [
+    "What I learned, shelved so you learn it faster.",
+    "up",
+    "loaf"
+   ],
+   [
+    "One district at a time. Kūro guards the lantern.",
+    "smirk",
+    "peek"
+   ]
+  ],
+  "bible": [
+   [
+    "My drawing rules. Yes, even the hair has rules.",
+    "glasses",
+    "judge"
+   ],
+   [
+    "Here you can talk to me for real. Almost.",
+    "smirk",
+    "love"
+   ]
+  ],
+  "work": [
+   [
+    "Real sites, live. Click, you’ll see.",
+    "up",
+    "stamp"
+   ],
+   [
+    "Every project has a story. Kūro judged them all.",
+    "smirk",
+    "judge"
+   ]
+  ],
+  "comptoir": [
+   [
+    "The counter. Everything written, nothing hidden.",
+    "glasses",
+    "stamp"
+   ],
+   [
+    "A question before paying? Message me first.",
+    "up",
+    "peek"
+   ]
+  ],
+  "lost": [
+   [
+    "This page doesn’t exist. Kūro may have eaten it.",
+    "laugh",
+    "smug"
+   ],
+   [
+    "Lost? Me too, sometimes. Head back home.",
+    "glance",
+    "judge"
+   ]
+  ],
+  "wa": [
+   [
+    "On WhatsApp, I answer myself. Even at 2 a.m.",
+    "smirk",
+    "stamp"
+   ],
+   [
+    "Write. No switchboard, no sorting bot.",
+    "up",
+    "peek"
+   ]
+  ],
+  "price": [
+   [
+    "The prices are there. Written, fixed.",
+    "glasses",
+    "judge"
+   ]
+  ],
+  "cta": [
+   [
+    "The preview first, the payment after.",
+    "up",
+    "stamp"
+   ],
+   [
+    "Your homepage, before you pay. That’s the rule.",
+    "smirk",
+    "stamp"
+   ]
+  ],
+  "bottom": [
+   [
+    "You read it all. Kūro is impressed. He won’t say so.",
+    "laugh",
+    "smug"
+   ],
+   [
+    "End of the page. The rest happens on WhatsApp.",
+    "smirk",
+    "peek"
+   ]
+  ],
+  "copy": [
+   [
+    "Copying? Take it, it’s free.",
+    "smirk",
+    "judge"
+   ]
+  ],
+  "idle": [
+   [
+    "I’m here if you have a question.",
+    "sip",
+    "loaf"
+   ],
+   [
+    "Take your time. I’m finishing my coffee.",
+    "sip",
+    "mug"
+   ],
+   [
+    "Kūro says you overthink. He’s not wrong.",
+    "glance",
+    "judge"
+   ]
+  ],
+  "sleep": [
+   [
+    "…",
+    "yawn",
+    "loaf"
+   ]
+  ],
+  "tabback": [
+   [
+    "Ah, there you are.",
+    "up",
+    "peek"
+   ],
+   [
+    "Kūro thought you’d left.",
+    "smirk",
+    "shook"
+   ]
+  ],
+  "gain": [
+   [
+    "Well played. Kūro stamps it.",
+    "laugh",
+    "stamp"
+   ],
+   [
+    "Another district. Moving along.",
+    "smirk",
+    "stamp"
+   ],
+   [
+    "Now that’s ink well earned.",
+    "laugh",
+    "love"
+   ]
+  ],
+  "poke": [
+   [
+    "Yes?",
+    "up",
+    "peek"
+   ],
+   [
+    "I’m listening.",
+    "smirk",
+    "none"
+   ],
+   [
+    "Click me to talk.",
+    "glasses",
+    "judge"
+   ]
+  ],
+  "poke5": [
+   [
+    "Easy. Kūro hates tapping on the glass.",
+    "glance-r",
+    "hiss"
+   ]
+  ],
+  "chips": [
+   [
+    "What do you do, exactly?",
+    "Sites, brands, mascots. From the first sketch to going live.",
+    "up",
+    "none"
+   ],
+   [
+    "How much?",
+    "Fixed price, written first. It’s all on the Prices page.",
+    "glasses",
+    "stamp"
+   ],
+   [
+    "Shall we work together?",
+    "Message me on WhatsApp. I answer myself.",
+    "smirk",
+    "stamp"
+   ],
+   [
+    "Is Kūro nice?",
+    "Nice, no. Fair. He approves, or he leaves.",
+    "smirk",
+    "smug"
+   ],
+   [
+    "When do you sleep?",
+    "After launch. So, rarely.",
+    "half",
+    "mug"
+   ],
+   [
+    "A middleman told me…",
+    "No middleman here. You’re talking to the one who codes.",
+    "glance-r",
+    "hiss"
+   ],
+   [
+    "What’s the preview?",
+    "I build your homepage before you pay. If you like it, we go on.",
+    "up",
+    "stamp"
+   ],
+   [
+    "Do you make apps?",
+    "Small apps and dashboards, yes. Tell me your idea.",
+    "glasses",
+    "peek"
+   ]
+  ],
+  "offline": [
+   [
+    "The network’s asleep. Message me on WhatsApp, it’s safer.",
+    "half",
+    "loaf"
+   ]
+  ],
+  "slow": [
+   [
+    "Easy. Kūro is counting the messages.",
+    "glance",
+    "judge"
+   ]
+  ],
+  "ui": {
+   "talk": "Talk to Yasser",
+   "close": "Close",
+   "later": "Later",
+   "mute": "Fewer bubbles",
+   "unmute": "Bubbles on",
+   "send": "Send",
+   "ask": "Ask your question…",
+   "note": "Typed answers are written by an AI voice and kept short. Don’t share personal data.",
+   "kuro": "Kūro",
+   "think": "…",
+   "kr": {
+    "judge": "judges",
+    "loaf": "loafs",
+    "smug": "looks smug",
+    "stamp": "stamps it",
+    "peek": "peeks",
+    "shook": "jumps",
+    "hiss": "hisses",
+    "love": "purrs",
+    "leave": "walks off",
+    "mug": "naps in the mug"
+   }
+  },
+  "npc": {
+   "ui": {
+    "prompt": "Talk",
+    "aria": "Talk to Yasser",
+    "close": "Close",
+    "next": "Next",
+    "ask": "Ask your own question…",
+    "bye": "Nothing, just looking.",
+    "ph": "Your question…",
+    "go": {
+     "tarifs": "Open Pricing",
+     "contact": "Write on WhatsApp"
+    }
+   },
+   "hub": [
+    "what",
+    "cat",
+    "coffee",
+    "contact",
+    "coat",
+    "secret"
+   ],
+   "gate": {
+    "secret": 3
+   },
+   "open": {
+    "first": [
+     [
+      "Oh. Someone clicked the big drawing. That happens less than you’d think.",
+      "glance",
+      "!",
+      ""
+     ],
+     [
+      "I’m Yasser. I build websites at night. Kūro judges.",
+      "smirk",
+      "",
+      "judge"
+     ]
+    ],
+    "back": [
+     [
+      "You’re back. Kūro bet you would be. He never bets against himself.",
+      "smirk",
+      "note",
+      "smug"
+     ]
+    ],
+    "night": [
+     [
+      "It’s late. So there are two of us. Three with the cat.",
+      "half",
+      "zz",
+      "loaf"
+     ]
+    ]
+   },
+   "bye": [
+    [
+     "Fine. The menu doesn’t bite. The cat, no promises.",
+     "smirk",
+     "",
+     ""
+    ]
+   ],
+   "poke": [
+    [
+     "Yes, still me.",
+     "glance",
+     "!",
+     ""
+    ],
+    [
+     "You’re clicking a drawing. Just saying.",
+     "glasses",
+     "sweat",
+     ""
+    ],
+    [
+     "Kūro, he’s doing it again.",
+     "glance-r",
+     "vein",
+     "stamp"
+    ],
+    [
+     "I’m writing this in your file. There is no file. But I’m writing.",
+     "smirk",
+     "dots",
+     "judge"
+    ],
+    [
+     "Well done. You unlocked: nothing. The game is in The Lantern.",
+     "laugh",
+     "spark",
+     "love"
+    ],
+    [
+     "…",
+     "half",
+     "zz",
+     "loaf"
+    ]
+   ],
+   "nodes": {
+    "what": {
+     "q": "What do you actually do?",
+     "l": [
+      [
+       "Websites, shops, apps. I draw, I code, I put them online.",
+       "glasses",
+       "",
+       ""
+      ],
+      [
+       "On my own, from Bordj Bou Arréridj. Mostly at night, when notifications sleep.",
+       "base",
+       "dots",
+       ""
+      ]
+     ],
+     "o": [
+      "price",
+      "solo"
+     ]
+    },
+    "price": {
+     "q": "And how much does it cost?",
+     "l": [
+      [
+       "The prices are written on the Pricing page. I don’t improvise them. Not even for you. Especially for you.",
+       "smirk",
+       "!",
+       "judge"
+      ]
+     ],
+     "a": "tarifs"
+    },
+    "solo": {
+     "q": "Do you really work alone?",
+     "l": [
+      [
+       "Alone, yes. Kūro supervises. He has never approved a single commit.",
+       "glance",
+       "sweat",
+       "judge"
+      ]
+     ]
+    },
+    "cat": {
+     "q": "Why is the cat looking at me like that?",
+     "l": [
+      [
+       "He judges everyone. Don’t take it personally.",
+       "base",
+       "dots",
+       "judge"
+      ],
+      [
+       "This morning he judged me for twenty minutes. I had only opened the fridge.",
+       "glasses",
+       "sweat",
+       "smug"
+      ]
+     ],
+     "o": [
+      "pet"
+     ]
+    },
+    "pet": {
+     "q": "Can I pet him?",
+     "l": [
+      [
+       "You can try. The tarot card guarantees nothing.",
+       "smirk",
+       "",
+       ""
+      ],
+      [
+       "… There. He decided no.",
+       "glance-r",
+       "sweat",
+       "hiss"
+      ]
+     ]
+    },
+    "coffee": {
+     "q": "How many coffees do you drink?",
+     "l": [
+      [
+       "I stopped counting. Counting means admitting there’s a problem.",
+       "sip",
+       "dots",
+       ""
+      ]
+     ],
+     "o": [
+      "coffee2"
+     ]
+    },
+    "coffee2": {
+     "q": "Is there a problem?",
+     "l": [
+      [
+       "No. It’s a work method. Well documented. By me.",
+       "smirk",
+       "spark",
+       "mug"
+      ]
+     ]
+    },
+    "contact": {
+     "q": "Can I talk to you for real?",
+     "l": [
+      [
+       "On WhatsApp, yes. I answer myself, not a front desk.",
+       "base",
+       "note",
+       ""
+      ],
+      [
+       "This is the drawn version. It’s more polite and sleeps less.",
+       "laugh",
+       "spark",
+       "smug"
+      ]
+     ],
+     "a": "contact"
+    },
+    "coat": {
+     "q": "Why a white coat at night?",
+     "l": [
+      [
+       "So people can find me in the dark. And black was already taken by the cat.",
+       "smirk",
+       "",
+       "loaf"
+      ]
+     ]
+    },
+    "secret": {
+     "q": "Tell me a secret.",
+     "l": [
+      [
+       "The menu behind you? I redid it eleven times.",
+       "glasses",
+       "sweat",
+       ""
+      ],
+      [
+       "The twelfth is the one you’re looking at. Don’t tell Kūro.",
+       "laugh",
+       "heart",
+       "peek"
+      ]
+     ]
+    }
+   },
+   "arcana": {
+    "judge": [
+     "VIII",
+     "Justice"
+    ],
+    "loaf": [
+     "XIV",
+     "Temperance"
+    ],
+    "smug": [
+     "XIX",
+     "The Sun"
+    ],
+    "stamp": [
+     "IV",
+     "The Emperor"
+    ],
+    "peek": [
+     "XVIII",
+     "The Moon"
+    ],
+    "shook": [
+     "XVI",
+     "The Tower"
+    ],
+    "hiss": [
+     "XI",
+     "Strength"
+    ],
+    "love": [
+     "VI",
+     "The Lovers"
+    ],
+    "leave": [
+     "0",
+     "The Fool"
+    ],
+    "mug": [
+     "IX",
+     "The Hermit"
+    ]
+   },
+   "hover": {
+    "tarifs": "!",
+    "contact": "note",
+    "travaux": "spark",
+    "atelier": "dots",
+    "lanterne": "?",
+    "bible": "heart"
+   }
+  }
+ },
+ "ar": {
+  "hello": [
+   [
+    "أهلاً. كورو رآك قبلي.",
+    "smirk",
+    "peek"
+   ],
+   [
+    "مرحباً بك في الورشة. أنا من يبرمج هنا.",
+    "up",
+    "judge"
+   ],
+   [
+    "تفضّل. القهوة ساخنة، وكورو أقل حرارة.",
+    "sip",
+    "loaf"
+   ]
+  ],
+  "back": [
+   [
+    "عدت. كورو حفظ لك مكانك.",
+    "smirk",
+    "loaf"
+   ],
+   [
+    "رجعت، هذه علامة خير.",
+    "up",
+    "stamp"
+   ],
+   [
+    "أنت مجدداً. كورو يتظاهر بأنه غير مسرور.",
+    "laugh",
+    "smug"
+   ]
+  ],
+  "night": [
+   [
+    "الوقت متأخر. هنا أيضاً لا أحد ينام.",
+    "half",
+    "mug"
+   ],
+   [
+    "الثانية فجراً، ساعة خروج الأفكار.",
+    "yawn",
+    "loaf"
+   ],
+   [
+    "أنت أيضاً تعمل ليلاً؟",
+    "half",
+    "peek"
+   ]
+  ],
+  "home": [
+   [
+    "اختر باباً. الأسعار إن كنت مستعجلاً.",
+    "glasses",
+    "judge"
+   ],
+   [
+    "لا وسيط. أنت تكلّم من يبرمج.",
+    "smirk",
+    "stamp"
+   ]
+  ],
+  "tarifs": [
+   [
+    "السعر مكتوب قبل أن نبدأ. بلا مفاجآت.",
+    "glasses",
+    "stamp"
+   ],
+   [
+    "خذ وقتك. الأرقام لن تتغيّر.",
+    "sip",
+    "judge"
+   ],
+   [
+    "عندك سؤال عن سطر؟ اسألني أنا، لا الوسيط.",
+    "smirk",
+    "hiss"
+   ]
+  ],
+  "studio": [
+   [
+    "هنا أصنع. لا تلمس لوحة المفاتيح.",
+    "glasses",
+    "peek"
+   ],
+   [
+    "كل ما هنا خرج من هذه الورشة.",
+    "up",
+    "smug"
+   ]
+  ],
+  "lanterne": [
+   [
+    "ما تعلّمته، مرتّب لتتعلّمه أسرع.",
+    "up",
+    "loaf"
+   ],
+   [
+    "حيّ واحد في كل مرة. كورو يحرس الفانوس.",
+    "smirk",
+    "peek"
+   ]
+  ],
+  "bible": [
+   [
+    "قواعد رسمي. نعم، حتى الشعر له قواعد.",
+    "glasses",
+    "judge"
+   ],
+   [
+    "هنا يمكنك أن تكلّمني فعلاً، تقريباً.",
+    "smirk",
+    "love"
+   ]
+  ],
+  "work": [
+   [
+    "مواقع حقيقية، على الإنترنت. اضغط وسترى.",
+    "up",
+    "stamp"
+   ],
+   [
+    "لكل مشروع قصة، وكورو حكم عليها كلها.",
+    "smirk",
+    "judge"
+   ]
+  ],
+  "comptoir": [
+   [
+    "الصندوق. كل شيء مكتوب، لا شيء مخفي.",
+    "glasses",
+    "stamp"
+   ],
+   [
+    "سؤال قبل الدفع؟ راسلني أولاً.",
+    "up",
+    "peek"
+   ]
+  ],
+  "lost": [
+   [
+    "هذه الصفحة غير موجودة. ربما أكلها كورو.",
+    "laugh",
+    "smug"
+   ],
+   [
+    "تهت؟ وأنا أيضاً أحياناً. عد إلى الرئيسية.",
+    "glance",
+    "judge"
+   ]
+  ],
+  "wa": [
+   [
+    "على واتساب، أنا من يرد. حتى في الثانية فجراً.",
+    "smirk",
+    "stamp"
+   ],
+   [
+    "اكتب. لا موظف استقبال ولا روبوت فرز.",
+    "up",
+    "peek"
+   ]
+  ],
+  "price": [
+   [
+    "الأسعار هنا. مكتوبة وثابتة.",
+    "glasses",
+    "judge"
+   ]
+  ],
+  "cta": [
+   [
+    "المعاينة أولاً، والدفع بعدها.",
+    "up",
+    "stamp"
+   ],
+   [
+    "صفحتك الرئيسية قبل أن تدفع. هذه هي القاعدة.",
+    "smirk",
+    "stamp"
+   ]
+  ],
+  "bottom": [
+   [
+    "قرأت كل شيء. كورو معجب، لكنه لن يقولها.",
+    "laugh",
+    "smug"
+   ],
+   [
+    "نهاية الصفحة. والبقية على واتساب.",
+    "smirk",
+    "peek"
+   ]
+  ],
+  "copy": [
+   [
+    "تنسخ؟ خذ، إنه مجاني.",
+    "smirk",
+    "judge"
+   ]
+  ],
+  "idle": [
+   [
+    "أنا هنا إن كان عندك سؤال.",
+    "sip",
+    "loaf"
+   ],
+   [
+    "خذ وقتك. أنا أُنهي قهوتي.",
+    "sip",
+    "mug"
+   ],
+   [
+    "كورو يقول إنك تفكّر كثيراً. وهو محق.",
+    "glance",
+    "judge"
+   ]
+  ],
+  "sleep": [
+   [
+    "…",
+    "yawn",
+    "loaf"
+   ]
+  ],
+  "tabback": [
+   [
+    "آه، ها أنت ذا.",
+    "up",
+    "peek"
+   ],
+   [
+    "ظنّ كورو أنك رحلت.",
+    "smirk",
+    "shook"
+   ]
+  ],
+  "gain": [
+   [
+    "أحسنت. كورو يختم.",
+    "laugh",
+    "stamp"
+   ],
+   [
+    "حيّ آخر. نتقدّم.",
+    "smirk",
+    "stamp"
+   ],
+   [
+    "هذا حبر مستحق.",
+    "laugh",
+    "love"
+   ]
+  ],
+  "poke": [
+   [
+    "نعم؟",
+    "up",
+    "peek"
+   ],
+   [
+    "أسمعك.",
+    "smirk",
+    "none"
+   ],
+   [
+    "اضغط عليّ لنتكلّم.",
+    "glasses",
+    "judge"
+   ]
+  ],
+  "poke5": [
+   [
+    "على مهلك. كورو لا يحب الطرق على الزجاج.",
+    "glance-r",
+    "hiss"
+   ]
+  ],
+  "chips": [
+   [
+    "ماذا تفعل بالضبط؟",
+    "مواقع، هويات، شخصيات. من أول رسم حتى النشر.",
+    "up",
+    "none"
+   ],
+   [
+    "كم السعر؟",
+    "سعر ثابت، مكتوب مسبقاً. كل شيء في صفحة الأسعار.",
+    "glasses",
+    "stamp"
+   ],
+   [
+    "نعمل معاً؟",
+    "راسلني على واتساب. أردّ بنفسي.",
+    "smirk",
+    "stamp"
+   ],
+   [
+    "هل كورو لطيف؟",
+    "لطيف، لا. عادل. يوافق أو يرحل.",
+    "smirk",
+    "smug"
+   ],
+   [
+    "متى تنام؟",
+    "بعد النشر. أي نادراً.",
+    "half",
+    "mug"
+   ],
+   [
+    "قال لي وسيط…",
+    "لا وسيط هنا. أنت تكلّم من يبرمج.",
+    "glance-r",
+    "hiss"
+   ],
+   [
+    "ما هي المعاينة؟",
+    "أصنع صفحتك الرئيسية قبل أن تدفع. إن أعجبتك نكمل.",
+    "up",
+    "stamp"
+   ],
+   [
+    "هل تصنع تطبيقات؟",
+    "تطبيقات صغيرة ولوحات تحكّم، نعم. احكِ لي فكرتك.",
+    "glasses",
+    "peek"
+   ]
+  ],
+  "offline": [
+   [
+    "الشبكة نائمة. راسلني على واتساب، أضمن.",
+    "half",
+    "loaf"
+   ]
+  ],
+  "slow": [
+   [
+    "على مهلك. كورو يعدّ الرسائل.",
+    "glance",
+    "judge"
+   ]
+  ],
+  "ui": {
+   "talk": "كلّم ياسر",
+   "close": "إغلاق",
+   "later": "لاحقاً",
+   "mute": "فقاعات أقل",
+   "unmute": "الفقاعات مفعّلة",
+   "send": "إرسال",
+   "ask": "اكتب سؤالك…",
+   "note": "الردود المكتوبة يكتبها صوت ذكاء اصطناعي، وهي قصيرة. لا تشارك بيانات شخصية.",
+   "kuro": "كورو",
+   "think": "…",
+   "kr": {
+    "judge": "يحكم",
+    "loaf": "يتكوّر",
+    "smug": "مغرور",
+    "stamp": "يختم",
+    "peek": "يختلس النظر",
+    "shook": "يفزع",
+    "hiss": "يفحّ",
+    "love": "يخرخر",
+    "leave": "يرحل",
+    "mug": "ينام في الفنجان"
+   }
+  },
+  "npc": {
+   "ui": {
+    "prompt": "تحدّث",
+    "aria": "تحدّث إلى ياسر",
+    "close": "إغلاق",
+    "next": "التالي",
+    "ask": "اطرح سؤالك الخاص…",
+    "bye": "لا شيء، أتفرّج فقط.",
+    "ph": "سؤالك…",
+    "go": {
+     "tarifs": "افتح الأسعار",
+     "contact": "اكتب على واتساب"
+    }
+   },
+   "hub": [
+    "what",
+    "cat",
+    "coffee",
+    "contact",
+    "coat",
+    "secret"
+   ],
+   "gate": {
+    "secret": 3
+   },
+   "open": {
+    "first": [
+     [
+      "أوه. أحدهم نقر على الرسمة الكبيرة. هذا يحدث أقل مما تظن.",
+      "glance",
+      "!",
+      ""
+     ],
+     [
+      "أنا ياسر. أصنع المواقع ليلاً. أما كورو، فيحكم على الجميع.",
+      "smirk",
+      "",
+      "judge"
+     ]
+    ],
+    "back": [
+     [
+      "عدتَ إذن. راهن كورو على أنك ستعود. هو لا يراهن أبداً ضد نفسه.",
+      "smirk",
+      "note",
+      "smug"
+     ]
+    ],
+    "night": [
+     [
+      "الوقت متأخر. نحن اثنان إذن. ثلاثة مع القط.",
+      "half",
+      "zz",
+      "loaf"
+     ]
+    ]
+   },
+   "bye": [
+    [
+     "حسناً. القائمة لا تعضّ. القط، لا أعدك بشيء.",
+     "smirk",
+     "",
+     ""
+    ]
+   ],
+   "poke": [
+    [
+     "نعم، ما زلت أنا.",
+     "glance",
+     "!",
+     ""
+    ],
+    [
+     "أنت تنقر على رسمة. مجرد ملاحظة.",
+     "glasses",
+     "sweat",
+     ""
+    ],
+    [
+     "كورو، إنه يعيدها.",
+     "glance-r",
+     "vein",
+     "stamp"
+    ],
+    [
+     "سأسجّل هذا في ملفك. لا يوجد ملف. لكنني أسجّل.",
+     "smirk",
+     "dots",
+     "judge"
+    ],
+    [
+     "أحسنت. فتحت: لا شيء. اللعبة في الفانوس.",
+     "laugh",
+     "spark",
+     "love"
+    ],
+    [
+     "…",
+     "half",
+     "zz",
+     "loaf"
+    ]
+   ],
+   "nodes": {
+    "what": {
+     "q": "ماذا تفعل بالضبط؟",
+     "l": [
+      [
+       "مواقع، متاجر، تطبيقات. أرسم، أبرمج، وأنشرها.",
+       "glasses",
+       "",
+       ""
+      ],
+      [
+       "وحدي، من برج بوعريريج. في الليل غالباً، حين تنام الإشعارات.",
+       "base",
+       "dots",
+       ""
+      ]
+     ],
+     "o": [
+      "price",
+      "solo"
+     ]
+    },
+    "price": {
+     "q": "وكم يكلّف ذلك؟",
+     "l": [
+      [
+       "الأسعار مكتوبة في صفحة الأسعار. لا أرتجلها. ولا حتى لك. خصوصاً لك.",
+       "smirk",
+       "!",
+       "judge"
+      ]
+     ],
+     "a": "tarifs"
+    },
+    "solo": {
+     "q": "هل تعمل وحدك حقاً؟",
+     "l": [
+      [
+       "وحدي، نعم. كورو يشرف. لم يوافق على سطر برمجي واحد قط.",
+       "glance",
+       "sweat",
+       "judge"
+      ]
+     ]
+    },
+    "cat": {
+     "q": "لماذا ينظر إليّ القط هكذا؟",
+     "l": [
+      [
+       "إنه يحكم على الجميع. لا تأخذ الأمر بشكل شخصي.",
+       "base",
+       "dots",
+       "judge"
+      ],
+      [
+       "هذا الصباح حكم عليّ عشرين دقيقة. كل ما فعلته أنني فتحت الثلاجة.",
+       "glasses",
+       "sweat",
+       "smug"
+      ]
+     ],
+     "o": [
+      "pet"
+     ]
+    },
+    "pet": {
+     "q": "هل يمكنني أن أداعبه؟",
+     "l": [
+      [
+       "يمكنك المحاولة. بطاقة التاروت لا تضمن شيئاً.",
+       "smirk",
+       "",
+       ""
+      ],
+      [
+       "… ها هو. قرّر أن الجواب لا.",
+       "glance-r",
+       "sweat",
+       "hiss"
+      ]
+     ]
+    },
+    "coffee": {
+     "q": "كم فنجان قهوة تشرب؟",
+     "l": [
+      [
+       "توقفت عن العدّ. العدّ اعتراف بأن هناك مشكلة.",
+       "sip",
+       "dots",
+       ""
+      ]
+     ],
+     "o": [
+      "coffee2"
+     ]
+    },
+    "coffee2": {
+     "q": "وهل هناك مشكلة؟",
+     "l": [
+      [
+       "لا. إنها طريقة عمل. موثّقة جيداً. من طرفي.",
+       "smirk",
+       "spark",
+       "mug"
+      ]
+     ]
+    },
+    "contact": {
+     "q": "هل يمكنني التحدث معك فعلاً؟",
+     "l": [
+      [
+       "على واتساب، نعم. أنا من يردّ، لا موظف استقبال.",
+       "base",
+       "note",
+       ""
+      ],
+      [
+       "هنا النسخة المرسومة. أكثر تهذيباً، وتنام أقل.",
+       "laugh",
+       "spark",
+       "smug"
+      ]
+     ],
+     "a": "contact"
+    },
+    "coat": {
+     "q": "لماذا معطف أبيض في الليل؟",
+     "l": [
+      [
+       "كي يجدوني في الظلام. ولأن الأسود كان محجوزاً للقط.",
+       "smirk",
+       "",
+       "loaf"
+      ]
+     ]
+    },
+    "secret": {
+     "q": "أخبرني سراً.",
+     "l": [
+      [
+       "القائمة خلفك؟ أعدت تصميمها إحدى عشرة مرة.",
+       "glasses",
+       "sweat",
+       ""
+      ],
+      [
+       "الثانية عشرة هي التي تراها. لا تخبر كورو.",
+       "laugh",
+       "heart",
+       "peek"
+      ]
+     ]
+    }
+   },
+   "arcana": {
+    "judge": [
+     "VIII",
+     "العدالة"
+    ],
+    "loaf": [
+     "XIV",
+     "الاعتدال"
+    ],
+    "smug": [
+     "XIX",
+     "الشمس"
+    ],
+    "stamp": [
+     "IV",
+     "الإمبراطور"
+    ],
+    "peek": [
+     "XVIII",
+     "القمر"
+    ],
+    "shook": [
+     "XVI",
+     "البرج"
+    ],
+    "hiss": [
+     "XI",
+     "القوة"
+    ],
+    "love": [
+     "VI",
+     "العشاق"
+    ],
+    "leave": [
+     "0",
+     "الأحمق"
+    ],
+    "mug": [
+     "IX",
+     "الناسك"
+    ]
+   },
+   "hover": {
+    "tarifs": "!",
+    "contact": "note",
+    "travaux": "spark",
+    "atelier": "dots",
+    "lanterne": "?",
+    "bible": "heart"
+   }
+  }
+ }
+}

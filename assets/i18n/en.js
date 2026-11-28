@@ -327,4 +327,5 @@ var I18N = {
   'menu.replay': 'Replay intro',
   'menu.cut': 'On stage',
   'menu.kuroName': 'Kūro',
+  'menu.arcana': 'Justice',
 };

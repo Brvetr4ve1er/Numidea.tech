@@ -328,4 +328,5 @@ var I18N = {
   'menu.replay': 'Rejouer l’intro',
   'menu.cut': 'En scène',
   'menu.kuroName': 'Kūro',
+  'menu.arcana': 'La Justice',
 };
