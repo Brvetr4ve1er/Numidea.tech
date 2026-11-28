@@ -1,0 +1,6 @@
+# Numidea Labs: how to report a security problem with this site.
+# Un problème de sécurité sur ce site ? Écrivez-nous, en français, anglais ou arabe.
+Contact: mailto:hamissemohamedyasser@gmail.com
+Expires: 2027-11-27T00:00:00.000Z
+Preferred-Languages: fr, en, ar
+Canonical: https://www.numedialab.dev/.well-known/security.txt

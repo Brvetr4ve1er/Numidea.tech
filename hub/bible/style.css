@@ -465,7 +465,7 @@ html:not(.js) .ctrls{display:none}
 /* things he says: the old voice lines, written by hand on paper */
 .says{margin-top:28px;display:grid;gap:14px}
 .says-h{font:500 12px/1.3 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--red-text)}
-.says-list{display:grid;grid-template-columns:1fr;gap:10px 28px;border-top:3px solid var(--ink);padding-top:14px}
+.says-list{display:grid;grid-template-columns:1fr;gap:10px 28px;border-top:3px solid var(--ink);padding-top:14px;padding-bottom:6px}   /* the marker face draws past its 1.25 line: room below the last line (WebKit, 2026-11-27) */
 .says-list li{font:400 clamp(20px,2.2vw,26px)/1.25 var(--marker);color:var(--ink);text-wrap:balance;padding-inline-start:14px;border-inline-start:3px solid var(--red)}
 @media (min-width:860px){.says-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 

@@ -26,6 +26,7 @@
     "hub:rig": "node scripts/build-hub-rig.mjs",
     "validate": "node scripts/validate.mjs",
     "vbugs": "node scripts/vbugs.mjs",
+    "webkit": "node scripts/vbugs.mjs --webkit && node scripts/stage-check.mjs --webkit",
     "verify": "node scripts/verify.mjs",
     "keys": "node scripts/keys.mjs",
     "design": "node scripts/design-check.mjs",
@@ -43,7 +44,7 @@
   "devDependencies": {
     "axe-core": "^4.13.0",
     "html-validate": "^11.16.1",
-    "playwright": "^1.49.0",
+    "playwright": "^1.63.0",
     "sharp": "^0.35.5"
   }
 }

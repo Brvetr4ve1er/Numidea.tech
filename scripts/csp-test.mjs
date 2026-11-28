@@ -26,6 +26,7 @@ import { ROOT, PAGES, EXTRA_PAGES } from './site.mjs';
 import { withCsp, cspPolicy, cspKind, cspOf, scriptHashes, supabaseOrigin } from './lib/csp.mjs';
 import { withGtag, GTAG_SNIPPET } from './lib/gtag.mjs';
 import { policyErrors, headerPolicyErrors, directiveMap } from './lib/csp-floor.mjs';
+import { unionPolicy } from './lib/csp-header.mjs';
 
 const sha = (t) => `'sha256-${createHash('sha256').update(t).digest('base64')}'`;
 const head = (extra = '') => `<!DOCTYPE html>
@@ -196,12 +197,23 @@ export function fixtureErrors() {
   }
   // a repeated directive is read as the browser reads it: the first one counts
   expect(directiveMap(`script-src 'self' 'unsafe-inline'; script-src 'self'`)['script-src'].join(' ') === "'self' 'unsafe-inline'", 'a repeated directive must read as its first');
-  // the mirrors' header policy
-  const HDR = "frame-ancestors 'self'; base-uri 'self'; object-src 'none'";
-  expect(!headerPolicyErrors(HDR).length, `the header policy is below its floor: ${headerPolicyErrors(HDR).join('; ')}`);
-  for (const [what, p] of [['frame-ancestors * before the real one', `frame-ancestors *; ${HDR}`], ['a fetch directive', `${HDR}; script-src 'self'`],
-    ['frame-ancestors *', HDR.replace("frame-ancestors 'self'", 'frame-ancestors *')], ['no object-src', "frame-ancestors 'self'; base-uri 'self'"]]) {
-    expect(headerPolicyErrors(p).length > 0, `the header floor lets through ${what}`);
+  // the hosts' header policy (scripts/lib/csp-header.mjs): the union of the metas of its kind, plus header-only directives
+  const TAIL = "frame-ancestors 'self'; upgrade-insecure-requests; report-uri /api/csp-report";
+  const HDR = `${unionPolicy([page, onSwitch]).map(([n, v]) => [n, ...v].join(' ')).join('; ')}; ${TAIL}`;
+  const HDR_E = `${embed}; ${TAIL}`;
+  const HDR_ANY = `${unionPolicy([page, embed]).map(([n, v]) => [n, ...v].join(' ')).join('; ')}; ${TAIL}`;
+  expect(!headerPolicyErrors(HDR).length, `the page header policy is below its floor: ${headerPolicyErrors(HDR).join('; ')}`);
+  expect(!headerPolicyErrors(HDR_E, { kind: 'embed' }).length, `the embed header policy is below its floor: ${headerPolicyErrors(HDR_E, { kind: 'embed' }).join('; ')}`);
+  expect(!headerPolicyErrors(HDR_ANY, { kind: 'any' }).length, `the Netlify header policy is below its floor: ${headerPolicyErrors(HDR_ANY, { kind: 'any' }).join('; ')}`);
+  expect(directive(HDR, 'script-src').includes(sha('boot()')) && directive(HDR, 'connect-src').includes('https://abcd.supabase.co'), 'the union keeps every hash and the lead-store origin');
+  expect(directive(unionPolicy(["worker-src 'none'"]).map(([n, v]) => [n, ...v].join(' ')).join('; '), 'worker-src').join(' ') === "'none'", "the union keeps a lone 'none'");
+  for (const [what, p, kind = 'page'] of [['frame-ancestors * before the real one', `frame-ancestors *; ${HDR}`], ['no frame-ancestors', HDR.replace("frame-ancestors 'self'; ", '')],
+    ['frame-ancestors *', HDR.replace("frame-ancestors 'self'", 'frame-ancestors *')], ['no object-src', HDR.replace("object-src 'none'; ", '')],
+    ["'unsafe-inline' in script-src", HDR.replace("script-src 'self'", "script-src 'self' 'unsafe-inline'")], ["'unsafe-eval' on a page", HDR.replace("script-src 'self'", "script-src 'self' 'unsafe-eval'")],
+    ['a report-uri off site', HDR.replace('report-uri /api/csp-report', 'report-uri https://evil.example/r')], ['script-src-elem', `${HDR}; script-src-elem *`],
+    ["'unsafe-inline' on Netlify", HDR_ANY.replace("script-src 'self'", "script-src 'self' 'unsafe-inline'"), 'any'], ['a host on Netlify', HDR_ANY.replace("script-src 'self'", "script-src 'self' https://evil.example"), 'any'],
+    ['Google on an embed', HDR_E.replace("script-src 'self'", "script-src 'self' https://www.googletagmanager.com"), 'embed']]) {
+    expect(headerPolicyErrors(p, { kind }).length > 0, `the header floor lets through ${what}`);
   }
 
   // the Google tag (scripts/lib/gtag.mjs): exactly what Google documents on a page, none of it on an embed
