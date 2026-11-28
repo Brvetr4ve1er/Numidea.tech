@@ -4493,6 +4493,7 @@ html[dir="rtl"] .portals-grid{padding:0 0 var(--s-2) var(--s-2)}
 .portal-chip.is-open{border:2px solid var(--edge);color:var(--ice)}
 .portal-chip.is-open::before{background:var(--crimson);box-shadow:0 0 0 1px var(--edge)}
 .portal-hq .portal-chip{margin-top:var(--s-3)}
+.portal-hq .portal-chip.is-open{padding-inline:var(--s-2)}   /* open (2026-11-28): « Ouvrir la carte » makes the chip wide enough for the space gate to read it */
 /* sealed: the menu's diagonal stripe, a dashed edge, no drop (not pressable) */
 .portal.is-sealed{border-style:dashed;box-shadow:none;background:repeating-linear-gradient(-45deg,color-mix(in srgb,var(--trace) 30%,transparent) 0 2px,transparent 2px 14px),var(--navy)}
 .portal-hq.is-sealed{border-style:solid;box-shadow:calc(10px * var(--dx,1)) 10px 0 var(--drop);background:repeating-linear-gradient(-45deg,color-mix(in srgb,var(--trace) 30%,transparent) 0 2px,transparent 2px 14px),var(--navy)}

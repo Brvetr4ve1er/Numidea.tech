@@ -13,7 +13,7 @@
       pass: 'Passeport', passHint: 'Un tampon par ville visitée. Le QG te l’offre : tu y es.', passDone: 'Quatre tampons : tu as fait le tour de la carte.',
       winBar: 'nuit · terrasse · la carte', say: 'Kūro garde la carte. Les routes rouges sont ouvertes ; le reste viendra.',
       winAlt: 'La nuit, sur une terrasse au-dessus de la mer, Yasser dessine sur son ordinateur ; Kūro, le chat noir, veille sur le sac à dos. Une carte est dépliée sur la table.',
-      stageH: 'La carte', here: 'Vous êtes ici', soon: 'Bientôt',
+      stageH: 'La carte interactive', here: 'Vous êtes ici', soon: 'Bientôt',
       legendBar: 'Légende', legendH: 'Comment lire la carte',
       lgSeal: 'Un sceau : une ville, une boutique ou le studio. Touche-le pour ouvrir son dossier.',
       lgRoute: 'Une route rouge : le chemin depuis le QG.', lgFog: 'Les hachures : terres à venir. Elles s’ouvriront avec ton rang.', lgPaw: 'La patte de Kūro : vous êtes ici.',
@@ -42,7 +42,7 @@
       pass: 'Passport', passHint: 'One stamp for each city you visit. The HQ gives you its own: you are here.', passDone: 'Four stamps: you have toured the whole map.',
       winBar: 'night · terrace · the map', say: 'Kūro guards the map. The red roads are open; the rest will come.',
       winAlt: 'At night, on a terrace above the sea, Yasser draws on his laptop; Kūro, the black cat, keeps watch on the backpack. A map lies open on the table.',
-      stageH: 'The map', here: 'You are here', soon: 'Soon',
+      stageH: 'The interactive map', here: 'You are here', soon: 'Soon',
       legendBar: 'Legend', legendH: 'How to read the map',
       lgSeal: 'A seal: a city, a store or the studio. Tap it to open its file.',
       lgRoute: 'A red road: the way from the HQ.', lgFog: 'The hatching: lands to come. They open with your rank.', lgPaw: 'Kūro’s paw: you are here.',
@@ -71,7 +71,7 @@
       pass: 'جواز السفر', passHint: 'ختم لكل مدينة تزورها. المقر يمنحك ختمه: أنت هنا.', passDone: 'أربعة أختام: طفت الخريطة كلها.',
       winBar: 'ليل · شرفة · الخريطة', say: 'كورو يحرس الخريطة. الطرق الحمراء مفتوحة، والباقي سيأتي.',
       winAlt: 'في الليل، على شرفة تطل على البحر، يرسم ياسر على حاسوبه؛ وكورو، القط الأسود، يحرس حقيبة الظهر. خريطة مفرودة على الطاولة.',
-      stageH: 'الخريطة', here: 'أنت هنا', soon: 'قريبًا',
+      stageH: 'الخريطة التفاعلية', here: 'أنت هنا', soon: 'قريبًا',
       legendBar: 'مفتاح الخريطة', legendH: 'كيف تقرأ الخريطة',
       lgSeal: 'الختم: مدينة، متجر أو الاستوديو. المسه لفتح ملفه.',
       lgRoute: 'الطريق الأحمر: الدرب من المقر.', lgFog: 'التظليل: أراضٍ قادمة، تنفتح مع رتبتك.', lgPaw: 'أثر مخلب كورو: أنت هنا.',
@@ -114,6 +114,7 @@
   document.querySelectorAll('[data-t-aria]').forEach((n) => n.setAttribute('aria-label', t[n.dataset.tAria]));
   document.querySelectorAll('[data-t-alt]').forEach((n) => n.setAttribute('alt', t[n.dataset.tAlt]));
   document.querySelectorAll('.ct-lang a').forEach((a) => { if (a.dataset.l === lang) a.setAttribute('aria-current', 'true'); });
+  root.classList.remove('ct-wait');   // the words are in: the page shows (index.html's head script hid it for en/ar)
   if (lang !== 'fr') document.querySelectorAll('.ct-log a[href^="../"],.ct-home').forEach((a) => a.setAttribute('href', withLang(a.getAttribute('href'))));
   // the store links say which city sent the visitor (the game loop's ?from= convention)
   const storeHref = (city) => `${STORE}?from=numidea&city=${city}${lang === 'fr' ? '' : `&lang=${lang}`}`;
@@ -147,6 +148,28 @@
     document.querySelectorAll('.ct-city').forEach((li) => li.classList.toggle('is-on', li.dataset.city === city));
     document.querySelectorAll('.m-route').forEach((r) => r.classList.toggle('is-on', !!city && (r.dataset.route === city || (city === 'tamanrasset' && r.dataset.route === 'ghardaia'))));
   };
+  /* Kūro walks the chosen road: from just outside the HQ's seal to just short of the city's, once; the
+     route lights first. Under reduced motion he is simply there. A new choice stops the walk in progress. */
+  const kuro = document.getElementById('m-kuro'), feet = kuro && kuro.querySelector('.m-kuro-f');
+  let walking = 0;
+  const place = (x, y, dir, bob) => { kuro.setAttribute('transform', `translate(${x.toFixed(1)} ${(y - bob).toFixed(1)})`); feet.setAttribute('transform', `scale(${dir * 1.5} 1.5)`); };
+  const walk = (city) => {
+    cancelAnimationFrame(walking);
+    const road = document.querySelector(`.m-route[data-route="${city}"]`);
+    if (!kuro || !road || !road.getTotalLength) { if (kuro) kuro.classList.remove('is-on'); return; }
+    const len = road.getTotalLength(), from = 34, to = len - 40;
+    const at = (s) => road.getPointAtLength(Math.max(0, Math.min(len, s)));
+    const pose = (s) => { const a = at(s), b = at(s + 2); place(a.x, a.y, b.x >= a.x ? 1 : -1, Math.abs(Math.sin(s / 7)) * 2.4); };
+    kuro.classList.add('is-on');
+    if (still) { pose(to); return; }
+    const dur = Math.min(2600, Math.max(900, (to - from) * 2.6)); let t0 = 0;
+    const step = (now) => {
+      t0 = t0 || now; const k = Math.min(1, (now - t0) / dur), e = k < .5 ? 2 * k * k : 1 - (-2 * k + 2) ** 2 / 2;
+      pose(from + (to - from) * e);
+      if (k < 1) walking = requestAnimationFrame(step); else { const a = at(to), b = at(to + 2); place(a.x, a.y, b.x >= a.x ? 1 : -1, 0); }
+    };
+    walking = requestAnimationFrame(step);
+  };
   let open = null;
   const show = (city, focus) => {
     open = city;
@@ -169,6 +192,7 @@
       $('ct-d-fine').textContent = t.fine;
     }
     legend.hidden = true; file.hidden = false; land(file);
+    walk(city);
     game(`map-open-${city}`);
     if (focus) {
       $('ct-d-h').focus({ preventScroll: true });
@@ -180,6 +204,7 @@
     const was = open; open = null;
     pins.forEach((b) => b.setAttribute('aria-pressed', 'false')); light(null);
     file.hidden = true; legend.hidden = false; land(legend);
+    cancelAnimationFrame(walking); if (kuro) kuro.classList.remove('is-on');
     if (was) document.querySelector(`.ct-city[data-city="${was}"] .ct-pin`).focus();
   };
   pins.forEach((b) => {

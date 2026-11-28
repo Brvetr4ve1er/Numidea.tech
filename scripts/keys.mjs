@@ -1094,8 +1094,8 @@ for (const f of pages) {
    working until the visitor presses the toggle. */
 console.log('— theme on a first visit —');
 for (const f of pages) {
-  // hub/, workspacehq/ and the counter (comptoir/) wear one fixed game skin and paint no theme
-  const spec = SPEC[f]; if (!spec || /^hub|^workspacehq|^comptoir/.test(f)) continue;
+  // hub/, workspacehq/, the counter (comptoir/) and the map (carte/, 2026-11-28) wear one fixed game skin and paint no theme
+  const spec = SPEC[f]; if (!spec || /^hub|^workspacehq|^comptoir|^carte/.test(f)) continue;
   const lang = spec.langs[0], bad = [];
   const probe = async (label, scheme, stored, want, wantStored) => {
     const { p, errs, csp, close } = await open(1280, 900, { colorScheme: scheme });

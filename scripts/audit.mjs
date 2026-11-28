@@ -558,6 +558,9 @@ await run('workspacehq console booted','/workspacehq/index.html',{allowLoops:tru
 for(const e of ['trailer','walkthrough','console']) await run('embed '+e,`/workspacehq/embed/${e}.html`,{allowLoops:true,axeOff:['region']});
 if(!REMOTE&&existsSync(join(ROOT,'legal-preview/index.html'))) await run('legal preview','/legal-preview/index.html',D);
 if(LEGAL_PUBLISHED) await run('legal','/legal/index.html',D);
+// carte/ is the world map (2026-11-28): one fixed paper skin, its language from ?lang=
+for(const l of ['fr','en','ar']) await run('carte '+l,'/carte/index.html'+(l==='fr'?'':'?lang='+l),D);
+await run('carte dossier fr','/carte/index.html?city=tamanrasset',D);
 for(const t of THEMES)
   for(const l of ['fr','en','ar']) await run(`index ${t}/${l}`,HOME(l),{...D,theme:t,lang:l});
 await run('index cv open fr',HOME('fr'),{lang:'fr',act:openCv});
@@ -591,6 +594,9 @@ await run('hub fabrique en m','/hub/fabrique.html',{lang:'en',w:390,h:844});
 await run('hub fabrique fr xs','/hub/fabrique.html',{lang:'fr',w:280,h:653});
 await run('hub bible m','/hub/bible/index.html',{w:390,h:844});
 for(const b of ['almaflow','alliance','traveler','numidea','exploration']) await run('hub brand '+b+' m','/hub/brand/'+b+'/index.html',{w:390,h:844});
+await run('carte fr m','/carte/index.html',{w:390,h:844});
+await run('carte ar m','/carte/index.html?lang=ar',{w:390,h:844});
+await run('carte fr xs','/carte/index.html',{w:280,h:653});
 for(const l of ['fr','en','ar']) await run('scene '+l+' m','/scene/index.html',{lang:l,w:390,h:844});
 await run('scene daylight m','/scene/index.html',{theme:'daylight',w:390,h:844});
 await run('404 m','/404.html',{w:390,h:844});

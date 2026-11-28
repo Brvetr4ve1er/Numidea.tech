@@ -10,8 +10,10 @@
   --f-mono:"Geist Mono",ui-monospace,monospace;
   --f-body:"Geist",system-ui,sans-serif;
   --f-seal:"Noto Sans JP","Archivo",sans-serif;
-  --fs-micro:.75rem;--fs-small:.875rem;--fs-body:1rem;--fs-lead:1.25rem;--fs-h4:1.5rem;--fs-h3:2rem;
-  --fs-h1:clamp(3.5rem,2rem + 7vw,7.5rem);
+  --fs-micro:.75rem;--fs-small:.875rem;--fs-body:1rem;--fs-lead:1.25rem;--fs-h4:1.5rem;--fs-h3:1.75rem;
+  --fs-h1:clamp(3.5rem,2rem + 7vw,7rem);
+  /* the art tier: the map's lettering, in user units of the drawing (it scales with the sheet) */
+  --fs-art-micro:11px;--fs-art-geo:14px;--fs-art-label:15px;--fs-art-seal:19px;--fs-art-n:20px;--fs-art-cart:21px;--fs-art-big:104px;
   --lh-disp:.9;--lh-body:1.55;--tr-label:.14em;
   --ink:#211E1B;--ink-2:#2B2723;--paper:#F3ECE1;--paper-2:#D8CBB8;--land:#EADFCC;--red:#A34135;--red-text:#E8806E;--dim:#A8957F;--deep:#141210;
   --dx:1;
@@ -34,8 +36,10 @@ a{color:inherit}
 .ct-num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
 .ct-lab{margin:0;font:500 var(--fs-micro)/1.25 var(--f-mono);letter-spacing:var(--tr-label);text-transform:uppercase;color:var(--dim)}
 :lang(ar) .ct-lab{text-transform:none}
-.ct-skip{position:fixed;top:8px;inset-inline-start:8px;z-index:20;padding:10px 14px;background:var(--paper);color:var(--ink);border:2px solid var(--ink);font:700 var(--fs-small)/1.2 var(--f-body);text-decoration:none;}
-.ct-skip:not(:focus){clip-path:inset(50%);width:1px;height:1px;overflow:hidden;padding:0;border:0}
+/* en/ar: hidden for the moment carte.js swaps the French out (see index.html's head) */
+.ct-wait body{visibility:hidden}
+.ct-skip{position:fixed;top:8px;transform:translateY(-200%);inset-inline-start:8px;z-index:20;padding:10px 14px;background:var(--paper);color:var(--ink);border:2px solid var(--ink);font:700 var(--fs-small)/1.2 var(--f-body);text-decoration:none;}
+.ct-skip:focus{transform:none}
 
 /* ---------- the header: a readout ---------- */
 .ct-top{max-width:1320px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;border-bottom:2px solid var(--ink-2)}
@@ -55,7 +59,7 @@ main{max-width:1320px;margin:0 auto;padding:0 16px 96px}
 /* ---------- the night desk ---------- */
 .ct-hero{display:grid;gap:32px;align-items:center;padding:40px 0 48px}
 @media (min-width:960px){.ct-hero{grid-template-columns:minmax(0,1fr) minmax(0,560px);gap:56px;padding:64px 0}}
-.ct-hero__t{display:grid;gap:20px;justify-items:start}
+.ct-hero__t{display:grid;gap:20px;justify-items:start;min-width:0}
 .ct-tape{margin:0;display:inline-flex;align-items:center;gap:10px;padding:8px 14px;background:var(--red);color:var(--paper);border:2px solid var(--paper);
   box-shadow:calc(4px * var(--dx)) 4px 0 var(--deep);font:700 var(--fs-micro)/1.2 var(--f-mono);letter-spacing:var(--tr-label);text-transform:uppercase;transform:rotate(-2deg)}
 .ct-tape::before{content:"";width:8px;height:14px;background:var(--paper)}
@@ -66,10 +70,10 @@ main{max-width:1320px;margin:0 auto;padding:0 16px 96px}
 .ct-lede{margin:0;max-width:34em;font-size:var(--fs-lead);line-height:1.45;color:var(--paper-2)}
 
 /* the passport: four stamp slots, hollow until visited */
-.ct-pass{display:grid;gap:10px;padding:14px 16px;border:2px dashed var(--dim);min-width:min(100%,360px)}
+.ct-pass{display:grid;gap:10px;padding:14px 16px;border:2px dashed var(--dim);box-sizing:border-box;width:100%;max-width:400px}
 .ct-pass__row{list-style:none;margin:0;padding:0;display:flex;gap:12px}
 .ct-stamp{width:52px;height:52px;display:grid;place-items:center;border:2px dashed var(--dim);border-radius:50%;color:var(--dim)}
-.ct-stamp__k{font:900 1.375rem/1 var(--f-seal);opacity:.45}
+.ct-stamp__k{font:900 var(--fs-h4)/1 var(--f-seal);opacity:.45}
 .ct-stamp.is-on{background:var(--red);border:2px solid var(--paper);color:var(--paper);box-shadow:calc(3px * var(--dx)) 3px 0 var(--deep);transform:rotate(-8deg)}
 .ct-stamp.is-on .ct-stamp__k{opacity:1}
 .ct-stamp.is-new{animation:ct-stamp var(--m-land) var(--m-ease)}
@@ -118,12 +122,12 @@ main{max-width:1320px;margin:0 auto;padding:0 16px 96px}
 .m-route{fill:none;stroke:var(--red);stroke-width:4;stroke-dasharray:11 8;transition:stroke-width var(--m-press)}
 .m-route.is-on{stroke-dasharray:none;stroke-width:5}
 .m-stop{fill:var(--paper);stroke:var(--ink);stroke-width:2}
-.m-stop-t{font:600 15px var(--f-mono);fill:var(--ink);letter-spacing:.06em;paint-order:stroke;stroke:var(--land);stroke-width:5px;stroke-linejoin:round}
-.m-sea-t{font:600 15px var(--f-mono);letter-spacing:.55em;fill:var(--ink);opacity:.6}
-.m-big{font:900 104px var(--f-cond);letter-spacing:.32em;fill:var(--ink);opacity:.1}
-.m-geo{font:500 14px var(--f-mono);letter-spacing:.2em;text-transform:uppercase;fill:var(--ink);opacity:.75;paint-order:stroke;stroke:var(--land);stroke-width:5px;stroke-linejoin:round}
-.m-fog-t{font:600 15px var(--f-mono);letter-spacing:.32em;fill:var(--ink);opacity:.55;paint-order:stroke;stroke:var(--land);stroke-width:7px;stroke-linejoin:round}
-.m-nb-t{font:600 15px var(--f-mono);letter-spacing:.45em;fill:var(--ink);opacity:.38}
+.m-stop-t{font:600 var(--fs-art-label) var(--f-mono);fill:var(--ink);letter-spacing:.06em;paint-order:stroke;stroke:var(--land);stroke-width:5px;stroke-linejoin:round}
+.m-sea-t{font:600 var(--fs-art-label) var(--f-mono);letter-spacing:.55em;fill:var(--ink);opacity:.6}
+.m-big{font:900 var(--fs-art-big) var(--f-cond);letter-spacing:.32em;fill:var(--ink);opacity:.1}
+.m-geo{font:500 var(--fs-art-geo) var(--f-mono);letter-spacing:.2em;text-transform:uppercase;fill:var(--ink);opacity:.75;paint-order:stroke;stroke:var(--land);stroke-width:5px;stroke-linejoin:round}
+.m-fog-t{font:600 var(--fs-art-label) var(--f-mono);letter-spacing:.32em;fill:var(--ink);opacity:.55;paint-order:stroke;stroke:var(--land);stroke-width:7px;stroke-linejoin:round}
+.m-nb-t{font:600 var(--fs-art-label) var(--f-mono);letter-spacing:.45em;fill:var(--ink);opacity:.38}
 .m-ship path{fill:var(--paper);stroke:var(--ink);stroke-width:1.8;stroke-linejoin:round}
 .m-rose-r{fill:var(--paper);stroke:var(--ink);stroke-width:2}
 .m-rose-r--in{fill:none;stroke-width:1;stroke-dasharray:2 4}
@@ -131,20 +135,29 @@ main{max-width:1320px;margin:0 auto;padding:0 16px 96px}
 .m-rose-d{fill:var(--ink);opacity:.7}
 .m-rose-n{fill:var(--red);stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round}
 .m-rose-seal{fill:var(--red);stroke:var(--paper);stroke-width:2.5}
-.m-rose-k{font:900 19px var(--f-seal);fill:var(--paper)}
-.m-rose-l{font:900 20px var(--f-cond);fill:var(--ink)}
+.m-rose-k{font:900 var(--fs-art-seal) var(--f-seal);fill:var(--paper)}
+.m-rose-l{font:900 var(--fs-art-n) var(--f-cond);fill:var(--ink)}
 .m-cart-b{fill:var(--paper);stroke:var(--ink);stroke-width:3}
 .m-cart-i{fill:none;stroke:var(--ink);stroke-width:1}
-.m-cart-k{font:900 21px var(--f-cond);letter-spacing:.06em;fill:var(--ink)}
-.m-cart-s{font:500 11px var(--f-mono);letter-spacing:.08em;fill:var(--ink)}
+.m-cart-k{font:900 var(--fs-art-cart) var(--f-cond);letter-spacing:.06em;fill:var(--ink)}
+.m-cart-s{font:500 var(--fs-art-micro) var(--f-mono);letter-spacing:.08em;fill:var(--ink)}
 .m-scale{fill:none;stroke:var(--ink);stroke-width:1.5}
 .m-scale-f{fill:var(--ink)}
 .m-ruler-b{fill:none;stroke:var(--ink);stroke-width:36}
 .m-tick{fill:none;stroke:var(--paper);stroke-width:1.4}
-.m-deg{font:600 11px var(--f-mono);letter-spacing:.06em;fill:var(--paper)}
+.m-deg{font:600 var(--fs-art-micro) var(--f-mono);letter-spacing:.06em;fill:var(--paper)}
 :lang(ar) :is(.m-geo,.m-fog-t,.m-nb-t,.m-sea-t,.m-stop-t,.m-cart-k,.m-cart-s,.m-big){letter-spacing:0;font-family:var(--f-body)}
 :lang(ar) .m-big{font-weight:700}
 
+/* Kūro: a black cat cut from the sheet (a parchment outline under the ink), hidden at rest; he walks a route
+   when a city is chosen (carte.js moves him along the path, once) and sits at the gate */
+.m-kuro{opacity:0;pointer-events:none}
+.m-kuro.is-on{opacity:1}
+.m-kuro-o{fill:var(--paper);stroke:var(--paper);stroke-width:5;stroke-linejoin:round}
+.m-kuro-o .m-kuro-c,.m-kuro-o .m-kuro-t,.m-kuro-o .m-kuro-l{fill:none;stroke:var(--paper);stroke-width:7;stroke-linecap:round}
+.m-kuro-i{fill:var(--ink)}
+.m-kuro-i .m-kuro-t,.m-kuro-i .m-kuro-l{fill:none;stroke:var(--ink);stroke-width:2.6;stroke-linecap:round}
+.m-kuro-i .m-kuro-c{fill:none;stroke:var(--red);stroke-width:2.2;stroke-linecap:round}
 /* the routes draw themselves once (a mask path running from the HQ), then stay */
 @media (prefers-reduced-motion:no-preference){
   .m-drawl{stroke-dasharray:1 1;animation:m-draw var(--m-draw) var(--m-ease) 300ms backwards}
@@ -158,7 +171,7 @@ main{max-width:1320px;margin:0 auto;padding:0 16px 96px}
 .ct-city{position:absolute;left:var(--x);top:var(--y);width:0;height:0;pointer-events:none}
 .ct-pin{pointer-events:auto;position:absolute;left:0;top:0;transform:translate(-50%,-50%);display:block;width:56px;height:56px;padding:0;border:0;background:none;color:inherit;cursor:pointer;font:inherit;text-align:start}
 .ct-seal{display:inline-grid;place-items:center;flex:none;width:52px;height:52px;border-radius:50%;background:var(--red);color:var(--paper);box-shadow:0 0 0 3px var(--paper),0 0 0 5px var(--ink),calc(4px * var(--dx)) 5px 0 5px var(--ink);
-  font:900 1.5rem/1 var(--f-seal);transform:rotate(-6deg);user-select:none}
+  font:900 var(--fs-h4)/1 var(--f-seal);transform:rotate(-6deg);user-select:none}
 .ct-pin>.ct-seal{position:absolute;left:2px;top:2px;transition:transform var(--m-press) var(--m-ease)}
 .ct-city[data-city="hq"] .ct-pin>.ct-seal{background:var(--ink);color:var(--paper);box-shadow:0 0 0 3px var(--red),0 0 0 5px var(--ink),4px 5px 0 5px var(--ink)}
 /* the plate: the district's name on an ink slab with a hard red drop, to one side of the seal */
@@ -166,10 +179,10 @@ main{max-width:1320px;margin:0 auto;padding:0 16px 96px}
   box-shadow:4px 4px 0 var(--red);transform:translateY(-50%);transition:transform var(--m-press) var(--m-ease),box-shadow var(--m-press) var(--m-ease)}
 .ct-city[data-side="e"] .ct-plate{left:66px}
 .ct-city[data-side="w"] .ct-plate{right:66px;text-align:end;justify-items:end}
-.ct-plate__c{font:500 .6875rem/1.2 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
-.ct-plate__n{font:900 1.375rem/1 var(--f-cond);text-transform:uppercase;letter-spacing:.01em}
+.ct-plate__c{font:500 var(--fs-micro)/1.2 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.ct-plate__n{font:900 var(--fs-h4)/1 var(--f-cond);text-transform:uppercase;letter-spacing:.01em}
 :lang(ar) :is(.ct-plate__c,.ct-plate__n){text-transform:none;letter-spacing:0}
-.ct-chip{justify-self:start;display:inline-flex;align-items:center;gap:6px;margin-top:4px;padding:2px 8px;border:2px dashed var(--dim);font:500 .6875rem/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--paper-2)}
+.ct-chip{justify-self:start;display:inline-flex;align-items:center;gap:6px;margin-top:4px;padding:2px 8px;border:2px dashed var(--dim);font:500 var(--fs-micro)/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--paper-2)}
 .ct-city[data-side="w"] .ct-chip{justify-self:end}
 .ct-chip::before{content:"";width:6px;height:6px;box-shadow:inset 0 0 0 2px var(--dim)}
 .ct-chip.is-here{border-style:solid;border-color:var(--red-text)}
@@ -183,14 +196,17 @@ main{max-width:1320px;margin:0 auto;padding:0 16px 96px}
   .ct-pin:hover .ct-plate{transform:translate(-2px,calc(-50% - 2px));box-shadow:7px 7px 0 var(--red)}
   .ct-pin:hover>.ct-seal{transform:rotate(-6deg) scale(1.08)}
 }
-.ct-pin:focus-visible{outline:none}
-.ct-pin:focus-visible>.ct-seal{outline:3px solid var(--red);outline-offset:8px}
+.ct-pin:focus-visible{outline:3px solid var(--red);outline-offset:6px;border-radius:50%}
 .ct-pin:focus-visible .ct-plate{transform:translate(-2px,calc(-50% - 2px));box-shadow:7px 7px 0 var(--red)}
 .ct-pin[aria-pressed="true"] .ct-plate{background:var(--red);box-shadow:7px 7px 0 var(--ink)}
+.ct-pin[aria-pressed="true"] :is(.ct-plate__c,.ct-chip){color:var(--paper);border-color:var(--paper)}
 .ct-pin[aria-pressed="true"] .ct-chip{border-color:var(--paper);color:var(--paper)}
 .ct-pin:active .ct-plate{transform:translate(2px,calc(-50% + 2px));box-shadow:2px 2px 0 var(--red)}
-.ct-map.is-focus .ct-city:not(.is-on) .ct-pin{opacity:.5}
-.ct-map.is-focus .ct-city:not(.is-on) .ct-pin:is(:hover,:focus-visible){opacity:1}
+/* the other cities step back without losing their words' contrast: the seal fades, the plate goes from solid ink to an outline */
+.ct-map.is-focus .ct-city:not(.is-on) .ct-pin>.ct-seal{opacity:.45}
+.ct-map.is-focus .ct-city:not(.is-on) .ct-plate{background:var(--land);color:var(--ink);border-color:var(--ink);border-style:dashed;box-shadow:none}
+.ct-map.is-focus .ct-city:not(.is-on) .ct-pin:is(:hover,:focus-visible)>.ct-seal{opacity:1}
+.ct-map.is-focus .ct-city:not(.is-on) :is(.ct-plate__c,.ct-chip){color:var(--ink);border-color:var(--ink)}
 
 /* ---------- the dossier ---------- */
 .ct-dossier{position:relative;align-self:start}
@@ -205,12 +221,12 @@ main{max-width:1320px;margin:0 auto;padding:0 16px 96px}
 :lang(ar) .ct-dos__h{text-transform:none;line-height:1.3}
 .ct-dos__head{display:flex;gap:16px;align-items:center}
 .ct-dos__head .ct-lab{color:#6B5A4C;margin-top:6px}
-.ct-seal--lg{width:64px;height:64px;font-size:1.875rem;box-shadow:0 0 0 3px var(--paper),0 0 0 5px var(--ink),calc(4px * var(--dx)) 5px 0 5px var(--ink)}
+.ct-seal--lg{width:64px;height:64px;font-size:var(--fs-h3);box-shadow:0 0 0 3px var(--paper),0 0 0 5px var(--ink),calc(4px * var(--dx)) 5px 0 5px var(--ink)}
 .ct-dos__p{margin:0;font-size:var(--fs-body);line-height:1.5}
 .ct-legend{list-style:none;margin:0;padding:0;display:grid;gap:14px}
 .ct-legend li{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:center;font-size:var(--fs-small);line-height:1.4}
 .ct-lg{justify-self:center}
-.ct-lg--seal{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--red);color:var(--paper);box-shadow:0 0 0 2px var(--paper),0 0 0 4px var(--ink);font:900 1rem/1 var(--f-seal)}
+.ct-lg--seal{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--red);color:var(--paper);box-shadow:0 0 0 2px var(--paper),0 0 0 4px var(--ink);font:900 var(--fs-body)/1 var(--f-seal)}
 .ct-lg--route{width:40px;height:4px;background:repeating-linear-gradient(90deg,var(--red) 0 9px,transparent 9px 15px)}
 .ct-lg--fog{width:40px;height:28px;border:1px solid var(--ink);background:repeating-linear-gradient(-45deg,rgba(33,30,27,.35) 0 1.5px,transparent 1.5px 7px)}
 .ct-lg--paw{width:28px;height:28px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cg fill='%23211E1B'%3E%3Cellipse cx='15' cy='20' rx='7' ry='6'/%3E%3Cellipse cx='6' cy='12' rx='3' ry='3.8'/%3E%3Cellipse cx='12' cy='7' rx='3' ry='3.8'/%3E%3Cellipse cx='19' cy='7' rx='3' ry='3.8'/%3E%3Cellipse cx='25' cy='12' rx='3' ry='3.8'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat}
@@ -221,9 +237,9 @@ main{max-width:1320px;margin:0 auto;padding:0 16px 96px}
 :lang(ar) .ct-dos__links a::after{content:"←"}
 @media (hover:hover){.ct-dos__links a:hover{background:var(--ink);color:var(--paper)}}
 .ct-go{display:flex;align-items:center;gap:14px;min-height:56px;padding:8px 18px 8px 8px;background:var(--red);color:var(--paper);border:2px solid var(--ink);box-shadow:calc(5px * var(--dx)) 5px 0 var(--ink);
-  font:900 1.125rem/1.1 var(--f-wide);text-transform:uppercase;letter-spacing:.02em;text-decoration:none;transition:transform var(--m-press),box-shadow var(--m-press)}
+  font:900 var(--fs-lead)/1.1 var(--f-wide);text-transform:uppercase;letter-spacing:.02em;text-decoration:none;transition:transform var(--m-press),box-shadow var(--m-press)}
 :lang(ar) .ct-go{text-transform:none;letter-spacing:0;padding:8px 8px 8px 18px}
-.ct-go__s{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;background:var(--paper);color:var(--red);font:900 1.25rem/1 var(--f-seal);flex:none}
+.ct-go__s{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;background:var(--paper);color:var(--red);font:900 var(--fs-lead)/1 var(--f-seal);flex:none}
 @media (hover:hover){.ct-go:hover{transform:translate(calc(-2px * var(--dx)),-2px);box-shadow:calc(7px * var(--dx)) 7px 0 var(--ink)}}
 .ct-go:active{transform:translate(calc(3px * var(--dx)),3px);box-shadow:calc(2px * var(--dx)) 2px 0 var(--ink)}
 .ct-go:focus-visible{outline:3px solid var(--ink);outline-offset:4px}
@@ -239,9 +255,9 @@ main{max-width:1320px;margin:0 auto;padding:0 16px 96px}
 .ct-carnet__s{margin:0;color:var(--dim)}
 .ct-log{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:0;border-top:2px solid var(--ink-2)}
 .ct-log li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:4px 16px;align-items:center;padding:16px 0;border-bottom:2px solid var(--ink-2)}
-.ct-log .ct-seal{grid-row:span 2;width:44px;height:44px;font-size:1.25rem;box-shadow:0 0 0 2px var(--paper)}
+.ct-log .ct-seal{grid-row:span 2;width:44px;height:44px;font-size:var(--fs-lead);box-shadow:0 0 0 2px var(--paper)}
 .ct-log li[data-city="hq"] .ct-seal{background:var(--ink-2)}
-.ct-log__t b{font:900 1.375rem/1.1 var(--f-cond);text-transform:uppercase;margin-inline-end:10px}
+.ct-log__t b{font:900 var(--fs-h4)/1.1 var(--f-cond);text-transform:uppercase;margin-inline-end:10px}
 :lang(ar) .ct-log__t b{text-transform:none}
 .ct-log__l{font-size:var(--fs-small);color:var(--paper-2)}
 .ct-log__l a{color:var(--paper);text-underline-offset:3px;display:inline-block;min-height:24px}
@@ -258,13 +274,21 @@ main{max-width:1320px;margin:0 auto;padding:0 16px 96px}
   .m-geo,.m-stop-t,.m-deg,.m-cart,.m-nb-t,.m-sea-t,.m-fog-t,.m-ship{display:none}
   .m-ruler-b{stroke-width:20}
   .ct-pin{width:40px;height:40px}
-  .ct-seal{width:34px;height:34px;font-size:1rem;box-shadow:0 0 0 2px var(--paper),0 0 0 4px var(--ink)}
+  .ct-seal{width:34px;height:34px;font-size:var(--fs-body);box-shadow:0 0 0 2px var(--paper),0 0 0 4px var(--ink)}
   .ct-pin>.ct-seal{left:3px;top:3px}
   .ct-city[data-city="hq"] .ct-pin>.ct-seal{box-shadow:0 0 0 2px var(--red),0 0 0 4px var(--ink)}
   .ct-plate{padding:4px 7px;box-shadow:3px 3px 0 var(--red);max-width:9em}
   .ct-plate__c,.ct-chip{display:none}
-  .ct-plate__n{font-size:.875rem}
+  .ct-plate__n{font-size:var(--fs-small)}
   .ct-city[data-side="e"] .ct-plate{left:44px}
   .ct-city[data-side="w"] .ct-plate{right:44px}
   .ct-paw{left:-34px;top:-6px;width:20px;height:20px}
+}
+/* the smallest phones: the east plates wrap instead of running off the sheet */
+@media (max-width:359px){
+  .ct-plate{max-width:6.5em}
+  .ct-pass{padding:12px}
+  .ct-pass__row{gap:8px}
+  .ct-stamp{width:46px;height:46px}
+  .ct-city[data-city="ghardaia"] .ct-plate{left:auto;right:44px;text-align:end;justify-items:end}
 }

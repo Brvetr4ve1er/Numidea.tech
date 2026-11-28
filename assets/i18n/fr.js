@@ -303,7 +303,7 @@ var I18N = {
   'menu.bible.kuro': 'adore',
   /* portals band (world map thread, 2026-11-27): the map HQ and the three store gates under the menu */
   'portals.aria': 'Le monde Numidea : la carte et les boutiques',
-  'portals.k': 'Le monde Numidea · 1 carte, 3 boutiques',
+  'portals.k': 'Le monde Numidea · la carte',
   'portals.hq.city': 'QG · Bordj Bou Arréridj',
   'portals.hq.label': 'La Carte',
   'portals.hq.open': 'Ouvrir la carte',

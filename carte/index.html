@@ -5,8 +5,9 @@
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-HyfBPbOwhwI3eSppO5rYITL1ba5PV00+sajLaOuNMBc='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <meta name="robots" content="noindex, nofollow">
+<script>/* ?lang= sets the direction before the first paint, and holds the page until carte.js has put its words in, so nothing moves under the reader (1.5s at most, if the script never comes) */(function(){var l=new URLSearchParams(location.search).get('lang');if(l==='en'||l==='ar'){var d=document.documentElement;d.lang=l;if(l==='ar')d.dir='rtl';d.classList.add('ct-wait');setTimeout(function(){d.classList.remove('ct-wait')},1500)}})();</script>
 <title>La Carte · Numidea Labs</title>
 <meta name="description" content="La carte du monde Numidea : le studio à Bordj Bou Arréridj, et trois boutiques au bout des routes, le Vestiaire à Oran, la Logithèque à Ghardaïa, l’Arcade à Tamanrasset.">
 <link rel="canonical" href="https://www.numedialab.dev/carte/">
@@ -47,7 +48,7 @@
       <p class="ct-tape" data-t="kicker">Le monde Numidea</p>
       <h1 class="ct-h" id="ct-h" data-t="h">La Carte</h1>
       <p class="ct-lede" data-t="lede">Tout le monde Numidea tient sur une feuille : le studio au nord, et trois boutiques au bout des routes. Choisis une ville.</p>
-      <div class="ct-pass" aria-labelledby="ct-pass-k">
+      <div class="ct-pass" role="group" aria-labelledby="ct-pass-k">
         <p class="ct-lab" id="ct-pass-k"><span data-t="pass">Passeport</span> · <span class="ct-num" id="ct-pass-n">1/4</span></p>
         <ol class="ct-pass__row">
           <li class="ct-stamp is-on" data-city="hq" data-game-stamp><span class="ct-stamp__k" aria-hidden="true">旅</span><span class="sr-only" data-t="hqName">Le QG</span></li>
@@ -67,7 +68,7 @@
 
   <!-- the board: the parchment sheet, its four seals, the dossier beside it -->
   <section class="ct-stage" id="ct-stage" tabindex="-1" aria-labelledby="ct-stage-h">
-    <h2 class="sr-only" id="ct-stage-h" data-t="stageH">La carte</h2>
+    <h2 class="sr-only" id="ct-stage-h" data-t="stageH">La carte interactive</h2>
     <div class="ct-sheet" id="ct-sheet">
       <div class="ct-map" id="ct-map">
 <!-- MAP:start (scripts/build-carte.mjs) -->
@@ -125,6 +126,7 @@
 <circle class="m-stop" cx="534.8" cy="647.4" r="4"/><text class="m-stop-t" x="522.8" y="652.4" text-anchor="end" data-t="inSalah">In Salah</text>
 <circle class="m-stop" cx="552.3" cy="484.7" r="4"/><text class="m-stop-t" x="564.3" y="489.7" data-t="meniaa">El Meniaa</text>
 </g>
+<g class="m-kuro" id="m-kuro" aria-hidden="true" transform="translate(632.4 219.2)"><g class="m-kuro-f"><g class="m-kuro-o"><path class="m-kuro-t" d="M-9-10q-7-1-6-10q1-3 3-2"/><path class="m-kuro-l" d="M-7-5v6M-3-5v6M4-5v6M8-5v6"/><ellipse cx="-.5" cy="-8.5" rx="9.5" ry="5"/><circle cx="9.5" cy="-13" r="4.6"/><path d="M6.2-16.2l1.2-5.6 3 3.9zM10.6-17.4l2.8-4.8 .9 5.4z"/><path class="m-kuro-c" d="M6.4-10.4l5.4 1.6"/></g><g class="m-kuro-i"><path class="m-kuro-t" d="M-9-10q-7-1-6-10q1-3 3-2"/><path class="m-kuro-l" d="M-7-5v6M-3-5v6M4-5v6M8-5v6"/><ellipse cx="-.5" cy="-8.5" rx="9.5" ry="5"/><circle cx="9.5" cy="-13" r="4.6"/><path d="M6.2-16.2l1.2-5.6 3 3.9zM10.6-17.4l2.8-4.8 .9 5.4z"/><path class="m-kuro-c" d="M6.4-10.4l5.4 1.6"/></g></g></g>
 <g class="m-ship" transform="translate(477.7 128)" aria-hidden="true"><path d="M-26 0h52l-8 9h-36zM-14 0v-8h24v8M-6-8v-5h10v5M-36 13q9-4 18 0t18 0t18 0t18 0"/></g>
 <g class="m-rose" transform="translate(135.4 917.7)" aria-hidden="true">
 <circle r="60" class="m-rose-r"/><circle r="47" class="m-rose-r m-rose-r--in"/>
@@ -192,7 +194,7 @@
         <div class="ct-dos__head">
           <span class="ct-seal ct-seal--lg" id="ct-d-seal" aria-hidden="true"></span>
           <div>
-            <h3 class="ct-dos__h" id="ct-d-h" tabindex="-1"></h3>
+            <h3 class="ct-dos__h" id="ct-d-h" tabindex="-1">Le QG</h3>
             <p class="ct-lab" id="ct-d-what"></p>
           </div>
         </div>

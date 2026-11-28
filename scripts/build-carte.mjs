@@ -149,6 +149,8 @@ for (let y = 46, row = 0; y < 290; y += 17, row++) for (let x = 40 + (row % 2) *
 // the fog: the diagonal hatch over the land, cut open around the four places and along the routes
 const clear = Object.entries({ hq: 118, oran: 96, ghardaia: 96, tamanrasset: 112 }).map(([k, r]) => `<circle cx="${C[k][0]}" cy="${C[k][1]}" r="${r}"/>`).join('');
 
+// Kūro, drawn twice: a parchment outline, then the ink (a <use> would hide his parts from the stylesheet)
+const KURO = '<path class="m-kuro-t" d="M-9-10q-7-1-6-10q1-3 3-2"/><path class="m-kuro-l" d="M-7-5v6M-3-5v6M4-5v6M8-5v6"/><ellipse cx="-.5" cy="-8.5" rx="9.5" ry="5"/><circle cx="9.5" cy="-13" r="4.6"/><path d="M6.2-16.2l1.2-5.6 3 3.9zM10.6-17.4l2.8-4.8 .9 5.4z"/><path class="m-kuro-c" d="M6.4-10.4l5.4 1.6"/>';
 const svg = `<svg class="m" viewBox="0 0 ${W} ${H}" role="img" aria-labelledby="m-t" focusable="false">
 <title id="m-t" data-t="mapTitle">Carte de l’Algérie : le QG à Bordj Bou Arréridj, le Vestiaire à Oran, la Logithèque à Ghardaïa, l’Arcade à Tamanrasset</title>
 <defs>
@@ -201,6 +203,7 @@ ${MZAB.map(([lo, la]) => `<use href="#pl" transform="translate(${X(lo) + (rand()
 <circle class="m-stop" cx="${X(2.47)}" cy="${Y(27.2)}" r="4"/><text class="m-stop-t" x="${X(2.47) - 12}" y="${Y(27.2) + 5}" text-anchor="end" data-t="inSalah">In Salah</text>
 <circle class="m-stop" cx="${X(2.88)}" cy="${Y(30.57)}" r="4"/><text class="m-stop-t" x="${X(2.88) + 12}" y="${Y(30.57) + 5}" data-t="meniaa">El Meniaa</text>
 </g>
+<g class="m-kuro" id="m-kuro" aria-hidden="true" transform="translate(${C.hq[0]} ${C.hq[1]})"><g class="m-kuro-f"><g class="m-kuro-o">${KURO}</g><g class="m-kuro-i">${KURO}</g></g></g>
 <g class="m-ship" transform="translate(${X(1.6) - 20} 128)" aria-hidden="true"><path d="M-26 0h52l-8 9h-36zM-14 0v-8h24v8M-6-8v-5h10v5M-36 13q9-4 18 0t18 0t18 0t18 0"/></g>
 <g class="m-rose" transform="translate(${X(-6.9)} ${Y(21.6)})" aria-hidden="true">
 <circle r="60" class="m-rose-r"/><circle r="47" class="m-rose-r m-rose-r--in"/>

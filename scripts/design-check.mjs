@@ -187,6 +187,9 @@ const textBoxes = (MAX) => {
     if (el.closest('[aria-hidden="true"], .sr-only, script, style, template, noscript, .mobile-menu, svg, canvas, [hidden], details:not([open]) > :not(summary)')) continue;
     const cs = getComputedStyle(el);
     if (cs.visibility === 'hidden' || cs.display === 'none' || +cs.opacity === 0 || cs.color.endsWith(', 0)')) continue;
+    // 2026-11-28: a visually hidden heading (a 1px clipped box, the .proof's .cl-h) paints nothing; its text range still
+    // measures full width, so a shift in the sample (La Carte's kicker) picked it on /ar/ and read the band behind it
+    const eb = el.getBoundingClientRect(); if (eb.width <= 1 || eb.height <= 1) continue;
     // the text's own box, not its element's (a card's padding is not text)
     const rg = document.createRange();
     rg.selectNodeContents(n);
