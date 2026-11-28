@@ -1,0 +1,102 @@
+/* Numidea Labs — the dock cast: Yasser and Kūro in the corner of every page (assets/cast/cast.js builds it).
+   Numidea palette only; times on the site's 90 BPM grid (beat 667 ms, eighth 83 ms). */
+.cast{--ink:#211E1B;--paper:#F3ECE1;--paper-2:#D8CBB8;--red:#A34135;--e8:83ms;--d3:250ms;--d5:420ms;--out:cubic-bezier(.16,1,.3,1);--snap:cubic-bezier(.34,1.56,.64,1);
+  position:fixed;z-index:60;inset-inline-end:max(14px,env(safe-area-inset-right));bottom:calc(14px + env(safe-area-inset-bottom) + var(--cast-lift,0px));
+  display:flex;flex-direction:column;align-items:flex-end;gap:10px;pointer-events:none;font:500 15px/1.35 Geist,system-ui,sans-serif;color:var(--ink);
+  transition:bottom var(--d3) var(--out),transform var(--d5) var(--out),opacity var(--d3) linear}
+.cast *{box-sizing:border-box}
+.cast[hidden]{display:none}
+.cast.is-away{transform:translateY(calc(100% + 40px));opacity:0}
+.cast.is-away .cast-btn,.cast.is-away .cast-kb{pointer-events:none}
+[dir=rtl] .cast{align-items:flex-start;font-family:'IBM Plex Sans Arabic','NL Arabic',system-ui,sans-serif}
+
+/* the figure: a tilted paper card with a sticker outline, Kūro on its shoulder */
+.cast-stage{position:relative;width:104px;height:100px;pointer-events:none}
+.cast-btn{position:absolute;inset:0;display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:pointer;pointer-events:auto;-webkit-tap-highlight-color:transparent}
+.cast-card{position:absolute;inset:6px 4px 0 6px;background:var(--paper);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--red);transform:rotate(-3deg);overflow:hidden;transition:transform var(--d3) var(--snap)}
+.cast-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle,rgba(163,65,53,.16) 1.4px,transparent 1.8px) 0 0/9px 9px}
+.cast-y{position:absolute;left:50%;bottom:-2px;width:84px;height:80px;margin-left:-42px;background:url(yasser.webp) 0 0/1092px 80px no-repeat;transform-origin:50% 100%;transform:rotate(3deg)}
+.cast-breathe .cast-y{animation:castBreathe 2667ms cubic-bezier(.45,0,.55,1) infinite}
+@keyframes castBreathe{0%,100%{transform:rotate(3deg)}50%{transform:rotate(3deg) translateY(-1.5px) scale(1.006,1.014)}}
+@media (hover:hover){.cast-btn:hover .cast-card{transform:rotate(-1deg) scale(1.04)}}
+.cast-btn:active .cast-card{transform:rotate(-3deg) scale(.96);transition-duration:var(--e8)}
+.cast-btn:focus-visible{outline:none}.cast-btn:focus-visible .cast-card{outline:3px solid var(--red);outline-offset:3px}
+.cast-tag{position:absolute;inset-inline-start:-6px;bottom:-8px;padding:2px 6px;background:var(--ink);color:var(--paper);font:500 10px/1.2 'Geist Mono',ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;transform:rotate(-4deg);pointer-events:none}
+[dir=rtl] .cast-tag{letter-spacing:0;font-family:inherit;font-size:11px}
+
+/* Kūro: his own button (pet him); a face rig, and a reaction cut-out that pops beside the card */
+.cast-kb{position:absolute;top:-30px;inset-inline-start:-34px;width:60px;height:49px;padding:0;border:0;background:none;cursor:pointer;pointer-events:auto;-webkit-tap-highlight-color:transparent}
+.cast-kb:focus-visible{outline:3px solid var(--red);outline-offset:2px;border-radius:50%}
+.cast-k{display:block;width:60px;height:49px;background:url(kuro-face.webp) 0 0/420px 49px no-repeat;filter:drop-shadow(1.5px 0 0 var(--paper)) drop-shadow(-1.5px 0 0 var(--paper)) drop-shadow(0 -1.5px 0 var(--paper));transition:opacity var(--e8) linear}
+.cast-kb.is-out .cast-k{opacity:0}
+.cast-kr{position:absolute;top:-52px;inset-inline-start:-58px;width:60px;height:60px;background:url(kuro-react.webp) 0 0/600px 60px no-repeat;filter:drop-shadow(1.5px 0 0 var(--paper)) drop-shadow(-1.5px 0 0 var(--paper)) drop-shadow(0 -1.5px 0 var(--paper)) drop-shadow(3px 3px 0 rgba(33,30,27,.35));opacity:0;transform:scale(.6) rotate(-8deg);pointer-events:none}
+.cast-kr.is-on{opacity:1;transform:rotate(-4deg);transition:transform var(--d3) var(--snap),opacity 60ms linear}
+.cast-kr.is-leave{opacity:0;transform:translateX(-70px) rotate(-4deg);transition:transform 1300ms cubic-bezier(.45,0,.55,1),opacity 400ms linear 900ms}
+[dir=rtl] .cast-kr.is-leave{transform:translateX(70px) rotate(4deg)}
+.cast-min{position:absolute;top:-6px;inset-inline-end:-8px;width:24px;height:24px;padding:0;border:2px solid var(--ink);background:var(--paper);color:var(--ink);font:700 14px/1 system-ui,sans-serif;cursor:pointer;pointer-events:auto;opacity:0;transition:opacity var(--e8) linear}
+.cast:hover .cast-min,.cast-min:focus-visible,.cast.is-open .cast-min{opacity:1}
+@media (hover:none){.cast-min{opacity:1}}
+
+/* minimized for this visit: only Kūro peeks from the corner */
+.cast.is-min .cast-card,.cast.is-min .cast-tag,.cast.is-min .cast-min,.cast.is-min .cast-say{display:none}
+.cast.is-min .cast-stage{width:64px;height:52px}
+.cast.is-min .cast-kb{top:auto;bottom:0;inset-inline-start:2px}
+.cast.is-min .cast-btn{display:none}
+
+/* the speech bubble: an ink box with a red shadow, the game's dialogue box */
+.cast-say{position:relative;max-width:min(300px,calc(100vw - 28px));padding:12px 34px 12px 14px;background:var(--ink);color:var(--paper);border:3px solid var(--paper);box-shadow:6px 6px 0 var(--red);pointer-events:auto;transform-origin:100% 100%}
+[dir=rtl] .cast-say{padding:12px 14px 12px 34px;transform-origin:0 100%}
+.cast-say[hidden]{display:none}
+.cast-say.is-in{animation:castPop var(--d3) var(--out) both}
+@keyframes castPop{0%{transform:scale(.86);opacity:0}60%{transform:scale(1.04);opacity:1}100%{transform:none}}
+.cast-say::after{content:"";position:absolute;bottom:-14px;inset-inline-end:34px;width:18px;height:14px;background:var(--paper);clip-path:polygon(0 0,100% 0,70% 100%)}
+.cast-say-t{margin:0;font:800 15px/1.3 Archivo,'Arial Black',system-ui,sans-serif;letter-spacing:.01em}
+[dir=rtl] .cast-say-t{font:700 16px/1.6 'IBM Plex Sans Arabic','NL Arabic',system-ui,sans-serif}
+.cast-say-n{display:block;margin-bottom:4px;font:500 10px/1.2 'Geist Mono',ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#E3B8AF}
+[dir=rtl] .cast-say-n{letter-spacing:0;font-family:inherit;font-size:12px}
+.cast-x{position:absolute;top:4px;inset-inline-end:4px;width:26px;height:26px;padding:0;border:0;background:none;color:var(--paper);font:700 18px/1 system-ui,sans-serif;cursor:pointer}
+.cast-x:focus-visible{outline:2px solid var(--paper)}
+
+/* the talk panel */
+.cast-panel{width:min(340px,calc(100vw - 28px));max-height:min(520px,calc(100vh - 170px));max-height:min(520px,calc(100svh - 170px));display:flex;flex-direction:column;background:var(--paper);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--red);pointer-events:auto;transform-origin:100% 100%}
+[dir=rtl] .cast-panel{transform-origin:0 100%}
+.cast-panel[hidden]{display:none}
+.cast-panel.is-in{animation:castPop var(--d3) var(--out) both}
+.cast-head{display:flex;align-items:center;gap:8px;padding:8px 8px 8px 14px;background:var(--ink);color:var(--paper)}
+.cast-head b{flex:1;font:900 16px/1 Archivo,'Arial Black',system-ui,sans-serif;text-transform:uppercase;letter-spacing:.02em}
+.cast-head b span{color:#E3B8AF;font-weight:900}
+[dir=rtl] .cast-head b{text-transform:none;font-family:inherit}
+.cast-hb{min-width:32px;min-height:32px;padding:0 8px;border:2px solid var(--paper);background:var(--ink);color:var(--paper);font:500 11px/1 'Geist Mono',ui-monospace,monospace;letter-spacing:.06em;cursor:pointer}
+@media (hover:hover){.cast-hb:hover{background:var(--paper);color:var(--ink)}}
+.cast-hb:focus-visible{outline:2px solid var(--paper);outline-offset:2px}
+.cast-log{flex:1;min-height:90px;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:8px;overscroll-behavior:contain}
+.cast-m{max-width:88%;margin:0;padding:8px 10px;font-size:14px;line-height:1.4}
+.cast-m.y{align-self:flex-start;background:var(--ink);color:var(--paper);box-shadow:3px 3px 0 var(--red)}
+.cast-m.u{align-self:flex-end;background:var(--paper-2);border:2px solid var(--ink)}
+.cast-m.k{align-self:flex-start;padding:2px 8px;background:none;color:var(--red);font:500 11px/1.3 'Geist Mono',ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase}
+[dir=rtl] .cast-m.k{letter-spacing:0;font-family:inherit;font-size:12px}
+.cast-chips{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px;border-top:2px dashed rgba(33,30,27,.35)}
+.cast-chip{min-height:36px;padding:6px 10px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);font:600 13px/1.2 inherit;font-family:inherit;cursor:pointer;box-shadow:3px 3px 0 var(--ink);transition:transform var(--e8) linear,box-shadow var(--e8) linear}
+@media (hover:hover){.cast-chip:hover{background:var(--ink);color:var(--paper)}}
+.cast-chip:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.cast-chip:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.cast-form{display:flex;gap:6px;padding:10px 14px;border-top:2px solid var(--ink)}
+.cast-in{flex:1;min-width:0;min-height:44px;padding:8px 10px;border:2px solid var(--ink);background:#fff;color:var(--ink);font:16px/1.3 inherit;font-family:inherit}
+.cast-in:focus-visible{outline:3px solid var(--red);outline-offset:1px}
+.cast-send{min-height:44px;padding:0 12px;border:2px solid var(--ink);background:var(--red);color:var(--paper);font:900 13px/1 Archivo,'Arial Black',system-ui,sans-serif;text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+[dir=rtl] .cast-send{text-transform:none;font-family:inherit}
+.cast-send:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.cast-form[aria-busy=true] .cast-send{opacity:.6}
+.cast-note{margin:0;padding:0 14px 10px;font-size:11px;line-height:1.35;color:#5b524a}
+
+@media (max-width:479.98px){
+  .cast-stage{width:84px;height:82px}
+  .cast-y{transform:rotate(3deg) scale(.82);transform-origin:50% 100%}
+  .cast-breathe .cast-y{animation:none}
+  .cast-kb{top:-24px;inset-inline-start:-26px;transform:scale(.85)}
+  .cast-say-t{font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  .cast,.cast *{animation:none!important;transition-duration:1ms!important}
+}
+@media print{.cast{display:none}}

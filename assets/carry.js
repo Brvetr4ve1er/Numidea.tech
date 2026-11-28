@@ -175,3 +175,18 @@
   document.addEventListener('pointercancel', up, { passive: true });
   document.addEventListener('focusin', function (e) { if (!pressed) fetchPage(target(e)); });
 })();
+
+/* The dock cast (assets/cast/cast.js: Yasser and Kūro in the corner of every page). carry.js is the one script every
+   page that links to another already loads, so it brings the cast along instead of a tag on each page: once the page
+   has loaded and the browser is idle, never before the first paint, and with this file's own ?v= stamp. The cast
+   decides by itself where it does not appear (WorkspaceHQ, the legal page, Kūro's episode). */
+(function () {
+  var me = document.currentScript;
+  if (!me || !me.src || window.__numideaCast) return;
+  var src = me.src.replace(/carry\.js(\?|$)/, 'cast/cast.js$1');
+  var go = function () {
+    var s = document.createElement('script'); s.src = src; s.async = true; document.head.appendChild(s);
+  };
+  var idle = function () { (window.requestIdleCallback || function (f) { setTimeout(f, 1200); })(go, { timeout: 4000 }); };
+  if (document.readyState === 'complete') idle(); else window.addEventListener('load', idle);
+})();

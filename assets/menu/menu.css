@@ -9,3 +9,4 @@
 /* 2026-11-27: Archivo 900 moved to assets/fonts.css (one declaration per face: the price guide, the cases, the 404 and the legal pages set it too now, not the menu alone).
    A slab's data label reads level, like a HUD readout pinned to a tilted card; tilted with its slab, the English label ran off its chip onto the red face (design-check paint 2.7:1 on /en/) */
 .nl-item.big .nl-sub{transform:rotate(calc(-1 * var(--r)))}
+.p4 .nl-echo{opacity:0;transition:opacity var(--d5) linear var(--beat)}@media (max-width:759.98px),(max-aspect-ratio:4/5){.nl-cut{display:none}}

@@ -1345,6 +1345,7 @@ runtimeDeps.length
     'assets/work': 129 * kB,      // 117,246 (alliance/d1.webp)
     'assets/illus': 95 * kB,      // 86,364 on 2026-11-27 (arch.webp), +10%: the engraving's masks (vista-far/-mid/-near.webp, dunes.webp) left with the engraving; before: 203 kB at 183,670 (vista-near.webp)
     'assets/clients': 22 * kB,    // 19,320 (bordjsteel.svg)
+    'assets/cast': 95 * kB,       // 86,306 on 2026-11-28 (yasser.webp, the dock's 13 faces in one strip: scripts/cast-art.py)
     'hub/bible/art': 98 * kB,           // 89,038 on 2026-11-27 (every-world-720.webp, section 08 from the owner's story book; the animation it replaced is gone)
     'hub/fonts': 46 * kB,         // 45,936 on 2026-11-07 (aref-ruqaa-700-arabic.woff2; the Studio's subsets joined the bible's)
     'hub/img': 741 * kB,          // 672,831 on 2026-11-09 (mercury/mercury-act2.mp4, the 10 s Act 2 clip, +10%); before: 297 kB at 270,032 on 2026-11-07 (alliance/heroes/hero__bali--bg--mobile.webp)
