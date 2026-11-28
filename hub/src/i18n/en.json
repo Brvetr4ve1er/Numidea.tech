@@ -279,6 +279,7 @@
     "note": "@home:price.estFine",
     "running": "Domain and hosting on top, billed yearly by the host, in your name.",
     "cta": "Get my quote",
+    "bag": "Fixed price: put it in the bag →",
     "waMsg": "Hello, I would like a quote for this project, estimated on the studio console:\n{what}\n{lines}\nTimeline: {pace}\nEstimated total: {total} · {weeks}",
     "mailSubj": "Quote request: {what}",
     "sources": "The market, with sources: the price guide →",
@@ -877,13 +878,15 @@
         }
       ],
       "each": "per guide",
-      "all": "the set"
+      "all": "the set",
+      "bag": "Put it in the bag →"
     },
     "kit": {
       "k": "NOMAD KIT",
       "line": "The pack, the setup and two calls.",
       "was": "instead of",
-      "go": "Book the kit on WhatsApp"
+      "go": "Book the kit on WhatsApp",
+      "bag": "Put the kit in the bag →"
     },
     "ls": {
       "kicker": "/ FIVE LESSONS · MONEY",
@@ -7103,7 +7106,9 @@
               }
             }
           }
-        }
+        },
+        "toBag": "Or right now: a one-hour call, at a fixed price.",
+        "toBagGo": "Put the call in the bag →"
       },
       "route": {
         "title1": "The road",
@@ -7227,7 +7232,9 @@
             "keep": "The “Leaving” stamp"
           }
         },
-        "toRate": "the “Rate” district of “Earning from far away”"
+        "toRate": "the “Rate” district of “Earning from far away”",
+        "toBag": "Or right now: the freelance starter pack, at a fixed price.",
+        "toBagGo": "Put the pack in the bag →"
       },
       "jeu": {
         "title1": "Fair",

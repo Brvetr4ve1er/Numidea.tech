@@ -33,6 +33,9 @@ export const THEMES = ['arcanum', 'daylight'];
 /* the legal page exists only once scripts/build-legal.mjs had every owner
    field; until then nothing may link to it and it is not deployed */
 export const LEGAL_PUBLISHED = existsSync(join(ROOT, 'legal/index.html'));
+/* the counter's terms of sale (comptoir/conditions/): same rule, written by scripts/build-terms.mjs only once every
+   owner fact is in; it deploys with comptoir/ (a folder in DEPLOY) */
+export const TERMS_PUBLISHED = existsSync(join(ROOT, 'comptoir/conditions/index.html'));
 
 /* La Librairie Lanterne (hub/lanterne/, 2026-11-21): the shelf and one page per atlas, written by build-hub.mjs
    (scripts/lib/lanterne.mjs). An atlas is a page once its data file exists (hub/src/lanterne/atlases/<slug>.json) and
@@ -56,7 +59,8 @@ export const LANTERNE_PAGES = ['hub/lanterne/index.html', ...LANTERNE_ATLASES.ma
 export const PAGES = ['index.html', 'en/index.html', 'ar/index.html', 'tarifs/index.html', 'en/tarifs/index.html', 'ar/tarifs/index.html',
   '404.html', 'hub/index.html', 'hub/manuel.html', ...LANTERNE_PAGES, 'hub/monde.html', 'hub/fabrique.html', 'hub/bible/index.html', 'hub/brand/almaflow/index.html', 'hub/brand/alliance/index.html', 'hub/brand/traveler/index.html', 'hub/brand/numidea/index.html', 'hub/brand/exploration/index.html',
   'scene/index.html', 'workspacehq/index.html', 'comptoir/index.html']
-  .concat(LEGAL_PUBLISHED ? ['legal/index.html'] : []);
+  .concat(LEGAL_PUBLISHED ? ['legal/index.html'] : [])
+  .concat(TERMS_PUBLISHED ? ['comptoir/conditions/index.html'] : []);
 export const EXTRA_PAGES = ['workspacehq/embed/trailer.html', 'workspacehq/embed/walkthrough.html', 'workspacehq/embed/console.html'];
 
 /* .well-known/security.txt (RFC 9116, 2026-11-27): where to report a security problem; check.mjs 16 holds its Expires
@@ -73,7 +77,7 @@ export const NOT_DEPLOYED = ['.git', '.github', '.claude', '.tmp', '.netlify', '
   // what is left of the second volume's holding folder (« Le web3, sans fumée », the nine modules): published since 2026-11-22 as
   // hub/lanterne/web3-modules.html, its labs (hub/web3x.js), art and strings moved back; only the verbatim cut (chapters.html) and its README stay
   'lanterne-later', 'campaign', 'knowledge-base', 'scripts', 'shop', 'social',
-  'legal-preview', 'legal', 'BRAND.md', 'README.md', 'RELEASE.md', 'IMPROVEMENTS.md', 'LICENSE', 'NOTICE.md', 'OWNER-CONTENT.md', 'package.json', 'package-lock.json',
+  'legal-preview', 'terms-preview', 'legal', 'BRAND.md', 'README.md', 'RELEASE.md', 'IMPROVEMENTS.md', 'LICENSE', 'NOTICE.md', 'OWNER-CONTENT.md', 'package.json', 'package-lock.json',
   // api/: Vercel serverless functions (api/yasser.js, the bible's « talk to him »), built by Vercel from the repo root, never copied to _site
   'api',
   'netlify.toml', 'vercel.json', '.gitattributes', '.gitignore', '.nvmrc', '.graphifyignore', 'graphify-out'];

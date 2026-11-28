@@ -1420,7 +1420,7 @@ runtimeDeps.length
     'hub/lanterne/web3.html': 260 * kB, // 252,630 on 2026-11-26 (two objects, two panels, the game card's words); was a byte-exact ceiling
     'hub/radio.js': 9 * kB,          // 8,014
     // la carte's sheet, the Studio's services catalogue (2026-11-21, measured + 10%)
-    'hub/css/carte.css': 43 * kB,    // 38,690
+    'hub/css/carte.css': 44 * kB,    // 43,291 on 2026-11-27 (the carte « Mettre dans le sac » link); 43 kB before
   };
   const OG = 300 * kB;            // 105,403 then (hub/og.jpg)
   const TOTAL = 74 * MB; // a declared cap, not a measurement (2026-11-27: 70.85 MB published). A merge never raises it; the owner does, on purpose

@@ -17,6 +17,7 @@
 
 import { statSync } from 'node:fs';
 import { join } from 'node:path';
+import { ITEMS as SHOP } from '../../api/_shop.js';
 
 const LRI ='⁦', PDI = '⁩';   // a figure inside a sentence reads left to right in every language
 const WA = 'https://wa.me/213672412578?text=';
@@ -413,6 +414,11 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
       // « Identité + charte » and the button opened the identity alone)
       ? `<a class="st-btn st-btn--primary" href="#pricing" data-est-go="${c.est[0]}" data-est-size="${c.est[1]}"${c.leadPick ? ` data-est-pick="${c.leadPick}"` : ''} data-i18n="carte.est"></a>`
       : waBtn(`${k}.wa`);
+    // « Mettre dans le sac » (2026-11-27): a card whose figure the counter sells at a fixed price opens /comptoir/ with
+    // the item its tag shows: the lead tier, only when the counter sells that exact figure (ranges and quotes get none).
+    const sold = (x) => x && x.src && SHOP.find((i) => i.src === x.src.replace(/^design:/, 'DESIGN.'));
+    const shop = sold(c.tiers.find((x) => x.lead));
+    const bag = shop ? `<a class="cc__sec cc__bag" href="../comptoir/?add=${shop.id}" data-shop-add="${shop.id}" data-i18n="carte.bag"></a>` : '';
     const sec = c.proof ? `<a class="cc__sec" href="${c.proof}" data-i18n="${c.proofK || 'carte.work'}"></a>` : '';
     const anchors = (c.anchors || []).map((a) => `<span id="${a}" class="cc__anchor"></span>`).join('');
     return `<article class="cc" id="carte-${c.id}" aria-labelledby="cc-${c.id}-h" style="${st};--tag-drop:${tagDrop(k)}px">${anchors}
@@ -426,7 +432,7 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
       <div class="cc__head"><h5 class="cc__n" id="cc-${c.id}-h" data-i18n="${k}.name"></h5>${c.only ? `<p class="cc__only"><span ${hook(ONLY)} data-i18n="carte.only"></span> <a href="#pricing" data-est-go="vitrine" data-est-size="5" data-i18n="carte.est"></a></p>` : ''}<p class="cc__p" data-i18n="${k}.pr"></p></div>
       <ul class="cc__gets">${c.tiers && DICT.fr[`${k}.gets.0`] != null ? [0, 1, 2].filter((j) => DICT.fr[`${k}.gets.${j}`] != null).map((j) => `<li data-i18n="${k}.gets.${j}"></li>`).join('') : ''}</ul>
       ${more(`<div class="cc__tiers"><table class="tt"><caption class="st-sr" data-i18n="carte.tiersCap"></caption><tbody>${rowsOf(k, c.tiers, c)}</tbody></table>${lines}</div>`, `${k}.pr`)}
-      <div class="cc__foot">${primary}</div>
+      <div class="cc__foot">${primary}${bag}</div>
     </article>`;
   };
   // the sources, numbered in order of first use
