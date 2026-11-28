@@ -1214,13 +1214,15 @@ runtimeDeps.length
   if (differ.length) cspErr.push('netlify.toml ("/*") and vercel.json ("/(.*)") send different headers: '
     + differ.map((k) => `${k} ${JSON.stringify(nl[k] ?? null)} vs ${JSON.stringify(vc[k] ?? null)}`).join(', '));
   for (const [host, h] of [['netlify.toml', netlify], ['vercel.json', vercel]]) {
-    for (const k of ['X-Content-Type-Options', 'X-Frame-Options', 'Referrer-Policy', 'Permissions-Policy', 'Strict-Transport-Security'])
+    for (const k of ['X-Content-Type-Options', 'X-Frame-Options', 'Referrer-Policy', 'Permissions-Policy', 'Strict-Transport-Security', 'Cross-Origin-Opener-Policy', 'Cross-Origin-Resource-Policy'])
       if (!h[k]) cspErr.push(`${host}: no ${k} header on every path`);
     const hsts = h['Strict-Transport-Security'] || '';
     const age = Number((/\bmax-age=(\d+)/.exec(hsts) || [])[1] || 0);
     if (hsts && (age < 63072000 || !/;\s*includeSubDomains\b/.test(hsts) || !/;\s*preload\b/.test(hsts))) cspErr.push(`${host}: Strict-Transport-Security "${hsts}" (want max-age of two years or more, includeSubDomains, preload)`);
   }
   if (!netlify['Content-Security-Policy']) cspErr.push('netlify.toml: no Content-Security-Policy header on "/*"');
+  // (Vercel sends none of these on /.well-known/: neither "/(.*)" nor a rule of its own applies there, seen on the
+  // PR 43 and PR 49 previews. Only its default HSTS goes out. security.txt is plain text, so nothing rides on it.)
   const metas = metaPolicies();
   const hdrs = [['vercel.json', 'page', vercelCsp.page], ['vercel.json', 'embed', vercelCsp.embed], ['netlify.toml', 'any', netlify['Content-Security-Policy']]];
   for (const [host, kind, policy] of hdrs) {
